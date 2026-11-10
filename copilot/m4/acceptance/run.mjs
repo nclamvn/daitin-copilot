@@ -84,7 +84,7 @@ async function loadWord(tab, number, open) {
   const [file] = await Promise.all([tab.waitForEvent('download'),
     tab.getByRole('button', { name: 'Tải Word bản ' + number }).click()]);
   const bytes = readFileSync(await file.path());
-  assert.equal(file.suggestedFilename(), 'M4-01-ban-duyet-' + number + '.docx');
+  assert.equal(file.suggestedFilename(), 'M4-01-ban-duyet-' + number + '-daitin.docx');
   writeFileSync(resolve(work, 'copilot-' + number + '.docx'), bytes);
   return hash(bytes);
 }
@@ -216,7 +216,7 @@ try {
   final = await json('/api/m3/cases/' + id);
   assert.deepEqual(final.releases[1].sections.attachments, initial.releases[0].sections.attachments);
   assert.equal(final.releases[1].sections.response.draft, 3);
-  assert.equal(hash(Buffer.from(await (await get('/api/m4/cases/' + id + '/word/1')).arrayBuffer())), firstHash);
+  assert.equal(hash(Buffer.from(await (await get('/api/m4/cases/' + id + '/word/1/daitin-v2')).arrayBuffer())), firstHash);
   await tab.setViewportSize({ width: 390, height: 844 });
   assert.equal(await tab.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
   await tab.getByRole('button', { name: 'Mở danh sách hồ sơ' }).click();

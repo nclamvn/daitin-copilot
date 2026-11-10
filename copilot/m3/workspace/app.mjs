@@ -634,7 +634,7 @@ function preview(release) {
   evidence.append(node('h3', 'Căn cứ đối chiếu'),
     ...release.basis.citations.map(item => node('p', item.locator + ' · ' + item.document + ' · trang ' + item.page)));
   const download = word => button(word ? 'Tải Word bản ' + release.number : 'Tải bản duyệt ' + release.number, () => run('Đang tải bản đã duyệt…', async () => {
-    const response = word ? await fetch('/api/m4/cases/' + id + '/word/' + release.number)
+    const response = word ? await fetch('/api/m4/cases/' + id + '/word/' + release.number + '/daitin-v2')
       : await request('/' + id + '/release/' + release.number);
     if (!response.ok) throw new Error((await response.json()).error ?? 'Chưa tải được bản Word.');
     const bytes = await response.arrayBuffer();
@@ -644,7 +644,7 @@ function preview(release) {
     const url = URL.createObjectURL(new Blob([bytes], { type: response.headers.get('Content-Type') }));
     const anchor = node('a');
     anchor.href = url;
-    anchor.download = name + '-ban-duyet-' + release.number + (word ? '.docx' : '.md');
+    anchor.download = name + '-ban-duyet-' + release.number + (word ? '-daitin.docx' : '.md');
     document.body.append(anchor);
     anchor.click();
     anchor.remove();

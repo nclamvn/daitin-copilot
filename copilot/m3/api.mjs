@@ -44,16 +44,18 @@ export function createM3(review) {
             }
             return { status: 201, value: workflow.create(body, bindPDF(body, inspected, bytes)) };
           }
-          const file = path.match(/^\/api\/m4\/cases\/([a-f0-9-]{36})\/(notice\.pdf|notice-page\/([1-9][0-9]*)|word\/([1-9][0-9]*))$/);
+          const file = path.match(/^\/api\/m4\/cases\/([a-f0-9-]{36})\/(notice\.pdf|notice-page\/([1-9][0-9]*)|word\/([1-9][0-9]*)(?:\/(daitin-v2))?)$/);
           if (get && file) {
-            const [, id, asset, page, number] = file;
+            const [, id, , page, number, layout = 'legacy'] = file;
             const matter = workflow.read(id);
             if (number) {
               const release = matter.releases.find(item => item.number === Number(number));
               if (!release) throw new CaseError('Bản duyệt này chưa tồn tại.', 404);
-              const saved = store.word(id, release.number) ?? store.saveWord(id, release.number, makeWord(matter, release));
+              const saved = store.word(id, release.number, layout) ??
+                store.saveWord(id, release.number, layout, makeWord(matter, release, layout));
               if (hash(saved.bytes) !== saved.sha) throw new CaseError('Tệp Word chưa khớp dấu kiểm.', 409);
-              const name = matter.reference.replaceAll('/', '-') + '-ban-duyet-' + release.number + '.docx';
+              const name = matter.reference.replaceAll('/', '-') + '-ban-duyet-' + release.number +
+                (layout === 'legacy' ? '.docx' : '-daitin.docx');
               return { value: Buffer.from(saved.bytes), type: wordType,
                 headers: { 'X-Artifact-SHA256': saved.sha, 'Content-Disposition': 'attachment; filename="' + name + '"' } };
             }

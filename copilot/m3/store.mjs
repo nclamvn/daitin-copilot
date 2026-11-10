@@ -26,6 +26,10 @@ export function openCaseStore(path) {
       id TEXT NOT NULL, number INTEGER NOT NULL, sha TEXT NOT NULL, bytes BLOB NOT NULL,
       PRIMARY KEY(id, number)
     ) STRICT;
+    CREATE TABLE IF NOT EXISTS word_layout_releases (
+      id TEXT NOT NULL, number INTEGER NOT NULL, layout TEXT NOT NULL, sha TEXT NOT NULL, bytes BLOB NOT NULL,
+      PRIMARY KEY(id, number, layout)
+    ) STRICT;
   `);
   const insert = db.prepare('INSERT INTO matters VALUES (?, ?, ?, ?, ?, ?)');
   const lookup = db.prepare('SELECT content FROM matters WHERE id = ?');
@@ -36,6 +40,9 @@ export function openCaseStore(path) {
   const getPDF = db.prepare('SELECT bytes FROM notice_files WHERE id = ?');
   const addWord = db.prepare('INSERT OR IGNORE INTO word_releases VALUES (?, ?, ?, ?)');
   const getWord = db.prepare('SELECT bytes, sha FROM word_releases WHERE id = ? AND number = ?');
+  const addLayout = db.prepare('INSERT OR IGNORE INTO word_layout_releases VALUES (?, ?, ?, ?, ?)');
+  const getLayout = db.prepare('SELECT bytes, sha FROM word_layout_releases WHERE id = ? AND number = ? AND layout = ?');
+  const word = (id, number, layout) => layout === 'legacy' ? getWord.get(id, number) : getLayout.get(id, number, layout);
 
   return {
     list: () => list.all(),
@@ -60,10 +67,11 @@ export function openCaseStore(path) {
       return matter;
     },
     pdf: id => getPDF.get(id)?.bytes,
-    word: (id, number) => getWord.get(id, number),
-    saveWord(id, number, bytes) {
-      addWord.run(id, number, hash(bytes), bytes);
-      return getWord.get(id, number);
+    word,
+    saveWord(id, number, layout, bytes) {
+      if (layout === 'legacy') addWord.run(id, number, hash(bytes), bytes);
+      else addLayout.run(id, number, layout, hash(bytes), bytes);
+      return word(id, number, layout);
     },
     save(matter) {
       const before = matter.version;

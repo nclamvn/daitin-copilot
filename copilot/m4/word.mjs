@@ -1,5 +1,6 @@
 import { crc32 } from 'node:zlib';
 import { hash, ids, renderRelease, sections, CaseError } from '../m3/workflow.mjs';
+import { brandedWordLayout, brandedWordParts } from './word-brand.mjs';
 
 const xml = body => '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' + body;
 const namespace = 'http://schemas.openxmlformats.org/wordprocessingml/2006/main';
@@ -56,9 +57,11 @@ function zip(parts) {
 
 export const wordType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
 
-export function makeWord(matter, release) {
+export function makeWord(matter, release, layout = brandedWordLayout) {
   if (!release || renderRelease({ ...matter, basis: release.basis }, release.sections, release.number) !== release.markdown ||
       hash(release.markdown) !== release.sha256) throw new CaseError('Dữ liệu bản duyệt chưa khớp dấu kiểm.', 409);
+  if (layout === brandedWordLayout) return zip(brandedWordParts(matter, release, { xml, namespace, run }));
+  if (layout !== 'legacy') throw new CaseError('Mẫu Word chưa được hỗ trợ.');
   const title = 'Văn bản phản hồi thông báo thẩm định nhãn hiệu';
   const fields = matter.document?.fields;
   const confirmed = [['application', 'Số đơn'], ['noticeNumber', 'Số thông báo'], ['noticeDate', 'Ngày thông báo']]
