@@ -1,0 +1,153 @@
+{
+  "author": "Codex, LLM có công cụ trong phiên hiện tại",
+  "evidenceClass": "quyết định thật của phiên trên yêu cầu mô phỏng do cùng phiên soạn",
+  "scope": "kiểm tích hợp, cùng phiên soạn ca và quyết định",
+  "independentHoldout": false,
+  "externalProviderRun": false,
+  "cases": 10,
+  "results": [
+    {
+      "id": "I01",
+      "modelDecision": "prepare",
+      "actual": {
+        "disposition": "prepare",
+        "workflow": "renewal",
+        "actions": [
+          "review"
+        ],
+        "form": "renewal-tt20-01",
+        "reason": null
+      },
+      "passed": true,
+      "requestDigest": "fdcf46069ecc685a329441773a82620a7cd26e49f26a2c5eea6cd0feebf9429d"
+    },
+    {
+      "id": "I02",
+      "modelDecision": "prepare",
+      "actual": {
+        "disposition": "prepare",
+        "workflow": "renewal",
+        "actions": [
+          "review"
+        ],
+        "form": "renewal-tt10-02",
+        "reason": null
+      },
+      "passed": true,
+      "requestDigest": "61254f50a6d66c52acc38c5b79f0183e36cf94bf7089a591efe76d33c197a0f6"
+    },
+    {
+      "id": "I03",
+      "modelDecision": "clarify",
+      "actual": {
+        "disposition": "clarify",
+        "workflow": "renewal",
+        "actions": [],
+        "form": null,
+        "reason": "missing_pending"
+      },
+      "passed": true,
+      "requestDigest": "aa3d0f5946c7938bab6533de65d5ddeb2212cae1899e12db07e8ad5ec7f771af"
+    },
+    {
+      "id": "I04",
+      "modelDecision": "research",
+      "actual": {
+        "disposition": "research",
+        "workflow": null,
+        "actions": [
+          "event"
+        ],
+        "form": null,
+        "reason": null
+      },
+      "passed": true,
+      "requestDigest": "857de392aaf5e6715963ffc15753616319ff909bb0bdfd0233bede2c5a4af0c0"
+    },
+    {
+      "id": "I05",
+      "modelDecision": "research",
+      "actual": {
+        "disposition": "research",
+        "workflow": null,
+        "actions": [
+          "nice",
+          "event"
+        ],
+        "form": null,
+        "reason": null
+      },
+      "passed": true,
+      "requestDigest": "f4a6d1f2a17d9fcec826b3e398583fa2db7d8808daf92f63c2f6367eeb2d4d24"
+    },
+    {
+      "id": "I06",
+      "modelDecision": "refer",
+      "actual": {
+        "disposition": "refer",
+        "workflow": "registration",
+        "actions": [],
+        "form": null,
+        "reason": "scope"
+      },
+      "passed": true,
+      "requestDigest": "fcd3280589ba55d43159bb3ed50ffe7310703f8cdfa7a35d190bbff4a4423b41"
+    },
+    {
+      "id": "I07",
+      "modelDecision": "refer",
+      "actual": {
+        "disposition": "refer",
+        "workflow": null,
+        "actions": [],
+        "form": null,
+        "reason": "high_stakes"
+      },
+      "passed": true,
+      "requestDigest": "4615c9244bb6ef7512ca4155421de1a36f97127d3abbb206f4991a20d70166f4"
+    },
+    {
+      "id": "I08",
+      "modelDecision": "prepare",
+      "actual": {
+        "disposition": "prepare",
+        "workflow": "certificate_amendment",
+        "actions": [
+          "review"
+        ],
+        "form": "certificate-tt20-02",
+        "reason": null
+      },
+      "passed": true,
+      "requestDigest": "e41dd8c1482d3c075426bdb518ad25aba703de23edfa9c02318b843960f83df8"
+    },
+    {
+      "id": "I09",
+      "modelDecision": "prepare",
+      "actual": {
+        "disposition": "refer",
+        "workflow": "office_response",
+        "actions": [
+          "review"
+        ],
+        "form": null,
+        "reason": "insufficient_evidence"
+      },
+      "passed": true,
+      "requestDigest": "410cfa8e1d86114ff296f769ea199bb2e1a32a10b008da7e907b86db62ba3e77"
+    },
+    {
+      "id": "I10",
+      "modelDecision": "clarify",
+      "actual": {
+        "disposition": "clarify",
+        "workflow": null,
+        "actions": [],
+        "form": null,
+        "reason": "missing_workflow"
+      },
+      "passed": true,
+      "requestDigest": "aad2f545e7431db64699f432307e730260c2110f42a0329b2bc4ad9f12941351"
+    }
+  ]
+}

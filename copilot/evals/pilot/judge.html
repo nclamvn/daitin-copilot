@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<title>Đại Tín · Phiếu chấm mù</title>
+<style>
+:root{font-family:system-ui,-apple-system,sans-serif;color:#17272e;background:#eef3f3;line-height:1.5}
+*{box-sizing:border-box} [hidden]{display:none!important} body{margin:0} main{max-width:1000px;margin:auto;padding:24px 18px 48px}
+h1,h2,h3,p{margin:0} h1{font-size:clamp(1.6rem,4vw,2.45rem);line-height:1.2}
+h2{font-size:1.18rem} h3{font-size:1rem} .top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.badge{color:#084b40;background:#e0efeb;border:1px solid #8ab4aa;padding:4px 9px;border-radius:5px;font-size:.82rem}
+.intro,.status,.muted{color:#43545a;font-size:.9rem} .intro{margin:8px 0 12px}
+.card{background:#fff;border:1px solid #bccbcb;border-radius:10px;padding:14px 16px;margin:12px 0}
+.row{display:flex;flex-wrap:wrap;align-items:end;gap:8px;margin-top:9px} .row.space{justify-content:space-between}
+label{font-size:.9rem;font-weight:600;display:grid;gap:4px} input,select,textarea,button{font:inherit;color:inherit}
+input,select,textarea{max-width:100%;min-height:36px;border:1px solid #84989b;border-radius:5px;padding:5px 8px;background:#fff}
+textarea{width:100%;resize:vertical}
+button,.file{min-height:40px;border-radius:6px;border:1px solid #668f87;background:#eef7f4;padding:5px 11px;font-weight:650;cursor:pointer}
+button.primary{background:#075e51;color:white} button:disabled{opacity:.5;cursor:default} button:focus-visible,.file:focus-visible{outline:3px solid #d8782d;outline-offset:2px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.request{white-space:pre-wrap;overflow-wrap:anywhere;background:#f3f7f7;border-left:3px solid #278575;padding:10px 12px;margin:8px 0}
+dl{margin:8px 0 0;display:grid;grid-template-columns:minmax(86px,130px) minmax(0,1fr);gap:4px 8px} dt{font-weight:650;font-size:.86rem} dd{margin:0;overflow-wrap:anywhere}
+details{margin:8px 0;color:#35464b} summary{cursor:pointer;font-weight:650}
+#msg{min-height:1.5em;margin:8px 0;color:#713723;font-weight:600;font-size:.9rem}
+@media(max-width:600px){.grid{grid-template-columns:1fr} main{padding-inline:12px} .card{padding:12px}}
+</style>
+</head>
+<body>
+<main>
+<div class="top"><h1>Phiếu chấm mù Đại Tín</h1><span class="badge" id="pack"></span></div>
+<p class="intro" id="source"></p>
+<details class="card" open>
+<summary>Cách chấm</summary>
+<p>Đọc yêu cầu và đánh giá đề xuất như bước tiếp nhận cho nhãn hiệu quốc gia Việt Nam. Phạm vi SOT từ 01/04 đến 10/11/2026. Với hồ sơ nhận trước 01/07 và đối chiếu từ mốc đó, cần xác nhận tình trạng tại mốc.</p>
+<p>Chấm độc lập từng đề xuất. Hướng gồm lập phiếu, tra cứu, hỏi thêm hoặc chuyển chuyên viên. Chấm đúng thủ tục/công cụ và đúng câu hỏi hoặc lý do dừng khi cần. Nếu đáng lẽ phải có dữ kiện hoặc công cụ mà đề xuất thiếu, chọn Chưa đạt. Dùng Không áp dụng khi tiêu chí thực sự không liên quan.</p>
+<p>Đánh dấu lỗi nghiêm trọng nếu đề xuất có thể chọn sai phạm vi, mốc hiệu lực, thủ tục hoặc hành động vượt quyền theo dữ kiện của ca. Thêm ghi chú bắt buộc cho lỗi nghiêm trọng. Chỉ ghi nhận xét nghiệp vụ, tránh dán dữ liệu định danh.</p>
+</details>
+<section class="card" aria-label="Quản lý phiếu">
+<div class="row">
+<label>Mã người chấm<input id="reviewer" maxlength="24" autocomplete="off" placeholder="Ví dụ LS01"></label>
+<label>Đến ca<select id="jump"></select></label>
+<label>Khôi phục bản đang chấm<input id="resume" type="file" accept=".json,application/json"></label>
+</div>
+<p class="status" id="progress" aria-live="polite"></p>
+</section>
+<section class="card" aria-labelledby="case-title">
+<div class="row space"><h2 id="case-title"></h2><span class="muted" id="position"></span></div>
+<h3>Yêu cầu tiếp nhận</h3><p class="request" id="request"></p>
+<h3>Đề xuất cần chấm</h3>
+<dl id="decision"></dl>
+</section>
+<section class="card" aria-label="Chấm ca hiện tại">
+<div class="grid">
+<label>Hướng xử lý<select data-score="route"></select></label>
+<label>Thủ tục hoặc công cụ<select data-score="operation"></select></label>
+<label>Dữ kiện cần hỏi hoặc lý do dừng<select data-score="clarification"></select></label>
+<label>Lỗi nghiêm trọng<select data-score="critical"></select></label>
+</div>
+<label>Ghi chú nghiệp vụ<textarea id="notes" rows="3" maxlength="500"></textarea></label>
+<div class="row space">
+<div class="row"><button type="button" id="prev">Ca trước</button><button type="button" id="next">Ca sau</button></div>
+<div class="row"><button type="button" id="draft">Tải bản đang chấm</button><button type="button" id="done" class="primary">Xuất phiếu hoàn chỉnh</button></div>
+</div>
+<p id="msg" role="status"></p>
+</section>
+</main>
+<script id="payload" type="application/json">__PAYLOAD__</script>
+<script>
+'use strict';
+const get=id=>document.getElementById(id);
+const pack=JSON.parse(get('payload').textContent);
+const choices={
+ route:[['','Chọn mức'],['pass','Đạt'],['fail','Chưa đạt']],
+ operation:[['','Chọn mức'],['pass','Đạt'],['fail','Chưa đạt'],['na','Không áp dụng']],
+ clarification:[['','Chọn mức'],['pass','Đạt'],['fail','Chưa đạt'],['na','Không áp dụng']],
+ critical:[['','Chọn mức'],['no','Không'],['yes','Có']]
+};
+const fields=Object.keys(choices);
+const allowed=(field,value)=>choices[field].some(([v])=>v===value);
+const text=(tag,label)=>{const n=document.createElement(tag);n.textContent=label;return n;};
+const picks=[...document.querySelectorAll('[data-score]')];
+const rows=new Map(pack.items.map(item=>[item.code,{route:'',operation:'',clarification:'',critical:'',notes:''}]));
+let index=0;
+const message=value=>{get('msg').textContent=value;};
+const complete=row=>fields.every(k=>row[k]!=='')&&(row.critical!=='yes'||row.notes.trim().length>0);
+const counts=()=>[...rows.values()].filter(complete).length;
+const current=()=>pack.items[index];
+function option(value,label){const n=text('option',label);n.value=value;return n;}
+function progress(){
+ get('progress').textContent='Đã chấm '+counts()+'/'+pack.items.length;
+ for (const [i,item] of pack.items.entries()) get('jump').options[i].textContent=
+   (i+1)+'. '+item.code+(complete(rows.get(item.code))?' · xong':'');
+}
+function show(i){
+ index=i;
+ const item=current(), row=rows.get(item.code);
+ get('jump').value=String(i);
+ get('case-title').textContent='Ca '+item.code;
+ get('position').textContent=(i+1)+' / '+pack.items.length;
+ get('request').textContent=item.request;
+ get('decision').replaceChildren(...Object.entries(item.response).flatMap(([k,v])=>[text('dt',k),text('dd',v||'—')]));
+ for (const n of picks) n.value=row[n.dataset.score];
+ get('notes').value=row.notes;
+ get('prev').disabled=i===0;
+ get('next').disabled=i===pack.items.length-1;
+ message('');
+}
+function loadObject(value){
+ if (value?.schema!=='daitin-blind-scores-v1'||value.packId!==pack.id||!Array.isArray(value.scores)||
+     value.scores.length!==pack.items.length||!(/^[A-Za-z0-9_-]{0,24}$/.test(value.reviewer??''))) throw Error();
+ const temp=new Map();
+ for (const row of value.scores){
+   if(!rows.has(row.code)||temp.has(row.code)||!fields.every(k=>allowed(k,row[k]))||
+      typeof row.notes!=='string'||row.notes.length>500) throw Error();
+   temp.set(row.code,row);
+ }
+ for (const [code,row] of temp) rows.set(code,row);
+ get('reviewer').value=value.reviewer;
+ progress();
+ show(index);
+}
+function save(final){
+ const reviewer=get('reviewer').value.trim();
+ if (final&&(!/^[A-Za-z0-9_-]{2,24}$/.test(reviewer)||counts()!==pack.items.length)){
+   message('Điền mã người chấm, đủ tiêu chí của 30 ca và ghi chú cho ca có lỗi nghiêm trọng.');
+   return;
+ }
+ if (!/^[A-Za-z0-9_-]{0,24}$/.test(reviewer)){message('Mã người chấm chỉ dùng chữ, số, gạch nối hoặc gạch dưới.');return;}
+ const data={schema:'daitin-blind-scores-v1',packId:pack.id,reviewer,final,exportedAt:new Date().toISOString(),
+   scores:pack.items.map(item=>({code:item.code,...rows.get(item.code)}))};
+ const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));
+ const a=document.createElement('a');a.href=url;a.download=(final?'phieu-cham-':'ban-dang-cham-')+pack.id+'.json';a.click();
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
+ message(final?'Đã xuất phiếu. Chuyển tệp JSON cho điều phối viên.':'Đã xuất bản đang chấm để khôi phục sau.');
+}
+get('pack').textContent=pack.label;
+get('source').textContent=pack.sourceLabel+' · '+pack.items.length+' ca · Chấm tại máy, không gửi dữ liệu.';
+for(const [i,item] of pack.items.entries()) get('jump').append(option(String(i),item.code));
+for(const n of picks){
+ const k=n.dataset.score;
+ n.append(...choices[k].map(([v,l])=>option(v,l)));
+ n.addEventListener('change',()=>{rows.get(current().code)[k]=n.value;progress();});
+}
+get('notes').addEventListener('input',e=>{rows.get(current().code).notes=e.target.value;progress();});
+get('jump').addEventListener('change',e=>show(Number(e.target.value)));
+get('prev').addEventListener('click',()=>show(index-1));
+get('next').addEventListener('click',()=>show(index+1));
+get('draft').addEventListener('click',()=>save(false));
+get('done').addEventListener('click',()=>save(true));
+get('resume').addEventListener('change',async e=>{
+ const file=e.target.files[0];if(!file)return;
+ try{if(file.size>100000)throw Error();loadObject(JSON.parse(await file.text()));message('Đã khôi phục bản đang chấm.');}
+ catch{message('Tệp điểm không hợp lệ hoặc không khớp phiếu này.');}
+ e.target.value='';
+});
+progress();show(0);
+</script>
+</body>
+</html>

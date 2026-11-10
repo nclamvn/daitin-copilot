@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Bàn làm việc nhãn hiệu · Đại Tín</title>
+  <link rel="stylesheet" href="/app.css">
+  <link rel="stylesheet" href="/copilot/desk.css">
+  <script type="module" src="/copilot/desk.mjs"></script>
+</head>
+<body class="desk-body">
+  <header class="desk-header">
+    <a class="desk-brand" href="/copilot/"><span>ĐT</span><div><strong>Đại Tín</strong><small>IP Workbench</small></div></a>
+    <div class="header-actions"><span class="stage" id="desk-stage">M1 · Chờ rà soát</span><a id="response-workspace" href="/copilot/m3/workspace/" hidden>Bàn hồ sơ</a><a href="/">Tra cứu SOT</a></div>
+  </header>
+  <main class="desk-main">
+    <p class="eyebrow">Nhãn hiệu Việt Nam</p>
+    <h1>Bàn làm việc nghiệp vụ</h1>
+    <p class="intro">Rà dữ kiện, kiểm căn cứ và lập phiếu hồ sơ. Mỗi kết quả giữ liên kết về nguồn đã dùng.</p>
+    <dl class="stats" id="stats" aria-label="Quy mô kho nguồn"></dl>
+    <nav class="desk-tabs" aria-label="Công việc">
+      <button type="button" data-panel="case" aria-current="page">Rà hồ sơ</button>
+      <button type="button" data-panel="intake">Điều phối EN/VI</button>
+      <button type="button" data-panel="law">Tìm văn bản</button>
+      <button type="button" data-panel="nice">Phân nhóm Nice</button>
+      <button type="button" data-panel="event">Đơn chuyển công bố</button>
+      <button type="button" data-panel="sources">Nguồn và phạm vi</button>
+    </nav>
+    <p id="desk-error" role="alert" hidden></p>
+    <section class="desk-panel proof-tray" aria-labelledby="proof-title" hidden>
+      <div class="result-bar"><h2 id="proof-title">Bằng chứng đính kèm phiếu</h2><button type="button" id="clear-proof">Xóa danh sách</button></div>
+      <p>Kiểm lại danh sách khi chuyển sang hồ sơ khác. Các mục được đính kèm dưới dạng tham chiếu.</p>
+      <div id="pinned" class="desk-list"></div>
+    </section>
+    <p id="pin-status" class="visually-hidden" role="status"></p>
+    <div class="desk-layout">
+      <section class="desk-panel" id="panel-case" aria-labelledby="case-title">
+        <h2 id="case-title">Chuẩn bị phiếu rà soát</h2>
+        <p>Chọn một thủ tục và nhập các mốc của đúng đơn hoặc yêu cầu đang xử lý.</p>
+        <form id="review-form">
+          <label class="field">Thủ tục<select id="procedure" name="procedure" required></select></label>
+          <div class="input-grid">
+            <label class="field">Chế độ
+              <select name="mode"><option value="prepare">Chuẩn bị nộp</option><option value="case">Đã tiếp nhận</option></select>
+            </label>
+            <label class="field"><span id="date-label">Ngày dự kiến nộp</span><input name="asOf" type="date" required></label>
+            <label class="field" id="received" hidden>Ngày tiếp nhận<input name="receivedOn" type="date"></label>
+            <label class="field" id="pending" hidden>Tình trạng tại 01/07/2026
+              <select name="pendingAtCutover"><option value="">Chưa xác định</option><option value="yes">Đang giải quyết</option><option value="no">Đã giải quyết</option></select>
+            </label>
+          </div>
+          <fieldset id="questions"><legend>Dữ kiện bổ sung</legend><div id="flags" class="input-grid"></div></fieldset>
+          <button class="desk-submit" type="submit">Lập phiếu rà soát</button>
+        </form>
+      </section>
+      <section class="desk-panel" id="panel-intake" aria-labelledby="intake-title" hidden>
+        <h2 id="intake-title">Tiếp nhận yêu cầu song ngữ</h2>
+        <p>Dùng yêu cầu giả lập hoặc đã ẩn danh. Mô hình cục bộ chọn hướng xử lý, sau đó bàn làm việc kiểm dẫn chứng và chạy công cụ được phép.</p>
+        <form id="intake-form">
+          <label class="field">Yêu cầu EN hoặc VI
+            <textarea name="request" rows="5" required maxlength="2500" placeholder="Dán nội dung yêu cầu để định tuyến"></textarea>
+          </label>
+          <label class="pilot-consent" id="pilot-consent" hidden>
+            <input type="checkbox" name="anonymized"> Tôi xác nhận yêu cầu đã ẩn danh và được phép sử dụng trong pilot.
+          </label>
+          <button type="button" id="intake-auto" class="desk-submit" hidden>LLM tự điều phối</button>
+          <p id="model-info" role="status"></p>
+          <details>
+            <summary>Kiểm quyết định JSON có sẵn</summary>
+            <button type="button" id="intake-prompt" class="desk-submit">Tạo gói cho LLM</button>
+            <label class="field" id="prompt-field" hidden>Gói để sao chép vào LLM
+              <textarea id="prompt-text" rows="6" readonly></textarea>
+            </label>
+            <label class="field">Quyết định JSON từ LLM
+              <textarea name="plan" rows="7" maxlength="3800" placeholder="Dán JSON LLM trả về"></textarea>
+            </label>
+            <button class="desk-submit" type="submit">Kiểm và thực thi</button>
+          </details>
+        </form>
+      </section>
+      <section class="desk-panel" id="panel-law" aria-labelledby="law-title" hidden>
+        <h2 id="law-title">Tìm trong văn bản</h2>
+        <p>Kho trang PDF có thể tìm kiếm, gồm văn bản ban hành, bản hợp nhất và hướng dẫn.</p>
+        <form data-search="law">
+          <label class="field">Từ khóa<input name="q" required maxlength="180" placeholder="Ví dụ: sửa đổi văn bằng bảo hộ"></label>
+          <label class="field">Giới hạn theo văn bản<select name="source" id="law-sources"><option value="">Tất cả văn bản có chỉ mục</option></select></label>
+          <button class="desk-submit" type="submit">Tìm căn cứ</button>
+        </form>
+      </section>
+      <section class="desk-panel" id="panel-nice" aria-labelledby="nice-title" hidden>
+        <h2 id="nice-title">Tra mã và thuật ngữ Nice</h2>
+        <p>Đối chiếu theo mã cơ bản, nhóm hoặc từ khóa tiếng Việt, Anh, Pháp.</p>
+        <form data-search="nice">
+          <label class="field">Mã hoặc từ khóa<input name="q" required maxlength="180" placeholder="Ví dụ: cà phê, 090001"></label>
+          <div class="input-grid">
+            <label class="field">Phiên bản<select name="edition"><option value="2026">Nice 13-2026 · Việt Nam</option><option value="2027">Nice 13-2027 · WIPO, đối chiếu</option></select></label>
+            <label class="field">Nhóm từ 1 đến 45<input name="class" inputmode="numeric" type="number" min="1" max="45" placeholder="Tất cả nhóm"></label>
+          </div>
+          <button class="desk-submit" type="submit">Tra phân nhóm</button>
+        </form>
+      </section>
+      <section class="desk-panel" id="panel-event" aria-labelledby="event-title" hidden>
+        <h2 id="event-title">Đối chiếu sự kiện chuyển công bố</h2>
+        <p>Tra theo số đơn đầy đủ trong bản danh sách đã công bố của Cục Sở hữu trí tuệ.</p>
+        <form data-search="event">
+          <label class="field">Số đơn<input name="q" required maxlength="14" placeholder="Ví dụ: 4-2026-11740"></label>
+          <button class="desk-submit" type="submit">Tra số đơn</button>
+        </form>
+      </section>
+      <section class="desk-panel" id="panel-sources" aria-labelledby="sources-title" hidden>
+        <h2 id="sources-title">Nguồn và phạm vi</h2>
+        <p>Bản chụp cục bộ dùng để rà soát. Văn bản scan có liên kết mở PDF theo danh mục.</p>
+        <div id="source-list" class="desk-list"></div>
+      </section>
+      <section class="desk-panel results" id="desk-results" aria-live="polite" aria-busy="false" aria-labelledby="results-title">
+        <div class="result-bar"><h2 id="results-title">Kết quả</h2><button type="button" id="export" hidden>Lưu phiếu</button></div>
+        <div id="result-list" class="desk-list"><p>Chọn công việc và nhập dữ kiện để xem kết quả.</p></div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hồ sơ thẩm định | Đại Tín</title>
+  <link rel="stylesheet" href="/app.css">
+  <link rel="stylesheet" href="/copilot/m3/app.css">
+  <script type="module" src="/copilot/m3/app.mjs"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Đến nội dung hồ sơ</a>
+  <header class="mast">
+    <a class="signature" href="/copilot/"><span class="monogram">ĐT</span><span>Đại Tín<small>Copilot sở hữu trí tuệ</small></span></a>
+    <a class="back" href="/copilot/">Bàn tra cứu</a>
+  </header>
+  <div class="workspace">
+    <aside class="railcase" aria-labelledby="case-list-title">
+      <div class="rail-head">
+        <h2 id="case-list-title">Hồ sơ đã lưu</h2>
+        <button type="button" id="new-case" class="quiet">Tạo hồ sơ</button>
+      </div>
+      <nav id="case-list" aria-label="Hồ sơ đã lưu"></nav>
+      <p class="rail-note">Pilot trên máy này. Chỉ dùng tài liệu mô phỏng hoặc đã ẩn danh và được phép.</p>
+    </aside>
+    <main id="main">
+      <header class="heading">
+        <p class="kicker">Nhãn hiệu Việt Nam / Thẩm định</p>
+        <h1 id="matter-title">Phản hồi thông báo thẩm định</h1>
+        <p id="matter-meta">Lưu thông báo, soạn phản hồi và duyệt nội dung để xuất bản nội bộ.</p>
+      </header>
+      <p class="feedback" id="feedback" role="status" aria-live="polite" hidden></p>
+      <form id="new-form" class="sheet setup">
+        <h2>Thông tin hồ sơ</h2>
+        <div class="field-grid">
+          <label>Mã hồ sơ<input name="reference" required maxlength="48" placeholder="DT-2026-001"></label>
+          <label>Tên nhãn hiệu<input name="title" required maxlength="100"></label>
+          <label>Ngày cơ quan tiếp nhận đơn<input name="receivedOn" type="date" required></label>
+          <label>Ngày đối chiếu<input name="asOf" type="date" required></label>
+        </div>
+        <label id="cutover-field" hidden>Tình trạng ngày 01/07/2026
+          <select name="pending"><option value="">Chưa xác nhận</option><option value="yes">Còn đang giải quyết</option><option value="no">Đã giải quyết</option></select>
+        </label>
+        <div class="field-grid sources-entry">
+          <fieldset>
+            <legend>Thông báo thẩm định</legend>
+            <label class="file-action">Nhập tệp văn bản<input type="file" accept=".txt,.md,text/plain,text/markdown" data-file="notice"></label>
+            <label>Văn bản thông báo<textarea name="notice" rows="5" required maxlength="1100"></textarea></label>
+          </fieldset>
+          <fieldset>
+            <legend>Chỉ dẫn gốc của khách hàng</legend>
+            <label class="file-action">Nhập tệp văn bản<input type="file" accept=".txt,.md,text/plain,text/markdown" data-file="instructions"></label>
+            <label>Văn bản chỉ dẫn<textarea name="instructions" rows="5" required maxlength="1100"></textarea></label>
+          </fieldset>
+        </div>
+        <label class="tick"><input type="checkbox" name="anonymized" required> Nguồn mô phỏng hoặc đã ẩn danh và được phép dùng trong pilot.</label>
+        <button class="primary">Lưu hồ sơ</button>
+      </form>
+      <div id="matter" hidden></div>
+    </main>
+  </div>
+</body>
+</html>

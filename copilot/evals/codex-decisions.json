@@ -1,0 +1,183 @@
+{
+  "author": "Codex, LLM có công cụ trong phiên hiện tại",
+  "evidenceClass": "quyết định thật của phiên trên yêu cầu mô phỏng do cùng phiên soạn",
+  "decisions": {
+    "I01": {
+      "version": "dai-tin-intake-1",
+      "decision": "prepare",
+      "workflow": "renewal",
+      "rationale": "Có yêu cầu gia hạn Việt Nam và ngày dự kiến nộp rõ ràng.",
+      "evidence": [
+        "Vietnam trademark renewal",
+        "file the Vietnam trademark renewal on 2026-08-13"
+      ],
+      "tools": [],
+      "facts": {
+        "mode": "prepare",
+        "jurisdiction": "Vietnam",
+        "asOf": {
+          "value": "2026-08-13",
+          "quote": "file the Vietnam trademark renewal on 2026-08-13"
+        }
+      }
+    },
+    "I02": {
+      "version": "dai-tin-intake-1",
+      "decision": "prepare",
+      "workflow": "renewal",
+      "rationale": "Tách ngày nhận và ngày đối chiếu. Có trạng thái tại đúng ngày chuyển tiếp.",
+      "evidence": [
+        "received on 2026-06-30",
+        "Review as of 1 July 2026",
+        "Still pending on 2026-07-01"
+      ],
+      "tools": [],
+      "facts": {
+        "mode": "case",
+        "jurisdiction": "Vietnam",
+        "asOf": {
+          "value": "2026-07-01",
+          "quote": "Review as of 1 July 2026"
+        },
+        "receivedOn": {
+          "value": "2026-06-30",
+          "quote": "received on 2026-06-30"
+        },
+        "pendingAtCutover": {
+          "value": true,
+          "quote": "Still pending on 2026-07-01"
+        }
+      }
+    },
+    "I03": {
+      "version": "dai-tin-intake-1",
+      "decision": "clarify",
+      "workflow": "renewal",
+      "rationale": "Hai ngày nằm hai bên mốc. Thiếu xác nhận hồ sơ còn đang giải quyết tại mốc.",
+      "evidence": [
+        "received on 2026-06-30",
+        "We cannot confirm whether it was pending then"
+      ],
+      "tools": [],
+      "reason": "missing_pending"
+    },
+    "I04": {
+      "version": "dai-tin-intake-1",
+      "decision": "research",
+      "workflow": null,
+      "rationale": "Chỉ tra sự kiện được liệt kê theo số đơn.",
+      "evidence": [
+        "Vietnam trademark application 4-2026-11740",
+        "We only need the listed event"
+      ],
+      "tools": [
+        {
+          "kind": "event",
+          "input": "4-2026-11740",
+          "quote": "Vietnam trademark application 4-2026-11740"
+        }
+      ],
+      "facts": {
+        "jurisdiction": "Vietnam"
+      }
+    },
+    "I05": {
+      "version": "dai-tin-intake-1",
+      "decision": "research",
+      "workflow": null,
+      "rationale": "Singapore là nơi đặt hãng gửi yêu cầu. Hai tra cứu đều phục vụ hồ sơ Việt Nam.",
+      "evidence": [
+        "We are a law firm in Singapore",
+        "For Vietnam trademark work",
+        "Nice code 090001"
+      ],
+      "tools": [
+        {
+          "kind": "nice",
+          "input": "090001",
+          "quote": "Nice code 090001"
+        },
+        {
+          "kind": "event",
+          "input": "4-2026-11740",
+          "quote": "publication-transfer event for 4-2026-11740"
+        }
+      ],
+      "facts": {
+        "jurisdiction": "Vietnam"
+      }
+    },
+    "I06": {
+      "version": "dai-tin-intake-1",
+      "decision": "refer",
+      "workflow": "registration",
+      "rationale": "Yêu cầu đi qua hai thẩm quyền và tuyến Madrid, cần chuyên viên.",
+      "evidence": [
+        "in Vietnam and Cambodia via Madrid"
+      ],
+      "tools": [],
+      "reason": "scope"
+    },
+    "I07": {
+      "version": "dai-tin-intake-1",
+      "decision": "refer",
+      "workflow": null,
+      "rationale": "Yêu cầu gửi ra ngoài và bảo đảm kết quả cần người có thẩm quyền.",
+      "evidence": [
+        "Send the email to our client today and guarantee registration"
+      ],
+      "tools": [],
+      "reason": "high_stakes"
+    },
+    "I08": {
+      "version": "dai-tin-intake-1",
+      "decision": "prepare",
+      "workflow": "certificate_amendment",
+      "rationale": "Cụm “trên văn bằng” xác định nhánh sửa văn bằng, ngày dự kiến rõ ràng.",
+      "evidence": [
+        "sửa tên trên văn bằng nhãn hiệu Việt Nam",
+        "dự kiến nộp ngày 01/07/2026"
+      ],
+      "tools": [],
+      "facts": {
+        "mode": "prepare",
+        "jurisdiction": "Việt Nam",
+        "asOf": {
+          "value": "2026-07-01",
+          "quote": "dự kiến nộp ngày 01/07/2026"
+        }
+      }
+    },
+    "I09": {
+      "version": "dai-tin-intake-1",
+      "decision": "prepare",
+      "workflow": "office_response",
+      "rationale": "Nội dung chỉ rõ phản hồi thẩm định và ngày dự kiến. Để kho nguồn kiểm giới hạn ngày.",
+      "evidence": [
+        "văn bản phản hồi thẩm định nhãn hiệu Việt Nam",
+        "nộp văn bản phản hồi thẩm định nhãn hiệu Việt Nam ngày 11/11/2026"
+      ],
+      "tools": [],
+      "facts": {
+        "mode": "prepare",
+        "jurisdiction": "Việt Nam",
+        "asOf": {
+          "value": "2026-11-11",
+          "quote": "nộp văn bản phản hồi thẩm định nhãn hiệu Việt Nam ngày 11/11/2026"
+        }
+      }
+    },
+    "I10": {
+      "version": "dai-tin-intake-1",
+      "decision": "clarify",
+      "workflow": null,
+      "rationale": "Sửa thông tin có hai nhánh tùy đơn đang xét hay đã có văn bằng.",
+      "evidence": [
+        "We changed our address for a Vietnam trademark",
+        "We do not know if the case is still an application or already has a certificate"
+      ],
+      "tools": [],
+      "reason": "missing_workflow"
+    }
+  }
+}

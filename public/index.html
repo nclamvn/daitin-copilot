@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Đại Tín Research | Nhãn hiệu Việt Nam</title>
+<link rel="stylesheet" href="/app.css">
+<link rel="icon" href="/mark.svg" type="image/svg+xml">
+<script type="module" src="/app.js"></script>
+</head>
+<body>
+<svg class="symbols" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
+  <symbol id="i-files" viewBox="0 0 24 24"><path d="M8 3h9l4 4v14H8zM17 3v5h4M4 6v13m7-7h7m-7 4h7"/></symbol>
+  <symbol id="i-review" viewBox="0 0 24 24"><path d="M4 5h16v12H9l-5 3zM8 9h8m-8 4h5"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 4v3"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M3 5c4-1 6 0 9 2v14c-3-2-5-3-9-2zm18 0c-4-1-6 0-9 2v14c3-2 5-3 9-2z"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+  <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6m0-6-9 9m-1-8H5v14h14v-5"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+</svg>
+<a class="skip" href="#main">Đến nội dung tra cứu</a>
+<div class="shell">
+  <aside class="rail" aria-label="Không gian Đại Tín">
+    <div class="brand"><span class="monogram" aria-hidden="true">ĐT</span><div><strong>Đại Tín</strong><small>Research</small></div></div>
+    <div class="rail-heading">Nghiệp vụ</div>
+    <nav aria-label="Chức năng">
+      <button class="nav-btn" type="button" data-view="research" aria-current="page"><svg class="ico" aria-hidden="true"><use href="#i-search"/></svg>Tra cứu</button>
+      <button class="nav-btn" type="button" data-view="forms"><svg class="ico" aria-hidden="true"><use href="#i-files"/></svg>Biểu mẫu</button>
+      <button class="nav-btn" type="button" data-view="sources"><svg class="ico" aria-hidden="true"><use href="#i-book"/></svg>Nguồn</button>
+    </nav>
+    <div class="rail-heading">Hồ sơ minh họa</div>
+    <div class="examples">
+      <button type="button" class="case-btn" data-case="early" aria-pressed="true"><span class="case-dot"></span>Gia hạn trước mốc</button>
+      <button type="button" class="case-btn" data-case="late" aria-pressed="false"><span class="case-dot"></span>Gia hạn từ 01/07</button>
+      <button type="button" class="case-btn" data-case="amend" aria-pressed="false"><span class="case-dot"></span>Sửa văn bằng</button>
+    </div>
+    <div class="rail-bottom"><strong><svg class="ico" aria-hidden="true"><use href="#i-lock"/></svg>MVP cục bộ</strong><p>Nguồn công khai đã đối chiếu</p></div>
+  </aside>
+  <div class="workspace">
+    <header class="top">
+      <div class="crumb">Sở hữu trí tuệ <span aria-hidden="true">/</span> <strong id="crumb">Tra cứu</strong></div>
+      <form id="query-form" class="composer" role="search">
+        <svg class="ico" aria-hidden="true"><use href="#i-search"/></svg>
+        <input id="query" aria-label="Tìm điều khoản hoặc thủ tục" placeholder="Tìm Điều 17, gia hạn, Mẫu 04…" maxlength="300" autocomplete="off" required aria-keyshortcuts="/">
+        <kbd aria-hidden="true">/</kbd>
+        <button class="btn" type="submit" aria-label="Tìm căn cứ"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+      </form>
+      <div class="top-right"><span class="demo-badge" id="demo-badge">MVP <b>01</b></span></div>
+    </header>
+    <div class="desk">
+      <main class="center" id="main" tabindex="-1">
+        <section id="view-research" aria-labelledby="research-title">
+          <div class="context" aria-label="Phạm vi tra cứu">
+            <dl><dt>Thị trường</dt><dd>Việt Nam</dd></dl>
+            <dl><dt>Đối tượng</dt><dd>Nhãn hiệu</dd></dl>
+            <dl><dt>Tuyến</dt><dd>Quốc gia</dd></dl>
+            <span class="context-tag"><svg class="ico" aria-hidden="true"><use href="#i-lock"/></svg>Nguồn công khai</span>
+          </div>
+          <header class="case-header">
+            <p class="kicker"><svg class="ico" aria-hidden="true"><use href="#i-files"/></svg>Hồ sơ và hiệu lực</p>
+            <h1 id="research-title" class="heading">Tra cứu nhãn hiệu Việt Nam</h1>
+            <p class="deck">Chọn thủ tục và ngày để đối chiếu căn cứ với phiên bản biểu mẫu.</p>
+          </header>
+          <form id="case-form" class="case-form">
+            <label class="field span-two">Thủ tục
+              <select name="procedure" id="procedure" required><option value="">Đang nạp danh mục…</option></select>
+            </label>
+            <label class="field">Chế độ
+              <select name="mode" id="mode"><option value="case">Đã tiếp nhận</option><option value="prepare">Chuẩn bị nộp</option></select>
+            </label>
+            <label class="field"><span id="as-of-label">Ngày đối chiếu</span>
+              <input type="date" id="as-of" name="asOf" value="2026-07-02" required>
+            </label>
+            <label class="field" id="received-field">Ngày tiếp nhận
+              <input type="date" id="received-on" name="receivedOn" value="2026-06-30">
+            </label>
+            <label class="field" id="pending-field">Tại ngày 01/07/2026
+              <select id="pending" name="pendingAtCutover"><option value="">Chưa xác định</option><option value="yes" selected>Đang giải quyết</option><option value="no">Đã giải quyết</option></select>
+            </label>
+            <div class="field-tools">
+              <small id="case-note">Dữ kiện ban đầu là hồ sơ minh họa. Dùng ngày tiếp nhận của thủ tục đang tra.</small>
+              <button class="btn primary" type="submit">Đối chiếu</button>
+            </div>
+          </form>
+          <section class="timeline" id="timeline" aria-labelledby="timeline-title">
+            <div class="timeline-header"><strong id="timeline-title">Đối chiếu hiệu lực</strong><span id="timeline-status">Đang nạp dữ liệu</span></div>
+            <ol class="timeline-points">
+              <li><button class="date-control" type="button" data-evidence="tt20-17-2" aria-pressed="false" aria-label="Mở Điều 17 khoản 2 về chuyển tiếp"><small id="timeline-received-label">Ngày tiếp nhận</small><b id="timeline-received">30/06/2026</b></button></li>
+              <li><button class="date-control" type="button" data-evidence="tt20-18-2" aria-pressed="false" aria-label="Mở Điều 18 khoản 2 về hiệu lực Chương IV"><small>Chương IV có hiệu lực</small><time datetime="2026-07-01">01/07/2026</time></button></li>
+              <li><div class="date-readonly"><small id="timeline-as-of-label">Mốc đối chiếu</small><b id="timeline-as-of">02/07/2026</b></div></li>
+            </ol>
+            <div class="scenario-bar" role="group" aria-label="Kịch bản kiểm tra">
+              <button type="button" data-case="early" aria-pressed="true">Nhận trước mốc</button>
+              <button type="button" data-case="late" aria-pressed="false">Nhận từ 01/07</button>
+              <button type="button" data-case="missing" aria-pressed="false">Thiếu dữ kiện</button>
+              <button type="button" data-compare>So mốc</button>
+            </div>
+          </section>
+          <article class="result" id="resolution" aria-busy="true">
+            <div class="result-head"><span class="badge neutral" id="result-status">Đang đối chiếu</span><span class="result-kind" id="result-context"></span></div>
+            <h2 id="result-title">Đang nạp hồ sơ</h2>
+            <p id="result-text"></p>
+            <div class="source-links" id="result-citations" role="group" aria-label="Căn cứ của kết quả"></div>
+            <div class="selected-form" id="result-form" hidden></div>
+            <div class="actions"><button class="btn" id="go-forms" type="button" data-view="forms" hidden><svg class="ico" aria-hidden="true"><use href="#i-files"/></svg>Xem lịch sử phiên bản</button></div>
+          </article>
+        </section>
+
+        <section id="view-search" aria-labelledby="search-title" hidden>
+          <p class="kicker">Tra cứu trong bản dữ liệu</p>
+          <h1 class="heading" id="search-title">Kết quả tra cứu</h1>
+          <p class="deck" id="search-caption"></p>
+          <p class="meta-note" id="search-message"></p>
+          <div class="actions"><button type="button" class="btn primary" id="apply-procedure" hidden></button><button type="button" class="btn" data-view="research">Về hồ sơ</button></div>
+          <div class="listing" id="search-hits" hidden></div>
+        </section>
+
+        <section id="view-forms" aria-labelledby="forms-title" hidden>
+          <p class="kicker"><svg class="ico" aria-hidden="true"><use href="#i-files"/></svg>Biểu mẫu chính thức</p>
+          <h1 class="heading" id="forms-title">Đối chiếu phiên bản</h1>
+          <p class="deck" id="forms-context"></p>
+          <div class="listing" id="forms-list" hidden></div>
+          <div class="actions"><button type="button" class="btn" data-view="research">Về dữ kiện hồ sơ</button></div>
+        </section>
+
+        <section id="view-sources" aria-labelledby="sources-title" hidden>
+          <p class="kicker">Phạm vi và nguồn công khai</p>
+          <h1 class="heading" id="sources-title">Nguồn dữ liệu</h1>
+          <p class="deck" id="catalog-scope"></p>
+          <p class="meta-note">Bản cục bộ dùng bộ nguồn cố định. Đối chiếu với cơ quan có thẩm quyền và người rà soát trước khi sử dụng cho hồ sơ thật.</p>
+          <div class="listing" id="source-list"></div>
+        </section>
+        <p id="announcer" class="visually-hidden" role="status"></p>
+        <div class="actions"><button type="button" class="btn mobile-open" id="open-inspector"><svg class="ico" aria-hidden="true"><use href="#i-book"/></svg>Mở ngăn căn cứ</button></div>
+      </main>
+      <aside class="inspector" id="inspector" aria-labelledby="inspector-title" tabindex="-1">
+        <div class="inspector-head">
+          <div class="eyeline"><svg class="ico" aria-hidden="true"><use href="#i-book"/></svg><h2 id="inspector-title">Hồ sơ căn cứ</h2></div>
+          <small id="source-count">0 căn cứ</small>
+          <button class="btn close-source" id="close-inspector" type="button" aria-label="Đóng ngăn căn cứ"><svg class="ico" aria-hidden="true"><use href="#i-close"/></svg></button>
+        </div>
+        <div class="inspector-tabs" role="group" aria-label="Nội dung ngăn căn cứ">
+          <button type="button" data-tab="evidence" aria-pressed="true" aria-controls="evidence-panel">Căn cứ</button>
+          <button type="button" data-tab="versions" aria-pressed="false" aria-controls="versions-panel">Mốc áp dụng</button>
+        </div>
+        <div id="evidence-panel">
+          <p class="meta-note inspector-empty" id="source-empty">Chọn một mốc hoặc kết quả để xem căn cứ.</p>
+          <div class="source-picks" id="source-picks" hidden></div>
+          <article class="paper" id="paper" tabindex="-1" aria-labelledby="paper-title" hidden>
+            <div class="paper-label"><span id="paper-kind"></span><span id="paper-page"></span></div>
+            <h3 id="paper-title"></h3>
+            <p id="paper-locator"></p>
+            <p id="paper-summary"></p>
+            <p class="meta-note" id="paper-caption" hidden>Trích nguyên văn</p>
+            <blockquote id="paper-quote" hidden></blockquote>
+          </article>
+          <dl class="source-meta" id="source-meta" hidden>
+            <div><dt>Cơ quan</dt><dd id="source-authority"></dd></div>
+            <div><dt>Phạm vi thời gian của đoạn</dt><dd id="source-range"></dd></div>
+            <div><dt>Đối chiếu nguồn</dt><dd id="source-checked"></dd></div>
+          </dl>
+          <div class="source-actions" id="source-actions" hidden>
+            <a id="source-snapshot" class="btn primary" target="_blank" rel="noopener noreferrer">Mở đúng trang PDF</a>
+            <a id="source-original" class="btn" target="_blank" rel="noopener noreferrer">Nguồn chính thức <svg class="ico" aria-hidden="true"><use href="#i-external"/></svg></a>
+          </div>
+        </div>
+        <div id="versions-panel" tabindex="-1" aria-label="So sánh mốc áp dụng" hidden>
+          <div class="version-list">
+            <article class="version"><strong>20/05/2026 · Hiệu lực chung</strong><p>Mốc hiệu lực chung của Thông tư 20/2026 khác mốc riêng của Chương IV.</p><a href="https://vanban.chinhphu.vn/?classid=1&amp;docid=218198&amp;pageid=27160" target="_blank" rel="noopener noreferrer">Thông tin văn bản</a></article>
+          </div>
+          <div class="rule-comparison" role="group" aria-label="Hai trường hợp quanh mốc hiệu lực">
+            <article class="rule-window" id="compare-early"><div class="compare-label" id="compare-early-label"></div><h3>Trước 01/07/2026</h3><p>Hồ sơ còn đang giải quyết tại mốc được đối chiếu theo ngày tiếp nhận.</p><button class="btn" type="button" data-evidence="tt20-17-2">Điều 17 khoản 2</button></article>
+            <article class="rule-window" id="compare-late"><div class="compare-label" id="compare-late-label"></div><h3>Từ 01/07/2026</h3><p>Chương IV có hiệu lực. Kiểm từng mẫu theo thủ tục và ngày áp dụng.</p><button class="btn" type="button" data-evidence="tt20-18-2">Điều 18 khoản 2</button></article>
+          </div>
+          <p id="compare-caption" class="meta-note"></p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+</body>
+</html>

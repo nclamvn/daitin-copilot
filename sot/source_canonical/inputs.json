@@ -1,0 +1,1255 @@
+{
+  "registry": {
+    "release": "vn-tm-sot-v0.1.1-candidate",
+    "jurisdiction": "VN",
+    "timezone": "Asia/Ho_Chi_Minh",
+    "coveredFrom": "2026-04-01",
+    "checkedThrough": "2026-11-10",
+    "cutover": "2026-07-01",
+    "cutoverBasis": {
+      "effective": "tt20-18-2",
+      "transition": "tt20-17-2"
+    },
+    "documents": {
+      "tt10": {
+        "number": "10/2026/TT-BKHCN",
+        "label": "Thông tư 10/2026/TT-BKHCN",
+        "kind": "Công báo số 231",
+        "authority": "Bộ Khoa học và Công nghệ",
+        "url": "https://congbaocdn.chinhphu.vn/180507251028987904/2026/4/20/469297-1776676154_v1_1776676768_signed.pdf",
+        "file": "tt10-cong-bao.pdf",
+        "sha256": "07e81b6ace18e01558666ebe468709a59ef2d0cad151fadb1745de31996b4541",
+        "pages": 259
+      },
+      "tt10-pl2": {
+        "number": "10/2026/TT-BKHCN",
+        "label": "Phụ lục II Thông tư 10/2026/TT-BKHCN",
+        "kind": "Phụ lục chính thức",
+        "authority": "Bộ Khoa học và Công nghệ",
+        "url": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/4/10-bkhcn-pl2.pdf",
+        "file": "tt10-appendix2.pdf",
+        "sha256": "5514cb939b3f2606488d9aaf00f92aaabb75d16455e77a90119f0ae1531c50e2",
+        "pages": 20
+      },
+      "tt20": {
+        "number": "20/2026/TT-BKHCN",
+        "label": "Thông tư 20/2026/TT-BKHCN",
+        "kind": "Văn bản trên Cổng Chính phủ",
+        "authority": "Bộ Khoa học và Công nghệ",
+        "url": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/5/20-bkhcn.pdf",
+        "file": "tt20.pdf",
+        "sha256": "a7bcd1495d946f7c03e3f03ea59ce247909d9d618a1ac84f70832752bf3b52b0",
+        "pages": 15
+      },
+      "tt20-pl": {
+        "number": "20/2026/TT-BKHCN",
+        "label": "Phụ lục kèm theo Thông tư 20/2026/TT-BKHCN",
+        "kind": "Phụ lục chính thức",
+        "authority": "Bộ Khoa học và Công nghệ",
+        "url": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/5/20-bkhcn-kem.pdf",
+        "file": "tt20-appendix.pdf",
+        "sha256": "7a4337c196fff5352030345ec52713d00ac6a20792070ff428a519c387394201",
+        "pages": 14
+      },
+      "vbhn06": {
+        "number": "06/VBHN-BKHCN",
+        "label": "Thông tư về sở hữu công nghiệp · Bản hợp nhất 06/VBHN-BKHCN",
+        "kind": "Văn bản hợp nhất",
+        "authority": "Bộ Khoa học và Công nghệ",
+        "url": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/7/06-vbhn-bkhcn.signed.pdf",
+        "file": "vbhn06.pdf",
+        "pages": 234,
+        "sha256": "a62d69dc0981a18ba6201bf0b2d6ce190a5a83ab452be8d48201a4616b66bcaf"
+      },
+      "vbhn160": {
+        "number": "160/2026/VBHN-LQ-VPQH",
+        "label": "Luật Sở hữu trí tuệ · Bản hợp nhất 160/2026/VBHN-LQ-VPQH",
+        "kind": "Văn bản hợp nhất · Công báo số 540",
+        "authority": "Văn phòng Quốc hội",
+        "url": "https://congbaocdn.chinhphu.vn/180507251028987904/2026/10/6/470657-1791273236_v1_1791273883_signed.pdf",
+        "file": "vbhn160.pdf",
+        "pages": 140,
+        "sha256": "53aed7cc50684a239e4fc04c6687a9df8071cf7ff557cce924eb258d2cfe4378"
+      },
+      "notice4863": {
+        "number": "4863/TB-SHTT",
+        "label": "Thông báo 4863/TB-SHTT",
+        "kind": "Thông báo nghiệp vụ",
+        "authority": "Cục Sở hữu trí tuệ",
+        "url": "https://ipvietnam.gov.vn/documents/20195/2494944/261001+-+TB+ap+dung+Luat+v%C3%A0+TT+10+clean+Final.pdf/f5916ac4-81bd-4464-8e64-a79e78a18373",
+        "file": "notice4863.pdf",
+        "pages": 3,
+        "sha256": "80544ba9641e63a0fbe4a97f9f1463e55a30f2709cbee414c4f36fb28c9fe200"
+      }
+    },
+    "provisions": {
+      "tt10-68-1": {
+        "document": "tt10",
+        "page": 76,
+        "article": 68,
+        "clause": "1",
+        "locator": "Điều 68 khoản 1",
+        "title": "Tờ khai đăng ký nhãn hiệu",
+        "summary": "Thành phần tờ khai của đơn đăng ký nhãn hiệu sử dụng Mẫu số 04 tại Phụ lục I.",
+        "from": "2026-04-01",
+        "terms": [
+          "nộp đơn",
+          "đăng ký nhãn hiệu",
+          "mẫu 04",
+          "trademark registration",
+          "file trademark"
+        ]
+      },
+      "tt10-83-2a": {
+        "document": "tt10",
+        "page": 102,
+        "article": 83,
+        "clause": "2",
+        "point": "a",
+        "locator": "Điều 83 khoản 2 điểm a",
+        "title": "Chủ động sửa đổi, bổ sung đơn",
+        "summary": "Khi người nộp đơn chủ động yêu cầu sửa đổi, bổ sung đơn đăng ký nhãn hiệu, tờ khai dùng Mẫu số 10 tại Phụ lục I.",
+        "from": "2026-04-01",
+        "terms": [
+          "sửa đơn",
+          "sửa đổi đơn",
+          "bổ sung đơn",
+          "mẫu 10",
+          "amend application"
+        ]
+      },
+      "tt10-83-2b": {
+        "document": "tt10",
+        "page": 102,
+        "article": 83,
+        "clause": "2",
+        "point": "b",
+        "locator": "Điều 83 khoản 2 điểm b",
+        "title": "Sửa đổi theo thông báo thẩm định",
+        "summary": "Khi sửa đổi trên cơ sở thông báo kết quả thẩm định của Cục Sở hữu trí tuệ, người nộp dùng văn bản phản hồi nêu rõ nội dung sửa đổi, bổ sung.",
+        "from": "2026-04-01",
+        "terms": [
+          "thông báo thẩm định",
+          "thông báo kết quả thẩm định",
+          "văn bản phản hồi",
+          "office action"
+        ]
+      },
+      "tt10-109-3a": {
+        "document": "tt10",
+        "page": 131,
+        "article": 109,
+        "clause": "3",
+        "point": "a",
+        "locator": "Điều 109 khoản 3 điểm a",
+        "title": "Tờ khai gia hạn trước 01/07/2026",
+        "summary": "Trong bản Thông tư 10 ban đầu, hồ sơ gia hạn Giấy chứng nhận đăng ký nhãn hiệu dùng Mẫu số 02 tại Phụ lục II.",
+        "from": "2026-04-01",
+        "until": "2026-07-01",
+        "terms": [
+          "gia hạn",
+          "gia hạn nhãn hiệu",
+          "mẫu 02",
+          "renewal",
+          "renew trademark"
+        ]
+      },
+      "tt10-110-3a": {
+        "document": "tt10",
+        "page": 133,
+        "article": 110,
+        "clause": "3",
+        "point": "a",
+        "locator": "Điều 110 khoản 3 điểm a",
+        "title": "Tờ khai sửa văn bằng trước 01/07/2026",
+        "summary": "Trong bản Thông tư 10 ban đầu, hồ sơ yêu cầu sửa đổi văn bằng bảo hộ dùng Mẫu số 03 tại Phụ lục II.",
+        "from": "2026-04-01",
+        "until": "2026-07-01",
+        "terms": [
+          "sửa văn bằng",
+          "sửa đổi văn bằng",
+          "mẫu 03",
+          "amend certificate"
+        ]
+      },
+      "tt20-11": {
+        "document": "tt20",
+        "page": 4,
+        "article": 11,
+        "amendsArticle": 108,
+        "amendedClause": "1",
+        "amendedPoint": "a",
+        "locator": "Điều 11 → Điều 108 khoản 1 điểm a",
+        "title": "Tờ khai gia hạn từ 01/07/2026",
+        "summary": "Điều 11 sửa Điều 108, dẫn tới Mẫu số 01. Khoản 4 Điều 16 thay Mẫu số 01 của Thông tư 10 bằng Mẫu số 01 của Thông tư 20.",
+        "from": "2026-07-01",
+        "terms": [
+          "gia hạn",
+          "gia hạn nhãn hiệu",
+          "mẫu 01",
+          "duy trì gia hạn",
+          "renewal",
+          "renew trademark"
+        ]
+      },
+      "tt20-12": {
+        "document": "tt20",
+        "page": 8,
+        "article": 12,
+        "amendsArticle": 110,
+        "amendedClause": "3",
+        "amendedPoint": "a",
+        "locator": "Điều 12 → Điều 110 khoản 3 điểm a",
+        "title": "Quy định hồ sơ sửa văn bằng từ 01/07/2026",
+        "summary": "Điều 12 sửa Điều 110 và dẫn chiếu Mẫu số 03 của Thông tư 10. Cần đọc cùng khoản 5 Điều 16, nơi thay mẫu được dẫn chiếu bằng Mẫu số 02 của Thông tư 20.",
+        "from": "2026-07-01",
+        "terms": [
+          "sửa văn bằng",
+          "sửa đổi văn bằng",
+          "đổi địa chỉ trên văn bằng",
+          "amend certificate"
+        ]
+      },
+      "tt20-16": {
+        "document": "tt20",
+        "page": 13,
+        "article": 16,
+        "clauses": [
+          "4",
+          "5",
+          "8"
+        ],
+        "locator": "Điều 16 khoản 4, 5 và 8",
+        "title": "Thay thế và bãi bỏ mẫu",
+        "summary": "Khoản 4 thay Mẫu 01 của Thông tư 10 bằng Mẫu 01 của Thông tư 20. Khoản 5 thay Mẫu 03 bằng Mẫu 02 của Thông tư 20. Khoản 8 bãi bỏ Mẫu 02 cũ của Thông tư 10.",
+        "from": "2026-07-01",
+        "terms": [
+          "mẫu mới",
+          "mẫu cũ",
+          "thay thế",
+          "bãi bỏ",
+          "mẫu 01",
+          "mẫu 02",
+          "mẫu 03"
+        ]
+      },
+      "tt20-17-2": {
+        "document": "tt20",
+        "page": 14,
+        "article": 17,
+        "clause": "2",
+        "locator": "Điều 17 khoản 2",
+        "title": "Xử lý hồ sơ chuyển tiếp",
+        "summary": "Đơn, hồ sơ SHTT được tiếp nhận trước ngày Chương IV có hiệu lực và còn đang giải quyết thì tiếp tục xử lý theo pháp luật tại ngày tiếp nhận.",
+        "quote": "theo quy định của pháp luật tại thời điểm tiếp nhận đơn, hồ sơ đó.",
+        "from": "2026-05-20",
+        "terms": [
+          "chuyển tiếp",
+          "hồ sơ cũ",
+          "tiếp nhận trước mốc",
+          "đang giải quyết",
+          "transition"
+        ]
+      },
+      "tt20-18-2": {
+        "document": "tt20",
+        "page": 14,
+        "article": 18,
+        "clause": "2",
+        "locator": "Điều 18 khoản 2",
+        "title": "Ngày hiệu lực riêng của Chương IV",
+        "summary": "Chương IV có hiệu lực từ ngày 01/07/2026. Ngày này khác với ngày hiệu lực chung của Thông tư.",
+        "quote": "từ ngày 01 tháng 7 năm 2026.",
+        "from": "2026-05-20",
+        "terms": [
+          "hiệu lực",
+          "mốc 01/07",
+          "chương iv",
+          "ngày áp dụng",
+          "effective date"
+        ]
+      },
+      "tt10-138-1": {
+        "document": "tt10",
+        "page": 161,
+        "locator": "Điều 138 khoản 1",
+        "title": "Mốc hiệu lực Thông tư 10",
+        "summary": "Thông tư 10/2026/TT-BKHCN có hiệu lực từ 01/04/2026.",
+        "terms": [
+          "hiệu lực thông tư 10",
+          "mốc 01/04"
+        ],
+        "from": "2026-04-01",
+        "article": 138,
+        "clause": "1"
+      },
+      "tt10-139": {
+        "document": "tt10",
+        "page": 161,
+        "locator": "Điều 139, đoạn mở đầu",
+        "title": "Chuyển tiếp ở mốc 01/04/2026",
+        "summary": "Đơn nộp trước mốc hiệu lực nhìn chung xử lý theo pháp luật tại ngày nộp. Điều 139 quy định các ngoại lệ cần đối chiếu riêng.",
+        "terms": [
+          "chuyển tiếp tháng 4",
+          "đơn nộp trước tháng 4"
+        ],
+        "from": "2026-04-01",
+        "article": 139
+      },
+      "vbhn06-69-1": {
+        "document": "vbhn06",
+        "page": 69,
+        "locator": "Điều 69 khoản 1",
+        "title": "Yêu cầu chung về hình thức tài liệu",
+        "summary": "Điều 69 nêu yêu cầu chung về hình thức tài liệu trong đơn đăng ký nhãn hiệu và dẫn tới các yêu cầu riêng trong cùng điều.",
+        "terms": [
+          "yêu cầu hình thức tài liệu nhãn hiệu",
+          "hình thức hồ sơ"
+        ],
+        "from": "2026-04-01",
+        "article": 69,
+        "clause": "1"
+      },
+      "vbhn06-108-3": {
+        "document": "vbhn06",
+        "page": 116,
+        "locator": "Điều 108 khoản 3",
+        "title": "Phạm vi gia hạn nhãn hiệu",
+        "summary": "Giấy chứng nhận đăng ký nhãn hiệu có thể gia hạn nhiều lần, mỗi lần 10 năm, cho toàn bộ hoặc một phần danh mục hàng hóa, dịch vụ.",
+        "terms": [
+          "phạm vi gia hạn",
+          "gia hạn một phần danh mục"
+        ],
+        "from": "2026-07-01",
+        "article": 108,
+        "clause": "3"
+      },
+      "law-93-6": {
+        "document": "vbhn160",
+        "page": 61,
+        "locator": "Điều 93 khoản 6",
+        "title": "Hiệu lực giấy chứng nhận đăng ký nhãn hiệu",
+        "summary": "Giấy chứng nhận có hiệu lực từ ngày cấp đến hết 10 năm kể từ ngày nộp đơn, có thể gia hạn nhiều lần liên tiếp, mỗi lần 10 năm.",
+        "terms": [
+          "hiệu lực giấy chứng nhận",
+          "thời hạn văn bằng nhãn hiệu"
+        ],
+        "from": "2026-04-01",
+        "article": 93,
+        "clause": "6"
+      },
+      "law-94-2": {
+        "document": "vbhn160",
+        "page": 61,
+        "locator": "Điều 94 khoản 2",
+        "title": "Nghĩa vụ nộp phí, lệ phí khi gia hạn",
+        "summary": "Chủ giấy chứng nhận đăng ký nhãn hiệu phải nộp phí, lệ phí để gia hạn hiệu lực. Mức phí cần tra theo văn bản về phí, lệ phí.",
+        "terms": [
+          "phí gia hạn",
+          "lệ phí gia hạn"
+        ],
+        "from": "2026-04-01",
+        "article": 94,
+        "clause": "2"
+      },
+      "law-97-1": {
+        "document": "vbhn160",
+        "page": 65,
+        "locator": "Điều 97 khoản 1",
+        "title": "Quyền yêu cầu sửa đổi văn bằng",
+        "summary": "Chủ văn bằng có quyền yêu cầu sửa đổi các thông tin thuộc khoản 1 với điều kiện nộp phí, lệ phí. Cần đối chiếu đúng loại nội dung cần sửa.",
+        "terms": [
+          "quyền yêu cầu sửa văn bằng",
+          "thay đổi thông tin chủ văn bằng"
+        ],
+        "from": "2026-04-01",
+        "article": 97,
+        "clause": "1"
+      },
+      "law-100-1": {
+        "document": "vbhn160",
+        "page": 66,
+        "locator": "Điều 100 khoản 1",
+        "title": "Thành phần tài liệu của đơn sở hữu công nghiệp",
+        "summary": "Đơn gồm tài liệu về đối tượng yêu cầu bảo hộ và các tài liệu khác liên quan.",
+        "terms": [
+          "thành phần đơn sở hữu công nghiệp"
+        ],
+        "from": "2026-04-01",
+        "article": 100,
+        "clause": "1"
+      },
+      "law-115-1a": {
+        "document": "vbhn160",
+        "page": 73,
+        "locator": "Điều 115 khoản 1 điểm a",
+        "title": "Quyền sửa đổi, bổ sung đơn",
+        "summary": "Người nộp có quyền sửa đổi, bổ sung đơn trước khi cơ quan quản lý thông báo từ chối cấp hoặc quyết định cấp văn bằng.",
+        "terms": [
+          "quyền sửa đổi bổ sung đơn"
+        ],
+        "from": "2026-04-01",
+        "article": 115,
+        "clause": "1",
+        "point": "a"
+      },
+      "law131-3-1": {
+        "document": "vbhn160",
+        "page": 139,
+        "locator": "Luật 131/2025/QH15 · Điều 3 khoản 1, đoạn mở đầu",
+        "title": "Luật 131 quy định chuyển tiếp cho đơn nộp trước ngày hiệu lực",
+        "summary": "Đơn thuộc khoản 1 đã nộp trước ngày Luật 131 có hiệu lực nhìn chung xử lý theo pháp luật tại thời điểm nộp đơn, với ngoại lệ tại các điểm của khoản này.",
+        "terms": [
+          "luật 131 chuyển tiếp",
+          "đơn nộp trước 01/04"
+        ],
+        "from": "2026-04-01",
+        "article": 3,
+        "clause": "1"
+      },
+      "notice4863-1-1a": {
+        "document": "notice4863",
+        "page": 1,
+        "locator": "Mục 1.1 điểm a",
+        "title": "Cách xác định thời điểm nộp đơn quốc gia",
+        "summary": "Theo hướng dẫn của Cục, đối với đơn theo thể thức quốc gia, thời điểm nộp là ngày đơn đáp ứng điều kiện để phát sinh ngày nộp đơn.",
+        "terms": [
+          "thông báo 4863",
+          "xác định ngày nộp đơn quốc gia"
+        ],
+        "from": "2026-10-05"
+      },
+      "notice4863-1-2": {
+        "document": "notice4863",
+        "page": 1,
+        "locator": "Mục 1.2, điểm (i) và (iii) · tiếp ở trang 2",
+        "title": "Hướng dẫn xử lý đơn theo mốc 01/04/2026",
+        "summary": "Cục hướng dẫn đối chiếu ngày nộp của đơn quốc gia từ 01/04/2026 và đọc các trường hợp chuyển tiếp trước mốc ở trang kế tiếp.",
+        "terms": [
+          "thông báo 4863",
+          "áp dụng luật và thông tư 10"
+        ],
+        "from": "2026-10-05"
+      },
+      "notice4863-2": {
+        "document": "notice4863",
+        "page": 2,
+        "locator": "Mục 2.1 và 2.2",
+        "title": "Mốc đối chiếu văn bản ủy quyền",
+        "summary": "Thông báo phân biệt đơn do đại diện nộp trước và từ 01/04/2026, kèm tình huống nộp bổ sung và sử dụng giấy ủy quyền lập trước mốc.",
+        "terms": [
+          "thông báo 4863",
+          "văn bản ủy quyền"
+        ],
+        "from": "2026-10-05"
+      }
+    },
+    "procedures": {
+      "registration": {
+        "label": "Nộp đơn đăng ký nhãn hiệu",
+        "terms": [
+          "đăng ký nhãn hiệu",
+          "nộp đơn nhãn hiệu",
+          "nộp đơn đăng ký",
+          "đăng ký thương hiệu",
+          "trademark registration",
+          "file trademark",
+          "mẫu 04"
+        ],
+        "versions": [
+          "registration-tt10-04"
+        ]
+      },
+      "renewal": {
+        "label": "Gia hạn hiệu lực văn bằng nhãn hiệu",
+        "terms": [
+          "gia hạn",
+          "gia hạn nhãn hiệu",
+          "gia hạn văn bằng",
+          "renewal",
+          "renew trademark"
+        ],
+        "versions": [
+          "renewal-tt10-02",
+          "renewal-tt20-01"
+        ]
+      },
+      "certificate_amendment": {
+        "label": "Sửa đổi văn bằng nhãn hiệu đã cấp",
+        "terms": [
+          "sửa văn bằng",
+          "sửa đổi văn bằng",
+          "sửa giấy chứng nhận",
+          "đổi địa chỉ trên văn bằng",
+          "amend certificate"
+        ],
+        "versions": [
+          "certificate-tt10-03",
+          "certificate-tt20-02"
+        ]
+      },
+      "application_amendment": {
+        "label": "Chủ động sửa đổi đơn nhãn hiệu đang xét",
+        "terms": [
+          "sửa đơn",
+          "sửa đổi đơn",
+          "sửa đổi bổ sung đơn",
+          "bổ sung đơn",
+          "sửa đơn đăng ký",
+          "amend application",
+          "mẫu 10"
+        ],
+        "versions": [
+          "application-tt10-10"
+        ]
+      },
+      "office_response": {
+        "label": "Sửa đơn theo thông báo thẩm định",
+        "terms": [
+          "thông báo thẩm định",
+          "thông báo kết quả thẩm định",
+          "văn bản phản hồi",
+          "office action"
+        ],
+        "versions": [],
+        "basis": [
+          "tt10-83-2b"
+        ]
+      }
+    },
+    "forms": {
+      "registration-tt10-04": {
+        "title": "Tờ khai đăng ký nhãn hiệu",
+        "number": "04",
+        "appendix": "I",
+        "document": "tt10",
+        "page": 177,
+        "from": "2026-04-01",
+        "basis": [
+          "tt10-68-1"
+        ]
+      },
+      "renewal-tt10-02": {
+        "title": "Tờ khai gia hạn hiệu lực văn bằng bảo hộ",
+        "number": "02",
+        "appendix": "II",
+        "document": "tt10-pl2",
+        "page": 4,
+        "from": "2026-04-01",
+        "until": "2026-07-01",
+        "basis": [
+          "tt10-109-3a"
+        ],
+        "successor": "renewal-tt20-01"
+      },
+      "renewal-tt20-01": {
+        "title": "Tờ khai duy trì, gia hạn hiệu lực văn bằng bảo hộ",
+        "number": "01",
+        "appendix": "II",
+        "document": "tt20-pl",
+        "page": 5,
+        "from": "2026-07-01",
+        "basis": [
+          "tt20-11",
+          "tt20-16"
+        ]
+      },
+      "certificate-tt10-03": {
+        "title": "Tờ khai sửa đổi văn bằng bảo hộ",
+        "number": "03",
+        "appendix": "II",
+        "document": "tt10-pl2",
+        "page": 7,
+        "from": "2026-04-01",
+        "until": "2026-07-01",
+        "basis": [
+          "tt10-110-3a"
+        ],
+        "successor": "certificate-tt20-02"
+      },
+      "certificate-tt20-02": {
+        "title": "Tờ khai sửa đổi văn bằng bảo hộ",
+        "number": "02",
+        "appendix": "II",
+        "document": "tt20-pl",
+        "page": 8,
+        "from": "2026-07-01",
+        "basis": [
+          "tt20-12",
+          "tt20-16"
+        ]
+      },
+      "application-tt10-10": {
+        "title": "Tờ khai sửa đổi, bổ sung đơn đăng ký sở hữu công nghiệp",
+        "number": "10",
+        "appendix": "I",
+        "document": "tt10",
+        "page": 198,
+        "from": "2026-04-01",
+        "basis": [
+          "tt10-83-2a"
+        ]
+      }
+    },
+    "boundaryBasis": [
+      "tt10-139",
+      "law131-3-1",
+      "notice4863-1-2"
+    ]
+  },
+  "sources": {
+    "tt10": {
+      "authority": "Bộ Khoa học và Công nghệ",
+      "ownerRole": "Chủ dữ liệu Đại Tín",
+      "capturedOn": "2026-11-10",
+      "sourceRole": "enacted_text_or_annex",
+      "permissions": {
+        "snapshot": "local_review",
+        "index": "local_review",
+        "externalRelease": "pending_owner_review"
+      }
+    },
+    "tt10-pl2": {
+      "authority": "Bộ Khoa học và Công nghệ",
+      "ownerRole": "Chủ dữ liệu Đại Tín",
+      "capturedOn": "2026-11-10",
+      "sourceRole": "enacted_text_or_annex",
+      "permissions": {
+        "snapshot": "local_review",
+        "index": "local_review",
+        "externalRelease": "pending_owner_review"
+      }
+    },
+    "tt20": {
+      "authority": "Bộ Khoa học và Công nghệ",
+      "ownerRole": "Chủ dữ liệu Đại Tín",
+      "capturedOn": "2026-11-10",
+      "sourceRole": "enacted_text_or_annex",
+      "permissions": {
+        "snapshot": "local_review",
+        "index": "local_review",
+        "externalRelease": "pending_owner_review"
+      }
+    },
+    "tt20-pl": {
+      "authority": "Bộ Khoa học và Công nghệ",
+      "ownerRole": "Chủ dữ liệu Đại Tín",
+      "capturedOn": "2026-11-10",
+      "sourceRole": "enacted_text_or_annex",
+      "permissions": {
+        "snapshot": "local_review",
+        "index": "local_review",
+        "externalRelease": "pending_owner_review"
+      }
+    },
+    "vbhn06": {
+      "authority": "Bộ Khoa học và Công nghệ",
+      "ownerRole": "Chủ dữ liệu Đại Tín",
+      "capturedOn": "2026-11-10",
+      "sourceRole": "consolidation",
+      "permissions": {
+        "snapshot": "local_review",
+        "index": "local_review",
+        "externalRelease": "pending_owner_review"
+      }
+    },
+    "vbhn160": {
+      "authority": "Văn phòng Quốc hội",
+      "ownerRole": "Chủ dữ liệu Đại Tín",
+      "capturedOn": "2026-11-10",
+      "sourceRole": "consolidation",
+      "permissions": {
+        "snapshot": "local_review",
+        "index": "local_review",
+        "externalRelease": "pending_owner_review"
+      }
+    },
+    "notice4863": {
+      "authority": "Cục Sở hữu trí tuệ",
+      "ownerRole": "Chủ dữ liệu Đại Tín",
+      "capturedOn": "2026-11-10",
+      "sourceRole": "agency_guidance",
+      "permissions": {
+        "snapshot": "local_review",
+        "index": "local_review",
+        "externalRelease": "pending_owner_review"
+      }
+    }
+  },
+  "scope": {
+    "id": "vn-national-trademark",
+    "jurisdiction": "Việt Nam",
+    "route": "Đăng ký nhãn hiệu theo thể thức quốc gia",
+    "ownerRole": "Chủ dữ liệu Đại Tín",
+    "reviewerRole": "Luật sư SHTT Đại Tín",
+    "admission": "Bản ban hành và phụ lục xác lập biểu mẫu. Bản hợp nhất phục vụ tra cứu và đối chiếu. Thông báo của Cục cung cấp hướng dẫn nghiệp vụ."
+  },
+  "evidence": {
+    "tt10-68-1": {
+      "method": "text",
+      "anchors": [
+        "Tờ khai đăng ký nhãn hiệu theo Mẫu số 04"
+      ]
+    },
+    "tt10-83-2a": {
+      "method": "text",
+      "anchors": [
+        "Mẫu số 10 tại Phụ lục I"
+      ]
+    },
+    "tt10-83-2b": {
+      "method": "text",
+      "anchors": [
+        "văn bản phản hồi"
+      ]
+    },
+    "tt10-109-3a": {
+      "method": "text",
+      "anchors": [
+        "3. Trong một hồ sơ có thể yêu cầu gia hạn hiệu lực",
+        "Hồ sơ yêu cầu gia hạn hiệu lực bao gồm các tài liệu sau đây",
+        "Tờ khai theo Mẫu số 02"
+      ]
+    },
+    "tt10-110-3a": {
+      "method": "text",
+      "anchors": [
+        "Mẫu số 03 tại Phụ lục II"
+      ]
+    },
+    "tt20-11": {
+      "method": "text",
+      "anchors": [
+        "Tờ khai theo Mẫu số 01"
+      ]
+    },
+    "tt20-12": {
+      "method": "text",
+      "anchors": [
+        "Mẫu số 03 tại Phụ lục II"
+      ]
+    },
+    "tt20-16": {
+      "method": "text",
+      "anchors": [
+        "bằng Mẫu số 01 tại Phụ lục II",
+        "bằng Mẫu số 02 tại Phụ lục II",
+        "Bãi bỏ Mẫu số 02"
+      ]
+    },
+    "tt20-17-2": {
+      "method": "text",
+      "anchors": [
+        "chưa giải quyết xong"
+      ]
+    },
+    "tt20-18-2": {
+      "method": "text",
+      "anchors": [
+        "các quy định tại Chương IV"
+      ]
+    },
+    "registration-tt10-04": {
+      "method": "text",
+      "anchors": [
+        "ĐĂNG KÝ NHÃN HIỆU"
+      ],
+      "document": "tt10",
+      "appendix": "I"
+    },
+    "renewal-tt10-02": {
+      "method": "ocr",
+      "anchors": [
+        "GIA HAN HIEU LUC VAN BANG BAO HO"
+      ],
+      "document": "tt10-pl2",
+      "appendix": "II"
+    },
+    "renewal-tt20-01": {
+      "method": "text",
+      "anchors": [
+        "DUY TRÌ, GIA HẠN HIỆU LỰC VĂN BẰNG"
+      ],
+      "document": "tt20-pl",
+      "appendix": "II"
+    },
+    "certificate-tt10-03": {
+      "method": "ocr",
+      "anchors": [
+        "SUA DOI VAN BANG BAO HO"
+      ],
+      "document": "tt10-pl2",
+      "appendix": "II"
+    },
+    "certificate-tt20-02": {
+      "method": "text",
+      "anchors": [
+        "SỬA ĐỔI VĂN BẰNG BẢO HỘ"
+      ],
+      "document": "tt20-pl",
+      "appendix": "II"
+    },
+    "application-tt10-10": {
+      "method": "text",
+      "anchors": [
+        "SỬA ĐỔI, BỔ SUNG ĐƠN ĐĂNG KÝ"
+      ],
+      "document": "tt10",
+      "appendix": "I"
+    },
+    "tt10-138-1": {
+      "method": "text",
+      "anchors": [
+        "Thông tư này có hiệu lực thi hành từ ngày 01 tháng 4 năm 2026"
+      ]
+    },
+    "tt10-139": {
+      "method": "text",
+      "anchors": [
+        "tại thời điểm nộp đơn, trừ các trường hợp sau đây"
+      ]
+    },
+    "vbhn06-69-1": {
+      "method": "text",
+      "anchors": [
+        "Yêu cầu đối với tài liệu trong đơn đăng ký nhãn hiệu",
+        "đáp ứng yêu cầu chung về hình thức"
+      ]
+    },
+    "vbhn06-108-3": {
+      "method": "text",
+      "anchors": [
+        "lần 10 năm đối với toàn bộ hoặc một phần danh mục hàng hóa, dịch vụ"
+      ]
+    },
+    "law-93-6": {
+      "method": "text",
+      "anchors": [
+        "từ ngày cấp đến hết mười năm kể từ ngày nộp đơn"
+      ]
+    },
+    "law-94-2": {
+      "method": "text",
+      "anchors": [
+        "chủ văn bằng bảo hộ phải nộp phí, lệ phí để gia hạn hiệu lực"
+      ]
+    },
+    "law-97-1": {
+      "method": "text",
+      "anchors": [
+        "quyền yêu cầu sửa đổi những thông tin sau đây trên văn bằng bảo hộ",
+        "thay đổi, sửa chữa thiếu sót liên quan đến thông tin về tác giả, chủ văn"
+      ]
+    },
+    "law-100-1": {
+      "method": "text",
+      "anchors": [
+        "các tài liệu về đối tượng yêu cầu bảo hộ và các tài liệu khác liên quan"
+      ]
+    },
+    "law-115-1a": {
+      "method": "text",
+      "anchors": [
+        "thông báo từ chối cấp văn bằng bảo hộ hoặc quyết định cấp văn bằng bảo hộ",
+        "a) Sửa đổi, bổ sung đơn"
+      ]
+    },
+    "law131-3-1": {
+      "method": "text",
+      "anchors": [
+        "Điều 3. Điều khoản chuyển tiếp",
+        "tại thời điểm nộp đơn, trừ các nội dung sau đây"
+      ]
+    },
+    "notice4863-1-1a": {
+      "method": "text",
+      "anchors": [
+        "ngày đơn đáp ứng điều kiện để phát sinh ngày nộp đơn đối với đơn được nộp theo thể thức quốc gia"
+      ]
+    },
+    "notice4863-1-2": {
+      "method": "text",
+      "anchors": [
+        "Đơn đăng ký nộp theo thể thức quốc gia có ngày nộp đơn từ 01/4/2026"
+      ]
+    },
+    "notice4863-2": {
+      "method": "text",
+      "anchors": [
+        "được người đại diện theo ủy quyền nộp trước ngày 01/4/2026",
+        "được người đại diện theo ủy quyền nộp từ ngày 01/4/2026",
+        "Bản gốc văn bản ủy quyền mà có ngày lập văn bản ủy quyền trước ngày"
+      ]
+    }
+  },
+  "crossChecks": [
+    {
+      "id": "registration-index",
+      "document": "vbhn06",
+      "page": 68,
+      "note": "Bản hợp nhất dẫn đúng số 04 ở Phụ lục I.",
+      "anchors": [
+        "Tờ khai đăng ký nhãn hiệu theo Mẫu số 04"
+      ]
+    },
+    {
+      "id": "application-and-response",
+      "document": "vbhn06",
+      "page": 91,
+      "note": "Phân biệt chủ động sửa đơn và phản hồi thẩm định.",
+      "anchors": [
+        "Mẫu số 10 tại Phụ lục I",
+        "văn bản phản hồi"
+      ]
+    },
+    {
+      "id": "renewal-108",
+      "document": "vbhn06",
+      "page": 116,
+      "note": "Điều 108 dẫn số 01 và chú thích mốc 01/07.",
+      "anchors": [
+        "Tờ khai theo Mẫu số 01",
+        "từ ngày 01 tháng 7 năm 2026"
+      ]
+    },
+    {
+      "id": "certificate-reference",
+      "document": "vbhn06",
+      "page": 119,
+      "note": "Điều 110 giữ số 03 của mẫu được dẫn chiếu.",
+      "anchors": [
+        "Mẫu số 03 tại Phụ lục II"
+      ]
+    },
+    {
+      "id": "certificate-index",
+      "document": "vbhn06",
+      "page": 198,
+      "note": "Danh mục hợp nhất vẫn liệt kê vị trí 03. Căn cứ chọn tệp thay thế là khoản 5 Điều 16 của văn bản ban hành và phụ lục Thông tư 20.",
+      "anchors": [
+        "Mẫu số 03 Tờ khai sửa đổi văn bằng bảo hộ"
+      ]
+    },
+    {
+      "id": "certificate-replacement",
+      "document": "tt20",
+      "page": 13,
+      "note": "Quan hệ thay thế vị trí Mẫu 03 Thông tư 10 bằng Mẫu 02 Thông tư 20.",
+      "anchors": [
+        "Thay thế Mẫu số 03 tại Phụ lục II ban hành kèm theo Thông tư số 10/2026/TT-BKHCN bằng Mẫu số 02 tại Phụ lục II"
+      ]
+    },
+    {
+      "id": "notice-exceptions",
+      "document": "notice4863",
+      "page": 2,
+      "note": "Phần tiếp mục 1.2 điểm (iii) dẫn các ngoại lệ trước 01/04.",
+      "anchors": [
+        "thuộc trường hợp chuyển tiếp theo quy định tại điểm a, b, c khoản 1 Điều 3"
+      ]
+    }
+  ],
+  "coverage": [
+    {
+      "procedure": "registration",
+      "versions": [
+        "registration-tt10-04"
+      ],
+      "decisionBasis": [
+        "tt10-68-1"
+      ],
+      "readingOnly": [
+        "vbhn06-69-1",
+        "law-100-1",
+        "notice4863-1-1a"
+      ],
+      "unresolved": [
+        "Phân nhóm Nice, điều kiện bảo hộ, ngày nộp hồ sơ cụ thể và các loại nhãn hiệu đặc thù."
+      ]
+    },
+    {
+      "procedure": "renewal",
+      "versions": [
+        "renewal-tt10-02",
+        "renewal-tt20-01"
+      ],
+      "decisionBasis": [
+        "tt10-109-3a",
+        "tt20-11",
+        "tt20-16"
+      ],
+      "readingOnly": [
+        "law-93-6",
+        "law-94-2",
+        "vbhn06-108-3"
+      ],
+      "unresolved": [
+        "Cách tính hạn và mức phí theo tình huống."
+      ]
+    },
+    {
+      "procedure": "certificate_amendment",
+      "versions": [
+        "certificate-tt10-03",
+        "certificate-tt20-02"
+      ],
+      "decisionBasis": [
+        "tt10-110-3a",
+        "tt20-12",
+        "tt20-16"
+      ],
+      "readingOnly": [
+        "law-97-1"
+      ],
+      "unresolved": [
+        "Chứng từ tương ứng với từng trường hợp sửa và hồ sơ có thay đổi chủ thể."
+      ]
+    },
+    {
+      "procedure": "application_amendment",
+      "versions": [
+        "application-tt10-10"
+      ],
+      "decisionBasis": [
+        "tt10-83-2a"
+      ],
+      "readingOnly": [
+        "law-115-1a",
+        "notice4863-2"
+      ],
+      "unresolved": [
+        "Phạm vi sửa cụ thể và bộ giấy tờ theo loại thay đổi."
+      ]
+    },
+    {
+      "procedure": "office_response",
+      "versions": [],
+      "decisionBasis": [
+        "tt10-83-2b"
+      ],
+      "readingOnly": [
+        "law-115-1a"
+      ],
+      "unresolved": [
+        "Nội dung phản hồi, hạn phản hồi và thông báo trên hồ sơ thật."
+      ]
+    }
+  ],
+  "reviewCases": [
+    {
+      "id": "apr-before",
+      "input": {
+        "procedure": "registration",
+        "asOf": "2026-03-31",
+        "mode": "prepare"
+      },
+      "expected": {
+        "status": "out_of_coverage",
+        "rule": "coverage",
+        "form": null,
+        "citations": [
+          "tt10-139",
+          "law131-3-1"
+        ]
+      }
+    },
+    {
+      "id": "apr-start",
+      "input": {
+        "procedure": "registration",
+        "asOf": "2026-04-01",
+        "mode": "prepare"
+      },
+      "expected": {
+        "status": "grounded",
+        "rule": "before_cutover",
+        "form": "registration-tt10-04",
+        "citations": [
+          "tt10-68-1"
+        ]
+      }
+    },
+    {
+      "id": "jul-pending",
+      "input": {
+        "procedure": "renewal",
+        "asOf": "2026-07-01",
+        "mode": "case",
+        "receivedOn": "2026-06-30",
+        "pendingAtCutover": true
+      },
+      "expected": {
+        "status": "grounded",
+        "rule": "transition",
+        "form": "renewal-tt10-02",
+        "citations": [
+          "tt10-109-3a",
+          "tt20-17-2",
+          "tt20-18-2"
+        ]
+      }
+    },
+    {
+      "id": "jul-unknown",
+      "input": {
+        "procedure": "renewal",
+        "asOf": "2026-07-01",
+        "mode": "case",
+        "receivedOn": "2026-06-30",
+        "pendingAtCutover": null
+      },
+      "expected": {
+        "status": "needs_context",
+        "rule": "missing_pending",
+        "form": null,
+        "citations": [
+          "tt20-17-2",
+          "tt20-18-2"
+        ]
+      }
+    },
+    {
+      "id": "jul-closed",
+      "input": {
+        "procedure": "renewal",
+        "asOf": "2026-07-01",
+        "mode": "case",
+        "receivedOn": "2026-06-30",
+        "pendingAtCutover": false
+      },
+      "expected": {
+        "status": "historical",
+        "rule": "closed_history",
+        "form": "renewal-tt10-02",
+        "citations": [
+          "tt10-109-3a"
+        ]
+      }
+    },
+    {
+      "id": "jul-new",
+      "input": {
+        "procedure": "renewal",
+        "asOf": "2026-07-01",
+        "mode": "prepare"
+      },
+      "expected": {
+        "status": "grounded",
+        "rule": "from_cutover",
+        "form": "renewal-tt20-01",
+        "citations": [
+          "tt20-11",
+          "tt20-16",
+          "tt20-18-2"
+        ]
+      }
+    },
+    {
+      "id": "cert-old",
+      "input": {
+        "procedure": "certificate_amendment",
+        "asOf": "2026-06-30",
+        "mode": "prepare"
+      },
+      "expected": {
+        "status": "grounded",
+        "rule": "before_cutover",
+        "form": "certificate-tt10-03",
+        "citations": [
+          "tt10-110-3a"
+        ]
+      }
+    },
+    {
+      "id": "cert-new",
+      "input": {
+        "procedure": "certificate_amendment",
+        "asOf": "2026-07-01",
+        "mode": "prepare"
+      },
+      "expected": {
+        "status": "grounded",
+        "rule": "from_cutover",
+        "form": "certificate-tt20-02",
+        "citations": [
+          "tt20-12",
+          "tt20-16",
+          "tt20-18-2"
+        ]
+      }
+    },
+    {
+      "id": "amend-voluntary",
+      "input": {
+        "procedure": "application_amendment",
+        "asOf": "2026-11-10",
+        "mode": "prepare"
+      },
+      "expected": {
+        "status": "grounded",
+        "rule": "from_cutover",
+        "form": "application-tt10-10",
+        "citations": [
+          "tt10-83-2a"
+        ]
+      }
+    },
+    {
+      "id": "office-reply",
+      "input": {
+        "procedure": "office_response",
+        "asOf": "2026-11-10",
+        "mode": "prepare"
+      },
+      "expected": {
+        "status": "grounded",
+        "rule": "from_cutover",
+        "form": null,
+        "citations": [
+          "tt10-83-2b"
+        ]
+      }
+    },
+    {
+      "id": "nov-after",
+      "input": {
+        "procedure": "registration",
+        "asOf": "2026-11-11",
+        "mode": "prepare"
+      },
+      "expected": {
+        "status": "out_of_coverage",
+        "rule": "coverage",
+        "form": null,
+        "citations": []
+      }
+    }
+  ],
+  "gaps": [
+    {
+      "id": "human-review",
+      "level": "block_release",
+      "detail": "Cần người phụ trách dữ liệu và luật sư Đại Tín xác nhận từng ca trên đúng bản ứng viên."
+    },
+    {
+      "id": "external-rights",
+      "level": "out_of_scope",
+      "detail": "Xác nhận quyền lưu trữ, chia sẻ và lập chỉ mục theo môi trường sử dụng trước khi mở ra ngoài nhóm rà soát."
+    },
+    {
+      "id": "earlier-transition",
+      "level": "out_of_scope",
+      "detail": "Ngoại lệ trước 01/04 cần corpus lịch sử và đánh giá theo dữ kiện đơn."
+    },
+    {
+      "id": "later-coverage",
+      "level": "out_of_scope",
+      "detail": "Cần đợt rà nguồn mới trước khi mở ngày sau 10/11/2026."
+    },
+    {
+      "id": "expanded-sources",
+      "level": "out_of_scope",
+      "detail": "Hồ sơ thật, tài liệu nội bộ, dữ liệu đăng bạ, biểu phí và các nước khác cần đợt dữ liệu riêng."
+    }
+  ]
+}

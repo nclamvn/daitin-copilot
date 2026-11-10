@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Đại Tín | Bàn hồ sơ</title>
+<link rel="stylesheet" href="/fonts.css">
+<link rel="stylesheet" href="/copilot/m3/workspace/app.css">
+<script type="module" src="/copilot/m3/workspace/app.mjs"></script>
+</head>
+<body>
+<a class="skip" href="#workspace">Đến bản làm việc</a>
+<svg xmlns="http://www.w3.org/2000/svg" class="symbols" aria-hidden="true">
+  <symbol id="i-case" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 11h18"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m16 16 4 4"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M12 19V5m-6 6 6-6 6 6"/></symbol>
+  <symbol id="i-next" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M13.5 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9.5zm0 0v6.5H20M8 13h8m-8 4h5"/></symbol>
+  <symbol id="i-clip" viewBox="0 0 24 24"><path d="m20 11-8 8a5 5 0 0 1-7-7l8-8a3.3 3.3 0 1 1 4.7 4.7l-8.2 8.2a1.5 1.5 0 0 1-2.1-2.1l7.5-7.5"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M6 11v1a6 6 0 0 0 12 0v-1m-6 7v3m-3 0h6"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v12m-4-4 4 4 4-4M4 17v3h16v-3"/></symbol>
+  <symbol id="i-panel" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M14 5v14"/></symbol>
+  <symbol id="i-diff" viewBox="0 0 24 24"><path d="M5 8h6m-3-3v6m5 5h6M3 3h18v18H3z"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 5v2"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v5l3 2"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></symbol>
+</svg>
+<div class="shell">
+  <aside class="sidebar" id="sidebar" aria-label="Hồ sơ Đại Tín">
+    <a class="brand" href="/copilot/"><div class="mark" aria-hidden="true"><svg viewBox="0 0 38 38"><path d="M7 9h10a10 10 0 0 1 0 20H7V9Z" fill="none" stroke="currentColor" stroke-width="2.1"/><path d="M4 19h10m7-10h12m-5 0v20" fill="none" stroke="currentColor" stroke-width="2.1"/></svg></div><div><strong>Đại Tín</strong><small>Bàn hồ sơ sở hữu trí tuệ</small></div></a>
+    <button class="new-matter" id="new-matter" type="button"><svg class="icon"><use href="#i-plus"/></svg> Hồ sơ mới</button>
+    <label class="search"><svg class="icon"><use href="#i-search"/></svg><input type="search" id="case-search" placeholder="Tìm hồ sơ" aria-label="Tìm hồ sơ"><kbd>/</kbd></label>
+    <div class="case-group"><h2>Hồ sơ đã lưu</h2><span id="case-total">0</span></div>
+    <nav id="matter-list" aria-label="Hồ sơ đã lưu"></nav>
+    <p id="empty-search" class="rail-hint" hidden>Chưa tìm thấy hồ sơ.</p>
+    <div class="side-foot">
+      <a class="nav-link" href="/copilot/"><svg class="icon"><use href="#i-grid"/></svg>Bàn tra cứu</a>
+      <div class="environment"><span class="environment-dot"></span> Pilot cục bộ <span class="env-index">M3</span></div>
+    </div>
+  </aside>
+  <div class="body">
+    <header class="topbar">
+      <div class="breadcrumbs"><button class="icon-btn mobile-rail" id="show-matters" type="button" aria-label="Mở danh sách hồ sơ" aria-expanded="false"><svg class="icon"><use href="#i-list"/></svg></button><span>Hồ sơ nhãn hiệu</span><svg class="icon"><use href="#i-next"/></svg><strong id="crumb">Hồ sơ mới</strong></div>
+      <div class="top-actions"><span class="saved" id="save-indicator" hidden><span></span> Đã lưu trên máy</span><button class="icon-btn" id="show-sources" type="button" aria-label="Mở hoặc đóng ngăn nguồn" aria-expanded="false" hidden><svg class="icon"><use href="#i-panel"/></svg></button><button class="release-top" id="release-preview" type="button" hidden><svg class="icon"><use href="#i-down"/></svg><span id="release-label"></span></button></div>
+    </header>
+    <main class="workspace case-empty" id="workspace">
+      <div class="canvas">
+        <div class="canvas-scroll" id="canvas-scroll">
+          <header class="matter-head">
+            <div class="matter-context"><span class="jurisdiction">VN</span><span>Nhãn hiệu quốc gia</span><span class="middot">/</span><span>Phản hồi thẩm định</span></div>
+            <div class="headline"><h1 id="matter-name">Hồ sơ mới</h1><span class="tag attention" id="matter-status" hidden></span></div>
+            <div class="matter-meta" id="matter-meta" hidden></div>
+          </header>
+          <form class="paper intake" id="intake">
+            <h2>Bắt đầu từ thông báo thẩm định</h2>
+            <p>Gắn thông báo và chỉ dẫn với đúng hồ sơ. Có thể kéo tệp vào ô nguồn tương ứng.</p>
+            <div class="intake-grid">
+              <label>Mã hồ sơ<input name="reference" placeholder="DT-2026-001" maxlength="48" required></label>
+              <label>Tên nhãn hiệu<input name="title" maxlength="100" required></label>
+              <label>Ngày cơ quan tiếp nhận đơn<input name="receivedOn" type="date" required></label>
+              <label>Ngày đối chiếu<input name="asOf" type="date" required></label>
+            </div>
+            <label id="cutover" hidden>Tình trạng ngày 01/07/2026
+              <select name="pending"><option value="">Chọn tình trạng đã xác nhận</option><option value="yes">Còn đang giải quyết</option><option value="no">Đã giải quyết</option></select>
+            </label>
+            <div class="intake-grid">
+              <fieldset class="input-source" data-intake="notice"><legend>Thông báo thẩm định</legend>
+                <button type="button" class="quiet small" data-file="notice" id="notice-file-label"><svg class="icon"><use href="#i-clip"/></svg><span>Chọn tệp TXT/MD</span></button>
+                <label>Văn bản thông báo<textarea name="notice" required maxlength="1100" rows="4"></textarea></label>
+              </fieldset>
+              <fieldset class="input-source" data-intake="instructions"><legend>Chỉ dẫn khách hàng</legend>
+                <button type="button" class="quiet small" data-file="instructions"><svg class="icon"><use href="#i-clip"/></svg>Chọn tệp TXT/MD</button>
+                <label>Văn bản chỉ dẫn<textarea name="instructions" required maxlength="1100" rows="4"></textarea></label>
+              </fieldset>
+            </div>
+            <section class="pdf-intake" id="pdf-intake" aria-label="Đối chiếu PDF" hidden></section>
+            <label class="check"><input type="checkbox" name="anonymized" required> Nguồn mô phỏng hoặc đã ẩn danh và được phép dùng trong pilot.</label>
+            <button class="primary" type="submit">Lưu hồ sơ</button>
+          </form>
+          <section class="work" id="work" hidden>
+            <div class="work-toolbar">
+              <div class="tabs" aria-label="Chế độ bàn làm việc">
+                <button id="tab-doc" type="button" aria-pressed="true"><svg class="icon"><use href="#i-doc"/></svg>Bản làm việc</button>
+                <button id="tab-activity" type="button" aria-pressed="false"><svg class="icon"><use href="#i-clock"/></svg>Hoạt động</button>
+              </div>
+              <button id="view-mode" type="button" class="diff-mode" aria-pressed="true"><svg class="icon"><use href="#i-diff"/></svg><span>So sánh với bản đã duyệt</span></button>
+            </div>
+            <article class="paper" id="paper">
+              <div class="paper-head"><div class="doc-mark"><svg class="icon"><use href="#i-doc"/></svg></div><div><h2>Văn bản phản hồi thông báo thẩm định</h2><p id="draft-caption"></p></div></div>
+              <div id="clauses"></div>
+            </article>
+            <section id="activity" class="paper activity" hidden aria-label="Nhật ký hồ sơ"></section>
+          </section>
+        </div>
+        <section id="composer-area" class="composer-area" aria-label="Giao việc cho Copilot">
+          <p id="status" class="feedback" role="status" aria-live="polite" hidden></p>
+          <form id="composer" class="composer">
+            <div class="composer-title"><span class="context-dot"></span><label for="task">Giao việc trong <strong id="composer-case">hồ sơ chưa lưu</strong></label><button class="preset" id="task-example" type="button">Gợi ý lệnh <svg class="icon"><use href="#i-next"/></svg></button></div>
+            <textarea rows="2" id="task" maxlength="400" placeholder="Ví dụ: soạn bản phản hồi theo thông báo và chỉ dẫn khách hàng…"></textarea>
+            <div id="attached" class="attached" hidden></div>
+            <div class="composer-controls"><div class="inputs">
+              <button class="quiet attach" type="button" id="attach"><svg class="icon"><use href="#i-clip"/></svg><span>Thêm tệp</span></button>
+              <button class="quiet small" type="button" id="paste" hidden>Dán nguồn</button>
+              <span class="drop-hint">Kéo tệp TXT/MD vào ô này</span>
+              <button class="quiet small" type="button" id="task-scope" hidden>Phần cần sửa</button>
+            </div><button class="send" type="submit" aria-label="Gửi yêu cầu"><svg class="icon"><use href="#i-arrow"/></svg></button></div>
+          </form>
+          <p class="composer-foot"><svg class="icon"><use href="#i-lock"/></svg> Pilot cục bộ · Chỉ dùng dữ liệu mô phỏng hoặc đã ẩn danh và được phép</p>
+        </section>
+      </div>
+      <aside class="inspector" id="inspector" aria-label="Nguồn và phiên bản" hidden>
+        <header class="inspector-head"><h2>Đối chiếu hồ sơ</h2><button class="icon-btn" id="close-sources" type="button" aria-label="Đóng ngăn nguồn"><svg class="icon"><use href="#i-x"/></svg></button></header>
+        <div class="inspector-tabs" aria-label="Nội dung đối chiếu"><button id="tab-sources" type="button" aria-pressed="true">Nguồn <span id="source-count"></span></button><button id="tab-versions" type="button" aria-pressed="false">Phiên bản <span id="version-count"></span></button></div>
+        <div class="inspector-scroll">
+          <section id="sources-pane"></section>
+          <section id="versions-pane" hidden></section>
+        </div>
+      </aside>
+    </main>
+  </div>
+</div>
+<input id="files" type="file" accept=".txt,.md,text/plain,text/markdown" hidden>
+<dialog id="dialog" aria-labelledby="dialog-title">
+  <div class="dialog-head"><h2 id="dialog-title"></h2><form method="dialog"><button class="icon-btn" type="submit" aria-label="Đóng cửa sổ"><svg class="icon"><use href="#i-x"/></svg></button></form></div>
+  <div id="dialog-content"></div>
+</dialog>
+</body>
+</html>

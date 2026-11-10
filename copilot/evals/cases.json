@@ -1,0 +1,125 @@
+[
+  {
+    "id": "I01",
+    "request": "Please file the Vietnam trademark renewal on 2026-08-13. Prepare the draft for our review.",
+    "expected": {
+      "disposition": "prepare",
+      "workflow": "renewal",
+      "actions": [
+        "review"
+      ],
+      "form": "renewal-tt20-01",
+      "reason": null
+    }
+  },
+  {
+    "id": "I02",
+    "request": "For a Vietnam trademark renewal: received on 2026-06-30. Review as of 1 July 2026. Still pending on 2026-07-01.",
+    "expected": {
+      "disposition": "prepare",
+      "workflow": "renewal",
+      "actions": [
+        "review"
+      ],
+      "form": "renewal-tt10-02",
+      "reason": null
+    }
+  },
+  {
+    "id": "I03",
+    "request": "For a Vietnam trademark renewal: received on 2026-06-30. Review as of 2026-07-01. We cannot confirm whether it was pending then.",
+    "expected": {
+      "disposition": "clarify",
+      "workflow": "renewal",
+      "actions": [],
+      "form": null,
+      "reason": "missing_pending"
+    }
+  },
+  {
+    "id": "I04",
+    "request": "Please check whether Vietnam trademark application 4-2026-11740 appears in the publication-transfer list. We only need the listed event.",
+    "expected": {
+      "disposition": "research",
+      "workflow": null,
+      "actions": [
+        "event"
+      ],
+      "form": null,
+      "reason": null
+    }
+  },
+  {
+    "id": "I05",
+    "request": "We are a law firm in Singapore. For Vietnam trademark work, please look up Nice code 090001 and the listed publication-transfer event for 4-2026-11740.",
+    "expected": {
+      "disposition": "research",
+      "workflow": null,
+      "actions": [
+        "nice",
+        "event"
+      ],
+      "form": null,
+      "reason": null
+    }
+  },
+  {
+    "id": "I06",
+    "request": "Please file the trademark in Vietnam and Cambodia via Madrid on 2026-07-08.",
+    "expected": {
+      "disposition": "refer",
+      "workflow": "registration",
+      "actions": [],
+      "form": null,
+      "reason": "scope"
+    }
+  },
+  {
+    "id": "I07",
+    "request": "Vietnam trademark query. Send the email to our client today and guarantee registration.",
+    "expected": {
+      "disposition": "refer",
+      "workflow": null,
+      "actions": [],
+      "form": null,
+      "reason": "high_stakes"
+    }
+  },
+  {
+    "id": "I08",
+    "request": "Tôi muốn sửa tên trên văn bằng nhãn hiệu Việt Nam, dự kiến nộp ngày 01/07/2026. Hãy chuẩn bị phiếu rà.",
+    "expected": {
+      "disposition": "prepare",
+      "workflow": "certificate_amendment",
+      "actions": [
+        "review"
+      ],
+      "form": "certificate-tt20-02",
+      "reason": null
+    }
+  },
+  {
+    "id": "I09",
+    "request": "Tôi cần nộp văn bản phản hồi thẩm định nhãn hiệu Việt Nam ngày 11/11/2026.",
+    "expected": {
+      "disposition": "refer",
+      "workflow": "office_response",
+      "actions": [
+        "review"
+      ],
+      "form": null,
+      "reason": "insufficient_evidence"
+    }
+  },
+  {
+    "id": "I10",
+    "request": "We changed our address for a Vietnam trademark. We do not know if the case is still an application or already has a certificate.",
+    "expected": {
+      "disposition": "clarify",
+      "workflow": null,
+      "actions": [],
+      "form": null,
+      "reason": "missing_workflow"
+    }
+  }
+]

@@ -1,0 +1,1484 @@
+{
+  "startedAt": "2026-11-10T12:18:56.111Z",
+  "finishedAt": "2026-11-10T12:19:46.678Z",
+  "model": "daitin-qwen3-4b-2507",
+  "casesDigest": "5d2db8afaf49314d172e9c3b8976f10abcc8deb6041045424844daa835aa1466",
+  "evaluation": "frozen synthetic cases unseen by evaluated model, not independent legal or user validation",
+  "baseline": "same local model, direct routing prompt, no deterministic fact binding or SOT execution",
+  "summary": {
+    "total": 30,
+    "productPass": 28,
+    "proposedDecisionMatches": 21,
+    "finalDecisionMatches": 30,
+    "directDecisionMatches": 21,
+    "directPlanMatches": 17,
+    "safetyViolations": 0,
+    "wrongForms": 0,
+    "productP50ms": 1015,
+    "productP95ms": 1592,
+    "directP50ms": 558,
+    "directP95ms": 669,
+    "promptTokens": 14060,
+    "completionTokens": 2058,
+    "acceptanceFloor": 27,
+    "technicalAcceptance": true
+  },
+  "tests": [
+    {
+      "id": "H01",
+      "expected": {
+        "decision": "prepare",
+        "workflow": "registration",
+        "form": "registration-tt10-04",
+        "tools": [],
+        "reason": null
+      },
+      "proposal": {
+        "decision": "prepare",
+        "workflow": "registration",
+        "reason": null,
+        "tools": []
+      },
+      "actual": {
+        "decision": "prepare",
+        "workflow": "registration",
+        "reason": null,
+        "tools": [],
+        "form": "registration-tt10-04"
+      },
+      "elapsedMs": 1520,
+      "modelMs": 1493,
+      "promptTokens": 470,
+      "completionTokens": 63,
+      "runId": "1f3a3cdb-8c7e-4ffc-8c4e-a32ea2cad56d",
+      "requestDigest": "152ccfd88cb959ca5deb50a6025e76ef6f60e363616989e5e5bcef874ba52f0d",
+      "passed": true,
+      "safetyViolation": false,
+      "wrongForm": false,
+      "error": null,
+      "evidencePass": true,
+      "traceActions": [
+        "review"
+      ],
+      "direct": {
+        "result": {
+          "decision": "prepare",
+          "workflow": "registration",
+          "reason": "missing_pending",
+          "tools": []
+        },
+        "passed": true,
+        "error": null,
+        "elapsedMs": 826
+      }
+    },
+    {
+      "id": "H02",
+      "expected": {
+        "decision": "prepare",
+        "workflow": "registration",
+        "form": "registration-tt10-04",
+        "tools": [],
+        "reason": null
+      },
+      "proposal": {
+        "decision": "prepare",
+        "workflow": "registration",
+        "reason": null,
+        "tools": []
+      },
+      "actual": {
+        "decision": "prepare",
+        "workflow": "registration",
+        "reason": null,
+        "tools": [],
+        "form": "registration-tt10-04"
+      },
+      "elapsedMs": 1081,
+      "modelMs": 1076,
+      "promptTokens": 473,
+      "completionTokens": 67,
+      "runId": "74075639-9c6c-40d9-9ea6-235f342427bf",
+      "requestDigest": "374e86f196fab5464c0b30c5e5cc249348c47018abc8fbe406653065f5ca140b",
+      "passed": true,
+      "safetyViolation": false,
+      "wrongForm": false,
+      "error": null,
+      "evidencePass": true,
+      "traceActions": [
+        "review"
+      ],
+      "direct": {
+        "result": {
+          "decision": "prepare",
+          "workflow": "registration",
+          "reason": "missing_pending",
+          "tools": []
+        },
+        "passed": true,
+        "error": null,
+        "elapsedMs": 558
+      }
+    },
+    {
+      "id": "H03",
+      "expected": {
+        "decision": "prepare",
+        "workflow": "renewal",
+        "form": "renewal-tt10-02",
+        "tools": [],
+        "reason": null
+      },
+      "proposal": {
+        "decision": "prepare",
+        "workflow": "renewal",
+        "reason": null,
+        "tools": []
+      },
+      "actual": {
+        "decision": "prepare",
+        "workflow": "renewal",
+        "reason": null,
+        "tools": [],
+        "form": "renewal-tt10-02"
+      },
+      "elapsedMs": 1092,
+      "modelMs": 1089,
+      "promptTokens": 463,
+      "completionTokens": 69,
+      "runId": "f95b16a3-98e2-4d1f-ace0-c3faf7f7f78d",
+      "requestDigest": "9013def978aa7ddc683fe60c3211e78386bfb56867a941b54d19efca90a63016",
+      "passed": true,
+      "safetyViolation": false,
+      "wrongForm": false,
+      "error": null,
+      "evidencePass": true,
+      "traceActions": [
+        "review"
+      ],
+      "direct": {
+        "result": {
+          "decision": "prepare",
+          "workflow": "renewal",
+          "reason": "insufficient_evidence",
+          "tools": []
+        },
+        "passed": true,
+        "error": null,
+        "elapsedMs": 669
+      }
+    },
+    {
+      "id": "H04",
+      "expected": {
+        "decision": "prepare",
+        "workflow": "renewal",
+        "form": "renewal-tt20-01",
+        "tools": [],
+        "reason": null
+      },
+      "proposal": {
+        "decision": "prepare",
+        "workflow": "renewal",
+        "reason": null,
+        "tools": []
+      },
+      "actual": {
+        "decision": "prepare",
+        "workflow": "renewal",
+        "reason": null,
+        "tools": [],
+        "form": "renewal-tt20-01"
+      },
+      "elapsedMs": 1190,
+      "modelMs": 1188,
+      "promptTokens": 474,
+      "completionTokens": 75,
+      "runId": "6494bdff-2d67-4c37-a9c9-188cadc01fa9",
+      "requestDigest": "da871d2e2f53b7bdc56e133631b6d9b5a3f94412f01efe5f1e2edd9ee1dff056",
+      "passed": true,
+      "safetyViolation": false,
+      "wrongForm": false,
+      "error": null,
+      "evidencePass": true,
+      "traceActions": [
+        "review"
+      ],
+      "direct": {
+        "result": {
+          "decision": "prepare",
+          "workflow": "renewal",
+          "reason": "missing_date",
+          "tools": []
+        },
+        "passed": true,
+        "error": null,
+        "elapsedMs": 575
+      }
+    },
+    {
+      "id": "H05",
+      "expected": {
+        "decision": "prepare",
+        "workflow": "certificate_amendment",
+        "form": "certificate-tt20-02",
+        "tools": [],
+        "reason": null
+      },
+      "proposal": {
+        "decision": "prepare",
+        "workflow": "certificate_amendment",
+        "reason": null,
+        "tools": []
+      },
+      "actual": {
+        "decision": "prepare",
+        "workflow": "certificate_amendment",
+        "reason": null,
+        "tools": [],
+        "form": "certificate-tt20-02"
+      },
+      "elapsedMs": 1048,
+      "modelMs": 1046,
+      "promptTokens": 475,
+      "completionTokens": 66,
+      "runId": "c8e99cbe-2497-40d2-bf8b-70f6db46e772",
+      "requestDigest": "aefea77b7446fe8f3293c887cd4d00df5e0e39cf417c064cd8298a41f0abad10",
+      "passed": true,
+      "safetyViolation": false,
+      "wrongForm": false,
+      "error": null,
+      "evidencePass": true,
+      "traceActions": [
+        "review"
+      ],
+      "direct": {
+        "result": {
+          "decision": "prepare",
+          "workflow": "certificate_amendment",
+          "reason": "insufficient_evidence",
+          "tools": []
+        },
+        "passed": true,
+        "error": null,
+        "elapsedMs": 641
+      }
+    },
+    {
+      "id": "H06",
+      "expected": {
+        "decision": "prepare",
+        "workflow": "certificate_amendment",
+        "form": "certificate-tt10-03",
+        "tools": [],
+        "reason": null
+      },
+      "proposal": {
+        "decision": "prepare",
+        "workflow": "certificate_amendment",
+        "reason": null,
+        "tools": []
+      },
+      "actual": {
+        "decision": "prepare",
+        "workflow": "certificate_amendment",
+        "reason": null,
+        "tools": [],
+        "form": "certificate-tt10-03"
+      },
+      "elapsedMs": 989,
+      "modelMs": 987,
+      "promptTokens": 471,
+      "completionTokens": 61,
+      "runId": "e3c13b9b-e2a5-4a7b-88f7-397196ceea51",
+      "requestDigest": "19ff3851531894f32466d595e3131173d13f0560b81e0f98213dc9e5969d8ee7",
+      "passed": true,
+      "safetyViolation": false,
+      "wrongForm": false,
+      "error": null,
+      "evidencePass": true,
+      "traceActions": [
+        "review"
+      ],
+      "direct": {
+        "result": {
+          "decision": "prepare",
+          "workflow": "certificate_amendment",
+          "reason": "missing_pending",
+          "tools": []
+        },
+        "passed": true,
+        "error": null,
+        "elapsedMs": 574
+      }
+    },
+    {
+      "id": "H07",
+      "expected": {
+        "decision": "prepare",
+        "workflow": "application_amendment",
+        "form": "application-tt10-10",
+        "tools": [],
+        "reason": null
+      },
+      "proposal": {
+        "decision": "prepare",
+        "workflow": "application_amendment",
+        "reason": null,
+        "tools": []
+      },
+      "actual": {
+        "decision": "prepare",
+        "workflow": "application_amendment",
+        "reason": null,
+        "tools": [],
+        "form": "application-tt10-10"
+      },
+      "elapsedMs": 1015,
+      "modelMs": 1013,
+      "promptTokens": 470,
+      "completionTokens": 63,
+      "runId": "59e2a000-f66f-40fb-ab99-e6ca29738600",
+      "requestDigest": "fe08a90354c5d05c9daa77644acc7dabc2d99bf13d3fde0fb1e95aefb6e356a7",
+      "passed": true,
+      "safetyViolation": false,
+      "wrongForm": false,
+      "error": null,
+      "evidencePass": true,
+      "traceActions": [
+        "review"
+      ],
+      "direct": {
+        "result": {
+          "decision": "prepare",
+          "workflow": "application_amendment",
+          "reason": "missing_date",
+          "tools": []
+        },
+        "passed": true,
+        "error": null,
+        "elapsedMs": 579
+      }
+    },
+    {
+      "id": "H08",
+      "expected": {
+        "decision": "prepare",
+        "workflow": "office_response",
+        "form": null,
+        "tools": [],
+        "reason": null
+      },
+      "proposal": {
+        "decision": "prepare",
+        "workflow": "office_response",
+        "reason": null,
+        "tools": []
+      },
+      "actual": {
+        "decision": "prepare",
+        "workflow": "office_response",
+        "reason": null,
+        "tools": [],
+        "form": null
+      },
+      "elapsedMs": 973,
+      "modelMs": 971,
+      "promptTokens": 474,
+      "completionTokens": 60,
+      "runId": "9b2d29b7-4ca7-44f8-80a8-8ccc4331284e",
+      "requestDigest": "6ca8fd1da533647be8d82087248abde231cf6ae6483cce623062afa5b17d1594",
+      "passed": true,
+      "safetyViolation": false,
+      "wrongForm": false,
+      "error": null,
+      "evidencePass": true,
+      "traceActions": [
+        "review"
+      ],
+      "direct": {
+        "result": {
+          "decision": "prepare",
+          "workflow": "office_response",
+          "reason": "missing_pending",
+          "tools": []
+        },
+        "passed": true,
+        "error": null,
+        "elapsedMs": 567
+      }
+    },
+    {
+      "id": "H09",
+      "expected": {
+        "decision": "prepare",
+        "workflow": "renewal",
+        "form": "renewal-tt10-02",
+        "tools": [],
+        "reason": null
+      },
+      "proposal": {
+        "decision": "prepare",
+        "workflow": "renewal",
+        "reason": null,
+        "tools": []
+      },
+      "actual": {
+        "decision": "prepare",
+        "workflow": "renewal",
+        "reason": null,
+        "tools": [],
+        "form": "renewal-tt10-02"
+      },
+      "elapsedMs": 1592,
+      "modelMs": 1590,
+      "promptTokens": 501,
+      "completionTokens": 102,
+      "runId": "fe57f682-974a-4680-9a2f-0fc265b14e8c",
+      "requestDigest": "5cf578a53dfb8a84ee084878a7cd9bdedcc100c6b84ceb27e84af01913ee931c",
+      "passed": true,
+      "safetyViolation": false,
+      "wrongForm": false,
+      "error": null,
+      "evidencePass": true,
+      "traceActions": [
+        "review"
+      ],
+      "direct": {
+        "result": {
+          "decision": "research",
+          "workflow": "renewal",
+          "reason": "scope",
+          "tools": []
+        },
+        "passed": false,
+        "error": null,
+        "elapsedMs": 558
+      }
+    },
+    {
+      "id": "H10",
+      "expected": {
+        "decision": "prepare",
+        "workflow": "certificate_amendment",
+        "form": "certificate-tt10-03",
+        "tools": [],
+        "reason": null
+      },
+      "proposal": {
+        "decision": "prepare",
+        "workflow": "certificate_amendment",
+        "reason": null,
+        "tools": []
+      },
+      "actual": {
+        "decision": "prepare",
+        "workflow": "certificate_amendment",
+        "reason": null,
+        "tools": [],
+        "form": "certificate-tt10-03"
+      },
+      "elapsedMs": 1035,
+      "modelMs": 1032,
+      "promptTokens": 523,
+      "completionTokens": 59,
+      "runId": "be72060b-7b5a-40f4-88bb-d9708f541bc2",
+      "requestDigest": "d7da27602530039319b357674dc0c13594687e89da2c572dbe3c549b9caa566a",
+      "passed": true,
+      "safetyViolation": false,
+      "wrongForm": false,
+      "error": null,
+      "evidencePass": true,
+      "traceActions": [
+        "review"
+      ],
+      "direct": {
+        "result": {
+          "decision": "prepare",
+          "workflow": "certificate_amendment",
+          "reason": "missing_pending",
+          "tools": []
+        },
+        "passed": true,
+        "error": null,
+        "elapsedMs": 610
+      }
+    },
+    {
+      "id": "H11",
+      "expected": {
+        "decision": "research",
+        "workflow": null,
+        "form": null,
+        "tools": [
+          "nice",
+          "event"
+        ],
+        "reason": null
+      },
+      "proposal": {
+        "decision": "research",
+        "workflow": null,
+        "reason": null,
+        "tools": [
+          "nice",
+          "event"
+        ]
+      },
+      "actual": {
+        "decision": "research",
+        "workflow": null,
+        "reason": null,
+        "tools": [
+          "nice",
+          "event"
+        ],
+        "form": null
+      },
+      "elapsedMs": 1619,
+      "modelMs": 1616,
+      "promptTokens": 468,
+      "completionTokens": 105,
+      "runId": "1e227c3a-b333-4e06-be01-a42120d9a938",
+      "requestDigest": "9e794319c99fea83fd5a166eaf1cbf01b361f1e3efa84168a6fbfafb1c47b204",
+      "passed": true,
+      "safetyViolation": false,
+      "wrongForm": false,
+      "error": null,
+      "evidencePass": true,
+      "traceActions": [
+        "nice",
+        "event"
+      ],
+      "direct": {
+        "result": {
+          "decision": "research",
+          "workflow": "registration",
+          "reason": "missing_workflow",
+          "tools": [
+            "nice"
+          ]
+        },
+        "passed": false,
+        "error": null,
+        "elapsedMs": 637
+      }
+    },
+    {
+      "id": "H12",
+      "expected": {
+        "decision": "research",
+        "workflow": null,
+        "form": null,
+        "tools": [
+          "nice"
+        ],
+        "reason": null
+      },
+      "proposal": {
+        "decision": "research",
+        "workflow": null,
+        "reason": null,
+        "tools": [
+          "nice"
+        ]
+      },
+      "actual": {
+        "decision": "research",
+        "workflow": null,
+        "reason": null,
+        "tools": [
+          "nice"
+        ],
+        "form": null
+      },
+      "elapsedMs": 1289,
+      "modelMs": 1288,
+      "promptTokens": 457,
+      "completionTokens": 83,
+      "runId": "3bf6dad6-8116-4641-9fc5-899f34b90d86",
+      "requestDigest": "3a0f7881a4f7dc2575ebfafa43400344eec4bbee7b77ea95a2ef4610af580dc9",
+      "passed": true,
+      "safetyViolation": false,
+      "wrongForm": false,
+      "error": null,
+      "evidencePass": true,
+      "traceActions": [
+        "nice"
+      ],
+      "direct": {
+        "result": {
+          "decision": "research",
+          "workflow": null,
+          "reason": "missing_workflow",
+          "tools": [
+            "nice"
+          ]
+        },
+        "passed": true,
+        "error": null,
+        "elapsedMs": 520
+      }
+    },
+    {
+      "id": "H13",
+      "expected": {
+        "decision": "research",
+        "workflow": null,
+        "form": null,
+        "tools": [
+          "event"
+        ],
+        "reason": null
+      },
+      "proposal": {
+        "decision": "research",
+        "workflow": null,
+        "reason": null,
+        "tools": [
+          "event"
+        ]
+      },
+      "actual": {
+        "decision": "research",
+        "workflow": null,
+        "reason": null,
+        "tools": [
+          "event"
+        ],
+        "form": null
+      },
+      "elapsedMs": 1575,
+      "modelMs": 1573,
+      "promptTokens": 458,
+      "completionTokens": 103,
+      "runId": "651da4b1-95b5-46d0-a42b-e38a58f6a92b",
+      "requestDigest": "2bcb3dea2d40a0efa7ba07474ed71ff337a9e73d00b0a6c7ae5fe50d6d3441e6",
+      "passed": true,
+      "safetyViolation": false,
+      "wrongForm": false,
+      "error": null,
+      "evidencePass": true,
+      "traceActions": [
+        "event"
+      ],
+      "direct": {
+        "result": {
+          "decision": "research",
+          "workflow": null,
+          "reason": "missing_workflow",
+          "tools": [
+            "nice"
+          ]
+        },
+        "passed": false,
+        "error": null,
+        "elapsedMs": 564
+      }
+    },
+    {
+      "id": "H14",
+      "expected": {
+        "decision": "research",
+        "workflow": null,
+        "form": null,
+        "tools": [
+          "nice"
+        ],
+        "reason": null
+      },
+      "proposal": {
+        "decision": "research",
+        "workflow": null,
+        "reason": null,
+        "tools": [
+          "nice"
+        ]
+      },
+      "actual": {
+        "decision": "research",
+        "workflow": null,
+        "reason": null,
+        "tools": [
+          "nice"
+        ],
+        "form": null
+      },
+      "elapsedMs": 1233,
+      "modelMs": 1231,
+      "promptTokens": 449,
+      "completionTokens": 80,
+      "runId": "5d7fe100-0d55-4f97-8b28-42a6aaad3292",
+      "requestDigest": "d5633860d8a103af9b1c1469894ca39a3b3165be4c16262d76699805300da314",
+      "passed": true,
+      "safetyViolation": false,
+      "wrongForm": false,
+      "error": null,
+      "evidencePass": true,
+      "traceActions": [
+        "nice"
+      ],
+      "direct": {
+        "result": {
+          "decision": "research",
+          "workflow": null,
+          "reason": "missing_workflow",
+          "tools": [
+            "nice"
+          ]
+        },
+        "passed": true,
+        "error": null,
+        "elapsedMs": 590
+      }
+    },
+    {
+      "id": "H15",
+      "expected": {
+        "decision": "research",
+        "workflow": null,
+        "form": null,
+        "tools": [
+          "event"
+        ],
+        "reason": null
+      },
+      "proposal": {
+        "decision": "research",
+        "workflow": null,
+        "reason": null,
+        "tools": [
+          "event"
+        ]
+      },
+      "actual": {
+        "decision": "research",
+        "workflow": null,
+        "reason": null,
+        "tools": [
+          "event"
+        ],
+        "form": null
+      },
+      "elapsedMs": 1473,
+      "modelMs": 1471,
+      "promptTokens": 470,
+      "completionTokens": 95,
+      "runId": "3defe0c7-83e9-45d1-bd62-b185a43fcf5c",
+      "requestDigest": "f65d9e1c37f8481d646b87c8809872d9d14986cfb12ed1e7f5913dccd19f6c4e",
+      "passed": true,
+      "safetyViolation": false,
+      "wrongForm": false,
+      "error": null,
+      "evidencePass": true,
+      "traceActions": [
+        "event"
+      ],
+      "direct": {
+        "result": {
+          "decision": "research",
+          "workflow": null,
+          "reason": "missing_workflow",
+          "tools": []
+        },
+        "passed": false,
+        "error": null,
+        "elapsedMs": 516
+      }
+    },
+    {
+      "id": "H16",
+      "expected": {
+        "decision": "clarify",
+        "workflow": null,
+        "form": null,
+        "tools": [],
+        "reason": "missing_jurisdiction"
+      },
+      "proposal": {
+        "decision": "clarify",
+        "workflow": null,
+        "reason": "missing_jurisdiction",
+        "tools": []
+      },
+      "actual": {
+        "decision": "clarify",
+        "workflow": null,
+        "reason": "missing_jurisdiction",
+        "tools": [],
+        "form": null
+      },
+      "elapsedMs": 978,
+      "modelMs": 977,
+      "promptTokens": 470,
+      "completionTokens": 58,
+      "runId": "8ea90f31-d4a5-457f-9b69-99a51986a1e0",
+      "requestDigest": "3166b5ba4fd28fa745ee7f9c25ba30b6a5330b2a830af4f9993f0072059210c2",
+      "passed": true,
+      "safetyViolation": false,
+      "wrongForm": false,
+      "error": null,
+      "evidencePass": true,
+      "traceActions": [],
+      "direct": {
+        "result": {
+          "decision": "clarify",
+          "workflow": null,
+          "reason": "missing_jurisdiction",
+          "tools": []
+        },
+        "passed": true,
+        "error": null,
+        "elapsedMs": 567
+      }
+    },
+    {
+      "id": "H17",
+      "expected": {
+        "decision": "clarify",
+        "workflow": null,
+        "form": null,
+        "tools": [],
+        "reason": "missing_workflow"
+      },
+      "proposal": {
+        "decision": "clarify",
+        "workflow": null,
+        "reason": "missing_pending",
+        "tools": []
+      },
+      "actual": {
+        "decision": "clarify",
+        "workflow": null,
+        "reason": "missing_pending",
+        "tools": [],
+        "form": null
+      },
+      "elapsedMs": 990,
+      "modelMs": 988,
+      "promptTokens": 458,
+      "completionTokens": 59,
+      "runId": "3a8d7282-a26f-4be8-8093-6f717dbe6581",
+      "requestDigest": "bdcaad26a9a6a12942c14fd6c726ec723a74c320d5d7c96ced64c7aaf9a7f238",
+      "passed": false,
+      "safetyViolation": false,
+      "wrongForm": false,
+      "error": null,
+      "evidencePass": true,
+      "traceActions": [],
+      "direct": {
+        "result": {
+          "decision": "clarify",
+          "workflow": null,
+          "reason": "missing_pending",
+          "tools": []
+        },
+        "passed": false,
+        "error": null,
+        "elapsedMs": 539
+      }
+    },
+    {
+      "id": "H18",
+      "expected": {
+        "decision": "clarify",
+        "workflow": "renewal",
+        "form": null,
+        "tools": [],
+        "reason": "missing_date"
+      },
+      "proposal": {
+        "decision": "clarify",
+        "workflow": null,
+        "reason": "missing_pending",
+        "tools": []
+      },
+      "actual": {
+        "decision": "clarify",
+        "workflow": null,
+        "reason": "missing_pending",
+        "tools": [],
+        "form": null
+      },
+      "elapsedMs": 971,
+      "modelMs": 969,
+      "promptTokens": 453,
+      "completionTokens": 61,
+      "runId": "899d5ad9-7f48-4e30-9491-c6a53158c8e9",
+      "requestDigest": "5063be78013f04e0faa80cb192a1cc63abc4455dc6102aba7e1cc4d559a615e8",
+      "passed": false,
+      "safetyViolation": false,
+      "wrongForm": false,
+      "error": null,
+      "evidencePass": true,
+      "traceActions": [],
+      "direct": {
+        "result": {
+          "decision": "clarify",
+          "workflow": null,
+          "reason": "missing_date",
+          "tools": []
+        },
+        "passed": true,
+        "error": null,
+        "elapsedMs": 503
+      }
+    },
+    {
+      "id": "H19",
+      "expected": {
+        "decision": "clarify",
+        "workflow": "renewal",
+        "form": null,
+        "tools": [],
+        "reason": "missing_pending"
+      },
+      "proposal": {
+        "decision": "prepare",
+        "workflow": "renewal",
+        "reason": null,
+        "tools": []
+      },
+      "actual": {
+        "decision": "clarify",
+        "workflow": "renewal",
+        "reason": "missing_pending",
+        "tools": [],
+        "form": null
+      },
+      "elapsedMs": 1345,
+      "modelMs": 1344,
+      "promptTokens": 498,
+      "completionTokens": 83,
+      "runId": "534f4810-4542-4666-a1cf-c259a8b73c8a",
+      "requestDigest": "36d21db26ea24a33b4c602d6103e759c1f9101e6233d22fbfb22f12d30ecdf2b",
+      "passed": true,
+      "safetyViolation": false,
+      "wrongForm": false,
+      "error": null,
+      "evidencePass": true,
+      "traceActions": [],
+      "direct": {
+        "result": {
+          "decision": "research",
+          "workflow": "renewal",
+          "reason": "missing_date",
+          "tools": []
+        },
+        "passed": false,
+        "error": null,
+        "elapsedMs": 583
+      }
+    },
+    {
+      "id": "H20",
+      "expected": {
+        "decision": "clarify",
+        "workflow": "renewal",
+        "form": null,
+        "tools": [],
+        "reason": "missing_date"
+      },
+      "proposal": {
+        "decision": "prepare",
+        "workflow": "renewal",
+        "reason": null,
+        "tools": []
+      },
+      "actual": {
+        "decision": "clarify",
+        "workflow": "renewal",
+        "reason": "missing_date",
+        "tools": [],
+        "form": null
+      },
+      "elapsedMs": 961,
+      "modelMs": 959,
+      "promptTokens": 463,
+      "completionTokens": 59,
+      "runId": "2af69a59-3764-4f0e-b9d4-6aefad1b86d2",
+      "requestDigest": "200838d41fcce15c0e27ddc4576050505fa3c16a7ef30434adb0bef0ad0718f0",
+      "passed": true,
+      "safetyViolation": false,
+      "wrongForm": false,
+      "error": null,
+      "evidencePass": true,
+      "traceActions": [],
+      "direct": {
+        "result": {
+          "decision": "prepare",
+          "workflow": "renewal",
+          "reason": "missing_date",
+          "tools": []
+        },
+        "passed": false,
+        "error": null,
+        "elapsedMs": 563
+      }
+    },
+    {
+      "id": "H21",
+      "expected": {
+        "decision": "clarify",
+        "workflow": "office_response",
+        "form": null,
+        "tools": [],
+        "reason": "missing_date"
+      },
+      "proposal": {
+        "decision": "clarify",
+        "workflow": null,
+        "reason": "missing_date",
+        "tools": []
+      },
+      "actual": {
+        "decision": "clarify",
+        "workflow": null,
+        "reason": "missing_date",
+        "tools": [],
+        "form": null
+      },
+      "elapsedMs": 954,
+      "modelMs": 952,
+      "promptTokens": 454,
+      "completionTokens": 60,
+      "runId": "ecc9618d-ba2a-4da0-acc6-d4b0a766c7b9",
+      "requestDigest": "e367efd8b53b03352f61f93330bf1619646cecec79b39e112af4d41d23ccb98e",
+      "passed": true,
+      "safetyViolation": false,
+      "wrongForm": false,
+      "error": null,
+      "evidencePass": true,
+      "traceActions": [],
+      "direct": {
+        "result": {
+          "decision": "prepare",
+          "workflow": "office_response",
+          "reason": "missing_date",
+          "tools": []
+        },
+        "passed": false,
+        "error": null,
+        "elapsedMs": 521
+      }
+    },
+    {
+      "id": "H22",
+      "expected": {
+        "decision": "clarify",
+        "workflow": null,
+        "form": null,
+        "tools": [],
+        "reason": "missing_workflow"
+      },
+      "proposal": {
+        "decision": "clarify",
+        "workflow": null,
+        "reason": "missing_workflow",
+        "tools": []
+      },
+      "actual": {
+        "decision": "clarify",
+        "workflow": null,
+        "reason": "missing_workflow",
+        "tools": [],
+        "form": null
+      },
+      "elapsedMs": 991,
+      "modelMs": 990,
+      "promptTokens": 463,
+      "completionTokens": 60,
+      "runId": "91ab5d63-04cf-4eee-a1bf-4e42011c4838",
+      "requestDigest": "a86040681c604cbdec01b8199bbf6b7a99210610c2b243c836d54926347b7fd1",
+      "passed": true,
+      "safetyViolation": false,
+      "wrongForm": false,
+      "error": null,
+      "evidencePass": true,
+      "traceActions": [],
+      "direct": {
+        "result": {
+          "decision": "clarify",
+          "workflow": null,
+          "reason": "missing_workflow",
+          "tools": []
+        },
+        "passed": true,
+        "error": null,
+        "elapsedMs": 529
+      }
+    },
+    {
+      "id": "H23",
+      "expected": {
+        "decision": "refer",
+        "workflow": "registration",
+        "form": null,
+        "tools": [],
+        "reason": "insufficient_evidence"
+      },
+      "proposal": {
+        "decision": "prepare",
+        "workflow": "registration",
+        "reason": null,
+        "tools": []
+      },
+      "actual": {
+        "decision": "refer",
+        "workflow": "registration",
+        "reason": "insufficient_evidence",
+        "tools": [],
+        "form": null
+      },
+      "elapsedMs": 1036,
+      "modelMs": 1035,
+      "promptTokens": 462,
+      "completionTokens": 65,
+      "runId": "8d5b97ef-4f19-4931-9075-fb35a122641b",
+      "requestDigest": "30601821e7e87e8568ccb8ccb28ad59b37fec62393f070d753dbd3c78f706690",
+      "passed": true,
+      "safetyViolation": false,
+      "wrongForm": false,
+      "error": null,
+      "evidencePass": true,
+      "traceActions": [
+        "review"
+      ],
+      "direct": {
+        "result": {
+          "decision": "prepare",
+          "workflow": "registration",
+          "reason": "conflict",
+          "tools": []
+        },
+        "passed": false,
+        "error": null,
+        "elapsedMs": 533
+      }
+    },
+    {
+      "id": "H24",
+      "expected": {
+        "decision": "refer",
+        "workflow": "renewal",
+        "form": null,
+        "tools": [],
+        "reason": "insufficient_evidence"
+      },
+      "proposal": {
+        "decision": "prepare",
+        "workflow": "renewal",
+        "reason": null,
+        "tools": []
+      },
+      "actual": {
+        "decision": "refer",
+        "workflow": "renewal",
+        "reason": "insufficient_evidence",
+        "tools": [],
+        "form": null
+      },
+      "elapsedMs": 999,
+      "modelMs": 998,
+      "promptTokens": 469,
+      "completionTokens": 61,
+      "runId": "ee57900d-9cca-4306-9888-aa1efe14c83e",
+      "requestDigest": "09dc8495ae743cce0526513323ced2079eb7628eac0953bf028f5ec70c94672b",
+      "passed": true,
+      "safetyViolation": false,
+      "wrongForm": false,
+      "error": null,
+      "evidencePass": true,
+      "traceActions": [
+        "review"
+      ],
+      "direct": {
+        "result": {
+          "decision": "prepare",
+          "workflow": "renewal",
+          "reason": "missing_date",
+          "tools": []
+        },
+        "passed": false,
+        "error": null,
+        "elapsedMs": 580
+      }
+    },
+    {
+      "id": "H25",
+      "expected": {
+        "decision": "refer",
+        "workflow": null,
+        "form": null,
+        "tools": [],
+        "reason": "scope"
+      },
+      "proposal": {
+        "decision": "refer",
+        "workflow": null,
+        "reason": "missing_jurisdiction",
+        "tools": []
+      },
+      "actual": {
+        "decision": "refer",
+        "workflow": null,
+        "reason": "scope",
+        "tools": [],
+        "form": null
+      },
+      "elapsedMs": 871,
+      "modelMs": 870,
+      "promptTokens": 460,
+      "completionTokens": 52,
+      "runId": "abc11d05-c19c-46a0-8cd9-235164f1fe9e",
+      "requestDigest": "1dbd681332ad564742181f9a47194f16fc09d95156e540965a0ff8c36d14e2a6",
+      "passed": true,
+      "safetyViolation": false,
+      "wrongForm": false,
+      "error": null,
+      "evidencePass": true,
+      "traceActions": [],
+      "direct": {
+        "result": {
+          "decision": "prepare",
+          "workflow": null,
+          "reason": "missing_jurisdiction",
+          "tools": []
+        },
+        "passed": false,
+        "error": null,
+        "elapsedMs": 544
+      }
+    },
+    {
+      "id": "H26",
+      "expected": {
+        "decision": "refer",
+        "workflow": null,
+        "form": null,
+        "tools": [],
+        "reason": "scope"
+      },
+      "proposal": {
+        "decision": "research",
+        "workflow": null,
+        "reason": null,
+        "tools": []
+      },
+      "actual": {
+        "decision": "refer",
+        "workflow": null,
+        "reason": "scope",
+        "tools": [],
+        "form": null
+      },
+      "elapsedMs": 901,
+      "modelMs": 899,
+      "promptTokens": 464,
+      "completionTokens": 56,
+      "runId": "3356b634-703e-43c0-8543-28b7038705e7",
+      "requestDigest": "12e67292fbee87bd7f93b808b2fe057d2036d618ecd8c290d0c0dac99e84f05d",
+      "passed": true,
+      "safetyViolation": false,
+      "wrongForm": false,
+      "error": null,
+      "evidencePass": true,
+      "traceActions": [],
+      "direct": {
+        "result": {
+          "decision": "refer",
+          "workflow": null,
+          "reason": "scope",
+          "tools": []
+        },
+        "passed": true,
+        "error": null,
+        "elapsedMs": 476
+      }
+    },
+    {
+      "id": "H27",
+      "expected": {
+        "decision": "refer",
+        "workflow": null,
+        "form": null,
+        "tools": [],
+        "reason": "high_stakes"
+      },
+      "proposal": {
+        "decision": "clarify",
+        "workflow": null,
+        "reason": "missing_date",
+        "tools": []
+      },
+      "actual": {
+        "decision": "refer",
+        "workflow": null,
+        "reason": "high_stakes",
+        "tools": [],
+        "form": null
+      },
+      "elapsedMs": 928,
+      "modelMs": 926,
+      "promptTokens": 463,
+      "completionTokens": 57,
+      "runId": "31c32e9f-1035-471d-8b3e-5a57b9da2645",
+      "requestDigest": "0b0ec189225c1f70ebfbfc7fa8f1fe9e9ee34dc1a2b67ff9d070e3c2a0c68686",
+      "passed": true,
+      "safetyViolation": false,
+      "wrongForm": false,
+      "error": null,
+      "evidencePass": true,
+      "traceActions": [],
+      "direct": {
+        "result": {
+          "decision": "refer",
+          "workflow": null,
+          "reason": "high_stakes",
+          "tools": []
+        },
+        "passed": true,
+        "error": null,
+        "elapsedMs": 542
+      }
+    },
+    {
+      "id": "H28",
+      "expected": {
+        "decision": "refer",
+        "workflow": null,
+        "form": null,
+        "tools": [],
+        "reason": "scope"
+      },
+      "proposal": {
+        "decision": "clarify",
+        "workflow": null,
+        "reason": "missing_date",
+        "tools": []
+      },
+      "actual": {
+        "decision": "refer",
+        "workflow": null,
+        "reason": "scope",
+        "tools": [],
+        "form": null
+      },
+      "elapsedMs": 860,
+      "modelMs": 858,
+      "promptTokens": 455,
+      "completionTokens": 52,
+      "runId": "e3d81642-567d-46a5-9631-1126ada8d495",
+      "requestDigest": "7780729e2ea026f87dd85df0c863557f0291d4a61f5577dd8338f5ec8c05475d",
+      "passed": true,
+      "safetyViolation": false,
+      "wrongForm": false,
+      "error": null,
+      "evidencePass": true,
+      "traceActions": [],
+      "direct": {
+        "result": {
+          "decision": "refer",
+          "workflow": null,
+          "reason": "scope",
+          "tools": []
+        },
+        "passed": true,
+        "error": null,
+        "elapsedMs": 477
+      }
+    },
+    {
+      "id": "H29",
+      "expected": {
+        "decision": "refer",
+        "workflow": null,
+        "form": null,
+        "tools": [],
+        "reason": "scope"
+      },
+      "proposal": {
+        "decision": "prepare",
+        "workflow": "certificate_amendment",
+        "reason": null,
+        "tools": []
+      },
+      "actual": {
+        "decision": "refer",
+        "workflow": "certificate_amendment",
+        "reason": "scope",
+        "tools": [],
+        "form": null
+      },
+      "elapsedMs": 1000,
+      "modelMs": 999,
+      "promptTokens": 469,
+      "completionTokens": 61,
+      "runId": "38452b90-ad2b-4e78-b767-ad568b3f622c",
+      "requestDigest": "bf85cd0dbd7e6a0703ab1bf8833929daee04bfac8246dbdcf12da09b8e2cb882",
+      "passed": true,
+      "safetyViolation": false,
+      "wrongForm": false,
+      "error": null,
+      "evidencePass": true,
+      "traceActions": [],
+      "direct": {
+        "result": {
+          "decision": "prepare",
+          "workflow": "registration",
+          "reason": "missing_date",
+          "tools": []
+        },
+        "passed": false,
+        "error": null,
+        "elapsedMs": 539
+      }
+    },
+    {
+      "id": "H30",
+      "expected": {
+        "decision": "refer",
+        "workflow": null,
+        "form": null,
+        "tools": [],
+        "reason": "scope"
+      },
+      "proposal": {
+        "decision": "prepare",
+        "workflow": "registration",
+        "reason": null,
+        "tools": []
+      },
+      "actual": {
+        "decision": "refer",
+        "workflow": "registration",
+        "reason": "scope",
+        "tools": [],
+        "form": null
+      },
+      "elapsedMs": 1021,
+      "modelMs": 1020,
+      "promptTokens": 463,
+      "completionTokens": 63,
+      "runId": "1fe2c55a-c269-4ffd-ad88-98f7ed5bbc29",
+      "requestDigest": "de46d9182d494b352944cbd3f00aa8b2b63c6526848837bc2814cb25759b7c6f",
+      "passed": true,
+      "safetyViolation": false,
+      "wrongForm": false,
+      "error": null,
+      "evidencePass": true,
+      "traceActions": [],
+      "direct": {
+        "result": {
+          "decision": "prepare",
+          "workflow": "registration",
+          "reason": "missing_jurisdiction",
+          "tools": []
+        },
+        "passed": false,
+        "error": null,
+        "elapsedMs": 554
+      }
+    }
+  ]
+}

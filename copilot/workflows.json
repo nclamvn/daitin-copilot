@@ -1,0 +1,340 @@
+{
+  "claims": {
+    "reg-mark": {
+      "source": "tt10",
+      "page": 76,
+      "locator": "Điều 68 khoản 2",
+      "text": "Kiểm mẫu nhãn hiệu kèm tờ khai.",
+      "anchors": [
+        "Mẫu nhãn hiệu kèm theo"
+      ],
+      "flag": null,
+      "from_": null,
+      "until": null
+    },
+    "reg-paper": {
+      "source": "tt10",
+      "page": 76,
+      "locator": "Điều 68 khoản 2",
+      "text": "Chuẩn bị 05 mẫu nhãn hiệu đối với hồ sơ giấy.",
+      "anchors": [
+        "05 mẫu nhãn hiệu đối với trường hợp nộp đơn dạng giấy"
+      ],
+      "flag": "paper",
+      "from_": null,
+      "until": null
+    },
+    "reg-rules": {
+      "source": "tt10",
+      "page": 76,
+      "locator": "Điều 68 khoản 3",
+      "text": "Rà quy chế sử dụng tương ứng của nhãn hiệu tập thể hoặc chứng nhận.",
+      "anchors": [
+        "Quy chế sử dụng nhãn hiệu tập thể"
+      ],
+      "flag": "collective",
+      "from_": null,
+      "until": null
+    },
+    "reg-authorization": {
+      "source": "tt10",
+      "page": 76,
+      "locator": "Điều 68 khoản 4",
+      "text": "Kiểm văn bản ủy quyền nếu nộp qua đại diện.",
+      "anchors": [
+        "Văn bản ủy quyền (nếu đơn nộp thông qua đại diện)"
+      ],
+      "flag": "proxy",
+      "from_": null,
+      "until": null
+    },
+    "reg-derived": {
+      "source": "tt10",
+      "page": 76,
+      "locator": "Điều 68 khoản 5",
+      "text": "Kiểm tài liệu chứng minh quyền đăng ký được thụ hưởng.",
+      "anchors": [
+        "thụ hưởng quyền đăng ký của người khác"
+      ],
+      "flag": "derived",
+      "from_": null,
+      "until": null
+    },
+    "reg-nice": {
+      "source": "nice-vn26",
+      "page": 2,
+      "locator": "Lưu ý chung của bảng Nice 13-2026",
+      "text": "Đối chiếu tên hàng hóa, dịch vụ với danh sách chi tiết Nice và lưu mã cơ bản để rà.",
+      "anchors": [
+        "nên tham khảo Danh sách chi tiết"
+      ],
+      "flag": null,
+      "from_": null,
+      "until": null
+    },
+    "renew-old-original": {
+      "source": "tt10",
+      "page": 131,
+      "locator": "Điều 109 khoản 3 điểm b",
+      "text": "Kiểm bản gốc văn bằng nếu cần ghi nhận gia hạn vào văn bằng giấy.",
+      "anchors": [
+        "ghi nhận việc gia hạn vào văn bằng bảo hộ"
+      ],
+      "flag": "recordOnPaper",
+      "from_": null,
+      "until": "2026-07-01"
+    },
+    "renew-new-original": {
+      "source": "tt20",
+      "page": 4,
+      "locator": "Điều 11 → Điều 108 khoản 1 điểm b",
+      "text": "Kiểm bản gốc văn bằng nếu cần ghi nhận gia hạn vào văn bằng giấy.",
+      "anchors": [
+        "ghi nhận gia hạn hiệu lực vào văn bằng bảo hộ dạng giấy"
+      ],
+      "flag": "recordOnPaper",
+      "from_": "2026-07-01",
+      "until": null
+    },
+    "renew-old-poa": {
+      "source": "tt10",
+      "page": 131,
+      "locator": "Điều 109 khoản 3 điểm c",
+      "text": "Kiểm văn bản ủy quyền khi nộp qua đại diện.",
+      "anchors": [
+        "Văn bản ủy quyền (trường hợp yêu cầu được nộp thông qua đại diện)"
+      ],
+      "flag": "proxy",
+      "from_": null,
+      "until": "2026-07-01"
+    },
+    "renew-new-poa": {
+      "source": "tt20",
+      "page": 4,
+      "locator": "Điều 11 → Điều 108 khoản 1 điểm c",
+      "text": "Kiểm văn bản ủy quyền khi nộp qua đại diện.",
+      "anchors": [
+        "Văn bản ủy quyền (trường hợp yêu cầu được nộp thông qua đại diện)"
+      ],
+      "flag": "proxy",
+      "from_": "2026-07-01",
+      "until": null
+    },
+    "renew-old-partial": {
+      "source": "tt10",
+      "page": 131,
+      "locator": "Điều 109 khoản 3 điểm c",
+      "text": "Đối chiếu phạm vi được ủy quyền với phần danh mục xin gia hạn.",
+      "anchors": [
+        "ủy quyền gia hạn với phạm vi tương ứng"
+      ],
+      "flag": "partial",
+      "from_": null,
+      "until": "2026-07-01"
+    },
+    "renew-new-partial": {
+      "source": "vbhn06",
+      "page": 116,
+      "locator": "Điều 108 khoản 1 điểm c",
+      "text": "Đối chiếu phạm vi được ủy quyền với phần danh mục xin gia hạn.",
+      "anchors": [
+        "ủy quyền gia hạn hiệu lực với phạm vi tương ứng"
+      ],
+      "flag": "partial",
+      "from_": "2026-07-01",
+      "until": null
+    },
+    "renew-new-window": {
+      "source": "vbhn06",
+      "page": 116,
+      "locator": "Điều 108 khoản 2 điểm b, c",
+      "text": "Đối chiếu kỳ hạn văn bằng, cửa sổ nộp và điều kiện nộp muộn từ hồ sơ gốc.",
+      "anchors": [
+        "Trong vòng 06 tháng tính đến trước ngày hết hiệu lực"
+      ],
+      "flag": null,
+      "from_": "2026-07-01",
+      "until": null
+    },
+    "cert-old-original": {
+      "source": "tt10",
+      "page": 133,
+      "locator": "Điều 110 khoản 3 điểm b",
+      "text": "Kiểm bản gốc của văn bằng đã cấp bằng giấy.",
+      "anchors": [
+        "Bản gốc văn bằng bảo hộ trong trường hợp văn bằng bảo hộ được cấp dưới dạng giấy"
+      ],
+      "flag": "certificate",
+      "from_": null,
+      "until": "2026-07-01"
+    },
+    "cert-new-original": {
+      "source": "tt20",
+      "page": 8,
+      "locator": "Điều 12 → Điều 110 khoản 3 điểm b",
+      "text": "Kiểm bản gốc của văn bằng đã cấp bằng giấy.",
+      "anchors": [
+        "Bản gốc văn bằng bảo hộ trong trường hợp văn bằng bảo hộ được cấp dưới dạng giấy"
+      ],
+      "flag": "certificate",
+      "from_": "2026-07-01",
+      "until": null
+    },
+    "cert-old-name": {
+      "source": "tt10",
+      "page": 133,
+      "locator": "Điều 110 khoản 3 điểm c",
+      "text": "Rà tài liệu xác nhận thay đổi tên hoặc địa chỉ.",
+      "anchors": [
+        "Tài liệu xác nhận việc thay đổi tên, địa chỉ"
+      ],
+      "flag": "name",
+      "from_": null,
+      "until": "2026-07-01"
+    },
+    "cert-new-name": {
+      "source": "tt20",
+      "page": 8,
+      "locator": "Điều 12 → Điều 110 khoản 3 điểm c",
+      "text": "Rà tài liệu xác nhận thay đổi tên hoặc địa chỉ và ngoại lệ khi Cục khai thác được dữ liệu đã công bố.",
+      "anchors": [
+        "trừ trường hợp Cục Sở hữu trí tuệ có thể chủ động khai thác"
+      ],
+      "flag": "name",
+      "from_": "2026-07-01",
+      "until": null
+    },
+    "amend-goods": {
+      "source": "tt10",
+      "page": 102,
+      "locator": "Điều 83 khoản 2 điểm d",
+      "text": "Kiểm danh mục đã sửa và bản thuyết minh so với tài liệu ban đầu.",
+      "anchors": [
+        "bản thuyết minh chi tiết nội dung sửa đổi"
+      ],
+      "flag": "goods",
+      "from_": null,
+      "until": null
+    },
+    "amend-mark": {
+      "source": "tt10",
+      "page": 102,
+      "locator": "Điều 83 khoản 2 điểm d",
+      "text": "Kiểm mẫu nhãn hiệu sửa đổi. Đối chiếu số lượng nếu nộp giấy.",
+      "anchors": [
+        "phải nộp mẫu nhãn hiệu sửa đổi"
+      ],
+      "flag": "mark",
+      "from_": null,
+      "until": null
+    },
+    "office-response": {
+      "source": "tt10",
+      "page": 102,
+      "locator": "Điều 83 khoản 2 điểm b",
+      "text": "Chuẩn bị văn bản phản hồi nêu rõ nội dung sửa đổi, bổ sung. Rà yêu cầu trên chính thông báo.",
+      "anchors": [
+        "làm bằng văn bản phản hồi"
+      ],
+      "flag": null,
+      "from_": null,
+      "until": null
+    },
+    "office-goods": {
+      "source": "tt10",
+      "page": 102,
+      "locator": "Điều 83 khoản 2 điểm d",
+      "text": "Kiểm danh mục đã sửa và bản thuyết minh so với tài liệu ban đầu.",
+      "anchors": [
+        "bản thuyết minh chi tiết nội dung sửa đổi"
+      ],
+      "flag": "goods",
+      "from_": null,
+      "until": null
+    },
+    "office-mark": {
+      "source": "tt10",
+      "page": 102,
+      "locator": "Điều 83 khoản 2 điểm d",
+      "text": "Kiểm mẫu nhãn hiệu sửa đổi. Đối chiếu số lượng nếu nộp giấy.",
+      "anchors": [
+        "phải nộp mẫu nhãn hiệu sửa đổi"
+      ],
+      "flag": "mark",
+      "from_": null,
+      "until": null
+    }
+  },
+  "workflows": {
+    "registration": {
+      "label": "Rà trước khi nộp đơn nhãn hiệu",
+      "flags": {
+        "paper": "Đơn hoặc yêu cầu nộp bằng giấy",
+        "proxy": "Có nộp qua đại diện",
+        "collective": "Nhãn hiệu tập thể hoặc chứng nhận",
+        "derived": "Thụ hưởng quyền đăng ký của người khác"
+      },
+      "claims": [
+        "reg-mark",
+        "reg-paper",
+        "reg-rules",
+        "reg-authorization",
+        "reg-derived",
+        "reg-nice"
+      ]
+    },
+    "renewal": {
+      "label": "Rà hồ sơ gia hạn",
+      "flags": {
+        "proxy": "Có nộp qua đại diện",
+        "recordOnPaper": "Có yêu cầu ghi gia hạn vào văn bằng giấy",
+        "partial": "Chỉ gia hạn một phần danh mục và nộp qua đại diện"
+      },
+      "claims": [
+        "renew-old-original",
+        "renew-new-original",
+        "renew-old-poa",
+        "renew-new-poa",
+        "renew-old-partial",
+        "renew-new-partial",
+        "renew-new-window"
+      ]
+    },
+    "certificate_amendment": {
+      "label": "Rà hồ sơ sửa văn bằng",
+      "flags": {
+        "certificate": "Văn bằng được cấp bằng giấy",
+        "name": "Nội dung sửa là tên hoặc địa chỉ"
+      },
+      "claims": [
+        "cert-old-original",
+        "cert-new-original",
+        "cert-old-name",
+        "cert-new-name"
+      ]
+    },
+    "application_amendment": {
+      "label": "Rà yêu cầu chủ động sửa đơn",
+      "flags": {
+        "goods": "Có sửa danh mục hàng hóa hoặc dịch vụ",
+        "mark": "Có sửa mẫu nhãn hiệu"
+      },
+      "claims": [
+        "amend-goods",
+        "amend-mark"
+      ]
+    },
+    "office_response": {
+      "label": "Rà văn bản phản hồi thẩm định",
+      "flags": {
+        "goods": "Có sửa danh mục hàng hóa hoặc dịch vụ",
+        "mark": "Có sửa mẫu nhãn hiệu"
+      },
+      "claims": [
+        "office-response",
+        "office-goods",
+        "office-mark"
+      ]
+    }
+  }
+}

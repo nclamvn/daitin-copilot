@@ -1,0 +1,19 @@
+{"at":"2026-11-10T10:44:38.837Z","action":"build","status":"fail","detail":"SPAN_NOT_FOUND: law131-3-1 tại trang 139 → tại thời điểm nộp đơn, trừ các trường hợp sau đây"}
+{"at":"2026-11-10T10:44:47.994Z","action":"build","status":"pass","digest":"324318f9e2ced3b7d1a83c422bc3aa914b4812206f7155781bd51bcf3c54a76e","evidence":29}
+{"at":"2026-11-10T10:45:54.790Z","action":"check","status":"pass","digest":"324318f9e2ced3b7d1a83c422bc3aa914b4812206f7155781bd51bcf3c54a76e"}
+{"at":"2026-11-10T10:46:07.897Z","action":"probe","source":"tt20","status":"unchanged","observedSha256":"a7bcd1495d946f7c03e3f03ea59ce247909d9d618a1ac84f70832752bf3b52b0"}
+{"at":"2026-11-10T10:46:37.572Z","action":"publish","status":"fail","detail":"PHÊ DUYỆT: cần quyết định duyệt đúng mã bản dữ liệu."}
+{"at":"2026-11-10T10:46:58.053Z","action":"probe","source":"notice4863","status":"error","detail":"fetch failed"}
+{"at":"2026-11-10T10:46:58.231Z","action":"probe","source":"vbhn160","status":"unchanged","observedSha256":"53aed7cc50684a239e4fc04c6687a9df8071cf7ff557cce924eb258d2cfe4378"}
+{"at":"2026-11-10T10:46:58.474Z","action":"probe","source":"tt10","status":"unchanged","observedSha256":"07e81b6ace18e01558666ebe468709a59ef2d0cad151fadb1745de31996b4541"}
+{"at":"2026-11-10T10:46:59.912Z","action":"probe","source":"tt20-pl","status":"unchanged","observedSha256":"7a4337c196fff5352030345ec52713d00ac6a20792070ff428a519c387394201"}
+{"at":"2026-11-10T10:47:00.128Z","action":"probe","source":"tt10-pl2","status":"unchanged","observedSha256":"5514cb939b3f2606488d9aaf00f92aaabb75d16455e77a90119f0ae1531c50e2"}
+{"at":"2026-11-10T10:47:01.365Z","action":"probe","source":"vbhn06","status":"unchanged","observedSha256":"a62d69dc0981a18ba6201bf0b2d6ce190a5a83ab452be8d48201a4616b66bcaf"}
+{"at":"2026-11-10T10:47:03.812Z","action":"check","status":"fail","detail":"DRIFT: cần rà nguồn notice4863"}
+{"at":"2026-11-10T10:48:57.671Z","action":"probe","source":"notice4863","status":"unchanged","observedSha256":"80544ba9641e63a0fbe4a97f9f1463e55a30f2709cbee414c4f36fb28c9fe200"}
+{"at":"2026-11-10T10:49:01.304Z","action":"check","status":"pass","digest":"324318f9e2ced3b7d1a83c422bc3aa914b4812206f7155781bd51bcf3c54a76e"}
+{"at":"2026-11-10T11:38:28.037Z","action":"build","status":"pass","digest":"305004a370172f19455ff1db74fe60b8583f49d9e6bb1511329a56e745d32292","evidence":29}
+{"at":"2026-11-10T11:38:30.693Z","action":"check","status":"pass","digest":"305004a370172f19455ff1db74fe60b8583f49d9e6bb1511329a56e745d32292"}
+{"at":"2026-11-10T11:47:49.548Z","action":"check","status":"pass","digest":"305004a370172f19455ff1db74fe60b8583f49d9e6bb1511329a56e745d32292"}
+{"at":"2026-11-10T12:18:28.007Z","action":"check","status":"pass","digest":"305004a370172f19455ff1db74fe60b8583f49d9e6bb1511329a56e745d32292"}
+{"at":"2026-11-10T12:39:45.625Z","action":"check","status":"pass","digest":"305004a370172f19455ff1db74fe60b8583f49d9e6bb1511329a56e745d32292"}
