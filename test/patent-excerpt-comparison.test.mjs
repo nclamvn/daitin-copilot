@@ -266,15 +266,19 @@ test('parallel units alone leave per-unit independent control unresolved and pro
   assert.equal(first.patch.matrix.rows[0].assessment, 'uncertain');
   assert.equal(first.patch.matrix.rows[0].claimQuote, claim);
   assert.equal(first.patch.matrix.rows[0].d1Quote, d1);
-  assert.equal(first.run.excerptComparison.perUnitControlCheck, true);
-  assert.match(first.patch.response.text, /sơ đồ trong bản gốc, nếu có/u);
+  assert.equal(first.run.excerptComparison.perUnitControlCheck, undefined);
+  const firstCheck = first.patch.response.text.split('Việc cần kiểm: ')[1];
+  assert.match(firstCheck, /mỗi “dosing channel” có “pump” riêng và được điều khiển độc lập/u);
+  assert.doesNotMatch(firstCheck, /sơ đồ|cơ cấu dẫn động|đường tín hiệu/u);
 
   matter.instructionsText = 'Kiểm tra trong bản gốc xem có đường điều khiển riêng cho từng kênh hay không.';
   const revised = await generatePatentProposal({ matter, targets: ['response'] }, { connection, fetcher });
   assert.equal(revised.run.excerptComparison.perUnitControlCheck, true);
   assert.ok(revised.patch.response.text.includes(claim));
   assert.ok(revised.patch.response.text.includes(d1));
-  assert.match(revised.patch.response.text, /từng “dosing channel” đến “pump”.*đường tín hiệu điều khiển riêng/u);
+  const revisedCheck = revised.patch.response.text.split('Việc cần kiểm: ')[1];
+  assert.match(revisedCheck, /sơ đồ trong bản gốc, nếu có.*từng “dosing channel” đến “pump”.*đường tín hiệu điều khiển riêng/u);
+  assert.notEqual(firstCheck, revisedCheck);
   assert.doesNotMatch(revised.patch.response.text, /đã xem|xem lại đoạn đã chọn/iu);
 
   matter.instructionsText = 'Không cần kiểm tra bản gốc.';

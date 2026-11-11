@@ -184,7 +184,7 @@ export function applyPatentExcerptComparison(matter, patch, spanOptions, receipt
   const responseInScope = boundedUnknown && responseCanUsePair &&
     response.evidenceIds.every(id => [claim.recordId, d1.recordId, 'case:claim', 'case:notice', 'case:instructions'].includes(id));
   const artifact = responseInScope && !result.matrix ? requestedReviewTarget(instruction, matter.instructionsText, artifactPattern) : null;
-  const checkIndependence = independence && (result.matrix || requestedReviewTarget(instruction, matter.instructionsText, originalPattern));
+  const checkIndependence = independence && !result.matrix && requestedReviewTarget(instruction, matter.instructionsText, originalPattern);
   const priorMatrixRun = boundedUnknown && matter.proposals?.findLast(proposal => proposal.targets.includes('matrix'))?.run;
   const priorUncertainty = priorMatrixRun?.excerptComparison?.rowKinds?.includes(insufficientKind) &&
     matter.sections.matrix.rows.some(row => row.d1RecordId === d1.recordId && row.d1Quote === d1.text && row.claimQuote === claim.text);
@@ -230,16 +230,17 @@ export function applyPatentExcerptComparison(matter, patch, spanOptions, receipt
     response.unresolved = unresolved;
     response.evidenceIds = [...new Set([claim.recordId, d1.recordId, ...response.evidenceIds])];
     if (checkIndependence) {
-      const check = prospectiveIndependentControl(independence);
-      if (result.matrix) response.text = 'Việc cần kiểm: ' + check;
-      else response.nextCheck = check;
+      response.nextCheck = prospectiveIndependentControl(independence);
       receipt.perUnitControlCheck = true;
     } else if (artifact) {
       response.nextCheck = prospectiveCheck(artifact, claim.text, d1.text, modal);
       receipt.operatorArtifactCheck = true;
     } else if (result.matrix) {
-      response.text = 'Việc cần kiểm: ' + (modal ? prospectiveCheck('sơ đồ hoặc tín hiệu', claim.text, d1.text, modal) :
-        'Xem hình hoặc mô tả kỹ thuật nếu có trong bản gốc để xác định vị trí và chức năng của từng bộ phận nêu trên.');
+      const check = independence ?
+        `Đối chiếu bản gốc để xác định mỗi “${independence.unit}” có “${independence.component}” riêng và được điều khiển độc lập hay không.` :
+        modal ? prospectiveCheck('sơ đồ hoặc tín hiệu', claim.text, d1.text, modal) :
+          'Xem hình hoặc mô tả kỹ thuật nếu có trong bản gốc để xác định vị trí và chức năng của từng bộ phận nêu trên.';
+      response.text = 'Việc cần kiểm: ' + check;
     }
     receipt.responseKind = insufficientKind;
   }
