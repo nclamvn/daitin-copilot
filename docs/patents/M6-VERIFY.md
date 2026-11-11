@@ -12,7 +12,7 @@ M6 có trang sáng chế mặc định, thư mục nguồn có bộ lọc/tìm s
 
 ## Bằng chứng local
 
-- Toàn bộ 98/98 kiểm tra đạt, không có ca lỗi hoặc bị bỏ qua; build đạt; kiểm tra dependency production không có cảnh báo tại thời điểm kiểm.
+- Toàn bộ 101/101 kiểm tra đạt, không có ca lỗi hoặc bị bỏ qua; build đạt; kiểm tra dependency production không có cảnh báo tại thời điểm kiểm.
 - Contractor độc lập đọc raw/extract/catalog, băm 43 bản gốc và 43 bản trích và đối chiếu 1.874 span, không gọi validator của Builder. Đúng hash/span không xác minh ngữ nghĩa.
 - Data tests có rebuild offline byte-identical và các mutation về hash, span, vai trò, ngày, dependency. Cảnh báo OCR không bị nâng thành xác minh pháp lý.
 - Qua API thật trên Node local: đăng nhập, tra cứu, ngày tương lai cần dữ kiện; trích giả/sai vai trò trả 422; tab cũ trả 409; editor duyệt trả 403; chưa duyệt chưa xuất Word; hai phiên đăng nhập cùng hồ sơ; thay chỉ dẫn giữ duyệt ma trận và bỏ duyệt phản hồi; Word 1 không đổi, Word 2 mới; nhóm khác không đọc/xuất hồ sơ; nguồn riêng không nằm trong global catalog. Nội dung sửa/duyệt local do script mô phỏng, AI bị tắt trong lượt local này.
@@ -34,6 +34,10 @@ Chỉ đánh dấu đạt trên cloud sau lần triển khai thật: đăng nh�
 Bộ 30 yêu cầu do assistant soạn đã tách yêu cầu có mã mù và đáp án/rubric; chưa có luật sư xác nhận đáp án chuẩn và chấm mù và chưa phải tập kiểm chưa thấy độc lập. Ca OCR đã nhìn trong phát triển ghi là calibration, không gắn nhãn unseen.
 
 Chưa đo công người thật hoặc so trọn quy trình với agent frontier. Lượt gọi model cùng prompt, cùng model (nếu chạy) chỉ kiểm adapter và khả năng trả cấu trúc, không chứng minh giảm 25% thời gian luật sư. Không có key/quyền model Astra/Fable qua API thì ghi chưa đo, không dùng Gemini thay rồi gọi là benchmark frontier.
+
+## Sửa từ ca AI cloud thực tế
+
+Lượt AI cloud đầu tiên đã bị chặn 422 vì model chép đoạn D1 không khớp nguyên văn. Không có đề xuất hoặc bản duyệt mới được lưu. Đã đổi hợp đồng: model chọn mã đoạn claim/D1, code lấy nguyên văn theo dấu kiểm và vị trí UTF-16 rồi chạy lại cổng kiểm trích dẫn. Không dùng đối sánh gần đúng hoặc bỏ cổng để có kết quả đạt. Biên nhận các lượt gọi sau được lưu riêng trong SQLite, có hash đầu vào/đầu ra, thời gian, token và lỗi, không có khóa hoặc nguyên văn dữ kiện riêng. Không tự gọi lại model. Cần chạy lại đúng ca trên cloud trước khi đánh dấu đạt.
 
 ## Disposition
 

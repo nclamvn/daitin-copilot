@@ -8,6 +8,18 @@ const mobile = matchMedia('(max-width:800px)');
 const node = (tag, value, className) => { const e = document.createElement(tag); if (value !== undefined) e.textContent = value; if (className) e.className = className; return e; };
 const date = value => { if (!value) return 'Chưa xác định'; if (/^\d{4}$/.test(value)) return value + ' (chưa rõ ngày)'; const parsed = new Date(value); return Number.isFinite(parsed.valueOf()) ? new Intl.DateTimeFormat('vi-VN', { dateStyle: 'medium', timeZone: 'Asia/Ho_Chi_Minh' }).format(parsed) : 'Chưa xác định'; };
 const shorten = (text, max = 320) => typeof text === 'string' && text.length > max ? text.slice(0, max) + '…' : text ?? '';
+function savedThrough() {
+  const value = state.status?.dataset?.coverage?.checkedThrough ?? state.catalog?.coverage?.checkedThrough ?? state.status?.dataset?.checkedThrough ?? state.status?.dataset?.builtAt ?? state.catalog?.builtAt;
+  return typeof value === 'string' && /^\d{4}-\d{2}-\d{2}/.test(value) ? value.slice(0, 10) : null;
+}
+function searchMessage(result) {
+  if (result.status === 'needs_context') {
+    if (result.reason === 'Requested date is later than the captured corpus; no current-law assurance is available.') return 'Ngày đối chiếu ' + date(result.asOf) + ' nằm sau mốc kho đã lưu ' + date(result.coverage?.checkedThrough ?? savedThrough()) + '. Cần cập nhật nguồn trước khi đối chiếu pháp luật tại ngày này. Có thể chọn ngày trong phạm vi kho để tham khảo lịch sử; chưa có bảo đảm pháp luật hiện hành.';
+    if (result.reason === 'Provide a question of at most300characters, supported jurisdiction and an ISO date.') return 'Nhập câu hỏi không quá 300 ký tự, chọn phạm vi được hỗ trợ và ngày đối chiếu hợp lệ.';
+    return 'Chưa đủ dữ kiện để tra cứu tại ngày hoặc phạm vi đã chọn. Kiểm lại câu hỏi, phạm vi và ngày đối chiếu; kho chưa bảo đảm pháp luật hiện hành.';
+  }
+  return result.notice ?? (result.status === 'not_found' ? 'Chưa có nguồn phù hợp trong bản dữ liệu này. Thử từ khóa khác hoặc mở phạm vi kho.' : 'Các đoạn nguồn tìm được để đối chiếu.');
+}
 const section = key => state.matter?.sections?.[key];
 const pinId = item => item.record.id;
 const isClaim = record => record.kind === 'patent' && (Boolean(record.claims?.length) || record.locator?.section === 'claim' || Number.isInteger(record.locator?.claim));
@@ -122,7 +134,7 @@ function renderResults() {
   $('catalog-heading').hidden = Boolean(state.search);
   if (state.search) {
     const result = state.search;
-    box.append(node('p', result.notice ?? (result.status === 'not_found' ? 'Chưa có nguồn phù hợp trong bản dữ liệu này. Thử từ khóa khác hoặc mở phạm vi kho.' : result.status === 'needs_context' ? 'Cần bổ sung ngày hoặc phạm vi trước khi áp dụng căn cứ.' : 'Các đoạn nguồn tìm được để đối chiếu.'), 'result-note'));
+    box.append(node('p', searchMessage(result), 'result-note'));
     for (const item of result.results ?? []) box.append(renderSource(item));
     if (!(result.results ?? []).length) box.append(button('Duyệt nguồn đã thu thập', () => { state.search = null; renderResults(); }));
   } else {
@@ -436,11 +448,13 @@ window.addEventListener('beforeunload', event => { if (isDirty()) { event.preven
 window.addEventListener('popstate', () => { const id = new URL(location.href).searchParams.get('case'); if (id && id !== state.matter?.id && discard()) openCase(id); });
 
 function today() { const p = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Ho_Chi_Minh', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(new Date()); return ['year', 'month', 'day'].map(key => p.find(item => item.type === key).value).join('-'); }
-$('search-date').value = today();
 await run('Đang mở kho sáng chế…', async () => {
   const [status, catalog, cases] = await Promise.all([request('status'), request('catalog'), request('cases')]);
   state.status = status; state.catalog = catalog; state.cases = Array.isArray(cases) ? cases : cases.cases ?? [];
-  $('coverage-summary').textContent = (status.dataset.sourceCount ?? catalog.sources.length) + ' nguồn, ' + (status.dataset.recordCount ?? catalog.records.length) + ' đoạn. Dựng kho ' + date(status.dataset.builtAt) + '. Chờ luật sư rà soát.';
+  const through = savedThrough();
+  if (!$('search-date').value && through) $('search-date').value = through;
+  $('search-coverage').textContent = 'Kho đã lưu đến ' + date(through) + '. Ngày đối chiếu mặc định theo mốc kho để tham khảo lịch sử. Chưa có ngày hiệu lực không được hiểu là đang áp dụng.';
+  $('coverage-summary').textContent = (status.dataset.sourceCount ?? catalog.sources.length) + ' nguồn, ' + (status.dataset.recordCount ?? catalog.records.length) + ' đoạn. Kho đã lưu đến ' + date(through) + '. Chờ luật sư rà soát.';
   renderCases(); renderResults(); renderEvidence();
   const id = new URL(location.href).searchParams.get('case');
   if (id) applyMatter(await request('cases/' + encodeURIComponent(id)), 'matrix');

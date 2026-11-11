@@ -5,6 +5,7 @@ import { resolve } from 'node:path';
 import { hash } from '../copilot/m3/workflow.mjs';
 import { openPatentStore } from '../patents/store.mjs';
 import { createPatentWorkflow, buildPatentPrompt, generatePatentProposal } from '../patents/workflow.mjs';
+import { DatabaseSync } from 'node:sqlite';
 import { loadDataset } from '../patents/dataset.mjs';
 import { makePatentWord } from '../patents/word.mjs';
 
@@ -40,7 +41,7 @@ function setup(t, model) {
   const directory = mkdtempSync(resolve('work/patent-workflow-'));
   const store = openPatentStore(resolve(directory, 'cases.sqlite'));
   t.after(() => { store.close(); rmSync(directory, { recursive: true, force: true }); });
-  return { store, workflow: createPatentWorkflow(store, dataset, model) };
+  return { directory, store, workflow: createPatentWorkflow(store, dataset, model) };
 }
 function documentXML(bytes) {
   let offset = 0;
@@ -134,16 +135,21 @@ test('patent prompt uses explicit D1 and private input hashes, validates model s
   const input = { matter, targets: ['matrix', 'response'], instruction: 'Lập đối chiếu mô phỏng.' };
   const prompt = buildPatentPrompt(input, connection);
   assert.equal(prompt.max_tokens, 1800);
-  const schemaD1 = prompt.response_format.json_schema.schema.properties.matrix.properties.rows.items.properties.d1RecordId.enum;
-  assert.deepEqual(schemaD1, ['d1-paragraph', null]);
+  const options = JSON.parse(prompt.messages[1].content).spanOptions;
+  const schemaD1 = prompt.response_format.json_schema.schema.properties.matrix.properties.rows.items.properties.d1SpanId.enum;
+  assert.deepEqual(schemaD1, [...options.d1.map(item => item.id), null]);
   assert.ok(prompt.messages[1].content.includes('case:notice'));
   assert.equal(prompt.messages.some(item => item.content.includes('fake-private-key')), false);
   let calls = 0;
-  const fetcher = async () => { calls++; return Response.json({ choices: [{ finish_reason: 'stop', message: { content: JSON.stringify({ matrix: { rows: [row] }, response }) } }],
+  const modelRow = { feature: row.feature, claimSpanId: options.claim[0].id, d1SpanId: options.d1[0].id, assessment: row.assessment, analysis: row.analysis, missing: row.missing };
+  const fetcher = async () => { calls++; return Response.json({ choices: [{ finish_reason: 'stop', message: { content: JSON.stringify({ matrix: { rows: [modelRow] }, response }) } }],
     usage: { prompt_tokens: 200, completion_tokens: 100 } }); };
   const result = await generatePatentProposal(input, { connection, fetcher });
   assert.equal(calls, 1);
   assert.equal(result.run.provenance, 'model_inference');
+  assert.equal(result.patch.matrix.rows[0].d1Quote, d1);
+  assert.equal(result.run.quoteMethod, 'deterministic_native_span_ids');
+  assert.equal(result.run.selectedSpans[0].d1.recordSHA256, hash(d1));
   assert.ok(result.run.inputEvidenceHashes.some(item => item.id === 'case:notice'));
   await assert.rejects(() => generatePatentProposal({ ...input, matter: { ...matter, noticeText: '' } }, { connection, fetcher }), { status: 422 });
   assert.equal(calls, 1);
@@ -238,4 +244,30 @@ test('patent prompt uses explicit D1 and private input hashes, validates model s
     evidenceIds: [cited.id], d1RecordIds: [cited.id] }, editor);
   const input = JSON.parse(buildPatentPrompt({ matter: manual, targets: ['matrix'] }, { model: 'test-no-call' }).messages[1].content);
   assert.equal(input.claimContext.status, 'manual_input_unverified');
+});
+
+ test('model can select only pinned span IDs; rejected attempt receipt persists privately without a draft or replay', async t => {
+  const { directory, store } = setup(t);
+  const connection = { model: 'fixture-model', provider: 'fixture', endpoint: 'https://fixture.test/chat/completions', credential: async () => 'fake-key' };
+  let calls = 0;
+  const model = input => generatePatentProposal(input, { connection, fetcher: async (_, request) => {
+    calls++; const options = JSON.parse(JSON.parse(request.body).messages[1].content).spanOptions;
+    return Response.json({ choices: [{ finish_reason: 'stop', message: { content: JSON.stringify({ matrix: { rows: [{
+      feature: row.feature, claimSpanId: options.claim[0].id, d1SpanId: options.claim[0].id,
+      assessment: 'uncertain', analysis: row.analysis, missing: row.missing }] } }) } }], usage: { prompt_tokens: 321, completion_tokens: 123 } });
+  } });
+  const workflow = createPatentWorkflow(store, dataset, model);
+  const matter = workflow.create({ ...body, reference: 'SPAN-REJECTION' }, editor);
+  await assert.rejects(() => workflow.propose(matter.id, { version: matter.version, targets: ['matrix'] }, editor),
+    error => error.status === 422 && error.modelReceipt.promptTokens === 321 && error.modelReceipt.completionTokens === 123);
+  assert.equal(calls, 1);
+  const unchanged = workflow.read(matter.id, editor);
+  assert.equal(unchanged.version, matter.version); assert.equal(unchanged.proposals.length, 0);
+  assert.equal(Object.hasOwn(unchanged, 'modelReceipts'), false);
+  const db = new DatabaseSync(resolve(directory, 'cases.sqlite'), { readOnly: true });
+  const receipt = JSON.parse(db.prepare('SELECT content FROM patent_model_receipts WHERE case_id=?').get(matter.id).content); db.close();
+  assert.equal(receipt.outcome, 'rejected'); assert.equal(receipt.error.kind, 'validation_rejected');
+  assert.equal(receipt.model, connection.model); assert.equal(receipt.inputSha256.length, 64); assert.equal(receipt.outputSha256.length, 64);
+  assert.equal(JSON.stringify(receipt).includes('fake-key'), false);
+  assert.equal(JSON.stringify(receipt).includes(body.noticeText), false);
 });
