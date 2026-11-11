@@ -1,0 +1,23 @@
+# Pilot M7 qua hai phiên
+
+Chạy từ thư mục gốc repository. Bộ hồ sơ mô phỏng được tạo bởi `make-fixtures.py`; dùng `cases.json` và giữ riêng `judge-key.json`. Cả hai nhánh nhận cùng 24 PDF, trang, đoạn trích đã đăng ký, hai yêu cầu theo phiên và model `google/gemini-2.5-flash-lite`. Các khóa truy cập và log chạy nằm ngoài Git. Mỗi đầu ra dùng thư mục riêng theo lượt để giữ checkpoint và tránh trộn hồ sơ.
+
+```sh
+node docs/patents/acceptance/m7-pilot/run.mjs validate ../../work/m7-pilot/cases.json ../../work/m7-pilot/run01
+node docs/patents/acceptance/m7-pilot/run.mjs product-prepare ../../work/m7-pilot/cases.json ../../work/m7-pilot/run01 https://daitin-copilot.vercel.app ../../work/daitin-vercel/accounts.json
+DAITIN_PILOT_LIVE=1 node docs/patents/acceptance/m7-pilot/run.mjs product ../../work/m7-pilot/cases.json ../../work/m7-pilot/run01 https://daitin-copilot.vercel.app ../../work/daitin-vercel/accounts.json
+DAITIN_PILOT_LIVE=1 DAI_TIN_PDF_ENGINE=pdfjs node --env-file=.env.vercel.local docs/patents/acceptance/m7-pilot/run.mjs direct ../../work/m7-pilot/cases.json ../../work/m7-pilot/run01
+node docs/patents/acceptance/m7-pilot/run.mjs blind ../../work/m7-pilot/cases.json ../../work/m7-pilot/run01
+node docs/patents/acceptance/m7-pilot/run.mjs summary ../../work/m7-pilot/cases.json ../../work/m7-pilot/run01
+```
+
+`product-prepare` dùng tài khoản editor để tạo hồ sơ, đọc trang và gắn đoạn trước khi mở hai phiên AI. `product` tiếp tục từ checkpoint, vào phiên bằng cookie của editor và reviewer, tạo bản Word sau hai quyết định duyệt riêng. Cuối phiên 1 đóng phiên. Phiên 2 mở lại đúng hồ sơ, thay chỉ dẫn, cập nhật phản hồi, kiểm ma trận và Word 1 giữ nguyên, rồi tải Word 2. Tài khoản reviewer được script dùng để mô phỏng việc xác nhận đã rà nguồn. Một lần lưu có thể thử lại tối đa hai lần nếu máy chủ xác nhận xung đột xảy ra trước thực thi. Lời gọi AI có trạng thái chưa rõ sẽ được ghi lại và giữ nguyên để kiểm, không được phát lại tự động.
+
+`direct` gọi model thật để yêu cầu công cụ `read_case`. Runtime đọc đúng tệp, trích đoạn bằng PDF.js và nạp lại JSON cục bộ từ phiên 1. Lượt sinh sau đó dùng cùng hợp đồng prompt và schema của sản phẩm, không áp quy tắc sửa/chặn diễn đạt D1 của sản phẩm. Mỗi lần đọc có mã tool call của nhà cung cấp và chứng cứ SHA-256. Runtime cục bộ mô phỏng cùng hai quyết định duyệt, dùng bộ render Word đã có và giữ mỗi phiên bản tại đường dẫn riêng. Lượt chọn công cụ là chi phí riêng của nhánh direct. Giới hạn 16 bước model cho sản phẩm và 32 cho direct, bao gồm 16 lựa chọn công cụ. Sau đợt đầu gặp HTTP 429, operator có thể bật `DAITIN_PILOT_RETRY_429=1` sau khi chờ tối thiểu 75 giây, tối đa một lần gửi lại cho mỗi bước đã nhận xác nhận HTTP 429 và tối đa tám lần gửi lại. Trần 56 lần gửi gồm 48 bước và tám lần gửi lại được phép. Bước đã thành công, có phản hồi khác 429 hoặc chưa rõ kết quả không được gửi lại. Mỗi lần gửi direct cách nhau ít nhất 15 giây. Nếu gặp một 429 mới, dừng direct ngay và lưu biên nhận. Hai nhánh khác nhau ở ID nguồn nội bộ và cách lưu/mở trạng thái. Trạng thái phiên 2 của mỗi nhánh chỉ đến từ phiên 1 của chính nhánh đó.
+
+## Đo và chấm
+
+- `product.json` và `direct.json` ghi theo ca, phiên và thao tác. `modelAttempts` gồm cả lần đã gửi nhưng thất bại hoặc chưa rõ. Kết quả kỹ thuật được lưu lại kể cả khi ca chưa ra Word. Mọi ca vẫn nằm trong mẫu tám hồ sơ.
+- `summary.json` tách số thao tác chương trình, API, tool, thời gian máy/model, token và thời gian giãn nhịp riêng. Chỉ tính trung vị so sánh trên các ca hoàn thành cả hai phiên ở cả hai nhánh. Phần dựng hồ sơ sản phẩm được tính vào tổng phiên 1, tách khỏi thời gian chờ triển khai. Thời gian đăng nhập và đăng xuất theo phiên được ghi riêng. Lượt xác minh kiểm thử không được tính làm thao tác người dùng.
+- Thao tác chương trình được quy ước theo hành vi. Nhánh sản phẩm nhập hồ sơ, chọn trang và xác nhận ba đoạn, mở hồ sơ, giao việc, rà và duyệt từng phần, lấy Word. Nhánh direct nạp thư mục và giao việc, sau đó agent chạy công cụ và lưu tệp, người vận hành mô phỏng các quyết định rà và duyệt như nhánh sản phẩm. Các hành vi có độ khó khác nhau. Chúng không phải số lần nhấp trên giao diện hoặc thời gian thao tác của luật sư.
+- `blind-packets.json` dùng mã ngẫu nhiên, hình thức trung tính, chuẩn hóa mã nguồn thành CLAIM, NOTICE và D1. Nguồn, văn bản đã sinh, điểm cần xác minh và cờ bảo toàn phiên bản có mặt cho người chấm. Giữ `blind-key.json`, log kỹ thuật và Word theo nhánh riêng cho đến khi đã khóa điểm. Chấm theo `BLIND-RUBRIC.md` và công bố lỗi phạm vi nghiêm trọng ngoài tổng điểm.
