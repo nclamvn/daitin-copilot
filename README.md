@@ -8,7 +8,7 @@ Mở `/patents/`, tạo hoặc mở hồ sơ mô phỏng, rồi vào **Tài li�
 
 Dùng các đoạn đã ghim để lập ma trận và phản hồi. Phần AI đề xuất cần reviewer xác nhận đã rà soát trước khi duyệt. Có thể duyệt hai phần riêng. Khi cả hai phần đã duyệt, hệ thống lưu bản Word với SHA-256 và tải lại đúng tệp đó theo số phiên bản. Thay chỉ dẫn chỉ yêu cầu duyệt lại phản hồi. PDF và đoạn trích riêng được lưu trong phạm vi hồ sơ và nhóm.
 
-Chi tiết triển khai và các ca kiểm trong [TIP M7](docs/patents/M7-TIP.md) và [quy trình nghiệm thu hai phiên](docs/patents/acceptance/M7-PROTOCOL.md).
+Chi tiết triển khai và các ca kiểm trong [TIP M7](docs/patents/M7-TIP.md) và [quy trình nghiệm thu hai phiên](docs/patents/acceptance/M7-PROTOCOL.md). [Pilot tám hồ sơ và kiểm phạm vi D1](docs/patents/M7-PILOT-TIP.md).
 
 Kho dữ liệu được cào có giới hạn từ nguồn công khai được phép, kết hợp văn bản đã lưu; có bản gốc, dấu kiểm, đoạn trích, quan hệ phụ thuộc được trích xuất và các khoảng trống khai báo. Văn bản OCR cần kiểm lại bản gốc; đoạn đã biết lỗi bị chặn khi phân tích hoặc duyệt. Không có bộ tình trạng quyền/họ sáng chế đã xác minh, tra cứu tình trạng kỹ thuật đầy đủ hay kết luận tính mới/FTO tự động. SOT vẫn là ứng viên chờ luật sư rà soát. Chi tiết: [TIP M6](docs/patents/M6-TIP.md), [bộ 30 yêu cầu và cách chấm](docs/patents/acceptance/PROTOCOL.md).
 

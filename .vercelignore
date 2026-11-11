@@ -25,3 +25,4 @@ distribution/*.py
 deploy/Dockerfile
 compose.web.yaml
 dist
+docs/patents/acceptance/m7-pilot
