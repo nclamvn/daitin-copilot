@@ -25,6 +25,8 @@ function searchMessage(result) {
   return result.notice ?? (result.status === 'not_found' ? 'Chưa có nguồn phù hợp trong bản dữ liệu này. Thử từ khóa khác hoặc mở phạm vi kho.' : 'Các đoạn nguồn tìm được để đối chiếu.');
 }
 const section = key => state.matter?.sections?.[key];
+const lockedSources = () => state.matter?.synthetic === false;
+const pilotComplete = () => lockedSources() && state.matter.releases.length >= 2;
 const pinId = item => item.record.id;
 const isClaim = record => record.kind === 'patent' && (Boolean(record.claims?.length) || record.locator?.section === 'claim' || Number.isInteger(record.locator?.claim));
 const isOCR = item => /ocr.*unreviewed|unreviewed.*ocr/i.test(item.record.textFidelity ?? item.source.textFidelity ?? '');
@@ -77,11 +79,20 @@ function mode(view) {
   if (!views.includes(view) || (view !== 'search' && !state.matter)) return;
   const changed = state.view !== view; state.view = view;
   for (const key of views) { $('view-' + key).hidden = view !== key; $('tab-' + key).setAttribute('aria-selected', String(view === key)); $('tab-' + key).tabIndex = view === key ? 0 : -1; }
-  document.querySelector('.composer-area').hidden = !state.matter || !['matrix', 'response'].includes(view);
+  document.querySelector('.composer-area').hidden = !state.matter || pilotComplete() || !['matrix', 'response'].includes(view);
+  const instructionsSlot = $(view === 'response' && section('matrix')?.approval ? 'response-private-inputs' : 'matrix-private-inputs');
+  if ($('private-inputs').parentElement !== instructionsSlot) instructionsSlot.append($('private-inputs'));
+  if (changed && view === 'response' && section('matrix')?.approval) selectTaskTargets(['response']);
   if (changed) $('document-scroll').scrollTop = 0;
   if (view === 'search') loadCatalog();
   if (state.matter && changed) setCaseURL(state.matter.id, view);
   renderCaseProgress();
+}
+function taskTargets() {
+  return [...$('task-form').querySelectorAll('[name=target]:checked')].map(input => input.value);
+}
+function selectTaskTargets(targets) {
+  $('task-form').querySelectorAll('[name=target]').forEach(input => { input.checked = targets.includes(input.value); });
 }
 function panel(open) { $('evidence-panel').classList.toggle('mobile-open', open); $('evidence-panel').hidden = !open && !mobile.matches; $('work-grid').classList.toggle('no-panel', !open && !mobile.matches); $('open-evidence').setAttribute('aria-expanded', String(open)); }
 function rail(open) { $('rail').classList.toggle('mobile-open', open); $('open-rail').setAttribute('aria-expanded', String(open)); }
@@ -106,10 +117,6 @@ function pickText(target, changed = () => {}) {
 }
 function setDirty(key) {
   state.dirty[key] = true;
-  for (const target of key === 'inputs' ? ['matrix', 'response'] : [key]) {
-    const confirmed = $(target + '-review')?.querySelector('input');
-    if (confirmed) confirmed.checked = false;
-  }
   $('saved-state').textContent = 'Có phần chưa lưu';
   refreshControls();
 }
@@ -118,7 +125,12 @@ function selectedChanged() {
   renderEvidence();
   refreshControls();
 }
-function role(source, record) { return source.kind === 'case_document' ? 'PDF mô phỏng của hồ sơ' : /secondary/.test(record.provenance ?? '') || source.kind === 'secondary' || /daitin|Đại Tín/iu.test(source.authority ?? '') ? 'Hướng dẫn thứ cấp' : record.provenance === 'assistant_proposed' ? 'Nội dung đề xuất, chưa xác minh' : record.provenance === 'captured_primary' ? 'Nguồn sơ cấp' : 'Nguồn gốc đã thu thập'; }
+function role(source, record) {
+  if (source.kind === 'case_document') return lockedSources() ? 'PDF ẩn danh của hồ sơ' : 'PDF mô phỏng của hồ sơ';
+  if (/secondary/.test(record.provenance ?? '') || source.kind === 'secondary' || /daitin|Đại Tín/iu.test(source.authority ?? '')) return 'Hướng dẫn thứ cấp';
+  if (record.provenance === 'assistant_proposed') return 'Nội dung đề xuất, chưa xác minh';
+  return record.provenance === 'captured_primary' ? 'Nguồn sơ cấp' : 'Nguồn gốc đã thu thập';
+}
 function locator(record) { const loc = record.locator; return typeof loc === 'string' ? loc : loc?.label ?? (loc?.claim ? 'Yêu cầu bảo hộ ' + loc.claim : loc?.page ? 'Trang ' + loc.page : 'Vị trí chưa xác định'); }
 function badges(item) {
   const wrap = node('div', undefined, 'source-role');
@@ -144,15 +156,20 @@ function evidenceDates(item) {
   return values.join(' · ');
 }
 async function fullEvidence(item) { if (typeof item.record.text === 'string') return item; return request('evidence/' + encodeURIComponent(item.record.id)); }
-async function choose(item) { if (!state.selected.has(pinId(item)) && state.selected.size >= 8) return notify('Pilot dùng tối đa 8 đoạn nguồn công khai trong một hồ sơ. Bỏ một đoạn trước khi thêm.', true); await run('Đang mở đoạn nguồn…', async () => { const full = await fullEvidence(item); state.selected.set(pinId(full), full); state.detail = pinId(full); selectedChanged(); }, 'Đã chọn nguồn. Lưu vào hồ sơ để dùng cho phân tích.'); }
+async function choose(item) { if (lockedSources()) return; if (!state.selected.has(pinId(item)) && state.selected.size >= 8) return notify('Pilot dùng tối đa 8 đoạn nguồn công khai trong một hồ sơ. Bỏ một đoạn trước khi thêm.', true); await run('Đang mở đoạn nguồn…', async () => { const full = await fullEvidence(item); state.selected.set(pinId(full), full); state.detail = pinId(full); selectedChanged(); }, 'Đã chọn nguồn. Lưu vào hồ sơ để dùng cho phân tích.'); }
 async function inspect(item) { await run('Đang mở nguồn…', async () => { const full = await fullEvidence(item); state.detail = pinId(full); state.detailRecord = full; renderEvidence(); panel(true); }); }
 
 function renderSource(item, preview = false) {
   const row = node('article', undefined, 'source-result');
   const head = node('div', undefined, 'result-heading');
-  head.append(node('h3', item.record.title ?? item.source.title), button(state.selected.has(pinId(item)) ? 'Đã chọn' : 'Chọn nguồn', () => choose(item)));
-  head.lastChild.disabled = state.selected.has(pinId(item)) || state.busy;
-  head.lastChild.dataset.keepDisabled = String(state.selected.has(pinId(item)));
+  head.append(node('h3', item.record.title ?? item.source.title));
+  if (!lockedSources()) {
+    const chosen = state.selected.has(pinId(item));
+    const select = button(chosen ? 'Đã chọn' : 'Chọn nguồn', () => choose(item));
+    select.disabled = chosen || state.busy;
+    select.dataset.keepDisabled = String(chosen);
+    head.append(select);
+  }
   row.append(head, badges(item), node('p', preview ? item.record.textPreview ?? 'Mở đoạn nguồn để đọc nội dung.' : shorten(item.record.text, 650), 'source-excerpt'));
   if (preview) row.append(node('p', 'Bản xem rút gọn; mở đoạn nguồn để đọc và đối chiếu nguyên văn.', 'source-meta'));
   const links = node('div', undefined, 'source-links');
@@ -214,7 +231,7 @@ function renderEvidence() {
     if (item.record.kind === 'patent') {
       const roles = node('div', undefined, 'evidence-roles');
       if (state.claimRecordId === id) roles.append(node('span', 'Yêu cầu đang xét', 'claim-role'));
-      else if (isClaim(item.record) && item.source.kind !== 'case_document') roles.append(button('Dùng làm yêu cầu đang xét', () => {
+      else if (!lockedSources() && isClaim(item.record) && item.source.kind !== 'case_document') roles.append(button('Dùng làm yêu cầu đang xét', () => {
         if (state.matter && $('claim-text').value !== state.matter.claimText && !confirm('Thay nội dung yêu cầu đang nhập bằng đoạn nguồn này?')) return;
         state.claimRecordId = id;
         const count = state.d1RecordIds.size; state.d1RecordIds = new Set([...state.d1RecordIds].filter(value => !d1Blocked(value)));
@@ -222,16 +239,20 @@ function renderEvidence() {
         selectedChanged();
         if (count !== state.d1RecordIds.size) notify('Đã bỏ các đoạn D1 thuộc cùng mã công bố với yêu cầu đang xét. Lưu nguồn để xác nhận vai trò mới.');
       }, 'text-button'));
-      const label = node('label', undefined, 'check'); const check = node('input'); check.type = 'checkbox'; check.value = id; check.checked = state.d1RecordIds.has(id); check.disabled = d1Blocked(id) || (item.source.kind === 'case_document' && !state.d1RecordIds.has(id)); check.dataset.keepDisabled = String(check.disabled);
-      check.addEventListener('change', () => { if (check.checked) state.d1RecordIds.add(id); else state.d1RecordIds.delete(id); selectedChanged(); });
-      label.append(check, document.createTextNode('Đoạn đối chứng D1')); roles.append(label);
-      if (d1Blocked(id)) roles.append(node('p', 'Yêu cầu đang xét và D1 cần đến từ hai nguồn riêng.', 'source-meta'));
-      row.append(roles);
+      if (lockedSources()) {
+        if (state.d1RecordIds.has(id)) roles.append(node('span', 'Đoạn đối chứng D1', 'claim-role'));
+      } else {
+        const label = node('label', undefined, 'check'); const check = node('input'); check.type = 'checkbox'; check.value = id; check.checked = state.d1RecordIds.has(id); check.disabled = d1Blocked(id) || (item.source.kind === 'case_document' && !state.d1RecordIds.has(id)); check.dataset.keepDisabled = String(check.disabled);
+        check.addEventListener('change', () => { if (check.checked) state.d1RecordIds.add(id); else state.d1RecordIds.delete(id); selectedChanged(); });
+        label.append(check, document.createTextNode('Đoạn đối chứng D1')); roles.append(label);
+        if (d1Blocked(id)) roles.append(node('p', 'Yêu cầu đang xét và D1 cần đến từ hai nguồn riêng.', 'source-meta'));
+      }
+      if (roles.childElementCount) row.append(roles);
     }
     if (isOCR(item)) row.append(node('p', 'OCR, cần đối chiếu bản gốc', 'ocr-caption'));
     else if (needsOriginal(item)) row.append(node('p', 'Cần đối chiếu bản gốc trước khi sử dụng.', 'ocr-caption'));
     if (extractionWarning(item)) row.append(node('p', 'Bản trích có vấn đề đã được ghi nhận. Cần thay nguồn trước khi giao AI hoặc duyệt.', 'extraction-caption'));
-    row.append(button('Bỏ khỏi lựa chọn', () => { state.selected.delete(id); state.d1RecordIds.delete(id); if (state.claimRecordId === id) state.claimRecordId = null; selectedChanged(); }, 'remove-source'));
+    if (!lockedSources()) row.append(button('Bỏ khỏi lựa chọn', () => { state.selected.delete(id); state.d1RecordIds.delete(id); if (state.claimRecordId === id) state.claimRecordId = null; selectedChanged(); }, 'remove-source'));
     list.append(row);
   }
   const detail = $('evidence-detail'); detail.replaceChildren();
@@ -247,7 +268,7 @@ function renderEvidence() {
     if (doc && privatePdfURL(doc.pageUrl)) links.append(button('Xem trang ' + doc.page, () => openSavedPdfPage(doc), 'text-button'));
     if (capturedURL(item)) links.append(safeLink(doc ? 'Tải PDF gốc' : 'Bản nguồn đã lưu', capturedURL(item)));
     if (item.source.kind !== 'case_document') links.append(safeLink('Nguồn gốc trực tuyến', originalURL(item)));
-    if (!state.selected.has(pinId(item))) links.append(button('Chọn đoạn này', () => choose(item), 'text-button'));
+    if (!lockedSources() && !state.selected.has(pinId(item))) links.append(button('Chọn đoạn này', () => choose(item), 'text-button'));
     block.append(links);
     if (item.source.kind === 'case_document') {
       block.append(node('p', 'Đoạn trích đã đối chiếu tại trang ' + (doc?.page ?? item.record.locator?.page ?? '?') + ' của PDF hồ sơ.', 'source-meta'));
@@ -260,7 +281,7 @@ function renderEvidence() {
     detail.append(block);
   }
   $('create-selected').hidden = Boolean(state.matter);
-  $('save-selected').hidden = !state.matter;
+  $('save-selected').hidden = !state.matter || lockedSources();
 }
 function renderCases() {
   const query = $('case-filter').value.trim().toLocaleLowerCase('vi');
@@ -282,6 +303,7 @@ function setCaseURL(id, view, push = false) {
 
 function initialCaseView(matter, requested) {
   if (views.includes(requested)) return requested;
+  if (matter.sections?.matrix?.approval) return 'response';
   return !matter.claimText || !matter.noticeText ? 'documents' : 'matrix';
 }
 
@@ -302,9 +324,9 @@ function renderCaseProgress() {
     view = 'matrix'; label = 'Mở ma trận';
   } else if (!section('response')?.approval) {
     text = matter.instructionsText ? 'Đã duyệt ma trận. Phản hồi đang làm việc' : 'Cần thêm chỉ dẫn để chuẩn bị phản hồi';
-    view = matter.instructionsText ? 'response' : 'matrix'; label = matter.instructionsText ? 'Mở phản hồi' : 'Nhập chỉ dẫn';
+    view = 'response'; label = matter.instructionsText ? 'Mở phản hồi' : 'Nhập chỉ dẫn';
   } else {
-    text = 'Đã duyệt ma trận và phản hồi';
+    text = pilotComplete() ? 'Đã hoàn tất hai bản duyệt' : 'Đã duyệt ma trận và phản hồi';
     view = 'history'; label = 'Xem bản đã duyệt';
   }
   box.append(node('span', text));
@@ -534,20 +556,10 @@ function renderSectionReview(key) {
   box.replaceChildren();
   box.hidden = !current?.reviewRequired || Boolean(current.approval);
   if (box.hidden) return;
-  box.append(node('strong', 'Cần luật sư xác nhận'));
   const message = key === 'matrix'
     ? 'Mở đoạn claim và D1 để kiểm từng dấu hiệu. Ghi rõ phần còn thiếu nếu chứng cứ chưa đủ.'
     : 'Đối chiếu nội dung phản hồi với ma trận và các nguồn đã chọn. Sửa nhận định chưa có căn cứ trước khi duyệt.';
   box.append(node('p', message, 'helper'));
-  if (state.status?.role !== 'reviewer') return;
-  const label = node('label', undefined, 'check');
-  const input = node('input');
-  input.type = 'checkbox';
-  input.addEventListener('change', refreshControls);
-  label.append(input, document.createTextNode(key === 'matrix'
-    ? 'Tôi đã rà từng hàng và các đoạn nguồn của ma trận này.'
-    : 'Tôi đã đối chiếu phản hồi này với dữ kiện và nguồn đã lưu.'));
-  box.append(label);
 }
 function renderMatrix() {
   const box = $('matrix-rows'); box.replaceChildren();
@@ -615,6 +627,8 @@ function renderResponse() {
   }
   setApproval('response-approval', section('response')?.approval, false);
   renderSectionReview('response');
+  const release = state.matter?.releases.at(-1);
+  $('response-release').replaceChildren(...(release ? [downloadLink(release.number)] : []));
 }
 function renderHistory() {
   const box = $('history'); box.replaceChildren(node('h2', 'Các bản đã duyệt', 'history-heading'));
@@ -659,6 +673,7 @@ async function openRelease(number) { await run('Đang mở bản đã lưu…', 
 }); }
 function applyMatter(matter, nextView = state.view) {
   const different = state.matter?.id !== matter.id;
+  const sourceLockChanged = lockedSources() !== (matter.synthetic === false);
   if (different) resetPdfForm();
   else if (state.pdf && state.pdf.version !== matter.version) {
     resetInspection();
@@ -671,7 +686,8 @@ function applyMatter(matter, nextView = state.view) {
   if (samePublicationD1.length) { samePublicationD1.forEach(id => state.d1RecordIds.delete(id)); state.dirty.inputs = true; notify('Đoạn thuộc cùng công bố đang xét không được dùng làm D1. Chọn lại và lưu nguồn trước khi phân tích hoặc duyệt.', true); }
   state.cases = [{ id: matter.id, reference: matter.reference, title: matter.title, version: matter.version, updatedAt: matter.updatedAt }, ...state.cases.filter(item => item.id !== matter.id)];
   $('case-reference').textContent = matter.reference; $('matter-title').textContent = matter.title.replace(/ (\S+)$/u, '\u00a0$1'); $('matter-title').title = matter.title;
-  $('matter-context').textContent = shorten(matter.context.claimVersion, 100) + ' · Đối chiếu ' + date(matter.context.asOf) + ' · Hồ sơ mô phỏng';
+  $('matter-context').textContent = shorten(matter.context.claimVersion, 100) + ' · Đối chiếu ' + date(matter.context.asOf) +
+    (lockedSources() ? ' · Hồ sơ ẩn danh' : ' · Hồ sơ mô phỏng');
   $('claim-text').value = matter.claimText; $('claim-version').value = matter.context.claimVersion;
   $('case-notice-text').value = matter.noticeText ?? ''; $('case-instructions-text').value = matter.instructionsText ?? '';
   const noticePdf = matter.documents?.find(doc => doc.role === 'notice');
@@ -680,10 +696,29 @@ function applyMatter(matter, nextView = state.view) {
   $('claim-summary').textContent = claimPdf ? claimPdf.label + ' · Trang ' + claimPdf.page : shorten(matter.context.claimVersion, 70) +
     (matter.claimRecordId ? ' · theo nguồn đã chọn' : matter.claimText ? ' · nội dung nhập tay' : '');
   $('claim-excerpt').textContent = shorten(matter.claimText.replace(/\s+/g, ' '), 140);
-  if (different) { $('private-inputs').open = false; $('claim-inputs').open = false; }
+  if (different) {
+    $('private-inputs').open = false; $('claim-inputs').open = false;
+    $('task').value = '';
+    selectTaskTargets(nextView === 'response' && section('matrix')?.approval ? ['response'] : ['matrix', 'response']);
+  }
+  const real = lockedSources();
+  $('pilot-label').textContent = real ? 'Pilot ẩn danh' : 'Pilot mô phỏng';
+  $('composer-note').textContent = (real ? 'Pilot ẩn danh.' : 'Pilot mô phỏng.') + ' Luật sư quyết định về tính mới, hiệu lực hoặc FTO.';
+  $('case-documents-note').textContent = real
+    ? 'Xem bộ PDF và các đoạn đã xác nhận cho pilot.'
+    : 'Gắn đoạn từ thông báo, yêu cầu bảo hộ hoặc tài liệu đối chứng D1.';
+  for (const id of ['edit-manual', 'pdf-inspect-form', 'pick-case-notice', 'save-inputs']) $(id).hidden = real;
+  for (const id of ['claim-text', 'claim-version', 'case-notice-text']) $(id).readOnly = real;
+  $('claim-inputs').querySelector('.summary-action').textContent = real ? 'Xem dữ kiện' : 'Sửa dữ kiện';
+  $('private-summary-action').textContent = real ? 'Sửa chỉ dẫn' : 'Sửa dữ kiện';
+  $('save-private').textContent = real ? 'Lưu chỉ dẫn' : 'Lưu dữ kiện hồ sơ';
+  $('private-source-note').textContent = real
+    ? 'Các đoạn PDF đã xác nhận được giữ cùng hồ sơ.'
+    : 'Sửa nội dung đã gắn từ PDF sẽ bỏ liên kết của đoạn đó trong bản làm việc.';
   $('release-count').textContent = matter.releases.length || '';
   const last = matter.releases.at(-1); $('export-latest').hidden = !last; if (last) $('export-latest').textContent = 'Xuất Word bản ' + last.number;
   renderCases(); renderMatrix(); renderResponse(); renderHistory(); renderEvidence(); renderDocuments(); mode(nextView);
+  if (sourceLockChanged && state.catalog) renderResults();
   rail(false); refreshControls();
   if (different) requestAnimationFrame(() => { $('document-scroll').scrollTop = 0; });
 }
@@ -695,57 +730,111 @@ async function openCase(id, requestedView, push = true) {
     requestAnimationFrame(() => { $('document-scroll').scrollTop = 0; });
   });
 }
-async function mutate(action, values, message) { await run('Đang lưu hồ sơ…', async () => {
+async function mutate(action, values, message, { nextView, focus } = {}) { await run('Đang lưu hồ sơ…', async () => {
   const preserved = {};
   if (state.dirty.inputs && action !== 'source') preserved.inputs = { selected: new Map(state.selected), claimText: $('claim-text').value,
     claimVersion: $('claim-version').value, noticeText: $('case-notice-text').value, instructionsText: $('case-instructions-text').value,
     claimRecordId: state.claimRecordId, d1RecordIds: new Set(state.d1RecordIds) };
   if (state.dirty.matrix && !Object.hasOwn(values, 'matrixRows')) preserved.matrix = matrixPayload();
   if (state.dirty.response && !Object.hasOwn(values, 'response')) preserved.response = { text: $('response-text').value, evidenceIds: [...$('response-sources').querySelectorAll('input:checked')].map(x => x.value) };
-  const matter = await request('cases/' + state.matter.id + '/' + action, { version: state.matter.version, ...values }); applyMatter(matter);
+  const previousRelease = state.matter.releases.at(-1)?.number;
+  const matter = await request('cases/' + state.matter.id + '/' + action, { version: state.matter.version, ...values }); applyMatter(matter, nextView);
   if (preserved.inputs) { state.selected = preserved.inputs.selected; state.claimRecordId = preserved.inputs.claimRecordId; state.d1RecordIds = preserved.inputs.d1RecordIds; $('claim-text').value = preserved.inputs.claimText; $('claim-version').value = preserved.inputs.claimVersion; $('case-notice-text').value = preserved.inputs.noticeText; $('case-instructions-text').value = preserved.inputs.instructionsText; state.dirty.inputs = true; renderEvidence(); }
   if (preserved.matrix) { $('matrix-rows').replaceChildren(); for (const row of preserved.matrix) addMatrixRow(row, false); state.dirty.matrix = true; }
   if (preserved.response) { $('response-text').value = preserved.response.text; $('response-sources').querySelectorAll('input').forEach(input => { input.checked = preserved.response.evidenceIds.includes(input.value); }); state.dirty.response = true; }
+  if (focus === 'response-heading') requestAnimationFrame(() => $(focus).focus({ preventScroll: true }));
+  else if (focus === 'response-release' && matter.releases.at(-1)?.number !== previousRelease) {
+    requestAnimationFrame(() => $(focus).querySelector('a')?.focus());
+  }
 }, message); }
-async function saveInputs() { if (!state.matter) return; await mutate('source', { evidenceIds: [...state.selected.keys()], claimText: $('claim-text').value,
-  claimVersion: $('claim-version').value, claimRecordId: state.claimRecordId, d1RecordIds: [...state.d1RecordIds],
-  noticeText: $('case-notice-text').value, instructionsText: $('case-instructions-text').value }, 'Đã lưu nguồn và phiên bản yêu cầu. Kiểm lại phần cần duyệt.'); }
+async function saveInputs() {
+  if (!state.matter || pilotComplete()) return;
+  const instructionsText = $('case-instructions-text').value;
+  if (lockedSources()) return mutate('source', { instructionsText }, 'Đã lưu chỉ dẫn. Rà lại phần phản hồi.');
+  await mutate('source', { evidenceIds: [...state.selected.keys()], claimText: $('claim-text').value,
+    claimVersion: $('claim-version').value, claimRecordId: state.claimRecordId, d1RecordIds: [...state.d1RecordIds],
+    noticeText: $('case-notice-text').value, instructionsText }, 'Đã lưu nguồn và phiên bản yêu cầu. Kiểm lại phần cần duyệt.');
+}
+function supportsResponseRevision() {
+  return lockedSources() && !pilotComplete() && state.status?.responseRevision === true && Boolean(section('matrix')?.approval);
+}
+function updatedResponseInstructions(targets) {
+  if (!supportsResponseRevision() || !state.dirty.inputs || state.matter.sourceChanged ||
+      state.dirty.matrix || state.dirty.response || targets.length !== 1 || targets[0] !== 'response') return '';
+  return $('case-instructions-text').value.trim();
+}
 async function propose(targets) {
-  if (!state.matter) return;
-  if (isDirty()) return notify('Lưu các phần đang sửa và nguồn đã chọn trước khi giao AI.', true);
-  await run('AI đang đối chiếu nguồn…', async () => { applyMatter(await request('cases/' + state.matter.id + '/propose', { version: state.matter.version, targets, instruction: $('task').value.trim() || 'Đối chiếu theo nguồn đã lưu, ghi rõ điểm thiếu chứng cứ; soạn nội dung để luật sư rà soát.' }), targets.length === 1 && targets[0] === 'response' ? 'response' : 'matrix'); }, 'Đã lưu đề xuất. Đối chiếu nguồn và duyệt từng phần.');
+  if (!state.matter || pilotComplete()) return;
+  const instructionsText = updatedResponseInstructions(targets);
+  if (isDirty() && !instructionsText) return notify('Lưu các phần đang sửa và nguồn đã chọn trước khi giao AI.', true);
+  const body = {
+    version: state.matter.version, targets,
+    instruction: $('task').value.trim() || 'Đối chiếu theo nguồn đã lưu, ghi rõ điểm thiếu chứng cứ và soạn nội dung để luật sư rà soát.',
+    ...(instructionsText ? { instructionsText } : {})
+  };
+  const view = targets.length === 1 && targets[0] === 'response' ? 'response' : 'matrix';
+  await run('AI đang đối chiếu nguồn…', async () => {
+    applyMatter(await request('cases/' + state.matter.id + '/propose', body), view);
+    $('task').value = '';
+  }, instructionsText ? 'Đã lưu chỉ dẫn và đề xuất mới. Rà soát phần phản hồi trước khi duyệt.' : 'Đã lưu đề xuất. Đối chiếu nguồn và duyệt từng phần.');
 }
 function refreshControls() {
   const active = Boolean(state.matter), busy = state.busy, inputsDirty = state.dirty.inputs || Boolean(state.matter?.sourceChanged);
   const invalidSource = Boolean(state.matter?.pinnedEvidence.some(item => extractionWarning(item)));
-  document.querySelector('.composer-area').hidden = !active || !['matrix', 'response'].includes(state.view);
+  const complete = pilotComplete();
+  document.querySelector('.composer-area').hidden = !active || complete || !['matrix', 'response'].includes(state.view);
   for (const view of views.slice(1)) $('tab-' + view).disabled = !active;
   $('task').disabled = !active || busy || !state.status?.model;
   const hasClaim = Boolean(state.matter?.claimText?.trim());
-  $('send-task').disabled = !hasClaim || busy || !state.status?.model || isDirty() || inputsDirty || invalidSource;
+  const modelReady = hasClaim && !busy && !complete && Boolean(state.status?.model) && !invalidSource;
+  const canPropose = modelReady && !isDirty() && !inputsDirty;
+  const targets = taskTargets();
+  $('send-task').disabled = !targets.length || !canPropose;
+  const inlineRevision = state.view === 'response' && supportsResponseRevision();
+  const revised = inlineRevision && Boolean(updatedResponseInstructions(['response']));
+  $('propose-with-instructions').hidden = !inlineRevision;
+  $('propose-with-instructions').disabled = !modelReady || !revised;
   $('model-state').textContent = invalidSource ? 'Cần thay bản trích có lỗi' : state.status?.model ? 'AI đề xuất, luật sư quyết định' : 'AI chưa bật';
   $('case-example').disabled = busy || !state.status?.demo;
   $('new-case').disabled = busy; $('create-selected').disabled = busy || !state.selected.size;
   $('close-dialog').disabled = busy && $('dialog').classList.contains('pack-dialog');
   $('save-selected').disabled = busy || !active || !inputsDirty; $('save-inputs').disabled = busy || !active || !inputsDirty;
-  $('save-private').disabled = busy || !active || !inputsDirty;
+  $('save-private').disabled = busy || !active || complete || !inputsDirty;
+  $('save-private').hidden = complete;
+  $('case-instructions-text').readOnly = complete;
+  $('private-inputs').querySelector('[data-case-file="case-instructions-text"]').hidden = complete;
+  $('private-summary-action').textContent = complete ? 'Xem chỉ dẫn' : lockedSources() ? 'Sửa chỉ dẫn' : 'Sửa dữ kiện';
   $('inputs-state').textContent = state.matter?.sourceChanged ? 'Nguồn đã đổi, lưu lại và rà soát phiên bản mới' : inputsDirty ? 'Nguồn / yêu cầu chưa lưu' : active ? 'Đã gắn với hồ sơ' : '';
   $('inputs-state').toggleAttribute('data-dirty', inputsDirty);
   for (const key of ['matrix', 'response']) {
     const basisChanged = key === 'response' && Boolean(section(key)?.matrixBasisChanged);
-    $('save-' + key).disabled = busy || !active || (!state.dirty[key] && !basisChanged);
-    $('propose-' + key).disabled = busy || !hasClaim || !state.status?.model || isDirty() || inputsDirty || invalidSource;
-    const attestation = $(key + '-review').querySelector('input');
-    if (attestation) attestation.disabled = busy || inputsDirty || state.dirty[key];
-    const reviewPending = Boolean(section(key)?.reviewRequired && !attestation?.checked);
-    $('approve-' + key).disabled = busy || !active || state.status?.role !== 'reviewer' || inputsDirty || invalidSource || state.dirty[key] || Boolean(section(key)?.approval) ||
-      !hasClaim || reviewPending || basisChanged || (key === 'matrix' ? !(section(key)?.rows?.length) : !section(key)?.text?.trim());
-    $('approve-' + key).title = state.status?.role !== 'reviewer' ? 'Cần tài khoản luật sư để duyệt.' : reviewPending ? 'Xác nhận đã rà soát trước khi duyệt.' : '';
+    $('save-' + key).disabled = busy || !active || complete || (!state.dirty[key] && !basisChanged);
+    $('save-' + key).hidden = complete;
+    $('propose-' + key).disabled = !canPropose;
+    $('propose-' + key).hidden = complete || (key === 'response' && revised);
+    const approval = $('approve-' + key), reviewer = state.status?.role === 'reviewer';
+    const attest = Boolean(section(key)?.reviewRequired && !section(key)?.approval);
+    const sectionName = key === 'matrix' ? 'ma trận' : 'phản hồi';
+    approval.textContent = (attest ? 'Xác nhận đã rà và duyệt ' : 'Duyệt ') + sectionName;
+    if (attest) approval.setAttribute('aria-describedby', key + '-review');
+    else approval.removeAttribute('aria-describedby');
+    approval.hidden = complete;
+    approval.disabled = busy || !active || !reviewer || complete || inputsDirty || invalidSource || state.dirty[key] || Boolean(section(key)?.approval) ||
+      !hasClaim || basisChanged || (key === 'matrix' ? !(section(key)?.rows?.length) : !section(key)?.text?.trim());
+    approval.title = reviewer ? '' : 'Cần tài khoản luật sư để duyệt.';
     setApproval(key + '-approval', section(key)?.approval, state.dirty[key]);
   }
-  $('add-row').disabled = !active || busy;
+  $('response-release').hidden = busy || isDirty() || inputsDirty || !section('matrix')?.approval ||
+    !section('response')?.approval || Boolean(section('response')?.matrixBasisChanged) || !state.matter?.releases.length;
+  $('add-row').disabled = !active || busy || complete;
+  $('add-row').hidden = complete;
+  $('response-text').readOnly = complete;
+  document.querySelectorAll('.matrix-row input, .matrix-row textarea').forEach(el => { el.readOnly = complete; });
+  document.querySelectorAll('.matrix-row .remove-row').forEach(el => { el.hidden = complete; });
   $('export-latest').disabled = busy;
-  document.querySelectorAll('#view-matrix input,#view-matrix textarea,#view-matrix select,#view-response input,#view-response textarea').forEach(el => { if (!el.closest('.section-review')) el.disabled = busy; });
+  document.querySelectorAll('#view-matrix input,#view-matrix textarea,#view-matrix select,#view-response input,#view-response textarea').forEach(el => {
+    el.disabled = busy || (complete && (el.tagName === 'SELECT' || el.type === 'checkbox'));
+  });
   document.querySelectorAll('#selected-sources button,#selected-sources input,#search-results button,#dialog-body form input,#dialog-body form textarea,#dialog-body form select,#dialog-body form button').forEach(el => {
     el.disabled = busy || el.dataset.keepDisabled === 'true';
   });
@@ -814,7 +903,7 @@ function createPackDialog() {
   if (!discard()) return;
   const dialog = $('dialog');
   const content = pdfPackIntake({
-    dialog, request, run, today,
+    dialog, request, run, today, anonymizedPilot: state.status?.anonymizedPilot === true,
     onCreated(matter) {
       applyMatter(matter, 'matrix');
       setCaseURL(matter.id, state.view, true);
@@ -920,10 +1009,20 @@ $('new-case').addEventListener('click', createPackDialog);
 $('create-selected').addEventListener('click', () => createDialog(true));
 $('case-filter').addEventListener('input', renderCases);
 $('claim-text').addEventListener('input', () => { state.claimRecordId = null; setDirty('inputs'); renderEvidence(); }); $('claim-version').addEventListener('input', () => setDirty('inputs'));
-$('case-notice-text').addEventListener('input', () => setDirty('inputs')); $('case-instructions-text').addEventListener('input', () => setDirty('inputs'));
-document.querySelectorAll('[data-case-file]').forEach(b => b.addEventListener('click', () => pickText($(b.dataset.caseFile), () => setDirty('inputs'))));
+$('case-notice-text').addEventListener('input', () => setDirty('inputs'));
+function instructionsChanged() {
+  if (!lockedSources()) return setDirty('inputs');
+  state.dirty.inputs = $('case-instructions-text').value.trim() !== (state.matter.instructionsText ?? '');
+  $('saved-state').textContent = isDirty() ? 'Có phần chưa lưu' : 'Đã lưu';
+  refreshControls();
+}
+$('case-instructions-text').addEventListener('input', instructionsChanged);
+document.querySelectorAll('[data-case-file]').forEach(b => b.addEventListener('click', () => pickText(
+  $(b.dataset.caseFile), b.dataset.caseFile === 'case-instructions-text' ? instructionsChanged : () => setDirty('inputs')
+)));
 $('save-inputs').addEventListener('click', saveInputs); $('save-selected').addEventListener('click', saveInputs);
 $('save-private').addEventListener('click', saveInputs);
+$('propose-with-instructions').addEventListener('click', () => propose(['response']));
 $('edit-manual').addEventListener('click', () => {
   mode('matrix');
   $('private-inputs').open = true;
@@ -936,11 +1035,19 @@ $('response-text').addEventListener('input', () => setDirty('response'));
 for (const key of ['matrix', 'response']) {
   $('propose-' + key).addEventListener('click', () => propose([key]));
   $('approve-' + key).addEventListener('click', () => {
-    const reviewed = Boolean($(key + '-review').querySelector('input:checked'));
-    mutate('approve', { targets: [key], reviewed }, 'Đã duyệt phần đã chọn. Khi đủ hai phần, Word xuất hiện trong mục Phiên bản.');
+    if (state.status?.role !== 'reviewer' || $('approve-' + key).disabled) return;
+    const reviewed = Boolean(section(key)?.reviewRequired);
+    if (key === 'matrix') {
+      mutate('approve', { targets: [key], reviewed }, 'Đã duyệt ma trận. Tiếp tục với phần phản hồi.',
+        { nextView: 'response', focus: 'response-heading' });
+    } else {
+      mutate('approve', { targets: [key], reviewed }, 'Đã duyệt phản hồi. Khi đủ hai phần, bản Word đã duyệt xuất hiện tại đây.',
+        { focus: 'response-release' });
+    }
   });
 }
-$('task-form').addEventListener('submit', event => { event.preventDefault(); const targets = [...$('task-form').querySelectorAll('[name=target]:checked')].map(input => input.value); if (!targets.length) return notify('Chọn phần cần cập nhật trước khi giao việc.', true); propose(targets); });
+$('task-form').addEventListener('change', refreshControls);
+$('task-form').addEventListener('submit', event => { event.preventDefault(); const targets = taskTargets(); if (!targets.length) return notify('Chọn phần cần cập nhật trước khi giao việc.', true); propose(targets); });
 $('task').addEventListener('keydown', event => { if (event.key === 'Enter' && (event.metaKey || event.ctrlKey)) { event.preventDefault(); $('task-form').requestSubmit(); } });
 $('export-latest').addEventListener('click', () => { const release = state.matter?.releases.at(-1); if (release) { const a = downloadLink(release.number); document.body.append(a); a.click(); a.remove(); } });
 $('reload-case').addEventListener('click', () => { if (state.matter && discard()) openCase(state.matter.id, state.view, false); });

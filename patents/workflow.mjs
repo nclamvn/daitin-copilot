@@ -18,10 +18,13 @@ const stopMarker = value => /\[(?:luat su xac nhan|chua du can cu|can bo sung)\]
 const copy = structuredClone;
 export const evidenceFingerprint = item => digest({ record: item.record, source: item.source });
 const documents = matter => matter.documents ?? [];
+const anonymizedMatter = matter => matter.synthetic === false && matter.anonymized === true;
 export const privateEvidence = matter => [
   { id: 'case:claim', label: 'Yêu cầu bảo hộ của hồ sơ', text: matter.claimText, document: documents(matter).find(doc => doc.role === 'claim') },
-  { id: 'case:notice', label: 'Thông báo mô phỏng hoặc đã ẩn danh', text: matter.noticeText ?? '', document: documents(matter).find(doc => doc.role === 'notice') },
-  { id: 'case:instructions', label: 'Chỉ dẫn nghiệp vụ mô phỏng', text: matter.instructionsText ?? '' }
+  { id: 'case:notice', label: anonymizedMatter(matter) ? 'Thông báo đã ẩn danh' : 'Thông báo mô phỏng hoặc đã ẩn danh',
+    text: matter.noticeText ?? '', document: documents(matter).find(doc => doc.role === 'notice') },
+  { id: 'case:instructions', label: anonymizedMatter(matter) ? 'Chỉ dẫn nghiệp vụ của pilot ẩn danh' : 'Chỉ dẫn nghiệp vụ mô phỏng',
+    text: matter.instructionsText ?? '' }
 ].filter(item => item.text).map(({ document, ...item }) => ({ ...item, sha256: hash(item.text),
   provenance: document ? 'case_pdf_excerpt' : 'case_private_input', ...(document ? { document } : {}) }));
 const hasKnownDamage = item => Boolean(item.record.knownExtractionWarning || item.source.knownExtractionWarning);
@@ -213,9 +216,13 @@ export function buildPatentPrompt({ matter, targets: requested, instruction = '�
     rows: matter.sections.matrix.rows.map(({ feature, claimQuote, d1RecordId, d1Quote, assessment, analysis, missing }) =>
       ({ feature, claimQuote, d1RecordId, d1Quote, assessment, analysis, missing }))
   } : undefined;
+  const baseInstructions = anonymizedMatter(matter) ? modelInstructions.replace(
+    'Hồ sơ mô phỏng, không có quyết định của cơ quan thẩm định.',
+    'Hồ sơ đã ẩn danh dùng trong pilot nội bộ. Giữ nguyên phạm vi dữ kiện được cung cấp và không tự xác định danh tính đã lược bỏ.'
+  ) : modelInstructions;
   return {
     model: connection.model, temperature: 0, seed: 42, max_tokens: 1800, stream: false,
-    messages: [{ role: 'system', content: responseOnly ? modelInstructions + '\n' + responseRevisionInstructions : modelInstructions },
+    messages: [{ role: 'system', content: responseOnly ? baseInstructions + '\n' + responseRevisionInstructions : baseInstructions },
     { role: 'user', content: JSON.stringify({ ...(responseOnly ? {} : { instruction: operatorTask }),
       context: matter.context, claimContext, claimText: matter.claimText, claimRecordId: matter.claimRecordId,
       d1RecordIds: matter.d1RecordIds, spanOptions, evidence: sources, privateCaseEvidence, matrixContext,
@@ -303,6 +310,11 @@ export function createPatentWorkflow(store, dataset, model = generatePatentPropo
     if (matter.version !== version) throw new CaseError('Hồ sơ đã đổi ở phiên khác. Mở lại trước khi lưu.', 409);
     return matter;
   };
+  function requireWritablePilot(matter) {
+    if (anonymizedMatter(matter) && matter.releases.length >= 2) {
+      throw new CaseError('Hồ sơ pilot ẩn danh đã hoàn tất hai bản duyệt.', 409);
+    }
+  }
   function bindRoles(matter, body) {
     const claimRecordId = body.claimRecordId === undefined ? matter.claimRecordId ?? null : body.claimRecordId;
     const target = matter.pinnedEvidence.find(item => item.record.id === claimRecordId);
@@ -449,6 +461,7 @@ export function createPatentWorkflow(store, dataset, model = generatePatentPropo
   }
   function bindPDF(id, version, selected, actor) {
     const matter = readVersion(id, actor, version);
+    if (anonymizedMatter(matter)) throw new CaseError('Nguồn của hồ sơ pilot ẩn danh đã được khóa.', 422);
     current(matter);
     if (documents(matter).some(document => document.role === selected.role && document.sha256 === selected.sha256 &&
         document.page === selected.page && document.start === selected.start && document.end === selected.end)) {
@@ -465,15 +478,16 @@ export function createPatentWorkflow(store, dataset, model = generatePatentPropo
     const attachment = existing ? undefined : { id: attachmentId, bytes: selected.bytes, sha256: selected.sha256, pageCount: selected.pageCount };
     return view(store.save(matter, { attachment }));
   }
-  function createMatter(body, actor) {
-    if (body?.synthetic !== true) throw new CaseError('Pilot sáng chế chỉ dùng hồ sơ mô phỏng từ nguồn công khai.', 422);
+  function createMatter(body, actor, anonymized = false) {
+    if (body?.synthetic !== true && !anonymized) throw new CaseError('Dùng luồng tiếp nhận tương ứng với loại hồ sơ pilot.', 422);
     const reference = bounded(body.reference, 48, 'Mã hồ sơ').toUpperCase();
     if (!/^[A-Z0-9][A-Z0-9./_-]*$/.test(reference)) throw new CaseError('Mã hồ sơ chỉ dùng chữ Latin, số và dấu phân cách.');
     const selection = withKnownParents(body.evidenceIds, body.claimRecordId);
     const pinnedEvidence = pin(selection.ids);
     const at = now();
     const matter = { id: randomUUID(), group: actor.group, reference, title: bounded(body.title, 160, 'Tên hồ sơ'),
-      version: 1, createdAt: at, updatedAt: at, synthetic: true, context: inputContext(body),
+      version: 1, createdAt: at, updatedAt: at, synthetic: !anonymized, ...(anonymized ? { anonymized: true } : {}),
+      context: inputContext(body),
       claimText: caseText(body.claimText, 'Yêu cầu bảo hộ'), evidenceIds: pinnedEvidence.map(item => item.record.id),
       noticeText: caseText(body.noticeText, 'Thông báo của hồ sơ'), instructionsText: caseText(body.instructionsText, 'Chỉ dẫn nghiệp vụ'),
       pinnedEvidence, datasetDigest, derivedContextRecordIds: selection.derived,
@@ -495,9 +509,11 @@ export function createPatentWorkflow(store, dataset, model = generatePatentPropo
       return view(store.create(createMatter(body, actor)));
     },
     createFromPDFs(body, selections, actor) {
-      const { synthetic, reference, title, jurisdiction, asOf, instructionsText } = body;
+      const { synthetic, anonymized, reference, title, jurisdiction, asOf, instructionsText } = body;
+      const real = synthetic === false && anonymized === true && actor.name === 'binh' && actor.role === 'reviewer' &&
+        /^@patent-pilot:[a-f0-9]{64}$/.test(actor.group);
       const matter = createMatter({ synthetic, reference, title, jurisdiction, asOf, instructionsText,
-        claimVersion: '', evidenceIds: [] }, actor);
+        claimVersion: '', evidenceIds: [] }, actor, real);
       const attachments = new Map();
       for (const selected of selections) {
         const { sha256, bytes, pageCount } = selected;
@@ -509,6 +525,18 @@ export function createPatentWorkflow(store, dataset, model = generatePatentPropo
     },
     source(id, body, actor) {
       const matter = readVersion(id, actor, body.version);
+      if (anonymizedMatter(matter)) {
+        requireWritablePilot(matter);
+        const locked = { evidenceIds: matter.evidenceIds, claimRecordId: matter.claimRecordId, d1RecordIds: matter.d1RecordIds,
+          claimText: matter.claimText, noticeText: matter.noticeText, claimVersion: matter.context.claimVersion };
+        if (Object.entries(locked).some(([key, value]) => body[key] !== undefined && digest(body[key]) !== digest(value))) {
+          throw new CaseError('Nguồn của hồ sơ pilot ẩn danh đã được khóa.', 422);
+        }
+        if (body.instructionsText === undefined) throw new CaseError('Nhập chỉ dẫn cập nhật cho hồ sơ.', 422);
+        matter.instructionsText = bounded(body.instructionsText, 6000, 'Chỉ dẫn nghiệp vụ');
+        invalidateApprovals(matter);
+        return view(store.save(matter));
+      }
       const claimRecordId = body.claimRecordId === undefined ? matter.claimRecordId : body.claimRecordId;
       const d1RecordIds = body.d1RecordIds ?? matter.d1RecordIds;
       const oldPrivatePins = new Map(matter.pinnedEvidence.filter(item => item.source.kind === 'case_document').map(item => [item.record.id, item]));
@@ -534,7 +562,16 @@ export function createPatentWorkflow(store, dataset, model = generatePatentPropo
     },
     async propose(id, body, actor, authorize = () => {}) {
       const matter = readVersion(id, actor, body.version); current(matter);
+      requireWritablePilot(matter);
       const selected = targets(body.targets);
+      if (body.instructionsText !== undefined) {
+        if (!anonymizedMatter(matter) || selected.length !== 1 || selected[0] !== 'response' ||
+            matter.sections.matrix.approval?.sha256 !== sectionHash('matrix', matter.sections.matrix, matter)) {
+          throw new CaseError('Chỉ cập nhật chỉ dẫn cùng phản hồi khi ma trận đang được duyệt.', 422);
+        }
+        matter.instructionsText = bounded(body.instructionsText, 6000, 'Chỉ dẫn nghiệp vụ');
+        invalidateApprovals(matter);
+      }
       requireUsableExtraction(matter.pinnedEvidence); requireClaimContext(matter);
       store.ensureModelReceiptCapacity?.();
       let result, patch;
@@ -556,6 +593,7 @@ export function createPatentWorkflow(store, dataset, model = generatePatentPropo
     },
     edit(id, body, actor) {
       const matter = readVersion(id, actor, body.version); current(matter);
+      requireWritablePilot(matter);
       const selected = [...(body.matrixRows !== undefined ? ['matrix'] : []), ...(body.response !== undefined ? ['response'] : [])];
       targets(selected);
       const patch = validatePatentPatch(matter, { matrix: { rows: body.matrixRows }, response: body.response }, selected);
@@ -564,6 +602,7 @@ export function createPatentWorkflow(store, dataset, model = generatePatentPropo
     approve(id, body, actor) {
       if (actor.role !== 'reviewer') throw new CaseError('Cần vai trò luật sư để duyệt phần phân tích sáng chế.', 403);
       const matter = readVersion(id, actor, body.version); current(matter);
+      requireWritablePilot(matter);
       requireUsableExtraction(matter.pinnedEvidence); requireClaimContext(matter);
       for (const key of targets(body.targets)) {
         if (key === 'response' && (!matter.noticeText || !matter.instructionsText)) throw new CaseError('Cần thông báo và chỉ dẫn nghiệp vụ trước khi duyệt phản hồi.', 422);
@@ -593,7 +632,8 @@ export function createPatentWorkflow(store, dataset, model = generatePatentPropo
       if (sectionIds.every(key => matter.sections[key].approval?.sha256 === sectionHash(key, matter.sections[key], matter))) {
         if (matter.releases.length >= 20) throw new CaseError('Hồ sơ đã đạt 20 bản duyệt trong pilot.', 409);
         const at = now();
-        const release = { number: matter.releases.length + 1, at, createdAt: at, synthetic: true, reference: matter.reference,
+        const release = { number: matter.releases.length + 1, at, createdAt: at, synthetic: !anonymizedMatter(matter),
+          ...(anonymizedMatter(matter) ? { anonymized: true } : {}), reference: matter.reference,
           title: matter.title, context: copy(matter.context), claimText: matter.claimText, claimRecordId: matter.claimRecordId,
           noticeText: matter.noticeText, instructionsText: matter.instructionsText, privateEvidence: privateEvidence(matter),
           d1RecordIds: copy(matter.d1RecordIds), sections: copy(matter.sections),

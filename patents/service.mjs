@@ -9,7 +9,7 @@ import { loadDataset, searchDataset } from './dataset.mjs';
 import { openPatentStore } from './store.mjs';
 import { createPatentWorkflow, evidenceURL } from './workflow.mjs';
 import { makePatentWord, patentWordRendererV2, patentWordType } from './word.mjs';
-import { bindPatentPDF, bindPatentPDFPack, inspectPatentPDF, inspectPatentPDFPack,
+import { bindPatentPDF, bindPatentPDFPack, inspectPatentPDF, inspectPatentPDFPack, isAnonymizedPack,
   maxPatentPDFPackRequest, maxPatentPDFRequest, previewPatentPDF } from './intake.mjs';
 export { CaseError as PatentAccessError } from '../copilot/m3/workflow.mjs';
 
@@ -49,13 +49,30 @@ function demoSpec(catalog) {
     notice: 'Nghiên cứu yêu cầu bảo hộ công khai với D1 minh họa. Kịch bản mô phỏng, không phải thông báo thẩm định thật.' } : null;
 }
 
-export function createPatentService({ storePath = process.env.DAI_TIN_M3_STORE, model } = {}) {
+function anonymizedPilot(config) {
+  if (typeof config !== 'string' || !config || config.length > 300) return null;
+  let value;
+  try { value = JSON.parse(config); }
+  catch { return null; }
+  const roles = ['notice', 'claim', 'd1'];
+  if (!value || typeof value !== 'object' || Array.isArray(value) || Object.keys(value).length !== roles.length ||
+      !roles.every(role => typeof value[role] === 'string' && /^[a-f0-9]{64}$/.test(value[role])) ||
+      new Set(roles.map(role => value[role])).size !== roles.length) return null;
+  const hashes = Object.fromEntries(roles.map(role => [role, value[role]]));
+  // Login groups permit only lowercase letters, digits and hyphens. Old
+  // deployments using the same Blob cannot resolve this private namespace.
+  return { hashes, group: '@patent-pilot:' + digest(hashes) };
+}
+
+export function createPatentService({ storePath = process.env.DAI_TIN_M3_STORE, model,
+  approvedPilot = process.env.DAI_TIN_ANONYMIZED_PATENT_PILOT } = {}) {
   const catalog = dataset();
   const store = openPatentStore(storePath);
   const workflow = createPatentWorkflow(store, catalog, model);
   const sources = new Map(catalog.sources.map(item => [item.id, item]));
   const datasetDigest = catalog.digest ?? catalog.datasetDigest ?? digest(catalog);
   const demo = demoSpec(catalog);
+  const pilot = anonymizedPilot(approvedPilot);
   const stagedPDFs = new Set(sourceManifest().map(item => item.sha256));
   return {
     close: store.close,
@@ -68,6 +85,14 @@ export function createPatentService({ storePath = process.env.DAI_TIN_M3_STORE, 
           return { value: readFileSync(new URL('./ui/' + filename, import.meta.url)), type };
         }
         if (!actor) return { status: 401, value: { error: 'Cần đăng nhập để mở hồ sơ sáng chế.' } };
+        const pilotActor = pilot && actor.name === 'binh' && actor.group === 'nhan-hieu' && actor.role === 'reviewer'
+          ? { ...actor, group: pilot.group } : null;
+        const caseActor = id => pilotActor && store.has(id, pilotActor.group) ? pilotActor : actor;
+        const packActor = body => {
+          if (!isAnonymizedPack(body)) return actor;
+          if (!pilotActor) throw new CaseError('Bộ PDF ẩn danh chưa được cấp quyền cho pilot.', 403);
+          return pilotActor;
+        };
         const savedSource = path.match(/^\/api\/patents\/source\/([a-zA-Z0-9._:-]+)\/([a-f0-9]{64})$/);
         if (get && savedSource) {
           const source = sources.get(savedSource[1]);
@@ -89,6 +114,7 @@ export function createPatentService({ storePath = process.env.DAI_TIN_M3_STORE, 
           status: 'candidate', builtAt: catalog.builtAt, digest: datasetDigest, sourceCount: catalog.sources.length,
           recordCount: catalog.records.length, gaps: catalog.gaps ?? [], scope: catalog.scope
         }, role: actor.role, model: process.env.DAI_TIN_MODEL_MODE === 'disabled' ? null : process.env.DAI_TIN_MODEL_ID,
+        ...(pilotActor ? { anonymizedPilot: true, responseRevision: true } : {}),
         demo, notice: 'Nguồn ứng viên. Phân tích là suy luận cần luật sư rà soát, không kết luận tính mới, tình trạng quyền hoặc FTO.' } };
         if (get && path === '/api/patents/catalog') return { value: { status: 'candidate', datasetDigest, builtAt: catalog.builtAt,
           scope: catalog.scope, sources: catalog.sources, gaps: catalog.gaps ?? [], records: catalog.records.map(({ text, ...record }) => ({
@@ -108,25 +134,29 @@ export function createPatentService({ storePath = process.env.DAI_TIN_M3_STORE, 
             results: found.results.map(item => recordView(item.record, item.source, item.citation)),
             notice: 'Kết quả truy hồi trong bộ nguồn đã lưu, chưa phải quyết định áp dụng pháp luật hoặc kết luận sáng chế.' } };
         }
-        if (get && path === '/api/patents/cases') return { value: workflow.list(actor) };
+        if (get && path === '/api/patents/cases') return { value: [
+          ...(pilotActor ? workflow.list(pilotActor) : []), ...workflow.list(actor)
+        ] };
         if (req.method === 'POST' && path === '/api/patents/pdf-pack/preview') {
           const body = caseInput(await readJSON(req, maxPatentPDFRequest));
           checkAccess();
-          const image = await previewPatentPDF(body);
+          packActor(body);
+          const image = await previewPatentPDF(body, pilot?.hashes);
           checkAccess();
           return pdfImage(image.bytes, image.sha256);
         }
         if (req.method === 'POST' && ['/api/patents/pdf-pack/inspect', '/api/patents/cases/pdf-pack'].includes(path)) {
           const body = caseInput(await readJSON(req, maxPatentPDFPackRequest));
           checkAccess();
+          const owner = packActor(body);
           if (path.endsWith('/inspect')) {
-            const value = await inspectPatentPDFPack(body);
+            const value = await inspectPatentPDFPack(body, pilot?.hashes);
             checkAccess();
             return { value };
           }
-          const selections = await bindPatentPDFPack(body);
+          const selections = await bindPatentPDFPack(body, pilot?.hashes);
           checkAccess();
-          return { status: 201, value: workflow.createFromPDFs(body, selections, actor) };
+          return { status: 201, value: workflow.createFromPDFs(body, selections, owner) };
         }
         if (req.method === 'POST' && ['/api/patents/cases', '/api/patents/cases/example'].includes(path)) {
           const input = await readJSON(req, 64 * 1024); checkAccess();
@@ -147,29 +177,31 @@ export function createPatentService({ storePath = process.env.DAI_TIN_M3_STORE, 
         const pdfAction = path.match(/^\/api\/patents\/cases\/([a-f0-9-]{36})\/pdf\/(inspect|preview|bind)$/);
         if (req.method === 'POST' && pdfAction) {
           const [, id, action] = pdfAction;
+          if (caseActor(id) !== actor) throw new CaseError('Nguồn của hồ sơ pilot ẩn danh đã được khóa.', 422);
           const body = caseInput(await readJSON(req, maxPatentPDFRequest));
           checkAccess();
           workflow.checkVersion(id, body.version, actor);
+          if (isAnonymizedPack(body)) throw new CaseError('Tiếp nhận PDF ẩn danh theo bộ đã được cấp quyền.', 422);
           if (action === 'inspect') {
-            const value = await inspectPatentPDF(body);
+            const value = await inspectPatentPDF(body, pilot?.hashes);
             checkAccess();
             workflow.checkVersion(id, body.version, actor);
             return { value };
           }
           if (action === 'preview') {
-            const image = await previewPatentPDF(body);
+            const image = await previewPatentPDF(body, pilot?.hashes);
             checkAccess();
             workflow.checkVersion(id, body.version, actor);
             return pdfImage(image.bytes, image.sha256);
           }
-          const selection = await bindPatentPDF(body);
+          const selection = await bindPatentPDF(body, undefined, pilot?.hashes);
           checkAccess();
           return { value: workflow.bindPDF(id, body.version, selection, actor) };
         }
         const privatePDF = path.match(/^\/api\/patents\/cases\/([a-f0-9-]{36})\/pdf\/([a-f0-9-]{36})\/(download|page\/([1-9][0-9]*))$/);
         if (get && privatePDF) {
           const [, id, attachmentId, action, page] = privatePDF;
-          const attachment = workflow.attachment(id, attachmentId, actor);
+          const attachment = workflow.attachment(id, attachmentId, caseActor(id));
           if (action !== 'download') {
             const image = await renderPage(attachment.bytes, Number(page), attachment.pageCount);
             checkAccess();
@@ -184,11 +216,12 @@ export function createPatentService({ storePath = process.env.DAI_TIN_M3_STORE, 
         const match = path.match(/^\/api\/patents\/cases\/([a-f0-9-]{36})(?:\/(source|propose|edit|approve|word|releases)(?:\/([1-9][0-9]*))?)?$/);
         if (match) {
           const [, id, action, number] = match;
-          if (get && !action) return { value: workflow.read(id, actor) };
+          const owner = caseActor(id);
+          if (get && !action) return { value: workflow.read(id, owner) };
           if (get && ['word', 'releases'].includes(action) && number) {
-            const release = workflow.release(id, number, actor);
+            const release = workflow.release(id, number, owner);
             if (action === 'releases') return { value: release };
-            const bytes = release.template === patentWordRendererV2 ? store.wordArtifact(id, actor.group, release) : makePatentWord(release);
+            const bytes = release.template === patentWordRendererV2 ? store.wordArtifact(id, owner.group, release) : makePatentWord(release);
             return { value: bytes, type: patentWordType, headers: {
               'Content-Disposition': 'attachment; filename="' + release.reference.replaceAll('/', '-') + '-ban-' + release.number + '-daitin.docx"',
               'X-Artifact-SHA256': hash(bytes)
@@ -196,7 +229,7 @@ export function createPatentService({ storePath = process.env.DAI_TIN_M3_STORE, 
           }
           if (req.method === 'POST' && ['source', 'propose', 'edit', 'approve'].includes(action) && !number) {
             const body = caseInput(await readJSON(req, 64 * 1024)); checkAccess();
-            return { value: await workflow[action](id, body, actor, checkAccess) };
+            return { value: await workflow[action](id, body, owner, checkAccess) };
           }
         }
         return { status: 404, value: { error: 'Không tìm thấy chức năng sáng chế trong pilot.' } };

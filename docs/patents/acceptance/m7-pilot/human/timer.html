@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<title>Đồng hồ pilot sáng chế · Đại Tín</title>
+<style>
+:root{font-family:"Be Vietnam Pro","Inter",system-ui,sans-serif;color:#162d25;background:#eef2ed;font-synthesis:none}
+*{box-sizing:border-box}body{margin:0;padding:clamp(16px,5vw,58px)}main{max-width:820px;margin:auto}
+header{border-top:4px solid #284f42;padding:22px 0 18px}h1{font-size:clamp(25px,5vw,38px);margin:0;letter-spacing:-.04em}
+p{color:#456157;line-height:1.6;margin:8px 0 12px}fieldset,.card{margin:0 0 14px;padding:16px;border:1px solid #cad8cf;border-radius:10px;background:#fff}
+fieldset{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}label{display:grid;gap:6px;font-size:.86rem;font-weight:650}
+input,select,button{font:inherit;padding:9px 11px;border:1px solid #bacdc0;border-radius:6px;color:inherit;background:#fff}
+button{cursor:pointer;font-weight:650}button:disabled{opacity:.46;cursor:default}.primary,button[aria-pressed=true]{background:#244d3e;color:#fff;border-color:#244d3e}
+.stats,.controls,.stages{display:flex;flex-wrap:wrap;gap:9px}.stats{gap:24px;margin-bottom:16px}.stats div{min-width:112px}
+.stats strong{display:block;font-size:1.45rem;font-variant-numeric:tabular-nums}.stats span{font-size:.8rem;color:#52695f}
+.controls{margin-top:14px}.stages button{font-size:.84rem}.stages button[data-id=wait],.stages button[data-id=pause]{border-style:dashed}
+small{display:block;color:#50685d;margin-top:10px;line-height:1.5}output{font-weight:650}footer{font-size:.84rem;color:#50685d}
+:focus-visible{outline:3px solid #80a797;outline-offset:2px}@media(max-width:570px){fieldset{grid-template-columns:1fr}.stats{gap:12px}.stats div{min-width:88px}}
+</style>
+</head>
+<body>
+<main>
+  <header><h1>Đồng hồ pilot sáng chế</h1><p>Ghi thời gian làm việc, thời gian chờ và số thao tác có nghĩa trong một phiên.</p></header>
+  <fieldset id="meta" aria-label="Phiên đo">
+    <label>Mã ca <input id="case" value="P01" pattern="P0[1-8]" maxlength="3" required></label>
+    <label>Nhánh <select id="arm"><option value="product">Workspace</option><option value="direct">Agent trực tiếp</option></select></label>
+    <label>Phiên <select id="phase"><option value="1">1 · Lập và duyệt</option><option value="2">2 · Mở lại và cập nhật</option></select></label>
+    <label>Người ghi <select id="method"><option value="observer_stopwatch">Người quan sát</option><option value="operator_stopwatch">Anh Bình tự bấm giờ</option></select></label>
+  </fieldset>
+  <section class="card" aria-label="Số đo">
+    <div class="stats">
+      <div><strong id="active">00:00</strong><span>Chủ động</span></div>
+      <div><strong id="wait">00:00</strong><span>Chờ hệ thống</span></div>
+      <div><strong id="pause">00:00</strong><span>Gián đoạn</span></div>
+      <div><strong id="actions">0</strong><span>Thao tác</span></div>
+    </div>
+    <div id="stages" class="stages" aria-label="Hoạt động đang diễn ra"></div>
+    <div class="controls">
+      <button type="button" id="start" class="primary">Bắt đầu phiên</button>
+      <button type="button" id="action" disabled>Ghi một thao tác</button>
+      <button type="button" id="end" disabled>Kết thúc phiên</button>
+      <button type="button" id="export" disabled>Tải biên nhận JSON</button>
+      <button type="button" id="reset" disabled>Phiên đo mới</button>
+    </div>
+    <small>Ghi một thao tác cho một quyết định hoặc hành vi hoàn chỉnh. Ví dụ chọn nguồn, giao việc, sửa, duyệt, tải Word. Khi chỉ chờ máy, chọn “Chờ hệ thống”. Thời gian đọc hoặc rà trong lúc máy chạy vẫn là chủ động.</small>
+    <p><output id="status" aria-live="polite">Chờ bắt đầu</output></p>
+  </section>
+  <footer>Đồng hồ lưu biên nhận trên thiết bị. Nội dung hồ sơ và khóa truy cập nằm ngoài biên nhận. Nếu phiên bị gián đoạn, lưu biên nhận và ghi chú tình trạng trong sổ điều phối.</footer>
+</main>
+<script>
+const byId = id => document.getElementById(id);
+const stages = new Map([
+  ['source','Nhập hoặc chọn nguồn'],['reopen','Mở lại hồ sơ'],['draft','Giao việc'],
+  ['review','Rà nội dung và căn cứ'],['edit','Sửa nội dung'],['approve','Duyệt'],['export','Xuất Word'],
+  ['wait','Chờ hệ thống'],['pause','Gián đoạn']
+]);
+let record, start, segment, saved = false;
+const buttons = new Map();
+const active = state => !['wait','pause'].includes(state);
+const offset = () => Math.round(performance.now() - start);
+const format = ms => {
+  const seconds = Math.floor(ms / 1000);
+  return Math.floor(seconds / 60).toString().padStart(2,'0') + ':' + (seconds % 60).toString().padStart(2,'0');
+};
+function duration(items) {
+  return items.reduce((total,item)=>{
+    total[active(item.stage) ? 'active' : item.stage] += item.endMs - item.startMs;
+    return total;
+  }, {active:0,wait:0,pause:0});
+}
+function refresh() {
+  const running = Boolean(segment);
+  const items = record?.segments ?? [];
+  const total = duration(running ? [...items,{...segment,endMs:offset()}] : items);
+  for (const field of ['active','wait','pause']) byId(field).textContent = format(total[field]);
+  byId('actions').textContent = record?.actions.length ?? 0;
+  byId('meta').disabled = Boolean(record);
+  byId('start').disabled = Boolean(record);
+  byId('action').disabled = !running || !active(segment.stage);
+  byId('end').disabled = !running;
+  byId('export').disabled = !record?.endedAt;
+  byId('reset').disabled = !record?.endedAt || !saved;
+  for (const [id,button] of buttons) {
+    button.disabled = !running;
+    button.setAttribute('aria-pressed',String(running && segment.stage === id));
+  }
+}
+function switchStage(stage) {
+  if (!segment || stage === segment.stage) return;
+  const endMs = offset();
+  record.segments.push({...segment,endMs});
+  segment = {stage,startMs:endMs};
+  byId('status').value = stages.get(stage);
+  refresh();
+}
+for (const [id,label] of stages) {
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.dataset.id = id;
+  button.textContent = label;
+  button.addEventListener('click',()=>switchStage(id));
+  buttons.set(id,button);
+  byId('stages').append(button);
+}
+byId('start').addEventListener('click',()=>{
+  if (!byId('case').reportValidity() || record) return;
+  const phase = Number(byId('phase').value);
+  record = {version:1,method:byId('method').value,caseId:byId('case').value,arm:byId('arm').value,phase,
+    startedAt:new Date().toISOString(),segments:[],actions:[]};
+  start = performance.now();
+  segment = {stage:phase === 1 ? 'source' : 'reopen',startMs:0};
+  byId('status').value = stages.get(segment.stage);
+  refresh();
+});
+byId('action').addEventListener('click',()=>{
+  if (segment && active(segment.stage)) record.actions.push({stage:segment.stage,atMs:offset()});
+  refresh();
+});
+byId('end').addEventListener('click',()=>{
+  if (!segment) return;
+  const endMs = offset();
+  record.segments.push({...segment,endMs});
+  segment = null;
+  record.endedAt = new Date().toISOString();
+  record.totalMs = endMs;
+  byId('status').value = 'Đã kết thúc. Tải biên nhận trước khi mở phiên mới.';
+  refresh();
+});
+byId('export').addEventListener('click',()=>{
+  if (!record?.endedAt) return;
+  const url = URL.createObjectURL(new Blob([JSON.stringify(record,null,2)+'\n'],{type:'application/json'}));
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = [record.caseId,record.arm,'phien'+record.phase].join('-')+'.json';
+  link.click();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+  saved = true;
+  byId('status').value = 'Đã yêu cầu tải biên nhận. Kiểm tra thư mục tải xuống.';
+  refresh();
+});
+byId('reset').addEventListener('click',()=>{
+  if (!saved || segment) return;
+  record = null;
+  saved = false;
+  byId('status').value = 'Chờ bắt đầu';
+  refresh();
+});
+window.addEventListener('beforeunload',event=>{
+  if (record && !saved) event.preventDefault();
+});
+setInterval(refresh,250);
+refresh();
+</script>
+</body>
+</html>

@@ -248,7 +248,8 @@ export function makePatentWordV2(release) {
     ? paragraphV2('Dấu phân trang U+000C trong nguồn được trình bày bằng ngắt dòng.', 'PatentMeta') : '';
   const body = [
     section('01', 'Dữ kiện hồ sơ'),
-    paragraphV2('Hồ sơ mô phỏng để rà soát nội bộ.', 'PatentMeta'),
+    paragraphV2(release.synthetic === false && release.anonymized === true ? 'Hồ sơ đã ẩn danh để rà soát nội bộ.' :
+      'Hồ sơ mô phỏng để rà soát nội bộ.', 'PatentMeta'),
     paragraphV2('Phiên bản yêu cầu ' + release.context.claimVersion + ' · Ngày đối chiếu ' + release.context.asOf, 'PatentMeta'),
     paragraphV2(quoteLabel('Yêu cầu bảo hộ đang xét', release.claimRecordId ?? 'case:claim'), 'PatentLabel'),
     quoteV2(release.claimText),

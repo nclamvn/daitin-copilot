@@ -36,6 +36,7 @@ export function openPatentStore(path) {
       PRIMARY KEY(case_id,group_id,release_number)
     ) STRICT;`);
   const list = db.prepare('SELECT id,reference,title,version,updated_at AS updatedAt FROM patent_cases WHERE group_id=? ORDER BY updated_at DESC LIMIT 30');
+  const has = db.prepare('SELECT 1 FROM patent_cases WHERE id=? AND group_id=?');
   const read = db.prepare('SELECT content FROM patent_cases WHERE id=? AND group_id=?');
   const insert = db.prepare('INSERT INTO patent_cases VALUES(?,?,?,?,?,?,?)');
   const update = db.prepare('UPDATE patent_cases SET title=?,version=?,updated_at=?,content=? WHERE id=? AND group_id=? AND version=?');
@@ -92,6 +93,7 @@ export function openPatentStore(path) {
       insertReceipt.run(randomUUID(), caseId, group, new Date().toISOString(), content);
     },
     list: group => list.all(group),
+    has: (id, group) => Boolean(has.get(id, group)),
     read(id, group) {
       const item = read.get(id, group);
       if (!item) throw new CaseError('Không tìm thấy hồ sơ sáng chế.', 404);
@@ -101,7 +103,10 @@ export function openPatentStore(path) {
       const content = caseContent(matter);
       try {
         return writeCase(() => {
-          if (list.all(matter.group).length >= 20) throw new CaseError('Nhóm đã đạt 20 hồ sơ sáng chế trong pilot.', 409);
+          const caseLimit = matter.synthetic === false ? 1 : 20;
+          if (list.all(matter.group).length >= caseLimit) {
+            throw new CaseError('Nhóm đã đạt giới hạn ' + caseLimit + ' hồ sơ sáng chế trong pilot.', 409);
+          }
           insert.run(matter.id, matter.group, matter.reference, matter.title, matter.version, matter.updatedAt, content);
           saveAttachments(matter, attachments);
           return matter;

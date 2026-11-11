@@ -137,7 +137,7 @@ function setStatus(status, text = '', error = false) {
   status.toggleAttribute('data-error', error);
 }
 
-export function pdfPackIntake({ dialog, request, run, today, onCreated, onManual }) {
+export function pdfPackIntake({ dialog, request, run, today, onCreated, onManual, anonymizedPilot = false }) {
   const container = element('div', '', 'pack-intake');
   const prepare = element('form', '', 'pack-prepare');
   const review = element('form', '', 'pack-review');
@@ -161,9 +161,19 @@ export function pdfPackIntake({ dialog, request, run, today, onCreated, onManual
   });
   const grid = element('div', '', 'pack-metadata');
   grid.append(ref.label, asOf.label, title.label);
-  const synthetic = field('Tôi xác nhận ba PDF là tài liệu mô phỏng.', '', { type: 'checkbox', required: true });
-  synthetic.label.className = 'check pack-confirm-synthetic';
-  synthetic.label.prepend(synthetic.input);
+  const mode = field('Loại hồ sơ', '', { tag: 'select' });
+  for (const [value, label] of [['synthetic', 'Hồ sơ mô phỏng'], ['anonymized', 'Hồ sơ ẩn danh được phép thử nghiệm']]) {
+    const option = element('option', label);
+    option.value = value;
+    mode.input.append(option);
+  }
+  mode.input.value = 'synthetic';
+  const isAnonymized = () => anonymizedPilot && mode.input.value === 'anonymized';
+  const classification = () => isAnonymized() ? { synthetic: false, anonymized: true } : { synthetic: true };
+  const attestation = field('', '', { type: 'checkbox', required: true });
+  attestation.label.className = 'check pack-confirm-synthetic';
+  const attestationText = element('span', 'Tôi xác nhận ba PDF là tài liệu mô phỏng.');
+  attestation.label.replaceChildren(attestation.input, attestationText);
 
   const slots = roles.map(([role, title]) => {
     const row = element('li', '', 'pack-slot');
@@ -181,12 +191,12 @@ export function pdfPackIntake({ dialog, request, run, today, onCreated, onManual
     slot.last.input.value = to;
     slot.fileName.textContent = file ? file.name : 'Chưa chọn tệp';
     slot.row.toggleAttribute('data-file', Boolean(file));
-    synthetic.input.checked = false;
+    attestation.input.checked = false;
     setStatus(draftStatus);
   }
   function assignOne(slot, files) {
     if (files.length !== 1 || !isPdf(files[0])) {
-      setStatus(draftStatus, 'Chọn một tệp PDF mô phỏng, tối đa 2 MiB.', true);
+      setStatus(draftStatus, 'Chọn một tệp PDF, tối đa 2 MiB.', true);
       return;
     }
     updateSlot(slot, files[0]);
@@ -236,12 +246,20 @@ export function pdfPackIntake({ dialog, request, run, today, onCreated, onManual
   const readButton = element('button', 'Đọc 3 tài liệu', 'primary');
   readButton.type = 'submit';
   const actions = element('div', '', 'pack-actions');
-  actions.append(
-    action('Tạo hồ sơ trống hoặc nhập tay', () => onManual(metadata()), 'text-button'),
-    readButton
-  );
+  const manual = action('Tạo hồ sơ trống hoặc nhập tay', () => onManual(metadata()), 'text-button');
+  actions.append(manual, readButton);
+  mode.label.classList.add('pack-classification');
+  mode.input.addEventListener('change', () => {
+    for (const slot of slots) updateSlot(slot, null);
+    const real = isAnonymized();
+    attestationText.textContent = real
+      ? 'Tôi xác nhận ba PDF đã ẩn danh và được phép dùng trong pilot.'
+      : 'Tôi xác nhận ba PDF là tài liệu mô phỏng.';
+    manual.hidden = real;
+  });
+  if (anonymizedPilot) prepare.append(mode.label);
   prepare.append(zone, element('p', 'Tổng dung lượng tối đa 2 MiB. Mỗi PDF tối đa 12 trang, đọc 1–4 trang liên tiếp. Khi chọn cả bộ, kiểm lại thứ tự tệp theo vai trò bên dưới.', 'pack-help'),
-    roleList, grid, instructions.label, synthetic.label, draftStatus, actions);
+    roleList, grid, instructions.label, attestation.label, draftStatus, actions);
 
   const saveButton = element('button', 'Lưu hồ sơ và 3 tài liệu', 'primary');
   saveButton.type = 'submit';
@@ -337,7 +355,7 @@ export function pdfPackIntake({ dialog, request, run, today, onCreated, onManual
       }
       perform(reviewStatus, 'Đang dựng ảnh trang…', async () => {
         const bytes = await request('pdf-pack/preview', {
-          synthetic: true, content: item.content, sha256: item.receipt.sha256, page: item.page
+          ...classification(), role: item.role, content: item.content, sha256: item.receipt.sha256, page: item.page
         }, true);
         item.preview = URL.createObjectURL(bytes);
         const image = element('img');
@@ -406,8 +424,8 @@ export function pdfPackIntake({ dialog, request, run, today, onCreated, onManual
       badRange.first.input.focus();
       return;
     }
-    if (!metadata().reference || !metadata().title || !metadata().instructionsText || !synthetic.input.checked) {
-      setStatus(draftStatus, 'Điền thông tin hồ sơ và xác nhận bộ tài liệu mô phỏng.', true);
+    if (!metadata().reference || !metadata().title || !metadata().instructionsText || !attestation.input.checked) {
+      setStatus(draftStatus, 'Điền thông tin hồ sơ và xác nhận loại tài liệu đã chọn.', true);
       return;
     }
     perform(draftStatus, 'Đang đọc ba tài liệu…', async () => {
@@ -416,7 +434,7 @@ export function pdfPackIntake({ dialog, request, run, today, onCreated, onManual
         role: slot.role, content: await base64Pdf(slot.file),
         firstPage: Number(slot.first.input.value), lastPage: Number(slot.last.input.value)
       })));
-      const result = await request('pdf-pack/inspect', { synthetic: true, documents: input });
+      const result = await request('pdf-pack/inspect', { ...classification(), documents: input });
       if (!Array.isArray(result.documents) || result.documents.length !== slots.length ||
         !slots.every(slot => validReceipt(result.documents.find(doc => doc.role === slot.role), slot))) {
         throw new Error('Chưa nhận đủ bản đọc của ba tài liệu. Kiểm tra tệp và đọc lại.');
@@ -469,7 +487,7 @@ export function pdfPackIntake({ dialog, request, run, today, onCreated, onManual
         role: item.role, content: item.content, firstPage: item.firstPage, lastPage: item.lastPage,
         label: item.label.trim(), sha256: item.receipt.sha256, page: item.page, ...item.selection, confirmed: true
       }));
-      const matter = await request('cases/pdf-pack', { synthetic: true, ...metadata(), documents });
+      const matter = await request('cases/pdf-pack', { ...classification(), ...metadata(), documents });
       dialog.close();
       onCreated(matter);
     }, error => {

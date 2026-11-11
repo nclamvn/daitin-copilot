@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { createHash, randomBytes } from 'node:crypto';
-import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, realpathSync, renameSync, writeFileSync } from 'node:fs';
 import { dirname, isAbsolute, join, resolve, sep } from 'node:path';
 
 export const modelId = 'google/gemini-2.5-flash-lite';
@@ -18,15 +18,20 @@ export function directory(path) {
   return path;
 }
 
-export function loadCases(path, limit = 8) {
+export function loadCases(path, limit = 8, { anonymized = false } = {}) {
   const bytes = readFileSync(path);
   const value = JSON.parse(bytes.toString('utf8'));
   assert.equal(value.version, 1);
-  assert.ok(Array.isArray(value.cases) && value.cases.length === 8, 'The registered pilot requires eight cases');
-  const root = dirname(resolve(path));
+  assert.ok(Array.isArray(value.cases) && (anonymized
+    ? value.cases.length >= 1 && value.cases.length <= 8
+    : value.cases.length === 8), 'Invalid number of registered cases');
+  assert.ok(anonymized ? value.synthetic === false && value.anonymized === true
+    : value.synthetic !== false && value.anonymized !== true, 'Manifest class does not match this runner');
+  const root = anonymized ? dirname(realpathSync(path)) : dirname(resolve(path));
   const seen = new Set();
   const references = new Set();
   const cases = value.cases.map(entry => {
+    if (!anonymized) assert.ok(entry?.anonymized !== true && entry?.synthetic !== false, 'Use the human pilot runner for this case');
     assert.match(entry.id, /^P0[1-8]$/);
     assert.ok(!seen.has(entry.id), 'Duplicate case identifier');
     seen.add(entry.id);
@@ -38,31 +43,47 @@ export function loadCases(path, limit = 8) {
     }
     assert.ok(entry.instructions !== entry.phase2Instructions, 'Second session requires distinct instructions');
     assert.ok(entry.phase1Task.length <= 600 && entry.phase2Task.length <= 600);
+    if (anonymized) {
+      const date = new Date(entry.asOf + 'T00:00:00.000Z');
+      assert.ok(Number.isFinite(+date) && date.toISOString().slice(0, 10) === entry.asOf &&
+        entry.instructions.length <= 6000 && entry.phase2Instructions.length <= 6000 && entry.title.length <= 120,
+      'Invalid pilot date or metadata length');
+    }
     const documents = roles.map(role => {
       const spec = entry[role];
       assert.ok(spec && typeof spec.file === 'string' && !isAbsolute(spec.file));
-      const path = resolve(root, spec.file);
+      const resolved = resolve(root, spec.file);
+      const path = anonymized ? realpathSync(resolved) : resolved;
       assert.ok(path.startsWith(root + sep) && Number.isInteger(spec.page) && spec.page >= 1 && spec.page <= 12);
-      assert.ok(typeof spec.quote === 'string' && spec.quote === spec.quote.trim() && spec.quote.length >= 20 && spec.quote.length <= 1400);
+      assert.ok(typeof spec.quote === 'string' && spec.quote === spec.quote.trim() &&
+        spec.quote.length >= (anonymized ? 1 : 20) && spec.quote.length <= (anonymized ? 1800 : 1400));
       assert.ok(typeof spec.label === 'string' && spec.label.length <= 100 && spec.label.trim());
+      if (anonymized && (spec.start !== undefined || spec.end !== undefined)) {
+        assert.ok(Number.isInteger(spec.start) && spec.start >= 0 && spec.end === spec.start + spec.quote.length,
+          'Selected offsets must bind the exact quote');
+      }
       const original = readFileSync(path);
       assert.equal(sha(original), spec.sha256, `Original hash mismatch for ${entry.id}/${role}`);
       assert.ok(original.length <= 2 * 1024 * 1024 && original.subarray(0, 5).toString() === '%PDF-');
       return { ...spec, role, path, original };
     });
     assert.equal(new Set(documents.map(item => item.sha256)).size, roles.length, 'Use distinct originals for each role');
-    return { ...entry, documents };
+    if (anonymized) assert.ok(documents.reduce((total, doc) => total + doc.original.length, 0) <= 2 * 1024 * 1024,
+      'The registered PDF pack exceeds 2 MiB');
+    return { ...entry, ...(anonymized ? { synthetic: false, anonymized: true } : {}), documents };
   });
   return { cases: cases.slice(0, limit), manifestSha256: sha(bytes) };
 }
 
-export function openLedger(out, arm, manifestSha256, cases) {
+export function openLedger(out, arm, manifestSha256, cases, { human = false } = {}) {
   const path = join(out, arm + '.json');
   const state = existsSync(path) ? readJSON(path) : {
-    version: 1, arm, manifestSha256, model: modelId, syntheticOnly: true, humanReview: null, humanActiveMs: null,
+    version: 1, arm, manifestSha256, model: modelId, syntheticOnly: !human, humanReview: null, humanActiveMs: null,
+    ...(human ? { anonymized: true, mode: 'human' } : {}),
     startedAt: timestamp(), actions: [], modelAttempts: [], cases: {}
   };
   assert.equal(state.arm, arm);
+  assert.equal(state.mode === 'human', human, 'Do not mix human and automated ledgers');
   assert.equal(state.manifestSha256, manifestSha256, 'Run directory is bound to its original manifest');
   for (const entry of cases) state.cases[entry.id] ??= { reference: entry.reference, phases: {} };
   const save = () => writeJSON(path, state);

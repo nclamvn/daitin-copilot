@@ -223,15 +223,22 @@ dialog{width:min(680px,calc(100vw - 28px));max-height:calc(100dvh - 40px);paddin
 }
 .section-review {
   margin-top: 15px;
-  padding: 12px 14px 3px;
+  padding: 10px 14px;
   border-left: 2px solid #be9a58;
   background: #faf4e7;
   color: #6b4e21;
   font-size: 12px;
 }
 .section-review .helper {
-  margin-top: 5px;
+  margin: 0;
   color: inherit;
+}
+#response-release {
+  margin-left: auto;
+}
+#response-release a {
+  display: inline-block;
+  text-decoration: none;
 }
 .matrix-inference .helper {
   margin: -3px 0 9px;
@@ -353,6 +360,11 @@ dialog{width:min(680px,calc(100vw - 28px));max-height:calc(100dvh - 40px);paddin
 .pack-confirm-synthetic {
   align-items: baseline;
 }
+.pack-classification {
+  display: block;
+  max-width: 320px;
+  margin-bottom: 14px;
+}
 .pack-actions {
   position: sticky;
   z-index: 1;
@@ -374,6 +386,9 @@ dialog{width:min(680px,calc(100vw - 28px));max-height:calc(100dvh - 40px);paddin
 }
 .pack-actions .primary {
   margin: 0;
+}
+.pack-prepare .pack-actions .primary {
+  margin-left: auto;
 }
 .pack-actions .pack-confirmed-count {
   font-size: 10px;

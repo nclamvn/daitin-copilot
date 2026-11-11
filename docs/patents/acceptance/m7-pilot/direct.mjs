@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, linkSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { setTimeout as pause } from 'node:timers/promises';
 import { modelConnection } from '../../../../copilot/model-connection.mjs';
@@ -7,6 +7,7 @@ import { inspectPatentPDF } from '../../../../patents/intake.mjs';
 import { buildPatentPrompt, materializePatentSpans, privateEvidence } from '../../../../patents/workflow.mjs';
 import { makePatentWordV2, patentWordRendererV2 } from '../../../../patents/word.mjs';
 import { beginModel, directory, measure, modelId, openLedger, qualityView, readJSON, sha, timestamp, track, writeJSON } from './common.mjs';
+import { approveDirectDraft, HumanPilotError } from './direct-human.mjs';
 
 const casePath = (out, entry, phase) => join(out, 'direct-workspace', `${entry.id}-session-${phase}.json`);
 const wordPath = (out, entry, phase) => join(out, 'direct-word', `${entry.id}-v${phase}.docx`);
@@ -14,7 +15,19 @@ const docRole = role => role === 'notice' ? 'case:notice' : 'pdf-' + role;
 const paceMs = 15000;
 class RateLimitPause extends Error {}
 
-async function providerCall(ledger, connection, entry, phase, stage, payload, parse, file) {
+function cachedProviderOutput(ledger, entry, phase, stage, file) {
+  const output = readJSON(file);
+  if (entry.anonymized) {
+    const receipt = ledger.state.modelAttempts.findLast(item => item.caseId === entry.id &&
+      item.phase === phase && item.stage === stage);
+    if (receipt?.status !== 'accepted' || receipt.cacheSha256 !== sha(JSON.stringify(output))) {
+      throw new HumanPilotError('Không xác minh được bản đã lưu của model. Giữ nguyên thư mục để kiểm tra; chưa gửi lại.');
+    }
+  }
+  return output;
+}
+
+async function providerCall(ledger, connection, entry, phase, stage, payload, parse, file, fetcher = fetch) {
   const retry429 = process.env.DAITIN_PILOT_RETRY_429 === '1';
   const attempts = ledger.state.modelAttempts;
   const history = attempts.filter(item => item.caseId === entry.id && item.phase === phase && item.stage === stage);
@@ -31,7 +44,7 @@ async function providerCall(ledger, connection, entry, phase, stage, payload, pa
   ledger.save();
   const start = performance.now();
   try {
-    const response = await fetch(connection.endpoint, { method: 'POST', redirect: 'error',
+    const response = await fetcher(connection.endpoint, { method: 'POST', redirect: 'error',
       headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + await connection.credential() },
       body: serialized, signal: AbortSignal.timeout(60000) });
     receipt.providerStatus = response.status;
@@ -50,13 +63,16 @@ async function providerCall(ledger, connection, entry, phase, stage, payload, pa
     receipt.finishReason = choice?.finish_reason ?? null;
     receipt.outputSha256 = sha(JSON.stringify(choice?.message ?? null));
     const value = parse(choice);
-    if (file) writeJSON(file, value);
+    if (file) {
+      writeJSON(file, value);
+      if (entry.anonymized) receipt.cacheSha256 = sha(JSON.stringify(value));
+    }
     receipt.status = 'accepted';
     if (stage === 'select_tool') receipt.toolCallId = value.toolCallId;
     return value;
   } catch (error) {
     receipt.status = 'failed_or_uncertain';
-    receipt.error = error.message;
+    receipt.error = entry.anonymized ? 'provider_or_output_error' : error.message;
     throw error;
   } finally {
     receipt.elapsedMs = Math.round(performance.now() - start);
@@ -64,10 +80,10 @@ async function providerCall(ledger, connection, entry, phase, stage, payload, pa
   }
 }
 
-async function selectReadTool(ledger, connection, out, entry, phase, task) {
+async function selectReadTool(ledger, connection, out, entry, phase, task, fetcher) {
   const file = join(out, 'direct-workspace', `${entry.id}-tool-${phase}.json`);
   if (existsSync(file)) {
-    const value = readJSON(file);
+    const value = cachedProviderOutput(ledger, entry, phase, 'select_tool', file);
     assert.equal(value.caseId, entry.id);
     assert.equal(value.phase, phase);
     return value;
@@ -87,21 +103,44 @@ async function selectReadTool(ledger, connection, out, entry, phase, task) {
     assert.deepEqual(args, { caseId: entry.id, phase }, 'Agent requested a different case or phase');
     assert.ok(typeof call.id === 'string' && call.id, 'Provider tool call ID is missing');
     return { caseId: entry.id, phase, tool: 'read_case', toolCallId: call.id };
-  }, file);
+  }, file, fetcher);
 }
 
-async function extractSource(ledger, entry, document, out) {
+async function inspectLockedPage(entry, document) {
   const bytes = readFileSync(document.path);
   assert.equal(sha(bytes), document.sha256);
-  const pdf = await measure(ledger, 'tool', entry.id, 1, 'extract selected PDF range', () => inspectPatentPDF({
-    synthetic: true, firstPage: document.page, lastPage: document.page, content: bytes.toString('base64')
-  }), ({ extractionEngine }) => ({ extractionEngine, role: document.role }));
+  const approvedHashes = entry.anonymized ? Object.fromEntries(entry.documents.map(item => [item.role, item.sha256])) : undefined;
+  const pdf = await inspectPatentPDF({
+    ...(entry.anonymized ? { synthetic: false, anonymized: true, role: document.role } : { synthetic: true }),
+    firstPage: document.page, lastPage: document.page, content: bytes.toString('base64')
+  }, approvedHashes);
   assert.equal(pdf.sha256, document.sha256);
   const page = pdf.pages[0];
   assert.equal(page.page, document.page);
-  const start = page.text.indexOf(document.quote);
-  assert.ok(page.usable && start >= 0 && page.text.indexOf(document.quote, start + 1) === -1,
+  const byOffset = entry.anonymized && Number.isInteger(document.start);
+  const start = byOffset ? document.start : page.text.indexOf(document.quote);
+  assert.ok(page.usable && start >= 0 && (byOffset ? page.text.slice(start, document.end) === document.quote
+    : page.text.indexOf(document.quote, start + 1) === -1),
     `Direct agent could not verify exact excerpt ${entry.id}/${document.role}`);
+  return { bytes, pdf, start };
+}
+
+export async function verifyHumanSources(input) {
+  let documents = 0;
+  for (const entry of input.cases) {
+    if (!entry.anonymized) throw new HumanPilotError('Manifest chưa được khai báo là bộ hồ sơ ẩn danh.');
+    for (const document of entry.documents) {
+      try { await inspectLockedPage(entry, document); }
+      catch { throw new HumanPilotError('PDF, trang hoặc đoạn đã khóa không khớp ở ' + entry.id + '/' + document.role + '.'); }
+      documents++;
+    }
+  }
+  return documents;
+}
+
+async function extractSource(ledger, entry, document, out) {
+  const { bytes, pdf, start } = await measure(ledger, 'tool', entry.id, 1, 'extract selected PDF range',
+    () => inspectLockedPage(entry, document), ({ pdf }) => ({ extractionEngine: pdf.extractionEngine, role: document.role }));
   const originalPath = join(out, 'direct-workspace', `${entry.id}-${document.role}.pdf`);
   if (existsSync(originalPath)) assert.equal(sha(readFileSync(originalPath)), document.sha256);
   else writeFileSync(originalPath, bytes, { mode: 0o600, flag: 'wx' });
@@ -145,7 +184,9 @@ async function executeReadTool(ledger, out, entry, phase, tool) {
       if (document.role !== 'notice') pinnedEvidence.push(pinnedSource(document, metadata));
     }
     return {
-      reference: entry.reference, title: entry.title, synthetic: true, claimRecordId: docRole('claim'), d1RecordIds: [docRole('d1')],
+      reference: entry.reference, title: entry.title,
+      ...(entry.anonymized ? { synthetic: false, anonymized: true } : { synthetic: true }),
+      claimRecordId: docRole('claim'), d1RecordIds: [docRole('d1')],
       evidenceIds: [docRole('claim'), docRole('d1')], claimText: entry.claim.quote, noticeText: entry.notice.quote,
       instructionsText: entry.instructions, documents, pinnedEvidence,
       context: { jurisdiction: 'VN', asOf: entry.asOf, claimVersion: 'PDF trang ' + entry.claim.page + ' · ' + entry.claim.label.slice(0, 80) },
@@ -154,9 +195,9 @@ async function executeReadTool(ledger, out, entry, phase, tool) {
   }, matter => ({ toolCallId: tool.toolCallId, evidence: matter.documents.map(({ role, sha256, page, textSha256 }) => ({ role, sha256, page, textSha256 })) }));
 }
 
-async function directDraft(ledger, connection, out, entry, phase, matter, task) {
+async function directDraft(ledger, connection, out, entry, phase, matter, task, fetcher) {
   const path = join(out, 'direct-workspace', `${entry.id}-draft-${phase}.json`);
-  if (existsSync(path)) return readJSON(path);
+  if (existsSync(path)) return cachedProviderOutput(ledger, entry, phase, 'generate', path);
   const targets = phase === 1 ? ['matrix', 'response'] : ['response'];
   const payload = buildPatentPrompt({ matter, targets, instruction: task }, connection);
   const options = JSON.parse(payload.messages[1].content).spanOptions;
@@ -178,7 +219,7 @@ async function directDraft(ledger, connection, out, entry, phase, matter, task) 
     assert.ok(Array.isArray(result.response.evidenceIds) && result.response.evidenceIds.every(id => typeof id === 'string'));
     result.response.approval = null;
     return result;
-  }, path);
+  }, path, fetcher);
 }
 
 async function executePhase(ledger, connection, out, entry, phase) {
@@ -230,10 +271,7 @@ async function executePhase(ledger, connection, out, entry, phase) {
   console.log(`Direct agent ${entry.id} phase ${phase} complete`);
 }
 
-export async function runDirect({ out, input }) {
-  const connection = modelConnection();
-  assert.ok(connection && connection.model === modelId && connection.provider === 'ai-gateway.vercel.sh', 'Reuse the same Vercel AI Gateway Gemini model');
-  const ledger = openLedger(out, 'direct', input.manifestSha256, input.cases);
+function checkProviderCooldown(ledger) {
   if (process.env.DAITIN_PILOT_RETRY_429 === '1') {
     const latest = ledger.state.modelAttempts.findLast(item => item.providerStatus === 429);
     assert.ok(latest, 'Manual 429 recovery requires a recorded provider rate limit');
@@ -243,6 +281,13 @@ export async function runDirect({ out, input }) {
     const readyAt = Math.max(at + 75000, Number.isFinite(retryAfter) ? retryAfter : at);
     assert.ok(Date.now() >= readyAt, 'Wait for the provider cooldown before manually resuming');
   }
+}
+
+export async function runDirect({ out, input }) {
+  const connection = modelConnection();
+  assert.ok(connection && connection.model === modelId && connection.provider === 'ai-gateway.vercel.sh', 'Reuse the same Vercel AI Gateway Gemini model');
+  const ledger = openLedger(out, 'direct', input.manifestSha256, input.cases);
+  checkProviderCooldown(ledger);
   ledger.state.modelProvider = connection.provider;
   directory(join(out, 'direct-workspace'));
   directory(join(out, 'direct-word'));
@@ -275,4 +320,98 @@ export async function runDirect({ out, input }) {
   ledger.state.stoppedOnRateLimit = stoppedOnRateLimit;
   ledger.state.finishedAt = timestamp();
   ledger.save();
+}
+
+function verifyHumanPhase(out, entry, phase, record) {
+  const valid = record?.wordSha256 && record?.caseSha256 &&
+    sha(readFileSync(wordPath(out, entry, phase))) === record.wordSha256 &&
+    sha(JSON.stringify(readJSON(casePath(out, entry, phase)))) === record.caseSha256;
+  if (!valid) throw new HumanPilotError('Dấu kiểm hồ sơ hoặc Word đã duyệt bị thay đổi.');
+}
+
+function publishWord(path, bytes) {
+  if (!existsSync(path)) {
+    const staging = path + '.next';
+    try {
+      writeFileSync(staging, bytes, { mode: 0o600 });
+      linkSync(staging, path);
+    } finally { rmSync(staging, { force: true }); }
+  }
+  if (sha(readFileSync(path)) !== sha(bytes)) throw new HumanPilotError('Bản Word đã tồn tại có dấu kiểm khác.');
+}
+
+async function executeHumanPhase({ ledger, connection, out, entry, phase, ask, show, fetcher }) {
+  const record = ledger.state.cases[entry.id];
+  if (record.phases[phase]?.wordSha256) {
+    verifyHumanPhase(out, entry, phase, record.phases[phase]);
+    show('Đã có Word được xác nhận: ' + wordPath(out, entry, phase));
+    return;
+  }
+  if (phase === 2) {
+    if (!record.phases[1]?.wordSha256) throw new HumanPilotError('Hoàn tất duyệt và xuất Word phiên 1 trước.');
+    verifyHumanPhase(out, entry, 1, record.phases[1]);
+  }
+  const task = phase === 1 ? entry.phase1Task : entry.phase2Task;
+  show('Hồ sơ ' + entry.id + ', phiên ' + phase + '. Đọc nhiệm vụ trên phiếu của điều phối viên.');
+  const start = await ask('Anh Bình mở hồ sơ và giao yêu cầu đã khóa cho agent? [y/N] ');
+  if (start.trim().toLowerCase() !== 'y') throw new HumanPilotError('Phiên đang chờ anh Bình bắt đầu.');
+  track(ledger, 'operator', entry.id, phase, 'human opens direct session', { at: timestamp() });
+  const tool = await selectReadTool(ledger, connection, out, entry, phase, task, fetcher);
+  const matter = await executeReadTool(ledger, out, entry, phase, tool);
+  const draft = await directDraft(ledger, connection, out, entry, phase, matter, task, fetcher);
+  const approved = await approveDirectDraft({ ledger, out, entry, phase, matter, draft, ask, show });
+  matter.sections = { ...matter.sections, ...approved };
+  const matrixSha256 = sha(JSON.stringify(matter.sections.matrix.rows));
+  const quality = qualityView(matter, entry, phase);
+  if (phase === 2) {
+    verifyHumanPhase(out, entry, 1, record.phases[1]);
+    if (record.phases[1].matrixSha256 !== matrixSha256 ||
+      record.phases[1].approvals.matrix.sha256 !== matter.sections.matrix.approval?.sha256) {
+      throw new HumanPilotError('Ma trận đã duyệt ở phiên 1 bị thay đổi.');
+    }
+    quality.matrixPreserved = true;
+    quality.word1Preserved = true;
+  }
+  const approvedAt = matter.sections.response.approval.at;
+  const release = { ...matter, number: phase, at: approvedAt, createdAt: approvedAt,
+    template: patentWordRendererV2, privateEvidence: privateEvidence(matter), approvedBy: matter.sections.response.approval.by };
+  const path = wordPath(out, entry, phase);
+  const wordSha256 = await measure(ledger, 'tool', entry.id, phase, 'render versioned Word after human approval', () => {
+    const bytes = makePatentWordV2(release);
+    publishWord(path, bytes);
+    writeJSON(casePath(out, entry, phase), matter);
+    return sha(bytes);
+  });
+  if (phase === 2 && wordSha256 === record.phases[1].wordSha256) {
+    throw new HumanPilotError('Word phiên 2 trùng bản cũ. Giữ nguyên thư mục để kiểm tra.');
+  }
+  record.phases[phase] = { quality, wordSha256, matrixSha256, caseSha256: sha(JSON.stringify(matter)),
+    approvals: Object.fromEntries(Object.entries(matter.sections).map(([key, value]) => [key, value.approval])),
+    documents: matter.documents.map(({ role, page, sha256, textSha256 }) => ({ role, page, sha256, textSha256 })) };
+  ledger.state.humanReview = 'operator_attested';
+  ledger.save();
+  show('Đã lưu Word. Mở đúng tệp này để hoàn tất phiên: ' + path);
+}
+
+export async function runHumanDirect({ out, input, phase, ask, show = console.log,
+  connection = modelConnection(), fetcher = fetch }) {
+  if (![1, 2].includes(phase) || input.cases.some(entry => entry.synthetic !== false || entry.anonymized !== true) ||
+    !connection || connection.model !== modelId || connection.provider !== 'ai-gateway.vercel.sh' ||
+    connection.endpoint !== 'https://ai-gateway.vercel.sh/v1/chat/completions') {
+    throw new HumanPilotError('Cấu hình phiên, loại hồ sơ hoặc Gemini trên Vercel AI Gateway chưa khớp.');
+  }
+  const ledger = openLedger(out, 'direct', input.manifestSha256, input.cases, { human: true });
+  checkProviderCooldown(ledger);
+  ledger.state.modelProvider = connection.provider;
+  directory(join(out, 'direct-workspace'));
+  directory(join(out, 'direct-word'));
+  try {
+    for (const entry of input.cases) await executeHumanPhase({ ledger, connection, out, entry, phase, ask, show, fetcher });
+    ledger.state.finishedAt = timestamp();
+    ledger.save();
+  } catch (error) {
+    if (error instanceof HumanPilotError) throw error;
+    if (error instanceof RateLimitPause) throw new HumanPilotError('Gateway trả 429. Kiểm biên nhận, chờ ít nhất 75 giây và tiếp tục đúng phiên.');
+    throw new HumanPilotError('Phiên chưa hoàn tất. Xem biên nhận cục bộ và giữ nguyên thư mục; lượt chưa rõ kết quả không được tự gửi lại.');
+  }
 }

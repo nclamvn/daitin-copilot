@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "synthetic": false,
+  "anonymized": true,
+  "cases": [
+    {
+      "id": "P01",
+      "reference": "PILOT-P01",
+      "title": "<tên trung tính>",
+      "asOf": "<YYYY-MM-DD>",
+      "instructions": "<chỉ dẫn được phép dùng của phiên 1>",
+      "phase1Task": "<yêu cầu giao việc phiên 1>",
+      "phase2Instructions": "<chỉ dẫn đầy đủ sau cập nhật, điều phối giữ đến phiên 2>",
+      "phase2Task": "<yêu cầu chỉ sửa phản hồi>",
+      "notice": {"file": "notice.pdf", "page": 1, "quote": "<đoạn nguyên văn>", "sha256": "<SHA-256 của PDF>", "label": "Thông báo"},
+      "claim": {"file": "claim.pdf", "page": 1, "quote": "<đoạn nguyên văn>", "sha256": "<SHA-256 của PDF>", "label": "Yêu cầu bảo hộ"},
+      "d1": {"file": "d1.pdf", "page": 1, "quote": "<đoạn nguyên văn>", "sha256": "<SHA-256 của PDF>", "label": "Đối chứng D1"}
+    }
+  ]
+}
