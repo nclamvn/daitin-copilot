@@ -3,11 +3,13 @@ import { resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { sourceManifest } from '../web/static-sources.mjs';
 import { CaseError, hash } from '../copilot/m3/workflow.mjs';
+import { renderPage } from '../copilot/m4/pdf.mjs';
 import { digest } from '../sot/bundle.mjs';
 import { loadDataset, searchDataset } from './dataset.mjs';
 import { openPatentStore } from './store.mjs';
 import { createPatentWorkflow, evidenceURL } from './workflow.mjs';
-import { makePatentWord, patentWordType } from './word.mjs';
+import { makePatentWord, patentWordRendererV2, patentWordType } from './word.mjs';
+import { bindPatentPDF, inspectPatentPDF, maxPatentPDFRequest, previewPatentPDF } from './intake.mjs';
 export { CaseError as PatentAccessError } from '../copilot/m3/workflow.mjs';
 
 const assets = new Map([
@@ -19,6 +21,13 @@ let capturedDataset;
 const dataset = () => capturedDataset ??= loadDataset();
 const recordView = (record, source, citation) => ({ record, source, openUrl: evidenceURL(record, source), originalUrl: source.url });
 const appRoot = fileURLToPath(new URL('../', import.meta.url));
+function caseInput(body) {
+  if (!body || typeof body !== 'object' || Array.isArray(body)) throw new CaseError('Dữ kiện hồ sơ chưa hợp lệ.', 422);
+  return body;
+}
+function pdfImage(bytes, sha256) {
+  return { value: bytes, type: 'image/png', headers: { 'X-Source-SHA256': sha256 } };
+}
 function sourceBytes(source) {
   if (typeof source.snapshot !== 'string' || !['patents/data/snapshots/', 'corpus/snapshots/', 'copilot/snapshots/'].some(prefix => source.snapshot.startsWith(prefix)) || source.snapshot.split('/').includes('..')) throw new CaseError('Đường dẫn bản nguồn không hợp lệ.', 409);
   const path = realpathSync(resolve(appRoot, source.snapshot));
@@ -114,6 +123,43 @@ export function createPatentService({ storePath = process.env.DAI_TIN_M3_STORE, 
           }
           return { status: 201, value: workflow.create(input, actor) };
         }
+        const pdfAction = path.match(/^\/api\/patents\/cases\/([a-f0-9-]{36})\/pdf\/(inspect|preview|bind)$/);
+        if (req.method === 'POST' && pdfAction) {
+          const [, id, action] = pdfAction;
+          const body = caseInput(await readJSON(req, maxPatentPDFRequest));
+          checkAccess();
+          workflow.checkVersion(id, body.version, actor);
+          if (action === 'inspect') {
+            const value = await inspectPatentPDF(body);
+            checkAccess();
+            workflow.checkVersion(id, body.version, actor);
+            return { value };
+          }
+          if (action === 'preview') {
+            const image = await previewPatentPDF(body);
+            checkAccess();
+            workflow.checkVersion(id, body.version, actor);
+            return pdfImage(image.bytes, image.sha256);
+          }
+          const selection = await bindPatentPDF(body);
+          checkAccess();
+          return { value: workflow.bindPDF(id, body.version, selection, actor) };
+        }
+        const privatePDF = path.match(/^\/api\/patents\/cases\/([a-f0-9-]{36})\/pdf\/([a-f0-9-]{36})\/(download|page\/([1-9][0-9]*))$/);
+        if (get && privatePDF) {
+          const [, id, attachmentId, action, page] = privatePDF;
+          const attachment = workflow.attachment(id, attachmentId, actor);
+          if (action !== 'download') {
+            const image = await renderPage(attachment.bytes, Number(page), attachment.pageCount);
+            checkAccess();
+            return pdfImage(image, attachment.sha256);
+          }
+          return { value: attachment.bytes, type: 'application/pdf', headers: {
+            'Content-Disposition': 'attachment; filename="tai-lieu-sang-che-' + attachment.sha256.slice(0, 12) + '.pdf"',
+            'X-Source-SHA256': attachment.sha256,
+            'Content-Security-Policy': "default-src 'none'; sandbox"
+          } };
+        }
         const match = path.match(/^\/api\/patents\/cases\/([a-f0-9-]{36})(?:\/(source|propose|edit|approve|word|releases)(?:\/([1-9][0-9]*))?)?$/);
         if (match) {
           const [, id, action, number] = match;
@@ -121,14 +167,14 @@ export function createPatentService({ storePath = process.env.DAI_TIN_M3_STORE, 
           if (get && ['word', 'releases'].includes(action) && number) {
             const release = workflow.release(id, number, actor);
             if (action === 'releases') return { value: release };
-            const bytes = makePatentWord(release);
+            const bytes = release.template === patentWordRendererV2 ? store.wordArtifact(id, actor.group, release) : makePatentWord(release);
             return { value: bytes, type: patentWordType, headers: {
               'Content-Disposition': 'attachment; filename="' + release.reference.replaceAll('/', '-') + '-ban-' + release.number + '-daitin.docx"',
               'X-Artifact-SHA256': hash(bytes)
             } };
           }
           if (req.method === 'POST' && ['source', 'propose', 'edit', 'approve'].includes(action) && !number) {
-            const body = await readJSON(req, 64 * 1024); checkAccess();
+            const body = caseInput(await readJSON(req, 64 * 1024)); checkAccess();
             return { value: await workflow[action](id, body, actor, checkAccess) };
           }
         }

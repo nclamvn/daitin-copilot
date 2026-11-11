@@ -1,9 +1,11 @@
 const $ = id => document.getElementById(id);
 const state = { status: null, catalog: null, cases: [], matter: null, selected: new Map(), view: 'search',
-  detail: null, search: null, catalogLimit: 10, busy: false, claimRecordId: null, d1RecordIds: new Set(), dirty: { inputs: false, matrix: false, response: false } };
-const views = ['search', 'matrix', 'response', 'history'];
-const assessmentLabels = { disclosed: 'Có đoạn tương ứng trong D1', not_found: 'Chưa tìm thấy trong nguồn chọn', uncertain: 'Chưa đủ dữ kiện đối chiếu' };
+  detail: null, search: null, catalogLimit: 10, busy: false, claimRecordId: null, d1RecordIds: new Set(),
+  dirty: { inputs: false, matrix: false, response: false }, pdf: null };
+const views = ['search', 'documents', 'matrix', 'response', 'history'];
+const assessmentLabels = { disclosed: 'Có đoạn xác nhận dấu hiệu', not_found: 'Chưa tìm thấy trong đoạn đã chọn', uncertain: 'Chưa đủ dữ kiện đối chiếu' };
 const kindLabels = { patent: 'Tài liệu sáng chế', law: 'Quy định pháp luật', guidance: 'Hướng dẫn', procedure: 'Thủ tục', commentary: 'Bình luận thực hành' };
+const pdfRoles = { notice: 'Thông báo cần phản hồi', claim: 'Yêu cầu bảo hộ đang xét', d1: 'Tài liệu đối chứng D1' };
 const mobile = matchMedia('(max-width:800px)');
 const node = (tag, value, className) => { const e = document.createElement(tag); if (value !== undefined) e.textContent = value; if (className) e.className = className; return e; };
 const date = value => { if (!value) return 'Chưa xác định'; if (/^\d{4}$/.test(value)) return value + ' (chưa rõ ngày)'; const parsed = new Date(value); return Number.isFinite(parsed.valueOf()) ? new Intl.DateTimeFormat('vi-VN', { dateStyle: 'medium', timeZone: 'Asia/Ho_Chi_Minh' }).format(parsed) : 'Chưa xác định'; };
@@ -29,7 +31,17 @@ const needsOriginal = item => Boolean(item.record.requiresOriginalCheck || item.
 const publicationKey = record => typeof record?.publicationIdentifier === 'string' ? record.publicationIdentifier.toUpperCase().replace(/[^A-Z0-9]/g, '') : '';
 function samePublication(a, b) { return Boolean(a && b && ((a.sourceId && a.sourceId === b.sourceId) || (publicationKey(a) && publicationKey(a) === publicationKey(b)))); }
 function d1Blocked(id, claimId = state.claimRecordId) { return samePublication(state.selected.get(id)?.record, state.selected.get(claimId)?.record); }
-function capturedURL(item) { if (typeof item.openUrl === 'string' && item.openUrl.startsWith('/api/patents/source/')) return item.openUrl; if (!item.source.snapshot || !/^[a-f0-9]{64}$/.test(item.source.sha256 ?? '')) return null; return '/api/patents/source/' + encodeURIComponent(item.source.id) + '/' + item.source.sha256 + (/\.pdf$/i.test(item.source.snapshot) && Number.isInteger(item.record.locator?.page) ? '#page=' + item.record.locator.page : ''); }
+function privatePdfURL(value) {
+  const prefix = '/api/patents/cases/' + state.matter?.id + '/pdf/';
+  return typeof value === 'string' && value.startsWith(prefix) && /^[a-f0-9-]{36}\/(?:download|page\/[1-9]\d*)$/.test(value.slice(prefix.length)) ? value : null;
+}
+function capturedURL(item) {
+  if (item.source.kind === 'case_document') return privatePdfURL(item.openUrl);
+  if (typeof item.openUrl === 'string' && item.openUrl.startsWith('/api/patents/source/')) return item.openUrl;
+  if (!item.source.snapshot || !/^[a-f0-9]{64}$/.test(item.source.sha256 ?? '')) return null;
+  return '/api/patents/source/' + encodeURIComponent(item.source.id) + '/' + item.source.sha256 +
+    (/\.pdf$/i.test(item.source.snapshot) && Number.isInteger(item.record.locator?.page) ? '#page=' + item.record.locator.page : '');
+}
 const originalURL = item => item.originalUrl ?? item.source.url;
 function safeLink(label, value) { const a = node('a', label); try { if (typeof value !== 'string' || !value.trim()) throw Error(); const url = new URL(value, location.origin); if (!['https:', 'http:'].includes(url.protocol)) throw Error(); a.href = url.href; } catch { return node('span', label + ' chưa có liên kết'); } a.target = '_blank'; a.rel = 'noopener noreferrer'; return a; }
 function button(label, handler, className = 'quiet') { const e = node('button', label, className); e.type = 'button'; e.addEventListener('click', handler); return e; }
@@ -37,11 +49,17 @@ function notify(text, error = false, reload = false) { $('notice').hidden = fals
 function isDirty() { return Object.values(state.dirty).some(Boolean); }
 function discard() { return !isDirty() || confirm('Có nội dung chưa lưu trong hồ sơ này. Mở công việc khác và bỏ phần chưa lưu?'); }
 
-async function request(path, body) {
+async function request(path, body, asImage = false) {
   let response;
   try { response = await fetch('/api/patents/' + path, body === undefined ? undefined : {
     method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body)
   }); } catch { const error = new Error('Chưa kết nối được dịch vụ. Giữ nội dung đang nhập và mở lại hồ sơ để kiểm tra trước khi gửi lại.'); error.unknownOutcome = true; throw error; }
+  if (asImage && response.ok) {
+    if (!response.headers.get('content-type')?.startsWith('image/png') || response.headers.get('X-Source-SHA256') !== body.sha256) {
+      throw new Error('Bản xem trang chưa khớp với PDF đã chọn. Đọc lại tệp để đối chiếu.');
+    }
+    return response.blob();
+  }
   const value = await response.json().catch(() => ({}));
   if (!response.ok) { const error = new Error(value.error ?? 'Chưa thực hiện được. Bản đã lưu vẫn được giữ.'); error.status = response.status; throw error; }
   return value;
@@ -57,8 +75,11 @@ function mode(view) {
   if (!views.includes(view) || (view !== 'search' && !state.matter)) return;
   const changed = state.view !== view; state.view = view;
   for (const key of views) { $('view-' + key).hidden = view !== key; $('tab-' + key).setAttribute('aria-selected', String(view === key)); $('tab-' + key).tabIndex = view === key ? 0 : -1; }
-  document.querySelector('.composer-area').hidden = !state.matter || view === 'history';
+  document.querySelector('.composer-area').hidden = !state.matter || !['matrix', 'response'].includes(view);
   if (changed) $('document-scroll').scrollTop = 0;
+  if (view === 'search') loadCatalog();
+  if (state.matter && changed) setCaseURL(state.matter.id, view);
+  renderCaseProgress();
 }
 function panel(open) { $('evidence-panel').classList.toggle('mobile-open', open); $('evidence-panel').hidden = !open && !mobile.matches; $('work-grid').classList.toggle('no-panel', !open && !mobile.matches); $('open-evidence').setAttribute('aria-expanded', String(open)); }
 function rail(open) { $('rail').classList.toggle('mobile-open', open); $('open-rail').setAttribute('aria-expanded', String(open)); }
@@ -76,9 +97,21 @@ function pickText(target, changed = () => {}) {
   }, { once: true });
   document.body.append(input); input.click();
 }
-function setDirty(key) { state.dirty[key] = true; $('saved-state').textContent = 'Có phần chưa lưu'; refreshControls(); }
-function selectedChanged() { state.dirty.inputs = Boolean(state.matter); renderEvidence(); refreshControls(); }
-function role(source, record) { return /secondary/.test(record.provenance ?? '') || source.kind === 'secondary' || /daitin|Đại Tín/iu.test(source.authority ?? '') ? 'Hướng dẫn thứ cấp' : record.provenance === 'assistant_proposed' ? 'Nội dung đề xuất, chưa xác minh' : record.provenance === 'captured_primary' ? 'Nguồn sơ cấp' : 'Nguồn gốc đã thu thập'; }
+function setDirty(key) {
+  state.dirty[key] = true;
+  for (const target of key === 'inputs' ? ['matrix', 'response'] : [key]) {
+    const confirmed = $(target + '-review')?.querySelector('input');
+    if (confirmed) confirmed.checked = false;
+  }
+  $('saved-state').textContent = 'Có phần chưa lưu';
+  refreshControls();
+}
+function selectedChanged() {
+  if (state.matter) setDirty('inputs');
+  renderEvidence();
+  refreshControls();
+}
+function role(source, record) { return source.kind === 'case_document' ? 'PDF mô phỏng của hồ sơ' : /secondary/.test(record.provenance ?? '') || source.kind === 'secondary' || /daitin|Đại Tín/iu.test(source.authority ?? '') ? 'Hướng dẫn thứ cấp' : record.provenance === 'assistant_proposed' ? 'Nội dung đề xuất, chưa xác minh' : record.provenance === 'captured_primary' ? 'Nguồn sơ cấp' : 'Nguồn gốc đã thu thập'; }
 function locator(record) { const loc = record.locator; return typeof loc === 'string' ? loc : loc?.label ?? (loc?.claim ? 'Yêu cầu bảo hộ ' + loc.claim : loc?.page ? 'Trang ' + loc.page : 'Vị trí chưa xác định'); }
 function badges(item) {
   const wrap = node('div', undefined, 'source-role');
@@ -129,6 +162,19 @@ function catalogItems() {
     .map(record => ({ record, source: sources.get(record.sourceId) ?? {}, openUrl: record.openUrl }))
     .sort((a, b) => Number(b.record.id === state.status?.demo?.claimRecordId) - Number(a.record.id === state.status?.demo?.claimRecordId) || Number(b.record.kind === 'patent') - Number(a.record.kind === 'patent'));
 }
+let catalogRequest;
+function loadCatalog() {
+  if (state.catalog || catalogRequest) return catalogRequest;
+  catalogRequest = request('catalog').then(catalog => {
+    state.catalog = catalog;
+    if (!state.search) renderResults();
+    return catalog;
+  }).catch(error => {
+    if (!state.search) $('search-results').replaceChildren(
+      node('p', error.message, 'result-note'), button('Tải lại danh mục nguồn', loadCatalog));
+  }).finally(() => { catalogRequest = undefined; });
+  return catalogRequest;
+}
 function renderResults() {
   const box = $('search-results'); box.replaceChildren();
   $('catalog-heading').hidden = Boolean(state.search);
@@ -138,6 +184,11 @@ function renderResults() {
     for (const item of result.results ?? []) box.append(renderSource(item));
     if (!(result.results ?? []).length) box.append(button('Duyệt nguồn đã thu thập', () => { state.search = null; renderResults(); }));
   } else {
+    if (!state.catalog) {
+      box.append(node('p', 'Đang mở thư mục nguồn…', 'result-note'));
+      loadCatalog();
+      return;
+    }
     const items = catalogItems();
     box.append(node('p', (state.catalog?.sources?.length ?? 0) + ' nguồn · ' + (state.catalog?.records?.length ?? 0) + ' đoạn đã đánh chỉ mục. Nội dung ứng viên chờ luật sư rà soát.', 'result-note'));
     for (const item of items.slice(0, state.catalogLimit)) box.append(renderSource(item, true));
@@ -156,7 +207,7 @@ function renderEvidence() {
     if (item.record.kind === 'patent') {
       const roles = node('div', undefined, 'evidence-roles');
       if (state.claimRecordId === id) roles.append(node('span', 'Yêu cầu đang xét', 'claim-role'));
-      else if (isClaim(item.record)) roles.append(button('Dùng làm yêu cầu đang xét', () => {
+      else if (isClaim(item.record) && item.source.kind !== 'case_document') roles.append(button('Dùng làm yêu cầu đang xét', () => {
         if (state.matter && $('claim-text').value !== state.matter.claimText && !confirm('Thay nội dung yêu cầu đang nhập bằng đoạn nguồn này?')) return;
         state.claimRecordId = id;
         const count = state.d1RecordIds.size; state.d1RecordIds = new Set([...state.d1RecordIds].filter(value => !d1Blocked(value)));
@@ -164,10 +215,10 @@ function renderEvidence() {
         selectedChanged();
         if (count !== state.d1RecordIds.size) notify('Đã bỏ các đoạn D1 thuộc cùng mã công bố với yêu cầu đang xét. Lưu nguồn để xác nhận vai trò mới.');
       }, 'text-button'));
-      const label = node('label', undefined, 'check'); const check = node('input'); check.type = 'checkbox'; check.value = id; check.checked = state.d1RecordIds.has(id); check.disabled = d1Blocked(id); check.dataset.keepDisabled = String(check.disabled);
+      const label = node('label', undefined, 'check'); const check = node('input'); check.type = 'checkbox'; check.value = id; check.checked = state.d1RecordIds.has(id); check.disabled = d1Blocked(id) || (item.source.kind === 'case_document' && !state.d1RecordIds.has(id)); check.dataset.keepDisabled = String(check.disabled);
       check.addEventListener('change', () => { if (check.checked) state.d1RecordIds.add(id); else state.d1RecordIds.delete(id); selectedChanged(); });
       label.append(check, document.createTextNode('Đoạn đối chứng D1')); roles.append(label);
-      if (check.disabled) roles.append(node('p', 'Không dùng chính công bố đang xét làm D1.', 'source-meta'));
+      if (d1Blocked(id)) roles.append(node('p', 'Yêu cầu đang xét và D1 cần đến từ hai nguồn riêng.', 'source-meta'));
       row.append(roles);
     }
     if (isOCR(item)) row.append(node('p', 'OCR, cần đối chiếu bản gốc', 'ocr-caption'));
@@ -185,11 +236,18 @@ function renderEvidence() {
     else if (needsOriginal(item)) block.insertBefore(node('p', 'Đoạn này cần được đối chiếu với bản gốc trước khi sử dụng.', 'evidence-warning'), block.querySelector('pre'));
     if (extractionWarning(item)) block.insertBefore(node('p', typeof extractionWarning(item) === 'string' ? extractionWarning(item) : 'Bản trích có lỗi đã biết, cần được sửa hoặc thay bằng nguồn phù hợp trước khi duyệt.', 'extraction-caption'), block.querySelector('pre'));
     const links = node('div', undefined, 'source-links');
-    if (capturedURL(item)) links.append(safeLink('Bản nguồn đã lưu', capturedURL(item)));
-    links.append(safeLink('Nguồn gốc trực tuyến', originalURL(item)));
+    const doc = state.matter?.documents?.find(entry => entry.recordId === item.record.id);
+    if (doc && privatePdfURL(doc.pageUrl)) links.append(button('Xem trang ' + doc.page, () => openSavedPdfPage(doc), 'text-button'));
+    if (capturedURL(item)) links.append(safeLink(doc ? 'Tải PDF gốc' : 'Bản nguồn đã lưu', capturedURL(item)));
+    if (item.source.kind !== 'case_document') links.append(safeLink('Nguồn gốc trực tuyến', originalURL(item)));
     if (!state.selected.has(pinId(item))) links.append(button('Chọn đoạn này', () => choose(item), 'text-button'));
-    block.append(links, node('p', evidenceDates(item), 'source-meta'), node('p', 'Thu thập ' + date(item.source.capturedAt) + ' · Chưa có duyệt pháp lý của luật sư.', 'source-meta'));
-    if (item.record.kind === 'patent' && !item.record.family) block.append(node('p', 'Quan hệ họ sáng chế chưa được xác minh trong bản dữ liệu này.', 'source-meta'));
+    block.append(links);
+    if (item.source.kind === 'case_document') {
+      block.append(node('p', 'Đoạn trích đã đối chiếu tại trang ' + (doc?.page ?? item.record.locator?.page ?? '?') + ' của PDF hồ sơ.', 'source-meta'));
+    } else {
+      block.append(node('p', evidenceDates(item), 'source-meta'), node('p', 'Thu thập ' + date(item.source.capturedAt) + ' · Chưa có duyệt pháp lý của luật sư.', 'source-meta'));
+      if (item.record.kind === 'patent' && !item.record.family) block.append(node('p', 'Quan hệ họ sáng chế chưa được xác minh trong bản dữ liệu này.', 'source-meta'));
+    }
     const hash = item.source.sha256;
     if (hash) block.append(node('p', 'SHA-256 nguồn ' + hash, 'source-meta'));
     detail.append(block);
@@ -207,15 +265,326 @@ function renderCases() {
     b.append(node('strong', item.title), node('small', item.reference)); if (item.id === state.matter?.id) b.setAttribute('aria-current', 'page'); return b;
   }));
 }
+function setCaseURL(id, view, push = false) {
+  const url = new URL(location.href);
+  if (!push && url.searchParams.get('case') !== id) return;
+  url.searchParams.set('case', id);
+  url.searchParams.set('view', view);
+  history[push && location.href !== url.href ? 'pushState' : 'replaceState']({}, '', url);
+}
+
+function initialCaseView(matter, requested) {
+  if (views.includes(requested)) return requested;
+  return !matter.claimText || !matter.noticeText ? 'documents' : 'matrix';
+}
+
+function renderCaseProgress() {
+  const matter = state.matter, box = $('case-progress');
+  box.replaceChildren();
+  box.hidden = !matter;
+  if (!matter) return;
+  let text, view, label;
+  if (!matter.claimText || !matter.noticeText) {
+    text = 'Cần gắn ' + [!matter.claimText && 'yêu cầu bảo hộ', !matter.noticeText && 'thông báo'].filter(Boolean).join(' và ');
+    view = 'documents'; label = 'Gắn tài liệu';
+  } else if (!(matter.d1RecordIds ?? []).length) {
+    text = 'Cần chọn tài liệu đối chứng D1';
+    view = 'documents'; label = 'Gắn D1';
+  } else if (!section('matrix')?.approval) {
+    text = section('matrix')?.rows?.length ? 'Ma trận đang chờ rà soát' : 'Đã có nguồn để lập ma trận';
+    view = 'matrix'; label = 'Mở ma trận';
+  } else if (!section('response')?.approval) {
+    text = matter.instructionsText ? 'Đã duyệt ma trận. Phản hồi đang làm việc' : 'Cần thêm chỉ dẫn để chuẩn bị phản hồi';
+    view = matter.instructionsText ? 'response' : 'matrix'; label = matter.instructionsText ? 'Mở phản hồi' : 'Nhập chỉ dẫn';
+  } else {
+    text = 'Đã duyệt ma trận và phản hồi';
+    view = 'history'; label = 'Xem bản đã duyệt';
+  }
+  box.append(node('span', text));
+  if (view !== state.view || label === 'Nhập chỉ dẫn') box.append(button(label, () => {
+    mode(view);
+    if (label === 'Nhập chỉ dẫn') {
+      $('private-inputs').open = true;
+      $('case-instructions-text').focus();
+    }
+  }, 'text-button'));
+}
+
+function openSavedPdfPage(doc) {
+  const source = privatePdfURL(doc.pageUrl), original = privatePdfURL(doc.openUrl);
+  if (!source) return;
+  const body = node('div', undefined, 'pdf-page-dialog');
+  const image = node('img');
+  image.alt = 'Trang ' + doc.page + ' của ' + doc.label;
+  const status = node('p', 'Đang mở ảnh trang từ bản đã lưu…', 'helper');
+  image.addEventListener('load', () => { status.hidden = true; }, { once: true });
+  image.addEventListener('error', () => {
+    image.hidden = true;
+    status.textContent = 'Chưa mở được ảnh trang. Tải PDF gốc để đối chiếu tại trang ' + doc.page + '.';
+  }, { once: true });
+  body.append(status, image);
+  if (original) body.append(safeLink('Tải PDF gốc', original));
+  showDialog('Trang ' + doc.page + ' · ' + doc.label, body);
+  image.src = source;
+}
+
+function renderDocuments() {
+  const list = $('case-documents');
+  list.replaceChildren();
+  const documents = state.matter?.documents ?? [];
+  if (!documents.length) return;
+  const saved = node('ul', undefined, 'case-document-list');
+  for (const doc of documents) {
+    const item = node('li', undefined, 'case-document');
+    const info = node('div');
+    info.append(node('strong', doc.label), node('p', (pdfRoles[doc.role] ?? 'Đoạn chứng cứ') + ' · Trang ' + doc.page + '/' + doc.pageCount, 'source-meta'));
+    const actions = node('div', undefined, 'source-links');
+    if (privatePdfURL(doc.pageUrl)) actions.append(button('Xem trang ' + doc.page, () => openSavedPdfPage(doc), 'text-button'));
+    if (privatePdfURL(doc.openUrl)) actions.append(safeLink('Tải PDF gốc', doc.openUrl));
+    item.append(info, actions);
+    saved.append(item);
+  }
+  list.append(saved);
+}
+
+function pdfNotice(text, error = false) {
+  const message = $('pdf-notice');
+  message.textContent = text;
+  message.hidden = !text;
+  message.toggleAttribute('data-error', error);
+}
+
+function resetInspection() {
+  if (state.pdf?.previewURL) URL.revokeObjectURL(state.pdf.previewURL);
+  state.pdf = null;
+  $('pdf-inspection').replaceChildren();
+  $('pdf-inspection').hidden = true;
+}
+
+let pdfFile;
+function pickPdf(file) {
+  resetInspection();
+  pdfFile = undefined;
+  $('pdf-synthetic').checked = false;
+  $('pdf-file-label').textContent = 'Tối đa 2 MiB. Chọn tệp có lớp văn bản để trích đúng đoạn.';
+  if (!file) return;
+  if (!/\.pdf$/i.test(file.name) || !file.size || file.size > 2 * 1024 * 1024) {
+    $('case-pdf').value = '';
+    pdfNotice('Chọn một PDF mô phỏng không rỗng, tối đa 2 MiB.', true);
+    return;
+  }
+  pdfFile = file;
+  $('pdf-file-label').textContent = file.name + ' · ' + Math.ceil(file.size / 1024).toLocaleString('vi-VN') + ' KiB';
+  pdfNotice('');
+}
+
+function resetPdfForm() {
+  resetInspection();
+  pdfFile = undefined;
+  $('pdf-inspect-form').reset();
+  $('pdf-file-label').textContent = 'Tối đa 2 MiB. Chọn tệp có lớp văn bản để trích đúng đoạn.';
+  pdfNotice('');
+}
+
+function pdfPath(action) { return 'cases/' + state.matter.id + '/pdf/' + action; }
+
+function runPdf(label, action) {
+  return run(label, async () => {
+    pdfNotice(label);
+    try { await action(); }
+    catch (error) {
+      pdfNotice(error.message, true);
+      if (error.status === 401 || error.status === 409 || error.unknownOutcome) throw error;
+    }
+  });
+}
+
+async function base64Pdf(file) {
+  const bytes = new Uint8Array(await file.arrayBuffer());
+  const chunks = [];
+  for (let offset = 0; offset < bytes.length; offset += 8192) {
+    chunks.push(String.fromCharCode(...bytes.subarray(offset, offset + 8192)));
+  }
+  return btoa(chunks.join(''));
+}
+
+function exactSelection(input) {
+  const text = input.value.slice(input.selectionStart, input.selectionEnd);
+  const start = input.selectionStart + text.length - text.trimStart().length;
+  return { start, end: start + text.trim().length, text: text.trim() };
+}
+
+function renderPdfInspection(draft) {
+  const box = $('pdf-inspection');
+  box.hidden = false;
+  box.replaceChildren();
+  const pageLabel = node('label', 'Trang PDF để đối chiếu');
+  const pageSelect = node('select');
+  for (const page of draft.receipt.pages) {
+    const option = node('option', 'Trang ' + page.page + (page.usable ? '' : ' · thiếu lớp chữ'));
+    option.value = String(page.page);
+    pageSelect.append(option);
+  }
+  pageSelect.value = String(draft.page);
+  pageLabel.append(pageSelect);
+  pageSelect.addEventListener('change', () => {
+    if (draft.previewURL) URL.revokeObjectURL(draft.previewURL);
+    draft.previewURL = null;
+    draft.page = Number(pageSelect.value);
+    renderPdfInspection(draft);
+    box.querySelector('select')?.focus();
+  });
+  const form = node('form', undefined, 'pdf-binding');
+  const page = draft.receipt.pages.find(item => item.page === draft.page);
+  const preview = node('div', undefined, 'pdf-page-preview');
+  const showPreview = button('Xem ảnh trang ' + page.page, () => {
+    if (draft.previewURL) {
+      const body = node('div', undefined, 'pdf-page-dialog');
+      const image = node('img');
+      image.alt = 'Ảnh trang ' + page.page + ' của PDF gốc';
+      image.src = draft.previewURL;
+      body.append(image);
+      showDialog('Trang ' + page.page + ' · ' + draft.filename, body);
+      return;
+    }
+    runPdf('Đang dựng ảnh trang…', async () => {
+      const image = await request(pdfPath('preview'), {
+        version: draft.version, synthetic: true, content: draft.content, sha256: draft.receipt.sha256, page: page.page
+      }, true);
+      if (state.pdf !== draft) return;
+      if (draft.previewURL) URL.revokeObjectURL(draft.previewURL);
+      draft.previewURL = URL.createObjectURL(image);
+      displayPreview();
+      pdfNotice('');
+    });
+  });
+  function displayPreview() {
+    preview.replaceChildren();
+    if (!draft.previewURL) return;
+    showPreview.textContent = 'Mở ảnh trang ' + page.page + ' cỡ lớn';
+    const image = node('img');
+    image.alt = 'Ảnh trang ' + page.page + ' của PDF gốc';
+    image.addEventListener('error', () => {
+      preview.replaceChildren(node('p', 'Ảnh trang chưa hiển thị. Mở tệp gốc trên máy để kiểm lại đoạn trích.', 'helper'));
+    }, { once: true });
+    image.src = draft.previewURL;
+    preview.append(image);
+  }
+  form.append(node('h3', 'Đối chiếu đoạn trích'), pageLabel, showPreview, preview);
+  displayPreview();
+  if (!page.usable || !page.text.trim()) {
+    form.append(node('p', 'Trang này chưa có lớp chữ dùng được. Chọn trang khác, dùng PDF có lớp chữ hoặc nhập tay trong mục Yêu cầu & D1.', 'pdf-notice'));
+    box.append(form);
+    refreshControls();
+    return;
+  }
+  const extracted = field('Chọn đoạn nguyên văn trong văn bản trích', page.text, 'textarea', 9);
+  extracted.input.readOnly = true;
+  extracted.input.className = 'pdf-extracted';
+  const selected = node('p', 'Chưa chọn đoạn.', 'pdf-selection-count');
+  const excerpt = node('pre', '', 'pdf-excerpt');
+  excerpt.setAttribute('aria-label', 'Đoạn sẽ lưu nguyên văn');
+  const all = button('Chọn toàn bộ văn bản trang', () => {
+    extracted.input.focus();
+    extracted.input.select();
+    readSelection();
+  }, 'text-button');
+  const roleLabel = node('label', 'Dùng đoạn này làm');
+  const roleSelect = node('select');
+  for (const [key, name] of Object.entries(pdfRoles)) {
+    const option = node('option', name);
+    option.value = key;
+    roleSelect.append(option);
+  }
+  roleSelect.value = !state.matter.noticeText ? 'notice' : !state.matter.claimText ? 'claim' : 'd1';
+  roleLabel.append(roleSelect);
+  const label = field('Tên tài liệu lưu trong hồ sơ', draft.filename.replace(/\.pdf$/i, '').slice(0, 90), 'input');
+  label.input.required = true;
+  label.input.maxLength = 90;
+  const attestation = node('label', undefined, 'check pdf-attestation');
+  const confirmed = node('input');
+  confirmed.type = 'checkbox';
+  confirmed.required = true;
+  attestation.append(confirmed, document.createTextNode('Tôi đã đối chiếu đoạn chọn với trang gốc và xác nhận đúng nội dung.'));
+  const submit = node('button', 'Gắn đoạn vào hồ sơ', 'primary');
+  submit.id = 'bind-pdf';
+  submit.type = 'submit';
+  let selection = exactSelection(extracted.input);
+  function readSelection() {
+    const next = exactSelection(extracted.input);
+    if (next.start !== selection.start || next.end !== selection.end) confirmed.checked = false;
+    selection = next;
+    const limit = draft.receipt.maxExcerptChars;
+    selected.textContent = selection.text.length
+      ? selection.text.length.toLocaleString('vi-VN') + ' ký tự đã chọn' + (selection.text.length > limit ? '. Chọn đoạn ngắn hơn, tối đa ' + limit.toLocaleString('vi-VN') + ' ký tự.' : '.')
+      : 'Chưa chọn đoạn.';
+    submit.dataset.invalidSelection = String(!selection.text.length || selection.text.length > limit);
+    excerpt.hidden = submit.dataset.invalidSelection === 'true';
+    excerpt.textContent = excerpt.hidden ? '' : selection.text;
+    refreshControls();
+  }
+  for (const event of ['select', 'keyup', 'pointerup']) extracted.input.addEventListener(event, readSelection);
+  const replacement = node('p', '', 'helper');
+  function updateRole() {
+    confirmed.checked = false;
+    const replace = roleSelect.value === 'claim' && state.matter.claimText ? 'yêu cầu bảo hộ' :
+      roleSelect.value === 'notice' && state.matter.noticeText ? 'thông báo' : null;
+    replacement.textContent = replace ? 'Đoạn chọn sẽ thay ' + replace + ' trong bản làm việc. Phần duyệt liên quan cần được rà soát lại.' : '';
+    replacement.hidden = !replace;
+  }
+  roleSelect.addEventListener('change', updateRole);
+  updateRole();
+  const unsaved = node('p', 'Lưu những phần đang sửa trước khi gắn tài liệu.', 'helper');
+  unsaved.id = 'pdf-unsaved';
+  form.append(extracted.wrap, all, selected, excerpt, roleLabel, replacement, label.wrap, attestation, submit, unsaved);
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    if (state.busy || isDirty()) return;
+    readSelection();
+    if (submit.disabled || !confirmed.checked) return;
+    runPdf('Đang gắn đoạn đã đối chiếu…', async () => {
+      const payload = { version: draft.version, synthetic: true, content: draft.content, firstPage: draft.firstPage,
+        lastPage: draft.lastPage, sha256: draft.receipt.sha256, page: draft.page, ...selection,
+        label: label.input.value.trim(), role: roleSelect.value, confirmed: true };
+      const matter = await request(pdfPath('bind'), payload);
+      resetPdfForm();
+      applyMatter(matter, 'documents');
+      pdfNotice('Đã gắn ' + payload.label + ', trang ' + payload.page + ' vào hồ sơ.');
+    });
+  });
+  box.append(form);
+  readSelection();
+}
 function approvalText(approval) { if (!approval) return 'Chưa duyệt'; return 'Đã duyệt · ' + (typeof approval.by === 'string' ? approval.by : approval.by?.name ?? 'Luật sư'); }
 function setApproval(id, approval, dirty) { $(id).textContent = dirty ? 'Có nội dung chưa lưu' : approvalText(approval); $(id).classList.toggle('approved', Boolean(approval) && !dirty); }
 function field(label, value, type = 'textarea', rows = 4) { const wrap = node('label', label); const input = node(type); input.value = value ?? ''; if (type === 'textarea') input.rows = rows; wrap.append(input); return { wrap, input }; }
+function renderSectionReview(key) {
+  const box = $(key + '-review'), current = section(key);
+  box.replaceChildren();
+  box.hidden = !current?.reviewRequired || Boolean(current.approval);
+  if (box.hidden) return;
+  box.append(node('strong', 'Cần luật sư xác nhận'));
+  const message = key === 'matrix'
+    ? 'Mở đoạn claim và D1 để kiểm từng dấu hiệu. Ghi rõ phần còn thiếu nếu chứng cứ chưa đủ.'
+    : 'Đối chiếu nội dung phản hồi với ma trận và các nguồn đã chọn. Sửa nhận định chưa có căn cứ trước khi duyệt.';
+  box.append(node('p', message, 'helper'));
+  if (state.status?.role !== 'reviewer') return;
+  const label = node('label', undefined, 'check');
+  const input = node('input');
+  input.type = 'checkbox';
+  input.addEventListener('change', refreshControls);
+  label.append(input, document.createTextNode(key === 'matrix'
+    ? 'Tôi đã rà từng hàng và các đoạn nguồn của ma trận này.'
+    : 'Tôi đã đối chiếu phản hồi này với dữ kiện và nguồn đã lưu.'));
+  box.append(label);
+}
 function renderMatrix() {
   const box = $('matrix-rows'); box.replaceChildren();
   const rows = section('matrix')?.rows ?? [];
   if (!rows.length) box.append(node('p', 'Chưa có ma trận. Thêm một dấu hiệu để đối chiếu bằng tay hoặc giao AI đề xuất theo yêu cầu và nguồn đã lưu.', 'matrix-empty'));
   for (const row of rows) addMatrixRow(row, false);
   setApproval('matrix-approval', section('matrix')?.approval, false);
+  renderSectionReview('matrix');
 }
 function addMatrixRow(row = {}, dirty = true) {
   if (dirty && $('matrix-rows').querySelectorAll('.matrix-row').length >= 8) return notify('Pilot cho phép tối đa 8 dấu hiệu trong một ma trận.', true);
@@ -230,6 +599,7 @@ function addMatrixRow(row = {}, dirty = true) {
     const evidence = state.matter?.pinnedEvidence.find(item => item.record.id === row.claimQuoteRecordId);
     const origin = node('p', (row.claimQuoteRecordId === state.matter?.claimRecordId ? 'Yêu cầu đang xét: ' : 'Yêu cầu dẫn chiếu: ') + (evidence?.record.title ?? row.claimQuoteRecordId), 'quote-origin');
     origin.title = row.claimQuoteRecordId; claim.append(origin);
+    if (evidence) claim.append(button('Mở nguồn yêu cầu', () => inspect(evidence), 'text-button'));
     cq.input.addEventListener('input', () => { origin.textContent = 'Trích đoạn đã sửa; nguồn sẽ được kiểm lại khi lưu.'; });
   }
   const d1 = node('div', undefined, 'matrix-cell'); d1.append(node('h3', 'Tài liệu đối chứng D1'));
@@ -240,7 +610,10 @@ function addMatrixRow(row = {}, dirty = true) {
   if (row.d1RecordId && !eligibleD1.includes(row.d1RecordId)) { const stale = node('option', 'D1 cũ không còn phù hợp, cần chọn lại'); stale.value = row.d1RecordId; stale.disabled = true; select.append(stale); }
   select.value = row.d1RecordId ?? ''; d1Label.append(select); d1.append(d1Label);
   const dq = field('Đoạn nguyên văn từ D1', row.d1Quote); dq.input.dataset.field = 'd1Quote'; dq.input.maxLength = 1600; dq.input.className = 'quote'; d1.append(dq.wrap, button('Mở đoạn đang chọn', () => { const evidence = state.matter?.pinnedEvidence.find(x => x.record.id === select.value); if (evidence) inspect(evidence); }, 'text-button'));
-  const inference = node('div', undefined, 'matrix-cell'); inference.append(node('h3', 'Nhận định cần rà soát'));
+  const inference = node('div', undefined, 'matrix-cell matrix-inference'); inference.append(node('h3', 'Nhận định cần rà soát'));
+  if (section('matrix')?.reviewRequired && !section('matrix')?.approval) {
+    inference.append(node('p', 'Đối chiếu nguyên văn trước khi chốt mức bằng chứng.', 'helper'));
+  }
   const assessmentLabel = node('label', 'Mức bằng chứng'); const assessment = node('select'); assessment.dataset.field = 'assessment';
   for (const [key, text] of Object.entries(assessmentLabels)) { const option = node('option', text); option.value = key; assessment.append(option); }
   assessment.value = row.assessment ?? 'uncertain'; assessmentLabel.append(assessment);
@@ -253,6 +626,7 @@ function addMatrixRow(row = {}, dirty = true) {
 function matrixPayload() { return [...$('matrix-rows').querySelectorAll('.matrix-row')].map(item => Object.fromEntries([['id', item.dataset.rowId], ...[...item.querySelectorAll('[data-field]')].map(input => [input.dataset.field, input.dataset.field === 'd1RecordId' ? input.value || null : input.value.trim()])])); }
 function renderResponse() {
   $('response-text').value = section('response')?.text ?? '';
+  $('response-matrix-change').hidden = !section('response')?.matrixBasisChanged;
   const sources = $('response-sources'); sources.replaceChildren(node('legend', 'Nguồn dùng cho phần phản hồi'));
   sources.append(node('p', 'Chọn tối đa 8 đoạn, gồm nguồn riêng của hồ sơ và căn cứ công khai phù hợp.', 'helper'));
   const privateSources = [['case:claim', 'Yêu cầu đang xét', state.matter?.claimText], ['case:notice', 'Thông báo của hồ sơ', state.matter?.noticeText], ['case:instructions', 'Chỉ dẫn đã xác nhận', state.matter?.instructionsText]]
@@ -260,9 +634,16 @@ function renderResponse() {
   for (const item of [...privateSources, ...(state.matter?.pinnedEvidence ?? [])]) {
     const label = node('label', undefined, 'check'); const input = node('input'); input.type = 'checkbox'; input.value = item.record.id;
     input.checked = (section('response')?.evidenceIds ?? []).includes(item.record.id); input.addEventListener('change', () => { if (input.checked && sources.querySelectorAll('input:checked').length > 8) { input.checked = false; return notify('Phần phản hồi dùng tối đa 8 đoạn nguồn.', true); } setDirty('response'); });
-    label.append(input, document.createTextNode(item.record.title ?? item.source.title)); sources.append(label);
+    label.append(input, document.createTextNode(item.record.title ?? item.source.title));
+    const line = node('div', undefined, 'response-evidence');
+    line.append(label);
+    const doc = state.matter?.documents?.find(entry => entry.recordId === item.record.id);
+    if (doc && privatePdfURL(doc.pageUrl)) line.append(button('Xem trang ' + doc.page, () => openSavedPdfPage(doc), 'text-button'));
+    else if (item.source) line.append(button('Mở đoạn', () => inspect(item), 'text-button'));
+    sources.append(line);
   }
   setApproval('response-approval', section('response')?.approval, false);
+  renderSectionReview('response');
 }
 function renderHistory() {
   const box = $('history'); box.replaceChildren(node('h2', 'Các bản đã duyệt', 'history-heading'));
@@ -271,6 +652,9 @@ function renderHistory() {
   for (const release of releases.toReversed()) {
     const row = node('article', undefined, 'release-card'); row.append(node('h3', 'Bản duyệt ' + release.number), node('p', 'Lưu ' + date(release.at ?? release.createdAt), 'source-meta'));
     if (release.sha256 ?? release.digest) row.append(node('p', 'Dấu kiểm ' + (release.sha256 ?? release.digest), 'source-meta'));
+    if (release.artifactSha256 ?? release.artifact?.sha256) {
+      row.append(node('p', 'Dấu kiểm tệp Word ' + (release.artifactSha256 ?? release.artifact.sha256), 'source-meta'));
+    }
     const actions = node('div', undefined, 'section-actions'); actions.append(button('Xem bản đã lưu', () => openRelease(release.number)), downloadLink(release.number)); row.append(actions); box.append(row);
   }
   box.append(node('h2', 'Các lượt đề xuất', 'history-heading'));
@@ -289,11 +673,26 @@ async function openRelease(number) { await run('Đang mở bản đã lưu…', 
   const response = value.sections?.response;
   body.append(node('h3', 'Phản hồi'), node('pre', typeof response === 'string' ? response : response?.text ?? value.response?.text ?? 'Đọc nội dung đầy đủ trong Word của bản này.', 'release-preview'), node('h3', 'Nguồn được giữ cùng bản duyệt'));
   const ledger = node('ul', undefined, 'gap-list');
-  for (const item of value.pinnedEvidence ?? []) { const row = node('li'); row.append(safeLink(item.record.title, capturedURL(item) ?? originalURL(item)), document.createTextNode(' · ' + locator(item.record))); ledger.append(row); }
+  for (const item of value.pinnedEvidence ?? []) {
+    if (item.source.kind === 'case_document') continue;
+    const row = node('li');
+    row.append(safeLink(item.record.title, capturedURL(item) ?? originalURL(item)), document.createTextNode(' · ' + locator(item.record)));
+    ledger.append(row);
+  }
+  for (const doc of value.documents ?? []) {
+    const row = node('li', doc.label + ' · ' + (pdfRoles[doc.role] ?? 'Đoạn chứng cứ') + ' · Trang ' + doc.page);
+    if (privatePdfURL(doc.openUrl)) row.append(document.createTextNode(' · '), safeLink('Tải PDF gốc', doc.openUrl));
+    ledger.append(row);
+  }
   body.append(ledger, downloadLink(number)); showDialog('Bản duyệt ' + number, body);
 }); }
 function applyMatter(matter, nextView = state.view) {
   const different = state.matter?.id !== matter.id;
+  if (different) resetPdfForm();
+  else if (state.pdf && state.pdf.version !== matter.version) {
+    resetInspection();
+    pdfNotice('Hồ sơ đã đổi. Đọc lại trang trước khi gắn đoạn trích.');
+  }
   state.matter = matter; state.dirty = { inputs: false, matrix: false, response: false };
   state.claimRecordId = matter.claimRecordId ?? null; state.d1RecordIds = new Set(matter.d1RecordIds ?? []);
   state.selected = new Map((matter.pinnedEvidence ?? []).map(item => [pinId(item), item])); state.detail = matter.pinnedEvidence?.at(-1)?.record.id ?? null;
@@ -304,17 +703,27 @@ function applyMatter(matter, nextView = state.view) {
   $('matter-context').textContent = shorten(matter.context.claimVersion, 100) + ' · Đối chiếu ' + date(matter.context.asOf) + ' · Hồ sơ mô phỏng';
   $('claim-text').value = matter.claimText; $('claim-version').value = matter.context.claimVersion;
   $('case-notice-text').value = matter.noticeText ?? ''; $('case-instructions-text').value = matter.instructionsText ?? '';
-  $('notice-summary').textContent = matter.noticeText ? 'Thông báo và chỉ dẫn đã lưu · mô phỏng' : 'Chưa có thông báo';
-  $('claim-summary').textContent = shorten(matter.context.claimVersion, 70) + (matter.claimRecordId ? ' · theo nguồn đã chọn' : ' · nội dung nhập tay');
+  const noticePdf = matter.documents?.find(doc => doc.role === 'notice');
+  const claimPdf = matter.documents?.find(doc => doc.role === 'claim');
+  $('notice-summary').textContent = noticePdf ? noticePdf.label + ' · Trang ' + noticePdf.page : matter.noticeText ? 'Thông báo đã lưu' : 'Chưa có thông báo';
+  $('claim-summary').textContent = claimPdf ? claimPdf.label + ' · Trang ' + claimPdf.page : shorten(matter.context.claimVersion, 70) +
+    (matter.claimRecordId ? ' · theo nguồn đã chọn' : matter.claimText ? ' · nội dung nhập tay' : '');
   $('claim-excerpt').textContent = shorten(matter.claimText.replace(/\s+/g, ' '), 140);
   if (different) { $('private-inputs').open = false; $('claim-inputs').open = false; }
   $('release-count').textContent = matter.releases.length || '';
   const last = matter.releases.at(-1); $('export-latest').hidden = !last; if (last) $('export-latest').textContent = 'Xuất Word bản ' + last.number;
-  renderCases(); renderMatrix(); renderResponse(); renderHistory(); renderEvidence(); mode(nextView === 'search' ? 'search' : nextView);
+  renderCases(); renderMatrix(); renderResponse(); renderHistory(); renderEvidence(); renderDocuments(); mode(nextView);
   rail(false); refreshControls();
   if (different) requestAnimationFrame(() => { $('document-scroll').scrollTop = 0; });
 }
-async function openCase(id) { await run('Đang mở đúng hồ sơ…', async () => { applyMatter(await request('cases/' + encodeURIComponent(id)), 'matrix'); const url = new URL(location.href); url.searchParams.set('case', id); history.pushState({}, '', url); requestAnimationFrame(() => { $('document-scroll').scrollTop = 0; }); }); }
+async function openCase(id, requestedView, push = true) {
+  await run('Đang mở đúng hồ sơ…', async () => {
+    const matter = await request('cases/' + encodeURIComponent(id));
+    applyMatter(matter, initialCaseView(matter, requestedView));
+    setCaseURL(matter.id, state.view, push);
+    requestAnimationFrame(() => { $('document-scroll').scrollTop = 0; });
+  });
+}
 async function mutate(action, values, message) { await run('Đang lưu hồ sơ…', async () => {
   const preserved = {};
   if (state.dirty.inputs && action !== 'source') preserved.inputs = { selected: new Map(state.selected), claimText: $('claim-text').value,
@@ -338,59 +747,95 @@ async function propose(targets) {
 function refreshControls() {
   const active = Boolean(state.matter), busy = state.busy, inputsDirty = state.dirty.inputs || Boolean(state.matter?.sourceChanged);
   const invalidSource = Boolean(state.matter?.pinnedEvidence.some(item => extractionWarning(item)));
-  document.querySelector('.composer-area').hidden = !active || state.view === 'history';
+  document.querySelector('.composer-area').hidden = !active || !['matrix', 'response'].includes(state.view);
   for (const view of views.slice(1)) $('tab-' + view).disabled = !active;
   $('task').disabled = !active || busy || !state.status?.model;
-  $('send-task').disabled = !active || busy || !state.status?.model || isDirty() || inputsDirty || invalidSource;
+  const hasClaim = Boolean(state.matter?.claimText?.trim());
+  $('send-task').disabled = !hasClaim || busy || !state.status?.model || isDirty() || inputsDirty || invalidSource;
   $('model-state').textContent = invalidSource ? 'Cần thay bản trích có lỗi' : state.status?.model ? 'AI đề xuất, luật sư quyết định' : 'AI chưa bật';
   $('case-example').disabled = busy || !state.status?.demo;
   $('new-case').disabled = busy; $('create-selected').disabled = busy || !state.selected.size;
   $('save-selected').disabled = busy || !active || !inputsDirty; $('save-inputs').disabled = busy || !active || !inputsDirty;
+  $('save-private').disabled = busy || !active || !inputsDirty;
   $('inputs-state').textContent = state.matter?.sourceChanged ? 'Nguồn đã đổi, lưu lại và rà soát phiên bản mới' : inputsDirty ? 'Nguồn / yêu cầu chưa lưu' : active ? 'Đã gắn với hồ sơ' : '';
   $('inputs-state').toggleAttribute('data-dirty', inputsDirty);
   for (const key of ['matrix', 'response']) {
-    $('save-' + key).disabled = busy || !active || !state.dirty[key];
-    $('propose-' + key).disabled = busy || !active || !state.status?.model || isDirty() || inputsDirty || invalidSource;
+    const basisChanged = key === 'response' && Boolean(section(key)?.matrixBasisChanged);
+    $('save-' + key).disabled = busy || !active || (!state.dirty[key] && !basisChanged);
+    $('propose-' + key).disabled = busy || !hasClaim || !state.status?.model || isDirty() || inputsDirty || invalidSource;
+    const attestation = $(key + '-review').querySelector('input');
+    if (attestation) attestation.disabled = busy || inputsDirty || state.dirty[key];
+    const reviewPending = Boolean(section(key)?.reviewRequired && !attestation?.checked);
     $('approve-' + key).disabled = busy || !active || state.status?.role !== 'reviewer' || inputsDirty || invalidSource || state.dirty[key] || Boolean(section(key)?.approval) ||
-      (key === 'matrix' ? !(section(key)?.rows?.length) : !section(key)?.text?.trim());
-    $('approve-' + key).title = state.status?.role === 'reviewer' ? '' : 'Cần tài khoản luật sư để duyệt.';
+      !hasClaim || reviewPending || basisChanged || (key === 'matrix' ? !(section(key)?.rows?.length) : !section(key)?.text?.trim());
+    $('approve-' + key).title = state.status?.role !== 'reviewer' ? 'Cần tài khoản luật sư để duyệt.' : reviewPending ? 'Xác nhận đã rà soát trước khi duyệt.' : '';
     setApproval(key + '-approval', section(key)?.approval, state.dirty[key]);
   }
   $('add-row').disabled = !active || busy;
   $('export-latest').disabled = busy;
-  document.querySelectorAll('#view-matrix input,#view-matrix textarea,#view-matrix select,#view-response input,#view-response textarea').forEach(el => { el.disabled = busy; });
+  document.querySelectorAll('#view-matrix input,#view-matrix textarea,#view-matrix select,#view-response input,#view-response textarea').forEach(el => { if (!el.closest('.section-review')) el.disabled = busy; });
   document.querySelectorAll('#selected-sources button,#selected-sources input,#search-results button,#dialog-body form input,#dialog-body form textarea,#dialog-body form select,#dialog-body form button').forEach(el => {
     el.disabled = busy || el.dataset.keepDisabled === 'true';
   });
+  document.querySelectorAll('#pdf-inspect-form input,#pdf-inspect-form button,#pdf-inspection input,#pdf-inspection select,#pdf-inspection button').forEach(el => { el.disabled = busy; });
+  const bind = $('bind-pdf');
+  if (bind) {
+    bind.disabled = busy || isDirty() || bind.dataset.invalidSelection === 'true';
+    $('pdf-unsaved').hidden = !isDirty();
+  }
 }
-function createDialog() {
+function createDialog(fromSelection = false) {
   if (!discard()) return;
-  const form = node('form'); form.append(node('p', 'Chọn đoạn yêu cầu và đối chứng từ nguồn công khai. Hồ sơ trong pilot này là mô phỏng; không đưa hồ sơ khách hàng thật vào đây.', 'dialog-note'));
+  const selection = fromSelection ? [...state.selected.values()].filter(item => item.source.kind !== 'case_document') : [];
+  const form = node('form');
+  form.append(node('p', 'Tạo hồ sơ mô phỏng, sau đó gắn tài liệu PDF hoặc nhập dữ kiện đã xác nhận.', 'dialog-note'));
   const grid = node('div', undefined, 'create-grid'); const ref = field('Mã hồ sơ', '', 'input'); ref.input.required = true; ref.input.maxLength = 48; ref.input.placeholder = 'PAT-2026-001'; const title = field('Tên hồ sơ', '', 'input'); title.input.required = true; title.input.maxLength = 160; grid.append(ref.wrap, title.wrap);
-  const version = field('Phiên bản yêu cầu bảo hộ', 'Yêu cầu 1', 'input'); version.input.required = true; version.input.maxLength = 100;
-  const asOf = field('Ngày đối chiếu đã xác nhận', today(), 'input'); asOf.input.type = 'date'; asOf.input.required = true; grid.append(version.wrap, asOf.wrap); form.append(grid);
-  const notice = field('Nội dung thông báo cần phản hồi', '', 'textarea', 4); notice.input.maxLength = 6000; notice.input.required = true;
+  const version = field('Phiên bản yêu cầu bảo hộ', '', 'input'); version.input.maxLength = 100;
+  const asOf = field('Ngày đối chiếu đã xác nhận', today(), 'input'); asOf.input.type = 'date'; asOf.input.required = true; grid.append(asOf.wrap); form.append(grid);
+  const manual = node('details', undefined, 'create-manual');
+  manual.open = Boolean(selection.length);
+  manual.append(node('summary', 'Nhập dữ kiện đã có'), version.wrap);
+  const notice = field('Nội dung thông báo cần phản hồi', '', 'textarea', 4); notice.input.maxLength = 6000;
   const noticeGroup = node('div', undefined, 'create-file-field'); noticeGroup.append(notice.wrap, button('Chọn tệp TXT/MD', () => pickText(notice.input), 'text-button'));
-  const instructions = field('Chỉ dẫn đã xác nhận', '', 'textarea', 3); instructions.input.maxLength = 6000; instructions.input.required = true;
+  const instructions = field('Chỉ dẫn đã xác nhận', '', 'textarea', 3); instructions.input.maxLength = 6000;
   const instructionsGroup = node('div', undefined, 'create-file-field'); instructionsGroup.append(instructions.wrap, button('Chọn tệp TXT/MD', () => pickText(instructions.input), 'text-button'));
-  form.append(noticeGroup, instructionsGroup);
-  const claim = field('Yêu cầu bảo hộ cần phân tích', '', 'textarea', 6); claim.input.required = true; claim.input.maxLength = 6000;
+  manual.append(noticeGroup, instructionsGroup);
+  const claim = field('Yêu cầu bảo hộ cần phân tích', '', 'textarea', 6); claim.input.maxLength = 6000;
   const claimLabel = node('label', 'Nguồn của yêu cầu đang xét'); const claimSource = node('select');
   const own = node('option', 'Yêu cầu nhập tay / mô phỏng'); own.value = ''; claimSource.append(own);
-  const patents = [...state.selected.values()].filter(item => item.record.kind === 'patent');
+  const patents = selection.filter(item => item.record.kind === 'patent');
   for (const item of patents.filter(item => isClaim(item.record))) { const option = node('option', item.record.title); option.value = item.record.id; claimSource.append(option); }
-  claimSource.value = state.claimRecordId ?? '';
-  if (state.claimRecordId && state.selected.has(state.claimRecordId)) claim.input.value = state.selected.get(state.claimRecordId).record.text;
-  claimLabel.append(claimSource); form.append(claimLabel, claim.wrap);
+  claimSource.value = fromSelection ? state.claimRecordId ?? '' : '';
+  if (claimSource.value && state.selected.has(claimSource.value)) {
+    const item = state.selected.get(claimSource.value);
+    claim.input.value = item.record.text;
+    version.input.value = locator(item.record);
+  }
+  claimLabel.append(claimSource); manual.append(claimLabel, claim.wrap);
   const d1 = node('fieldset', undefined, 'create-d1'); d1.append(node('legend', 'Đoạn nguồn dùng làm đối chứng D1'));
   const d1Choices = patents.map(item => { const label = node('label', undefined, 'check'); const input = node('input'); input.type = 'checkbox'; input.value = item.record.id; input.checked = state.d1RecordIds.has(item.record.id); input.disabled = d1Blocked(input.value, claimSource.value); input.dataset.keepDisabled = String(input.disabled); if (input.disabled) input.checked = false; label.append(input, document.createTextNode(item.record.title)); d1.append(label); return input; });
   if (!patents.length) d1.append(node('p', 'Chưa chọn tài liệu sáng chế công bố. Có thể lưu hồ sơ trước, rồi bổ sung nguồn D1 để đối chiếu.', 'helper'));
   claimSource.addEventListener('change', () => { const item = state.selected.get(claimSource.value); if (item) { claim.input.value = item.record.text; version.input.value = locator(item.record); } d1Choices.forEach(input => { input.disabled = d1Blocked(input.value, claimSource.value); input.dataset.keepDisabled = String(input.disabled); if (input.disabled) input.checked = false; }); });
   claim.input.addEventListener('input', () => { claimSource.value = ''; d1Choices.forEach(input => { input.disabled = false; input.dataset.keepDisabled = 'false'; }); });
-  form.append(d1, node('p', state.selected.size + ' đoạn nguồn công khai đang chọn sẽ gắn với hồ sơ. Thông báo và chỉ dẫn được lưu riêng theo nhóm. Chưa nhập thông báo PDF trong luồng này.', 'helper'));
+  manual.append(d1);
+  if (selection.length) manual.append(node('p', selection.length + ' đoạn nguồn công khai sẽ gắn với hồ sơ.', 'helper'));
+  form.append(manual);
   const confirmed = node('label', undefined, 'check'); const check = node('input'); check.type = 'checkbox'; check.required = true; confirmed.append(check, document.createTextNode('Tôi xác nhận đây là hồ sơ mô phỏng.')); form.append(confirmed);
   const submit = node('button', 'Lưu hồ sơ sáng chế', 'primary'); submit.type = 'submit'; form.append(submit);
-  form.addEventListener('submit', event => { event.preventDefault(); run('Đang tạo hồ sơ…', async () => { const matter = await request('cases', { synthetic: true, reference: ref.input.value, title: title.input.value, claimText: claim.input.value, claimVersion: version.input.value, jurisdiction: 'VN', asOf: asOf.input.value, evidenceIds: [...state.selected.keys()], claimRecordId: claimSource.value || null, d1RecordIds: d1Choices.filter(input => input.checked && !input.disabled).map(input => input.value), noticeText: notice.input.value, instructionsText: instructions.input.value }); $('dialog').close(); applyMatter(matter, 'matrix'); const url = new URL(location.href); url.searchParams.set('case', matter.id); history.pushState({}, '', url); }, 'Đã lưu hồ sơ mô phỏng và nguồn đã chọn.'); });
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    run('Đang tạo hồ sơ…', async () => {
+      const matter = await request('cases', {
+        synthetic: true, reference: ref.input.value, title: title.input.value, claimText: claim.input.value,
+        claimVersion: version.input.value, jurisdiction: 'VN', asOf: asOf.input.value, evidenceIds: selection.map(pinId),
+        claimRecordId: claimSource.value || null, d1RecordIds: d1Choices.filter(input => input.checked && !input.disabled).map(input => input.value),
+        noticeText: notice.input.value, instructionsText: instructions.input.value
+      });
+      $('dialog').close();
+      applyMatter(matter, initialCaseView(matter));
+      setCaseURL(matter.id, state.view, true);
+    }, 'Đã lưu hồ sơ mô phỏng.');
+  });
   showDialog('Hồ sơ sáng chế mới', form);
 }
 function datasetDialog() {
@@ -408,6 +853,60 @@ function datasetDialog() {
   body.append(gaps); showDialog('Phạm vi và dữ liệu sáng chế', body);
 }
 
+const drop = $('pdf-drop');
+$('case-pdf').addEventListener('change', event => pickPdf(event.target.files?.[0]));
+for (const event of ['dragenter', 'dragover']) drop.addEventListener(event, action => {
+  action.preventDefault();
+  if (!state.busy) drop.classList.add('dragging');
+});
+drop.addEventListener('dragleave', action => {
+  if (!drop.contains(action.relatedTarget)) drop.classList.remove('dragging');
+});
+drop.addEventListener('drop', event => {
+  event.preventDefault();
+  drop.classList.remove('dragging');
+  if (state.busy) return;
+  if (event.dataTransfer?.files.length !== 1) {
+    pdfNotice('Thả một tệp PDF mỗi lượt.', true);
+    return;
+  }
+  $('case-pdf').value = '';
+  pickPdf(event.dataTransfer.files[0]);
+});
+for (const id of ['pdf-first-page', 'pdf-last-page', 'pdf-synthetic']) {
+  $(id).addEventListener('change', () => {
+    if (state.pdf) {
+      resetInspection();
+      pdfNotice('Đọc lại các trang sau khi thay đổi lựa chọn.');
+    }
+  });
+}
+$('pdf-inspect-form').addEventListener('submit', event => {
+  event.preventDefault();
+  if (!state.matter || !$('pdf-synthetic').checked) return;
+  if (!pdfFile) { pdfNotice('Chọn PDF mô phỏng cần đọc.', true); return; }
+  const firstPage = Number($('pdf-first-page').value), lastPage = Number($('pdf-last-page').value);
+  if (firstPage > lastPage || lastPage - firstPage >= 4) {
+    pdfNotice('Chọn một khoảng liên tiếp tối đa 4 trang.', true);
+    return;
+  }
+  resetInspection();
+  runPdf('Đang đọc các trang đã chọn…', async () => {
+    const content = await base64Pdf(pdfFile);
+    const version = state.matter.version;
+    const receipt = await request(pdfPath('inspect'), { version, synthetic: true, content, firstPage, lastPage });
+    if (!Array.isArray(receipt.pages) || !receipt.pages.length || !receipt.pages.every(page => Number.isInteger(page.page) && typeof page.text === 'string') ||
+      !/^[a-f0-9]{64}$/.test(receipt.sha256) || !Number.isInteger(receipt.maxExcerptChars)) {
+      throw new Error('Chưa nhận được đoạn trích có thể đối chiếu. Kiểm tra tệp và thử lại.');
+    }
+    const page = (receipt.pages.find(item => item.usable) ?? receipt.pages[0]).page;
+    state.pdf = { version, content, firstPage, lastPage, receipt, page, filename: pdfFile.name };
+    renderPdfInspection(state.pdf);
+    pdfNotice('PDF có ' + receipt.pageCount + ' trang. Mở ảnh trang để kiểm đoạn cần gắn.');
+    $('pdf-inspection').querySelector('select')?.focus();
+  });
+});
+
 for (const view of views) $('tab-' + view).addEventListener('click', () => mode(view));
 document.querySelector('.work-tabs').addEventListener('keydown', event => {
   if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
@@ -420,24 +919,45 @@ $('search-form').addEventListener('submit', event => { event.preventDefault(); r
 document.querySelectorAll('[data-query]').forEach(b => b.addEventListener('click', () => { $('query').value = b.dataset.query; $('search-form').requestSubmit(); }));
 $('browse-catalog').addEventListener('click', () => { state.search = null; renderResults(); });
 $('catalog-kind').addEventListener('change', () => { state.catalogLimit = 10; renderResults(); });
-$('case-example').addEventListener('click', () => { if (!discard()) return; run('Đang mở hồ sơ mẫu từ nguồn đã lưu…', async () => { const matter = await request('cases/example', { synthetic: true }); applyMatter(matter, 'matrix'); const url = new URL(location.href); url.searchParams.set('case', matter.id); history.pushState({}, '', url); }, state.status?.demo?.notice ?? 'Hồ sơ dùng nguồn công khai, tác vụ đối chiếu và quyết định duyệt là mô phỏng.'); });
-$('new-case').addEventListener('click', createDialog); $('create-selected').addEventListener('click', createDialog);
+$('case-example').addEventListener('click', () => {
+  if (!discard()) return;
+  run('Đang mở hồ sơ mẫu từ nguồn đã lưu…', async () => {
+    const matter = await request('cases/example', { synthetic: true });
+    applyMatter(matter, 'matrix');
+    setCaseURL(matter.id, state.view, true);
+  }, state.status?.demo?.notice ?? 'Đã mở hồ sơ đối chiếu mô phỏng.');
+});
+$('new-case').addEventListener('click', () => createDialog());
+$('create-selected').addEventListener('click', () => createDialog(true));
 $('case-filter').addEventListener('input', renderCases);
 $('claim-text').addEventListener('input', () => { state.claimRecordId = null; setDirty('inputs'); renderEvidence(); }); $('claim-version').addEventListener('input', () => setDirty('inputs'));
 $('case-notice-text').addEventListener('input', () => setDirty('inputs')); $('case-instructions-text').addEventListener('input', () => setDirty('inputs'));
 document.querySelectorAll('[data-case-file]').forEach(b => b.addEventListener('click', () => pickText($(b.dataset.caseFile), () => setDirty('inputs'))));
 $('save-inputs').addEventListener('click', saveInputs); $('save-selected').addEventListener('click', saveInputs);
+$('save-private').addEventListener('click', saveInputs);
+$('edit-manual').addEventListener('click', () => {
+  mode('matrix');
+  $('private-inputs').open = true;
+  $('case-notice-text').focus();
+});
 $('add-row').addEventListener('click', () => addMatrixRow());
 $('save-matrix').addEventListener('click', () => mutate('edit', { matrixRows: matrixPayload() }, 'Đã lưu ma trận. Các nhận định cần luật sư rà soát.'));
 $('save-response').addEventListener('click', () => mutate('edit', { response: { text: $('response-text').value, evidenceIds: [...$('response-sources').querySelectorAll('input:checked')].map(input => input.value) } }, 'Đã lưu phần phản hồi để duyệt.'));
 $('response-text').addEventListener('input', () => setDirty('response'));
-for (const key of ['matrix', 'response']) { $('propose-' + key).addEventListener('click', () => propose([key])); $('approve-' + key).addEventListener('click', () => mutate('approve', { targets: [key] }, 'Đã duyệt phần đã chọn. Bản xuất được tạo khi đủ hai phần đã duyệt.')); }
+for (const key of ['matrix', 'response']) {
+  $('propose-' + key).addEventListener('click', () => propose([key]));
+  $('approve-' + key).addEventListener('click', () => {
+    const reviewed = Boolean($(key + '-review').querySelector('input:checked'));
+    mutate('approve', { targets: [key], reviewed }, 'Đã duyệt phần đã chọn. Khi đủ hai phần, Word xuất hiện trong mục Phiên bản.');
+  });
+}
 $('task-form').addEventListener('submit', event => { event.preventDefault(); const targets = [...$('task-form').querySelectorAll('[name=target]:checked')].map(input => input.value); if (!targets.length) return notify('Chọn phần cần cập nhật trước khi giao việc.', true); propose(targets); });
 $('task').addEventListener('keydown', event => { if (event.key === 'Enter' && (event.metaKey || event.ctrlKey)) { event.preventDefault(); $('task-form').requestSubmit(); } });
 $('export-latest').addEventListener('click', () => { const release = state.matter?.releases.at(-1); if (release) { const a = downloadLink(release.number); document.body.append(a); a.click(); a.remove(); } });
-$('reload-case').addEventListener('click', () => { if (state.matter && discard()) openCase(state.matter.id); });
+$('reload-case').addEventListener('click', () => { if (state.matter && discard()) openCase(state.matter.id, state.view, false); });
 $('close-notice').addEventListener('click', () => { $('notice').hidden = true; });
-$('dataset-details').addEventListener('click', datasetDialog); $('show-gaps').addEventListener('click', datasetDialog);
+for (const id of ['dataset-details', 'show-gaps']) $(id).addEventListener('click', () =>
+  run('Đang mở phạm vi kho nguồn…', async () => { await loadCatalog(); datasetDialog(); }));
 $('open-evidence').addEventListener('click', () => panel($('open-evidence').getAttribute('aria-expanded') !== 'true')); $('close-evidence').addEventListener('click', () => panel(false));
 $('open-rail').addEventListener('click', () => rail(!$('rail').classList.contains('mobile-open')));
 $('close-dialog').addEventListener('click', () => $('dialog').close());
@@ -445,18 +965,36 @@ $('sign-out').addEventListener('click', async () => { if (!discard()) return; tr
 document.addEventListener('keydown', event => { if (event.key === 'Escape' && !$('dialog').open) { rail(false); if (mobile.matches) panel(false); } });
 mobile.addEventListener('change', () => { rail(false); $('evidence-panel').hidden = false; panel(!mobile.matches); });
 window.addEventListener('beforeunload', event => { if (isDirty()) { event.preventDefault(); event.returnValue = ''; } });
-window.addEventListener('popstate', () => { const id = new URL(location.href).searchParams.get('case'); if (id && id !== state.matter?.id && discard()) openCase(id); });
+window.addEventListener('popstate', () => {
+  const url = new URL(location.href), id = url.searchParams.get('case'), view = url.searchParams.get('view');
+  if (id === state.matter?.id && views.includes(view)) mode(view);
+  else if (id && discard()) openCase(id, view, false);
+  else if (!id && state.matter && discard()) location.reload();
+});
 
 function today() { const p = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Ho_Chi_Minh', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(new Date()); return ['year', 'month', 'day'].map(key => p.find(item => item.type === key).value).join('-'); }
-await run('Đang mở kho sáng chế…', async () => {
-  const [status, catalog, cases] = await Promise.all([request('status'), request('catalog'), request('cases')]);
-  state.status = status; state.catalog = catalog; state.cases = Array.isArray(cases) ? cases : cases.cases ?? [];
-  const through = savedThrough();
-  if (!$('search-date').value && through) $('search-date').value = through;
-  $('search-coverage').textContent = 'Kho đã lưu đến ' + date(through) + '. Ngày đối chiếu mặc định theo mốc kho để tham khảo lịch sử. Chưa có ngày hiệu lực không được hiểu là đang áp dụng.';
-  $('coverage-summary').textContent = (status.dataset.sourceCount ?? catalog.sources.length) + ' nguồn, ' + (status.dataset.recordCount ?? catalog.records.length) + ' đoạn. Kho đã lưu đến ' + date(through) + '. Chờ luật sư rà soát.';
-  renderCases(); renderResults(); renderEvidence();
-  const id = new URL(location.href).searchParams.get('case');
-  if (id) applyMatter(await request('cases/' + encodeURIComponent(id)), 'matrix');
-  panel(!mobile.matches);
+const startURL = new URL(location.href);
+const startCaseId = startURL.searchParams.get('case');
+panel(!mobile.matches);
+await run('Đang mở bàn hồ sơ…', async () => {
+  const status = request('status').then(value => {
+    state.status = value;
+    const through = savedThrough();
+    if (!$('search-date').value && through) $('search-date').value = through;
+    $('search-coverage').textContent = 'Kho đã lưu đến ' + date(through) + '. Ngày đối chiếu mặc định theo mốc kho để tham khảo lịch sử. Chưa có ngày hiệu lực không được hiểu là đang áp dụng.';
+    $('coverage-summary').textContent = value.dataset.sourceCount + ' nguồn, ' + value.dataset.recordCount + ' đoạn. Kho đã lưu đến ' + date(through) + '. Chờ luật sư rà soát.';
+  });
+  const cases = request('cases').then(value => {
+    state.cases = Array.isArray(value) ? value : value.cases ?? [];
+    renderCases();
+  });
+  const matter = startCaseId ? request('cases/' + encodeURIComponent(startCaseId)) : Promise.resolve(null);
+  const [, , opened] = await Promise.all([status, cases, matter]);
+  if (opened) {
+    applyMatter(opened, initialCaseView(opened, startURL.searchParams.get('view')));
+    setCaseURL(opened.id, state.view);
+  } else {
+    renderEvidence();
+    renderResults();
+  }
 });

@@ -70,9 +70,10 @@ function failure(res, error) {
     'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff' }, body });
 }
 
-const isModelRequest = req => req.method === 'POST' &&
-  (/^\/api\/(?:m3|patents)\/cases\/[a-f0-9-]{36}\/propose$/.test(new URL(req.url, 'https://pilot.invalid').pathname) ||
-    new URL(req.url, 'https://pilot.invalid').pathname === '/api/copilot/intake/run');
+const isModelPath = pathname => pathname === '/api/copilot/intake/run' ||
+  /^\/api\/(?:m3|patents)\/cases\/[a-f0-9-]{36}\/propose$/.test(pathname);
+const isReadOnlyPostPath = pathname => pathname === '/api/patents/search' ||
+  /^\/api\/patents\/cases\/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}\/pdf\/(?:inspect|preview)$/.test(pathname);
 
 // The SQLite file is a request workspace, never the durable store. A single
 // private-Blob conditional write publishes DB, sessions and counters together.
@@ -85,6 +86,7 @@ export function createSnapshotRuntime({ store, run, accounts, preflight = () => 
     let committed = false;
     try {
       if (!preflight(req)) throw new SnapshotError('Địa chỉ truy cập hoặc nguồn yêu cầu chưa được cho phép.', 403);
+      const postPath = req.method === 'POST' ? new URL(req.url, 'https://pilot.invalid').pathname : null;
       const loaded = await store.read();
       if (!loaded) throw new SnapshotError('Pilot chưa được khởi tạo. Liên hệ người quản trị.');
       const state = structuredClone(loaded.state);
@@ -102,11 +104,13 @@ export function createSnapshotRuntime({ store, run, accounts, preflight = () => 
       // These validations also bound restored counters before they reach core.
       windowLimit(12, 300000, 1024, state.loginLimits);
       const modelLimit = windowLimit(20, 86400000, 1024, state.modelLimits);
-      const mutating = !['GET', 'HEAD'].includes(req.method);
+      // These POST routes take structured inputs but use the same verified
+      // snapshot and app authorization as GET, without publishing state.
+      const mutating = !['GET', 'HEAD'].includes(req.method) && !isReadOnlyPostPath(postPath);
       let modelReserved = false;
       if (mutating) {
         if (state.lease?.until > now()) throw new SnapshotError('Pilot đang lưu một thay đổi khác. Chờ lượt hiện tại hoàn tất rồi mở lại hồ sơ.', 409);
-        if (isModelRequest(req)) {
+        if (isModelPath(postPath)) {
           const actor = auth(req);
           if (actor) {
             if (!modelLimit(actor.group + ':' + actor.name, now())) throw new SnapshotError('Tài khoản đã hết 20 lượt AI trong cửa sổ 24 giờ của pilot.', 429);

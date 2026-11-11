@@ -20,8 +20,15 @@ form.addEventListener('submit', async event => {
     const target = form.dataset.returnTo;
     if (['/patents/', '/copilot/m3/workspace/'].includes(target)) {
       const next = new URL(target, location.origin);
-      const id = new URL(location.href).searchParams.get('case');
-      if (id && /^[a-f0-9-]{36}$/.test(id)) next.searchParams.set('case', id);
+      const params = new URL(location.href).searchParams;
+      const id = params.get('case');
+      if (id && /^[a-f0-9-]{36}$/.test(id)) {
+        next.searchParams.set('case', id);
+        const view = params.get('view');
+        if (target === '/patents/' && ['search', 'documents', 'matrix', 'response', 'history'].includes(view)) {
+          next.searchParams.set('view', view);
+        }
+      }
       location.assign(next.href);
     } else location.reload();
   } catch (detail) {

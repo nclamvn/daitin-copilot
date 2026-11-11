@@ -166,6 +166,42 @@ test('runtime discards GET-only Word cache and rejects corrupt snapshots before 
   assert.deepEqual(readdirSync(directory), []);
 });
 
+test('patent search and PDF previews authenticate against committed state without taking a write lease', async t => {
+  const directory = setup(t);
+  const initial = makeSnapshot(database(), { accounts: [account] });
+  initial.lease = { id: 'other-isolate', until: Date.now() + 30000 };
+  const store = memoryStore(initial);
+  const headers = { authorization: 'Basic ' + Buffer.from(account.name + ':' + account.key).toString('base64') };
+  const casePath = '/api/patents/cases/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa';
+  let calls = 0;
+  const runtime = createSnapshotRuntime({ store, accounts: () => [account], temporaryRoot: directory,
+    async run({ req, res, state, databasePath, accountsPath, modelReserved }) {
+      calls++;
+      assert.equal(modelReserved, false);
+      assert.deepEqual(readFileSync(databasePath), database());
+      const actor = pilotAccess(accountsPath, { secure: true, savedSessions: state.sessions })(req);
+      reply(res, actor ? 200 : 401);
+      return keepAuth(state);
+    } });
+  for (const path of ['/api/patents/search', casePath + '/pdf/inspect', casePath + '/pdf/preview?selection=1']) {
+    const result = response();
+    await runtime(request(path, 'POST', headers), result);
+    assert.equal(result.status, 200, path);
+  }
+  const anonymous = response();
+  await runtime(request(casePath + '/pdf/inspect', 'POST'), anonymous);
+  assert.equal(anonymous.status, 401);
+  for (const path of ['/api/m4/pdf/preview', casePath + '/pdf/bind', '/proxy' + casePath + '/pdf/inspect']) {
+    const result = response();
+    await runtime(request(path, 'POST', headers), result);
+    assert.equal(result.status, 409, path);
+  }
+  assert.equal(calls, 4);
+  assert.equal(store.writes(), 0);
+  assert.deepEqual(store.state(), initial);
+  assert.deepEqual(readdirSync(directory), []);
+});
+
 test('approval refuses a manually completed model placeholder with no selected source', async t => {
   const directory = setup(t);
   process.env.DAI_TIN_CORPUS_MODE = 'preview';

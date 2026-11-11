@@ -22,3 +22,11 @@ Bản triển khai mở ngay thư mục nguồn công khai và hồ sơ đối c
 Nguồn có hai đường mở rõ ràng: bản thu thập cố định theo SHA tại dịch vụ và bản trực tuyến của cơ quan nguồn. Trích đoạn được hiển thị như văn bản thuần. Bản xem trước của danh mục được ghi là rút gọn và phải mở chứng cứ để đọc nguyên văn. Biên tập phần này không được tự xóa phần đang sửa dở ở phần khác.
 
 Rà soát thiết kế trước thi công: giữ bảng màu và bố cục sản phẩm hiện hữu là yêu cầu xuyên suốt, không thay bằng concept khác. Điểm đặc thù dành cho sáng chế là yêu cầu bảo hộ, đối chứng, trích đoạn và sự tách biệt giữa suy luận và nguồn. Đánh số chỉ dành cho yêu cầu bảo hộ/phần nội dung có thứ tự thật; không thêm nhãn hoặc khối trang trí để tạo cảm giác công nghệ.
+
+## M7. PDF vào hồ sơ, quyết định trong hồ sơ
+
+Tài liệu riêng có mục làm việc riêng giữa thư mục công khai và ma trận. Hồ sơ mới có thể lưu mã, tên và ngày đối chiếu trước, rồi nhập PDF hoặc dữ kiện bằng tay. Tên và ngày nằm trên đầu hồ sơ. Cạnh đó là việc cần làm tiếp theo dựa trên dữ liệu đã lưu. Cách bố trí này giữ hồ sơ và nguồn luôn thấy được ở hai cột bên, để phần chính ưu tiên tài liệu, ma trận hoặc bản phản hồi theo tác vụ.
+
+Khi đọc PDF, người dùng chọn phạm vi trang, mở ảnh của đúng trang, chọn văn bản nguyên văn rồi xác nhận vị trí và vai trò trước khi gắn. Tệp, ảnh trang và dấu kiểm đi cùng hồ sơ theo quyền truy cập của nhóm. Trên điện thoại, ảnh trang cuộn riêng và nội dung trích nằm ngay sau ảnh. Dòng thông báo chỉ nơi cần sửa nếu tệp quá lớn, không có lớp chữ hoặc hồ sơ đã đổi ở phiên khác.
+
+Bảng ma trận dùng giấy sáng cho nguyên văn. Khối hổ phách dưới phần đề xuất yêu cầu luật sư rà soát nội dung trước khi duyệt. Xác nhận trích PDF và duyệt nhận định là hai hành động riêng. Lịch sử ghi các bản Word đã duyệt, có dấu kiểm tệp cho bản được lưu thành phẩm. Mở hồ sơ theo đường dẫn giữ mục đã chọn và tải dữ liệu hồ sơ trước khi cần danh mục công khai.

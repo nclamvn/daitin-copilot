@@ -7,7 +7,6 @@ import { openPatentStore } from '../patents/store.mjs';
 import { createPatentWorkflow, buildPatentPrompt, generatePatentProposal } from '../patents/workflow.mjs';
 import { DatabaseSync } from 'node:sqlite';
 import { loadDataset } from '../patents/dataset.mjs';
-import { makePatentWord } from '../patents/word.mjs';
 
 // These are synthetic protocol fixtures, not entries in the public legal corpus.
 const claim = 'A vessel comprising a first label and a removable second label.';
@@ -54,6 +53,9 @@ function documentXML(bytes) {
   }
   throw new Error('No Word document XML');
 }
+function savedWord(store, workflow, caseId, number) {
+  return store.wordArtifact(caseId, lawyer.group, workflow.release(caseId, number, lawyer));
+}
 
 test('patent workflow enforces group, version, explicit D1 roles and exact claim/D1 quotes', t => {
   const { workflow } = setup(t);
@@ -70,7 +72,7 @@ test('patent workflow enforces group, version, explicit D1 roles and exact claim
 });
 
 test('patent workflow distinguishes explicit missing evidence from facts and never exports an unapproved draft', t => {
-  const { workflow } = setup(t);
+  const { store, workflow } = setup(t);
   let matter = workflow.create(body, editor);
   const missing = { ...row, d1RecordId: null, d1Quote: '', assessment: 'not_found', missing: 'Cần đọc toàn bộ D1.' };
   matter = workflow.edit(matter.id, { version: matter.version, matrixRows: [row, missing], response }, editor);
@@ -82,10 +84,11 @@ test('patent workflow distinguishes explicit missing evidence from facts and nev
   matter = workflow.approve(matter.id, { version: matter.version, targets: ['response'] }, lawyer);
   const release = workflow.release(matter.id, 1, lawyer);
   assert.equal(release.privateEvidence.find(item => item.id === 'case:notice').text, body.noticeText);
-  const xml = documentXML(makePatentWord(release));
+  const bytes = savedWord(store, workflow, matter.id, 1);
+  assert.deepEqual(release.artifact, { sha256: hash(bytes), byteLength: bytes.length });
+  const xml = documentXML(bytes).replaceAll('\u00a0', ' ');
   assert.ok(xml.includes('Phân tích hồ sơ sáng chế'));
-  assert.ok(xml.includes('<w:tblHeader/>'));
-  assert.ok(xml.includes('d1-paragraph'));
+  assert.ok(xml.includes('Đối chiếu từng đặc điểm'));
   assert.ok(xml.includes('D1 fixture'));
   assert.equal(xml.includes('thẩm định nhãn hiệu'), false);
   assert.equal(xml.includes('\u2014'), false);
@@ -93,11 +96,11 @@ test('patent workflow distinguishes explicit missing evidence from facts and nev
 });
 
 test('second-session private instructions invalidate response only and preserve immutable approved Word1', t => {
-  const { workflow } = setup(t);
+  const { store, workflow } = setup(t);
   let matter = workflow.create(body, editor);
   matter = workflow.edit(matter.id, { version: matter.version, matrixRows: [row], response }, editor);
   matter = workflow.approve(matter.id, { version: matter.version, targets: ['matrix', 'response'] }, lawyer);
-  const before = hash(makePatentWord(workflow.release(matter.id, 1, lawyer)));
+  const before = hash(savedWord(store, workflow, matter.id, 1));
   const matrixApproval = structuredClone(matter.sections.matrix.approval);
   matter = workflow.source(matter.id, { version: matter.version, evidenceIds: matter.evidenceIds,
     instructionsText: 'CHỈ DẪN MÔ PHỎNG PHIÊN HAI: nhấn mạnh phần cần kiểm chứng.' }, editor);
@@ -107,8 +110,34 @@ test('second-session private instructions invalidate response only and preserve 
   matter = workflow.approve(matter.id, { version: matter.version, targets: ['response'] }, lawyer);
   assert.equal(matter.releases.length, 2);
   assert.deepEqual(matter.releases[0].sections.matrix, matter.releases[1].sections.matrix);
-  assert.equal(hash(makePatentWord(workflow.release(matter.id, 1, lawyer))), before);
-  assert.notEqual(hash(makePatentWord(workflow.release(matter.id, 2, lawyer))), before);
+  assert.equal(hash(savedWord(store, workflow, matter.id, 1)), before);
+  assert.notEqual(hash(savedWord(store, workflow, matter.id, 2)), before);
+});
+
+test('an AI response requires review against its matrix revision and preserves the earlier Word after changes', async t => {
+  const { directory, store, workflow } = setup(t, async () => ({ patch: { matrix: { rows: [row] }, response } }));
+  let matter = workflow.create(body, editor);
+  matter = await workflow.propose(matter.id, { version: matter.version, targets: ['matrix', 'response'] }, editor);
+  assert.equal(matter.sections.matrix.reviewRequired, true);
+  assert.equal(matter.sections.response.reviewRequired, true);
+  assert.equal(matter.sections.response.matrixBasisChanged, false);
+  assert.throws(() => workflow.approve(matter.id, { version: matter.version, targets: ['matrix'] }, lawyer), { status: 422 });
+  matter = workflow.approve(matter.id, { version: matter.version, targets: ['matrix', 'response'], reviewed: true }, lawyer);
+  const word = savedWord(store, workflow, matter.id, 1);
+  matter = workflow.edit(matter.id, { version: matter.version, matrixRows: [{ ...row, analysis: 'Đã đổi nhận định đối chiếu.' }] }, editor);
+  assert.equal(matter.sections.response.matrixBasisChanged, true);
+  assert.equal(matter.sections.response.approval, null);
+  assert.throws(() => workflow.approve(matter.id, { version: matter.version, targets: ['response'], reviewed: true }, lawyer), { status: 422 });
+  matter = workflow.edit(matter.id, { version: matter.version, response }, editor);
+  assert.equal(matter.sections.response.matrixBasisChanged, false);
+  matter = workflow.approve(matter.id, { version: matter.version, targets: ['matrix', 'response'], reviewed: true }, lawyer);
+  assert.equal(matter.releases.length, 2);
+  assert.deepEqual(savedWord(store, workflow, matter.id, 1), word);
+  assert.notDeepEqual(savedWord(store, workflow, matter.id, 2), word);
+  const db = new DatabaseSync(resolve(directory, 'cases.sqlite'));
+  db.prepare('UPDATE patent_word_artifacts SET bytes = ? WHERE case_id = ? AND release_number = 1').run(Buffer.alloc(word.length), matter.id);
+  db.close();
+  assert.throws(() => savedWord(store, workflow, matter.id, 1), { status: 409 });
 });
 
 test('changed public source requires repinning, updates dataset receipt and cannot alter old release export', t => {
@@ -116,7 +145,7 @@ test('changed public source requires repinning, updates dataset receipt and cann
   let matter = workflow.create(body, editor);
   matter = workflow.edit(matter.id, { version: matter.version, matrixRows: [row], response }, editor);
   matter = workflow.approve(matter.id, { version: matter.version, targets: ['matrix', 'response'] }, lawyer);
-  const before = hash(makePatentWord(workflow.release(matter.id, 1, lawyer)));
+  const before = hash(savedWord(store, workflow, matter.id, 1));
   const changed = structuredClone(dataset); changed.digest = 'new-fixture-digest'; changed.sources[1].sha256 = hash('changed raw source');
   const next = createPatentWorkflow(store, changed);
   assert.equal(next.read(matter.id, lawyer).sourceChanged, true);
@@ -125,7 +154,7 @@ test('changed public source requires repinning, updates dataset receipt and cann
   assert.equal(matter.datasetDigest, 'new-fixture-digest');
   assert.equal(matter.sections.matrix.approval, null);
   assert.equal(matter.sections.response.approval, null);
-  assert.equal(hash(makePatentWord(next.release(matter.id, 1, lawyer))), before);
+  assert.equal(hash(savedWord(store, next, matter.id, 1)), before);
 });
 
 test('patent prompt uses explicit D1 and private input hashes, validates model source IDs, never calls when context missing', async t => {
@@ -141,13 +170,16 @@ test('patent prompt uses explicit D1 and private input hashes, validates model s
   assert.ok(prompt.messages[1].content.includes('case:notice'));
   assert.equal(prompt.messages.some(item => item.content.includes('fake-private-key')), false);
   let calls = 0;
-  const modelRow = { feature: row.feature, claimSpanId: options.claim[0].id, d1SpanId: options.d1[0].id, assessment: row.assessment, analysis: row.analysis, missing: row.missing };
+  const modelRow = { feature: row.feature, claimSpanId: options.claim[0].id, d1SpanId: options.d1[0].id,
+    assessment: 'disclosed', analysis: row.analysis, missing: '' };
   const fetcher = async () => { calls++; return Response.json({ choices: [{ finish_reason: 'stop', message: { content: JSON.stringify({ matrix: { rows: [modelRow] }, response }) } }],
     usage: { prompt_tokens: 200, completion_tokens: 100 } }); };
   const result = await generatePatentProposal(input, { connection, fetcher });
   assert.equal(calls, 1);
   assert.equal(result.run.provenance, 'model_inference');
   assert.equal(result.patch.matrix.rows[0].d1Quote, d1);
+  assert.equal(result.patch.matrix.rows[0].assessment, 'uncertain');
+  assert.match(result.patch.matrix.rows[0].missing, /Luật sư cần kiểm/);
   assert.equal(result.run.quoteMethod, 'deterministic_native_span_ids');
   assert.equal(result.run.selectedSpans[0].d1.recordSHA256, hash(d1));
   assert.ok(result.run.inputEvidenceHashes.some(item => item.id === 'case:notice'));
@@ -227,7 +259,7 @@ test('patent prompt uses explicit D1 and private input hashes, validates model s
     d1RecordId: cited.id, d1Quote: cited.text.slice(0,80) }], response: { ...response, evidenceIds: ['case:notice'] } }, editor);
   assert.equal(matter.sections.matrix.rows[0].claimQuoteRecordId, parent.id);
   matter = workflow.approve(matter.id, { version: matter.version, targets: ['matrix', 'response'] }, lawyer);
-  assert.match(documentXML(makePatentWord(workflow.release(matter.id, 1, lawyer))).replaceAll('\u00a0', ' '), /Ngữ cảnh dẫn chiếu/);
+  assert.match(documentXML(savedWord(store, workflow, matter.id, 1)).replaceAll('\u00a0', ' '), /Yêu cầu bảo hộ dẫn chiếu/);
 });
 
  test('actual unresolved dependency anomaly needs context while manual input is explicitly unverified', async t => {

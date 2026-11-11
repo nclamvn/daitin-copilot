@@ -2,9 +2,13 @@
 
 Bàn hồ sơ sáng chế và nhãn hiệu cho pilot Đại Tín: tra căn cứ theo thời điểm, làm việc từ nguồn được chọn, sửa và duyệt từng phần, lưu phiên bản và xuất đúng Word đã duyệt. Giao diện dùng logo chính thức và font Be Vietnam Pro.
 
-## Sáng chế: M6
+## Hồ sơ sáng chế M7
 
-Trang chính `/patents/` mở bàn hồ sơ sáng chế: duyệt bộ nguồn ứng viên, tra cứu có dẫn chứng, chọn đúng yêu cầu bảo hộ và D1, nhập thông báo/chỉ dẫn mô phỏng bằng văn bản hoặc TXT/MD, lập ma trận và phản hồi bằng AI hoặc sửa tay, duyệt riêng từng phần và xuất Word của bản đã duyệt. Nguồn hồ sơ riêng không đi vào kho công khai. Thay chỉ dẫn yêu cầu duyệt lại phần phản hồi; bản phát hành cũ giữ nguyên.
+Mở `/patents/`, tạo hoặc mở hồ sơ mô phỏng, rồi vào **Tài liệu** để chọn PDF. Đọc tối đa bốn trang mỗi lượt, mở hình trang gốc, chọn đúng đoạn từ lớp chữ và xác nhận vai trò thông báo, yêu cầu bảo hộ hoặc D1. Pilot hỗ trợ PDF có lớp chữ, tối đa 2 MiB và 12 trang mỗi tệp. PDF thiếu lớp chữ vẫn có thể xem trang nếu tệp đọc được. Luật sư có thể nhập văn bản hoặc TXT/MD theo luồng hiện có.
+
+Dùng các đoạn đã ghim để lập ma trận và phản hồi. Phần AI đề xuất cần reviewer xác nhận đã rà soát trước khi duyệt. Có thể duyệt hai phần riêng. Khi cả hai phần đã duyệt, hệ thống lưu bản Word với SHA-256 và tải lại đúng tệp đó theo số phiên bản. Thay chỉ dẫn chỉ yêu cầu duyệt lại phản hồi. PDF và đoạn trích riêng được lưu trong phạm vi hồ sơ và nhóm.
+
+Chi tiết triển khai và các ca kiểm trong [TIP M7](docs/patents/M7-TIP.md) và [quy trình nghiệm thu hai phiên](docs/patents/acceptance/M7-PROTOCOL.md).
 
 Kho dữ liệu được cào có giới hạn từ nguồn công khai được phép, kết hợp văn bản đã lưu; có bản gốc, dấu kiểm, đoạn trích, quan hệ phụ thuộc được trích xuất và các khoảng trống khai báo. Văn bản OCR cần kiểm lại bản gốc; đoạn đã biết lỗi bị chặn khi phân tích hoặc duyệt. Không có bộ tình trạng quyền/họ sáng chế đã xác minh, tra cứu tình trạng kỹ thuật đầy đủ hay kết luận tính mới/FTO tự động. SOT vẫn là ứng viên chờ luật sư rà soát. Chi tiết: [TIP M6](docs/patents/M6-TIP.md), [bộ 30 yêu cầu và cách chấm](docs/patents/acceptance/PROTOCOL.md).
 
@@ -26,7 +30,7 @@ Cần Node.js 24. Cài đúng dependency bằng `npm ci`; chạy `npm test` và 
 
 Ứng dụng dùng một Node Function cùng private Vercel Blob. Mỗi yêu cầu mở bản SQLite làm việc tạm, dùng lại nghiệp vụ chung, rồi lưu trạng thái bằng điều kiện ETag trước khi xác nhận thành công. Session chỉ lưu dấu băm token; tài khoản và hạn mức nằm trong snapshot riêng để có hiệu lực qua các instance. Lease chặn hai thao tác ghi đồng thời. Thư mục tạm không phải kho bền vững.
 
-Kho nguồn bất biến được xác minh một lần mỗi instance, tránh đọc/băm lại toàn bộ tài liệu cho từng thao tác. PDF.js xử lý PDF trên web; Poppler được giữ cho nhánh cục bộ. Vercel giới hạn PDF 2 MiB/12 trang. Word dùng cùng mẫu nhận diện đã chốt.
+Kho nguồn bất biến được xác minh một lần mỗi instance, tránh đọc/băm lại toàn bộ tài liệu cho từng thao tác. PDF.js xử lý PDF trên web; Poppler được giữ cho nhánh cục bộ. Vercel giới hạn PDF 2 MiB/12 trang. Word giữ nhận diện đã chốt và trình bày chứng cứ thành các khối dễ đọc. Bản phát hành M7 lưu tệp Word vào kho cùng hồ sơ. Các bản cũ dùng bộ xuất tương ứng với lúc phát hành.
 
 AI trên bản Vercel đi qua AI Gateway với danh tính máy chủ, không gửi khóa vào trình duyệt. Model cụ thể, hạn mức và phép kiểm thực tế được ghi trong biên bản bàn giao. Không có tự động mua credits, đổi model khi lỗi hoặc lặp lời gọi model sau lỗi lưu. Đổi model không giữ nguyên kết luận của phép đo Qwen cục bộ trước đây.
 
