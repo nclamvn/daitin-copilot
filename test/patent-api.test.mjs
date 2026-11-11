@@ -133,7 +133,9 @@ test('patent PDF intake preserves exact page provenance, blocks stale or tampere
   matter = notice.json();
   assert.equal(matter.documents[1].attachmentId, matter.documents[0].attachmentId);
   const d1Inspected = (await post(pdf + 'inspect', { ...inputs[1], version: matter.version })).json();
-  const d1Binding = selection(inputs[1], d1Inspected, 'd1', 1);
+  const d1Binding = selection(inputs[1], d1Inspected, 'd1');
+  assert.equal(d1Binding.text, claim.text);
+  assert.notEqual(d1Binding.sha256, claim.sha256);
   const d1 = await post(pdf + 'bind', d1Binding);
   assert.equal(d1.status, 200);
   matter = d1.json();

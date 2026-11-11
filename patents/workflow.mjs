@@ -299,7 +299,9 @@ export function createPatentWorkflow(store, dataset, model = generatePatentPropo
         (!targetPublication || publicationId(item.record, item.source) !== targetPublication))))
       .map(item => item.record.id);
     const d1RecordIds = ids(body.d1RecordIds ?? matter.d1RecordIds ?? [], allowedD1, { empty: true });
-    if (matter.pinnedEvidence.some(item => d1RecordIds.includes(item.record.id) && item.record.text === matter.claimText)) {
+    // A literal match can be the very finding when both sources have distinct
+    // provenance. Manual claim text has no such identity to compare.
+    if (!target && matter.pinnedEvidence.some(item => d1RecordIds.includes(item.record.id) && item.record.text === matter.claimText)) {
       throw new CaseError('Không dùng chính yêu cầu bảo hộ đang nghiên cứu làm D1.', 422);
     }
     matter.claimRecordId = claimRecordId;

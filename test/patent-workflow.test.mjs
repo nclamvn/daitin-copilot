@@ -209,7 +209,8 @@ test('patent prompt uses explicit D1 and private input hashes, validates model s
   const { store } = setup(t);
   const samePublication = structuredClone(dataset);
   samePublication.sources[0].publicationIdentifier = 'EP1004359B1';
-  samePublication.sources.push({ ...samePublication.sources[0], id: 'cloned-target-source', publicationIdentifier: 'EP 1 004 359 B1' });
+  samePublication.sources.push({ ...samePublication.sources[0], id: 'cloned-target-source', sha256: hash('another capture'),
+    publicationIdentifier: 'EP 1 004 359 B1' });
   samePublication.records.push(
     { ...samePublication.records[0], id: 'target-claim-2', text: 'The vessel of claim1 further comprises a lid.' },
     { ...samePublication.records[0], id: 'cloned-claim-2', sourceId: 'cloned-target-source', text: 'A second claim from the identical publication.' }
@@ -225,6 +226,7 @@ test('patent prompt uses explicit D1 and private input hashes, validates model s
     evidenceIds: [...body.evidenceIds, 'target-claim-2'], d1RecordIds: ['target-claim-2'] }, editor);
   assert.equal(manual.claimRecordId, null);
   assert.deepEqual(manual.d1RecordIds, ['target-claim-2']);
+  assert.throws(() => workflow.create({ ...body, reference: 'MANUAL-EQUAL-D1', claimRecordId: null, claimText: d1 }, editor), { status: 422 });
   const legacy = store.save({ ...manual, claimRecordId: 'target-claim-1' });
   assert.throws(() => workflow.edit(legacy.id, { version: legacy.version, response }, editor), { status: 422 });
   assert.throws(() => workflow.approve(legacy.id, { version: legacy.version, targets: ['matrix'] }, lawyer), { status: 422 });
