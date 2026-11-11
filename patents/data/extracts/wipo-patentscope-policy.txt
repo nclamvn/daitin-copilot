@@ -1,0 +1,277 @@
+About Intellectual Property
+IP Training
+Respect for IP
+IP Outreach
+IP for…
+IP and...
+IP in...
+Patent & Technology Information
+Trademark Information
+Design Information
+Geographical Indication Information
+Plant Variety Information (UPOV)
+IP Laws, Treaties & Judgments
+IP Resources
+IP Reports
+Patent Protection
+Trademark Protection
+Design Protection
+Geographical Indication Protection
+Plant Variety Protection (UPOV)
+IP Dispute Resolution
+IP Office Business Solutions
+Paying for IP Services
+Negotiation & Decision-Making
+IP Cooperation
+Innovation Support
+Public-Private Partnerships
+The Organization
+WIPO and Artificial Intelligence
+Working at WIPO
+Accountability
+Patents
+Trademarks
+Designs
+Geographical Indications
+Copyright
+Trade Secrets
+Future of IP
+WIPO Academy
+Workshops & Seminars
+IP Enforcement
+WIPO ALERT
+Raising Awareness
+World IP Day
+WIPO Magazine
+Case Studies & Success Stories
+IP News
+WIPO Awards
+Business
+Women
+Universities
+Indigenous Peoples
+Judiciaries
+Youth
+Examiners
+Innovation Ecosystems
+Economics
+Finance
+Intangible Assets
+Global Health
+Climate Change
+Competition Policy
+Sustainable Development Goals
+Genetic Resources, Traditional Knowledge and Traditional Cultural Expressions
+Frontier Technologies
+Mobile Applications
+Sports
+Tourism
+Music
+Fashion
+PATENTSCOPE
+Patent Analytics
+International Patent Classification
+ARDI – Research for Innovation
+ASPI – Specialized Patent Information
+Global Brand Database
+Madrid Monitor
+Article 6ter Express Database
+Nice Classification
+Vienna Classification
+Global Design Database
+International Designs Bulletin
+Hague Express Database
+Locarno Classification
+Lisbon Express Database
+Global Brand Database for GIs
+PLUTO Plant Variety Database
+GENIE Database
+WIPO-Administered Treaties
+WIPO Lex - IP Laws, Treaties & Judgments
+WIPO Standards
+IP Statistics
+WIPO Pearl (Terminology)
+WIPO Publications
+Country IP Profiles
+WIPO Knowledge Center
+World Intangible Investment Highlights
+WIPO Technology Trends
+Global Innovation Index
+World Intellectual Property Report
+PCT – The International Patent System
+ePCT
+Budapest – The International Microorganism Deposit System
+Madrid – The International Trademark System
+eMadrid
+Article 6ter (armorial bearings, flags, state emblems)
+Hague – The International Design System
+eHague
+Lisbon – The International System of Appellations of Origin and Geographical Indications
+eLisbon
+UPOV PRISMA
+Mediation
+Arbitration
+Expert Determination
+Domain Name Disputes
+Centralized Access to Search and Examination (CASE)
+Digital Access Service (DAS)
+WIPO Pay
+WIPO Wallet
+WIPO Assemblies
+Standing Committees
+Calendar of Meetings
+WIPO Webcast
+WIPO Official Documents
+Development Agenda
+Tailored Initiatives & Projects
+Collaborative Forums & Dialogues
+Innovation, Creativity and Development Acceleration Program
+IP for Impact
+National IP & Innovation Strategies
+Cooperation Hub
+Technology and Innovation Support Centers (TISC)
+Technology Transfer
+Inventor Assistance Program
+IP Commercialization
+WIPO GREEN
+WIPO's Pat-INFORMED
+Accessible Books Consortium
+WIPO for Creators
+Member States
+Observers
+Director General
+Activities by Unit
+External Offices
+Global Forum on IP and AI
+AI Infrastructure Interchange
+AI Tools & Services
+Staff Positions
+Affiliated Personnel Positions
+Procurement
+Results & Budget
+Financial Reporting
+Oversight
+PATENTSCOPE: Frequently Asked Questions
+Basics
+What are the advantages of using PATENTSCOPE?
+Weekly PCT publications available on day of publication
+Free of charge
+All related, published PCT documents downloadable (not only applications)
+Many national and regional collections, including the IP5 of 50+ collections
+Unlimited full text search
+Embedded images shown in the full text
+Many search operators supported: NEAR, BEFORE, AND, OR and NOT
+Support of “stemming” means that words with common roots are recognized, e.g. electrical, electric, electricity in most of the supported languages
+Ability to sort results according to relevance or publication/application date
+Cross-lingual information retrieval
+Specialized machine translation tools available
+Result statistics and analysis available
+Chemical structure search (exact + sub-structure)
+WIPO account
+Authority files for published PCT applications
+Side-by-side view of the results
+In how many languages can I search in PATENTSCOPE?
+You can search in all the filing languages of the documents contained in PATENTSCOPE, such as Arabic, Bulgarian, Cambodian, Chinese, Danish, English, Estonian, French, German, Greek, Hebrew, Italian, Japanese, Korean, Laotian, Portuguese, Romanian, Russian, Spanish, Thai, Vietnamese, etc.
+In how many languages is the PATENTSCOPE search interface available?
+The search interface is available in 10 languages (Arabic, Chinese, English, French, German, Japanese, Korean, Portuguese, Russian, and Spanish).
+Where can I find the drawings accompanying a patent application?
+Once you performed a search and opened a patent record, just click on the tab Drawings to view any drawings. You can also view your results by images by selecting in the View just above the result list: Image for images only; Simple +image for information such as IPC, application and inventor names and publication date, title and application number and All +image to see also the abstract on top of all the information in the Simple + image.
+How can I contact the PATENTSCOPE team for questions?
+You can send your questions to patentscope@wipo.int or use our Forum available in the Help menu under Feedback & contact
+Why should I create a WIPO account?
+It will allow you to download up to 10,000 results, save your preferred settings and queries; as well as to use the chemical structure search. Creating a WIPO account is free of charge.
+Content
+How many documents are available in PATENTSCOPE?
+For the most up-to-date information on what data is included in PATENTSCOPE. A patent application, its successive publications, and the potential patent count as 1 document in PATENTSCOPE.
+What patent collections are available?
+All published PCT applications as well as patent collections from participating national and regional offices are available in PATENTSCOPE. The up-to-date information is available in PATENTSCOPE.
+Does the database include full-text documentation?
+Yes, a large number of documents are available in full-text format, including the IP5's front file and backfile.
+How often is the PATENTSCOPE database updated?
+The bibliographic data and documents of PCT applications are updated daily. The publication of new applications takes place weekly on publication day, i.e., Thursday, unless WIPO is closed for a public holiday (in which case the data are published on Friday). National and regional patent collections are updated on an ad hoc basis.
+Can I download the entire database?
+No, bulk download is prohibited. The usage of automatic robot is all prohibited. PCT raw data products are available for sale.
+Search
+How exactly do I use PATENTSCOPE?
+For detailed instructions on how to use the PATENTSCOPE database, please refer to the PATENTSCOPE User's Guide , the online tutorials, the free of charge webinars. You can indicate in your WIPO account that you would like to be notified about upcoming webinars.
+How can I find out if a patent already exists on a product/process?
+As a first step, using the advanced search option (found in the drop-down menu “search”), you can insert and combine the most relevant keywords (separated by a space) in the search fields for the technology you are interested in, e.g. hybrid, car , etc. (you can also use inverted commas “” to find an exact phrase). A complementary means of searching existing patents is to use the International Patent Classification (IPC), according to which patents have are divided into specific technical groups. All you need to do is enter a keyword to try the IPC search.
+Whilst our online searches are helpful, we would always advise you to seek further information from your national patent or intellectual property office or from an intellectual property professional. Consult our list of intellectual property offices.
+Also, please keep in mind that patent applications are generally not filed for a complete commercial product. Final products usually incorporate many separate innovations by different inventors. Indeed, the product may even contain technologies for which no patent application has ever been filed.
+What is the default search field?
+The default search field in the Advanced Search interface is EN_ALL. It is recommended to enter a field when using the Advanced Search interface either by typing the full name of the field of interest and PATENTSCOPE will transform it into a field code or by consulting the field code list.
+How do I search for the number of PCT applications from Poland?
+Enter this query: ANID:PL* in the Advanced Search Interface
+Can I search PCT applications having no-priority date in 2016?
+Yes, enter this query in the Advanced Search Interface: CTR:WO AND DP:2016 ANDNOT PI:[* TO *].
+Search Results
+Can I export all my search results?
+There is a limit of 10,000 results when you are logged-in using your WIPO account.
+How many items are available in the analysis bar?
+Up to 25 results can be analyzed. By default, the top 10 applicants, IPC codes etc. will be shown but this number can be increased up to 25 in the Options menu.
+Can I download the analysis of the search results?
+No this functionality is not available. You can do a print screen and then save it as html.
+Chemical Structure Search
+How can I access the chemical structure search?
+You need to login using the WIPO account.
+What type of chemical structure search can I perform in PATENTSCOPE?
+Both exact and substructure search are supported.
+Which kind of index system does PATENTSCOPE apply?
+The chemical compounds are indexed in SOLR using InchIkeys. InchI stands for International Chemical Identifier and the InchIkey is a 28 characters string representing in a unique way a particular chemical structure.
+Translation Assistance
+What is CLIR?
+CLIR stands for Cross-Lingual Information Retrieval: it first finds synonyms for search keywords you enter and then translates those and your original query into 13 languages. There are 2 modes to use CLIR: automatic in which you only have to enter your search or supervised in which after entering your search, you will have to select the technical domains your search is related to, the synonyms related to your search and the relevant translations. Using the supervised mode, you can also define the part of the document in which you would like to perform your search.
+In how many languages is CLIR available?
+CLIR is available in 14 languages (English, Chinese, Danish, Dutch, French, German, Italian, Japanese, Korean, Spanish, Polish, Portuguese, Russian, and Swedish).
+What is WIPO Translate?
+A neural machine translation tool developed in-house and trained exclusively on patent documents. It can translate any patent documents from and to 18 different language pairs.
+What language pairs are available in WIPO Translate?
+p>Chinese-Japanese
+Japanese-Chinese
+English-Arabic
+Arabic-English
+English-Chinese
+Chinese-English
+English-Czech
+Czech-English
+English-Finnish
+Finnish-English
+English-French
+French-English
+English-German
+German-English
+English-Italian
+Italian-English
+English-Japanese
+Japanese-English
+English-Polish
+Polish-English
+English-Portuguese
+Portuguese-English
+English-Korean
+Korean-English
+English-Russian
+Russian-English
+English-Slovak
+Slovak-English
+English-Spanish
+Spanish-English
+Korean-Japanese
+Japanese-Korean
+Korean-Chinese
+Chinese-Korean
+Miscellaneous
+What is a sequence listing?
+A sequence listing is a part of a patent application that contains detailed description of the nucleotide and/or amino acid sequences in the application.
+How can I obtain a copy of a sequence listing?
+Sequence listings are available by clicking on Sequence listing in the “Browse” menu. Sequence listings are published in the format in which they are received.
+Hidden
+https://www.wipo.int/contact/en/area.jsp?area=patentscope-db
+https://www.wipo.int/pressroom/en/
+https://www.wipo.int/en/web/patentscope/data/terms_patentscope
+https://www.wipo.int/en/web/privacy-policy
+https://www.wipo.int/en/web/accessibility
+https://www.wipo.int/en/web/sitemap
+https://www.wipo.int/en/web/newsletters
+https://www.wipo.int/en/web/podcasts
+https://www.wipo.int/en/web/news/rss

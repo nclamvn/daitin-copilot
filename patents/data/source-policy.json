@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "scope": "bounded public evidence capture for M6 internal pilot",
+  "budgets": {"maxAttemptsPerRun":100,"maxFileBytes":25165824,"maxSavedRawBytes":157286400,"maxNewBundleTargetBytes":41943040,"concurrency":1,"perHostConcurrency":1,"transientRetries":2},
+  "sources": [
+    {"host":"data.epo.org","role":"official publication REST","policySource":"epo-rest-reference","permission":"explicit publication XML/PDF service","unresolved":"overview5GB/7days versus reference10GB/7days; task cap below both"},
+    {"host":"www.epo.org","role":"official legal guidance and service policy","permission":"bounded public internal-pilot capture; not a blanket redistribution license"},
+    {"host":"www.wipo.int","role":"official PCT/IPC guidance","permission":"bounded public internal-pilot capture; no PATENTSCOPE result scraping"},
+    {"sourceId":"wipo-drafting-2023","role":"WIPO Patent Drafting Manual second edition","permission":"CC BY4.0 attribution as stated in captured publication"},
+    {"host":"ipvietnam.gov.vn","role":"official public VN patent PDFs","permission":"bounded public internal-pilot capture; current legal status not inferred"},
+    {"host":"image-ppubs.uspto.gov","role":"official public US patent PDFs","permission":"bounded public publication download; OCR unreviewed"},
+    {"host":"datafiles.chinhphu.vn","role":"official public Vietnamese legal versions","permission":"bounded public legal text capture; applicability unresolved"},
+    {"host":"daitin.com.vn","role":"company secondary commentary/practice context","permission":"bounded public internal-pilot capture; no promotion to controlling law"}
+  ],
+  "denied": ["PATENTSCOPE robot/bulk searches or fulltext crawl","authentication/CAPTCHA bypass","insecure TLS","private customer records","paid API or new credentials","runtime external search using user case text"],
+  "refreshGate": "inspect source policy, targeted capture, preserve prior receipt/bytes, deterministic rebuild, structural validation, separate qualified semantic review before any SOT promotion"
+}

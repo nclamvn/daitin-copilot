@@ -1,0 +1,158 @@
+Publication: EP1004359B1
+Title: Partitioned specimen label for collection containers
+
+Description 1
+This invention relates to containers or vessels for collecting fluid samples from patients, that comprise means for containing and sharing information about the contents of the fluid samples in the container and the patient. More particularly, this invention relates to a means that is removably affixed to a vessel or container that can be linked electronically to the operating stations in a laboratory and/or removed mechanically and subsequently attached to another document or container.
+
+Description 2
+Test specimens are typically collected by a medical technician, preferably at a medical facility, for testing in a container. Specimens, such as blood, are placed in containers called blood collection tubes and transported or shipped to a test facility together with test request documents.
+
+Description 3
+It is important that once the specimen is collected in a container, that the donor of the specimen is properly identified. Incorrect identification could result in various misdiagnosis. Any indication that the specimen is not properly identified would require recollection. The test facility matches the blood collection tubes and test request documents received from the medical facility, performs the prescribed tests indicated by the test request document on the specimens and reports the test results to the medical facility.
+
+Description 4
+Often, a physician may request multiple tests for one patient. Therefore, tests carried out by a test facility involve several thousand items, and the sizes and shapes of the containers that hold the specimens also include several dozen types. Therefore, laboratory facilities can be faced with managing thousands of requests per day. This presents many challenges in assuring that results are accurately transcribed back to the requesting physician and then ultimately to the patient.
+
+Description 5
+In current laboratory settings, there are several ways that a container containing a specimen can arrive in a laboratory. For example, a container is transported from the collection site with a separate document such as a test request to the testing facility. The personnel at the testing facility receive these separate items and begin processing them together. This can involve entering data from the test request into a computer that electronically links test request information to information about the patient that is already available in the computer system. Additional steps may include obtaining some type of label and attaching it to the container.
+
+Description 6
+These processing steps are subject to human error which could result with inaccurate information and tests results. Therefore, a need exists to link patient, test specimen and test request information that is efficient, cost effective, will enhance the accuracy of reporting test results and will eliminate the need for secondary labeling of containers.
+
+Description 7
+Currently, collection containers are over-labeled with an identifier to control and monitor the specimens prior to and during processing. In most cases, and for those laboratories using integrated, automated systems for specimen processing, the identifier is a barcode.
+
+Description 8
+There exists a need to improve the efficiency of systems for specimen processing whereby information can be easily found on the collection container.
+
+Description 9
+A collection container according to the first part of claim 1 is disclosed in DE 35 29 455 A1. The collection container comprises a cylindrical sample tube having a portion designed as a paper carrier. The paper carrier carries two equally coded labels, the first label remaining on the tube and a second label being peelable away from the tube to be transferred to a separate document.
+
+Description 10
+Further prior art collection containers are disclosed in FR 2 703 156 A, DE 295 10 166 U, JP 8166765 A, JP H01-173775 U and US 5,783,810 A.
+
+Description 11
+It is an object of the invention to provide a collection container wherein two sections of a label carry one and the same bar code identification.
+
+Description 12
+The collection container of the present invention is defined by claim 1. Accordingly, it is characterized in that a machine readable double bar code identification extends across the permanent section and the peel away section such that the permanent section and the peel away section share said bar code identification.
+
+Description 13
+The present invention is a means for providing electronic information onto or into substrates that can be placed onto, uncoded or embedded with a container prior to the container being used as a specimen collection device.
+
+Description 14
+Preferably, the substrate may contain human readable information from the label or the collection vessel.
+
+Description 15
+Preferably, the substrate may contain electronic information technology that can be activated, scanned, transferred and stored into other media.
+
+Description 16
+Most preferably, the substrate includes a means for detaching a portion of the substrate for use with related documents or other related containers.
+
+Description 17
+The present invention is a collection container comprising a label that comprises a machine readable barcode identification and a portion of the label and barcode can be removed from the container and subsequently affixed to test request forms and the like. The label of the present invention is able to create a direct link between the container, the patient and the test request forms.
+
+Description 18
+The label of the present invention comprises a permanent section and a peel away section. Most preferably, a double bar code is on the label wherein the permanent section and the peel away section of the label share the barcode information and features. In addition to the barcode information on the label, the label may also contain a writing area and/or be color coordinated with other information such as the type of container it is associated with.
+
+Description 19
+Preferably, the bar code information contains information regarding the tube, the test requirements to be performed and/or patient identification.
+
+Description 20
+Most preferably, the peel away section comprises a tab that allows the user to quickly and efficiently remove the peel away section from the label and attach it to a document or another container.
+
+Description 21
+Most preferably, the size of the double bar code is such that it can surround the container with a wrap angle of up to about 360°. Therefore, misreading of the bar code by electronic devices is substantially minimized because alignment of the electronic device or scanner and label is not required. The bar code angle wrap provides an improved interface with both manual and automatic bar code scanning devices. In the testing laboratory, some automation tube handling systems will transport the tubes on a track to various testing stations in the laboratory environment. The tube, with a bar code label and a small angle wrap, is rotated while scanned to ensure high quality bar code reads at various points along the track. Therefore, the bar code label with a wide angle wrap minimizes the rotation necessary to read the bar code, thereby increasing the production rate of the testing stations in the laboratory.
+
+Description 22
+Preferably, a bar code wrap angle of 360° will provide a means for the automated equipment to read the bar code with minimal rotation and less time.
+
+Description 23
+In use, the label is on a container that is subsequently used in a specimen collection procedure. The barcode on the label contains human readable information and/or electronic information that can be activated, scanned, transferred and stored into other media. Once a specimen is collected, the peel away section of the label is removed and applied to a test request form.
+
+Description 24
+The label of the present invention minimizes the amount of curl-up associated with the inherent material characteristics of pulling and peeling action.
+
+Description 25
+Most notably, the double barcode label of the present invention allows the customer to create a direct link between the patient form, patient and specimen/tube.
+
+Description 26
+FIG. 1 is a perspective view of a tube with the label of the present invention. FIG. 2 is a perspective view of the label of the present invention of FIG. 1. FIG. 3 is a perspective view of the bottom or underside of the label of the present invention of FIG. 1. FIG. 4 is a cross-sectional view of the tube with the label of FIG. 1 taken along 4-4 thereof. FIG. 5 illustrates the user peeling a portion of the label from the tube. FIG. 6 illustrates the side peel being affixed to a client document. FIG. 7 is an alternate embodiment of the invention. FIG. 8 illustrates a flow chart according to the method of using the label system of the present invention.
+
+Description 27
+While this invention is satisfied by embodiments in many different forms, there is shown in the drawings and will herein be described in detail, the preferred embodiments of the invention, with the understanding that the present disclosure is to be considered as exemplary of the principles of the invention and is not intended to limit the invention to the embodiments illustrated. Various other modifications will be apparent to and readily made by those skilled in the art without departing from the scope and spirit of the invention. The scope of the invention will be measured by the appended claims and their equivalents.
+
+Description 28
+FIG. 1 illustrates a sample collection tube 20 and a label 40. Label 40 comprises a permanent portion 50 and a peel away portion 70.
+
+Description 29
+As shown in FIGS. 1, 2 and 3, permanent portion 50 comprises a first side 52, a second side 54, a third side 56, a fourth side 58, a bottom side or an underside 60 and a top side 62. First side 52 is across from second side 54 and third side 56 is across from fourth side 58. Although it is within the purview of the invention that fourth side 58 may be a geometric shape, for purposes of illustration an elliptical shape is shown in FIGS. 2 and 3. In addition, bottom side 60 includes an adhesive 98 for attaching the label to a container.
+
+Description 30
+As shown in FIGS. 1, 2 and 3, peel away portion 70 includes a first side 72, a second side 74, and a third side 76, a fourth side 78, a bottom side 80 and a top side 82. Peel away portion 70 further includes a dead-ended lift tab 84 comprising a non-stick portion 96 so that the peel away portion may be easily grasped and removal from the container is facilitated. The non-stick portion is located on bottom side 80 near fourth side 78. The remaining area of bottom side 80 includes an adhesive 98 for attaching the label to a container or a document. Although it is within the purview of the invention that peel away portion 70 may be a geometric shape for purposes of illustration an elliptical shape is shown in FIGS. 1, 2 and 3.
+
+Description 31
+Peel away portion 70 and permanent portion 50 are joined by a perforation 94 at fourth side 58 of the permanent portion and third side 76 of the elliptical portion.
+
+Description 32
+The label further includes a tandem double barcode 90 located on top side 62 of permanent portion 50 and extending onto top side 82 of the peel away portion 70. The double barcode design is of a size so that it extends approximately 180° or more around the container.
+
+Description 33
+As shown in FIG. 2, the same or tandem digit and/or alphanumeric combination 89 is located on the peel away section and the permanent section of the label. The first two of the digits are fixed and identify the tube and product type for features such as but not limited to tube size, tube material and internal additives. These first two digits allow automatic laboratory systems to recognize what type of collection vessel it is handling to facilitate more efficient processing of handling operations. The remaining alphanumeric elements can range in number but are preferred to be five or six digits and are most preferably six digits that are a base thirty-one alphanumeric unique identifier. The advantage of such a ten-digit bar code is that some of the digits can be used to identify the manufacturing location.
+
+Description 34
+Most preferably, label 40 is applied to a container by an automated manufacturing process so that the label is pre-attached to the container prior to being used by a medical facility and/or prior to being transported to a testing facility.
+
+Description 35
+Most preferably, perforation 94 is a micro-perforation wherein the user initiates the removal of the peel away portion.
+
+Description 36
+In use, as shown in FIG. 4, the label is attached to a tube. As shown in FIG. 5 the user grips lift tab 84 of peel away portion 70 and peels and pulls the portion towards the user whereby peel away portion 70 is detached from the permanent portion of the label. The user then affixes the peel away portion to a test request form as shown on FIG. 6 or to another container or item as may be required.
+
+Description 37
+The lift tab is easily grasped and facilitates removal of the peel away portion from a container. The lift tab is particularly advantageous to users in medical or test facilities who wear protective gloves.
+
+Description 38
+The peeling and pulling load of the elliptical shape of the peel away portion assists in distributing the load over a large area as compared to a traditional straight line perforation. Distributing the peeling and pulling load across an elliptical shape substantially prevents curl-up of the peel away portion. Curl-up of the peel away portion could prevent the user from using the portion or affixing it to the client order or test request form and it also reduces the necessary force to remove it.
+
+Description 39
+The elliptical micro-perforation also prevents tear away from the perforation line that occurs when the adhesive forces exceed the label tear strength which in turn renders information on the label non-readable.
+
+Description 40
+The elliptical lift tab avoids wrinkled corners as may be present on right angled labels and it eases placement of the tube into test tube racks without the label getting caught on the rack.
+
+Description 41
+Although the peel away portion of the label in accordance with the present invention is an elliptical shape, it is within the purview of this invention that any shape that permits the distribution of the peeling and pulling load so that curl-up or tearing is minimized may be well suited to be used in the present invention.
+
+Description 42
+Although the container in accordance with the present invention may be a sample collection tube or a culture bottle, other containers may be well suited to be used with the label of the present invention.
+
+Description 43
+The alternate embodiment as shown in FIG. 7 includes many components which are substantially identical to the components of FIGS. 2 and 3. Accordingly, similar components performing similar functions will be numbered identically to those components of FIGS. 2 and 3, except that a suffix "a" will be used to identify those similar components in FIG. 7.
+
+Description 44
+The alternate embodiment of the label of the present invention is illustrated in FIG. 7. As shown in FIG. 7, the label contains a second peel away portion 120.
+
+Description 45
+As shown in FIG. 8, the system and method for using the label of the present invention is illustrated. As depicted in 150 in the box diagram of FIG. 8, label 40 is applied to a tube. A sample is then drawn from a patient into the tube with the label as depicted in 160 in the box diagram of FIG. 8. As shown in alternative steps 180, 190 and 200, peel away portion 70 of the label may be applied to a test request form, may be left on the tube or applied to a secondary tube. As shown in step 220, tests are then performed on the patient's sample and the label and tube information is electronically read. As shown in step 230, the test results are then reported.
+
+Claim 1
+A collection container (20) comprising a label (40) comprising a permanent section (50), and a peel away section (70), characterized in that a machine readable double bar code identification (90) extends across the permanent section (50) and the peel away section (70) such that the permanent section (50) and the peel away section (70) share said bar code identification (90), and a first portion of said peel away section (70) comprises adhesive for securing said peel away section (70) to the collection container (20) and a second portion (96) of said peel away section (70) is free of adhesive.
+
+Claim 2
+The collection container of claim 1, wherein said label(40) further comprises a tab (84) on said peel away section (70) whereby said tab allows the user to quickly and efficiently remove said peel away section.
+
+Claim 3
+The collection container of claim 1, wherein said peel away section (70) is adapted to be removed from said collection container (20) and applied to a test request form.
+
+Claim 4
+The collection container of claim 1, wherein said peel away section (70) is an elliptical shape.
+
+Claim 5
+The collection container of claim 1, wherein said peel away section (70) and said permanent section (50) are removably joined by a perforation (94).
+
+Claim 6
+The collection container of claim 1, wherein said machine's readable double bar code identification (90) is a tandem double barcode.
+
+Claim 7
+The collection container of claim 1, wherein said label (40) further comprises the same digit and/or alphanumeric combination on said peel away portion and said permanent portion.

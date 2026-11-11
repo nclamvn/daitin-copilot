@@ -3,7 +3,7 @@ import { createSnapshotRuntime } from '../web/snapshot-runtime.mjs';
 import { allowedRequest, webSettings } from '../web/security.mjs';
 
 Object.assign(process.env, {
-  DAI_TIN_WEB: '1', DAI_TIN_M5: '1', DAI_TIN_M4: '1', DAI_TIN_M3: '1',
+  DAI_TIN_WEB: '1', DAI_TIN_M5: '1', DAI_TIN_M4: '1', DAI_TIN_M3: '1', DAI_TIN_PATENTS: '1',
   DAI_TIN_COPILOT: '1', DAI_TIN_PILOT: '1', DAI_TIN_CORPUS_MODE: 'preview',
   DAI_TIN_PDF_ENGINE: 'pdfjs', DAI_TIN_MAX_PDF_BYTES: String(2 * 1024 * 1024),
   DAI_TIN_MODEL_MODE: process.env.DAI_TIN_MODEL_MODE ?? 'disabled'

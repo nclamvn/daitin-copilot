@@ -1,0 +1,1340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ep-patent-document PUBLIC "-//EPO//EP PATENT DOCUMENT 1.4//EN" "ep-patent-document-v1-4.dtd">
+<ep-patent-document id="EP95901961B2" file="EP95901961NWB2.xml" lang="en" country="EP" doc-number="0729353" kind="B2" date-publ="20120912" status="n" dtd-version="ep-patent-document-v1-4">
+<SDOBI lang="en"><B000><eptags><B001EP>ATBECHDEDKESFRGBGRITLILUNLSEMCPTIE..................................................................</B001EP><B003EP>*</B003EP><B005EP>J</B005EP><B007EP>DIM360 Ver 2.15 (14 Jul 2008) -  2720000/0</B007EP></eptags></B000><B100><B110>0729353</B110><B120><B121>NEW EUROPEAN PATENT SPECIFICATION</B121><B121EP>After opposition procedure</B121EP></B120><B130>B2</B130><B140><date>20120912</date></B140><B190>EP</B190></B100><B200><B210>95901961.3</B210><B220><date>19941118</date></B220><B240><B241><date>19960612</date></B241><B242><date>19980925</date></B242><B243><date>20120912</date></B243></B240><B250>en</B250><B251EP>en</B251EP><B260>en</B260></B200><B300><B310>154409</B310><B320><date>19931119</date></B320><B330><ctry>US</ctry></B330><B310>298787</B310><B320><date>19940831</date></B320><B330><ctry>US</ctry></B330><B310>338805</B310><B320><date>19941110</date></B320><B330><ctry>US</ctry></B330></B300><B400><B405><date>20120912</date><bnum>201237</bnum></B405><B430><date>19960904</date><bnum>199636</bnum></B430><B450><date>20020206</date><bnum>200206</bnum></B450><B451EP><date>20010223</date></B451EP><B452EP><date>20010625</date></B452EP><B477><date>20120912</date><bnum>201237</bnum></B477></B400><B500><B510EP><classification-ipcr sequence="1"><text>A61K   9/50        20060101AFI19950710BHEP        </text></classification-ipcr><classification-ipcr sequence="2"><text>A61K   9/16        20060101ALI19970716BHEP        </text></classification-ipcr></B510EP><B540><B541>de</B541><B542>HERSTELLUNG BIOLOGISCH ABBAUBARER, EINEN BIOLOGISCH AKTIVEN STOFF ENTHALTENDER, MIKROPARTIKEL</B542><B541>en</B541><B542>PREPARATION OF BIODEGRADABLE MICROPARTICLES CONTAINING A BIOLOGICALLY ACTIVE AGENT</B542><B541>fr</B541><B542>PREPARATION DE MICROPARTICULES BIODEGRADABLES CONTENANT UN AGENT BIOLOGIQUEMENT ACTIF</B542></B540><B560><B561><text>EP-A1- 0 377 477</text></B561><B561><text>EP-A1- 0 618 001</text></B561><B561><text>WO-A1-88/08300</text></B561><B561><text>WO-A1-91/06286</text></B561><B561><text>WO-A1-91/06287</text></B561><B561><text>US-A- 4 622 244</text></B561><B561><text>US-A- 4 668 580</text></B561><B561><text>US-A- 4 936 901</text></B561><B561><text>US-A- 4 978 483</text></B561><B565EP><date>19971208</date></B565EP></B560></B500><B600><B620EP><parent><cdoc><dnum><anum>99122848.7</anum><pnum>0998917</pnum></dnum><date>19991117</date></cdoc><cdoc><dnum><anum>05024791.5</anum><pnum>1649850</pnum></dnum><date>20051114</date></cdoc><cdoc><dnum><anum>10176471.0</anum><pnum>2275089</pnum></dnum><date>20100913</date></cdoc><cdoc><dnum><anum>10176953.7</anum><pnum>2283821</pnum></dnum><date>20100915</date></cdoc></parent></B620EP></B600><B700><B720><B721><snm>HERBERT, Paul F.</snm><adr><str>4 Oak Hill Road</str><city>Wayland, MA 01778</city><ctry>US</ctry></adr></B721><B721><snm>HAZRATI, Azar M.</snm><adr><str>2955 Kimberly Drive</str><city>Maineville, OH 45039</city><ctry>US</ctry></adr></B721></B720><B730><B731><snm>Alkermes, Inc.</snm><iid>101319564</iid><irf>P19531EP/NJL/RK</irf><adr><str>852 Winter Street</str><city>Waltham, MA 02451-1420</city><ctry>US</ctry></adr></B731></B730><B740><B741><snm>Lee, Nicholas John</snm><sfx>et al</sfx><iid>100036802</iid><adr><str>Kilburn &amp; Strode LLP 
+20 Red Lion Street</str><city>London WC1R 4PJ</city><ctry>GB</ctry></adr></B741></B740><B780><B781><dnum><text>01</text></dnum><date>20021105</date><kind>1</kind><snm>Southern Research Institute</snm><iid>100705155</iid><adr><str>2000 Ninth Avenue South</str><city>Birmingham, Alabahma 35255</city><ctry>US</ctry></adr><B784><snm>Leissler-Gerstl, Gabriele</snm><iid>100957532</iid><adr><str>Hoefer &amp; Partner 
+Patentanwälte 
+Pilgersheimer Strasse 20</str><city>81543 München</city><ctry>DE</ctry></adr></B784></B781><B781><dnum><text>02</text></dnum><date>20021106</date><kind>4</kind><snm>DrugAbuse Science, Inc</snm><iid>100701238</iid><adr><str>25954 Eden Landing Road 
+Second Floor</str><city>Hayward,CA94545</city><ctry>US</ctry></adr><B784><snm>Prins, Adrianus Willem</snm><sfx>et al</sfx><iid>100009758</iid><adr><str>Vereenigde 
+P.O.Box 87930</str><city>2508 DH Den Haag</city><ctry>NL</ctry></adr></B784></B781></B780></B700><B800><B840><ctry>AT</ctry><ctry>BE</ctry><ctry>CH</ctry><ctry>DE</ctry><ctry>DK</ctry><ctry>ES</ctry><ctry>FR</ctry><ctry>GB</ctry><ctry>GR</ctry><ctry>IE</ctry><ctry>IT</ctry><ctry>LI</ctry><ctry>LU</ctry><ctry>MC</ctry><ctry>NL</ctry><ctry>PT</ctry><ctry>SE</ctry></B840><B860><B861><dnum><anum>US1994013453</anum></dnum><date>19941118</date></B861><B862>en</B862></B860><B870><B871><dnum><pnum>WO1995013799</pnum></dnum><date>19950526</date><bnum>199522</bnum></B871></B870><B880><date>19960904</date><bnum>199636</bnum></B880></B800></SDOBI><!-- EPO <DP n="1"> -->
+<description id="desc" lang="en">
+<p id="p0001" num="0001">This invention relates to the preparation of microparticles. More particularly, the present invention relates to a method of encapsulating active agents to form controlled-release microparticles through the use of static mixers. By "microparticles" or "microspheres" is meant solid particles that contain an active agent dispersed or dissolved within a biodegradable polymer that serves as the matrix of the particle.</p>
+<heading id="h0001"><b><i>Description of the Related Art</i></b></heading>
+<p id="p0002" num="0002">A variety of methods is known by which compounds can be encapsulated in the form of microparticles. It is particularly advantageous to encapsulate a biologically active or pharmaceutically active agent within a biocompatible, biodegradable, wall forming material (e.g., a polymer) to provide sustained or delayed release of drugs or other active agents. In these methods, the material to be encapsulated (drugs or other active agents) is generally dissolved, dispersed, or emulsified, using stirrers, agitators, or other dynamic mixing techniques, in a solvent containing the wall forming material. Solvent is then removed from the microparticles and thereafter the microparticle product is obtained.</p>
+<p id="p0003" num="0003">An example of a conventional microencapsulation process is disclosed in <patcit id="pcit0001" dnum="US3737337A"><text>U.S. Patent No. 3,737,337</text></patcit> wherein a solution of a wall or shell forming polymeric material in a solvent is prepared. The solvent is only partially miscible in water. A solid or core material is dissolved or dispersed in the polymer-containing solution and, thereafter, the core-material-containing solution is dispersed in an aqueous liquid that is immiscible in the organic solvent in order to remove solvent from the microparticles. The substances to be encapsulated or embedded are dissolved or dispersed in the organic solution of the polymer (phase A), using conventional mixers including (in the preparation of a dispersion) vibrators, and high speed stirrers, etc. The dispersion of phase (A), containing the core material in solution or in suspension, is carried out in the aqueous phase (B) again using conventional mixers, such as high-speed mixers, vibration mixers or even spray nozzles, in which case the particle size of the microgranulates will be determined not only by the concentration of phase (A) but also by the particle sizes obtained.</p>
+<p id="p0004" num="0004">Another example of a process in which solvent is removed from microparticles containing a substance is disclosed in <patcit id="pcit0002" dnum="US3523906A"><text>U.S. Patent No. 3,523,906</text></patcit>. In this process, a material to be encapsulated is emulsified in a solution of a polymeric material in a solvent that is immiscible in water and then the emulsion is emulsified in an aqueous solution containing a hydrophilic colloid. Solvent removal from the microparticles is then accomplished by evaporation and the product is obtained.</p>
+<p id="p0005" num="0005">In still another process, as disclosed in <patcit id="pcit0003" dnum="US3691090A"><text>U.S. Patent No. 3,691,090</text></patcit>, organic solvent is evaporated from a dispersion of microparticles in an aqueous medium, preferably under reduced pressure.</p>
+<p id="p0006" num="0006">Similarly, <patcit id="pcit0004" dnum="US3891570A"><text>U.S. Patent No. 3,891,570</text></patcit> discloses a method in which microparticles are prepared by dissolving or dispersing a core material in a solution of a wall material dissolved in a solvent having a dielectric constant of 10 or less and poor miscibility with a polyhydric alcohol, then emulsifying in fine droplets through dispersion or solution into the polyhydric alcohol and finally evaporating the solvent by the application of heat or by subjecting the microparticles to reduced pressure.</p>
+<p id="p0007" num="0007">Another example of a process in which an active agent may be encapsulated is disclosed in <patcit id="pcit0005" dnum="US3960757A"><text>U.S. Patent No. 3,960,757</text></patcit>. Encapsulated medicaments are prepared by dissolving a wall material for capsules in at least one organic solvent, poorly miscible with water, that has a boiling point of less than 100°C, a vapor pressure higher than that of water, and a dielectric constant of less than about 10; dissolving or dispersing a medicament that is insoluble or slightly soluble in water in the resulting solution; dispersing the resulting solution or dispersion to the form of fine drops in a liquid vehicle comprising an aqueous solution of a hydrophilic colloid or a surface active agent, and then removing the organic solvent by evaporation. The size of the fine drops is determined according to the stirring speed, the viscosity of the organic solvent solution containing the medicament and the wall material, and the viscosity and surface tension of the vehicle.</p>
+<p id="p0008" num="0008">Tice <i>et al.</i> in <patcit id="pcit0006" dnum="US4389330A"><text>U.S. Patent No. 4,389,330</text></patcit> describe the preparation of microparticles containing an active agent by using a two-step solvent removal process. This two-step solvent removal process is advantageous because it results in microparticles having higher active agent loading and a higher quality than techniques in which solvent is removed in a single step. In the Tice <i>et al</i>. process, the active agent and the polymer are dissolved in a solvent. The mixture of ingredients in the solvent is then emulsified in a continuous-phase processing medium that is immiscible with the solvent. A dispersion of microparticles containing the indicated ingredients is formed in the continuous-phase medium by mechanical agitation of the mixed materials. From this dispersion, the organic solvent can be partially removed in the first step of the solvent removal process. After the first stage, the dispersed microparticles are isolated from the continuous-phase processing medium by any convenient means of separation. Following the isolation, the remainder of the solvent in the microparticles is removed by extraction. After the remainder of the solvent has been removed from the microparticles, they are dried by exposure to air or by other conventional drying techniques.<!-- EPO <DP n="2"> --></p>
+<p id="p0009" num="0009">Tice <i>et al</i>., in <patcit id="pcit0007" dnum="US4530840A"><text>U.S. Patent No. 4,530,840</text></patcit>, describe the preparation of microparticles containing an anti-inflammatory active agent by a method comprising: (a) dissolving or dispersing an anti-inflammatory agent in a solvent and dissolving a biocompatible and biodegradable wall forming material in that solvent; (b) dispersing the solvent containing the anti-inflammatory agent and wall forming material in a continuous-phase processing medium; (c) evaporating a portion of the solvent from the dispersion of step (b), thereby forming microparticles containing the anti-inflammatory agent in the suspension; and (d) extracting the remainder of the solvent from the microparticles.</p>
+<p id="p0010" num="0010"><patcit id="pcit0008" dnum="WO9013361A"><text>WO 90/13361</text></patcit> discloses a method of microencapsulating an agent to form a microencapsulated product, having the steps of dispersing an effective amount of the agent in a solvent containing a dissolved wall forming material to form a dispersion; combining the dispersion with an effective amount of a continuous process medium to form an emulsion that contains the process medium and microdroplets having the agent, the solvent, and the wall forming material; and adding the emulsion rapidly to an effective amount of an extraction medium to extract the solvent from the microdroplets to form the microencapsulated product.</p>
+<p id="p0011" num="0011">Bodmeier, R. <i>et al</i>., <i>International Journal of Pharmaceutics 43</i>:179-186 (1988), disclose the preparation of microparticles containing quinidine or quinidine sulfate as the active agent and poly(D,L-lactide) as the binder using a variety of solvents including methylene chloride, chloroform, and benzene as well as mixtures of methylene chloride and a water miscible liquid, such as acetone, ethyl acetate, methanol, dimethylsulfoxide, chloroform, or benzene to enhance drug content.</p>
+<p id="p0012" num="0012">Beck, L.R. <i>et al., Biology of Reproduction 28</i>:186-195 (1983), disclose a process for encapsulating norethisterone in a copolymer of D,L-lactide and glycolide by dissolving both the copolymer and the norethisterone in a mixture of chloroform and acetone that is added to a stirred cold aqueous solution of polyvinyl alcohol to form an emulsion and the volatile solvents removed under reduced pressure to yield microcapsules.</p>
+<p id="p0013" num="0013">Phase separation or non-solvent induced coacervation is a method which has also been employed to prepare microparticles comprised of a biodegradable polymeric matrix and a biologically active agent. Many of the published procedures for microencapsulation with lactide/glycolide copolymers employ solvent evaporation/extraction techniques, but these techniques are mostly suitable for water insoluble drugs because water soluble drugs may partially partition into the aqueous phase during the preparation process. The phase separation method, utilizes non-solvents for the polymer and in which hydrophilic active agents also are not soluble, is an efficient method of encapsulation for these active agents.</p>
+<p id="p0014" num="0014">In a conventional phase separation method, a known amount of polymer, such as poly(lactide-co-glycolide), PLGA, with a monomeric ratio of lactide to glycolide ranging from 100:0 to 50:50, is dissolved in an appropriate organic solvent. The solid drug, preferably lyophilized and micronized, may be dispersed in the polymer solution, where it is insoluble or slightly soluble in the organic solvent. Alternatively, the active agent may be dissolved in water, or in water which contains some additives, and emulsified in the polymer solution, preferably mainly by sonication, forming a water-in-oil emulsion. The resultant suspension or emulsion is then added to a reactor and addition of a first non-solvent is initiated at a predetermined rate. A turbine mixer installed in the reactor is used to provide moderate mixing. At the completion of the phase separation process, the mixture is transferred into a quench tank containing a second non-solvent to solidify the semi-solid microspheres. The hardened microspheres are collected by sieving and are washed and stored in a vacuum oven for further drying.</p>
+<p id="p0015" num="0015">Very often the solvents used in the known microencapsulation processes are halogenated hydrocarbons, particularly chloroform or methylene chloride, which act as solvents for both the active agent and the encapsulating polymer. The presence of small, but detectable, halogenated hydrocarbon residuals in the final product, however, is undesirable, because of their general toxicity and possible carcinogenic activity. Thus, a need exists to revise the known microencapsulation processes using less toxic and acceptable alternative solvents.</p>
+<p id="p0016" num="0016">With conventional techniques for the microencapsulation of biological or pharmaceutical active agents, such as those described above, the microparticles form when the solvent containing an active agent and a polymer is emulsified or dispersed in an immiscible solution by stirring, agitating, vibrating, or some other dynamic mixing technique, often for a relatively long period of time. Such dynamic mixing techniques have several drawbacks. For example, it is difficult to control the size of the resulting microparticles, or the distribution of sizes obtained. As a consequence, use of dynamic mixing also presents problems when preparing microparticles containing biological or pharmaceutical agents on a production or commercial scale. Particularly, production equipment includes a costly emulsion tank, including equipment to stir or agitate the fluids. One of the controlling factors for overall process time is the time required to form a homogeneous (uniform) emulsion. Increased batch sizes in larger tanks require a longer time to form the emulsion, resulting in a longer overall production process time. Longer exposure times of the active agent to process solvents and to polymer solutions can lead to degradation or deactivation of the active agent. Scale-up to a production process from a laboratory emulsion process is particularly difficult for microencapsulation of biological or pharmaceutical agents since, as the batch and tank size are increased, stir speeds and viscosities within the larger tank have to be empirically optimized by trial and error at each stage of the scale-up. Likewise, the phase separation technique is not easily converted into a process for producing commercial scale quantities of microparticles because processing<!-- EPO <DP n="3"> --> parameters, i.e., rate of non-solvent addition, agitation conditions, and the viscosity of both the active agent/polymer solution and the non-solvent must be empirically optimized by trial and error at each stage of scale-up. Thus, scale-up of conventional microencapsulation techniques is not only time consuming, but imprecise.</p>
+<p id="p0017" num="0017">Tests were conducted in an attempt to scale-up a laboratory emulsion formation process from small stirred glass reactors to production equipment for microparticles containing estradiol benzoate. The shear created by the mixer blades determined the particle size of the emulsion; the higher the shear, the smaller the particles. Due to the low viscosity of the oil (organic) phase in the estradiol benzoate process, low shear is required to produce the large emulsion particles which were desired. In large reactors it is difficult to maintain low shear and still provide uniform mixing. The speed at which the agitator must turn to provide a uniform tank composition produces a small particle size with a broad distribution of sizes. Larger mixing blade diameters and multiple mixing blades along the shaft helped to provide better mixing at low shear but still produced a very broad distribution of sizes. Particle size control became less reliable as batch size was increased.</p>
+<p id="p0018" num="0018">Accordingly, one advantage of the method of preparing microparticles of the present invention is that accurate and reliable scaling from laboratory to commercial batch sizes can be done, while achieving a narrow and well defined size distribution of microparticles containing biologically or pharmaceutically active agents. This can be achieved for any suitable encapsulation technique including, but not limited to, solvent extraction and phase separation. A further advantage of the method of the present invention is that the same equipment can be used to form microparticles containing active agents of a well defined size distribution for varying batch sizes. Yet another advantage of the method of the present invention is that high quality microparticles having a high concentration of active agent can be obtained using a single step to remove solvent, or through a phase separation technique.</p>
+<heading id="h0002"><b><i>Summaly of the Invention</i></b></heading>
+<p id="p0019" num="0019">According to the present invention, there is provided a method of preparing microparticles, comprising:
+<ul id="ul0001" list-style="none" compact="compact">
+<li>preparing a first phase by dissolving an active agent in a polymer solution;</li>
+<li>preparing a second phase which is substantially immiscible with the first phase;</li>
+<li>preparing a quench liquid; and</li>
+<li>pumping said first phase and said second phase through a static mixer into said quench liquid thereby forming microparticles containing said active agent;</li>
+</ul></p>
+<p id="p0020" num="0020">Preferably, the method further comprises configuring said static mixer with a plurality of static mixing elements received within a conduit. The pumping step may be performed wherein said first phase is pumped at a first flow rate and said second phase is pumped at a second flow rate greater than said first flow rate.</p>
+<p id="p0021" num="0021">The step of preparing said first phase may also further comprise:
+<ol id="ol0001" compact="compact" ol-style="">
+<li>a) dissolving polylactide-co-glycolide in ethyl acetate to form a polymer solution and dissolving trenbolone acetate in said polymer solution, or</li>
+<li>b) dissolving polylactide-co-glycolide in ethyl acetate to form a polymer solution and dissolving testosterone in said polymer solution, or</li>
+<li>c) dissolving polylactide-co-glycolide in ethyl acetate to form a polymer solution and dissolving estradiol benzoate in said polymer solution.</li>
+</ol></p>
+<p id="p0022" num="0022">The second phase may be free from solvents for the polymer and active agent, and may be comprised of an<!-- EPO <DP n="4"> --> aqueous solution of an emulsifier. The process of the present invention whereby microparticles are prepared using static mixers can be used with any conventional encapsulation technique including, but not limited to, solvent extraction and phase separation.</p>
+<p id="p0023" num="0023">The method may be used to prepare microparticles containing the following active agents; risperidone; trenbolone acetate; norethindrone; testosterone; estrodiol benzoate; human serum albumin; pig albumin; and recombinant bovine interferon-alpha.</p>
+<p id="p0024" num="0024">In one embodiment of the invention, a blend of at least two substantially non-toxic solvents, free of halogenated hydrocarbons, is used to dissolve both the agent and the polymer. The solvent blend containing the dissolved agent and polymer is dispersed in an aqueous solution to form droplets. The resulting emulsion is then added to an aqueous extraction medium preferably containing at least one of the solvents of the blend, whereby the rate of extraction of each solvent is controlled, whereupon the biodegradable microparticles containing the biologically active agent are formed. The process has the advantages that less extraction medium is required because the solubility of one solvent in water is substantially independent of the other and solvent selection is increased, especially with solvents that are particularly difficult to extract.</p>
+<p id="p0025" num="0025">A solvent system useful in a method of preparing a pharmaceutical composition in microparticle form designed for the controlled release of an effective amount of a drug over an extended period of time may comprise at least one pharmaceutical agent and at least one biocompatible, biodegradable encapsulating polymer.</p>
+<p id="p0026" num="0026">Microparticles may be prepared by preparing a first "oil" phase containing from about 5 weight percent to about 50 weight percent solids of which from about 5 to about 95 weight percent is a solution of biodegradable polymeric encapsulating binder and incorporating from about 5 to about 95 weight percent, as based on polymeric binder, of an active agent in a solvent blend, the blend comprising first and second mutually miscible solvents, free from halogenated hydrocarbons, each having a solubility in water of from about 0.1 to about 25 weight percent at 20°C, forming an emulsion containing from 1:1 to 1:10 of the first phase in an emulsion process medium to form microdroplets of the first phase composition in a continuous aqueous second phase processing medium, adding the combined first and second phases to an aqueous extraction quench liquid at a level of from about 0.1 to about 20 liters of aqueous quench liquid per gram of polymer and active agent, said quench liquid containing the solvent of the blend having the greater water solubility at a level of from about 20% to about 70% of the saturation level of that solvent in the quench liquid at the temperature being used, and recovering microparticles from the quench liquid.</p>
+<p id="p0027" num="0027">A method of preparing microparticles may comprise the steps of:
+<ul id="ul0002" list-style="none" compact="compact">
+<li>preparing a first phase, said first phase comprising a biologically active agent, a biodegradable polymer, and a blend of at least two mutually miscible solvents for the agent and the polymer free from halogenated hydrocarbons; preparing a second phase, wherein said first phase is substantially immiscible in said second phase; flowing said first phase through a static mixer at a first flow rate; flowing said second phase through said static mixer at a second flow rate so that said first phase and said second phase flow simultaneously through said static mixer thereby forming microparticles containing said active agent; and isolating said microparticles.</li>
+</ul></p>
+<p id="p0028" num="0028">A method of preparing microparticles may comprise the steps of:
+<ul id="ul0003" list-style="none" compact="compact">
+<li>preparing a first phase, said first phase comprising a biologically active agent, a biodegradable polymer, and a blend of at least two mutually miscible solvents for the agent and the polymer free from halogenated hydrocarbons; preparing a second phase, wherein said first phase and said second phase are substantially immiscible; preparing a quench liquid; pumping said first phase and said second phase through a static mixer into said quench liquid thereby forming microparticles containing said active agent.</li>
+</ul></p>
+<p id="p0029" num="0029">The first phase may be prepared by (1) dissolving the biologically active agent in a solution of the polymer dissolved in at least two mutually miscible solvents free from halogenated hydrocarbons, or (2) by preparing a dispersion comprising the active agent in said solvents, or (3) by preparing an emulsion comprising the active agent in said solvents.</p>
+<heading id="h0003"><b><i>Brief Description of the Drawings</i></b></heading>
+<p id="p0030" num="0030">
+<ul id="ul0004" list-style="none" compact="compact">
+<li><figref idref="f0001">Figure 1</figref> illustrates flow through a static mixer;</li>
+<li><figref idref="f0002">Figure 2</figref> shows a static mixer which may be used in the process of the present invention;<!-- EPO <DP n="5"> --></li>
+<li><figref idref="f0003">Figure 3</figref> shows a laboratory set-up for carrying out a preferred process for preparing the microparticles of the present invention;</li>
+<li><figref idref="f0004">Figure 4</figref> depicts a graph of time release animal test data for two formulations of norethindrone loaded microparticles;</li>
+<li><figref idref="f0005">Figure 5</figref> depicts a graph of <i>in vitro</i> dissolution data for risperidone microparticles of batch Prodex 3, both as produced and lyophilized;</li>
+<li><figref idref="f0006">Figure 6</figref> depicts a graph of <i>in vitro</i> dissolution data for risperidone microparticles of batch Prodex 2, both as produced and lyophilized;</li>
+<li><figref idref="f0007">Figure 7</figref> depicts a graph of accelerated <i>in vitro</i> dissolution data for risperidone microparticles of batches Prodex 3 and Prodex 2;</li>
+<li><figref idref="f0008">Figure 8</figref> depicts a graph of mean (n = 2) plasma concentration-time curves for an active moiety (sum of risperidone and 9-hydroxy risperidone) after single intramuscular administration to beagle dogs of risperidone depot formulations at an approximate dose of 2.5 mg/kg. The period of anti-emetic activity (in at least 2 out of 3 dogs) in the apomorphine vomiting test is given in the legend for each of the formulations. An asterisk (*) indicates that the anti-emetic activity is interrupted in at least 2 out of 3 dogs at the beginning of the study. The broken line indicates an approximate lowest minimum plasma concentration necessary for anti-emetic activity. The // sign indicates that for formulation Prodex 2 no blood was sampled on days 14, 18, and 21;</li>
+<li><figref idref="f0009">Figure 9</figref> depicts a graph of cumulative percent by microparticle size of estradiol benzoate loaded microparticles;</li>
+<li><figref idref="f0010">Figure 10</figref> depicts a graph of percent differential by microparticle size of estradiol benzoate loaded microparticles;</li>
+<li><figref idref="f0011">Figure 11</figref> depicts a graph of time release animal test data for estradiol benzoate loaded microparticles;</li>
+<li><figref idref="f0012">Figure 12</figref> depicts a graph of cumulative percent by microparticle size of trenbolone acetate loaded microparticles;</li>
+<li><figref idref="f0013">Figure 13</figref> depicts a graph of time release animal test data for testosterone loaded microparticles;</li>
+<li><figref idref="f0014">Figures 14A-C</figref> depict three graphs showing the effect of spiking the quench liquid with ethyl acetate on norethindrone (NET) microparticle characteristics; and</li>
+<li><figref idref="f0015">Figures 15A-C</figref> depict three graphs showing the effect of quench volume on NET microparticle characteristics.</li>
+</ul></p>
+<heading id="h0004"><b><i>Description of the Preferred Embodiments</i></b></heading>
+<p id="p0031" num="0031">The present invention may involve the use of a solvent blend, free from halogenated hydrocarbons, comprising at least two solvents to produce biodegradable microparticles comprising at least one biologically active agent. A first solvent component of the solvent blend may be a poor solvent for the active agent, but a good solvent for the biodegradable polymer used herein. A second solvent component of the solvent blend may be a good solvent for both the active agent and the polymer.</p>
+<p id="p0032" num="0032">The method-of the present invention provides advantages over methods known in the art. The present method provides, <i>inter alia</i>, a biodegradable system, an injectable system that prevents the loss of dose during treatment, the ability to mix microparticles containing different drugs, microparticles free from halogenated hydrocarbon residues, and the ability to program release (multiphasic release patterns) to give faster or slower rates of drug release as needed.</p>
+<p id="p0033" num="0033">The products prepared by the method of the present invention offer the advantage of durations of action ranging from 30 to more than 200 days, depending upon the type of microparticle selected. In a preferred embodiment, the microparticles are designed to afford treatment to patients over a period of 30 to 60 days. The duration of action can be easily controlled by manipulation of the polymer composition, polymer:drug ratio, and microparticle size.</p>
+<p id="p0034" num="0034">Another important advantage of the microparticles prepared by the process of the present invention is that practically all of the active agent may be delivered to the patient because the polymer used in the method of the invention may be biodegradable, thereby permitting all of the entrapped agent to be released into the patient.</p>
+<p id="p0035" num="0035">The solvent system used herein may be a blend of at least two solvents. These solvents must be:
+<ol id="ol0002" compact="compact" ol-style="">
+<li>(1) mutually miscible with one another,</li>
+<li>(2) capable, when blended, of dissolving or dispersing the active agent,</li>
+<li>(3) capable, when blended, of dissolving polymeric matrix material,</li>
+<li>(4) chemically inert to the active agent,</li>
+<li>(5) biocompatible,</li>
+<li>(6) substantially immiscible with the quench liquid, e.g., having a solubility of no more than about 0.1 to 25%, and</li>
+<li>(7) solvents other than halogenated hydrocarbons.</li>
+</ol><!-- EPO <DP n="6"> --></p>
+<p id="p0036" num="0036">By "halogenated hydrocarbons" is meant halogenated organic solvents, i.e., C<sub>1</sub> - C<sub>4</sub> halogenated alkanes, e.g., methylene chloride, chloroform, methyl chloride, carbon tetrachloride, ethylene dichloride, ethylene chloride, 2,2,2-trichloroethane, and the like.</p>
+<p id="p0037" num="0037">An ideal solvent blend for encapsulation of an active agent should have a high solubility for the polymeric encapsulating agent of generally at least about 5 weight percent and, preferably, at least about 20 weight percent at 20°C. The upper limit of solubility is not critical, but if over about 50 weight percent of the solution is encapsulating polymer, the solution may become too viscous to handle effectively and conveniently. This is, of course, dependent on the nature of the encapsulating polymer and its molecular weight.</p>
+<p id="p0038" num="0038">The solvent system, although substantially immiscible with the continuous phase process medium and the quenching liquid, which usually are water-based, preferably has a limited solubility therein. If the solvent system were infinitely soluble in the process medium, microdroplets would be unable to form during the emulsion phase; if the solubility of the solvent system in the extractive quenching medium is too low, however, large quantities of quenching medium are needed. Generally, solvent solubilities of from about 0.1 to about 25% in the process medium and quench medium are acceptable for use herein. It will often be advantageous for the quench medium to contain from about 70 to about 20 weight percent of the saturation point of the first solvent, i.e., the solvent of higher solubility in the quench medium, to control the rate of loss of the first solvent from the microparticles into the quench medium.</p>
+<p id="p0039" num="0039">Added considerations in choosing a component of the solvent blend of the present invention include boiling point (i.e., the ease with which the solvents can be evaporated to form finished product) and specific gravity (tendency of the "oil phase" to float during emulsifying and quenching). Finally, the solvent system should have low toxicity.</p>
+<p id="p0040" num="0040">Generally, the solvent blend composition will contain from about 25 to about 75 weight percent of the first solvent and, correspondingly, from about 75 to about 25 weight percent of the second solvent.</p>
+<p id="p0041" num="0041">The solvent blend of the present invention is preferably a blend of at least two of the following: an ester, an alcohol, and a ketone. Preferred esters are of the structure R<sup>1</sup>COOR<sup>2</sup> where R<sup>1</sup> and R<sup>2</sup> are independently selected from the group consisting of alkyl moieties of from 1 to 4 carbon atoms, i.e., methyl, ethyl, propyl, butyl, and isomers thereof. The most preferred ester for use as one component of the solvent blend employed in the practice of the present invention is ethyl acetate. Preferred alcohols are of the structure R<sup>3</sup>CH<sub>2</sub>OH where R<sup>3</sup> is selected from the group consisting of hydrogen, alkyl of from 1 to 3 carbon atoms, and aryl of from 6 to 10 carbon atoms. It is more preferred that R<sup>3</sup> be aryl. The most preferred alcohol for use as one component of the solvent blend employed in the practice of the present invention is benzyl alcohol. Preferred ketones are of the structure R<sup>4</sup>COR<sup>5</sup> where R<sup>4</sup> is selected from the group consisting of alkyl moieties of from 1 to 4 carbon atoms, i.e., methyl, ethyl, propyl, butyl, and isomers thereof and R<sup>5</sup> is selected from the group consisting of alkyl moieties of from 2 to 4 carbon atoms, i.e., ethyl, propyl, butyl, and isomers thereof. The most preferred ketone for use as one component of the solvent blend employed in the practice of the present invention is methyl ethyl ketone.</p>
+<p id="p0042" num="0042">The polymeric matrix material of the microparticles prepared by the process of the present invention may be a biocompatible and biodegradable polymeric material. The term "biocompatible" is defined as a polymeric material that is not toxic to the human body, is not carcinogenic, and does not significantly induce inflammation in body tissues. The matrix material should be biodegradable in the sense that the polymeric material should degrade by bodily processes to products readily disposable by the body and should not accumulate in the body. The products of the biodegradation should also be biocompatible with the body in the same sense that the polymeric matrix is biocompatible with the body, as should any residual solvent that may remain in the microparticles.</p>
+<p id="p0043" num="0043">Suitable examples of polymeric matrix materials include poly(glycolic acid), poly-D,L-lactic acid, poly-L-lactic acid, copolymers of the foregoing, poly(aliphatic carboxylic acids), copolyoxalates, polycaprolactone, polydioxonene, poly(ortho carbonates), poly(acetals), poly(lactic acid-caprolactone), polyorthoesters, poly(glycolic acid-caprolactone), polyanhydrides, polyphosphazines, and natural polymers including albumin, casein, and waxes, such as, glycerol mono- and distearate,and the like. Various commercially available poly (lacride-co-glycolide) materials (PLGA) may be used in the method of the present invention. For example, poly (d,1-lactic-co-glycolic acid) is commercially available from Medisorb Technologies International L.P. (Cincinnati, OH). A suitable product commercially available from Medisorb is a 50:50 poly (D,L) lactic co-glycolic acid known as MEDISORB® 5050 DL. This product has a mole percent composition of 50% lactide and 50% glycolide. Other suitable commercially available products are MEDISORB® 65:35 DL, 75:25 DL, 85:15 DL and poly(d,1-lactic acid) (d,1-PLA). Poly(lactide-co-glycolides) are also commercially available from Boehringer Ingelheim (Germany) under its Resomer mark, e.g., PLGA 50:50 (Resomer RG 502), PLGA 75:25 (Resomer RG 752) and d,1-PLA (Resomer RG 206), and from Birmingham Polymers (Birmingham, Alabama). These copolymers are available in a wide range of molecular weights and ratios of lactic acid to glycolic acid.</p>
+<p id="p0044" num="0044">The most preferred polymer for use in the practice of this invention is poly(dl-lactide-co-glycolide). It is preferred that the molar ratio of lactide to glycolide in such a copolymer be in the range of from about 85:15 to about 50:50.</p>
+<p id="p0045" num="0045">The molecular weight of the polymeric matrix material is of some importance. The molecular weight should be high enough to permit the formation of satisfactory polymer coatings, i.e., the polymer should be a good film former. Usually, a satisfactory molecular weight is in the range of 5,000 to 500,000 daltons, preferably about 150,000 daltons.<!-- EPO <DP n="7"> --> However, since the properties of the film are also partially dependent on the particular polymeric material being used, it is very difficult to specify an appropriate molecular weight range for all polymers. The molecular weight of a polymer is also important from the point of view of its influence upon the biodegradation rate of the polymer. For a diffusional mechanism of drug release, the polymer should remain intact until all of the drug is released from the microparticles and then degrade. The drug can also be released from the microparticles as the polymeric excipient bioerodes. By an appropriate selection of polymeric materials a microparticle formulation can be made in which the resulting microparticles exhibit both diffusional release and biodegradation release properties. This is useful in affording multiphasic release patterns.</p>
+<p id="p0046" num="0046">The formulation prepared by the process of the present invention contains an active agent dispersed in the microparticle polymer matrix material. The amount of agent incorporated in the microparticles usually ranges from about 1 wt. % to about 90 wt. %, preferably 30 to 50 wt. %, more preferably 35 to 40 wt. %. By weight % is meant parts of agent per total weight of microparticle. For example, 10 wt. % agent would mean 10 parts agent and 90 parts polymer by weight.</p>
+<p id="p0047" num="0047">In carrying out the process of the present invention, the encapsulating polymer should be essentially 100% dissolved in the solvent blend at the time the solution is emulsified. The active agent is dissolved in the solvent blend at the time it is added to the continuous phase process medium. The content of normally solid material (active agent plus encapsulating polymer) in the solvent blend at the time it is first emulsified should be at least 5 weight percent and preferably at least 20 weight percent. Minimizing solvent in the "oil phase" provides a better quality microparticle and requires less extraction medium.</p>
+<p id="p0048" num="0048">One preferred active agent that can be encapsulated by the process of the present invention is norethindrone (NET) - others are risperidone and testosterone.</p>
+<p id="p0049" num="0049">Ethyl acetate alone is a poor solvent for NET thereby requiring more solvent and higher temperatures than the prior art chloroform process. Although coreloads of the product microparticles are acceptable, yields, especially in the 63-90 µm range, are low. Scanning electron micrographs show these larger microparticles to be cracked open (i.e., shells) and collapsed. Higher than normal release rates for these microparticles corroborate this phenomenon.</p>
+<p id="p0050" num="0050">Experiments using benzyl alcohol alone as the solvent resulted in easy control of microparticle size as determined by inspection of the quench tank contents by optical microscopy. Upon drying, however, generally poor quality was found to have resulted. Often, recovery was difficult because of stickiness. Also, solvent residuals tended to be elevated. Using a solvent system of ethyl acetate and benzyl alcohol for the "oil phase" improved the microparticle quality and release characteristics.</p>
+<p id="p0051" num="0051">The mixture of ingredients in the "oil phase" solvent system is preferably emulsified in a continuous-phase processing medium; the continuous-phase medium being such that a dispersion of microdroplets containing the indicated ingredients is formed in the continuous-phase medium.</p>
+<p id="p0052" num="0052">Although not absolutely necessary, it is preferred to saturate the continuous phase process medium with at least one of the solvents forming the "oil phase" solvent system. This provides a stable emulsion, preventing transport of solvent out of the microdroplets prior to quenching. Similarly, a vacuum may be applied as in <patcit id="pcit0009" dnum="US4389330A"><text>U.S. 4,389,330</text></patcit>. Where ethyl acetate and benzyl alcohol are the components of the solvent system, the aqueous phase of the emulsion preferably contains 1 to 8 weight percent ethyl acetate and 1 to 4 weight percent benzyl alcohol.</p>
+<p id="p0053" num="0053">Usually, a surfactant or a hydrophilic colloid is added to the continuous-phase processing medium to prevent the solvent microdroplets from agglomerating and to control the size of the solvent microdroplets in the emulsion. Examples of compounds that can be used as surfactants or hydrophilic colloids include, but are not limited to, poly(vinyl alcohol), carboxymethyl cellulose, gelatin, poly(vinyl pyrrolidone), Tween 80, Tween 20, and the like. The concentration of surfactant or hydrophilic colloid in the process medium should be sufficient to stabilize the emulsion and will affect the final size of the microparticles. Generally the concentration of the surfactant or hydrophilic colloid in the process medium will be from about 0.1% to about 10% by weight based on the process medium, depending upon the surfactant or hydrophilic colloid, the "oil phase" solvent system, and the processing medium used. A preferred dispersing medium combination is a 0.1 to 10 wt. %, more preferably 0.5 to 2 wt. %, solution of poly(vinyl alcohol) in water.</p>
+<p id="p0054" num="0054">The temperature during the formation of the emulsion is not especially critical, but can influence the size and quality of the microparticles and the solubility of the active agent in the continuous phase. Of course, it is desirable to have as little of the active agent in the continuous phase as possible. Moreover, depending on the solvent blend and continuous-phase processing medium employed, the temperature must not be too low or the solvent and processing medium may solidify or become too viscous for practical purposes. On the other hand, it must not be so high that the processing medium will evaporate or that the liquid processing medium will not be maintained. Moreover, the temperature of the emulsion cannot be so high that the stability of the particular active agent being incorporated in the microparticles is adversely affected. Accordingly, the dispersion process can be conducted at any temperature that maintains stable operating conditions, preferably from about 20°C to about 60°C, depending upon the active agent and excipient<!-- EPO <DP n="8"> --> selected.</p>
+<p id="p0055" num="0055">As stated above, in order to create microparticles containing an active agent, a first, preferably organic, phase and a second, preferably aqueous, phase are combined. The organic and aqueous phases are substantially immiscible, with the aqueous phase constituting the continuous phase of the emulsion. The organic phase includes the active agent as well as the wall forming polymer, i.e., the polymeric matrix material. The organic phase may be prepared by dissolving the active agent(s) in an organic solvent system. The organic phase and the aqueous phase are combined under the influence of a static mixer to form the microparticles of the present invention. Preferably the combined organic and aqueous phases are pumped through a static mixer to form an emulsion and into a large volume of quench liquid, to obtain microparticles containing the active agent encapsulated in the polymeric matrix material.</p>
+<p id="p0056" num="0056">In many of the known techniques for the microencapsulation of biological or pharmaceutical agents, the microparticles form when the solvent containing the active agent and the polymer is emulsified or dispersed in an immiscible second solvent by stirring, agitating, vibrating, or some other dynamic mixing technique, often for a relatively long period of time. Such dynamic mixing techniques have several drawbacks. For example, it is difficult to control the size of the resulting microparticles or the distribution of sizes obtained. As a consequence, use of dynamic mixing also presents problems when preparing microparticles containing biological or pharmaceutical agents on a production or commercial scale. Particularly, production equipment includes a costly emulsion tank, including equipment to stir or agitate the fluids. One of the controlling factors for overall process time is the time required to form a uniform emulsion. Increased batch sizes in larger tanks require a longer time to form the emulsion, resulting in a longer overall production process time. Longer exposure times of the active agent to process solvents and polymers in solution can lead to degradation or deactivation of the active agent. Scale-up to a production process from a laboratory emulsion process is particularly difficult for microencapsulation of biological or pharmaceutical agents since, as the batch and tank size are increased, stir speeds and viscosities within the larger tank have to be empirically determined, and optimized, by trial and error at each stage of the scale-up. This process is not only time consuming, but imprecise.</p>
+<p id="p0057" num="0057">Accordingly, one advantage of preparing microparticles using a static mixer is that accurate and reliable scaling from laboratory to commercial batch sizes can be done while achieving a narrow and well defined size distribution of microparticles containing biologically or pharmaceutically active agents. A further advantage of this method is that the same equipment can be used to form microparticles containing active agents of a well defined size distribution for varying batch sizes. Yet another advantage of the method is that high quality microparticles having a high concentration of active agent can be obtained using a single step to remove solvent without the need for a two-step solvent removal process as described in the above-mentioned Tice <i>et al</i>. patent (<patcit id="pcit0010" dnum="US4389330A"><text>U.S. 4,389,330</text></patcit>). In addition to improving process technology, static mixers are low maintenance, their small size requires less space than dynamic mixers, they have low energy demands, and comparatively low investment costs.</p>
+<p id="p0058" num="0058">Static or motionless mixers consist of a conduit or tube in which is received a number of static mixing elements. Static mixers provide uniform mixing in a relatively short length of conduit, and in a relatively short period of time. With static mixers, the fluid moves through the mixer, rather than some part of the mixer, such as a blade, moving through the fluid. Flow through one type of static mixer is illustrated in <figref idref="f0001">Figure 1</figref>. A pump (not shown) introduces a stream of one or more fluids into a static mixer <b>10</b> as shown generally at <b>1</b>. The stream is split and forced to opposite outside walls as shown generally at <b>2</b>. A vortex is created axial to the centerline of static mixer <b>10</b>, as shown generally at <b>3</b>. The vortex is sheared and the process recurs, but with the opposite rotation, as shown generally at <b>4</b>. The clockwise/counter-clockwise motion ensures a homogeneous product.</p>
+<p id="p0059" num="0059">One example of a static mixer is shown in <figref idref="f0002">Figure 2</figref>. Static mixer <b>10</b> includes a number of stationary or static mixing elements <b>14</b> arranged in a series within a conduit or pipe <b>12.</b> The number of elements can range from <b>4</b> to <b>32</b> or more. Conduit <b>12</b> is circular in cross-section and open at opposite ends <b>18</b> and <b>20</b> for introducing and withdrawing fluids. Mixing element <b>14</b> comprises segments <b>142.</b> Each segment <b>142</b> consists of a plurality of generally flat plates or vanes <b>144.</b> The two substantially identical segments <b>142</b> are preferably axially staggered with respect to each other. A static mixer as shown in <figref idref="f0002">Figure 2</figref> is more fully described in <patcit id="pcit0011" dnum="US4511258A"><text>U.S. Patent No. 4,511,258</text></patcit> which is incorporated herein by reference.</p>
+<p id="p0060" num="0060">When using a static mixer to form an emulsion, a variety of factors determine emulsion droplet size. These factors include the density and viscosity of the various solutions or phases to be mixed, volume ratio of the phases, interfacial tension between the phases, static mixer parameters (conduit diameter; length of mixing element; number of mixing elements), and fluid velocity through the static mixer. Temperature is a variable because it affects density, viscosity, and interfacial tension. The primary controlling variable is fluid velocity. Shear rate and pressure drop per unit length of static mixer are also important parameters. Particularly, droplet size decreases as fluid velocity increases and alternatively, droplet size increases as fluid velocity (and pressure drop) decreases. Droplets will reach an equilibrium size after moving through a fixed number of elements for a given flow rate. The higher the flow rate, the fewer elements needed. Because of these relationships, scaling from laboratory batch sizes to commercial batch sizes is reliable and accurate, and the same equipment can be used for laboratory and commercial batch sizes.<!-- EPO <DP n="9"> --></p>
+<p id="p0061" num="0061">In a process of the present invention, the organic phase and the aqueous phase are pumped so that the two phases flow simultaneously through a static mixer, thereby forming an emulsion which comprises microparticles containing the active agent encapsulated in the polymeric matrix material. The organic and aqueous phases are pumped through the static mixer into a large volume of quench liquid. The quench liquid may be plain water, a water solution, or other suitable liquid. Organic solvent may be removed from the microparticles while they are washing or being stirred in the quench liquid. The process of the present invention, whereby organic and aqueous phases are pumped through a static mixer into a quench liquid for solvent removal, results in the formation of high quality microparticles having a high concentration of active agent without the need for the two-step solvent removal process described in the above-mentioned Tice <i>et al.</i> patent (4,389,330). After the microparticles are washed in a quench liquid to extract or remove the organic solvent, they are isolated, as through a sieve, and dried.</p>
+<p id="p0062" num="0062">The polymer may be dissolved in an appropriate organic solvent, preferably a non-halogenated solvent such as ethyl acetate. The organic phase is combined with a non-solvent in a static mixer where coacervation or precipitation of the polymer droplets around the active agent particles or droplets, i.e., phase separation, takes place. The residence time of the solvent and non-solvent flowing through the static mixer is an important factor in the process. The residence time can be altered by changing the dimensions of the mixing elements and conduit as well as the linear velocities of the solutions flowing through the static mixer. Other important factors that may affect the formation of microspheres are the density and viscosity of the two phases to be mixed, the volume ratio of the phases, and the interfacial tension between the phases. The size control of the microspheres, however, is determined primarily by the size and uniformity of the initial suspension or emulsion of the active agent in the organic phase.</p>
+<p id="p0063" num="0063">A laboratory set up for carrying out a static mixer process is illustrated in <figref idref="f0003">Figure 3</figref>. An organic or oil phase <b>30</b> is prepared by dissolving an active agent and a polymeric matrix material in a stirred pot <b>32.</b> The organic phase <b>30</b> and an aqueous phase are then pumped through a static mixer to form a second emulsion that comprises microdroplets containing the active agent encapsulated in the polymeric matrix material. An example of preparing microparticles containing an active agent using a double emulsion process of the present invention is provided below as Reference Example 2.</p>
+<p id="p0064" num="0064">Organic phase <b>30</b> is pumped out of stirred pot <b>32</b> by a magnetically driven gear pump <b>34.</b> However, it is understood that any suitable pumping means may be used. The discharge of pump <b>34</b> feeds a "Y" connection <b>36.</b> One branch <b>361</b> of "Y" connection <b>36</b> returns to pot <b>32</b> for recirculation flow. The other branch <b>362</b> feeds into an in-line static mixer <b>10</b>. Aqueous or water phase <b>40</b> is prepared in like manner, with a stirred pot <b>42</b>, a magnetically driven gear pump <b>44,</b> and a "Y" connection <b>46</b>. One branch <b>461</b> of "Y" connection <b>46</b> returns to pot <b>42</b> for recirculation flow. The other branch <b>462</b> feeds into in-line static mixer <b>10.</b></p>
+<p id="p0065" num="0065">Branches <b>362</b> and <b>462</b> from each solution, which feed in-line static mixer <b>10</b>, are joined by another "Y" connection <b>50</b> and feed through mixer inlet line <b>51</b> into static mixer <b>10</b>. Static mixer <b>10</b> discharges through mixer outlet line <b>52</b> into wash tank <b>60</b>. Silicone tubing and polypropylene fittings are used in the system illustrated in <figref idref="f0003">Figure 3</figref>. Silicone tubing having 3/8 inch ID is used for all lines except mixer outlet line <b>52.</b> Smaller diameter tubing (3/16 inch ID) is used for mixer outlet line <b>52</b> to prevent collapse of the emulsion both in mixer outlet line <b>52</b> and upon entering wash tank <b>60.</b></p>
+<p id="p0066" num="0066">In one embodiment of the process, pumps <b>34</b> and <b>44</b> are started in recirculation mode and desired flow rates are set for organic phase <b>30</b> and water phase <b>40.</b> The flow rate of water phase <b>40</b> is preferably greater than the flow rate of organic phase <b>30.</b> However, the two flow rates may be substantially the same. The ratio of the flow rate of water phase <b>40</b> to the flow rate of organic phase <b>30</b> is preferably in the range of 1:1 to 10:1. "Y" connection <b>46</b> is then switched so that water phase <b>40</b> flows through branch <b>462</b> to static mixer <b>10.</b> Once water phase <b>40</b> fills mixer inlet line <b>51</b>, static mixer <b>10</b>, and mixer outlet line <b>52;</b> "Y" connection <b>36</b> is switched so that organic phase <b>30</b> flows through branch <b>362</b> to static mixer <b>10.</b> Organic phase <b>30</b> and aqueous phase <b>40</b> at this point flow simultaneously through static mixer <b>10.</b> When the desired amount of organic phase has been pumped to static mixer <b>10</b>, "Y" connection <b>36</b> is switched to recirculation through branch <b>361</b>. Water phase <b>40</b> continues to flow for a short time to clean out any organic phase remaining in mixer inlet line <b>51,</b> static mixer <b>10,</b> and mixer outlet line <b>52.</b> "Y" connection <b>46</b> is then switched to recirculation through branch <b>461.</b></p>
+<p id="p0067" num="0067">Organic phase <b>30</b> and aqueous phase <b>40</b> are mixed in static mixer <b>10</b> to form an emulsion. The emulsion formed comprises microdroplets containing active agent encapsulated in a polymeric matrix material. The microdroplets<!-- EPO <DP n="10"> --> are stirred in wash tank <b>60</b> which contains a quench solution in order to remove the organic solvent from the microdroplets resulting in the formation of hardened microparticles. The microparticles are then isolated from the aqueous quench solution by any convenient means of separation; the fluid can be decanted from the microparticles or the microparticle suspension can be filtered or a sieve column can be used. Various other combinations of separation techniques can be used, if desired. The microparticles are then dried using conventional drying techniques, and further size isolation may be carried out.</p>
+<p id="p0068" num="0068">Following the movement of the microdroplets from the static mixer and entrance into the wash tank, the continuous-phase processing medium is diluted and the remainder of the solvent in the microparticles is removed by extraction. In this extractive quench step, the microparticles can be suspended in the same continuous-phase processing medium used during emulsification, with or without hydrophilic colloid or surfactant, or in another liquid. The extraction medium removes the solvent from the microparticles, but does not dissolve them. During the extraction, the extraction medium containing dissolved solvent can, optionally, be removed and replaced with fresh extraction medium. This is best done on a continual or continuous basis where the rate of extraction medium replenishment is critical. If the rate is too slow, active agent crystals may protrude from the microparticles or grow in the extraction medium. This critical rate of extraction medium replenishment for a given process is a variable that can be determined at the time the process is performed and, therefore, no precise limits for the rate need be predetermined. After the remainder of the solvent has been removed, the microparticles are isolated as stated above and are then dried by exposure to air or by other conventional drying techniques, such as, vacuum drying, drying over a desiccant, or the like. This process is very efficient in encapsulating an active agent since core loadings of up to about 80 wt. %, preferably up to about 50 wt. % can be obtained.</p>
+<p id="p0069" num="0069">One of the solvents in the blend of solvents used to form the "oil phase" droplets in the emulsion will be extracted more quickly than the other solvent, e.g., the first solvent, ethyl acetate, in the case of the preferred ethyl acetate/benzyl alcohol blend. Thus, high residuals of the second solvent (here, benzyl alcohol) are left behind. Owing to the high boiling point of benzyl alcohol, it is not easily removed by exposure of the microparticles to air or other conventional evaporative means. To overcome this, some of the more rapidly extracted solvent is added to the extraction medium prior to addition of the emulsion. The concentration of the more rapidly extracted solvent in the extraction medium generally is from about 20 to about 70% of the saturation point of the solvent in the medium at the temperature to be used for the extraction. Thus, when the emulsion is added to the quench liquid, extraction of the more rapidly extracted solvent is retarded and more of the second, more slowly extracted, solvent is removed.</p>
+<p id="p0070" num="0070">The exact amount of this more-rapidly-extracted solvent "spike" is of importance to final microparticle quality. Too much solvent (i.e., near the saturation point) results in porous microparticles with active agent visible on the surface, causing what may be an undesirable high rate of release. Too little solvent in the extraction medium results in high residuals of the more slowly extracted solvent and poor microparticle quality. The temperature of the extraction medium is also important as it affects solvent solubility and rate of extraction.</p>
+<p id="p0071" num="0071">Both temperature and amount of solvent spike may be adjusted to provide the final desired product characteristics, i.e., highly porous, quick releasing microparticles or slow releasing microparticles having a low porosity.</p>
+<p id="p0072" num="0072">The quench liquid may be plain water, a water solution, or other suitable liquid, the volume, amount, and type of which depends on the solvents used in the emulsion phase. The quench liquid preferably is water. Generally, the quench liquid volume is on the order of 10 times the saturated volume (i.e., 10 times the quench volume needed to absorb completely the volume of solvent in the emulsion). Depending on the solvent system, however, quench volume can vary from about 2 to about 20 times the saturated volume. Additionally, it is convenient to describe the quench volume requirement relative to batch size (microparticle product). This ratio is an indication of efficiency of the extraction step and, in some cases, dictates the batch size for a given set of equipment. The larger the ratio, the more volume is required per product weight. On the other hand, with a smaller ratio, more product may be obtained from the same amount of quench volume. This ratio may vary from about 0.1 to about 10 liters of quench volume per gram of microparticles produced. Processes with a ratio of less than about 1 liter per gram are preferred.</p>
+<p id="p0073" num="0073">When using the preferred solvent combination of benzyl alcohol and ethyl acetate, the ethyl acetate of the quench liquid appears to affect the residual solvent level in the product microparticles. At low ethyl acetate contents in the quench liquid, the benzyl alcohol residuals in the microparticles are high while ethyl acetate may be almost non-detectable. At high ethyl acetate contents in the quench liquid, 5-7% by weight or more, more ethyl acetate may be retained by the microparticles than benzyl alcohol. At a quench volume of about 1 liter per gram of active agent and polymeric encapsulating material being quenched, about 3-4 weight percent ethyl acetate in the quench liquid is optimal at 0-4°C. The coreload of the microparticles varies slightly with changes in ethyl acetate concentration in the quench liquid, decreasing with high and low concentrations of ethyl acetate. <i>In vitro</i> release rates from the microparticles vary substantially as the ethyl acetate content of the quench liquid is varied. In the case of NET, quicker release of NET is observed at the extreme ethyl acetate contents. Observation with a scanning electron microscope shows the presence of NET and pores on the microparticle surface when extremes of ethyl acetate are present in the quench liquid.</p>
+<p id="p0074" num="0074">Altering the volume of the quench liquid also has a profound effect on the relative amount of solvent residuals<!-- EPO <DP n="11"> --> in the microparticles. At low volumes, the ratio of benzyl alcohol to ethyl acetate is high and decreases to less than one as quench volume is increased to about 1.5 l per gram of active agent and polymeric encapsulating material being quenched. The rate of active agent release from the product microparticles is markedly high. (At 0.125 l quench liquid per gram of solution of NET and polymeric encapsulating material, scanning electron micrographs show that the product microparticles are extremely porous. From 0.25 to 1.5 l quench liquid per gram of solution of NET and polymeric encapsulating material, the NET release rate from the product microparticles varies slightly with a possible minimum at 1 l quench liquid per gram of NET and polymeric encapsulating material being-quenched.)</p>
+<p id="p0075" num="0075">The process of the present invention whereby microparticles are prepared using a static mixer can be carried out for a variety of techniques used to encapsulate active agents. The process of the present invention is not limited to the solvent extraction technique discussed above, but can be used with other encapsulation techniques. For example, the process of the present invention can also be used with a phase separation encapsulation technique. To do so, an organic phase is prepared that comprises an active agent dissolved in a polymer solution. The non-solvent second phase is free from solvents for the polymer and active agent. A preferred nonsolvent second phase is silicone oil. The organic phase and the non-solvent phase are pumped through a static mixer into a non-solvent quench liquid, such as heptane. The semi-solid particles are quenched for complete hardening and washing. Examples of using such a process are provided below as Reference Examples 2-5.</p>
+<p id="p0076" num="0076">The microparticle product is usually made up of particles of a spherical shape, although sometimes the microparticles may be irregularly shaped. The microparticles can vary in size, ranging from submicron to millimeter diameters. Preferably, microparticles of 1 - 500 microns, more prderably, 25-180 microns, are prepared, whereby administration of the microparticles to a patient can be carried out with a standard gauge needle.</p>
+<p id="p0077" num="0077">Preferably, the drug loaded microparticles are dispensed to patients in a single administration, releasing the drug in a constant or pulsed manner into the patient and eliminating the need for repetitive injections.</p>
+<p id="p0078" num="0078">The active agent bearing microparticles are obtained and stored as a dry material. Prior to administration to a patient, the dry microparticles can be suspended in an acceptable pharmaceutical liquid vehicle, such as, a 2.5 wt. % solution of carboxymethyl cellulose, whereupon the suspension of microparticles is injected into the body.</p>
+<p id="p0079" num="0079">The microparticles can be mixed by size or by type so as to provide for the delivery of active agent to the patient in a multiphasic manner and/or in a manner that provides different active agents to the patient at different times, or a mixture of active agents at the same time. For example, secondary antibiotics, vaccines, or any desired active agent, either in microparticle form or in conventional, unencapsulated form can be blended with a primary active agent and provided to the patient.</p>
+<p id="p0080" num="0080">Suitable active agents include estrogens such as diethyl stilbestrol, 17-beta-estradiol, estrone, ethinyl estradiol, mestranol, and the like; progestins such as norethindrone, norgestryl, ethynodiol diacetate, lynestrenol, medroxyprogesterone acetate, dimesthisterone, megestrol acetate, chlormadinone acetate, norgestimate, norethisterone, ethisterone, melengestrol, norethynodrel and the like; and spermicidal compounds such as nonylphenoxypolyoxyethyleneglycol, benzethonium chloride, chlorindanol and the like.</p>
+<p id="p0081" num="0081">Other biologically active agents that can be incorporated using the process of the present invention include gastrointestinal therapeutic agents such as aluminum hydroxide, calcium carbonate, magnesium carbonate, sodium carbonate and the like; non-steroidal antifertility agents; parasympathomimetic agents; psychotherapeutic agents; risperidone; major tranquilizers such as chlorpromazine HCl, clozapine, mesoridazine, metiapine, reserpine, thioridazine and the like; minor tranquilizers such as chlordiazepoxide, diazepam, meprobamate, temazepam and the like; rhinological decongestants; sedative-hypnotics such as codeine, phenobarbital, sodium pentobarbital, sodium secobarbital and the like; steroids such as testosterone and testosterone propionate; sulfonamides; sympathomimetic agents; vaccines; vitamins and nutrients such as the essential amino acids; essential fats and the like; antimalarials such as 4-aminoquinolines, 8-aminoquinolines, pyrimethamine and the like, anti-migraine agents such as mazindol, phentermine and the like; anti-Parkinson agents such as L-dopa; anti-spasmodics such as atropine, methscopolamine bromide and the like; antispasmodics and anticholinergic agents such as bile therapy, digestants, enzymes and the like; antitussives such as dextromethorphan, noscapine and the like; bronchodilators; cardiovascular agents such as anti-hypertensive compounds, Rauwolfia alkaloids, coronary vasodilators, nitroglycerin, organic nitrates, pentaerythritotetranitrate and the like; electrolyte replacements such as potassium chloride; ergotalkaloids such as ergotamine with and without caffeine, hydrogenated ergot alkaloids, dihydroergocristine methanesulfate, dihydroergocornine methanesulfonate, dihydroergokroyptine methanesulfate and combinations thereof; alkaloids such as atropine sulfate, Belladonna, hyoscine hydrobromide and the like; analgetics; narcotics such as codeine, dihydrocodienone, meperidine, morphine and the like; non-narcotics such as salicylates, aspirin, acetaminophen, d-propoxyphene and the like; antibiotics such as the cephalosporins, chloranphenical, gentamicin, Kanamycin A, Kanamycin B, the penicillins, ampicillin, streptomycin A, antimycin A, chloropamtheniol, metromidazole, oxyrtetracycline penicillin G, the tetracyclines, and the like; anti-cancer agents; anti-convulsants such as mephenytoin, phenobarbital, trimethadione; anti-emetics such as thiethylperazine; antihistamines such as chlorophinazine, dimenhydrinate, diphenhydramine, perphenazine, tripelennamine and the like; anti-inflammatory agents such as hormonal agents, hydrocortisone, prednisolone, prednisone, non-hormonal<!-- EPO <DP n="12"> --> agents, allopurinol, aspirin, indomethacin, phenylbutazone and the like; prostaglandins; cytotoxic drugs such as thiotepa, chlorambucil, cyclophosphamide, melphalan, nitrogen mustard, methotrexate and the like; antigens of such microorganisms as <i>Neisseria gonorrhea, Mycobacterium tuberculosis</i>, Herpes virus (humonis, types 1 and 2), <i>Candida albicans, Candida tropicalis, Trichomonas vaginalis, Haemophilus vaginalis,</i> Group B <i>Streptococcus ecoli, Microplasma hominis, Hemophilus ducreyi, Granuloma inguinale, Lymphopathia venereum, Treponema pallidum, Brucella abortus, Brucella melitensis, Brucella suis, Brucella canis, Campylobacter fetus, Campylobacter fetus intestinalis, Leptospira pomona, Listeria monocytogenes, Brucella ovis, Equine herpes</i> virus 1, Equine arteritis virus, IBR-IBP virus, BVD-MB virus, <i>Chlamydia psittaci, Trichomonas foetus, Toxoplasma gondii, Escherichia coli, Actinobacillus equuli, Salmonella abortus ovis, Salmonella abortus equi, Pseudomonas aeruginosa, Corynebacterium equi, Corynebacterium pyogenes, Actinobaccilus seminis, Mycoplasma bovigenitalium, Aspergillus fumigatus, Absidia ramosa, Trypanosoma equiperdum, Babesia caballi, Clostridium tetani</i>, and the like; antibodies that counteract the above microorganisms; and enzymes such as ribonuclease, neuramidinase, trypsin, glycogen phosphorylase, sperm lactic dehydrogenase, sperm hyaluronidase, adenosinetriphosphatase, alkaline phosphatase, alkaline phosphatase esterase, amino peptidase, trypsin, chymotrypsin, amylase, muramidase, acrosomal proteinase, diesterase, glutamic acid dehydrogenase, succinic acid dehydrogenase, beta-glycophosphatase, lipase, ATP-ase alpha-peptate gamma-glutamylotranspeptidase, sterol-3-beta-ol-dehydrogenase, and DPN-di-aprorase.</p>
+<p id="p0082" num="0082">Still other macromolecular bioactive agents that may be chosen for incorporation include, but are not limited to, blood clotting factors, hemopoietic factors, cytokines, interleukins, colony stimulating factors, growth factors, and analogs and fragments thereof.</p>
+<p id="p0083" num="0083">The following examples further describe the materials and methods used in carrying out the invention. The examples are not intended to limit the invention in any manner.</p>
+<heading id="h0005"><b><i>Example 1   Preparation of 30%, 33%, and 50% Theoretically Loaded Norethindrone Microparticles</i></b></heading>
+<p id="p0084" num="0084">A 1 kg batch of 30% norethindrone loaded microparticles is prepared using a 1.905 cm (¾") diameter x 12 element static mixer (Koflo, M/N:¾-TU-3-12RH-11, Koflo Corp., Cary, Illinois). The polymer/drug solution (organic phase) is prepared as follows. 329 g norethindrone USP is dissolved in a heated (65-70°C) solution of 770 g Medisorb® 85:15 dl PLGA (Inherent Viscosity (IV)=0.65 dl/g) in 2.2 kg ethyl acetate NF and 2.2 kg benzyl alcohol NF. The solution is filtered (0.2 µm) and maintained at 65-70°C. The process water solution (aqueous phase) is prepared as follows. 150 g of poly(vinyl alcohol (PVA - Du Pont Elvanol® 51-05) is added to 27.27 kg of WFI (Water For Injection) and heated <i>(65-70°C)</i> until dissolved, and then filtered (0.2µm). To this solution, 810 g of filtered (0.2µm) benzyl alcohol and 1770 g of filtered (0.2µm) ethyl acetate are added. The solution is maintained at 65-70°C. The quench solution is prepared as follows: 26.25 kg of ethyl acetate NF (0.2µm filtered) is dissolved in 750 liters of cold WFI and maintained at 2-4°C.</p>
+<p id="p0085" num="0085">The organic phase is pumped through the static mixer at a flow rate of 909 cc/min, and the aqueous phase at a flow rate of 4500 cc/min into the quench solution. After 1 hour of quench, the material is passed through 90 and 25 µm screens. The 25-90 µm portion is vacuum dried with agitation for 36 hours at ambient temperature. The process yield is 650 g of norethindrone loaded microparticles.</p>
+<p id="p0086" num="0086">A 1 kg batch of 33% norethindrone loaded microparticles is prepared using a 1.905 cm (¾ ") diameter x 12 element static mixer (Koflo, M/N:¾-TU-3-12RH-11, Koflo Corp., Cary, Illinois). The polymer/drug solution (organic phase) is prepared as follows. 363 g norethindrone USP is dissolved in a heated (65-70°C) solution of 737 g MEDISORB® 85:15 dl PLGA (IV=0.62 dl/g) in 2.2 kg ethyl acetate NF and 2.2 kg benzyl alcohol NF. The solution is filtered (0.2 µm) and maintained at 65-70°C. The process water solution (aqueous phase) is prepared as follows. 150 g of PVA (Du Pont Elvanol® 51-05) is added to 27.27 kg of WFI and heated (65-70°C) until dissolved, and then filtered (0.2µm). To this solution, 810 g of filtered (0.2µm) benzyl alcohol and 1770 g of filtered (0.2µm) ethyl acetate are added. The solution is maintained at 65-70°C. The quench liquid is prepared as follows. 750 liters of 3.5% ethyl acetate NF (0.2µm filtered) is dissolved in WFI and maintained at 2-4°C.</p>
+<p id="p0087" num="0087">The organic phase is pumped through the static mixer at a flow rate of 909 cc/min, and the aqueous phase at a flow rate of 4500 cc/min into the quench liquid. After 1 hour of quench, the material is passed through 90 and 25 µm screens. The 25-90 µm portion is vacuum dried with agitation for 36 hours at ambient temperature. The process yield is 630 gm of norethindrone loaded microparticles.</p>
+<p id="p0088" num="0088">A 1 kg batch of 50% norethindrone loaded microparticles is prepared using a 1.905 cm (¾") diameter x 12 element static mixer (Koflo, M/N:¾-TU-3-12RH-11, Koflo Corp., Cary, Illinois). The polymer/drug solution (organic phase) is prepared as follows. 546 g norethindrone USP is dissolved in a heated (65-70°C) solution of 550 gm MEDISORB® 85:15 dl PLGA (a copolymer of 85 mole % lactic acid and 15 mole % glycolic acid, poly(lactide-co-glycolide)) (IV=0.62 dl/g) in 2.2 kg ethyl acetate NF and 2.2 kg benzyl alcohol NF. The solution is filtered (0.2 µm) and maintained at 65-70°C. The process water solution (aqueous phase) is prepared as follows. 150 g of PVA (Du Pont Elvanol® 51-05) is added to 27.27 kg of WFI and heated (65-70°C) until dissolved, and then filtered (0.2µm). To this solution,<!-- EPO <DP n="13"> --> 810 g of filtered (0.2µm) benzyl alcohol and 1770 g of filtered (0.2µm) ethyl acetate are added. The solution is maintained at 65-70°C. The quench solution is prepared as follows: 26.25 kg of ethyl acetate NF (0.2µm filtered) is dissolved in 750 liters of cold WFI and maintained at 2-4°C.</p>
+<p id="p0089" num="0089">The organic phase is pumped through the static mixer at a flow rate of 909 cc/min, and the aqueous phase at a flow rate of 4500 cc/mm into the quench solution. After 1 hour of quench, the material is passed through 90 and 25 µm screens. The 25-90 µm portion is vacuum dried with agitation for 36 hours at ambient temperature. The process yield is 685 g of norethindrone loaded microparticles.</p>
+<p id="p0090" num="0090">The 30% and 50% loaded particles were then used to prepare two 65 mg (NET) formulations for injecting into baboons. Baboon Formulation 1 consisted of 35% of the 50% loaded particles and 65% of the 30% loaded particles. Baboon Formulation 2 consisted of 50% of each of the 30% loaded and 50% loaded particles. Time release data for Baboon Formulations 1 and 2 are shown in <figref idref="f0004">Figure 4</figref>.</p>
+<heading id="h0006"><b><i>Example 2 Preparation of 35% Theoretically Loaded Risperidone Microparticles (Batch Prodex 2)</i></b></heading>
+<p id="p0091" num="0091">First, the aqueous phase (solution A) is prepared by weighing and mixing 906.1 g 1% poly(vinyl alcohol) (Vinol 205, Air Products and Chemical Inc., Allentown, PA), 29.7 g benzyl alcohol (J.T. Baker, Phillipsburg, NJ) and 65.3 g ethyl acetate (Fisher Scientific, Fair Lawn, NJ). Then the organic phase (solution B) is prepared by dissolving 29.3 g of high viscosity 75:25 dl (polylactide-co-glycolide), (Medisorb Technologies International, L.P., Cincinnati, OH) in 108.7 g ethyl acetate and 108.4 g benzyl alcohol. Once the polymer is completely dissolved, 15.7 g risperidone base (Janssen Pharmaceutica, Beerse, Belgium) is added and dissolved in the polymer solution. The exposure time of the dissolved risperidone with the polymer is kept to a minimum (&lt;10 minutes). Solutions A and B are then pumped through a 0.635 cm (1/4 inch) diameter static mixer (Cole Parmer L04667-14) via a gear drive pump and head (Cole-Parmer L07149-04, L07002-16) at flow rates of 198 and 24 ml minute, respectively, into a quench medium (wash) composed of 55 liters of water for injection containing 1,276.0. g of ethyl acetate, 92.3 g (0.02 Molar) of anhydrous sodium bicarbonate, and 116.2 g (0.02 Molar) of anhydrous sodium carbonate (Mallinckrodt Specialty Chemicals, Paris, KY) at 11°C. The microparticles are allowed to stir in this first wash for 1 and ¾ hours, then isolated by sieving with a 25 micron sieve. The product retained by the sieve is transferred to a second 20-liter wash of WFI at 13°C. After stirring in the second wash for 2 and 1/4 hours, the microparticles are isolated and size fractionated by sieving through a stainless-steel sieve column composed of 25 and 180 micron mesh sizes. The microparticles are dried overnight, then collected and weighed.</p>
+<heading id="h0007"><b><i>Example 3 Preparation of 40% Theoretically Loaded Risperidone Microparticles (Batch Prodex 3)</i></b></heading>
+<p id="p0092" num="0092">First, the aqueous phase (solution A) is prepared by weighing and mixing 904.4 g 1% poly(vinyl alcohol), (Vinol 205, Air Products and Chemical Inc., Allentown, PA), 30.1 g benzyl alcohol (J.T. Baker, Phillipsburg, NJ), and 65.8 g ethyl acetate (Fisher Scientific, Fair Lawn, NJ) Then the organic phase (solution B) is prepared. by dissolving 27.1 g of high viscosity 75:25 dl (polylactide-co-glycolide), (Medisorb Technologies International, L.P., Cincinnati, OH) in 99.3 g ethyl acetate and 99.1 g benzyl alcohol. Once the polymer is completely dissolved, 18.1 g risperidone base (Janssen Pharmaceutica, Beerse, Belgium) is added and dissolved in the polymer solution. The exposure time of the dissolved risperidone with the polymer is kept to a minimum (&lt;10 minutes). Solutions A and B are then pumped through a 0.635 cm (¼ inch) diameter static mixer (Cole-Parmer L04667-14) via a gear drive pump and head (Cole-Parmer L07149-04, L07002-16) at flow rates of 198 and 24 ml/minute, respectively, and into a quench medium (wash) composed of 55 liters of water for injection containing 1,375.6 g of ethyl acetate, 92.4 g (0.02 Molar) of anhydrous sodium bicarbonate, and 116.6 g (0.02 Molar) of anhydrous sodium carbonate (Mallinckrodt Specialty Chemicals, Paris, KY) at 12°C. The microparticles are allowed to stir in this first wash for 2 hours, then isolated by sieving with a 25 micron sieve. The product retained by the sieve is transferred to a second 20-liter wash of WFI at 12°C. After stirring in the second wash for 3 hours, the microparticles are isolated and size fractionated by sieving through a stainless-steel sieve column composed of 25 and 180 micron mesh sizes. The microparticles are dried overnight, then collected and weighed.</p>
+<heading id="h0008">Reference Example 1 <b><i>Lyophilization and Gamma Irradiation of Microparticles from Batches Prodex 2 and Prodex 3 (Samples Prodex 4A, Prodex 4B, and Prodex 4C)</i></b></heading>
+<p id="p0093" num="0093">Microparticles from batches Prodex 2 and Prodex 3 were lyophilized as follows. The microparticles were weighed into 5 cc serum vials. Then an aqueous vehicle composed of 0.75% CMC, 5% Mannitol, and 0.1% Tween 80 was added to the vials. The microparticles were suspended in the vehicle by agitation, then quickly frozen in a dry ice/acetone bath. The vials were then lyophilized in a pilot-scale lyophilizer (Dura Stop Microprocessor Control, FTS Systems, Inc., Stone Ridge, N.Y.) employing a ramped 30°C maximum temperature cycle for 50 hours. Samples Prodex<!-- EPO <DP n="14"> --> 4A and Prodex 4C were lyophilized samples from Prodex 2 and Prodex 3, respectively. Sample Prodex 4B was lyophilized from Prodex 2 that had been subsequently sterilized by 2.2 MRad gamma irradiation from a <sup>60</sup>Co source.</p>
+<heading id="h0009"><b><i>In Vitro Dissolution Studies</i></b></heading>
+<p id="p0094" num="0094"><i>In vitro</i> dissolution studies were conducted on Prodex 2, Prodex 3, Prodex 4A, Prodex 4B, and Prodex 4C. Real time and accelerated methodologies were used. The equipment consisted of a Hanson research 6-cell USP paddle (Method II) dissolution apparatus interfaced with a spectrophotometer and data station. Receiving media were continuously recirculated from each cell to flow cells inside the spectrophotometer. The absorbance of the receiving media was monitored at 236 nm for quantification of risperidone.</p>
+<p id="p0095" num="0095">The real time model measured the release rates of microparticles into a receiving medium consisting of 50mM tris buffer at pH 7.4 at 37°C. Risperidone was found to have sufficient solubility (≥0.5mg/ml) to allow <i>in vitro</i> experiments with this receiving medium. The amount of risperidone was kept below 20% of saturation to provide infinite sink conditions. Data are shown in <figref idref="f0005">Figures 5</figref> and <figref idref="f0006">6</figref>.</p>
+<p id="p0096" num="0096">An accelerated model was also developed. A receiving medium of 27.5 wt% ethanol in WFI was used. Results are shown in <figref idref="f0007">Figure 7</figref>.</p>
+<heading id="h0010"><b><i>Animal Dosing and Blood Sampling</i></b></heading>
+<p id="p0097" num="0097"><i>In vivo</i> studies in dogs were conducted on product provided as dry microparticles (Prodex 2, Prodex 3) and in lyophilized form (Prodex 4A, Prodex 4B, Prodex 4C). The dry microparticles were syringe-loaded and resuspended in the syringe with an injection vehicle comprised of 2.5 wt% carboxymethyl cellulose (CMC). The lyophilized samples (Prodex 4A, Prodex 4B, Prodex 4C) were reconstituted in WFI prior to injection.</p>
+<p id="p0098" num="0098">Male and female dogs, weighing 11.6 ±2.3 kg, were divided into groups of three dogs each. The dogs were housed in groups of three and fed according to standard laboratory conditions.</p>
+<p id="p0099" num="0099">The appropriate volumes of the respective depot formulations were dosed intramuscularly into the biceps femoralis of the left hind limb at the level of the thigh of the dogs at a dose of approximately 2.5 mg/kg risperidone.</p>
+<p id="p0100" num="0100">Blood samples (5 ml on EDTA) were taken from one of the jugular veins at 0 (predose), 1, 5, and 24 hours after dosing and also on days 4, 7, 11, 14, 18, 23, 25, 28, 32, 35, 39, 42, 46, 49, 53, and 56 at the time of the apomorphine vomiting test. The apomorphine test was described by P.A.J. Janssen and C.J.E. Niemegeers in Arzneim.-Forsch. (Drug Res.), 9:765-767 (1959). If, during the course of the experiments, each of the three dogs of a group no longer showed protection against apomorphine-induced vomiting, blood sampling was discontinued. Blood samples were centrifuged at 3000 rpm for 10 min and plasma was separated. The plasma samples were stored at ≤20°C until analysis.</p>
+<p id="p0101" num="0101">Plasma samples were analyzed for risperidone (RISP) and for 9-hydroxyrisperidone (9-OH RISP) using radioimmunoassay (RIA). For the plasma samples analyzed with RIA, two different RIA procedures were used, one for unchanged risperidone and the other for the active moiety (sum of risperidone and 9-hydroxy-risperidone, not to be confused with the term "active agent" used elsewhere herein). For the latter plasma samples, the concentrations of 9-hydroxy-risperidone were calculated as the difference between the concentrations of the active moiety and those of risperidone. The quantification limits for the RIA methods were 0.20 ng/ml for risperidone and 0.50 ng/ml for the active moiety.</p>
+<p id="p0102" num="0102">For each of the formulations, mean (±S.D., n=3) plasma concentrations of risperidone, 9-hydroxy-risperidone, and of the active moiety, were calculated. Ratios of the plasma concentrations of 9-hydroxy-risperidone to those of risperidone were calculated where possible. Peak plasma concentrations and peak times of risperidone, 9-hydroxy-risperidone, and their sum were determined by visual inspection of the data. AUC ("area under the curve") values of risperidone and 9-hydroxy-risperidone were calculated between zero time and time using the trapezoidal rule. The time t is the last time point at which concentrations of risperidone or 9-hydroxy-risperidone were higher than the limit of quantification in at least 1 out of 3 dogs. For dogs belonging to the same formulation group, AUCs were calculated up to the same end-time t, using the value of the quantification limit, if one concentration was lower than the quantification limit. If two consecutive concentrations were lower than the quantification limit, the concentration of the earlier sampling point was set equal to the quantification limit, and the concentration of the later sampling point was taken as zero. The AUCs were not extrapolated to infinity. The AUC of the active moiety was calculated as the sum of the AUCs of risperidone and 9-hydroxy-risperidone.</p>
+<p id="p0103" num="0103">Mean or median plasma concentrations and/or pharmacokinetic parameters of risperidone, 9-hydroxy-risperidone, and the active moiety for formulations Prodex 2/3/4A/4B/4C, are given in Table 1. Mean plasma concentration-time curves for formulations Prodex 2/3/4A/4B/4C are shown in <figref idref="f0008">Figure 8</figref>. For each of the formulation groups, results are first discussed for risperidone, then for 9-hydroxy-risperidone, and last for the active moiety. For the active moiety, plasma concentrations are related to the anti-emetic effect in the apomorphine vomiting test.</p>
+<p id="p0104" num="0104">After administration of formulations Prodex 2 up to Prodex 4C, mean peak plasma levels of risperidone were<!-- EPO <DP n="15"> --> low. They were attained at largely different time points. The further release of risperidone from the different formulations proceeded gradually and was long-lasting. This resulted in low plasma concentrations of both risperidone and its metabolite. Mean peak times for 9-hydroxy-risperidone all ranged from 26 to 30 days. The plasma concentration-time profile of the active moiety was similar for formulations Prodex 2 up to Prodex 4C. At the beginning of the experiment, plasma concentrations of the active moiety showed a peak within 1 or 2 days, due to a rapid initial release of risperidone. The peak was followed by a decrease of the concentrations with a dip at 5-8 days. From day 8 on, concentrations increased again until day 20, after which time they remained at a more or less constant level during a period of, on average, 15 days. During this period, for each of the formulations, concentrations of the active moiety showed a second peak and concentrations were higher than for the first peak. The anti-emetic activity lasted 35 to 42 days for formulations Prodex 2, Prodex 4A, and Prodex 4B. For formulation Prodex 4C, it lasted 49 days, but without interruption in any of the dogs. The longest activity of formulation Prodex 4C paralleled the highest C<sub>max</sub>, T<sub>max</sub>, and AUC<sub>0-t</sub> for the active moiety, in comparison with the other 4 formulations of the same group.</p>
+<p id="p0105" num="0105">The duration of action of these microparticle-based risperidone formulations in the apomorphine-induced emesis test in dogs was also studied. Neuroleptics antagonized apomorphine-induced emesis by blocking dopamine D<sub>2</sub> receptors in the area postrema of the fourth ventricle. The test is generally used to predict the onset and duration of antipsychotic action of neuroleptics in man (Janssen <i>et al., Arzneim.-Forsch.</i>/<i>Drug Res. 10</i>:1196-1206 (1965); Niemegeers <i>et al., Life Sci. 24</i>:2201-2216 (1979)). 9-OH-risperidone has a pharmacological profile that is virtually identical to that of its parent compound. Parent compound and active metabolite constitute together the "active moiety" that determines the biological activity of risperidone.</p>
+<p id="p0106" num="0106">Apomorphine was administered subcutaneously at 0.31 mg/kg to the dogs twice a week, during the whole course of the experiment. The dogs were observed for vomiting during a 1-hour period after the administration of apomorphine. Complete absence of emesis for 1 hour after apomorphine challenge was considered to reflect significant anti-emetic activity. The duration of the anti-emetic action was defined as the time interval during which 2 out of 3 dogs were protected from emesis.</p>
+<p id="p0107" num="0107">The formulations were injected in a volume of 0.5 mL into the biceps femoralis of one of the hind limbs at the level of the thigh. At several time intervals after the intramuscular injection, blood samples were taken and, immediately thereafter, the dogs were challenged with a dose of apomorphine. Complete absence of emesis within I h after apomorphine challenge (which is never observed in control animals; n&gt; 1000) was considered to reflect significant antiemetic activity.</p>
+<p id="p0108" num="0108">Table 2 indicates whether the dogs were protected (+) or not protected (-) from apomorphine-induced emesis at the various time intervals after intramuscular injection of the depot formulations. All formulations showed an immediate onset of anti-emetic action.<!-- EPO <DP n="16"> -->
+<tables id="tabl0001" num="0001"><img id="ib0001" file="imgb0001.tif" wi="154" he="226" img-content="table" img-format="tif"/>
+</tables><!-- EPO <DP n="17"> -->
+<tables id="tabl0002" num="0002"><img id="ib0002" file="imgb0002.tif" wi="124" he="226" img-content="table" img-format="tif"/>
+</tables><!-- EPO <DP n="18"> -->
+<tables id="tabl0003" num="0003"><img id="ib0003" file="imgb0003.tif" wi="147" he="225" img-content="table" img-format="tif"/>
+</tables><!-- EPO <DP n="19"> -->
+<tables id="tabl0004" num="0004"><img id="ib0004" file="imgb0004.tif" wi="91" he="225" img-content="table" img-format="tif"/>
+</tables><!-- EPO <DP n="20"> -->
+<tables id="tabl0005" num="0005">
+<table frame="all">
+<tgroup cols="16">
+<colspec colnum="1" colname="col1" colwidth="20mm"/>
+<colspec colnum="2" colname="col2" colwidth="11mm" colsep="0"/>
+<colspec colnum="3" colname="col3" colwidth="15mm" colsep="0"/>
+<colspec colnum="4" colname="col4" colwidth="15mm"/>
+<colspec colnum="5" colname="col5" colwidth="15mm" colsep="0"/>
+<colspec colnum="6" colname="col6" colwidth="15mm" colsep="0"/>
+<colspec colnum="7" colname="col7" colwidth="15mm"/>
+<colspec colnum="8" colname="col8" colwidth="15mm" colsep="0"/>
+<colspec colnum="9" colname="col9" colwidth="15mm" colsep="0"/>
+<colspec colnum="10" colname="col10" colwidth="16mm"/>
+<colspec colnum="11" colname="col11" colwidth="16mm" colsep="0"/>
+<colspec colnum="12" colname="col12" colwidth="16mm" colsep="0"/>
+<colspec colnum="13" colname="col13" colwidth="16mm"/>
+<colspec colnum="14" colname="col14" colwidth="16mm" colsep="0"/>
+<colspec colnum="15" colname="col15" colwidth="16mm" colsep="0"/>
+<colspec colnum="16" colname="col16" colwidth="16mm"/>
+<thead>
+<row>
+<entry namest="col1" nameend="col2" align="left" valign="top">Table 2:</entry>
+<entry namest="col3" nameend="col16" align="left">Protection (+) or no protection (-) from apomorphine-induced emesis in dogs at successive time intervals after intramuscular administration of microparticle-based depot formulations of the antipsychotic risperidone at an approximate dose level of 2.5 mg/kg (continued from previous page)</entry></row>
+<row>
+<entry align="center" valign="top">Form.</entry>
+<entry namest="col2" nameend="col4" align="center" valign="top">Prodex 2</entry>
+<entry namest="col5" nameend="col7" align="center" valign="top">Prodex 3</entry>
+<entry namest="col8" nameend="col10" align="center" valign="top">Prodex 4A</entry>
+<entry namest="col11" nameend="col13" align="center" valign="top">Prodex 4B</entry>
+<entry namest="col14" nameend="col16" align="center" valign="top">Prodex 4C</entry></row></thead>
+<tbody>
+<row>
+<entry align="center" valign="middle">Dog Weight<br/>
+(kg)</entry>
+<entry align="center" valign="middle">14.2</entry>
+<entry align="center" valign="middle">11.5</entry>
+<entry align="center" valign="middle">9.8</entry>
+<entry align="center" valign="middle">12.9</entry>
+<entry align="center" valign="middle">12.4</entry>
+<entry align="center" valign="middle">13.4</entry>
+<entry align="center" valign="middle">10.0</entry>
+<entry align="center" valign="middle">12.3</entry>
+<entry align="center" valign="middle">9.2</entry>
+<entry align="center" valign="middle">9.7</entry>
+<entry align="center" valign="middle">8.6</entry>
+<entry align="center" valign="middle">10.6</entry>
+<entry align="center" valign="middle">13.2</entry>
+<entry align="center" valign="middle">16.4</entry>
+<entry align="center" valign="middle">16.2</entry></row>
+<row>
+<entry align="center" valign="middle">Volume<br/>
+(ml/dog)</entry>
+<entry align="center" valign="middle">0.53</entry>
+<entry align="center" valign="middle">0.53</entry>
+<entry align="center" valign="middle">0.53</entry>
+<entry align="center" valign="middle">0.53</entry>
+<entry align="center" valign="middle">0.53</entry>
+<entry align="center" valign="middle">0.53</entry>
+<entry align="center" valign="middle">0.53</entry>
+<entry align="center" valign="middle">0.53</entry>
+<entry align="center" valign="middle">0.53</entry>
+<entry align="center" valign="middle">0.53</entry>
+<entry align="center" valign="middle">0.53</entry>
+<entry align="center" valign="middle">0.53</entry>
+<entry align="center" valign="middle">0.53</entry>
+<entry align="center" valign="middle">0.53</entry>
+<entry align="center" valign="middle">0.53</entry></row>
+<row>
+<entry align="center" valign="middle">Dose<br/>
+(mg/kg)</entry>
+<entry align="center" valign="middle">2.5</entry>
+<entry align="center" valign="middle">2.5</entry>
+<entry align="center" valign="middle">2.8</entry>
+<entry align="center" valign="middle">2.5</entry>
+<entry align="center" valign="middle">2.5</entry>
+<entry align="center" valign="middle">2.5</entry>
+<entry align="center" valign="middle">2.5</entry>
+<entry align="center" valign="middle">2.3</entry>
+<entry align="center" valign="middle">2.6</entry>
+<entry align="center" valign="middle">2.5</entry>
+<entry align="center" valign="middle">2.5</entry>
+<entry align="center" valign="middle">2.6</entry>
+<entry align="center" valign="middle">2.4</entry>
+<entry align="center" valign="middle">2.4</entry>
+<entry align="center" valign="middle">2.5</entry></row>
+<row>
+<entry align="center" valign="middle">Route</entry>
+<entry align="center" valign="middle">im</entry>
+<entry align="center" valign="middle">im</entry>
+<entry align="center" valign="middle">im</entry>
+<entry align="center" valign="middle">im</entry>
+<entry align="center" valign="middle">im</entry>
+<entry align="center" valign="middle">im</entry>
+<entry align="center" valign="middle">im</entry>
+<entry align="center" valign="middle">im</entry>
+<entry align="center" valign="middle">im</entry>
+<entry align="center" valign="middle">im</entry>
+<entry align="center" valign="middle">im</entry>
+<entry align="center" valign="middle">im</entry>
+<entry align="center" valign="middle">im</entry>
+<entry align="center" valign="middle">im</entry>
+<entry align="center" valign="middle">im</entry></row>
+<row>
+<entry align="center" valign="middle">1 h</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">-</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">-</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry></row>
+<row>
+<entry align="center" valign="middle">5 h</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">-</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry></row>
+<row>
+<entry align="center" valign="middle">1 d</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry></row>
+<row>
+<entry align="center" valign="middle">4 d</entry>
+<entry align="center" valign="middle">-</entry>
+<entry align="center" valign="middle">-</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">-</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">-</entry>
+<entry align="center" valign="middle">-</entry>
+<entry align="center" valign="middle">-</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry></row>
+<row>
+<entry align="center" valign="middle">7 d</entry>
+<entry align="center" valign="middle">-</entry>
+<entry align="center" valign="middle">-</entry>
+<entry align="center" valign="middle">-</entry>
+<entry align="center" valign="middle">-</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">-</entry>
+<entry align="center" valign="middle">-</entry>
+<entry align="center" valign="middle">-</entry>
+<entry align="center" valign="middle">-</entry>
+<entry align="center" valign="middle">-</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry></row>
+<row>
+<entry align="center" valign="middle">11 d</entry>
+<entry align="center" valign="middle">-</entry>
+<entry align="center" valign="middle">-</entry>
+<entry align="center" valign="middle">-</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">-</entry>
+<entry align="center" valign="middle">-</entry>
+<entry align="center" valign="middle">-</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry></row>
+<row>
+<entry align="center" valign="middle">14 d</entry>
+<entry align="center" valign="middle"/>
+<entry align="center" valign="middle"/>
+<entry align="center" valign="middle"/>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">-</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry></row>
+<row>
+<entry align="center" valign="middle">18 d</entry>
+<entry align="center" valign="middle"/>
+<entry align="center" valign="middle"/>
+<entry align="center" valign="middle"/>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry></row>
+<row>
+<entry align="center" valign="middle">21 d</entry>
+<entry align="center" valign="middle"/>
+<entry align="center" valign="middle"/>
+<entry align="center" valign="middle"/>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry></row>
+<row>
+<entry align="center" valign="middle">25 d</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry></row>
+<row>
+<entry align="center" valign="middle">29 d</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry></row>
+<row>
+<entry align="center" valign="middle">32d</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry></row>
+<row>
+<entry align="center" valign="middle">35 d</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry>
+<entry align="center" valign="middle">+</entry></row><!-- EPO <DP n="21"> -->
+<row>
+<entry align="center">39 d</entry>
+<entry align="center">-</entry>
+<entry align="center">+</entry>
+<entry align="center">+</entry>
+<entry align="center">+</entry>
+<entry align="center">-</entry>
+<entry align="center">+</entry>
+<entry align="center">+</entry>
+<entry align="center">+</entry>
+<entry align="center">-</entry>
+<entry align="center">-</entry>
+<entry align="center">-</entry>
+<entry align="center">-</entry>
+<entry align="center">+</entry>
+<entry align="center">+</entry>
+<entry align="center">+</entry></row>
+<row>
+<entry align="center">42 d</entry>
+<entry align="center">-</entry>
+<entry align="center">-</entry>
+<entry align="center">-</entry>
+<entry align="center">+</entry>
+<entry align="center">-</entry>
+<entry align="center">+</entry>
+<entry align="center">+</entry>
+<entry align="center">-</entry>
+<entry align="center">-</entry>
+<entry align="center">-</entry>
+<entry align="center">-</entry>
+<entry align="center">-</entry>
+<entry align="center">+</entry>
+<entry align="center">+</entry>
+<entry align="center">-</entry></row>
+<row>
+<entry align="center">46 d</entry>
+<entry align="center">-</entry>
+<entry align="center">-</entry>
+<entry align="center">-</entry>
+<entry align="center">+</entry>
+<entry align="center">-</entry>
+<entry align="center">-</entry>
+<entry align="center">-</entry>
+<entry align="center">-</entry>
+<entry align="center">-</entry>
+<entry align="center">-</entry>
+<entry align="center">-</entry>
+<entry align="center">-</entry>
+<entry align="center">+</entry>
+<entry align="center">+</entry>
+<entry align="center">-</entry></row>
+<row>
+<entry align="center">49 d</entry>
+<entry namest="col2" nameend="col4" align="center">Stop</entry>
+<entry align="center">-</entry>
+<entry align="center">-</entry>
+<entry align="center"/>
+<entry align="center">-</entry>
+<entry align="center">-</entry>
+<entry align="center">-</entry>
+<entry namest="col11" nameend="col13" align="center">Stop</entry>
+<entry align="center">+</entry>
+<entry align="center">+</entry>
+<entry align="center">-</entry></row>
+<row>
+<entry align="center">53 d</entry>
+<entry align="center"/>
+<entry align="center"/>
+<entry align="center"/>
+<entry namest="col5" nameend="col7" align="center">Stop</entry>
+<entry namest="col8" nameend="col10" align="center">Stop</entry>
+<entry align="center"/>
+<entry align="center"/>
+<entry align="center"/>
+<entry align="center">-</entry>
+<entry align="center">+</entry>
+<entry align="center">-</entry></row>
+<row>
+<entry align="center">56 d</entry>
+<entry align="center"/>
+<entry align="center"/>
+<entry align="center"/>
+<entry align="center"/>
+<entry align="center"/>
+<entry align="center"/>
+<entry align="center"/>
+<entry align="center"/>
+<entry align="center"/>
+<entry align="center"/>
+<entry align="center"/>
+<entry align="center"/>
+<entry align="center">-</entry>
+<entry align="center">-</entry>
+<entry align="center">-</entry></row>
+<row>
+<entry align="center"/>
+<entry namest="col2" nameend="col4" align="center"/>
+<entry namest="col5" nameend="col7" align="center"/>
+<entry namest="col8" nameend="col10" align="center"/>
+<entry namest="col11" nameend="col13" align="center"/>
+<entry namest="col14" nameend="col16" align="center">Stop</entry></row>
+<row>
+<entry namest="col1" nameend="col16" align="left">3 Injection volume: 0.5 ml/dog; the concentration of the microparticles was adapted to the body weight.</entry></row></tbody></tgroup>
+</table>
+</tables><!-- EPO <DP n="22"> --></p>
+<heading id="h0011">Example 4 <b><i>Preparation of 20% and 30% Theoretically Loaded Estradiol Benzoate Microparticles</i></b></heading>
+<p id="p0109" num="0109">Table 3 shows the particle size distribution for experimental trials for 20% and 30% loaded micraparticles. The particle size distribution is also shown in <figref idref="f0009">Figure 9</figref> which depicts the cumulative percent by microparticle size ("Volume Percent Greater") for one batch of 20% loaded microparticles. <figref idref="f0010">Figure 10</figref> depicts the percent differential by microparticle size ("Volume Differential") for one batch of 20% loaded microparticles. From this data, it can be seen that increasing the flow rate decreased particle size. No significant difference was seen between 12 and 24 element mixers. Increasing the aqueous or water phase:organic phase ratio narrows particle size distribution. Good microparticles were produced in the transitional flow range, Reynolds Number (Re) of 2000-4000.</p>
+<p id="p0110" num="0110">Additional batches of 20% and 30% loaded microparticles were subsequently prepared. A 7 kg batch of 20% drug loaded microparticles was prepared using a 1.27 cm (½") diameter x 24 element static mixer (Cole-Parmer polypropylene disposable 04667, Cole-Parmer Instrument Company, Chicago, Illinois). The organic phase was comprised of 4.0% estradiol benzoate (active agent), 16.0% 85:15 dl PLGA (a copolymer of 85 mole % lactic acid and 15 mole % glycolic acid, polylactide-co-glycolide) and 80.0% ethyl acetate at 60-70°C. The water phase was comprised of 1.0% polyvinyl alcohol, 5.0% ethyl acetate, and 94.0% water at 60-70°C. The organic phase flow rate and the water phase flow rate were the same all 100 ml/min. A Cole-Parmer 6231-26 pump with a 7001-80 head was used for both the organic phase and water phase. The resulting particle size distribution was 15% &lt; 25 µm, 14% 25-45 µm, 56% 45-90 µm, 12% 90-150 µm, and 3% &gt; 150 µm.</p>
+<p id="p0111" num="0111">A 5 kg batch of 30% drug loaded microparticles was prepared using ½" diameter x 24 element static mixer and 3/8" diameter x 11, 12, and 24 element static mixer (Cole-Parmer disposable). The organic phase was comprised of 4.3% estradiol benzoate (active agent), 10.0% 85:15 dl PLGA, and 85.7% ethyl acetate at 60-70°C. The same water phase was used as in the 20% loaded microparticles. The organic phase flow rate was 880 ml/min and the water phase flow rate was 1650 ml/min. The resulting particle size distribution was 44% &lt; 25 µm, 31% 25-45 µm, and 25% &gt; 45 µm.</p>
+<p id="p0112" num="0112">Estradiol benzoate loaded microparticles were weighed into conventional syringes and administered to young Holstein bull calves at a dose of 40 mg of active drug per animal. The microparticles were suspended in an aqueous carboxymethyl cellulose vehicle and injected at the base of the ear. Serum was collected and estradiol levels determined by radioimmunoassay; the results are shown in <figref idref="f0011">Figure 11</figref>.<!-- EPO <DP n="23"> -->
+<tables id="tabl0006" num="0006">
+<table frame="all">
+<title><b><i>Table 3</i></b></title>
+<tgroup cols="9" colsep="0">
+<colspec colnum="1" colname="col1" colwidth="16mm"/>
+<colspec colnum="2" colname="col2" colwidth="16mm"/>
+<colspec colnum="3" colname="col3" colwidth="16mm"/>
+<colspec colnum="4" colname="col4" colwidth="14mm"/>
+<colspec colnum="5" colname="col5" colwidth="18mm"/>
+<colspec colnum="6" colname="col6" colwidth="14mm"/>
+<colspec colnum="7" colname="col7" colwidth="14mm"/>
+<colspec colnum="8" colname="col8" colwidth="14mm"/>
+<colspec colnum="9" colname="col9" colwidth="16mm" colsep="1"/>
+<thead>
+<row>
+<entry namest="col1" nameend="col9" align="center" valign="top"><b><i>Experimental Trials With Inline Static Mixers</i></b></entry></row>
+<row>
+<entry namest="col1" nameend="col4" align="center" valign="top">Flowrate</entry>
+<entry namest="col5" nameend="col7" align="center" valign="top">Mixer</entry>
+<entry namest="col8" nameend="col9" align="center" valign="top">Size</entry></row>
+<row>
+<entry align="center" valign="top">Water<br/>
+(ml/min)</entry>
+<entry align="center" valign="top">Oil<br/>
+(ml/min)</entry>
+<entry align="center" valign="top">Total<br/>
+(ml/min)</entry>
+<entry align="center" valign="top">Ratio</entry>
+<entry align="center" valign="top">Elements</entry>
+<entry align="center" valign="top">dia<br/>
+(in)</entry>
+<entry align="center" valign="top">vel.<br/>
+(ft/sec)</entry>
+<entry align="center" valign="top">peak<br/>
+(um)</entry>
+<entry align="center" valign="top">width<br/>
+(um)</entry></row></thead>
+<tbody>
+<row>
+<entry namest="col1" nameend="col9" rowsep="0" align="left"><u>30% Drug Loaded Product</u></entry></row>
+<row rowsep="0">
+<entry align="center">200</entry>
+<entry align="center">200</entry>
+<entry align="center">400</entry>
+<entry align="center">1:1</entry>
+<entry align="center">11</entry>
+<entry align="center">3/8</entry>
+<entry align="center">0.30</entry>
+<entry align="right">no</entry>
+<entry>spheres</entry></row>
+<row rowsep="0">
+<entry align="center">400</entry>
+<entry align="center">400</entry>
+<entry align="center">800</entry>
+<entry align="center">1:1</entry>
+<entry align="center">11</entry>
+<entry align="center">3/8</entry>
+<entry align="center">0.61</entry>
+<entry align="right">good</entry>
+<entry>spheres</entry></row>
+<row rowsep="0">
+<entry align="center">500</entry>
+<entry align="center">500</entry>
+<entry align="center">1000</entry>
+<entry align="center">1:1</entry>
+<entry align="center">11</entry>
+<entry align="center">3/8</entry>
+<entry align="center">0.77</entry>
+<entry align="center">50</entry>
+<entry align="right">60</entry></row>
+<row rowsep="0">
+<entry align="center">750</entry>
+<entry align="center">750</entry>
+<entry align="center">1500</entry>
+<entry align="center">1:1</entry>
+<entry align="center">11</entry>
+<entry align="center">3/8</entry>
+<entry align="center">1.15</entry>
+<entry align="right">less</entry>
+<entry>than 25</entry></row>
+<row rowsep="0">
+<entry align="center">400</entry>
+<entry align="center">400</entry>
+<entry align="center">800</entry>
+<entry align="center">1:1</entry>
+<entry align="center">12</entry>
+<entry align="center">3/8</entry>
+<entry align="center">0.61</entry>
+<entry align="center">70</entry>
+<entry align="right">125</entry></row>
+<row rowsep="0">
+<entry align="center">500</entry>
+<entry align="center">500</entry>
+<entry align="center">1000</entry>
+<entry align="center">1:1</entry>
+<entry align="center">12</entry>
+<entry align="center">3/8</entry>
+<entry align="center">0.77</entry>
+<entry align="center">45</entry>
+<entry align="right">55</entry></row>
+<row rowsep="0">
+<entry align="center">400</entry>
+<entry align="center">400</entry>
+<entry align="center">800</entry>
+<entry align="center">1:1</entry>
+<entry align="center">24</entry>
+<entry align="center">3/8</entry>
+<entry align="center">0.61</entry>
+<entry align="center">70</entry>
+<entry align="right">110</entry></row>
+<row rowsep="0">
+<entry align="center">533</entry>
+<entry align="center">266</entry>
+<entry align="center">800</entry>
+<entry align="center">2:1</entry>
+<entry align="center">24</entry>
+<entry align="center">3/8</entry>
+<entry align="center">0.61</entry>
+<entry align="center">45</entry>
+<entry align="right">50</entry></row>
+<row rowsep="0">
+<entry align="center">600</entry>
+<entry align="center">200</entry>
+<entry align="center">800</entry>
+<entry align="center">3:1</entry>
+<entry align="center">24</entry>
+<entry align="center">3/8</entry>
+<entry align="center">0.61</entry>
+<entry align="center">62</entry>
+<entry align="right">45</entry></row>
+<row rowsep="0">
+<entry align="center">533</entry>
+<entry align="center">266</entry>
+<entry align="center">800</entry>
+<entry align="center">2:1</entry>
+<entry align="center">24</entry>
+<entry align="center">3/8</entry>
+<entry align="center">0.61</entry>
+<entry align="center">70</entry>
+<entry align="right">50</entry></row>
+<row rowsep="0">
+<entry align="center">400</entry>
+<entry align="center">200</entry>
+<entry align="center">600</entry>
+<entry align="center">2:1</entry>
+<entry align="center">24</entry>
+<entry align="center">3/8</entry>
+<entry align="center">0.46</entry>
+<entry align="center">95</entry>
+<entry align="right">82</entry></row>
+<row rowsep="0">
+<entry align="center">600</entry>
+<entry align="center">300</entry>
+<entry align="center">900</entry>
+<entry align="center">2:1</entry>
+<entry align="center">24</entry>
+<entry align="center">3/8</entry>
+<entry align="center">0.69</entry>
+<entry align="center">55</entry>
+<entry align="right">42</entry></row>
+<row rowsep="0">
+<entry align="center">400</entry>
+<entry align="center">400</entry>
+<entry align="center">800</entry>
+<entry align="center">1:1</entry>
+<entry align="center">24</entry>
+<entry align="center">3/8</entry>
+<entry align="center">0.61</entry>
+<entry align="center">75</entry>
+<entry align="right">64</entry></row>
+<row rowsep="0">
+<entry align="center">534</entry>
+<entry align="center">266</entry>
+<entry align="center">800</entry>
+<entry align="center">2:1</entry>
+<entry align="center">24</entry>
+<entry align="center">3/8</entry>
+<entry align="center">0.61</entry>
+<entry align="center">65</entry>
+<entry align="right">46</entry></row>
+<row rowsep="0">
+<entry align="center">1166</entry>
+<entry align="center">638</entry>
+<entry align="center">1804</entry>
+<entry align="center">1.8:1</entry>
+<entry align="center">24</entry>
+<entry align="center">1/2</entry>
+<entry align="center">0.77</entry>
+<entry align="center">55</entry>
+<entry align="right">45</entry></row>
+<row rowsep="0">
+<entry align="center">1300</entry>
+<entry align="center">726</entry>
+<entry align="center">2026</entry>
+<entry align="center">1.8:1</entry>
+<entry align="center">24</entry>
+<entry align="center">1/2</entry>
+<entry align="center">0.87</entry>
+<entry align="center">45</entry>
+<entry align="right">35</entry></row>
+<row rowsep="0">
+<entry align="center">1520</entry>
+<entry align="center">792</entry>
+<entry align="center">2312</entry>
+<entry align="center">1.9:1</entry>
+<entry align="center">24</entry>
+<entry align="center">1/2</entry>
+<entry align="center">1.00</entry>
+<entry align="center">40</entry>
+<entry align="right">40</entry></row>
+<row rowsep="0">
+<entry align="center">1650</entry>
+<entry align="center">880</entry>
+<entry align="center">2530</entry>
+<entry align="center">1.9:1</entry>
+<entry align="center">24</entry>
+<entry align="center">1/2</entry>
+<entry align="center">1.09</entry>
+<entry align="center">35</entry>
+<entry align="right">30</entry></row>
+<row>
+<entry namest="col1" nameend="col9" rowsep="0" align="left"><u>20% Drug Loaded Product</u></entry></row>
+<row>
+<entry rowsep="0" align="center">1540</entry>
+<entry rowsep="0" align="center">990</entry>
+<entry rowsep="0" align="center">2530</entry>
+<entry rowsep="0" align="center">1.6:1</entry>
+<entry rowsep="0" align="center">24</entry>
+<entry rowsep="0" align="center">1/2</entry>
+<entry rowsep="0" align="center">1.09</entry>
+<entry rowsep="0" align="center">55</entry>
+<entry rowsep="0" align="right">50</entry></row>
+<row>
+<entry rowsep="0" align="center">1320</entry>
+<entry rowsep="0" align="center">990</entry>
+<entry rowsep="0" align="center">2310</entry>
+<entry rowsep="0" align="center">1.3:1</entry>
+<entry rowsep="0" align="center">24</entry>
+<entry rowsep="0" align="center">1/2</entry>
+<entry rowsep="0" align="center">1.00</entry>
+<entry rowsep="0" align="center">60</entry>
+<entry rowsep="0" align="right">50</entry></row>
+<row>
+<entry rowsep="0" align="center">1100</entry>
+<entry rowsep="0" align="center">1100</entry>
+<entry rowsep="0" align="center">2200</entry>
+<entry rowsep="0" align="center">1:1</entry>
+<entry rowsep="0" align="center">24</entry>
+<entry rowsep="0" align="center">1/2</entry>
+<entry rowsep="0" align="center">0.95</entry>
+<entry rowsep="0" align="center">65</entry>
+<entry rowsep="0" align="right">45</entry></row>
+<row>
+<entry rowsep="0"/>
+<entry rowsep="0"/>
+<entry rowsep="0"/>
+<entry rowsep="0"/>
+<entry rowsep="0"/>
+<entry rowsep="0"/>
+<entry rowsep="0"/>
+<entry rowsep="0"/>
+<entry rowsep="0" align="right"/></row>
+<row>
+<entry namest="col1" nameend="col8" rowsep="0" align="left">Note: 1. First four used peristaltic pump instead of gear pump.</entry>
+<entry rowsep="0"/></row>
+<row>
+<entry namest="col1" nameend="col9" rowsep="0" align="left">2. Particle size by Hiac Royco except last two estimated from seiving</entry></row>
+<row>
+<entry rowsep="0"/>
+<entry rowsep="0"/>
+<entry rowsep="0"/>
+<entry rowsep="0"/>
+<entry rowsep="0"/>
+<entry rowsep="0"/>
+<entry rowsep="0"/>
+<entry rowsep="0"/>
+<entry colsep="0" rowsep="0"/></row>
+<row>
+<entry namest="col1" nameend="col9" rowsep="0" align="left"><u>Formulae</u></entry></row>
+<row>
+<entry rowsep="0"/>
+<entry rowsep="0"/>
+<entry rowsep="0"/>
+<entry rowsep="0"/>
+<entry rowsep="0"/>
+<entry rowsep="0"/>
+<entry rowsep="0"/>
+<entry rowsep="0"/>
+<entry colsep="0" rowsep="0"/></row>
+<row rowsep="0">
+<entry namest="col1" nameend="col2" align="left">30% Oil Phase:</entry>
+<entry namest="col3" nameend="col9" align="left">85.7% Ethyl acetate</entry></row>
+<row rowsep="0">
+<entry namest="col1" nameend="col2" align="left">(60-70C)</entry>
+<entry namest="col3" nameend="col9" align="left">10.0% 85:15 dl PLGA</entry></row>
+<row rowsep="0">
+<entry/>
+<entry/>
+<entry namest="col3" nameend="col9" align="left">4.3% Estradiol Benzoate</entry></row>
+<row rowsep="0">
+<entry/>
+<entry/>
+<entry/>
+<entry/>
+<entry/>
+<entry/>
+<entry/>
+<entry/>
+<entry/></row>
+<row rowsep="0">
+<entry namest="col1" nameend="col2" align="left">20% Oil Phase:</entry>
+<entry namest="col3" nameend="col9" align="left">80.0% Ethyl acetate</entry></row>
+<row rowsep="0">
+<entry namest="col1" nameend="col2" align="left">(60-70C)</entry>
+<entry namest="col3" nameend="col9" align="left">16.0% 85:15 dl PLGA</entry></row>
+<row rowsep="0">
+<entry/>
+<entry/>
+<entry namest="col3" nameend="col9" align="left">4.0% Estradiol Benzoate</entry></row>
+<row rowsep="0">
+<entry/>
+<entry/>
+<entry/>
+<entry/>
+<entry/>
+<entry/>
+<entry/>
+<entry/>
+<entry/></row>
+<row rowsep="0">
+<entry namest="col1" nameend="col2" align="left">Water Phase:</entry>
+<entry namest="col3" nameend="col9" align="left">94.0% Water for injection</entry></row>
+<row rowsep="0">
+<entry namest="col1" nameend="col2" align="left">(60-70C)</entry>
+<entry namest="col3" nameend="col9" align="left">5.0% Ethyl acetate</entry></row>
+<row>
+<entry/>
+<entry/>
+<entry namest="col3" nameend="col9" align="left">1.0% Polyvinyl alcohol</entry></row></tbody></tgroup>
+</table>
+</tables><!-- EPO <DP n="24"> --></p>
+<heading id="h0012">Example 5 <b><i>Preparation of 40% Theoretically Loaded Trenbolone Acetate Microparticles</i></b></heading>
+<p id="p0113" num="0113">Nine batches of trenbolone acetate (TBA) microparticles were prepared by using a static mixer. Microparticles containing 40% TBA and 5% butylated hydroxytoluene (BHT, used as an antioxidant) were prepared by the following procedure. PLGA (molar ratio of D, L-lactide to glycolide: 85 : 15, molecular weights by GPC: Mw=86,810; Mn=36,417), TBA, and BHT were dissolved in ethyl acetate (EtOAc) at 55°C. (ratio of EtOAc to PLGA: 10 ∼ 20 : 1). EtOAc was heated to 55°C and PLGA was added to EtOAc under fast stirring. After the polymer was dissolved, BHT and then TBA were dissolved in the polymer solution. Simultaneously, poly(vinyl alcohol) (PVA) water solution (3 wt. %) spiked with EtOAc (ratio of PVA solution to EtOAc: 10 : 1) was charged to a jacketed flask and heated to 55°C. When the temperature of the polymer-drug solution (organic phase) and PVA solution (aqueous phase) were constant, the polymer-drug solution and PVA solution were pumped separately to a static mixer (1 cm in diameter and 12 cm in length). The static mixer was manufactured by Cole-Parmer, model number 6-04667-06, and contained 12 mixing elements. The flow rate ratio of polymer-drug solution to PVA solution was varied from 1:1.2 to 1:2. The ratio of quenching water to EtOAc was 100∼150 : 1. Quench water temperature was approximately 1°C. After being washed for 6 hours, the microparticles were sieved through a sieve column (25 µm, 90 µm, 150 µm, and 212 µm), and then dried.</p>
+<p id="p0114" num="0114">Particle size distribution of one batch of microparticles is depicted in <figref idref="f0012">Figure 12</figref>.</p>
+<heading id="h0013">Example 6 <b><i>Preparation of 46% Theoretically Loaded Testosterone Microparticles</i></b></heading>
+<p id="p0115" num="0115">A 1 kg batch of 46% testosterone loaded microparticles is prepared using a 1.905 cm (¾") diameter x 12 element static mixer (Koflo, M/N:¾-TU-3-12RH-11, Koflo Corp., Cary, Illinois). The polymer/drug solution (organic phase) is prepared as follows. 506 g of Testosterone USP is dissolved in a heated (65-70°C) solution of 594 g of Medisorb® 75:25 dl PLGA (a copolymer of 75 mole % lactic acid and 25 mole % glycolic acid, polylactide-co-glycolide) (IV=0.68 dl/g in 3.683 kg ethyl acetate NF. The solution is filtered (0.2 µm) and maintained at 65-70°C. The process water solution (aqueous phase) is prepared as follows. 52 g of PVA (Du Pont Elvanol® 51-05) is added to 9.75 kg of WFI and heated (63-70°C) until dissolved, and then filtered (0.2µm). To this solution is added 626 g of filtered (0.2 µm) ethyl acetate NF. The solution is maintained at 65-70°C. The quench liquid is comprised of 750 liters WFI, maintained at 0-4°C.</p>
+<p id="p0116" num="0116">The organic phase is pumped through the static mixer at a flow rate of 2150 cc/min, and the aqueous phase at a flow rate of 4300 cc/min. After 1 hour of quench, the material is passed through 45 and 150µm. screens. The 45-150µm portion is vacuum dried with agitation for 36 hours at ambient temperature. The process yield is 875 g of testosterone loaded microparticles.</p>
+<p id="p0117" num="0117">The 46% loaded microparticles were used to prepare 125-mg testosterone doses (suspension filled and lyophilized) which were administered to baboons. Time release data are shown in <figref idref="f0013">Figure 13</figref>.</p>
+<heading id="h0014">Reference Example 2 <b><i>Preparation of 1.7% Theoretically Loaded rgp 120 Microparticles</i></b></heading>
+<p id="p0118" num="0118">A 10 gm batch of 1.7% rgp 120 (a glycoprotein) loaded microparticles is prepared using a 0.635 cm (¼") diameter x 5 element static mixer (Koch, 0.635 cm (¼") SMV-DY; 0.635 cm (¼)" Dia, 5 elements, 316SS, Koch Engineering Company, Inc., Wichita, KS). The polymer/drug solution (organic phase) is prepared as follows. A primary emulsion is made by adding 3cc of 56 mg/ml rgp120 in Tris buffer (20mM Tris, 120mM NaCl, pH 7.4) to 10 g of Medisorb, 65:35 dl PLGA (a copolymer of 65 mole % lactic acid and 35 mole % glycolic acid, polylactide-co-glycolide) (IV=0.61) in 47 g of ethyl acetate. The emulsion is formed by sonication (Vibra cell sonicator, 600 watt, 20 sec, 50% power with 1.27 cm (½") probe). The emulsion is maintained at 0-4°C. The process water solution (aqueous phase) is prepared as follows. 225 g of PVA (Air Products, Vinol 205) is added to 2025 g of WFI, and heated (65-70°C) until dissolved. To this solution, 250 g of ethyl acetate is added. The solution is maintained at 0-4°C. The quench liquid is comprised of 12 liters of water, maintained at 0-4°C.</p>
+<p id="p0119" num="0119">The organic phase is pumped through the static mixer at a flow rate of 40 cc/min, and the aqueous phase at a flow rate of 1500 cc/min. After 1 hour of quench, the microparticles are passed through 150 and 20 µm screens. The 20-150 µm portion is washed with 13 liters of 0.1% Tween 20 solution at 0-4°C and then lyophilized. The process yield is 3.09 g of rgp 120 loaded microparticles.</p>
+<heading id="h0015">Example 7 <b><i>Preparation of 60% Theoretically Loaded Ivermectin Microparticles</i></b></heading>
+<p id="p0120" num="0120">To prepare a 35 g batch of 60% theoretically loaded ivermectin microparticles, the dispersed phase (Solution A) is prepared by dissolving 21.03 g of ivermectin in 116.72 g of polymer solution comprised of 9.5% 65:35 dl (polylactide-co-glycolide), (Medisorb Technologies International, L.P., Cincinnati, OH) and 90.5% ethyl acetate (Fisher Scientific, Fair Lawn, NJ) at 52°C. Then 1300 g of the continuous phase (solution B) comprised of 1% poly (vinyl alcohol),<!-- EPO <DP n="25"> --> (Vinol 205, Air Products and Chemical Inc., Allentown, PA) and 99% WFI is weighed out and heated to 52°C. Then solutions A and B are pumped through the static mixer (Cole-Parmer part number L04667-14) via a gear drive pump and head (Cole-Parmer L07149-04, L07002-16) at flow rates of 88 and 165 ml/minute, respectively, and into a quench liquid composed of 35 liters CWFI (Cold Water For Injection) at 8°C. The microparticles are allowed to stir for about 20 minutes, then isolated by sieving the quench through a 25 µm sieve. The product retained by the sieve is transferred to a wash of 20 liters stirring CWFI at 8°C. After stirring for 2 hours, the microparticles are isolated and size fractionated by sieving the wash through 25 and 212 micron sieves. The microparticles are air-dried overnight and collected.</p>
+<heading id="h0016">Example 8 <b><i>Preparation of 60% Theoretically Loaded Bupivacaine Base Microparticles</i></b></heading>
+<p id="p0121" num="0121">An excess of the aqueous continuous phase is prepared by adding 216.1 g ethyl acetate (Fisher Scientific, Fair Lawn, NJ) to 3780.3 g of a 5% aqueous poly (vinyl alcohol) solution (Vinol 205, Air Products and Chemical Inc., Allentown, PA) and adjusting to pH 8.5 with 1N NaOH at ambient temperatures. The organic phase is then prepared by dissolving 8.05 g low viscosity 50:50 dl polylactide-co-glycolide (a copolymer of 50 mole % lactic acid and 50 mole % glycolic acid) (Medisorb Technologies International, L.P.), and 12.05g bupivacaine base (Aceto Corporation, Lake Success, NY) in 92.1 g ethyl acetate at room temperature. The aqueous and organic solutions are then simultaneously pumped through a 24 element, 1/4" diameter static mixer (Cole-Parmer L04667) via gear drive pumps and heads (Cole-Parmer L07144-05, pump; L07002-16, head, aqueous; L07002-26 head, organic) at flow rates of 233 and 116 ml/minute, respectively, into a quench liquid of 12 liters of water for injection adjusted to pH 8.5 at room temperature. The microparticles are stirred in the quench water for 1 hour then isolated by sieving through 25, 45, and 90 µm mesh stainless steel sieves. The microparticles are air dried overnight and protected from light prior to weighing.</p>
+<heading id="h0017">Reference Example 3 <b><i>Preparation of 17.5% Theoretically Loaded Pig Albumin Microspheres</i></b></heading>
+<p id="p0122" num="0122">A 2 gm batch of pig albumin loaded microspheres was prepared using a 1.27 cm (1/2)" diameter X 30.48 cm (12") long static mixer. The polymer/drug solution (organic phase) was prepared as follows: 1.65 g of Medisorb 75:25 dl PLGA (Inherent Viscosity, 0.65 dl/g) was dissolved in 70 g of ethyl acetate. The concentration of polymer in the organic phase was 2.36%. 0.35 g of micronized pig albumin (Sigma, lot # 95F-9358) was suspended in the polymer solution by 2 X 10 seconds of sonication (Tekmar Sonication Disruptor, Model 350 with microtip). A uniform and fine dispersion was produced. The suspension was poured into a 50 ml reactor equipped with an outlet valve at the bottom. Mixing was initiated with a turbine 6-blade propeller at approximately 700 rpm. A peristaltic pump was connected to the outlet of the reactor to pump the organic phase at a rate of 7.0 g/min into the static mixer. Another peristaltic pump was set to feed 350 cs silicone oil (Dow Corning, Lot # HH121209) at a rate of 9.0 g/min into the inlet of the static mixer.</p>
+<p id="p0123" num="0123">The silicone oil flow was started first and the organic phase followed approximately 2-5 seconds later. In a quench tank, 1.2 l of heptane (Chem Pure, Lot # M138KLAP) was stirred at a moderate speed using an air-driven impeller. The outlet line of the static mixer was placed 1.27 cm (1/2") below the surface of the heptane. At completion of transfer of the organic phase through the static mixer, 8-10 g of ethyl acetate was used to flush the remaining organic phase from the mixer. The silicone oil flow was maintained during this rinsing period. The semi-solid microparticles were quenched in heptane for 1.5 hours at room temperature for complete hardening and washing. Microspheres were then collected by vacuum filtration using a Versapor-3000-membrane filter, 3 µm pore size (Gelman). The collected microspheres were washed on the filter with 300 ml of fresh heptane and were transferred to a vacuum desiccator for further drying. The process yielded 1.91 g of pig albumin loaded microspheres. Microparticles were mostly spherical and in a 25-200 µm (micron) size range.</p>
+<p id="p0124" num="0124">A second formulation was prepared which showed that a shorter static mixer 1.27 cm (1/2") diameter X 15.24 cm (6") long) can be used with a lower total flow rate. The organic phase flow rate was 6.5 g/min into the static mixer, as opposed to 7.0 g/min in the first formulation. The silicone oil flow rate was 8.8 g/min, as opposed to 9.0 g/min in the first formulation. However, the ratio of organic phase flow rate to silicone oil flow rate is approximately the same in the second formulation as in the first formulation. The solid yield of this formulation was 90%.</p>
+<heading id="h0018">Reference Example 4 <b><i>Preparation of 10.0% Theoretically Loaded rBo Interferon-α Microspheres</i></b></heading>
+<p id="p0125" num="0125">A 1.89 g batch of rBo Interferon-α (recombinant bovine Interferon alpha) loaded microparticles was prepared using a 1.27 cm (1/2)" X 30.48 cm (12") static mixer. The concentration of polymer (75:25 dl PLGA dissolved in ethyl acetate) in the organic phase was 2.70%. The protein was dissolved in 0.5 ml of water for injection and was emulsified in the polymer solution by sonication to form the organic phase (polymer/active agent phase). The emulsion was poured into a reactor and the microsphere preparation was performed in like manner to Reference Example 2. The organic phase flow rate was 6.6g/min and the silicone oil flow rate was 10.9 g/min. The semi-solid microparticles were quenched in 1.0 L of heptane for 1.5 hours.<!-- EPO <DP n="26"> --></p>
+<heading id="h0019">Reference Example 5 <b><i>Preparation of 17.5% Theoretically Loaded HSA Microspheres</i></b></heading>
+<p id="p0126" num="0126">A batch of HSA (human serum albumin) loaded microspheres was prepared using a 1.27 cm (1/2") X 15.24 cm (6") static mixer. The concentration of polymer (75:25 dl PLGA dissolved in ethyl acetate) in the organic phase was 2.36%. An inner water phase of 1.0 ml was used to completely dissolve the protein. The dissolved protein was emulsified in the polymer solution by sonication to form the organic phase. To maintain the required residence time to induce coacervation by the non-solvent (silicone oil) in a shorter flow path of 15.24 cm (6"), a lower total flow rate was used. The organic phase flow rate was 4.9 g/min and the silicone oil flow rate was 5.6 g/min. The lower total flow rate resulted in a solids yield of 65% for this sample. The ratio of silicone oil flow rate to organic phase flow rate in this sample was slightly lower than in the sample prepared in Reference Example 3, 1.1 as compared with 1.4. The semi-solid microspheres were quenched in 0.8 l of heptane for 1.5 hours. Since less non-solvent (silicone oil) was used, less heptane (second non-solvent) was required.</p>
+<heading id="h0020">Reference Example 6 <i>Preparation of 10.0% Theoretically Loaded Pig Albumin Microspheres</i></heading>
+<p id="p0127" num="0127">This formulation was prepared similar to the one in Reference Example 4, using pig albumin as the model protein (active agent to be encapsulated). The total flow rate of the two phases in the static mixer was lower in this sample; the organic phase flow rate was 6.0 g/min and the silicone oil flow rate was 8.8 g/min. The microspheres were quenched in 1.2 l of heptane for 1.5 hours. A total solids yield similar to Reference Example 5 was achieved for this formulation.</p>
+<p id="p0128" num="0128">The characteristics of the formulations for Reference Examples 3-6 are summarized in Table 4.<!-- EPO <DP n="27"> -->
+<tables id="tabl0007" num="0007">
+<table frame="topbot">
+<tgroup cols="9" colsep="0">
+<colspec colnum="1" colname="col1" colwidth="22mm"/>
+<colspec colnum="2" colname="col2" colwidth="20mm"/>
+<colspec colnum="3" colname="col3" colwidth="22mm"/>
+<colspec colnum="4" colname="col4" colwidth="19mm"/>
+<colspec colnum="5" colname="col5" colwidth="14mm"/>
+<colspec colnum="6" colname="col6" colwidth="19mm"/>
+<colspec colnum="7" colname="col7" colwidth="19mm"/>
+<colspec colnum="8" colname="col8" colwidth="18mm"/>
+<colspec colnum="9" colname="col9" colwidth="18mm"/>
+<thead>
+<row rowsep="0">
+<entry namest="col1" nameend="col9" align="center" valign="top"><b>Table 4</b></entry></row>
+<row rowsep="0">
+<entry morerows="1" rowsep="1" align="center" valign="top">Reference Example</entry>
+<entry morerows="1" rowsep="1" align="center" valign="top">Coreload (%)</entry>
+<entry morerows="1" rowsep="1" align="center" valign="top">Protein</entry>
+<entry morerows="1" rowsep="1" align="center" valign="top">Polymer Conc. (%)</entry>
+<entry morerows="1" rowsep="1" align="center" valign="top">H<sub>2</sub>O (ml)</entry>
+<entry namest="col6" nameend="col7" align="center" valign="top">Flow-rate (g/min)</entry>
+<entry namest="col8" nameend="col9" align="center" valign="top">2nd non-solvent</entry></row>
+<row>
+<entry align="center" valign="top">Organic Ph.</entry>
+<entry align="center" valign="top">Silicone oil</entry>
+<entry align="center" valign="top">volume (ℓ)</entry>
+<entry align="center" valign="top">Period (hours)</entry></row></thead>
+<tbody>
+<row rowsep="0">
+<entry>2</entry>
+<entry align="center">17.5</entry>
+<entry>Pig Albumin</entry>
+<entry align="right">2.36</entry>
+<entry align="char" char=".">0</entry>
+<entry align="right">7.0</entry>
+<entry align="right">9.0</entry>
+<entry align="right">0.8</entry>
+<entry align="right">1.0</entry></row>
+<row rowsep="0">
+<entry>2</entry>
+<entry align="center">17.5</entry>
+<entry>Pig Albumin</entry>
+<entry align="right">2.36</entry>
+<entry align="char" char=".">0</entry>
+<entry align="right">6.5</entry>
+<entry align="right">8.8</entry>
+<entry align="right">0.8</entry>
+<entry align="right">1.5</entry></row>
+<row rowsep="0">
+<entry>3</entry>
+<entry align="center">10.0</entry>
+<entry>rBo Interferon-α</entry>
+<entry align="right">2.70</entry>
+<entry align="char" char=".">0.5</entry>
+<entry align="right">6.6</entry>
+<entry align="right">10.9</entry>
+<entry align="right">1.0</entry>
+<entry align="right">1.5</entry></row>
+<row rowsep="0">
+<entry>4</entry>
+<entry align="center">17.5</entry>
+<entry>HSA</entry>
+<entry align="right">2.36</entry>
+<entry align="char" char=".">1.0</entry>
+<entry align="right">4.9</entry>
+<entry align="right">5.6</entry>
+<entry align="right">0.8</entry>
+<entry align="right">1.5</entry></row>
+<row>
+<entry>5</entry>
+<entry align="center">10.0</entry>
+<entry>Pig Albumin</entry>
+<entry align="right">2.70</entry>
+<entry align="char" char=".">0.5</entry>
+<entry align="right">6.0</entry>
+<entry align="right">8.8</entry>
+<entry align="right">1.2</entry>
+<entry align="right">1.5</entry></row></tbody></tgroup>
+</table>
+</tables></p>
+<heading id="h0021">Reference Example 7</heading>
+<p id="p0129" num="0129">An 85:15 D,L-lactide/glycolic acid copolymer (10.6 g) and norethindrone USP (9.4 g) were sequentially dissolved in a 50:50 (weight) blend of ethyl acetate and benzyl alcohol (80 g) ("oil phase").<!-- EPO <DP n="28"> --> Once dissolved, the solution was transferred to a 500 g emulsion bath mixture at 60-65° C composed of 0.5 weight percent poly(vinyl alcohol) (Vinol 205, Air Products, having a number average molecular weight of 15,000 to 27,000 and a degree of hydrolysis of 87-89%), 5.9 weight percent ethyl acetate, 2.7 weight percent benzyl alcohol, and 90.9 weight percent water, contained in a 1000 ml jacketed beaker equipped with a turbine stirrer and a thermostatic heater. This emulsion bath mixture approximated a saturated solution for both ethyl acetate and benzyl alcohol at 60°C. During emulsion formation, extraction of solvent from the "oil phase" can thus be prevented and any time effect during this step minimized. The stir speed was adjusted to provide for an oil droplet size of approximately 90 µm. The resulting emulsion was transferred to a chilled (2-4°C) water tank containing various amounts of water and ethyl acetate, as reported in <figref idref="f0014">Figures 14</figref> and <figref idref="f0015">15</figref>. After one hour, the microparticles were collected on a sieve stack (25, 45, 63 and 90 µm) and allowed to dry overnight under a hood. The next day the microparticles were blended (15%:25-45 µm; 50%:45-63 µm; and 35%:63-90 µm) and sampled. The results are reported in <figref idref="f0014">Figures 14</figref> and <figref idref="f0015">15</figref>.</p>
+<heading id="h0022">Reference Example 8</heading>
+<p id="p0130" num="0130">Reference Example 8 is repeated except that the size of the "oil phase" solution of NET and polymer is 5 g in each case, the emulsification bath is 300 ml of water containing 0.5 wt % of the poly(vinyl alcohol) used in Reference example 7. The results are reported in Table 5.<!-- EPO <DP n="29"> -->
+<tables id="tabl0008" num="0008">
+<table frame="all">
+<title><b><i>Table 5</i></b></title>
+<tgroup cols="13">
+<colspec colnum="1" colname="col1" colwidth="15mm"/>
+<colspec colnum="2" colname="col2" colwidth="22mm"/>
+<colspec colnum="3" colname="col3" colwidth="18mm"/>
+<colspec colnum="4" colname="col4" colwidth="15mm"/>
+<colspec colnum="5" colname="col5" colwidth="14mm"/>
+<colspec colnum="6" colname="col6" colwidth="14mm"/>
+<colspec colnum="7" colname="col7" colwidth="18mm"/>
+<colspec colnum="8" colname="col8" colwidth="22mm"/>
+<colspec colnum="9" colname="col9" colwidth="15mm"/>
+<colspec colnum="10" colname="col10" colwidth="14mm"/>
+<colspec colnum="11" colname="col11" colwidth="22mm"/>
+<colspec colnum="12" colname="col12" colwidth="37mm"/>
+<colspec colnum="13" colname="col13" colwidth="24mm"/>
+<thead>
+<row>
+<entry morerows="1" align="center" valign="middle">Batch No.</entry>
+<entry morerows="1" align="center" valign="middle">Description</entry>
+<entry morerows="1" align="center" valign="middle">Solvent Content<br/>
+(%)</entry>
+<entry namest="col4" nameend="col6" align="center" valign="middle">Emulsion Conditions</entry>
+<entry align="center" valign="middle">Quench</entry>
+<entry namest="col8" nameend="col9" align="center" valign="middle">Yield (%)</entry>
+<entry morerows="1" align="center" valign="middle">Core Load</entry>
+<entry morerows="1" align="center" valign="middle"><i>In Vitro</i> Dissolution</entry>
+<entry morerows="1" align="center" valign="middle">Residual Solvent</entry>
+<entry morerows="1" align="center" valign="middle">Scanning Electron Microscopy</entry></row>
+<row>
+<entry align="center" valign="middle">Temp<br/>
+(°C)</entry>
+<entry align="center" valign="middle">RPM</entry>
+<entry align="center" valign="middle">Time<br/>
+(min)</entry>
+<entry align="center" valign="middle">Vol (1)</entry>
+<entry align="center" valign="middle">Total Recovered</entry>
+<entry align="center" valign="middle">25-90 µm</entry></row></thead>
+<tbody>
+<row>
+<entry>3151</entry>
+<entry>Dslvd NET/50:50;<br/>
+ETAC:BA</entry>
+<entry>90.0</entry>
+<entry>Amb</entry>
+<entry>230</entry>
+<entry>15</entry>
+<entry>5</entry>
+<entry>57.2</entry>
+<entry>46</entry>
+<entry>461</entry>
+<entry>12% Burst,<br/>
+60% Release @ 18 hr (unblended sample)</entry>
+<entry>ETAC/BA<br/>
+0.0003/3.77</entry>
+<entry>Very porous, out of round, inconsistent</entry></row>
+<row>
+<entry>3161</entry>
+<entry>Dslvd NET/50:50;<br/>
+ETAC:BA</entry>
+<entry>84.5</entry>
+<entry>37</entry>
+<entry>247</entry>
+<entry>26</entry>
+<entry>5/10</entry>
+<entry>60.4</entry>
+<entry>35</entry>
+<entry>416</entry>
+<entry>40% Release @ 18 hr (unblended sample)</entry>
+<entry>0.83/1.5</entry>
+<entry>Inconsistent, less porous</entry></row>
+<row>
+<entry>3181</entry>
+<entry>Dslvd NET/30:50;<br/>
+ETAC:BA</entry>
+<entry>89.9</entry>
+<entry>Amb</entry>
+<entry>226</entry>
+<entry>9</entry>
+<entry>5/10</entry>
+<entry>57.0</entry>
+<entry>32</entry>
+<entry>456</entry>
+<entry>No burst,<br/>
+23% Release @ 18hr (unblended sample)</entry>
+<entry>0.51/1.99</entry>
+<entry>Rough surface, inconsistent</entry></row>
+<row>
+<entry>3251</entry>
+<entry>Dslvd NET/50:50;<br/>
+ETAC:BA</entry>
+<entry>80.9</entry>
+<entry>60</entry>
+<entry>250</entry>
+<entry>7</entry>
+<entry>5/10</entry>
+<entry>61.4</entry>
+<entry>29</entry>
+<entry>445</entry>
+<entry>No burst,<br/>
+18% Release @ 18 hr (unblended sample)</entry>
+<entry>0.38/2.56</entry>
+<entry>Round, some irreg., more Consistent</entry></row>
+<row>
+<entry>3261</entry>
+<entry>Dslvd NET/50:50;<br/>
+ETAC:BA</entry>
+<entry>75.0</entry>
+<entry>75</entry>
+<entry>199</entry>
+<entry>7</entry>
+<entry>5/10</entry>
+<entry>61.0</entry>
+<entry>7.6</entry>
+<entry>422</entry>
+<entry>7% Burst,<br/>
+58% Release @ 18 hr (unblended sample)</entry>
+<entry>0.53/2.72</entry>
+<entry>Round, come porous, less consistent</entry></row>
+<row>
+<entry>3301</entry>
+<entry>Dslvd NET/50:50;<br/>
+ETAC:BA</entry>
+<entry>80.9</entry>
+<entry>60</entry>
+<entry>250</entry>
+<entry>11</entry>
+<entry>5</entry>
+<entry>72.0</entry>
+<entry>49</entry>
+<entry>431</entry>
+<entry>nd</entry>
+<entry>non-det/12.3</entry>
+<entry>nd</entry></row>
+<row>
+<entry>3381</entry>
+<entry>Dslvd NET/50:50;<br/>
+ETAC:BA</entry>
+<entry>90.1</entry>
+<entry>25</entry>
+<entry>118</entry>
+<entry>17</entry>
+<entry>5/10</entry>
+<entry>39.2</entry>
+<entry>39.2</entry>
+<entry>421</entry>
+<entry>No burst.<br/>
+20.3 % Release @ 18 hr (unblended sample)</entry>
+<entry>0.37/3.06</entry>
+<entry>Round, somewhat smooth</entry></row>
+<row>
+<entry>3391</entry>
+<entry>Dslvd NEt/50:30;<br/>
+ETAC:BA</entry>
+<entry>80.9</entry>
+<entry>63</entry>
+<entry>220</entry>
+<entry>10</entry>
+<entry>5/10</entry>
+<entry>6.2</entry>
+<entry>2.2</entry>
+<entry>431</entry>
+<entry>nd</entry>
+<entry>nd</entry>
+<entry>Round, uneven surface</entry></row>
+<row>
+<entry>3401</entry>
+<entry>Dslvd NET/50:50;<br/>
+ETAC:BA</entry>
+<entry>80.9</entry>
+<entry>61</entry>
+<entry>234</entry>
+<entry>8</entry>
+<entry>5/10</entry>
+<entry>24.8</entry>
+<entry>24.8</entry>
+<entry>.427 hr</entry>
+<entry>No burst,<br/>
+46.1 % Release @ 18 (unblended sample)</entry>
+<entry>0.22/2.09</entry>
+<entry>Round, uneven surface</entry></row></tbody></tgroup>
+</table>
+</tables><!-- EPO <DP n="30"> --></p>
+<heading id="h0023">Reference Example 9</heading>
+<p id="p0131" num="0131">A 20 gram batch of testosterone-loaded microparticles was made as follows: 10.8g of the polymer of Reference Example 7 and 9.2g of testosterone were dissolved in 67 g of a 75:25 blend of ethyl acetate and benzyl alcohol and heated to approximately 65°C. The solution was then transferred to a 500 g aqueous mixture of 0.5% poly(vinyl alcohol) and 6.5% ethyl acetate in a 1000 ml jacketed glass reaction vessel equipped with a turbine stirrer. Stir speed was adjusted to approximately 245 rpm. After five minutes, the emulsion was transferred to a chilled (0-4°C) tank containing 20 liters of water spiked with ethyl acetate at a 5% concentration. After one hour, the microparticles were recovered on a 25 and 150 micron sieve stack and allowed to dry overnight under a laboratory hood. The next day, the microparticles on the 25 micron screen were recovered and sampled. The product contained 39.7% testosterone, 3.67% ethyl acetate, and 0.89% benzyl alcohol. An accelerated <i>in vitro</i> release model indicated 15% of the drug was released after 18 hours in the receiving fluid.</p>
+<p id="p0132" num="0132">While various embodiments of the present invention have been described above, it should be understood that they have been presented by way of example only, and not limitation. Thus the breadth and scope of the present invention should not be limited by any of the above described exemplary embodiments, but should be defined only in accordance with the following claims and their equivalents.</p>
+</description><!-- EPO <DP n="31"> -->
+<claims id="claims01" lang="en">
+<claim id="c-en-01-0001" num="0001">
+<claim-text>A method of preparing microparticles, comprising:
+<claim-text>preparing a first phase by dissolving an active agent in a solution containing a polymer;</claim-text>
+<claim-text>preparing a second phase which is substantially immiscible with the first phase;</claim-text>
+<claim-text>preparing a quench liquid; and</claim-text>
+<claim-text>pumping said first phase and said second phase through a static mixer into said quench liquid thereby forming microparticles containing said active agent.</claim-text></claim-text></claim>
+<claim id="c-en-01-0002" num="0002">
+<claim-text>The method of claim 1, further comprising:
+<claim-text>configuring said static mixer with a plurality of static mixing elements received within a conduit.</claim-text></claim-text></claim>
+<claim id="c-en-01-0003" num="0003">
+<claim-text>The method of claim 1, wherein said pumping step is performed wherein said first phase is pumped at first flow rate and said second phase is pumped at a second flow rate greater than said first flow rate.</claim-text></claim>
+<claim id="c-en-01-0004" num="0004">
+<claim-text>The method of claim 1, wherein said step of preparing said first phase further comprises:
+<claim-text>a) dissolving polylactide-co-glycolide in ethyl acetate to form a polymer solution and dissolving trenbolone acetate in said polymer solution, or</claim-text>
+<claim-text>b) dissolving polylactide-co-glycolide in ethyl acetate to form a polymer solution and dissolving testosterone in said polymer solution, or</claim-text>
+<claim-text>c) dissolving polylactide-co-glycolide in ethyl acetate to form a polymer solution and dissolving estradiol benzoate in said polymer solution.</claim-text></claim-text></claim>
+</claims><!-- EPO <DP n="32"> -->
+<claims id="claims02" lang="de">
+<claim id="c-de-01-0001" num="0001">
+<claim-text>Verfahren zur Herstellung von Mikropartikeln, welches beinhaltet:
+<claim-text>Herstellen einer ersten Phase, indem ein Wirkstoff in einer Lösung aufgelöst wird, die einen Polymer enthält;</claim-text>
+<claim-text>Herstellen einer zweiten Phase, die im Wesentlichen nicht mischbar mit der ersten Phase ist;</claim-text>
+<claim-text>Herstellen einer Abschreck-Flüssigkeit; und</claim-text>
+<claim-text>Pumpen der ersten Phase und der zweiten Phase durch einen statischen Mischer in die Abschreckflüssigkeit und <b>dadurch</b> Formen von Mikropartikeln, die den Wirkstoff enthalten.</claim-text></claim-text></claim>
+<claim id="c-de-01-0002" num="0002">
+<claim-text>Verfahren nach Anspruch 1, welches weiters beinhaltet:
+<claim-text>Konfigurieren des statischen Mischers mit einer Vielzahl an statischen Mischorganen, die in einer Leitung enthalten sind.</claim-text></claim-text></claim>
+<claim id="c-de-01-0003" num="0003">
+<claim-text>Verfahren nach Anspruch 1, wobei der Schritt des Pumpens ausgeführt wird, wobei die erste Phase bei einer ersten Fließrate gepumpt wird und die zweite Phase bei einer zweiten Fließrate gepumpt wird, die größer ist als die erste Fließrate.</claim-text></claim>
+<claim id="c-de-01-0004" num="0004">
+<claim-text>Verfahren nach Anspruch 1, wobei der Schritt des Herstellens der ersten Phase weiters beinhaltet:
+<claim-text>a) Auflösen von Polylactid-co-Glycolid in Ethylacetat, um eine Polymerlösung zu formen und Auflösen von Trenbolonacetat in der Polymerlösung, oder</claim-text>
+<claim-text>b) Auflösen von Polylactid-co-Glycolid in Ethylacetat, um eine Polymerlösung zu formen und Auflösen von Testosteron in der Polymerlösung, oder</claim-text>
+<claim-text>c) Auflösen von Polylactid-co-Glycolid in Ethylacetat, um eine Polymerlösung zu formen und Auflösen von Estradiolbenzoat in der Polymerlösung.</claim-text></claim-text></claim>
+</claims><!-- EPO <DP n="33"> -->
+<claims id="claims03" lang="fr">
+<claim id="c-fr-01-0001" num="0001">
+<claim-text>Procédé de préparation de microparticules, comprenant :
+<claim-text>la préparation d'une première phase en dissolvant un agent actif dans une solution contenant un polymère ;</claim-text>
+<claim-text>la préparation d'une deuxième phase qui est substantiellement non miscible dans la première phase ;</claim-text>
+<claim-text>la préparation d'un liquide de refroidissement ; et</claim-text>
+<claim-text>le pompage de ladite première phase et de ladite deuxième phase à travers un mélangeur statique dans ledit liquide de refroidissement formant ainsi des microparticules contenant ledit agent actif.</claim-text></claim-text></claim>
+<claim id="c-fr-01-0002" num="0002">
+<claim-text>Procédé suivant la revendication 1, comprenant en outre :
+<claim-text>la configuration dudit mélangeur statique avec une pluralité d'éléments de mélange statique contenus à l'intérieur d'un conduit.</claim-text></claim-text></claim>
+<claim id="c-fr-01-0003" num="0003">
+<claim-text>Procédé suivant la revendication 1, dans lequel ladite étape de pompage est réalisée, dans lequel ladite étape de pompage est réalisée, dans lequel ladite première phase est pompée à un premier débit et un ladite deuxième phase est pompée à un deuxième débit supérieur audit premier débit.</claim-text></claim>
+<claim id="c-fr-01-0004" num="0004">
+<claim-text>Procédé suivant la revendication 1, dans lequel ladite étape de préparation de ladite première phase comprend en outre :
+<claim-text>a) la dissolution d'un polylactide-co-glycolide dans de l'acétate d'éthyle pour former une<!-- EPO <DP n="34"> --> solution de polymère et la dissolution d'acétate de trenbolone dans ladite solution de polymère, ou</claim-text>
+<claim-text>b) la dissolution d'un polylactide-co-glycolide dans de l'acétate d'éthyle pour former une solution de polymère et la dissolution de testostérone dans ladite solution de polymère, ou</claim-text>
+<claim-text>c) la dissolution d'un polylactide-co-glycolide dans de l'acétate d'éthyle pour former une solution de polymère et la dissolution de benzoate d'oestrodiol dans ladite solution de polymère.</claim-text></claim-text></claim>
+</claims><!-- EPO <DP n="35"> -->
+<drawings id="draw" lang="en">
+<figure id="f0001" num="1"><img id="if0001" file="imgf0001.tif" wi="123" he="217" img-content="drawing" img-format="tif"/></figure><!-- EPO <DP n="36"> -->
+<figure id="f0002" num="2"><img id="if0002" file="imgf0002.tif" wi="97" he="169" img-content="drawing" img-format="tif"/></figure><!-- EPO <DP n="37"> -->
+<figure id="f0003" num="3"><img id="if0003" file="imgf0003.tif" wi="165" he="226" img-content="drawing" img-format="tif"/></figure><!-- EPO <DP n="38"> -->
+<figure id="f0004" num="4"><img id="if0004" file="imgf0004.tif" wi="143" he="218" img-content="drawing" img-format="tif"/></figure><!-- EPO <DP n="39"> -->
+<figure id="f0005" num="5"><img id="if0005" file="imgf0005.tif" wi="164" he="187" img-content="drawing" img-format="tif"/></figure><!-- EPO <DP n="40"> -->
+<figure id="f0006" num="6"><img id="if0006" file="imgf0006.tif" wi="162" he="165" img-content="drawing" img-format="tif"/></figure><!-- EPO <DP n="41"> -->
+<figure id="f0007" num="7"><img id="if0007" file="imgf0007.tif" wi="165" he="189" img-content="drawing" img-format="tif"/></figure><!-- EPO <DP n="42"> -->
+<figure id="f0008" num="8"><img id="if0008" file="imgf0008.tif" wi="163" he="186" img-content="drawing" img-format="tif"/></figure><!-- EPO <DP n="43"> -->
+<figure id="f0009" num="9"><img id="if0009" file="imgf0009.tif" wi="152" he="217" img-content="drawing" img-format="tif"/></figure><!-- EPO <DP n="44"> -->
+<figure id="f0010" num="10"><img id="if0010" file="imgf0010.tif" wi="149" he="221" img-content="drawing" img-format="tif"/></figure><!-- EPO <DP n="45"> -->
+<figure id="f0011" num="11"><img id="if0011" file="imgf0011.tif" wi="153" he="206" img-content="drawing" img-format="tif"/></figure><!-- EPO <DP n="46"> -->
+<figure id="f0012" num="12"><img id="if0012" file="imgf0012.tif" wi="147" he="212" img-content="drawing" img-format="tif"/></figure><!-- EPO <DP n="47"> -->
+<figure id="f0013" num="13"><img id="if0013" file="imgf0013.tif" wi="162" he="205" img-content="drawing" img-format="tif"/></figure><!-- EPO <DP n="48"> -->
+<figure id="f0014" num="14A,14B,14C"><img id="if0014" file="imgf0014.tif" wi="120" he="233" img-content="drawing" img-format="tif"/></figure><!-- EPO <DP n="49"> -->
+<figure id="f0015" num="15A,15B,15C"><img id="if0015" file="imgf0015.tif" wi="130" he="233" img-content="drawing" img-format="tif"/></figure>
+</drawings>
+<ep-reference-list id="ref-list">
+<heading id="ref-h0001"><b>REFERENCES CITED IN THE DESCRIPTION</b></heading>
+<p id="ref-p0001" num=""><i>This list of references cited by the applicant is for the reader's convenience only. It does not form part of the European patent document. Even though great care has been taken in compiling the references, errors or omissions cannot be excluded and the EPO disclaims all liability in this regard.</i></p>
+<heading id="ref-h0002"><b>Patent documents cited in the description</b></heading>
+<p id="ref-p0002" num="">
+<ul id="ref-ul0001" list-style="bullet">
+<li><patcit id="ref-pcit0001" dnum="US3737337A"><document-id><country>US</country><doc-number>3737337</doc-number><kind>A</kind></document-id></patcit><crossref idref="pcit0001">[0003]</crossref></li>
+<li><patcit id="ref-pcit0002" dnum="US3523906A"><document-id><country>US</country><doc-number>3523906</doc-number><kind>A</kind></document-id></patcit><crossref idref="pcit0002">[0004]</crossref></li>
+<li><patcit id="ref-pcit0003" dnum="US3691090A"><document-id><country>US</country><doc-number>3691090</doc-number><kind>A</kind></document-id></patcit><crossref idref="pcit0003">[0005]</crossref></li>
+<li><patcit id="ref-pcit0004" dnum="US3891570A"><document-id><country>US</country><doc-number>3891570</doc-number><kind>A</kind></document-id></patcit><crossref idref="pcit0004">[0006]</crossref></li>
+<li><patcit id="ref-pcit0005" dnum="US3960757A"><document-id><country>US</country><doc-number>3960757</doc-number><kind>A</kind></document-id></patcit><crossref idref="pcit0005">[0007]</crossref></li>
+<li><patcit id="ref-pcit0006" dnum="US4389330A"><document-id><country>US</country><doc-number>4389330</doc-number><kind>A</kind></document-id></patcit><crossref idref="pcit0006">[0008]</crossref><crossref idref="pcit0009">[0052]</crossref><crossref idref="pcit0010">[0057]</crossref></li>
+<li><patcit id="ref-pcit0007" dnum="US4530840A"><document-id><country>US</country><doc-number>4530840</doc-number><kind>A</kind></document-id></patcit><crossref idref="pcit0007">[0009]</crossref></li>
+<li><patcit id="ref-pcit0008" dnum="WO9013361A"><document-id><country>WO</country><doc-number>9013361</doc-number><kind>A</kind></document-id></patcit><crossref idref="pcit0008">[0010]</crossref></li>
+<li><patcit id="ref-pcit0009" dnum="US4511258A"><document-id><country>US</country><doc-number>4511258</doc-number><kind>A</kind></document-id></patcit><crossref idref="pcit0011">[0059]</crossref></li>
+</ul></p>
+</ep-reference-list>
+</ep-patent-document>

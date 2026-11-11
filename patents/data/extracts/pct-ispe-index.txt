@@ -1,0 +1,638 @@
+About Intellectual Property
+IP Training
+Respect for IP
+IP Outreach
+IP for…
+IP and...
+IP in...
+Patent & Technology Information
+Trademark Information
+Design Information
+Geographical Indication Information
+Plant Variety Information (UPOV)
+IP Laws, Treaties & Judgments
+IP Resources
+IP Reports
+Patent Protection
+Trademark Protection
+Design Protection
+Geographical Indication Protection
+Plant Variety Protection (UPOV)
+IP Dispute Resolution
+IP Office Business Solutions
+Paying for IP Services
+Negotiation & Decision-Making
+IP Cooperation
+Innovation Support
+Public-Private Partnerships
+The Organization
+WIPO and Artificial Intelligence
+Working at WIPO
+Accountability
+Patents
+Trademarks
+Designs
+Geographical Indications
+Copyright
+Trade Secrets
+Future of IP
+WIPO Academy
+Workshops & Seminars
+IP Enforcement
+WIPO ALERT
+Raising Awareness
+World IP Day
+WIPO Magazine
+Case Studies & Success Stories
+IP News
+WIPO Awards
+Business
+Women
+Universities
+Indigenous Peoples
+Judiciaries
+Youth
+Examiners
+Innovation Ecosystems
+Economics
+Finance
+Intangible Assets
+Global Health
+Climate Change
+Competition Policy
+Sustainable Development Goals
+Genetic Resources, Traditional Knowledge and Traditional Cultural Expressions
+Frontier Technologies
+Mobile Applications
+Sports
+Tourism
+Music
+Fashion
+PATENTSCOPE
+Patent Analytics
+International Patent Classification
+ARDI – Research for Innovation
+ASPI – Specialized Patent Information
+Global Brand Database
+Madrid Monitor
+Article 6ter Express Database
+Nice Classification
+Vienna Classification
+Global Design Database
+International Designs Bulletin
+Hague Express Database
+Locarno Classification
+Lisbon Express Database
+Global Brand Database for GIs
+PLUTO Plant Variety Database
+GENIE Database
+WIPO-Administered Treaties
+WIPO Lex - IP Laws, Treaties & Judgments
+WIPO Standards
+IP Statistics
+WIPO Pearl (Terminology)
+WIPO Publications
+Country IP Profiles
+WIPO Knowledge Center
+World Intangible Investment Highlights
+WIPO Technology Trends
+Global Innovation Index
+World Intellectual Property Report
+PCT – The International Patent System
+ePCT
+Budapest – The International Microorganism Deposit System
+Madrid – The International Trademark System
+eMadrid
+Article 6ter (armorial bearings, flags, state emblems)
+Hague – The International Design System
+eHague
+Lisbon – The International System of Appellations of Origin and Geographical Indications
+eLisbon
+UPOV PRISMA
+Mediation
+Arbitration
+Expert Determination
+Domain Name Disputes
+Centralized Access to Search and Examination (CASE)
+Digital Access Service (DAS)
+WIPO Pay
+WIPO Wallet
+WIPO Assemblies
+Standing Committees
+Calendar of Meetings
+WIPO Webcast
+WIPO Official Documents
+Development Agenda
+Tailored Initiatives & Projects
+Collaborative Forums & Dialogues
+Innovation, Creativity and Development Acceleration Program
+IP for Impact
+National IP & Innovation Strategies
+Cooperation Hub
+Technology and Innovation Support Centers (TISC)
+Technology Transfer
+Inventor Assistance Program
+IP Commercialization
+WIPO GREEN
+WIPO's Pat-INFORMED
+Accessible Books Consortium
+WIPO for Creators
+Member States
+Observers
+Director General
+Activities by Unit
+External Offices
+Global Forum on IP and AI
+AI Infrastructure Interchange
+AI Tools & Services
+Staff Positions
+Affiliated Personnel Positions
+Procurement
+Results & Budget
+Financial Reporting
+Oversight
+PCT International Search and Preliminary Examination Guidelines
+as in force from January 1, 2026
+TABLE OF CONTENTS
+PART I: INTRODUCTION AND OVERVIEW
+Chapter 1 Introduction
+Purpose and Status of These Guidelines
+Arrangement and Terminology of These Guidelines 1.05 – 1.08
+Overview of International Application Process 1.09 – 1.11
+The International Phase
+The National (or Regional) Phase
+The International Authorities
+Flowchart of Typical International Application Processing
+Chapter 2 Overview of the International Search Stage
+Objectives 2.01 – 2.04
+Preliminary Matters 2.05 – 2.09
+Receipt of Search Copy from Receiving Office 2.05 – 2.07
+Acknowledgement and Allocation by the International Searching Authority 2.08 – 2.09
+The International Search Process 2.10 – 2.12
+Time Limit for Establishing International Search Report 2.13
+Transmittal of the International Search Report, Written Opinion, etc. 2.14
+Options Open to the Applicant 2.15
+Further Processing of the International Search Report and Written Opinion
+Confidential Treatment 2.16
+Publication of the Search Report and Making Available of the Written Opinion of the International Searching Authority 2.17 – 2.18
+International Preliminary Report on Patentability (Chapter 1 of the PCT) (When no Demand Is Filed) 2.18
+Copies of Documents Cited in Search Report 2.19
+Supplementary International Searches 2.20 – 2.21
+International-Type Searches 2.22
+Chapter 3 Overview of the International Preliminary Examination Stage
+Introduction 3.01 – 3.06
+Preliminary Matters
+Filing of Demand 3.07 – 3.08
+Checking of Demand and Notification of Receipt 3.09 – 3.12
+Commencement of International Preliminary Examination 3.13 – 3.15
+The International Preliminary Examination Process 3.16 – 3.22
+Basis of the Written Opinion or International Preliminary Examination Report 3.20 – 3.21
+Further Consideration 3.22
+Nature of the International Preliminary Examination Report 3.23
+Time Limit for Establishing the International Preliminary Examination Report 3.24
+Transmittal of the International Preliminary Examination Report and Related Documents 3.25
+Further Processing of the International Preliminary Examination Report
+Confidential Treatment 3.26
+Making Available of the International Preliminary Examination Report and Related Documents 3.27
+Transmission of the International Preliminary Examination Report to Elected Offices 3.28
+Translation of International Preliminary Examination Report 3.29
+Copies of Documents Cited in International Preliminary Examination Report 3.30
+PART II THE INTERNATIONAL APPLICATION
+Chapter 4 Content of the International Application (Other Than the Claims)
+General 4.01
+Description
+Technical Field 4.04
+Background Art 4.05
+Disclosure of Invention 4.06 – 4.07
+Brief Description of Drawings 4.08 – 4.09
+Best Mode for Carrying Out the Invention 4.10
+Structure and Function 4.11
+Sufficiency 4.12 – 4.13
+Industrial Applicability 4.14
+Nucleotide and/or Amino Acid Sequence Listings 4.15
+Deposit of Biological Material 4.16 - 4.18
+References to Deposited Microorganisms or Other Biological Material as Part of the Description 4.19
+Requirements as to the Language of Sheets Containing References to Deposited Microorganisms or Other Biological Material 4.20
+General 4.21 – 4.27
+Drawings 4.28
+Expressions, Etc., Not to Be Used 4.29 – 4.32
+Appendix to Chapter 4
+Background Art
+Chapter 5 Claims
+General 5.01 – 5.03
+Form and Content of Claims 5.04 – 5.11
+Kinds of Claim
+Categories 5.12 – 5.14
+Independent and Dependent Claims 5.15 – 5.19
+Interpretation of Claims
+“Use” Claims 5.21
+Preamble 5.22 – 5.23
+Open and Closed Claims 5.24
+“Means-Plus-Function” Claims 5.25
+“Product-by-Process” Claims 5.26 – 5.27
+Product and Apparatus Limitations in Process Claims 5.28
+Inconsistency Between Claims and Description 5.29 – 5.30
+Clarity
+Clarity of Relative Terms 5.34 – 5.38
+Clarity of Other Terms 5.39 – 5.41
+Conciseness, Number of Claims 5.42
+Support in Description 5.43 – 5.44
+Clear and Complete Disclosure of Claimed Invention
+Sufficiency Commensurate with the Claims 5.52 – 5.53
+Relationship of Claims to Disclosure 5.54 – 5.58
+Appendix to Chapter 5
+Multiple Dependent Claims
+Interpretation of Claims
+“Use” Claims
+Product by Process Claims
+Conciseness
+Chapter 6 Priority
+The Right to Priority 6.01 – 6.05
+Determining Priority Dates 6.06 – 6.10
+Claiming Priority 6.11 – 6.17
+Chapter 7 Classification of International Applications
+Definition 7.01
+Definitive Classification of the International Application
+Multiple Classifications 7.03
+Classification of Disclosure as Filed 7.04
+Amended Classification in the Case of Later Published International Search Report 7.05
+Classification When Scope Is Obscure 7.06
+Lack of Unity of Invention 7.07
+Classification of International Applications Excluded from International Search 7.08
+Chapter 8 Rule 91 – Obvious Mistakes in Documents
+Rule 91 – Obvious Mistakes in Documents 8.01 – 8.07
+Mistakes that Cannot be Rectified Under Rule 91
+Missing Elements or Sheets 8.09
+Correction of Priority Claims 8.10
+Transmittal to Another Authority of a Request for Rectification 8.11 – 8.12
+Invitation to the Applicant to Request Rectification 8.13
+Submission and Processing of a Request for Rectification 8.14 – 8.17
+Authorization and Effect of Rectifications 8.18 – 8.23
+Effective Date of Rectification 8.24
+PART III EXAMINER CONSIDERATIONS COMMON TO BOTH THE INTERNATIONAL SEARCHING AUTHORITY AND THE INTERNATIONAL PRELIMINARY EXAMINING AUTHORITY
+Chapter 9 Exclusions from, and Limitations of, International Search and International Preliminary Examination
+Introduction 9.01
+Excluded Subject Matter
+Scientific and Mathematical Theories 9.05
+Plant or Animal Varieties or Essentially Biological Processes for the Production of Plants and Animals, Other Than Microbiological Processes 9.06
+Schemes, Rules or Methods of Doing Business, Performing Purely Mental Acts or Playing Games 9.07
+Methods for Treatment of the Human or Animal Body by Surgery or Therapy; Diagnostic Methods Practiced on the Human or Animal Body 9.08 – 9.10
+Mere Presentations of Information 9.11 – 9.14
+Computer Programs, to the Extent That the Authority is not Equipped to Carry Out Search or Preliminary Examination on Such Programs 9.15
+General Considerations in Assessing the Nature of the Subject Matter
+Form of Claims 9.16
+Excluded Matter in Only Some Claims 9.17
+Cases of Doubt 9.18
+Extent of Search and Preliminary Examination in Certain Situations
+Examples Where Search or Preliminary Examination Possible, with an Indication in the Written Opinion 9.20 – 9.25
+Examples of Exceptional Situations Where No Search at All is Possible for All or Some of the Claims 9.26 – 9.30
+Non-Prior-Art Issues 9.31 – 9.32
+Industrial Applicability 9.33
+Informal Clarification 9.34 – 9.35
+Unclear Claims 9.36 – 9.37
+Perpetual Motion 9.38
+Sequence Listings 9.39
+Declaration of Non-Establishment of International Search Report 9.40
+Multiple Dependent Claims 9.41 – 9.41B
+Supplementary International Search 9.42
+Appendix to Chapter 9
+Excluded Subject Matter Regarding Schemes, Rules or Methods of Doing Business, Performing Purely Mental Acts or Playing Games
+Excluded Subject Matter Pertaining to Programs for Computers
+Chapter 10 Unity of Invention
+Determination of Unity of Invention 10.01 – 10.10
+Illustrations of Particular Situations
+Combinations of Different Categories of Claims 10.12 – 10.16
+“Markush Practice” 10.17
+Intermediate and Final Products 10.18 – 10.19
+Examples Concerning Unity of Invention
+Different Aspects of the Invention Claimed (Method, Apparatus, Product etc.) 10.21 – 10.36
+Unity of Invention Exists – Examples 1 to 14 10.21 – 10.34
+No Unity of Invention (a priori) – Examples 15 to 16 10.35 – 10.36
+Claims having Overlapping Features but Progressively Adding New Features
+Unity of Invention Exists – Example 17 10.37
+No Unity of Invention (a priori) – Examples 18 to 20 10.38 – 10.40
+Complementary Forms of the Invention (e.g. Receiver and Transmitter)
+Unity of Invention Exists – Examples 21 and 22 10.41 – 10.42
+No Unity of Invention (a priori) – Example 23 10.43
+Alternative Forms of an Aspect of the Invention (Varying Solutions to the Same Problem)
+Unity of Invention Exists – Examples 24 to 30 10.44 – 10.50
+No Unity of Invention (a priori) – Examples 31 to 39 10.51 – 10.59
+Dependent Claims Adding Substantial Features Which Diverge from the Inventive Concept (Lack of Unity a posteriori) – Example 40 10.59A
+Lack of Unity of Invention in a Single Independent Claim – Examples 41 and 42 10.59B – 10.59C
+Complex Claim Sets with Overlapping Features – Example 43 10.59D
+Examples of use of the minimum reasoning 10.59E – 10.59J
+Process at the International Search Stage
+Invitation to Pay Additional Fees 10.60 – 10.63
+Search of Additional Inventions Without Payment of Fees 10.64 – 10.65
+Protest Procedure 10.66 – 10.70
+Process at the International Preliminary Examination Stage
+Protest Procedure 10.78 – 10.82
+Process at the Supplementary International Search Stage 10.83 – 10.88
+Review of Opinion 10.87 – 10.88
+Chapter 11 Prior Art
+Prior Art Generally 11.01
+Date of Disclosure
+Relevant Date for International Search Report Purposes 11.03
+Relevant Date for Written Opinion and International Preliminary Examination Purposes 11.04 – 11.05
+Documents Casting Doubt on Priority Claim Made in the International Application 11.06
+Documents Not Within the Prior Art Which May Nevertheless Be Relevant
+Later Published Patent Applications (for Purposes of the International Search Report) 11.07
+Later Published Patent Applications (for Purposes of International Preliminary Examination) 11.08 – 11.09
+Copending Applications, Including Those Filed on the Same Date 11.10
+Documents Relevant to Understanding the Invention 11.11
+Form of Disclosure
+Availability of Disclosures to the Public 11.12
+Disclosure on the Internet 11.13
+Disclosure Made on the Web Sites of Trusted Publishers 11.14 – 11.15
+Disclosure Made on Web Sites of Unknown Reliability 11.16 – 11.20
+Differences Between Patent and Non-Patent Citations 11.21
+Documents Reproducing an Earlier Disclosure 11.22
+Difficulty in Establishing Date of a Document 11.23
+Relevant Date in Relation to Individual Claims or Parts of Claims 11.24 – 11.26
+Chapter 12 Novelty
+Meaning of Novelty 12.01 – 12.02
+Considerations in Determining Novelty
+Methodology 12.03
+Inherent or Implicit Disclosure 12.04
+Interpretation of Claims 12.05
+Combining Documents 12.06
+Alternatives 12.07
+Generic vs. Specific Disclosures 12.08 – 12.09
+Ranges 12.10
+Appendix to Chapter 12
+Chapter 13 Inventive step
+Meaning of Inventive Step 13.01 – 13.02
+Considerations in Determining Inventive Step
+What Is “Obvious”? 13.03
+Light of Later Knowledge 13.04
+Invention as a Whole; Combination of Known or Obvious Elements 13.05 – 13.07
+Assessing the Contribution Against the Prior Art 13.08 – 13.10
+The “Person Skilled in the Art” 13.11
+Combining Teachings 13.12 – 13.13
+Examples 13.14
+Other considerations
+Ex Post Facto Analysis 13.15
+Technical Value, Long-Felt Needs 13.16 – 13.17
+Commercial Success 13.18
+Dependent Claims 13.19
+Appendix to Chapter 13
+Problem-Solution Approach
+Examples in which a single document calls into question the inventive step
+Chapter 14 Industrial Applicability
+Meaning of Industrial Applicability 14.01 – 14.03
+Methodology 14.04 – 14.06
+Appendix to Chapter 14
+Utility
+Specific, or Particular, Utility
+Substantial, or Practical “Real World” Utility
+Credible Utility
+Industrial Applicability
+Special Purpose
+Clear and Complete Disclosure
+Possibility of Realizing the Special Purpose
+Date at Which Requirements Must Be Met
+PART IV THE INTERNATIONAL SEARCH
+Chapter 15 The International Search
+Objective of the International Search and Supplementary International Search 15.01 – 15.07
+Non-Written Disclosures
+Geographical Location, Language, Age and Manner of Disclosure 15.06 – 15.07
+The Examiner 15.08 – 15.09
+Basis of the Search 15.10 – 15.17C
+Scope of the International Search 15.18 – 15.20
+Orientation and Subject of the International Search
+Analysis of the Claims 15.21 – 15.23
+Inventions for Which No Fees Have Been Paid 15.24
+Full Coverage 15.25
+Speculative Claims 15.26
+Dependent Claims 15.27 – 15.28
+Search of Particular Claim Types and Features
+Combination of Elements 15.31
+Different Categories of Claim 15.32
+Cases Where No Meaningful Search Is Possible
+Obvious Mistakes and Expressions, Etc., Not to be Used (Rule 9) 15.34 – 15.36
+Information Meeting the Criteria of Rule 48.2(l) 15.36A
+Access to the File held by the International Searching Authority 15.36B
+Search Strategy
+Preliminary Steps 15.37
+Abstract and Title 15.38
+Classification 15.39
+Publication Prior to Search 15.40
+Search Statement 15.41 – 15.42
+Field of Search
+Analogous Fields 15.48 – 15.51
+Conducting the Search
+Security of Searching Using the Internet 15.56 – 15.59
+No Documents Found 15.60
+Stopping Search 15.61
+Recording the Search 15.62
+Evaluating the Prior Art
+Matters of Doubt Regarding Relevant Prior Art 15.64 – 15.65
+Excluded Subject Matter 15.66
+Selection of Citations and Identifying Most Relevant Portions 15.67 – 15.72
+Procedure After Searching
+Preparation of the International Search Report 15.73
+Amended International Search Reports 15.74
+Receipt of Misdirected Article 19 Amendments 15.75
+Supplementary International Search
+Requesting Supplementary International Search 15.78 – 15.79
+Receipt of the Request for Supplementary International Search by the Authority 15.80 – 15.81
+Start of Supplementary International Search 15.82 – 15.83
+Withdrawal of the Request for Supplementary International Search 15.84
+Basis of the Supplementary International Search 15.85 – 15.86
+Claims Excluded From Supplementary International Search 15.87 – 15.88
+Expressions, Etc., Not to Be Used 15.88A
+Information Meeting the Criteria of Rule 48.2(l) 15.88B
+Access to the File held by the Authority Specified for Supplementary Search
+Unity of Invention 15.89 – 15.92
+Extent of Search 15.93
+Establishment of the Supplementary International Search Report 15.94 – 15.96
+Copies of Documents 15.97
+Chapter 16 International Search Report
+General
+Supplementary International Search 16.03
+International-Type Search 16.04
+Time Limit for Establishing the International Search Report 16.05
+Completing the International Search Report
+Matter Not Required by the Form 16.07
+Form and Language of the International Search Report
+International Search Report Form 16.08 – 16.10
+Language of Search Report 16.11
+Sheets Included in the Publication 16.12 – 16.13
+Filling Out the Notification of Transmittal of the International Search Report or the Declaration, and the Written Opinion of the International Searching Authority (Form PCT/ISA/220)
+Address for Correspondence 16.14
+Applicant’s or Agent’s File Reference 16.15
+International Application Number 16.16
+International Filing Date 16.17
+Applicant 16.18
+Cases Where No, or Limited, Search Report is Established 16.19 – 16.21
+Earliest Priority Date 16.22
+Total Number of Sheets 16.23
+“It Is Also Accompanied by a Copy of Each Prior Art Document Cited in This Report” Box 16.24
+Basis of the Report 16.25
+Nucleotide and/or Amino Acid Sequence Listings and Related Tables 16.26
+Reference to Main International Search Report 16.27
+Restriction of the Subject of the International Search 16.28 – 16.32
+Title, Abstract and Figure 16.33 – 16.51
+Filling Out the International Search Report (Form PCT/ISA/210) 16.22 – 16.85
+—Title 16.35 – 16.38
+—Abstract 16.39 – 16.47
+—Drawings to Be Published 16.48 – 16.51
+Classification of Subject Matter 16.52
+Fields Searched 16.53
+Minimum Documentation Searched 16.54
+Documentation Searched Other Than Minimum Documentation 16.55 – 16.57
+Electronic Database Consulted 16.58 – 16.61
+Previous Search 16.62
+Documents Considered to Be Relevant 16.63 – 16.64
+Citation Category 16.65 – 16.76
+—Particularly relevant documents 16.66 – 16.68
+—Documents defining the state of the art not prejudicing novelty or inventive step 16.69
+—Documents which refer to a non-written disclosure 16.70
+—Intermediate documents 16.71
+—Documents relating to the theory or principle underlying the invention 16.72
+—Potentially conflicting patent documents 16.73
+—Documents cited in the application 16.74
+—Documents cited for other reasons 16.75
+—Non-prejudicial disclosures 16.76
+Relationship Between Documents and Claims 16.77
+Citation of the Documents 16.78 – 16.82A
+Finalization of the Report 16.83 – 16.85
+Copies of References Cited in the International Search Report 16.86 – 16.87
+PART V WRITTEN OPINION/INTERNATIONAL PRELIMINARY EXAMINATION REPORT
+Chapter 17 Content of Written Opinions and the International Preliminary Examination Report
+Introduction 17.01 – 17.03
+Different Types of Opinion and Report
+Written Opinion of the International Searching Authority 17.04 – 17.05
+Written Opinion(s) of the International Preliminary Examining Authority 17.06 – 17.07
+The International Preliminary Examination Report 17.08
+Content of the Opinion or Report
+Overview of Content 17.09
+Form of Opinion or Report 17.10
+Data 17.11 – 17.12
+Box No. I: Basis of the Written Opinion 17.13 – 17.27
+—Language Considerations 17.15
+—Sheets Deemed to Be Part of the Application as Originally Filed 17.16
+—Examination on Basis of Amended International Application 17.17 – 17.20
+—Nucleotide and/or Amino Acid Sequence Listings 17.21
+—Amendments Resulting in Gaps in Numbering 17.22
+—Amendments Going Beyond Original Disclosure 17.23 – 17.24
+—Top-up Searches 17.25
+—Amendments Not Accompanied by a Letter to Indicate Their Basis in the Application as Filed 17.26
+—Rectification of Obvious Mistakes 17.27
+Box No. II: Priority 17.28 – 17.31
+Box No. III: Non-Establishment of Opinion with Regard to Novelty, Inventive Step and Industrial Applicability 17.32 – 17.37
+—Subject Matter Excluded Under Rule 67.1 17.33
+—Clarity or Support 17.34 – 17.35
+—No International Search Made for Some or All Claims 17.36
+—Nucleotide and/or Amino Acid Sequence Listings 17.37
+Box No. IV: Lack of Unity of Invention 17.38 – 17.41
+—Additional Fees Paid Under Protest 17.41
+Box No. V: Reasoned Statement Under Rule 66.2(a)(ii) with Regard to Novelty, Inventive Step or Industrial Applicability; Citations and Explanations Supporting Such Statement 17.42 – 17.44
+Box No. VI: Certain Documents Cited 17.45 – 17.48
+Box No. VII: Certain Defects in the International Application 17.49
+Box No. VIII: Certain Observations on the International Application 17.50 – 17.55
+—Finalization of the Report 17.51
+—Language of the Written Opinion and the International Preliminary Examination Report 17.52
+—Form of Objection 17.53 – 17.54
+—Ensuring Report Is of Maximal Use for Later Stages 17.55
+Standardized Clauses 17.55A
+Invitation to Correct or Amend 17.56 – 17.58
+Cases Where Partial Written Opinion or No Written Opinion to Be Established
+Excluded Subject Matter 17.60
+Lack of Unity of Invention 17.61 – 17.65
+—Written Opinion of the International Searching Authority 17.61 – 17.62
+—Written Opinion of the International Preliminary Examining Authority or the International Preliminary Examination Report 17.63 – 17.65
+Dealing with Major Objections First 17.66
+Other Considerations
+Citation of Certain Documents in the International Search Report 17.67
+Additional Documents Taken Into Consideration in Certain Cases 17.68 – 17.69
+Inconsistencies Between Description and Claims 17.70
+Recommending Amendments 17.71
+Consideration of Responses to the Written Opinion 17.72 – 17.73
+PART VI THE INTERNATIONAL PRELIMINARY EXAMINATION STAGE (OTHER THAN THE INTERNATIONAL PRELIMINARY REPORT)
+Chapter 18 Preliminary Procedure on Receipt of the Demand
+Use of Facsimile Machine, Telegraph, Teleprinter, Etc. 18.01
+Basis for International Preliminary Examination
+Statement Concerning Amendments 18.03 – 18.06A
+Language for the Purposes of International Preliminary Examination 18.07 – 18.09
+Documents, Etc., for the International Preliminary Examining Authority
+Language of the International Application and of the Demand 18.14 – 18.15
+Priority Document and Translation Thereof 18.16
+Nucleotide and/or Amino Acid Sequence Listings 18.17 – 18.18
+Chapter 19 Examination Procedure Before The International Preliminary Examining Authority
+General 19.01 – 19.05
+Start of, and Time Limit for, International Preliminary Examination
+Start of Examination 19.07 – 19.09
+Time Limit for Completing Examination 19.10 – 19.12
+First Stage of International Preliminary Examination
+General 19.13 – 19.14
+Top-up Searches 19.15 – 19.21
+Cases Where No Written Opinion Is Required 19.22 – 19.23
+Cases Where a Further Written Opinion May Be Issued 19.24
+Claims for Which No International Search Report Has Been Established 19.25
+Further Stage of International Preliminary Examination 19.26 – 19.33
+Correction of International Preliminary Examination Report 19.34 – 19.35
+Matters Applicable Generally to Various Stages of International Preliminary Examination
+Making Amendments: General Considerations 19.36
+Rectification of Obvious Mistakes 19.37 – 19.40
+Informal Communication with the Applicant 19.41 –19.46
+Establishment of the International Preliminary Examination Report
+General 19.47 – 19.48
+Determination of Time Limits 19.49
+Failure of Applicant to Respond Within a Prescribed Time Limit 19.51
+Withdrawal of the Demand or All Elections 19.52
+Chapter 20 Amendments
+Amendment Prior to the Start of International Preliminary Examination
+Amendment of the Claims Under Article 19 20.01
+Amendment Under Article 34 20.02 – 20.03
+Making Amendments: General Considerations 20.04 – 20.08
+Appraisal of Amendments 20.09
+Additional Subject Matter 20.10 – 20.19
+Lack of Support 20.20 – 20.21
+Amendments to Translated Applications 20.22
+Appendix to Chapter 20
+New Matter
+PART VII QUALITY
+Chapter 21 Common Quality Framework for International Search and Preliminary Examination
+Introduction 21.01 – 21.03
+1. Leadership and Policy 21.04 – 21.10
+2. Risk-based practices 21.11 – 21.14
+3. Resources 21.15
+– Sufficient Human Resources
+– Sufficient Material Resources
+– Sufficient Training Resources
+– Oversight Over Its Resources
+4. Management of Administrative Workload 21.16
+5. Quality Assurance 21.17
+6. Communication
+Inter-Authority Communication 21.18 – 21.19
+Communication and Guidance to Users 21.20
+Communication with WIPO and Designated and Elected Offices 21.21
+7. Documentation 21.22 – 21.25
+8. Search Process Documentation 21.26
+9. Internal Review 21.27 – 21.30
+10. Reporting arrangements 21.31 – 21.32
+Future Developments
+PART VIII CLERICAL AND ADMINISTRATIVE PROCEDURES
+Chapter 22 Clerical and Administrative Procedures
+Receipt of the Demand 22.01
+Determination of Competent International Preliminary Examining Authority and Marking of the Demand 22.02 – 22.05
+Identification of the International Application 22.06
+Applicant’s Entitlement to File a Demand
+Change in the Applicant 22.10
+Election of States 22.11
+Check of Particulars Affecting the Date of Receipt 22.12 – 22.13
+Checking Whether Demand Is Timely Filed 22.14 – 22.15
+Establishing the International Preliminary Examining Authority File 22.16 – 22.19
+Transmittal of the Demand to the International Bureau 22.20 – 22.23
+Certain Defects in the Demand 22.24 – 22.26
+Hidden
+https://www.wipo.int/contact/en/area.jsp?area=pct
+https://www.wipo.int/pressroom/en/
+https://www.wipo.int/en/web/terms-of-use
+https://www.wipo.int/en/web/privacy-policy
+https://www.wipo.int/en/web/accessibility
+https://www.wipo.int/en/web/sitemap
+https://www.wipo.int/en/web/newsletters
+https://www.wipo.int/en/web/podcasts
+https://www.wipo.int/en/web/news/rss

@@ -1,0 +1,862 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ep-patent-document PUBLIC "-//EPO//EP PATENT DOCUMENT 1.4//EN" "ep-patent-document-v1-4.dtd">
+<ep-patent-document id="EP10195312A1" file="EP10195312NWA1.xml" lang="en" country="EP" doc-number="2345678" kind="A1" date-publ="20110720" status="n" dtd-version="ep-patent-document-v1-4">
+<SDOBI lang="en"><B000><eptags><B001EP>ATBECHDEDKESFRGBGRITLILUNLSEMCPTIESILTLVFIROMKCYALTRBGCZEEHUPLSKBAHRIS..MTNORSMESM..................</B001EP><B005EP>J</B005EP><B007EP>DIM360 Ver 2.15 (14 Jul 2008) -  1100000/0</B007EP></eptags></B000><B100><B110>2345678</B110><B120><B121>EUROPEAN PATENT APPLICATION</B121></B120><B130>A1</B130><B140><date>20110720</date></B140><B190>EP</B190></B100><B200><B210>10195312.3</B210><B220><date>20101216</date></B220><B240><B241><date>20101216</date></B241><B242><date>20110412</date></B242></B240><B250>en</B250><B251EP>en</B251EP><B260>en</B260></B200><B300><B310>335814 P</B310><B320><date>20100111</date></B320><B330><ctry>US</ctry></B330><B310>367926 P</B310><B320><date>20100727</date></B320><B330><ctry>US</ctry></B330></B300><B400><B405><date>20110720</date><bnum>201129</bnum></B405><B430><date>20110720</date><bnum>201129</bnum></B430></B400><B500><B510EP><classification-ipcr sequence="1"><text>C08F 265/00        20060101AFI20110201BHEP        </text></classification-ipcr><classification-ipcr sequence="2"><text>G01D  15/00        20060101ALI20110201BHEP        </text></classification-ipcr></B510EP><B540><B541>de</B541><B542>Aufzeichnungsmaterial</B542><B541>en</B541><B542>Recording material</B542><B541>fr</B541><B542>Matériau d'enregistrement</B542></B540></B500><B700><B710><B711><snm>Rohm and Haas Company</snm><iid>100209942</iid><irf>70000-EP-EPA</irf><adr><str>100 Independence Mall West</str><city>Philadelphia,
+Pennsylvania 19106-2399</city><ctry>US</ctry></adr></B711></B710><B720><B721><snm>Deng, Lan</snm><adr><str>
+277 Station Square Blvd.</str><city>Lansdale, PA 19446</city><ctry>US</ctry></adr></B721><B721><snm>Kermis, Thomas William</snm><adr><str>
+113 Springdale Lane</str><city>Lansdale, PA 19446</city><ctry>US</ctry></adr></B721><B721><snm>Einsla, Brian R.</snm><adr><str>
+212 Coventry Road</str><city>Chalfont, PA 18914</city><ctry>US</ctry></adr></B721><B721><snm>Smith, Rebecca Luann</snm><adr><str>
+1424 Garrison Drive</str><city>Ambler, PA 19002</city><ctry>US</ctry></adr></B721><B721><snm>Chung, Chao-Jen</snm><adr><str>
+1220 Turnbury Lane</str><city>North Wales, PA 19454</city><ctry>US</ctry></adr></B721></B720><B740><B741><snm>Buckley, Guy Julian</snm><iid>100026757</iid><adr><str>Patent Outsourcing Limited 
+1 King Street</str><city>Bakewell
+Derbyshire DE45 1DZ</city><ctry>GB</ctry></adr></B741></B740></B700><B800><B840><ctry>AL</ctry><ctry>AT</ctry><ctry>BE</ctry><ctry>BG</ctry><ctry>CH</ctry><ctry>CY</ctry><ctry>CZ</ctry><ctry>DE</ctry><ctry>DK</ctry><ctry>EE</ctry><ctry>ES</ctry><ctry>FI</ctry><ctry>FR</ctry><ctry>GB</ctry><ctry>GR</ctry><ctry>HR</ctry><ctry>HU</ctry><ctry>IE</ctry><ctry>IS</ctry><ctry>IT</ctry><ctry>LI</ctry><ctry>LT</ctry><ctry>LU</ctry><ctry>LV</ctry><ctry>MC</ctry><ctry>MK</ctry><ctry>MT</ctry><ctry>NL</ctry><ctry>NO</ctry><ctry>PL</ctry><ctry>PT</ctry><ctry>RO</ctry><ctry>RS</ctry><ctry>SE</ctry><ctry>SI</ctry><ctry>SK</ctry><ctry>SM</ctry><ctry>TR</ctry></B840><B844EP><B845EP><ctry>BA</ctry></B845EP><B845EP><ctry>ME</ctry></B845EP></B844EP></B800></SDOBI>
+<abstract id="abst" lang="en">
+<p id="pa01" num="0001">A recording material including a certain support and disposed thereon at least one layer including certain core/shell polymeric particles, the particles having, when dry, at least one void is provided. A method for providing an image using the recording sheet is also provided.</p>
+</abstract><!-- EPO <DP n="1"> -->
+<description id="desc" lang="en">
+<p id="p0001" num="0001">This invention relates to a recording material. More specifically, this invention relates to a recording material including: a) a support having at least one colored surface; and, disposed thereon, b) a layer including certain polymeric particles having a core/shell structure, the particles including, when dry, at least one void. This invention also relates to a recording material including: a) a support; and, disposed thereon, b) a layer including a permanent colorant and certain polymeric particles having a core/shell structure, the particles including, when dry, at least one void. This invention also relates to a method of providing an image using the recoding materials.</p>
+<p id="p0002" num="0002">Recording materials such as, for example, recording sheets that are used to provide an image are well-known in the art. The development of an image by exposing selected portions of a recording sheet to energy such as, for example, to heat, pressure, light, ultrasonic radiation, or combinations thereof has been widely practiced. The formation of an image using the recording material of this invention is typically effected through the use of heat, pressure, or combinations thereof.</p>
+<p id="p0003" num="0003"><patcit id="pcit0001" dnum="US5378534A"><text>US Patent No. 5,378,534</text></patcit> discloses a recording sheet formed by coating colored sheets with an opacifying compound prepared by mixing an aqueous suspension of polymer particles embodying internal voids dispersed with a water base coating material.</p>
+<p id="p0004" num="0004"><patcit id="pcit0002" dnum="US5932515A"><text>US Patent No. 5,932,515</text></patcit> discloses recording sheets incorporating developer, color precursor, and hollow microspherical plastic pigment.</p>
+<p id="p0005" num="0005">Improvements in the performance of recording materials are still sought. The present invention provides simplicity of formulations and versatility in the methods and types of images that can be formed without the frequently expensive methods based on the reaction of color precursors and developer, which are inherently subject to long term instability.</p>
+<p id="p0006" num="0006">In a first aspect of the present invention there is provided a recording material comprising: a) a support comprising at least one<!-- EPO <DP n="2"> --> colored surface; and, disposed thereon, b) a layer comprising polymeric particles having a core/shell structure, said particles selected from the group consisting of: (i) particles having an outer polymer shell having a calculated Tg of from 40°C to 80°C and (ii) particles having an inner polymer shell having a calculated Tg of from 40°C to 130°C and an outer polymer shell having a calculated Tg of from -55°C to 50°C; wherein the calculated Tg of said outer polymer shell is lower that of said inner polymer shell; said particles comprising, when dry, at least one void.</p>
+<p id="p0007" num="0007">In a second aspect of the present invention there is provided a recording material comprising: a) a support comprising at least one colored surface having a surface roughness of less than 3.0 microns; and, disposed thereon, b) a layer comprising polymeric particles having a core/shell structure, said particles having an outer first polymer shell having a calculated Tg of from 40°C to 130°C, and said particles comprising, when dry, at least one void.</p>
+<p id="p0008" num="0008">In a third aspect of the present invention there is provided a recording material comprising: a) a support; and, disposed thereon, b) a layer comprising a permanent colorant and polymeric particles having a core/shell structure, said particles having an outer first polymer shell having a calculated Tg of from 40°C to 130°C and said particles comprising, when dry, at least one void.</p>
+<p id="p0009" num="0009">In a fourth aspect of the present invention there is provided a method for providing an image comprising: forming the recording material of the first, second, or third aspects of the present invention; and subjecting selected portions of said recording material to an agent selected from the group consisting of heat, pressure, and combinations thereof, sufficient to reduce the opacity of said selected portions.</p>
+<p id="p0010" num="0010">The recording material of the present invention includes a support. Typically, the support will be in the form of a sheet-like structure such as, for example, paper, synthetic paper, board, plastic film such as vinyl or polyester, leather, wood veneer, metal, and nonwoven sheet. In certain aspects of this invention the support has at least one colored surface,<!-- EPO <DP n="3"> --> although both sides may be colored. By "colored surface" herein is meant that the surface has sufficient color density to be visibly contrasting to the surface of the subsequent layer disposed thereon; The color may be imparted, for example, by pigments, dyes, or the intrinsic color of the support and the support may be impregnated with colorant or coated with a colored coating to provide a colored surface. The colored surface may be uniform or varied in color density or may be patterned as desired.</p>
+<p id="p0011" num="0011">The recording material of this invention includes a layer that includes certain polymeric particles having a core/shell structure, the particles including, when dry, at least one void. Various of the polymeric particles that have a core/shell structure, the particles including, when dry, one or more voids include ROPAQUE™ opaque polymer and hollow and vesiculated polymer particles, as disclosed in <patcit id="pcit0003" dnum="US4427835A"><text>U.S. Patent Nos. 4,427,835</text></patcit>; <patcit id="pcit0004" dnum="US4920160A"><text>4,920,160</text></patcit>; <patcit id="pcit0005" dnum="US4594363A"><text>4,594,363</text></patcit>; <patcit id="pcit0006" dnum="US4469825A"><text>4,469,825</text></patcit>; <patcit id="pcit0007" dnum="US4468498A"><text>4,468,498</text></patcit>; <patcit id="pcit0008" dnum="US4880842A"><text>4,880,842</text></patcit>; <patcit id="pcit0009" dnum="US4985064A"><text>4,985,064</text></patcit>; <patcit id="pcit0010" dnum="US5157084A"><text>5,157,084</text></patcit>; <patcit id="pcit0011" dnum="US5041464A"><text>5,041,464</text></patcit>; <patcit id="pcit0012" dnum="US5036109A"><text>5,036,109</text></patcit>; <patcit id="pcit0013" dnum="US5409776A"><text>5,409,776</text></patcit>; <patcit id="pcit0014" dnum="US5510422A"><text>5,510,422</text></patcit>; <patcit id="pcit0015" dnum="US5494971A"><text>5,494,971</text></patcit>; <patcit id="pcit0016" dnum="US5510422A"><text>5,510,422</text></patcit>; <patcit id="pcit0017" dnum="US6139961A"><text>6,139,961</text></patcit>; <patcit id="pcit0018" dnum="US6632531A"><text>6,632,531</text></patcit>; and <patcit id="pcit0019" dnum="US6896905A"><text>6,896,905</text></patcit>; European Patent Applications <patcit id="pcit0020" dnum="EP267726A"><text>EP 267,726</text></patcit>, <patcit id="pcit0021" dnum="EP331421A"><text>EP 331,421</text></patcit> and <patcit id="pcit0022" dnum="EP915108A"><text>EP 915,108</text></patcit>; and <nplcit id="ncit0001" npl-type="b"><text>Journal of Polymer Science - Part A, volume 39, pages 1435-1449 (2001), published by John Wiley and Sons, Inc</text></nplcit>. The polymer particles may be made by emulsion polymerization.</p>
+<p id="p0012" num="0012">The core of the core-shell polymeric particle includes, when dry, at least one void capable of scattering visible light, i.e., capable of providing opacity to a composition in which it is included. Core-shell particles including, when dry, one or more void have been disclosed in which the void was generated, for example, by complete or partial hydrolysis and dissolution of the core polymer, by swelling of the core polymer with acid, base or nonionic organic agents with restricted subsequent collapse of the particle, and the like. In a preferred embodiment the core-shell particle is formed by an aqueous multistage emulsion polymerization followed by swelling with a base.</p>
+<p id="p0013" num="0013">The stages of the multistage polymers employed in the present invention include core stage polymer, a first shell stage polymer and, in<!-- EPO <DP n="4"> --> some instances, a second shell stage polymer. The core and shells may each, independently, include more than one stage. There may also be one or more intermediate stages. An intermediate stage polymer, when present, partially or fully encapsulates the core and itself is partially or fully encapsulated by the first shell. The intermediate stage, referred to as a "tiecoat" herein, may be prepared by conducting an emulsion polymerization in the presence of the core. The first shell polymer partially or fully encapsulates the core polymer and, if present, the tiecoat polymer. In some embodiments the first shell polymer may be the outer shell. The outer second shell polymer, if present, partially or fully encapsulates the first shell. By "partially encapsulates" herein is meant that at least 50% of the surface area is covered with the subsequent polymer.</p>
+<p id="p0014" num="0014">The polymeric particles may be polymerized using a variety of ethylenically unsaturated monomers as described in the above references. Examples of nonionic monoethylenically unsaturated monomers include styrene, vinyltoluene, ethylene, vinyl acetate, vinyl chloride, vinylidene chloride, acrylonitrile, (meth)acrylamide, various (C<sub>1</sub> -C<sub>20</sub>) alkyl or (C<sub>3</sub> - C<sub>20</sub>) alkenyl esters of (meth)acrylic acid, including methyl acrylate (MA), methyl methacrylate (MMA), ethyl (meth)acrylate, butyl (meth)acrylate, 2-hydroxyethyl (meth)acrylate, 2-ethylhexyl (meth)acrylate, benzyl (meth)acrylate, lauryl (meth)acrylate, oleyl (meth)acrylate, palmityl (meth)acrylate, and stearyl (meth)acrylate. The expression (meth)acrylic acid includes both acrylic acid and methacrylic acid. The use of the term "(meth)" followed by another term such as (meth)acrylate or (meth)acrylamide, as used throughout the disclosure, refers to both acrylates or acrylamides and methacrylates and methacrylamides, respectively. Typically acrylic esters such as MMA, EA, BA and styrene are preferred monomers to polymerize and form the shell of the polymeric particles. Difunctional vinyl monomers, such as divinyl benzene, allyl methacrylate, ethylene glycol dimethacrylate, 1,3-butane-diol dimethacrylate, diethylene glycol dimethacrylate, trimethylol propane<!-- EPO <DP n="5"> --> trimethacrylate, and the like, may also be copolymerized to form a crosslinked outer shell such as are taught in <patcit id="pcit0023" dnum="US20030176535A1"><text>US Patent Application Publication No. 2003-0176535 A1</text></patcit></p>
+<p id="p0015" num="0015">The calculated glass transition temperature ("Tg") of the various shells of the polymeric particles is achieved by selection of the monomers and amounts of the monomers to achieve the desired polymer Tg as is well known in the art. Tgs of the polymers are calculated herein by using the Fox equation (<nplcit id="ncit0002" npl-type="s"><text>T.G. Fox, Bull. Am. Physics Soc., Volume 1, Issue No. 3, page 123(1956</text></nplcit>)). that is, for calculating the Tg of a copolymer of monomers M1 and M2, <maths id="math0001" num=""><math display="block"><mn mathvariant="normal">1</mn><mo mathvariant="normal">/</mo><mi>Tg</mi><mfenced separators=""><mi>calc</mi><mn mathvariant="normal">.</mn></mfenced><mo mathvariant="normal">=</mo><mi mathvariant="normal">w</mi><mfenced separators=""><mi mathvariant="normal">M</mi><mo>⁢</mo><mn mathvariant="normal">1</mn></mfenced><mo mathvariant="normal">/</mo><mi>Tg</mi><mfenced separators=""><mi mathvariant="normal">M</mi><mo>⁢</mo><mn mathvariant="normal">1</mn></mfenced><mo mathvariant="normal">+</mo><mi mathvariant="normal">w</mi><mfenced separators=""><mi mathvariant="normal">M</mi><mo>⁢</mo><mn mathvariant="normal">2</mn></mfenced><mo mathvariant="normal">/</mo><mi>Tg</mi><mfenced separators=""><mi mathvariant="normal">M</mi><mo>⁢</mo><mn mathvariant="normal">2</mn></mfenced></math><img id="ib0001" file="imgb0001.tif" wi="93" he="10" img-content="math" img-format="tif"/></maths><br/>
+, wherein<br/>
+Tg(calc.) is the glass transition temperature calculated for the copolymer w(M1) is the weight fraction of monomer M1 in the copolymer w(M2) is the weight fraction of monomer M2 in the copolymer Tg(M1) is the glass transition temperature of the homopolymer of M1 Tg(M2) is the glass transition temperature of the homopolymer of M2, all temperatures being in °K.</p>
+<p id="p0016" num="0016">The glass transition temperature of homopolymers may be found, for example, in "<nplcit id="ncit0003" npl-type="b"><text>Polymer Handbook", edited by J. Brandrup and E.H. Immergut, Interscience Publishers</text></nplcit>. In embodiments where two or more different polymeric particles are used then the calculated Tg of a particular shell, for example, shall be calculated based on the overall composition of the shell polymers.</p>
+<p id="p0017" num="0017">In one aspect the present invention relates to a recording material including a layer including a core/shell polymeric particle that includes a core, a first shell, and a second shell: the core including, when dry, at least one void; the first shell polymer having a calculated glass transition temperature(Tg) of from 40°C to 130°C; and the second shell polymer having a Tg of from -55°C to 50°C; wherein the calculated Tg of said outer polymer shell is lower that of said inner polymer shell; and wherein the weight ratio of the second shell polymer to the total of all other structures<!-- EPO <DP n="6"> --> of the polymeric particle is from 0.15:1 to 3:1. The second shell polymer has a composition different from that of the first shell polymer. The first and second shell may be based on multiple stages, compositions, and be based on asymmetric monomer additions; the calculated Tg of the second shell is calculated based on the sum of all polymer formed after the first shell polymer is formed. By the "total of all other structures of the polymeric particle" herein is meant the total of optional seed polymer, the core polymer, the optional tie coat, and the first stage polymer, each optionally including a multiplicity of stages or compositions.</p>
+<p id="p0018" num="0018">The polymeric particles having a core/shell structure used in this invention typically have an outer diameter of from 200 nm to 1500 nm, preferably from 250 nm to 1000 nm, and an inner (void) diameter of from 150 nm to 1000 nm, preferably from 200 nm to 800 nm. Recording materials of the present invention may include a blend of two or more hollow microsphere polymers having different cavity sizes.</p>
+<p id="p0019" num="0019">The layer of the recording material of this invention that includes the polymeric particles having a core/shell structure may optionally include a polymeric binder. By "polymeric binder" herein is meant a polymer expressly excluding core/shell polymer particles including, when dry, a void. The polymeric binder may include particulate polymers such as, for example, emulsion polymers and soluble polymers such as are commonly known as resins. The polymeric binder may be present in an amount of from 0% to 40%, preferably from 0% to 30%, by weight based on the dry weight of the polymeric binder and the polymeric core/shell particles including, when dry, a void. In some embodiments the polymeric binder includes a polymeric emulsion polymer binder. When the calculated Tg of the outer shell of the polymer particles having a core/shell structure is less than 50°C, it may not be necessary to use a polymeric binder, although it is possible to use a coalescent or plasticizer to facilitate film integrity.</p>
+<p id="p0020" num="0020">The polymeric emulsion polymer binder used in this invention includes at least one copolymerized ethylenically unsaturated monomer<!-- EPO <DP n="7"> --> such as, for example, a (meth)acrylic ester monomer including methyl (meth)acrylate, ethyl (meth)acrylate, butyl (meth)acrylate, 2-ethylhexyl (meth)acrylate, decyl (meth)acrylate, hydroxyethyl (meth)acrylate, hydroxypropyl (meth)acrylate, ureido-functional (meth)acrylates and acetoacetates, acetamides or cyanoacetates of (meth)acrylic acid; styrene or substituted styrenes; vinyl toluene; butadiene; vinyl acetate or other vinyl esters; vinyl monomers such as vinyl chloride, vinylidene chloride, N-vinyl pyrollidone; (meth)acrylonitrile; and crosslinkable monomers such as N-alkylol (meth)acrylamides. In certain embodiments the emulsion polymer includes less than 3 wt.%, preferably less than 0.1 wt.%, based on the weight of the polymer, of a copolymerized multi-ethylenically unsaturated monomer. Multi-ethylenically unsaturated monomers include, for example, allyl (meth)acrylate, diallyl phthalate, 1,4-butylene glycol di(meth)acrylate, 1,2-ethylene glycol di(meth)acrylate, 1,6-hexanediol di(meth)acrylate, and divinyl benzene.</p>
+<p id="p0021" num="0021">The polymeric emulsion polymer binder may include a copolymerized monoethylenically-unsaturated acid monomer. Acid monomers include, for example, (meth)acrylic acid, crotonic acid, itaconic acid, fumaric acid, maleic acid, monomethyl itaconate, monomethyl fumarate, monobutyl fumarate, and maleic anhydride, phosphoethyl methacrylate, and sufoethyl methacrylate..</p>
+<p id="p0022" num="0022">The emulsion polymerization techniques used to prepare the polymeric emulsion polymer binder are well known in the art such as, for example, as disclosed in <patcit id="pcit0024" dnum="US4325856A"><text>U.S. Patents No. 4,325,856</text></patcit>; <patcit id="pcit0025" dnum="US4654397A"><text>4,654,397</text></patcit>; and <patcit id="pcit0026" dnum="US4814373A"><text>4,814,373</text></patcit>. Conventional surfactants may be used such as, for example, anionic and/or nonionic emulsifiers such as, for example, alkali metal or ammonium alkyl sulfates, alkyl sulfonic acids, fatty acids, and oxyethylated alkyl phenols. The amount of surfactant used is usually 0.1% to 6% by weight, based on the weight of total monomer. Either thermal or redox initiation processes may be used. Conventional free radical initiators may be used such as, for example, hydrogen peroxide, t-butyl hydroperoxide, t-amyl hydroperoxide, ammonium and/or alkali<!-- EPO <DP n="8"> --> persulfates, typically at a level of 0.01% to 3.0% by weight, based on the weight of total monomer. Redox systems using the same initiators coupled with a suitable reductant such as, for example, sodium sulfoxylate formaldehyde, sodium hydrosulfite, isoascorbic acid, hydroxylamine sulfate and sodium bisulfite may be used at similar levels, optionally in combination with metal ions such as, for example iron and copper, optionally further including complexing agents for the metal. Chain transfer agents such as mercaptans may be used to lower the molecular weight of the polymers. The monomer mixture may be added neat or as an emulsion in water. The monomer mixture may be added in a single addition or in multiple additions or continuously over the reaction period using a uniform or varying composition. Additional ingredients such as, for example, free radical initiators, oxidants, reducing agents, chain transfer agents, neutralizers, surfactants, and dispersants may be added prior to, during, or subsequent to any of the stages. Processes yielding polymodal particle size distributions such as those disclosed in <patcit id="pcit0027" dnum="US4384056A"><text>US Patent Nos. 4,384,056</text></patcit> and <patcit id="pcit0028" dnum="US4539361A"><text>4,539,361</text></patcit>, for example, may be employed.</p>
+<p id="p0023" num="0023">In another embodiment of the present invention the polymeric emulsion polymer binder may be prepared by a multistage emulsion polymerization process, in which at least two stages differing in composition and Tg are polymerized in sequential fashion, but that expressly do not include, when dry, a void. Such a process usually results in the formation of at least two mutually incompatible polymer compositions, thereby resulting in the formation of at least two phases within the polymer particles. Such particles are composed of two or more phases of various geometries such as, for example, core/shell or core/sheath particles, core/shell particles with shell phases incompletely encapsulating the core, core/shell particles with a multiplicity of cores, and interpenetrating network particles. Each of the stages of the multi-staged emulsion polymer may contain the same monomers, surfactants, chain transfer agents, etc. as disclosed herein-above for the emulsion polymer. The polymerization techniques used to prepare such multistage emulsion<!-- EPO <DP n="9"> --> polymers are well known in the art such as, for example, <patcit id="pcit0029" dnum="US4325856A"><text>US Patents No. 4,325,856</text></patcit>; <patcit id="pcit0030" dnum="US4654397A"><text>4,654,397</text></patcit>; and <patcit id="pcit0031" dnum="US4814373A"><text>4,814,373</text></patcit>.</p>
+<p id="p0024" num="0024">The calculated glass transition temperature ("Tg") of the emulsion polymer binder is typically from -65°C to 105°C, or in the alternative, from -25°C to 35°C. The average particle diameter of the emulsion polymer binder particles is typically from 1 nm to 500 nm, preferably from 10 nm to 400 nm, and more preferably from 15 nm to 250nm.</p>
+<p id="p0025" num="0025">The polymeric binder be or may include resin(s) other than emulsion polymers, including, for example, thermoplastic and crosslinkable resins. Useful resin components include, for example, polyvinyl alcohol, protein such as, for example, casein, starch, gelatin, copolymers of acrylic acid esters or methacrylic acid esters, copolymers of styrene and acrylic or methacrylic acid esters, copolymers of styrene and acrylic acid, styrene-butadiene copolymers, copolymers of vinyl acetate with other acrylic or methacrylic acid esters, and the like.</p>
+<p id="p0026" num="0026">The layer(s) of the present invention may be formulated in an aqueous medium, i.e., a medium including primarily water, by blending in a conventional low shear mixing apparatus. Other well known mixing techniques may be employed to prepare the layers of the present invention.</p>
+<p id="p0027" num="0027">Additives may be incorporated into the layer formulations to confer certain performance properties. The layer formulation may contain, in addition to the core/shell emulsion polymer and optional pigment(s) such as for example, calcium carbonate and silica, adjuvants such as, for example, emulsifiers, surfactants, lubricants, coalescing agents, plasticizers, antifreezes, curing agents, buffers, neutralizers, thickeners, rheology modifiers, humectants, wetting agents, biocides, plasticizers, antifoaming agents, UV absorbers, fluorescent brighteners, light or heat stabilizers, biocides, chelating agents, dispersants, colorants, waxes, water-repellants, and anti-oxidants. Typical bases that may be incorporated in layer formulations of the present invention include ammonia; fixed bases such as NaOH, KOH, and LiOH; amines such as<!-- EPO <DP n="10"> --> diethanol amine, triethanolamine and any other known base to control pH. The layer is applied to the support by conventional coating means known in the art and dried, typically with the minimum heat for the minimum time to enable facile handling of the recording material, whether in separate sheet or in roll form, while avoiding premature collapse of the voids in the core/shell polymeric particles.</p>
+<p id="p0028" num="0028">In the second aspect of this invention a support including at least one colored surface having a surface roughness of less than 3.0, alternatively from 0.5 to 3.0, alternatively from 0.5 to 2.5, microns as measured by a Parker print surf roughness tester is employed. The smoothness of this surface is important in effecting high print quality.</p>
+<p id="p0029" num="0029">Other factors affecting the printed image quality include the hardness and the porosity of the support. Both properties can affect effective contact between the support and a thermal head, which in turn affects the pressure the support experiences during thermal printing, and the heat conduction between the support and the thermal head. The hardness of the support can be evaluated by Handle-O-Meter (Thwing-Albert Instrument Company) which measures the combined effects of flexibility and surface friction of sheet materials. Other methods to measure the stiffness/hardness of the support can also be used such as those described in TAPPI test methods T-535 and T543. The porosity of the substrate herein was evaluated by Parker print surf roughness tester using the "porosity" mode.</p>
+<p id="p0030" num="0030">For example, with similar surface roughness and porosity, a stiff vinyl support (Hand-O-Meter value 141.3) has much higher dynamic printing sensitivity than a soft paper support (Hand-O-meter value 61.6). It is envisioned that the hardness of the underlying black coating can affect the dynamic printing sensitivity too. For example, if the colored coating layer contains very soft binders or hollow polymer spheres which can deform under the printing condition, then the image quality will be worse compared to a colored coating layer containing relatively hard binders or pigments.<!-- EPO <DP n="11"> --></p>
+<p id="p0031" num="0031">The porosity effect can be observed comparing synthetic paper (YUPO) and regular copy paper (Boise ASPEN™ 30). With similar surface roughness (3.0 micron) and lower hand-O-meter value (43.0), the nonporous synthetic paper (Parker surf porosity value 15.24 mL/min) shows much higher dynamic printing sensitivity compared to the Boise ASPEN™ 30 copy paper (Parker surf porosity value 155.5 mL/min). Substrates with both low roughness (0.9 microns, e.g.) and low porosity values (5.0 ml./min., e.g.) such as Mylar™ polyester sheet give superior printing.</p>
+<p id="p0032" num="0032">In one embodiment of this invention a dual-color recording material is provided including (a) dark colorant layer (b) a layer including core/shell polymeric particles including, when dry, a void and a light colorant with an optional binder layer on top; and (c) an optional layer of core/shell polymeric particles including, when dry, a void (and optional binder) on top. The dual-color recording material is white with the optional layer (c) on top. It is colored without the optional layer (c). The dual-color recording material is heat and /or pressure sensitive. Upon applying low heat or pressure, it shows vivid color of the top colorant. Upon applying higher heat or pressure, it shows vivid color of the bottom colorant</p>
+<p id="p0033" num="0033">In the third aspect of this invention a support, that may or may not be colored, has disposed thereon a layer including certain core/shell particles and a permanent colorant. By "permanent colorant" is meant herein a colorant such as, for example one or more dyes, pigments or mixtures thereof that produce a visible color that is substantially invariant during the application or drying of the layer, storage, and formation of an image using the recording material. Expressly excluded as permanent colorants are any material amounts of color precursors such as leuco dyes, for example, and developers such as bisphenol A and bisphenol S, for example, which form colorants during the application or drying of the layer, storage, or formation of an image using the recording material. Preferably the layer is substantially free from color precursors and developers. Typically less than 5%, preferably less than 1%, and more<!-- EPO <DP n="12"> --> preferably less than 0.1%, total colorant precursors and developers, by weight based on the total weight of colorant in the layer are included. Alternatively, a recording material is contemplated including a support, that may or may not be colored, that has disposed thereon a layer including certain core/shell particles and a permanent colorant.; and, additionally, an optional layer of core/shell polymeric particles including, when dry, a void (and optional binder) on top.</p>
+<p id="p0034" num="0034">In the method of this invention the recording material of one of the aspects of the invention is formed and selected portions of the recording material are subjected to heat, pressure, or combinations thereof such as are effected by direct thermal printing, for example. "Pressure" herein is understood to include methods that may cause removal of some or all of the layer including the core/shell polymeric particles by, for example, erosion or scraping, as well as pressure applied substantially normal to the substrate.</p>
+<p id="p0035" num="0035">The invention in some of its embodiments will now be further described by reference to the following examples:</p>
+<heading id="h0001"><u>Preparation of polymeric particles having a core/shell structure.</u></heading>
+<p id="p0036" num="0036">Samples 1-2 and 4-9 were prepared according to the teachings of Example 17 of <patcit id="pcit0032" dnum="US6252004B"><text>US Patent No. 6,252,004</text></patcit>.</p>
+<p id="p0037" num="0037">Samples 1-2 had an inner shell having a calculated Tg of 101°C and an outer shell having a calculated Tg of 59.5°C. The calculated Tg of the combined shells was 77.1°C.</p>
+<p id="p0038" num="0038">Samples 4-6 have an outer shell (single shell) having a calculated Tg of 101°C. Sample 7 has an outer shell(single shell) having a calculated Tg of 54.9°C.</p>
+<p id="p0039" num="0039">Sample 8 had an inner shell having a calculated Tg of 78.4°C and an outer shell having a calculated Tg of 38.8°C. The calculated Tg of the combined shells was 54.9°C.<!-- EPO <DP n="13"> --></p>
+<p id="p0040" num="0040">Sample 9 had an inner shell having a calculated Tg of 86.5°C and an outer shell having a calculated Tg of 49.5°C. The calculated Tg of the combined shells was 61.7°C.</p>
+<p id="p0041" num="0041">Sample 3 was prepared according to the teachings of Example 1 of <patcit id="pcit0033" dnum="US6139961A"><text>US Patent No. 6,139,961</text></patcit>. It has an inner shell having a calculated Tg of 100°C and an outer shell of -33°C.</p>
+<heading id="h0002"><u>Equipment:</u></heading>
+<p id="p0042" num="0042">A4 cellulosic copy paper (ASPEN™ 30) and YUPO synthetic paper as base substrate (support).</p>
+<p id="p0043" num="0043">HP Color Laserjet 4600 PS for printing the ink layer of various colors. #18 and #22 WWR for hand drawdowns.</p>
+<p id="p0044" num="0044">Zebra Xillplus thermal printer for thermal printing tests.</p>
+<p id="p0045" num="0045">Brightness meter: Model S4-M from Technidyne Corp.</p>
+<heading id="h0003"><u>Surface roughness measurement:</u></heading>
+<p id="p0046" num="0046">The roughness of the support sheets was measured by a Parker print surface roughness tester (Model No. M590, Messmer Instruments Ltd.) using TAPPI official test Method T555. This method measures the air flow between the test surface and a metal band in contact with it. The rate of the air flow is related to the surface smoothness of the paper. An average of five measurements was recorded as the roughness of the specimen.</p>
+<heading id="h0004">EXAMPLE 1. Preparation and evaluation of recording material</heading>
+<heading id="h0005">(Chemicals from Nissho Kogyo unless otherwise noted)</heading>
+<p id="p0047" num="0047">Formulation A:
+<ul id="ul0001" list-style="none" compact="compact">
+<li>To a 250 ml plastic jar, were added 24.64 g water, 2.00 g CaC03, 2.00 g silica, and one drop of dispersing reagent. The mixture was stirred for 5 min. Then 40.0 g 10% PVA solution was added to the mixture while stirring, followed by 36.36 g Sample 1 (27.5 % solids), and 5.0 g EUDERM™ Green (40.0%, Bayer). Finally, 2.00 g of lubricant and 1 drop of defoamer was added.</li>
+</ul><!-- EPO <DP n="14"> --></p>
+<p id="p0048" num="0048">Formulation B:
+<ul id="ul0002" list-style="none" compact="compact">
+<li>To a 250 ml plastic jar, were added 53.20 g water, 1.00 g CaCO3, 1.00 g silica, and one drop of dispersing reagent. The mixture was stirred for 5 min. Then 8.00 g 50.0% RHOPLEX™ P-308 emulsion (product of The Dow Chemical Co.) was added to the mixture while stirring, followed by 46.82 g Sample 2 (29.9 % solids). The mixture was neutralized to pH= 8.60 with 15% NaOH, and viscosity = 486 cps (20 rpm, spindle 63) with RHOPLEX™ RM-232D (product of The Dow Chemical Co.). Finally, 6.00 g of lubricant and 1 drop of defoamer was added.</li>
+</ul></p>
+<p id="p0049" num="0049">The above two formulations were used in the hand draw-downs below.</p>
+<heading id="h0006">Example 1a:</heading>
+<p id="p0050" num="0050">On a 75 g/m<sup>2</sup> A4 paper was printed a black ink layer with ink density of 5-10 g/m<sup>2</sup> A layer containing 20% of polymeric binder and 80% Sample 2 was coated on top (Formulation B), the coat weight was 7-10 g/m<sup>2</sup>, with higher coat weight providing better hiding for the underlying black layer. Before printing, the layer was opaque, it provided hiding for the underlying black layer, and the whole substrate appeared white. During printing, the polymeric particles including a void are believed to have collapsed at the area where the heat and pressure was applied by the thermal head, the collapsed portions of the layer became transparent, showing the underlying black color where it was printed.</p>
+<heading id="h0007">Example 1b:</heading>
+<p id="p0051" num="0051">On a 75 g/m<sup>2</sup> A4 paper was printed a blue ink layer with ink density of 5-10 g/m<sup>2</sup> A layer containing 20% of polymeric binder and 80% Sample 2 was coated on top (Formulation B), the coat weight was 7-10 g/m<sup>2</sup>, with higher coat weight providing better hiding for the underlying blue layer. Before printing, the layer was opaque, it provided hiding for the underlying blue layer, and the whole substrate appeared white. During printing, the polymeric particles including a void are believed to have collapsed at the area where the heat and pressure were applied by the<!-- EPO <DP n="15"> --> thermal head; the collapsed portions of the layer became transparent, showing the underlying blue color where it was printed.</p>
+<heading id="h0008">Example 1c:</heading>
+<p id="p0052" num="0052">On a 75 g/m<sup>2</sup> A4 paper was printed a green ink layer with ink density of 5-10 g/m<sup>2</sup> A layer containing 20% of polymeric binder and 80% Sample 2 was coated on top (Formulation B), the coat weight was 7-10 g/m<sup>2</sup>, with higher coat weight providing better hiding for the underlying green layer. Before printing, the layer was opaque, it provided hiding for the underlying green layer, and the whole substrate appeared white. During printing, the polymeric particles including a void are believed to have collapsed at the area where the heat and pressure were applied by the thermal head; the collapsed portions of the layer became transparent, showing the underlying green color where it was printed.</p>
+<heading id="h0009">EXAMPLE 2. Preparation and evaluation of recording material</heading>
+<p id="p0053" num="0053">On a 75 g/m<sup>2</sup> A4 paper was coated a collapsible layer containing 5-10% green dye, 70-75% Sample 1 and 20% binder. (Formulation A) The coat weight was 5-10 g/m<sup>2</sup>. Before printing, the substrate showed a green tint, which is a believed to be a combination of the white color from the polymeric particles including a void and the green color from the dye. During printing, the polymeric particles including a void are believed to have collapsed at the area where the heat and pressure was applied by the thermal head and became transparent, the substrate showed vivid green color from the green dye where it was printed.</p>
+<p id="p0054" num="0054">Depending upon how the printing area was set, two effects were achieved: Dark image on a light background or light image on a dark background. The same concept can be used to print any colors with a tint difference from the background.</p>
+<heading id="h0010">EXAMPLE 3. Preparation and evaluation of recording material</heading>
+<heading id="h0011">Example 3a:</heading><!-- EPO <DP n="16"> -->
+<p id="p0055" num="0055">On a 75 g/m<sup>2</sup> A4 paper was printed a black ink layer with ink density of 5-10 g/m<sup>2</sup> A collapsible layer containing about 5-10% green dye, 70-75% Sample 1 and 20% polymeric binder was coated on top (Formulation A). The coat weight was 5-10 g/m<sup>2</sup>, with higher coater weight providing better hiding for the underlying black layer. Before printing, the substrate showed a green tint, which is believed to be a combination of the white color from the polymeric particles including a void and the green color from the dye. During the first pass of printing at a lower temperature, the top layer partially collapsed at the area where the heat and pressure were applied by the thermal head, the partially collapsed layer still provided enough hiding for the underlying black, and the substrate showed vivid green color where it was printed. During the second pass of printing at a higher temperature, the top layer completely collapsed at the area where the heat and pressure was applied by the thermal head, the collapsed layer couldn't provide enough hiding for the underlying black layer, the substrate showed black where it was printed, which was due to the hiding of green color by black color.</p>
+<p id="p0056" num="0056">The same concept can be used to print any dark colored foreground text on any light colored background logo, brand images etc., not limited to the color choices shown here.</p>
+<heading id="h0012">Example 3b.</heading>
+<p id="p0057" num="0057">On a 75 g/m<sup>2</sup> A4 paper was printed a yellow ink layer with ink density of 5-10 g/m<sup>2</sup> A layer containing about 5-10% green dye, 70-75% Sample 1 and 20% polymeric binder was coated on top (Formulation A). The coat weight was 5-10 g/m<sup>2</sup>, with higher coat weight providing better hiding for the underlying yellow layer. Before printing, the substrate showed a green tint, which is believed to be a combination of the white color from the polymeric particles including a void and the green color from the dye. During the first pass of printing at a lower temperature, the top layer partially collapsed at the area where the heat and pressure was applied by the thermal head, the partially collapsed layer still provided enough hiding for the underlying black, and the substrate showed vivid green<!-- EPO <DP n="17"> --> color where it was printed. During the second pass of printing at a higher temperature, the top layer completely collapsed at the area where the heat and pressure was applied by the thermal head, the collapsed layer couldn't provide enough hiding for the underlying yellow layer, the substrate showed yellowish green where it was printed, which was due to the combination of green color and yellow color.</p>
+<heading id="h0013">EXAMPLE 4. Preparation and evaluation of recording material</heading>
+<heading id="h0014">Example 4a.</heading>
+<p id="p0058" num="0058">On a 75 g/m<sup>2</sup> A4 YUPO synthetic paper was printed a black ink layer with ink density of 5-10 g/m<sup>2</sup>. A layer containing 20% of polymeric binder and 80% Sample 2 was coated on top (Formulation B), the coat weight was 7-10 g/m<sup>2</sup>, with higher coat weight providing better hiding for the underlying black layer. Before printing, the layer was opaque, it provided hiding for the underlying black layer, and the whole substrate appeared white. During printing, the polymeric particles including a void are believed to have collapsed at the area where the heat and pressure were applied by the thermal head; the portions of layer became transparent, showing the underlying grey scale image and barcode where it was printed.</p>
+<heading id="h0015">Example 4b.</heading>
+<p id="p0059" num="0059">On a 75 g/m<sup>2</sup> A4 paper was printed a black ink layer with ink density of 5-10 g/m<sup>2</sup> A collapsible layer containing about 20% of polymeric binder and 80% polymeric particles including a void was coated on top (Formulation B), the coat weight was 7-10 g/m<sup>2</sup>, with higher coat weight providing better hiding for the underlying black layer. Before printing, the layer was opaque, it provided hiding for the underlying black layer, and the whole substrate appeared white. During printing, the polymeric particles including a void are believed to have collapsed at the area where the heat and pressure were applied by the thermal head; the layer became transparent, showing the underlying grey scale image and barcode where it was printed. Print quality was dependent on the surface smoothness of<!-- EPO <DP n="18"> --> the substrate. Synthetic paper offered better image quality than porous cellulose paper.</p>
+<heading id="h0016">EXAMPLE 5. Preparation and evaluation of recording material</heading>
+<p id="p0060" num="0060">On a 75 g/m<sup>2</sup> A4 paper is printed a black ink first layer with ink density of 5-10 g/m<sup>2</sup>. A layer containing 5-10% green dye, 70-75% Sample 1 and 20% polymeric binder is coated as a second layer (Formulation A). The coat weight is 5-10 g/m<sup>2</sup>. A third layer containing about 20% of polymeric binder and 80% Sample 1 is coated on top (formulation B), the coat weight is in the range of 3-7 g/m<sup>2</sup>. Before printing, the top layer is opaque, it provides hiding for the underlying layers, and the whole substrate appears white. During the first pass of printing at a lower temperature, the polymeric particles including a void in the top (third) layer collapse at the area where the heat and pressure is applied by the thermal head, the substrate shows a green color (the color of the middle (second) layer) where it is printed. During the second pass of printing at a higher temperature, the polymeric particles including a void in the middle layer are believed to collapse at the area where the heat and pressure are applied by the thermal head, the collapsed layer cannot provide enough hiding for the underlying black layer, the substrate shows black where it was printed, which is due to the hiding of green color by black color.</p>
+<heading id="h0017">EXAMPLE 6. Preparation and evaluation of recording material</heading>
+<p id="p0061" num="0061">On a 75 g/m<sup>2</sup> A4 paper was printed a black ink layer with ink density of 5-10 g/m<sup>2</sup> A collapsible layer containing 20% of polymeric binder and 80% Sample 2 was coated on top (Formulation B), the coat weight was in the range of 7-10 g/m<sup>2</sup>, with higher coat weight providing better hiding for the underlying black layer. Before pressure was applied, the layer was opaque, it provided hiding for the underlying black layer, and the whole substrate appeared white. After the pressure was applied, the polymeric particles including a void are believed to have collapsed and became<!-- EPO <DP n="19"> --> transparent, showing the underlying black color at the area where pressure was applied.</p>
+<p id="p0062" num="0062">The above mentioned recording material can be used as a pressure-sensitive recording material to replace carbon/carbonless paper.</p>
+<heading id="h0018">EXAMPLE 7. Preparation and evaluation of recording material Formulations A, B, and C were prepared as described in Table 7.1</heading>
+<p id="p0063" num="0063">
+<tables id="tabl0001" num="0001">
+<table frame="all">
+<title>Table 7.1 Preparation of compositions including polymeric core/shell particles</title>
+<tgroup cols="12">
+<colspec colnum="1" colname="col1" colwidth="22mm"/>
+<colspec colnum="2" colname="col2" colwidth="16mm"/>
+<colspec colnum="3" colname="col3" colwidth="16mm"/>
+<colspec colnum="4" colname="col4" colwidth="22mm"/>
+<colspec colnum="5" colname="col5" colwidth="18mm"/>
+<colspec colnum="6" colname="col6" colwidth="31mm"/>
+<colspec colnum="7" colname="col7" colwidth="18mm"/>
+<colspec colnum="8" colname="col8" colwidth="14mm"/>
+<colspec colnum="9" colname="col9" colwidth="23mm"/>
+<colspec colnum="10" colname="col10" colwidth="31mm"/>
+<colspec colnum="11" colname="col11" colwidth="12mm"/>
+<colspec colnum="12" colname="col12" colwidth="23mm"/>
+<thead>
+<row>
+<entry align="center" valign="top">Formulation</entry>
+<entry align="center" valign="top">CaCO3</entry>
+<entry align="center" valign="top">Silica</entry>
+<entry align="center" valign="top">UCD 1507E</entry>
+<entry align="center" valign="top">Sample 2</entry>
+<entry align="center" valign="top">RHOPLEX™ P-308</entry>
+<entry align="center" valign="top">Lubricant</entry>
+<entry align="center" valign="top">Water</entry>
+<entry align="center" valign="top">NaOH (15%)</entry>
+<entry align="center" valign="top">RHOPLEX™ RM-232D</entry>
+<entry align="center" valign="top">PH</entry>
+<entry align="center" valign="top">Viscosity</entry></row>
+<row>
+<entry align="center" valign="top">Solids</entry>
+<entry align="center" valign="top">100.0%</entry>
+<entry align="center" valign="top">100.0%</entry>
+<entry align="center" valign="top">47.0%</entry>
+<entry align="center" valign="top">29.9%</entry>
+<entry align="center" valign="top">50.0%</entry>
+<entry align="center" valign="top">36.0%</entry>
+<entry align="center" valign="top"/>
+<entry align="center" valign="top">drops</entry>
+<entry align="center" valign="top">drops</entry>
+<entry align="center" valign="top"/>
+<entry align="center" valign="top">cps @ 20rpm</entry></row></thead>
+<tbody>
+<row>
+<entry align="center">A (wt.)</entry>
+<entry align="center"/>
+<entry align="center"/>
+<entry align="center">31.91</entry>
+<entry align="center">83.61</entry>
+<entry align="center"/>
+<entry align="center"/>
+<entry align="center">84.47</entry>
+<entry align="center">12</entry>
+<entry align="center">9</entry>
+<entry align="center">8.00</entry>
+<entry align="center">522</entry></row>
+<row>
+<entry align="center">Ratio:</entry>
+<entry align="center"/>
+<entry align="center"/>
+<entry align="center">0.375</entry>
+<entry align="center">0.625</entry>
+<entry align="center"/>
+<entry align="center"/>
+<entry align="center"/>
+<entry align="center"/>
+<entry align="center"/>
+<entry align="center"/>
+<entry align="center"/></row>
+<row>
+<entry align="center">B (wt.)</entry>
+<entry align="center">2.00</entry>
+<entry align="center">2.00</entry>
+<entry align="center"/>
+<entry align="center">86.96</entry>
+<entry align="center">16.00</entry>
+<entry align="center">5.56</entry>
+<entry align="center">87.49</entry>
+<entry align="center">11</entry>
+<entry align="center">12</entry>
+<entry align="center">8.50</entry>
+<entry align="center">468</entry></row>
+<row>
+<entry align="center">Ratio:</entry>
+<entry align="center">0.05</entry>
+<entry align="center">0.05</entry>
+<entry align="center"/>
+<entry align="center">0.65</entry>
+<entry align="center">0.20</entry>
+<entry align="center">0.05</entry>
+<entry align="center"/>
+<entry align="center"/>
+<entry align="center"/>
+<entry align="center"/>
+<entry align="center"/></row>
+<row>
+<entry align="center">C (wt.)</entry>
+<entry align="center"/>
+<entry align="center"/>
+<entry align="center"/>
+<entry align="center">93.65</entry>
+<entry align="center">20.00</entry>
+<entry align="center">5.56</entry>
+<entry align="center">80.80</entry>
+<entry align="center">5</entry>
+<entry align="center">9</entry>
+<entry align="center">8.50</entry>
+<entry align="center">528</entry></row>
+<row>
+<entry align="center">Ratio:</entry>
+<entry align="center"/>
+<entry align="center"/>
+<entry align="center"/>
+<entry align="center">0.70</entry>
+<entry align="center">0.25</entry>
+<entry align="center">0.05</entry>
+<entry align="center"/>
+<entry align="center"/>
+<entry align="center"/>
+<entry align="center"/>
+<entry align="center"/></row></tbody></tgroup>
+</table>
+</tables></p>
+<p id="p0064" num="0064">Formulation A (black dispersion) was drawndown on A4 copy paper using a #16 WWR and dried at 80°C for 90 seconds. After drying, the coat weight of the black layer was determined to be 8-9 g/m<sup>2</sup>. The coating exhibited an optical density of 1.34 and surface roughness of 3.12 microns. The coated black paper was calendered to different surface roughnesses; after calendaring the optical density of the black surface was 1.4-1.5. Formulations B and C were drawndown on the calendered black ink surface using #18 and #22 WWR and dried at 80°C for 90 seconds. The coat weights for Formulations B and C were 8.5 g/sqm. The optical density decreased to 0.15-0.18 after coating the opaque layer. The recording material sheets were printed at a printing speed of 2 in/sec. at printer settings of from 5 to 30, higher values corresponding to higher temperatures of the thermal head. The results are presented in Table 7.2.
+<tables id="tabl0002" num="0002">
+<table frame="all">
+<title>Table 7.2 Printing Results at various black surface roughness values</title>
+<tgroup cols="6">
+<colspec colnum="1" colname="col1" colwidth="35mm"/>
+<colspec colnum="2" colname="col2" colwidth="15mm"/>
+<colspec colnum="3" colname="col3" colwidth="15mm"/>
+<colspec colnum="4" colname="col4" colwidth="15mm"/>
+<colspec colnum="5" colname="col5" colwidth="15mm"/>
+<colspec colnum="6" colname="col6" colwidth="15mm"/>
+<thead>
+<row>
+<entry valign="top">Formulation:</entry>
+<entry align="center" valign="top">C</entry>
+<entry align="center" valign="top">C</entry>
+<entry align="center" valign="top">C</entry>
+<entry align="center" valign="top">B</entry>
+<entry align="center" valign="top">B</entry></row></thead>
+<tbody>
+<row>
+<entry>Roughness (microns)</entry>
+<entry align="center">2.5</entry>
+<entry align="center">1.5</entry>
+<entry align="center">2.0</entry>
+<entry align="center">1.5</entry>
+<entry align="center">2.0</entry></row></tbody></tgroup><!-- EPO <DP n="20"> -->
+<tgroup cols="6">
+<colspec colnum="1" colname="col1" colwidth="35mm"/>
+<colspec colnum="2" colname="col2" colwidth="15mm"/>
+<colspec colnum="3" colname="col3" colwidth="15mm"/>
+<colspec colnum="4" colname="col4" colwidth="15mm"/>
+<colspec colnum="5" colname="col5" colwidth="15mm"/>
+<colspec colnum="6" colname="col6" colwidth="15mm"/>
+<thead>
+<row>
+<entry align="center" valign="top">Printer setting*</entry>
+<entry namest="col2" nameend="col6" align="left" valign="top">Optical Density</entry></row></thead>
+<tbody>
+<row>
+<entry align="center">5</entry>
+<entry align="center">0.25</entry>
+<entry align="center">0.26</entry>
+<entry align="center">0.29</entry>
+<entry align="center">0.24</entry>
+<entry align="center">0.27</entry></row>
+<row>
+<entry align="center">10</entry>
+<entry align="center">0.32</entry>
+<entry align="center">0.55</entry>
+<entry align="center">0.48</entry>
+<entry align="center">0.32</entry>
+<entry align="center">0.46</entry></row>
+<row>
+<entry align="center">15</entry>
+<entry align="center">0.55</entry>
+<entry align="center">0.68</entry>
+<entry align="center">0.63</entry>
+<entry align="center">0.68</entry>
+<entry align="center">0.59</entry></row>
+<row>
+<entry align="center">20</entry>
+<entry align="center">0.65</entry>
+<entry align="center">1.11</entry>
+<entry align="center">1.04</entry>
+<entry align="center">0.92</entry>
+<entry align="center">0.73</entry></row>
+<row>
+<entry align="center">25</entry>
+<entry align="center">0.78</entry>
+<entry align="center">1.25</entry>
+<entry align="center">1.08</entry>
+<entry align="center">1.01</entry>
+<entry align="center">0.81</entry></row>
+<row>
+<entry align="center">30</entry>
+<entry align="center">1.02</entry>
+<entry align="center">1.22</entry>
+<entry align="center">1.19</entry>
+<entry align="center">1.01</entry>
+<entry align="center">0.89</entry></row></tbody></tgroup>
+</table>
+</tables></p>
+<p id="p0065" num="0065">Prints on recording sheets of Formulation A on the uncalendered black surface support were of unacceptably low quality. Acceptable printing results were found for printing over a wide range of printing conditions on a support having a colored surface having a surface roughness of from 1.5 to 2.5 microns.</p>
+<heading id="h0019">EXAMPLE 8. Preparation and evaluation of recording material Formulations A, B, and C were prepared as described in Table 8.1 and brought to pH = 8.5 with the addition of NaOH. The viscosities of the formulations were adjusted using RHOPLEX™RM-232D.</heading>
+<p id="p0066" num="0066">
+<tables id="tabl0003" num="0003">
+<table frame="all">
+<title>Table 8.1 Preparation of compositions including polymeric core/shell particles</title>
+<tgroup cols="8">
+<colspec colnum="1" colname="col1" colwidth="22mm"/>
+<colspec colnum="2" colname="col2" colwidth="18mm"/>
+<colspec colnum="3" colname="col3" colwidth="18mm"/>
+<colspec colnum="4" colname="col4" colwidth="33mm"/>
+<colspec colnum="5" colname="col5" colwidth="18mm"/>
+<colspec colnum="6" colname="col6" colwidth="14mm"/>
+<colspec colnum="7" colname="col7" colwidth="12mm"/>
+<colspec colnum="8" colname="col8" colwidth="23mm"/>
+<thead>
+<row>
+<entry align="center" valign="top">Formulation</entry>
+<entry align="center" valign="top">Sample 3</entry>
+<entry align="center" valign="top">Sample 2</entry>
+<entry align="center" valign="top">RHOPLEX™ P-308</entry>
+<entry align="center" valign="top">Lubricant</entry>
+<entry align="center" valign="top">Water</entry>
+<entry align="center" valign="top">PH</entry>
+<entry align="center" valign="top">Viscosity</entry></row>
+<row>
+<entry align="center" valign="top">Solids</entry>
+<entry align="center" valign="top">29.9%</entry>
+<entry align="center" valign="top"/>
+<entry align="center" valign="top">50.0%</entry>
+<entry align="center" valign="top">36.0%</entry>
+<entry align="center" valign="top"/>
+<entry align="center" valign="top"/>
+<entry align="center" valign="top">cps @ 20rpm</entry></row></thead>
+<tbody>
+<row>
+<entry align="center">A</entry>
+<entry align="center">127.09</entry>
+<entry align="center"/>
+<entry align="center"/>
+<entry align="center">5.56</entry>
+<entry align="center">67.35</entry>
+<entry align="center">8.50</entry>
+<entry align="center">476</entry></row>
+<row>
+<entry align="center">Ratio:</entry>
+<entry align="center">0.95</entry>
+<entry align="center"/>
+<entry align="center"/>
+<entry align="center">0.05</entry>
+<entry align="center"/>
+<entry align="center"/>
+<entry align="center"/></row>
+<row>
+<entry align="center">B</entry>
+<entry align="center">93.65</entry>
+<entry align="center"/>
+<entry align="center">20.00</entry>
+<entry align="center">5.56</entry>
+<entry align="center">80.80</entry>
+<entry align="center">8.50</entry>
+<entry align="center">432</entry></row>
+<row>
+<entry align="center">Ratio:</entry>
+<entry align="center">0.70</entry>
+<entry align="center"/>
+<entry align="center">0.25</entry>
+<entry align="center">0.05</entry>
+<entry align="center"/>
+<entry align="center"/>
+<entry align="center"/></row>
+<row>
+<entry align="center">C</entry>
+<entry align="center"/>
+<entry align="center">93.65</entry>
+<entry align="center">20.00</entry>
+<entry align="center">5.56</entry>
+<entry align="center">80.80</entry>
+<entry align="center">8.50</entry>
+<entry align="center">495</entry></row>
+<row>
+<entry align="center">Ratio:</entry>
+<entry align="center"/>
+<entry align="center">0.70</entry>
+<entry align="center">0.25</entry>
+<entry align="center">0.05</entry>
+<entry align="center"/>
+<entry align="center"/>
+<entry align="center"/></row></tbody></tgroup>
+</table>
+</tables></p>
+<p id="p0067" num="0067">A black ink layer was prepared according to the procedure of Example 7 and calendered to a surface roughness of 1.5 microns (Parker surface roughness). Formulations A, B, and C were drawndown on the calendered black ink surface using #16 and #18 WWR and dried at 80°C for 90 seconds. The optical densities of the films before (printer setting at 0) and after printing (printer setting at 5-30) are shown below. The coat weights for Formulations A, B, and C are given below. The recording material<!-- EPO <DP n="21"> --> sheets were printed at a printing speed of 2 in/sec. at printer settings of from 5 to 30, higher values corresponding to higher temperatures of the thermal head. The results are presented in Table 8.2.
+<tables id="tabl0004" num="0004">
+<table frame="all">
+<title>Table 8.2 Printing results</title>
+<tgroup cols="5">
+<colspec colnum="1" colname="col1" colwidth="27mm"/>
+<colspec colnum="2" colname="col2" colwidth="12mm"/>
+<colspec colnum="3" colname="col3" colwidth="12mm"/>
+<colspec colnum="4" colname="col4" colwidth="12mm"/>
+<colspec colnum="5" colname="col5" colwidth="12mm"/>
+<thead>
+<row>
+<entry valign="top">Formulation:</entry>
+<entry align="center" valign="top">A</entry>
+<entry align="center" valign="top">A</entry>
+<entry align="center" valign="top">B</entry>
+<entry align="center" valign="top">C</entry></row></thead>
+<tbody>
+<row>
+<entry>Coat Wt. g/sqm</entry>
+<entry align="center">6.1</entry>
+<entry align="center">8.0</entry>
+<entry align="center">8.1</entry>
+<entry align="center">7.9</entry></row></tbody></tgroup>
+<tgroup cols="5">
+<colspec colnum="1" colname="col1" colwidth="27mm"/>
+<colspec colnum="2" colname="col2" colwidth="12mm"/>
+<colspec colnum="3" colname="col3" colwidth="12mm"/>
+<colspec colnum="4" colname="col4" colwidth="12mm"/>
+<colspec colnum="5" colname="col5" colwidth="12mm"/>
+<thead>
+<row>
+<entry valign="top">Printer setting</entry>
+<entry namest="col2" nameend="col5" align="left" valign="top">Optical Density</entry></row></thead>
+<tbody>
+<row>
+<entry align="center">0</entry>
+<entry align="center">0.20</entry>
+<entry align="center">0.14</entry>
+<entry align="center">0.18</entry>
+<entry align="center">0.19</entry></row>
+<row>
+<entry align="center">5</entry>
+<entry align="center">0.29</entry>
+<entry align="center">0.19</entry>
+<entry align="center">0.24</entry>
+<entry align="center">0.26</entry></row>
+<row>
+<entry align="center">10</entry>
+<entry align="center">0.44</entry>
+<entry align="center">0.29</entry>
+<entry align="center">0.33</entry>
+<entry align="center">0.55</entry></row>
+<row>
+<entry align="center">15</entry>
+<entry align="center">0.72</entry>
+<entry align="center">0.47</entry>
+<entry align="center">0.53</entry>
+<entry align="center">0.68</entry></row>
+<row>
+<entry align="center">20</entry>
+<entry align="center">0.93</entry>
+<entry align="center">0.61</entry>
+<entry align="center">0.66</entry>
+<entry align="center">1.11</entry></row>
+<row>
+<entry align="center">25</entry>
+<entry align="center">1.03</entry>
+<entry align="center">0.87</entry>
+<entry align="center">0.79</entry>
+<entry align="center">1.25</entry></row>
+<row>
+<entry align="center">30</entry>
+<entry align="center">1.21</entry>
+<entry align="center">0.92</entry>
+<entry align="center">0.72</entry>
+<entry align="center">1.22</entry></row></tbody></tgroup>
+</table>
+</tables></p>
+<p id="p0068" num="0068">At the same coat weight a recording sheet of this invention including a layer of Formulation A exhibits better hiding of the underlying black layer, observed as lower optical density before printing. A recording sheet of this invention including a layer of Formulation A including polymeric particles having an inner shell and an outer shell desirably exhibits comparable dynamic printing sensitivity at substantially lower coat weight when compared to Formulation C.</p>
+<heading id="h0020">EXAMPLE 9. Preparation and evaluation of recording material Formulations A-D were prepared as described in Table 9.1</heading>
+<p id="p0069" num="0069">
+<tables id="tabl0005" num="0005"><img id="ib0002" file="imgb0002.tif" wi="165" he="53" img-content="table" img-format="tif"/>
+</tables><!-- EPO <DP n="22"> -->
+<tables id="tabl0006" num="0006"><img id="ib0003" file="imgb0003.tif" wi="165" he="66" img-content="table" img-format="tif"/>
+</tables></p>
+<p id="p0070" num="0070">Formulations A-D were drawndown on a black vinyl surface having a Parker surface roughness of 2.99 microns using a #18 WWR and dried at 81°C for 90 seconds. Then a topcoat of PVA(36%), lubricant(5%), silica(4%), calcium carbonate(4%), water (51%) with &lt;0.01% defoamer was applied. The recording material sheets were printed at a printing speed of 2 in/sec. at printer settings of from 5 to 30, higher values corresponding to higher temperatures of the thermal head. The optical densities of the films after printing (printer setting at 30) are shown below. The results are presented in Table 9.2.
+<tables id="tabl0007" num="0007">
+<table frame="all">
+<title>Table 9.2 Printing results</title>
+<tgroup cols="5">
+<colspec colnum="1" colname="col1" colwidth="26mm"/>
+<colspec colnum="2" colname="col2" colwidth="12mm"/>
+<colspec colnum="3" colname="col3" colwidth="12mm"/>
+<colspec colnum="4" colname="col4" colwidth="12mm"/>
+<colspec colnum="5" colname="col5" colwidth="12mm"/>
+<thead>
+<row>
+<entry valign="top">Formulation</entry>
+<entry valign="top">A</entry>
+<entry valign="top">B</entry>
+<entry valign="top">C</entry>
+<entry valign="top">D</entry></row></thead>
+<tbody>
+<row>
+<entry>Optical Density</entry>
+<entry>0.84</entry>
+<entry>1.16</entry>
+<entry>0.86</entry>
+<entry>1.44</entry></row></tbody></tgroup>
+</table>
+</tables></p>
+<p id="p0071" num="0071">A recording sheet of this invention including a layer of Formulation D including a core/shell particle having a calculated Tg of 67°C exhibits superior printing performance to recording sheets including layers of Formulations A-C including core/shell particles having a calculated Tg of 101°C.</p>
+<heading id="h0021">EXAMPLE 10. Preparation and evaluation of recording material</heading><!-- EPO <DP n="23"> -->
+<p id="p0072" num="0072">Formulations A and B were prepared as described in Table 10.1 and brought to pH = 8.5 with the addition of NaOH. The viscosities of the formulations were adjusted to 500 cps using RHOPLEX™RM-232D.
+<tables id="tabl0008" num="0008">
+<table frame="all">
+<title>Table 10.1 Preparation of compositions including polymeric core/shell particles</title>
+<tgroup cols="6">
+<colspec colnum="1" colname="col1" colwidth="23mm"/>
+<colspec colnum="2" colname="col2" colwidth="19mm"/>
+<colspec colnum="3" colname="col3" colwidth="19mm"/>
+<colspec colnum="4" colname="col4" colwidth="33mm"/>
+<colspec colnum="5" colname="col5" colwidth="19mm"/>
+<colspec colnum="6" colname="col6" colwidth="14mm"/>
+<thead>
+<row>
+<entry align="center" valign="top">Formulation</entry>
+<entry align="center" valign="top">Sample 7</entry>
+<entry align="center" valign="top">Sample 8</entry>
+<entry align="center" valign="top">RHOPLEX™ P-308</entry>
+<entry align="center" valign="top">Lubricant</entry>
+<entry align="center" valign="top">Water</entry></row></thead>
+<tbody>
+<row>
+<entry align="center">Solids</entry>
+<entry align="center">25.5%</entry>
+<entry align="center"/>
+<entry align="center">50.0%</entry>
+<entry align="center">36.0%</entry>
+<entry align="center"/></row>
+<row>
+<entry align="center">A</entry>
+<entry align="center">117.65</entry>
+<entry align="center"/>
+<entry align="center">20.0</entry>
+<entry align="center">5.56</entry>
+<entry align="center">56.8</entry></row>
+<row>
+<entry align="center">Ratio:</entry>
+<entry align="center">0.75</entry>
+<entry align="center"/>
+<entry align="center">0.25</entry>
+<entry align="center">0.05</entry>
+<entry align="center"/></row>
+<row>
+<entry align="center">B</entry>
+<entry align="center"/>
+<entry align="center">119.05</entry>
+<entry align="center">20.00</entry>
+<entry align="center">5.56</entry>
+<entry align="center">55.4</entry></row>
+<row>
+<entry align="center">Ratio:</entry>
+<entry align="center"/>
+<entry align="center">0.75</entry>
+<entry align="center">0.25</entry>
+<entry align="center">0.05</entry>
+<entry align="center"/></row></tbody></tgroup>
+</table>
+</tables></p>
+<p id="p0073" num="0073">A black ink layer was prepared according to the procedure of example 7 and calendered to a surface roughness of 1.5 microns (Parker surface roughness). Formulations A and B, were drawndown on the calendered black ink surface using a #18 WWR and dried at 80°C for 90 seconds. The optical densities of the films before (printer setting at 0) and after printing (printer setting at 5-25) are shown below. The recording material sheets were printed at a printing speed of 2 in/sec. at printer settings of from 0 to 25, higher values corresponding to higher temperatures of the thermal head. The results are presented in Table 10.2.
+<tables id="tabl0009" num="0009">
+<table frame="all">
+<title>Table 10.2 Printing results</title>
+<tgroup cols="3">
+<colspec colnum="1" colname="col1" colwidth="25mm"/>
+<colspec colnum="2" colname="col2" colwidth="13mm"/>
+<colspec colnum="3" colname="col3" colwidth="13mm"/>
+<thead>
+<row>
+<entry valign="top">Formulation:</entry>
+<entry align="center" valign="top">A</entry>
+<entry align="center" valign="top">B</entry></row></thead>
+<tbody>
+<row>
+<entry>Printer setting</entry>
+<entry namest="col2" nameend="col3" align="left">Optical Density</entry></row>
+<row>
+<entry align="center">0</entry>
+<entry align="center">0.21</entry>
+<entry align="center">0.18</entry></row>
+<row>
+<entry align="center">5</entry>
+<entry align="center">0.33</entry>
+<entry align="center">0.35</entry></row>
+<row>
+<entry align="center">10</entry>
+<entry align="center">0.56</entry>
+<entry align="center">0.62</entry></row>
+<row>
+<entry align="center">15</entry>
+<entry align="center">0.91</entry>
+<entry align="center">1.06</entry></row>
+<row>
+<entry align="center">20</entry>
+<entry align="center">1.27</entry>
+<entry align="center">1.35</entry></row>
+<row>
+<entry align="center">25</entry>
+<entry align="center">1.39</entry>
+<entry align="center">1.40</entry></row><!-- EPO <DP n="24"> -->
+<row>
+<entry align="center">Brightness</entry>
+<entry align="center">67.0</entry>
+<entry align="center">75,0</entry></row></tbody></tgroup>
+</table>
+</tables></p>
+<p id="p0074" num="0074">Samples 7 and 8 have the same calculated Tg (54.9°C) for the total shell composition. Formulation B included sample 8 that had an inner shell having a calculated Tg of 78.4°C and an outer shell having a calculated Tg of 38.8°C. Formulation A included sample 7 that had an outer shell (single shell) having a calculated Tg of 54.9°C. The recoding material of the present invention of Formulation B demonstrated superior brightness and printing results in the critical printer setting range of 10 to 20 relative to Formulation B.</p>
+<heading id="h0022">EXAMPLE 11. Preparation and evaluation of recording material Formulations A and B were prepared as described in Table 11.1 and brought to pH = 8.5 with the addition of NaOH. The viscosities of the formulations were adjusted to 500 cps using RHOPLEX™RM-232D.</heading>
+<p id="p0075" num="0075">
+<tables id="tabl0010" num="0010">
+<table frame="all">
+<title>Table 11.1 Preparation of base coat compositions including polymeric core/shell particles</title>
+<tgroup cols="5">
+<colspec colnum="1" colname="col1" colwidth="30mm"/>
+<colspec colnum="2" colname="col2" colwidth="22mm"/>
+<colspec colnum="3" colname="col3" colwidth="24mm"/>
+<colspec colnum="4" colname="col4" colwidth="33mm"/>
+<colspec colnum="5" colname="col5" colwidth="21mm"/>
+<thead>
+<row>
+<entry align="center" valign="top">Formulation</entry>
+<entry align="center" valign="top">UCD 1507E</entry>
+<entry align="center" valign="top">Sample 2</entry>
+<entry align="center" valign="top">RHOPLEX™ P-308</entry>
+<entry align="center" valign="top">Water</entry></row></thead>
+<tbody>
+<row>
+<entry align="center">Solids</entry>
+<entry align="center">47.0%</entry>
+<entry align="center">29.9%</entry>
+<entry align="center">50.0%</entry>
+<entry align="center"/></row>
+<row>
+<entry align="center">A</entry>
+<entry align="center">44.68</entry>
+<entry align="center">117.06</entry>
+<entry align="center"/>
+<entry align="center">38.26</entry></row>
+<row>
+<entry align="center">Ratio:</entry>
+<entry align="center">0.375</entry>
+<entry align="center">0.625</entry>
+<entry align="center"/>
+<entry align="center"/></row>
+<row>
+<entry align="center">B</entry>
+<entry align="center">44.68</entry>
+<entry align="center"/>
+<entry align="center">70.00</entry>
+<entry align="center">85.32</entry></row>
+<row>
+<entry align="center">Ratio:</entry>
+<entry align="center">0.375</entry>
+<entry align="center"/>
+<entry align="center">0.625</entry>
+<entry align="center"/></row></tbody></tgroup>
+</table>
+</tables></p>
+<p id="p0076" num="0076">Formulations A and B were drawndown on A4 copy paper using a #16 WWR and dried at 50°C for 3 minutes. The black ink layer was prepared and calendered to a surface roughness of 1.5 microns (Parker surface roughness). They had an optical density in the range of 1.50-1.67.<!-- EPO <DP n="25"> --></p>
+<p id="p0077" num="0077">Formulations C and D were prepared as described in Table 11.2 and brought to pH = 8.5 with the addition of NaOH. The viscosities of the formulations were adjusted to 500 cps using RHOPLEX™RM-232D.
+<tables id="tabl0011" num="0011">
+<table frame="all">
+<title>Table 11.2 Preparation of top coat compositions including polymeric core/shell particles</title>
+<tgroup cols="5">
+<colspec colnum="1" colname="col1" colwidth="29mm"/>
+<colspec colnum="2" colname="col2" colwidth="23mm"/>
+<colspec colnum="3" colname="col3" colwidth="23mm"/>
+<colspec colnum="4" colname="col4" colwidth="32mm"/>
+<colspec colnum="5" colname="col5" colwidth="21mm"/>
+<thead>
+<row>
+<entry align="center" valign="top">Formulation</entry>
+<entry align="center" valign="top">Sample 9</entry>
+<entry align="center" valign="top">Sample 8</entry>
+<entry align="center" valign="top">RHOPLEX™ P-308</entry>
+<entry align="center" valign="top">Water</entry></row></thead>
+<tbody>
+<row>
+<entry align="center">Solids</entry>
+<entry align="center">25.2%</entry>
+<entry align="center">25.2%</entry>
+<entry align="center">50.0%</entry>
+<entry align="center"/></row>
+<row>
+<entry align="center">C</entry>
+<entry align="center">119.05</entry>
+<entry align="center"/>
+<entry align="center">20.00</entry>
+<entry align="center">55.40</entry></row>
+<row>
+<entry align="center">Ratio:</entry>
+<entry align="center">0.75</entry>
+<entry align="center"/>
+<entry align="center">0.25</entry>
+<entry align="center"/></row>
+<row>
+<entry align="center">D</entry>
+<entry align="center"/>
+<entry align="center">119.05</entry>
+<entry align="center">20.00</entry>
+<entry align="center">55.40</entry></row>
+<row>
+<entry align="center">Ratio:</entry>
+<entry align="center"/>
+<entry align="center">0.75</entry>
+<entry align="center">0.25</entry>
+<entry align="center"/></row></tbody></tgroup>
+</table>
+</tables></p>
+<p id="p0078" num="0078">Formulations C and D were drawndown on the calendered black layers using a #18 WWR and dried at 50°C for 3 minutes. The dry coat weight of the Formulations C and D was 8.5 g/m<sup>2</sup>.</p>
+<p id="p0079" num="0079">The optical densities of the films before (printer setting at 0) and after printing (printer setting at 5-25) are shown below. The recording material sheets were printed at a printing speed of 2 in/sec. at printer settings of from 0 to 25, higher values corresponding to higher temperatures of the thermal head. The results are presented in Table 11.3.
+<tables id="tabl0012" num="0012">
+<table frame="all">
+<title>Table 11.3 Printing results</title>
+<tgroup cols="5">
+<colspec colnum="1" colname="col1" colwidth="24mm"/>
+<colspec colnum="2" colname="col2" colwidth="30mm"/>
+<colspec colnum="3" colname="col3" colwidth="30mm"/>
+<colspec colnum="4" colname="col4" colwidth="30mm"/>
+<colspec colnum="5" colname="col5" colwidth="30mm"/>
+<thead>
+<row>
+<entry valign="top">Formulation</entry>
+<entry valign="top">Sample 9/ Black A</entry>
+<entry valign="top">Sample 9/ Black B</entry>
+<entry valign="top">Sample 8/ Black A</entry>
+<entry valign="top">Sample 8/ Black B</entry></row>
+<row>
+<entry valign="top">Printer setting</entry>
+<entry valign="top"/>
+<entry valign="top"/>
+<entry valign="top"/>
+<entry valign="top"/></row></thead>
+<tbody>
+<row>
+<entry align="center">0</entry>
+<entry align="center">0.16</entry>
+<entry align="center">0.15</entry>
+<entry align="center">0.18</entry>
+<entry align="center">0.16</entry></row>
+<row>
+<entry align="center">5</entry>
+<entry align="center">0.31</entry>
+<entry align="center">0.28</entry>
+<entry align="center">0.33</entry>
+<entry align="center">0.28</entry></row>
+<row>
+<entry align="center">10</entry>
+<entry align="center">0.49</entry>
+<entry align="center">0.42</entry>
+<entry align="center">0.56</entry>
+<entry align="center">0.52</entry></row>
+<row>
+<entry align="center">15</entry>
+<entry align="center">0.81</entry>
+<entry align="center">0.58</entry>
+<entry align="center">1.00</entry>
+<entry align="center">0.79</entry></row>
+<row>
+<entry align="center">20</entry>
+<entry align="center">1.02</entry>
+<entry align="center">0.80</entry>
+<entry align="center">1.32</entry>
+<entry align="center">1.02</entry></row>
+<row>
+<entry align="center">25</entry>
+<entry align="center">1.23</entry>
+<entry align="center">0.99</entry>
+<entry align="center">1.30</entry>
+<entry align="center">1.07</entry></row><!-- EPO <DP n="26"> -->
+<row>
+<entry align="center">Brightness</entry>
+<entry align="center">79.0</entry>
+<entry align="center">79.8</entry>
+<entry align="center">75.0</entry>
+<entry align="center">76.2</entry></row></tbody></tgroup>
+</table>
+</tables></p>
+<p id="p0080" num="0080">A base coat of Black Formulation A provides performance superior to that of Formulation B. For Black formulation A, significantly higher optical density of the printed area was observed at printing darkness&gt;15.</p>
+</description><!-- EPO <DP n="27"> -->
+<claims id="claims01" lang="en">
+<claim id="c-en-0001" num="0001">
+<claim-text>A recording material comprising:
+<claim-text>a) a support comprising at least one colored surface; and, disposed thereon,</claim-text>
+<claim-text>b) a layer comprising polymeric particles having a core/shell structure, said particles selected from the group consisting of (i) particles having an outer first polymer shell having a calculated Tg of from 40°C to 80°C and (ii) particles having an inner first polymer shell having a calculated Tg of from 40°C to 130°C and an outer second polymer shell having a calculated Tg of from -55°C to 50°C; wherein the calculated Tg of said outer polymer shell is lower that of said inner polymer shell; said particles comprising, when dry, at least one void.</claim-text></claim-text></claim>
+<claim id="c-en-0002" num="0002">
+<claim-text>A recording material comprising:
+<claim-text>a) a support comprising at least one colored surface having a surface roughness of less than 3.0 microns; and, disposed thereon,</claim-text>
+<claim-text>b) a layer comprising polymeric particles having a core/shell structure, said particles having an outer first polymer shell having a calculated Tg of from 40°C to 130°C, and said particles comprising, when dry, at least one void.</claim-text></claim-text></claim>
+<claim id="c-en-0003" num="0003">
+<claim-text>The recording material of claim 2 wherein said support comprising at least one colored surface further has a porosity of less than 80 ml/min.</claim-text></claim>
+<claim id="c-en-0004" num="0004">
+<claim-text>A recording material comprising'
+<claim-text>a) a support; and, disposed thereon,</claim-text>
+<claim-text>b) a layer comprising a permanent colorant and polymeric particles having a core/shell structure, said particles having an outer first polymer shell having a calculated Tg of from 40°C to 130°C and said particles comprising, when dry, at least one void.</claim-text><!-- EPO <DP n="28"> --></claim-text></claim>
+<claim id="c-en-0005" num="0005">
+<claim-text>The recording material of claim 2, claim 3, or claim 4 wherein said polymeric particles further comprise an outer second polymer shell having a calculated Tg of from -55°C to 50°C.</claim-text></claim>
+<claim id="c-en-0006" num="0006">
+<claim-text>A method for providing an image comprising:
+<claim-text>forming the recording material of any of claims 1-5; and</claim-text>
+<claim-text>subjecting selected portions of said recording material to an agent selected from the group consisting of heat, pressure, and combinations thereof, sufficient to reduce the opacity of said selected portions.</claim-text></claim-text></claim>
+</claims>
+<search-report-data id="srep" lang="en" srep-office="EP" date-produced=""><doc-page id="srep0001" file="srep0001.tif" wi="160" he="233" type="tif"/><doc-page id="srep0002" file="srep0002.tif" wi="154" he="233" type="tif"/></search-report-data>
+<ep-reference-list id="ref-list">
+<heading id="ref-h0001"><b>REFERENCES CITED IN THE DESCRIPTION</b></heading>
+<p id="ref-p0001" num=""><i>This list of references cited by the applicant is for the reader's convenience only. It does not form part of the European patent document. Even though great care has been taken in compiling the references, errors or omissions cannot be excluded and the EPO disclaims all liability in this regard.</i></p>
+<heading id="ref-h0002"><b>Patent documents cited in the description</b></heading>
+<p id="ref-p0002" num="">
+<ul id="ref-ul0001" list-style="bullet">
+<li><patcit id="ref-pcit0001" dnum="US5378534A"><document-id><country>US</country><doc-number>5378534</doc-number><kind>A</kind></document-id></patcit><crossref idref="pcit0001">[0003]</crossref></li>
+<li><patcit id="ref-pcit0002" dnum="US5932515A"><document-id><country>US</country><doc-number>5932515</doc-number><kind>A</kind></document-id></patcit><crossref idref="pcit0002">[0004]</crossref></li>
+<li><patcit id="ref-pcit0003" dnum="US4427835A"><document-id><country>US</country><doc-number>4427835</doc-number><kind>A</kind></document-id></patcit><crossref idref="pcit0003">[0011]</crossref></li>
+<li><patcit id="ref-pcit0004" dnum="US4920160A"><document-id><country>US</country><doc-number>4920160</doc-number><kind>A</kind></document-id></patcit><crossref idref="pcit0004">[0011]</crossref></li>
+<li><patcit id="ref-pcit0005" dnum="US4594363A"><document-id><country>US</country><doc-number>4594363</doc-number><kind>A</kind></document-id></patcit><crossref idref="pcit0005">[0011]</crossref></li>
+<li><patcit id="ref-pcit0006" dnum="US4469825A"><document-id><country>US</country><doc-number>4469825</doc-number><kind>A</kind></document-id></patcit><crossref idref="pcit0006">[0011]</crossref></li>
+<li><patcit id="ref-pcit0007" dnum="US4468498A"><document-id><country>US</country><doc-number>4468498</doc-number><kind>A</kind></document-id></patcit><crossref idref="pcit0007">[0011]</crossref></li>
+<li><patcit id="ref-pcit0008" dnum="US4880842A"><document-id><country>US</country><doc-number>4880842</doc-number><kind>A</kind></document-id></patcit><crossref idref="pcit0008">[0011]</crossref></li>
+<li><patcit id="ref-pcit0009" dnum="US4985064A"><document-id><country>US</country><doc-number>4985064</doc-number><kind>A</kind></document-id></patcit><crossref idref="pcit0009">[0011]</crossref></li>
+<li><patcit id="ref-pcit0010" dnum="US5157084A"><document-id><country>US</country><doc-number>5157084</doc-number><kind>A</kind></document-id></patcit><crossref idref="pcit0010">[0011]</crossref></li>
+<li><patcit id="ref-pcit0011" dnum="US5041464A"><document-id><country>US</country><doc-number>5041464</doc-number><kind>A</kind></document-id></patcit><crossref idref="pcit0011">[0011]</crossref></li>
+<li><patcit id="ref-pcit0012" dnum="US5036109A"><document-id><country>US</country><doc-number>5036109</doc-number><kind>A</kind></document-id></patcit><crossref idref="pcit0012">[0011]</crossref></li>
+<li><patcit id="ref-pcit0013" dnum="US5409776A"><document-id><country>US</country><doc-number>5409776</doc-number><kind>A</kind></document-id></patcit><crossref idref="pcit0013">[0011]</crossref></li>
+<li><patcit id="ref-pcit0014" dnum="US5510422A"><document-id><country>US</country><doc-number>5510422</doc-number><kind>A</kind></document-id></patcit><crossref idref="pcit0014">[0011]</crossref><crossref idref="pcit0016">[0011]</crossref></li>
+<li><patcit id="ref-pcit0015" dnum="US5494971A"><document-id><country>US</country><doc-number>5494971</doc-number><kind>A</kind></document-id></patcit><crossref idref="pcit0015">[0011]</crossref></li>
+<li><patcit id="ref-pcit0016" dnum="US6139961A"><document-id><country>US</country><doc-number>6139961</doc-number><kind>A</kind></document-id></patcit><crossref idref="pcit0017">[0011]</crossref><crossref idref="pcit0033">[0041]</crossref></li>
+<li><patcit id="ref-pcit0017" dnum="US6632531A"><document-id><country>US</country><doc-number>6632531</doc-number><kind>A</kind></document-id></patcit><crossref idref="pcit0018">[0011]</crossref></li>
+<li><patcit id="ref-pcit0018" dnum="US6896905A"><document-id><country>US</country><doc-number>6896905</doc-number><kind>A</kind></document-id></patcit><crossref idref="pcit0019">[0011]</crossref></li>
+<li><patcit id="ref-pcit0019" dnum="EP267726A"><document-id><country>EP</country><doc-number>267726</doc-number><kind>A</kind></document-id></patcit><crossref idref="pcit0020">[0011]</crossref></li>
+<li><patcit id="ref-pcit0020" dnum="EP331421A"><document-id><country>EP</country><doc-number>331421</doc-number><kind>A</kind></document-id></patcit><crossref idref="pcit0021">[0011]</crossref></li>
+<li><patcit id="ref-pcit0021" dnum="EP915108A"><document-id><country>EP</country><doc-number>915108</doc-number><kind>A</kind></document-id></patcit><crossref idref="pcit0022">[0011]</crossref></li>
+<li><patcit id="ref-pcit0022" dnum="US20030176535A1"><document-id><country>US</country><doc-number>20030176535</doc-number><kind>A1</kind></document-id></patcit><crossref idref="pcit0023">[0014]</crossref></li>
+<li><patcit id="ref-pcit0023" dnum="US4325856A"><document-id><country>US</country><doc-number>4325856</doc-number><kind>A</kind></document-id></patcit><crossref idref="pcit0024">[0022]</crossref><crossref idref="pcit0029">[0023]</crossref></li>
+<li><patcit id="ref-pcit0024" dnum="US4654397A"><document-id><country>US</country><doc-number>4654397</doc-number><kind>A</kind></document-id></patcit><crossref idref="pcit0025">[0022]</crossref><crossref idref="pcit0030">[0023]</crossref></li>
+<li><patcit id="ref-pcit0025" dnum="US4814373A"><document-id><country>US</country><doc-number>4814373</doc-number><kind>A</kind></document-id></patcit><crossref idref="pcit0026">[0022]</crossref><crossref idref="pcit0031">[0023]</crossref></li>
+<li><patcit id="ref-pcit0026" dnum="US4384056A"><document-id><country>US</country><doc-number>4384056</doc-number><kind>A</kind></document-id></patcit><crossref idref="pcit0027">[0022]</crossref></li>
+<li><patcit id="ref-pcit0027" dnum="US4539361A"><document-id><country>US</country><doc-number>4539361</doc-number><kind>A</kind></document-id></patcit><crossref idref="pcit0028">[0022]</crossref></li>
+<li><patcit id="ref-pcit0028" dnum="US6252004B"><document-id><country>US</country><doc-number>6252004</doc-number><kind>B</kind></document-id></patcit><crossref idref="pcit0032">[0036]</crossref></li>
+</ul></p>
+<heading id="ref-h0003"><b>Non-patent literature cited in the description</b></heading>
+<p id="ref-p0003" num="">
+<ul id="ref-ul0002" list-style="bullet">
+<li><nplcit id="ref-ncit0001" npl-type="b"><article><atl/><book><book-title>Journal of Polymer Science - Part A</book-title><imprint><name>John Wiley and Sons, Inc</name><pubdate>20010000</pubdate></imprint><vid>39</vid><location><pp><ppf>1435</ppf><ppl>1449</ppl></pp></location></book></article></nplcit><crossref idref="ncit0001">[0011]</crossref></li>
+<li><nplcit id="ref-ncit0002" npl-type="s"><article><author><name>T.G. FOX</name></author><atl/><serial><sertitle>Bull. Am. Physics Soc.</sertitle><pubdate><sdate>19560000</sdate><edate/></pubdate><vid>1</vid><ino>3</ino></serial><location><pp><ppf>123</ppf><ppl/></pp></location></article></nplcit><crossref idref="ncit0002">[0015]</crossref></li>
+<li><nplcit id="ref-ncit0003" npl-type="b"><article><atl/><book><book-title>Polymer Handbook</book-title><imprint><name>Interscience Publishers</name></imprint></book></article></nplcit><crossref idref="ncit0003">[0016]</crossref></li>
+</ul></p>
+</ep-reference-list>
+</ep-patent-document>

@@ -1,5 +1,3 @@
-*.pdf binary
-*.png binary
-*.sqlite binary
-*.xlsx binary
-*.zip binary
+# Evidence is byte-pinned. Never normalize captured/extracted line endings.
+patents/data/snapshots/** -text -diff -whitespace
+patents/data/extracts/** -text -diff -whitespace

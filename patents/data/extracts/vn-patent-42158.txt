@@ -1,0 +1,332 @@
+
+
+       (12)       BẢN MÔ TẢ SÁNG CHẾ THUỘC BẰNG ĐỘC QUYỀN SÁNG CHẾ
+       (19)       Cộng hòa xã hội chủ nghĩa Việt Nam (VN) (11)
+                         CỤC SỞ HỮU TRÍ TUỆ
+                                                                        1-0042158
+       (51)2020.01 H04W 48/00                               (13)   B
+
+(21) 1-2020-02099                         (22) 13/04/2020
+(45) 25/12/2024 441                       (43) 27/07/2020 388
+(73) Tập đoàn Công nghiệp - Viễn thông Quân đội (VN)
+     Lô D26 khu đô thị mới Cầu Giấy, phường Yên Hoà, quận Cầu Giấy, thành phố Hà
+     Nội.
+(72) NGUYỄN TRUNG TIẾN (VN); LƯƠNG XUÂN HÀO (VN); LÊ TRƯỜNG
+     GIANG (VN).
+(74) Công ty TNHH Tư vấn Quốc Dân (NACILAW)
+
+(54) PHƯƠNG PHÁP DÒ HIỆU CHỈNH VÀ LOẠI BỎ TÍN HIỆU TRUY CẬP NGẪU
+     NHIÊN GIẢ TRONG HỆ THỐNG TRẠM THU PHÁT GỐC VÔ TUYẾN BĂNG
+     THÔNG HẸP INTERNET VẠN VẬT KẾT NỐI NB-IOT
+(57) Sáng chế đề cập đến phương pháp dò hiệu chỉnh và loại bỏ tín hiệu truy cập ngẫu
+nhiên giả trong hệ thống trạm thu phát vô tuyến băng thông hẹp internet vạn vật kết nối
+NB-IoT bao gồm ba bước: bước 1: thiết lập tham số khởi tạo, tiến hành sinh dữ liệu tham
+chuẩn và lọc giảm mẫu dữ liệu kênh vật lý truy cập ngẫu nhiên băng thông hẹp internet vạn
+vật kết nối (PRACH-NB-IoT hay NPRACH) dò hiệu chỉnh ban đầu; bước 2: thực hiện loại
+bỏ khoảng dữ liệu bảo vệ, chuỗi tiền tố lặp và phân tách dữ liệu từng mẫu ký tự, và biến
+đổi FFT theo từng mẫu ký tự; bước 3: dò tìm sóng mang khởi tạo theo cửa sổ, so sánh và
+hiệu chỉnh ngưỡng đưa ra quyết định dữ liệu, loại bỏ tín hiệu truy cập ngẫu nhiên giả.
+
+
+42158
+
+
+
+
+ -2-
+
+
+42158
+
+
+
+
+ -3-
+
+
+42158
+
+
+
+
+ -4-
+
+
+42158
+
+
+
+
+ -5-
+
+
+42158
+
+
+
+
+ -6-
+
+
+42158
+
+
+
+
+ -7-
+
+
+42158
+
+
+
+
+ -8-
+
+
+42158
+
+
+
+
+ -9-
+
+
+42158
+
+
+
+
+ -10-
+
+
+42158
+
+
+
+
+ -11-
+
+
+42158
+
+
+
+
+ -12-
+
+
+42158
+
+
+
+
+ -13-
+
+
+42158
+
+
+
+
+ -14-
+
+
+42158
+
+
+
+
+ -15-
+
+
+42158
+
+
+
+
+ -16-
+
+
+42158
+
+
+
+
+ -17-
+
+
+42158
+
+
+
+
+ -18-
+
+
+42158
+
+
+
+
+ -19-
+
+
+42158
+
+
+
+
+ -20-
+
+
+42158
+
+
+
+
+ -21-
+
+
+42158
+
+
+
+
+ -22-
+
+
+42158
+
+
+
+
+ -23-
+
+
+42158
+
+
+
+
+ -24-
+
+
+42158
+
+
+
+
+ -25-
+
+
+42158
+
+
+
+
+ -26-
+
+
+42158
+
+
+
+
+ -27-
+
+
+42158
+
+
+
+
+ -28-
+
+
+42158
+
+
+
+
+ -29-
+
+
+42158
+
+
+
+
+ -30-
+
+
+42158
+
+
+
+
+ -31-
+
+
+42158
+
+
+
+
+ -32-
+
+
+42158
+
+
+
+
+ -33-
+
+
+42158
+
+
+
+
+ -34-
+
+
+42158
+
+
+
+
+ -35-
+
+
+42158
+
+
+
+
+ -36-
+
+
+42158
+
+
+
+
+ -37-
+
+
+42158
+
+
+
+
+ -38-
+
+
+42158
+
+
+
+
+ -39-

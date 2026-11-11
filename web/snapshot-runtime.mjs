@@ -71,7 +71,7 @@ function failure(res, error) {
 }
 
 const isModelRequest = req => req.method === 'POST' &&
-  (/^\/api\/m3\/cases\/[a-f0-9-]{36}\/propose$/.test(new URL(req.url, 'https://pilot.invalid').pathname) ||
+  (/^\/api\/(?:m3|patents)\/cases\/[a-f0-9-]{36}\/propose$/.test(new URL(req.url, 'https://pilot.invalid').pathname) ||
     new URL(req.url, 'https://pilot.invalid').pathname === '/api/copilot/intake/run');
 
 // The SQLite file is a request workspace, never the durable store. A single

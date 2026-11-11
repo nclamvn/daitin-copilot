@@ -27,7 +27,8 @@ export function allowedRequest(req, settings) {
 export const publicWebAsset = path => [
   '/brand.css', '/public/brand.css', '/brand/daitin.png', '/public/brand/daitin.png',
   '/fonts.css', '/public/fonts.css', '/copilot/m3/login.js', '/copilot/m3/login.css',
-  '/copilot/m3/workspace/', '/copilot/m3/workspace', '/copilot/m3/workspace/index.html'
+  '/copilot/m3/workspace/', '/copilot/m3/workspace', '/copilot/m3/workspace/index.html',
+  '/patents/', '/patents'
 ].includes(path);
 
 export function windowLimit(max, windowMs, maxKeys = 1024, saved = []) {

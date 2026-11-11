@@ -10,6 +10,7 @@ const web = webSettings();
 const copilotEnabled = process.env.DAI_TIN_COPILOT === '1';
 const copilotModule = copilotEnabled ? await import('./copilot/service.mjs') : null;
 const m3Module = process.env.DAI_TIN_M3 === '1' ? await import('./copilot/m3/api.mjs') : null;
+const patentsModule = process.env.DAI_TIN_PATENTS === '1' ? await import('./patents/service.mjs') : null;
 
 const content = new Map([
   ['/', ['index.html', 'text/html; charset=utf-8']],
@@ -77,6 +78,7 @@ async function readJSON(req, maxBytes = maxBodyBytes) {
 export function createApp({ state = {}, modelReserved = false, immutableCopilot } = {}) {
   const copilot = immutableCopilot ?? copilotModule?.createCopilot(getCatalog(), resolveProcedure);
   const m3 = m3Module?.createM3(copilot?.review, { catalog: getCatalog(), search }, state);
+  const patents = patentsModule?.createPatentService();
   const loginLimit = windowLimit(12, 5 * 60 * 1000, 1024, state.loginLimits ?? []);
   const modelLimit = windowLimit(20, 24 * 60 * 60 * 1000, 1024, state.modelLimits ?? []);
   const handle = async (req, res) => {
@@ -92,7 +94,7 @@ export function createApp({ state = {}, modelReserved = false, immutableCopilot 
           return respond(res, 200, { status: 'ok' }, undefined, head);
         }
         if ((req.method === 'GET' || head) && path === '/') {
-          return respond(res, 302, {}, undefined, head, { Location: '/copilot/m3/workspace/' });
+          return respond(res, 302, {}, undefined, head, { Location: patents ? '/patents/' : '/copilot/m3/workspace/' });
         }
         const login = req.method === 'POST' && path === '/api/m5/session';
         if (login && !loginLimit(req.socket.remoteAddress ?? 'unknown')) {
@@ -106,6 +108,22 @@ export function createApp({ state = {}, modelReserved = false, immutableCopilot 
             return respond(res, 429, { error: 'Tài khoản đã hết 20 lượt AI trong cửa sổ 24 giờ của pilot.' }, undefined, head);
           }
         }
+      }
+      if (patents && (path === '/patents' || path.startsWith('/patents/') || path.startsWith('/api/patents/'))) {
+        const actor = m3?.authorize(req);
+        if (!actor && (req.method === 'GET' || head) && ['/patents', '/patents/'].includes(path)) {
+          const login = readFileSync(new URL('./copilot/m5/login.html', import.meta.url), 'utf8')
+            .replace('data-return-to="/copilot/m3/workspace/"', 'data-return-to="/patents/"');
+          return respond(res, 200, Buffer.from(login), 'text/html; charset=utf-8', head);
+        }
+        const checkAccess = () => {
+          const fresh = m3?.authorize(req);
+          if (!fresh || !actor || fresh.group !== actor.group || fresh.role !== actor.role || fresh.name !== actor.name) {
+            throw new patentsModule.PatentAccessError('Quyền truy cập đã đổi. Mở lại hồ sơ.', 403);
+          }
+        };
+        const result = await patents.handle(req, path, actor, readJSON, checkAccess);
+        if (result) return respond(res, result.status ?? 200, result.value, result.type, head, result.headers);
       }
       if (m3 && (path.startsWith('/copilot/m3') || path.startsWith('/api/m3/') || path.startsWith('/api/m4/') || path.startsWith('/api/m5/'))) {
         const result = await m3.handle(req, path, readJSON);
@@ -174,7 +192,7 @@ export function createApp({ state = {}, modelReserved = false, immutableCopilot 
     handle,
     authorize: req => m3?.authorize(req),
     state: () => ({ sessions: m3?.sessionState() ?? [], loginLimits: loginLimit.snapshot(), modelLimits: modelLimit.snapshot() }),
-    close() { m3?.close(); if (!immutableCopilot) copilot?.close(); }
+    close() { patents?.close(); m3?.close(); if (!immutableCopilot) copilot?.close(); }
   };
 }
 

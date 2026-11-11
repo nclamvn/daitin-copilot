@@ -1,0 +1,329 @@
+
+
+       (12)       BẢN MÔ TẢ SÁNG CHẾ THUỘC BẰNG ĐỘC QUYỀN SÁNG CHẾ
+       (19)       Cộng hòa xã hội chủ nghĩa Việt Nam (VN) (11)
+                         CỤC SỞ HỮU TRÍ TUỆ
+                                                                         1-0042036
+       (51)7      H01Q 1/44; H01Q 5/20                       (13)   B
+
+(21) 1-2020-00048                          (22) 27/12/2018
+(86) PCT/CN2018/124150 27/12/2018          (87) WO/2019/227914 05/12/2019
+(30) 201810554555.9 01/06/2018 CN
+(45) 25/12/2024 441                        (43) 25/03/2020 384ASC
+(73) HUAWEI TECHNOLOGIES CO., LTD. (CN)
+     Huawei Administration Building, Bantian, Longgang District, Shenzhen, Guangdong
+     518129, P. R. China
+(72) ZHOU, Dawei (GB); LI, Yuanpeng (CN); LIANG, Tiezhu (CN); ZHANG, Gonglei
+     (CN).
+(74) Công ty Luật TNHH T&G (TGVN)
+
+(54) ĂNG TEN VÀ THIẾT BỊ ĐẦU CUỐI DI ĐỘNG
+(57) Sáng chế này đề cập đến ăng-ten được bố trí trên thiết bị đầu cuối di động. Thiết bị
+đầu cuối di động bao gồm phần bức xạ và bảng mạch, bảng mạch bao gồm cạnh ngang và
+lớp nối đất, và khe cách ly chia phần bức xạ thành cuống cấp và cuống ký sinh. Khe hở
+được bao quanh bởi bảng mạch và phần bức xạ. Có nhánh cấp kéo dài từ cuống cấp đến
+khe hở để cấp điện ăng-ten, và có nhánh nối đất kéo dài từ cuống ký sinh đến khe hở và
+được kết nối điện với phần nối đất. Ăng-ten kích thích vòng dòng điện quấn quanh co khe
+hở trên phần nối đất, cuống cấp, và cuống ký sinh. Ăng-ten trong sáng chế này tạo thành sự
+cộng hưởng tại vị trí có dòng điện cảm ứng tương đối lớn, để đảm bảo tín hiệu truyền
+thông có công suất tương đối cao. Do đó, mặc dù thiết bị đầu cuối di động trong chế độ
+đầu-tay, sự suy giảm hiệu suất của ăng-ten có thể được kiểm soát, do đó duy trì hiệu ứng
+cuộc gọi tương đối mong muốn.
+
+
+
+
+42036
+
+
+
+
+ -2-
+
+
+42036
+
+
+
+
+ -3-
+
+
+42036
+
+
+
+
+ -4-
+
+
+42036
+
+
+
+
+ -5-
+
+
+42036
+
+
+
+
+ -6-
+
+
+42036
+
+
+
+
+ -7-
+
+
+42036
+
+
+
+
+ -8-
+
+
+42036
+
+
+
+
+ -9-
+
+
+42036
+
+
+
+
+ -10-
+
+
+42036
+
+
+
+
+ -11-
+
+
+42036
+
+
+
+
+ -12-
+
+
+42036
+
+
+
+
+ -13-
+
+
+42036
+
+
+
+
+ -14-
+
+
+42036
+
+
+
+
+ -15-
+
+
+42036
+
+
+
+
+ -16-
+
+
+42036
+
+
+
+
+ -17-
+
+
+42036
+
+
+
+
+ -18-
+
+
+42036
+
+
+
+
+ -19-
+
+
+42036
+
+
+
+
+ -20-
+
+
+42036
+
+
+
+
+ -21-
+
+
+42036
+
+
+
+
+ -22-
+
+
+42036
+
+
+
+
+ -23-
+
+
+42036
+
+
+
+
+ -24-
+
+
+42036
+
+
+
+
+ -25-
+
+
+42036
+
+
+
+
+ -26-
+
+
+42036
+
+
+
+
+ -27-
+
+
+42036
+
+
+
+
+ -28-
+
+
+42036
+
+
+
+
+ -29-
+
+
+42036
+
+
+
+
+ -30-
+
+
+42036
+
+
+
+
+ -31-
+
+
+42036
+
+
+
+
+ -32-
+
+
+42036
+
+
+
+
+ -33-
+
+
+42036
+
+
+
+
+ -34-
+
+
+42036
+
+
+
+
+ -35-
+
+
+42036
+
+
+
+
+ -36-
+
+
+42036
+
+
+
+
+ -37-
+
+
+42036
+
+
+
+
+ -38-

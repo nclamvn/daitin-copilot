@@ -1,0 +1,3023 @@
+
+
+Guide to the
+International Patent
+Classification
+   2026 edition
+
+
+GUIDE TO THE INTERNATIONAL PATENT CLASSIFICATION
+(2026)
+
+
+I.    FOREWORD
+      Objectives of the IPC; History of the IPC; Reform of the IPC; Assistance in the use of
+      the Classification
+
+1.      The Strasbourg Agreement concerning the International Patent Classification (of 1971),
+which entered into force on October 7, 1975, provides for a common classification for patents
+for invention including published patent applications, inventors’ certificates, utility models and
+utility certificates (hereinafter referred to as “patent documents”). Under Article 1 of the
+Agreement, the Special (IPC) Union was established. The International Patent Classification is
+hereinafter referred to as “the Classification” or “the IPC”.
+
+2.    The Classification is established in the English and French languages, both texts being
+equally authentic. Pursuant to Article 3(2) of the Strasbourg Agreement, official texts of the
+Classification may be established in other languages.
+
+3.    The Internet version of the Classification, available on the WIPO IPC website
+(https://www.wipo.int/en/web/classification-ipc) represents the official publication of the IPC.
+It contains the complete text of the Classification in English and French of the edition/version in
+force as well as previous editions/versions.
+
+4.    In accordance with Article 4(5) of the Strasbourg Agreement, it has been determined that
+the abbreviation “Int.Cl.” of the words “International Patent Classification” may precede the
+classification symbols on published patent documents classified according to the Classification.
+More details on the presentation of these symbols are given in Section XII, below.
+
+5.    [Deleted]
+
+OBJECTIVES OF THE IPC
+
+6.    The Classification, being a means for obtaining an internationally uniform classification of
+patent documents, has as its primary purpose the establishment of an effective search tool for
+the retrieval of patent documents by intellectual property offices and other users, in order to
+establish the novelty and evaluate the inventive step or non-obviousness (including the
+assessment of technical advance and useful results or utility) of technical disclosures in
+patent applications.
+
+7.    The Classification, furthermore, has the important purposes of serving as:
+
+      (a) an instrument for the orderly arrangement of patent documents in order to facilitate
+      access to the technological and legal information contained therein;
+
+      (b)   a basis for selective dissemination of information to all users of patent information;
+
+      (c)   a basis for investigating the state of the art in given fields of technology;
+
+      (d) a basis for the preparation of industrial property statistics which in turn permit the
+      assessment of technological development in various areas.
+
+
+                                                                           Guide to the IPC (2026)
+                                                                                           page 2
+
+
+HISTORY OF THE IPC
+
+8.    The text of the first edition of the Classification was established pursuant to the provisions
+of the European Convention on the International Classification of Patents for Invention of 1954.
+Following the signing of the Strasbourg Agreement, the International (European) Classification
+of Patents for Invention, which had been published on September 1, 1968, was as of
+March 24, 1971, considered and referred to as the first edition of the Classification.
+
+9.    The Classification has been periodically revised in order to improve the system and to
+take account of technical development.
+
+10. The first edition of the Classification was in force from September 1, 1968 to
+June 30, 1974,
+
+      –     the second from July 1, 1974 to December 31, 1979,
+      –     the third from January 1, 1980 to December 31, 1984,
+      –     the fourth from January 1, 1985 to December 31, 1989,
+      –     the fifth from January 1, 1990 to December 31, 1994,
+      –     the sixth from January 1, 1995 to December 31, 1999, and
+      –     the seventh from January 1, 2000 to December 31, 2005.
+
+10bis. Following the reform of the IPC (see paragraphs 11 to 13, below), for the editions that
+were in force from January 1, 2006, to December 31, 2010, the Classification was divided into
+core and advanced levels. Each edition of the core level was indicated by the year of entry into
+force of that edition. IPC-2006 was in force from January 1, 2006, to December 31, 2008, and
+IPC-2009 entered into force on January 1, 2009. Each new version of the advanced level of the
+IPC was indicated by the year and the month of the entry into force of that version, for example,
+IPC-2008.01. From January 1, 2011, onwards, the division of the Classification into core and
+advanced levels was discontinued and each new version of the IPC is indicated by the year and
+the month of the entry into force of that version, for example, IPC-2011.01.
+
+REFORM OF THE IPC
+
+11. The Classification was designed, and developed for many years, mainly as a paper-based
+information tool. Changes to the structure of the Classification and to methods of its revision
+and application were needed in order to ensure its efficient and effective use in the
+electronic environment.
+
+12. For this reason, member States of the IPC Union decided, in 1999, to launch a reform of
+the Classification and to introduce a transitional revision period during which, in parallel with
+revision of the Classification, the changes necessitated by the reform had to be elaborated. The
+transitional revision period started in 1999 and in 2005 the basic period of reform
+was completed.
+
+13.   The following major changes were introduced in the Classification as a result of its reform:
+
+      (a) the Classification was divided into a core and an advanced level, in order to better
+      satisfy the needs of different categories of users;
+
+      (b) different revision methods were introduced, respectively, for the core and the
+      advanced level, namely three-year revision cycles for the core level and continuous
+      revision for the advanced level;
+
+      (c) when the Classification was revised, patent documents were reclassified according
+      to the amendments to the core and advanced levels;
+
+
+                                                                           Guide to the IPC (2026)
+                                                                                           page 3
+
+
+
+      (d) additional data illustrating classification entries or explaining them in more detail,
+      such as Definitions, chemical structural formulae and graphic illustrations, informative
+      references, were introduced in the electronic layer of the Classification;
+
+      (e) general principles of classification and classification rules were reconsidered and
+      revised when appropriate.
+
+14. However, in view of the complications to maintain two independent levels with different
+revision procedures and publication cycles, the IPC Union decided, in 2009, to discontinue the
+publication of separate levels of the IPC. In order to satisfy the needs of the users of the core
+level, it was decided that these users could classify the patent documents they publish using
+main groups (see paragraph 22, below) of the Classification.
+
+ASSISTANCE IN THE USE OF THE CLASSIFICATION
+
+15. The Guide attempts to describe in simple terms and by means of examples how the
+Classification should be used for the purpose of classifying or retrieving patent documents.
+Further assistance in the use of the Classification is provided on the WIPO IPC website
+(https://www.wipo.int/en/web/classification-ipc) by:
+
+      (a) the supplementary information in the IPC which includes Definitions, chemical
+      structural formulae and graphic illustrations (see paragraphs 44 to 51, below);
+
+      (b) the Catchword Index to the IPC, which has been established in English and French
+      as well as in other languages;
+
+      (c) the Revision Concordance List which gives information on how subject matter has
+      been transferred between different places in the Classification as a result of its revision.
+
+      (d)   [Deleted]
+
+16.   [Deleted]
+
+17. Printed versions of the scheme of the IPC may be produced using the PDF files available
+on the WIPO IPC website.
+
+18.   Communications relating to the Classification should be addressed to:
+
+                         World Intellectual Property Organization (WIPO)
+                                   34, chemin des Colombettes
+                               CH-1211 Geneva 20 (Switzerland)
+                                     E-mail: ipc.mail@wipo.int
+
+
+
+II.   LAYOUT OF CLASSIFICATION SYMBOLS
+      Section; Class; Subclass; Group; Complete classification symbol
+
+SECTION
+
+19. The Classification represents the whole body of knowledge which may be regarded as
+proper to the field of patents for invention, divided into eight sections. Sections are the highest
+level of hierarchy of the Classification.
+
+
+                                                                          Guide to the IPC (2026)
+                                                                                          page 4
+
+
+     (a) Section Symbol – Each section is designated by one of the capital letters A
+     through H.
+
+     (b) Section Title – The section title is to be considered as a very broad indication of the
+     contents of the section. The eight sections are entitled as follows:
+
+           A     HUMAN NECESSITIES
+           B     PERFORMING OPERATIONS; TRANSPORTING
+           C     CHEMISTRY; METALLURGY
+           D     TEXTILES; PAPER
+           E     FIXED CONSTRUCTIONS
+           F     MECHANICAL ENGINEERING; LIGHTING; HEATING; WEAPONS;
+                 BLASTING
+           G     PHYSICS
+           H     ELECTRICITY
+
+     (c)   [Deleted]
+
+     (d) Subsection – Within sections, informative headings may form subsections, which
+     are titles without classification symbols.
+
+           Example: Section A (HUMAN NECESSITIES) contains the following subsections:
+
+                       AGRICULTURE
+                       FOODSTUFFS; TOBACCO
+                       PERSONAL OR DOMESTIC ARTICLES
+                       HEALTH; LIFE SAVING; AMUSEMENT
+
+CLASS
+
+20. Each section is subdivided into classes which are the second hierarchical level of
+the Classification.
+
+     (a) Class Symbol – Each class symbol consists of the section symbol followed by a
+     two-digit number.
+
+           Example: H01
+
+     (b)   Class Title – The class title gives an indication of the content of the class.
+
+           Example: H01       ELECTRIC ELEMENTS
+
+     (c) Class Index – Some classes have an index which is merely an informative
+     summary giving a broad survey of the content of the class, e.g. G10.
+
+SUBCLASS
+
+21. Each class comprises one or more subclasses which are the third hierarchical level of
+the Classification.
+
+     (a) Subclass Symbol – Each subclass symbol consists of the class symbol followed by
+     a capital letter.
+
+           Example: H01S
+
+
+                                                                          Guide to the IPC (2026)
+                                                                                          page 5
+
+
+     (b) Subclass Title – The subclass title indicates as precisely as possible the content of
+     the subclass.
+
+           Example: H01S DEVICES USING THE PROCESS OF LIGHT AMPLIFICATION
+                         BY STIMULATED EMISSION OF RADIATION [LASER] TO
+                         AMPLIFY OR GENERATE LIGHT; - - -
+
+     (c) Subclass Index – Most subclasses have an index which is merely an informative
+     summary giving a broad survey of the content of the subclass, e.g. H01S.
+
+     (d) Guidance Heading – Where a large part of a subclass relates to a common subject
+     matter, a guidance heading indicating that subject matter may be provided at the
+     beginning of that part, e.g. “Volatile memory devices” before group H10B 10/00.
+
+GROUP
+
+22. Each subclass is broken down into subdivisions referred to as “groups”, which are either
+main groups (i.e. the fourth hierarchical level of the Classification) or subgroups (i.e. lower
+hierarchical levels dependent upon the main group level of the Classification).
+
+     (a) Group Symbol – Each group symbol consists of the subclass symbol followed by
+     two numbers separated by an oblique stroke.
+
+     (b) Main Group Symbol – Each main group symbol consists of the subclass symbol
+     followed by a one- to three-digit number, the oblique stroke and the number 00.
+
+           Example: H01S 3/00
+
+     (c) Main Group Title – The main group title precisely defines a field of subject matter
+     within the scope of its subclass considered to be useful for search purposes. Main group
+     symbols and titles are presented in bold in the Classification.
+
+           Example: H01S 3/00            Lasers
+
+     (d) Subgroup Symbol – Subgroups form subdivisions under the main groups. Each
+     subgroup symbol consists of the subclass symbol followed by the one- to three-digit
+     number of its main group, the oblique stroke and a number of at least two digits other
+     than 00.
+
+           Example:     H01S 3/02
+
+     Subgroups are ordered in the scheme as if their numbers were decimals of the number
+     before the oblique stroke. For example, 3/036 is to be found after 3/03 and before 3/04,
+     and 3/0941 is to be found after 3/094 and before 3/095.
+
+     (e) Subgroup Title – The subgroup title precisely defines a field of subject matter within
+     the scope of its main group considered to be useful for search purposes. The title is
+     preceded by one or more dots indicating the hierarchical position of that subgroup, i.e.,
+     indicating that each subgroup forms a subdivision of the nearest group above it having
+     one dot less (see paragraphs 25 to 28, below). The subgroup title is often a complete
+     expression, in which case it begins with a capital letter. A subgroup title begins with a
+     lower-case letter if it reads as a continuation of the title of the next higher, less indented
+     group from which it depends. In all cases, the subgroup title must be read as being
+     dependent upon, and restricted by, the titles of the groups under which it is indented.
+
+
+                                                                                   Guide to the IPC (2026)
+                                                                                                   page 6
+
+
+             Examples: H01S 3/00               Lasers
+                       H01S 3/14               •   characterised by the material used as the active
+                                                   medium
+
+       The title of 3/14 is to be read as: Lasers characterised by the material used as the
+       active medium.
+
+                            H01S 3/05          •     Construction or shape of optical resonators
+
+       The title of 3/05 is a complete expression, but owing to its hierarchical position this group
+       is restricted to the construction or shape of optical resonators of lasers.
+
+COMPLETE CLASSIFICATION SYMBOL
+
+23. A complete classification symbol comprises the combined symbols representing the
+section, class, subclass and main group or subgroup.
+
+       Example:
+
+ A                     01                      B                     33/00                Main group – 4th
+                                                                                         level
+ Section – 1st level                                                 or
+                       Class – 2nd level                             33/08               Subgroup – lower
+                                                                                         level
+                                                Subclass – 3rd
+                                               level
+                                                                     Group
+
+
+
+III.   HIERARCHICAL STRUCTURE OF THE CLASSIFICATION
+       Principle of hierarchy; The option of classifying in main groups only
+
+24. The IPC is a hierarchical classification system. The contents of lower hierarchical levels
+are subdivisions of the contents of the higher hierarchical levels to which the lower levels
+are subordinated.
+
+PRINCIPLE OF HIERARCHY
+
+25. The Classification separates the whole body of technical knowledge using the hierarchical
+levels, i.e., section, class, subclass, group and subgroup, in descending order of hierarchy.
+
+26. The hierarchy among subgroups is determined solely by the number of dots preceding
+their titles, i.e. their level of indentation, and not by the numbering of the subgroups.
+
+       Example: G01N 33/483           •    •       Physical analysis of biological material
+                     33/487           •    •       • of liquid biological material
+                     33/49            •    •       • • blood
+                     33/50            •    •       Chemical analysis of biological material, e.g. blood
+
+This example shows that three-digit, three-dot subgroup 33/487 is hierarchically superior to the
+two-digit, four-dot subgroup 33/49, and the three-digit, two-dot subgroup 33/483 is of the same
+hierarchical level as the two-digit, two-dot subgroup 33/50.
+
+
+                                                                                Guide to the IPC (2026)
+                                                                                                page 7
+
+
+27. The dots preceding a group title are also used in place of the titles of its hierarchically
+superior (less indented) groups, in order to avoid repetition.
+
+      Example: H01S 3/00              Lasers
+                    3/09              • Processes or apparatus for excitation, e.g. pumping
+                    3/091             • • using optical pumping
+                    3/094             • • • by coherent light
+
+      Without the use of hierarchical levels, subgroup H01S 3/094 would require a title such as:
+      “Processes or apparatus for excitation of lasers using optical pumping by coherent light”.
+
+28. The hierarchical structure relating to the six-dot subgroup H01F 1/053 is shown in the
+following example:
+
+      Section:                H       ELECTRICITY
+      Class:                  H01     ELECTRIC ELEMENTS
+      Subclass:               H01F    MAGNETS
+      Main group:             H01F    1/00 Magnets or magnetic bodies characterised by the
+                                            magnetic materials therefor
+      One-dot subgroup:               1/01 • of inorganic materials
+      Two-dot subgroup:               1/03 • • characterised by their coercivity
+      Three-dot subgroup:             1/032 • • • of hard-magnetic materials
+      Four-dot subgroup:              1/04 • • • • Metals or alloys
+      Five-dot subgroup:              1/047 • • • • • Alloys characterised by their
+                                                         composition
+      Six-dot subgroup:               1/053 • • • • • • containing rare earth metals
+
+Group H01F 1/053 actually concerns “magnets of inorganic materials characterised by their
+coercivity, comprising hard magnetic alloys specifically containing rare earth metals”.
+
+29.   [Deleted]
+
+THE OPTION OF CLASSIFYING IN MAIN GROUPS ONLY
+
+30. Industrial property offices that do not have sufficient expertise for classifying to a detailed
+level have the option to classify in main groups only.
+
+31.   [Deleted]
+
+32.   [Deleted]
+
+33.   [Deleted]
+
+
+IV.   PRESENTATION OF CLASSIFICATION SCHEMES
+      Order of groups; Guidance headings; Presentation of titles; References; Notes;
+      Interpretation of classification symbols cited in titles, references and notes
+
+34. In order to facilitate use of the Classification, various elements and indications are
+provided in its text in addition to the titles of the hierarchically related classification entries.
+
+
+                                                                           Guide to the IPC (2026)
+                                                                                           page 8
+
+
+ORDER OF GROUPS
+
+35. The groups in each subclass are arranged in a sequence intended to assist the user. For
+newer subclasses, the main groups are generally arranged from the most complex or highly
+specialised subject matter to the least complex or least specialised subject matter. A residual
+main group (for example, 99/00 “Subject matter not provided for in other groups of this
+subclass”), when needed, is placed at the end of the scheme of these newer subclasses.
+
+GUIDANCE HEADINGS
+
+36. When a plurality of successive main groups within a scheme relate to common subject
+matter, a “guidance heading” before the first of such main groups may be provided. The
+“guidance heading” is a short underlined statement that indicates the common subject matter
+found in all of the main groups it is relevant to (see, for example, the guidance heading
+“Ploughs” before group A01B 3/00). The series of groups covered by such a heading extends
+to the next guidance heading or to a line in heavy type extending across the column, which is
+used when the following group or groups relate to different subject matter for which no guidance
+heading is provided (see, for example, the line after group A01B 75/00). In exceptional cases, a
+guidance heading may be provided for a single main group.
+
+PRESENTATION OF TITLES; MULTIPART TITLES
+
+37. The titles of classification places may indicate their intended content by using a single
+phrase or several related phrases linked together (see paragraph 61, below).
+
+            Examples: A42C 5/00        Fittings or trimmings for hats
+                      A01C 1/00        Apparatus, or methods of use thereof, for testing or
+                                       treating seed, roots or the like, prior to sowing or planting
+
+37bis. Titles of classification places may also indicate their content using two or more distinct
+parts separated by semicolons. Each part of such a multipart title should be interpreted as a
+separate title. A multipart title is used for any of the two cases below:
+      (a) when it is considered desirable to treat together distinct kinds of subject matter
+      which cannot conveniently be covered by a single phrase. Such a multipart title may be of
+      the form “Product A; Product B” or “Process A; Process B”.
+
+            Example: A47G 21/04        • Spoons; Pastry servers
+      (b) when it is considered desirable to express explicitly that a classification place covers
+      categories of related subject matter, including those that would be implicitly covered (see
+      paragraphs 92 to 99, below) by one or more of the other distinct parts. Such a multipart
+      title may be of the form “Product; Details thereof” or “Process; Details thereof”.
+
+            Example: A23L 15/00        Egg products; Preparation or treatment thereof
+
+REFERENCES
+
+38. The title of a class, subclass, group or note (see paragraphs 41bis and 41ter, below) may
+contain a phrase in brackets referring to another place in the Classification. Such a phrase,
+called a reference, shows that the subject matter indicated by the reference is covered by the
+place (or places) referred to.
+
+      Example: A01D 69/00           Driving mechanisms or parts thereof for harvesters or
+                                    mowers (driving mechanisms for the cutters of mowers or
+                                    harvesters A01D 34/00)
+
+
+                                                                             Guide to the IPC (2026)
+                                                                                             page 9
+
+
+Functions of References
+
+39.   A reference has one of the following functions:
+
+      Limiting references
+
+      (a) Scope-limitation – A reference which specifies subject matter which is taken to
+      another place where it is covered, even though it is apparently covered by the title of the
+      place where the reference appears. This type of reference is very important for the proper
+      understanding and use of the place where it appears.
+
+      Hence a scope-limitation reference fulfils both of the following requirements:
+
+            (i)   excludes specified subject matter from the scope of this classification place,
+            when this subject matter would otherwise fulfil all the requirements of the
+            classification place and its definition, i.e. would otherwise be covered by that place;
+            and
+            (ii)   indicates the place(s) where this subject matter is classified.
+
+            Example: A47B 25/00         Card tables; Tables for other games (billiard tables
+                                        A63D 15/00)
+                         Indeed, billiard tables “fit” a priori under tables for games other than
+                         cards, and yet they are classified in A63D 15/00 instead.
+      In the Definitions, scope-limitation references are listed in tabular form under the heading
+      “Limiting references”.
+
+      (b) Precedence – A reference stating that another place “takes precedence” is used
+      when subject matter is classifiable in two places, or when different aspects of the subject
+      matter to classify are covered by different places, and it is desired that such subject matter
+      should be classified in only one of those places (see, for example, group A01D 43/00).
+      Such a precedence reference occurs most frequently at subgroup level; in some cases,
+      where several groups are similarly affected, it may be replaced by a note at a higher level
+      (see, for example, Note (2) following the title of subclass A61M).
+
+      A precedence reference can act either as a form of scope-limitation reference or as a
+      classification rule for combination-type subject matter, depending on the relationship
+      between the affected places:
+
+            (i)   A precedence reference to a place which is a subset of the place where the
+            reference stands has the same function as a scope-limitation reference.
+
+            (ii) A precedence reference to a place which has partially overlapping scope with
+            the place where the reference stands also has the same function as a scope-
+            limitation reference.
+
+            (iii) A precedence reference to a place which has no overlapping scope with the
+            place where the reference stands serves as a classification rule for combination-
+            type subject matter.
+
+
+                                                                      Guide to the IPC (2026)
+                                                                                     page 10
+
+
+      Example (hypothetical):
+
+            10/00 Mechanical means (20/00, 30/00 take precedence)
+            20/00 Hydraulic means
+            30/00 Chemical means
+
+            –    The precedence reference from 10/00 to 20/00 has the same function as
+            a scope-limitation reference saying "(hydraulic means 20/00)". Since hydraulic
+            means are a type of mechanical means, it excludes a subset of the matter
+            covered by 10/00 and places it in a different place.
+
+            –      The precedence reference from 10/00 to 30/00 does not exclude
+            chemical means per se, since chemical means per se are not covered by
+            10/00. Its function is to exclude subject matter that would otherwise be
+            classified in both 10/00 and 30/00, i.e. combinations of mechanical means and
+            chemical means. To this extent, the precedence reference is establishing a
+            rule for classification in these places.
+
+In the Definitions, precedence references are listed in tabular form under the heading
+“Limiting references”, using the full description of the excluded subject matter in question,
+regardless of which of the three cases above applies.
+
+Non-limiting references
+
+(c) Application-oriented – References in function-oriented places which point to
+places where their subject matter is covered if it is specially adapted, used for a particular
+purpose or incorporated in a larger system (see paragraphs 85 to 87, 89 and 90).
+
+      Example: When considering the subject matter of lasers, i.e. devices using
+               stimulated emission, which are covered by subclass H01S, the following
+               are application-oriented references:
+
+                    Eye surgery using laser                      A61F 9/008
+                    Printers using laser arrays                  B41J 2/455
+                    Laser heads for optical recording or         G11B 7/125
+                    reproducing
+
+In the Definitions, application-oriented references are listed in tabular form under the
+heading “Application-oriented references”.
+
+(d) Out of a residual place – References appearing in residual places which point to
+places which provide for the subject matter under consideration.
+
+      Example: When considering the subject matter of light sources, the main group
+               F21K 99/00 is residual to the whole of the IPC, and the following are
+               examples of references to other places which provide for the subject
+               matter under consideration:
+
+                    Candles                                       C11C 5/00
+                    Electric incandescent lamps                   H01K
+                    Masers, lasers                                H01S
+
+In the Definitions, references out of residual places are listed in tabular form under the
+heading “References out of a residual place”.
+
+
+                                                                             Guide to the IPC (2026)
+                                                                                            page 11
+
+
+
+      (e) Informative – References indicating the location of subject matter that could be of
+      interest for searching, but which subject matter is not within the scope of the classification
+      place where the reference occurs.
+      Hence an informative reference fulfils both of the following requirements:
+            (i)    the subject matter “does not fit” in the place under consideration, but
+            (ii)   that subject matter is still interesting for searching purposes.
+      It is instructive to compare the two conditions above with the two conditions (i) and (ii)
+      relating to a scope-limitation reference instead.
+      As an application-oriented reference usually points from a function-oriented place to an
+      application-oriented place, so an informative reference usually points from an
+      application-oriented place to a function-oriented place.
+      In the Definitions, informative references are listed in tabular form under the heading
+      “Informative references”.
+
+      Limiting vs. non-limiting references
+      The set of references as defined in subparagraphs (c), (d) and (e), above, are referred to
+      as non-limiting references, as opposed to the limiting references as defined in
+      subparagraphs (a) and (b), above.
+
+      Limiting references are included in the classification schemes and in the Definitions, when
+      available. To maintain the readability of schemes while increasing the amount of useful
+      related information provided, non-limiting references are progressively being removed
+      from schemes and transferred to the Definitions (see also paragraph 48, below).
+
+Use and Interpretation of References
+
+40.   Some points of detail concerning the use and interpretation of references:
+
+      (a) A reference is usually placed at the end of the title to which it belongs. If the title
+      consists of two or more parts, the reference is placed after the last part to which it relates.
+      Exceptionally, a reference does not relate to all parts preceding it, but, in such cases, this
+      is evident from the context.
+
+            Example: A45B WALKING STICKS (walking aids, e.g. sticks, for blind persons
+                          A61H 3/06); UMBRELLAS; LADIES' OR LIKE FANS (cane or
+                          umbrella stands or holders A47G 25/12)
+
+      (b) A reference following the title of a subclass or group relates to all the hierarchically
+      inferior places.
+
+      (c)   [Deleted]
+
+      (d)   [Deleted]
+
+      (e) Where a group is quoted, it is usually the most relevant group but not necessarily
+      the only relevant group. In particular, groups hierarchically related to a group quoted
+      should also be borne in mind.
+
+      (f)  Where two or more items of subject matter are referred to the same place, they are
+      separated by a comma, the classification symbols of that place being given only at the
+      end of that reference.
+
+
+                                                                           Guide to the IPC (2026)
+                                                                                          page 12
+
+
+
+            Example: G01W         METEOROLOGY (radar, sonar, lidar or analogous systems,
+                                  designed for meteorological use G01S 13/95, G01S 15/88,
+                                  G01S 17/95)
+
+      (g) References relating to different items of subject matter referred to different places
+      are separated by a semicolon and are to be read independently.
+
+            Example: A47J 31/00           Apparatus for making beverages (household machines
+                                          or implements for straining foodstuffs A47J 19/00;
+                                          preparation of non-alcoholic beverages, e.g. by adding
+                                          ingredients to fruit or vegetable juices, A23L 2/00;
+                                          coffee or tea pots A47G 19/14; tea infusers
+                                          A47G 19/16; brewing of beer C12C; preparation of
+                                          wine or other alcoholic beverages C12G)
+
+      An exception is where a substantial part of their wording is the same; in this case, the
+      common wording is given once and the different symbols are separated by a comma.
+
+            Example: E21B 10/42           Rotary drag type drill bits with teeth, blades or like
+                                          cutting elements, e.g. fork-type bits, fish tail bits
+                                          (characterised by wear resisting parts E21B 10/46, by
+                                          conduits or nozzles for drilling fluid E21B 10/60, by
+                                          detachable parts E21B 10/62)
+
+NOTES
+
+41. Notes define or explain specific words, phrases or the scope of places, or indicate how
+subject matter is classified. Notes may be associated with sections, subsections, classes,
+subclasses or groups.
+
+      Examples: F42      This class covers also means for practice or training which may have
+                         aspects of simulation, although simulators are generally covered by
+                         class G09.
+
+                  A41D "Outerwear" covers dressing-gowns, bathing costumes and pyjamas.
+
+                  B01J 31/00      In this group, the presence of water is disregarded for
+                                  classification purposes.
+
+Notes apply only to the places concerned, and their subdivisions, and override any general
+guidance in case of conflict. For example, Note (1) following the title of subclass C08F
+overrides the Note following the title of section C. Any information that is found in notes that are
+associated with the section, subsection or class level of the Classification is also provided within
+subclass Definitions (see paragraphs 45 to 47, below) that have their scope impacted by
+this information.
+
+INTERPRETATION OF CLASSIFICATION SYMBOLS CITED IN TITLES, REFERENCES AND
+NOTES
+
+41bis. Being a hierarchically arranged system, most places in the IPC have subdivisions.
+When a symbol or contiguous range of symbols is cited in a title, reference or note, it is to be
+understood that the citation comprises not just the symbols explicitly mentioned but their full
+range of hierarchically inferior subdivisions too. For this reason, the IPC does not use
+expressions like “... class and its subclasses …”, “... subclass and its main groups …” or
+
+
+                                                                              Guide to the IPC (2026)
+                                                                                             page 13
+
+
+“... group and its subgroups …”. When, for instance, a group is cited, its full set of dependent
+subgroups is comprised in the citation also. Similarly, citation of a subclass also comprises its
+main groups, and their subgroups, and citation of a class comprises all its subclasses and their
+full contents.
+
+41ter. Accordingly, when any particular contiguous interval of groups is indicated in a title, note
+or reference, the end of the interval is identified by the hierarchically highest symbol that covers
+the last intended group of the interval without incorporating any groups which are not to be
+considered part of the citation. Where a title, reference or note requires the citation of places
+which are not contiguous, the title, reference or note will cite each contiguous block separately,
+and will not include any citation of a place which is not intended to be part of the title, reference
+or note.
+
+      Examples:
+
+      The note of subclass B23D, “This subclass covers machines for shearing sheet metal or
+      other stock material except metal foils workable in a manner analogous to paper, which is
+      covered by class B26.”, refers implicitly to all subclasses of B26, and all the
+      groups thereof.
+
+      The title of B23D 29/00, “Hand-held metal-shearing or metal-cutting devices (with nibbling
+      action B23D 27/02; hand-operated devices for metal-cutting otherwise than by shearing
+      B26B)”, refers implicitly to B23D 27/02 and its two subgroups, B23D 27/04 and
+      B23D 27/06, as well as to all groups of subclass B26B.
+
+      The title of B23D 31/00, “Shearing machines or shearing devices covered by none or
+      more than one of the groups B23D 15/00-B23D 29/00; Combinations of shearing
+      machines”, refers implicitly to the main groups in the interval B23D 15/00-B23D 29/00 and
+      all the groups thereof, so that the actual interval starts with B23D 15/00 and ends
+      with B23D 29/02.
+
+
+V.    USER INFORMATION
+      Indication of changes with respect to previous editions/versions; Supplementary
+      information in the IPC
+
+INDICATION OF CHANGES WITH RESPECT TO PREVIOUS EDITIONS/VERSIONS
+
+42. In order to assist the user, the text of the Classification is presented in such a way as to
+give some indication of the kind of changes it has undergone with respect to previous
+editions/versions. The following indications are used in the Classification:
+
+      (a) Text in italics means that the entry in question, in relation to the previous
+      edition/version, either
+
+            (i)     is new, or
+
+            (ii)    its “specific scope” (see paragraph 74bis, below) has been changed, or
+
+            (iii)   has been deleted (see under (d) below).
+
+      In cases (i) or (ii), above, the entry in italics is followed by the version indicator in square
+      brackets (see under (b) below).
+
+
+                                                                          Guide to the IPC (2026)
+                                                                                         page 14
+
+
+      (b) The version indicator gives the edition/version where the corresponding entry was
+      new or where its “specific scope” was modified, for example, [4] or [2008.01].
+
+      (c) One and the same entry may be followed by two or more version indicators in
+      square brackets. In order to allow a more convenient presentation, only the last version
+      indicator is displayed while the others are displayed if the user so wishes (for example, by
+      moving the cursor on the said version indicator).
+
+      (d) The symbols of groups that have been deleted appear with an indication in italics of
+      where the subject matter concerned is transferred to, or where this subject matter is
+      covered, in the current edition/version.
+
+      The symbols of groups which have been deleted in the previous editions/versions do not
+      appear in the current edition/version.
+
+43.   [Deleted]
+
+SUPPLEMENTARY INFORMATION IN THE IPC
+
+44. In addition to the Classification scheme, various data illustrating IPC entries or explaining
+them more in detail, which are intended to enhance understanding and ease of use of the IPC,
+are accessible via its Internet publication.
+
+Classification Definitions
+
+45. Although the scope of classification places can be determined from classification titles
+with associated references and notes, which are present in the scheme of the Classification, it is
+recommended to use Definitions for clarifying the exact boundaries of the subject matter
+appropriate for the classification place. Definitions provide supplementary information in respect
+of classification entries and serve for their clarification, but do not change the scope of
+classification entries.
+
+46. Definitions are prepared following a structured format, the most important part of which is
+the definition statement giving a more detailed explanation of the scope of the classification
+place. In the definition statement, relevant words and phrases are used which may be
+alternative to those used in the title and which can be found in the patent documents classified
+in the classification place. Definitions also contain other parts, such as explanation of limiting
+and informative references associated with the title, interpretation of special classifying rules
+affecting the classification place and definitions of terms used in the classification place.
+
+47. Definitions are provided only for a limited number of subclasses and groups. In the
+course of the further development of the IPC, Definitions will be elaborated for more subclasses,
+where needed, and for main groups and subgroups, where appropriate.
+
+Non-limiting References
+
+48. Non-limiting references indicating the location of subject matter that could be of interest
+for searching are progressively being introduced into the Definitions. They do not limit the
+scope of classification places with which they are associated and are intended only to facilitate
+the patent search.
+
+
+                                                                          Guide to the IPC (2026)
+                                                                                         page 15
+
+
+Chemical Structural Formulae and Graphic Illustrations
+
+49. In the areas of the IPC relating to general and applied chemistry, chemical structural
+formulae that provide a visual representation of the content of the classification place are of
+great value. They are introduced in the scheme of the Classification with a limited number of
+classification entries when they are necessary for defining their scope or for interpreting the
+scope of their subordinated entries (see, for example, main group C07D 499/00).
+
+50. Many additional chemical structural formulae are introduced in the Definitions. They serve
+for illustrating purposes, generally by way of examples, and for facilitating understanding of the
+content of the chemical areas of the Classification. The chemical structural formulae are
+available for viewing through hyperlinks provided in the relevant classification entries.
+
+51. Other explanatory graphic illustrations have also been introduced in the Definitions (see,
+for example, graphic illustrations under subgroups of main group F23B 50/00).
+
+52.   [Deleted]
+
+
+VI.   TERMINOLOGY
+      Standard expressions; Glossary
+
+STANDARD EXPRESSIONS
+
+53. It has been possible to standardise a limited number of wordings in the IPC. The
+explanations of standard expressions used in the text of the Classification follow below.
+
+“Covered” or “Provided for”
+
+54. When subject matter is stated to be “covered” by/in a classification place, it means the
+subject matter has characteristics enabling it to be classified in that place (see, for example,
+group A41F 18/00). The expression “provided for” has the same meaning as “covered” (see, for
+example, group B60Q 11/00).
+
+Expressions Used to Indicate Residual Subject Matter
+
+55. The expression “not otherwise provided for”, or similar expressions occurring in a group
+title, means “not provided for in any other group in the same subclass or in any other subclass”
+(see, for example, group B65D 51/00). This applies similarly where this expression appears in
+the title of a class or subclass. However, the use of this expression in a main group title does
+not expand the scope of the subclass as specified in paragraph 69, below.
+
+56. Groups worded “... not provided for in groups...” cover subject matter that is not provided
+for in the stated groups. Groups worded “Other...” only cover subject matter that is not provided
+for in other related groups, for example at the same hierarchical level within a subclass or group
+(see, for example, A41F 13/00, B05C 21/00, respectively).
+
+57. Many subclass schemes include a residual main group, which provides for the subject
+matter within the scope of the subclass that is not covered by any of the other main groups of
+the subclass. Such residual main groups are usually located at the end of subclasses.
+
+
+                                                                              Guide to the IPC (2026)
+                                                                                             page 16
+
+
+Expressions Used to Indicate Combination Subject Matter
+
+58. In a number of subclasses, there are main groups designating subject matter “… covered
+by more than one of main groups…” or with similar wording. Such groups only provide for
+subject matter which consists of a combination of characteristics not covered as a whole by a
+single one of the groups specified, for example, C05B 21/00. Additionally, in a number of
+subclasses, there are main groups designating subject matter “… not covered by any single one
+of main groups …” or with similar wording. This type of group may provide for both:
+
+       –    subject matter which consists of combinations of characteristics not covered as a
+       whole by a single one of the specified groups, and
+
+       –         subject matter not covered by any of the groups in the specified range.
+
+“i.e.”, “e.g.”
+
+59. The expression “i.e.” has the sense of “equals” and the two phrases joined by “i.e.” are to
+be considered equivalent, one of the phrases constituting a definition of the other.
+
+       Example: A01D 41/00              Combines, i.e. harvesters or mowers combined with
+                                        threshing devices
+
+60. The expression “e.g.” does not limit the sense of the phrase which precedes it, but simply
+explains it by giving one or more examples. This expression is used for the following purposes:
+
+       (a) To provide a typical illustration of the subject matter covered by the
+       preceding wording.
+
+                 Example: A42C 5/00           Fittings or trimmings for hats, e.g. hat-bands
+
+       (b) To draw attention to the fact that what is mentioned after “e.g.” is definitely included
+       within and covered by the preceding wording although this might not be readily apparent
+       from the wording.
+
+                 Example: B62B 7/00           Carriages for children; Perambulators, e.g. dolls’
+                                              perambulators
+
+       (c) To indicate matter which is covered by a group but for which no dependent
+       subgroup has been provided.
+
+                 Example: G02B 6/122          • • • Basic optical elements, e.g. light-guiding paths
+                               6/124          • • • • Geodesic lenses or integrated gratings
+                               6/125          • • • • Bends, branchings or intersections
+
+“A and B”, “A or B”, “Either A or B, but not Both”
+
+61.    The expression:
+
+       –   “A and B” requires the presence of both A and B in the same example or
+       embodiment;
+
+       –     “A or B” implies the presence of A or the presence of B, or the presence of A and B
+       in the same example or embodiment;
+
+
+                                                                            Guide to the IPC (2026)
+                                                                                           page 17
+
+
+        –     “either A or B, but not both” implies the presence of A or the presence of B but not
+        the presence of both A and B in the same example or embodiment.
+
+“In General”, “Per se”, “Specially Adapted for”
+
+62. The expression “in general” is used when indicating things that are considered for their
+characteristics, disregarding any specific application, or that are not specially adapted for any
+particular use or purpose, as defined in paragraph 85(a), below.
+
+63. The expression “per se” concerns only an item of subject matter itself as opposed to a
+combination of which that item is a part.
+
+       Example:    H04N 21/80       • Generation or processing of content or additional data by
+                                      content creator independently of the distribution process;
+                                      Content per se
+
+64. The expression “specially adapted for” is used when indicating “things” that have been
+modified or particularly constructed for the given use or purpose, as defined in
+paragraph 85(b), below.
+
+        Examples: A47D FURNITURE SPECIALLY ADAPTED FOR CHILDREN
+                  A01K 63/02  • Receptacles specially adapted for transporting live fish
+
+“Or the Like”
+
+65. The expression “or the like” is sometimes used to emphasise that the classification place
+in question is not limited to the specific subject matter as specified by the wording but that it also
+covers similar subject matter with essentially the same characteristics.
+
+        Example: A01D 3/00           Non-abrasive sharpening devices for scythes, sickles, or
+                                     the like
+
+GLOSSARY
+
+66. A two-part Glossary of terms and expressions is included at the end of the Guide. Its first
+part includes classification terms and expressions relating to principles and rules of the
+Classification which are often used in this Guide. The second part of the Glossary includes
+technical terms and expressions used in the Classification itself.
+
+
+VII.    SCOPE OF PLACES; SPECIFIC SCOPE OF GROUPS
+        Subclasses; Main groups; Subgroups; Specific scope of groups
+
+67. The scope of any classification place must always be interpreted within the scope of all its
+hierarchically superior places.
+
+68. The titles of sections, subsections and classes are only broadly indicative of their content
+and do not define with precision the subject matter falling under the general indication of the
+title. In general, the section or subsection titles very loosely indicate the broad nature of the
+scope of the subject matter to be found within the section or subsection, and the class title gives
+an overall indication of the subject matter covered by its subclasses. By contrast, it is the
+intention in the Classification that the titles of subclasses, taking into consideration any
+references, definitions or notes associated therewith, define as precisely as possible the scope
+of the subject matter covered thereby. The titles of main groups and subgroups, again subject
+to any references, definitions or notes associated therewith, precisely define the subject matter
+covered thereby (see the example cited in paragraph 28, above).
+
+
+                                                                           Guide to the IPC (2026)
+                                                                                          page 18
+
+
+
+68bis. Under certain circumstances, a place can cover more than its explicitly stated scope:
+
+      (a) Details or components that are specially adapted for, or used only with, the explicitly
+      stated subject matter of the place and not provided for elsewhere (see paragraph 99,
+      below).
+
+      (b) Combinations of the explicitly stated subject matter of the place with other subject
+      matter (see paragraphs 145, 150 and 154, below).
+
+      (c) Subject matter of a category of invention not covered by the place and not covered
+      elsewhere, but related to the explicitly stated subject matter of the place. For example, if
+      there is no group for the production of a certain product, the group for the product also
+      covers production thereof (see paragraphs 92 to 98, below).
+
+SUBCLASSES
+
+69.   The scope of a subclass is defined by the following, taken together:
+
+      (a) The subclass title which describes, as precisely as is possible in a small number of
+      words, the main characteristic of a portion of the whole body of knowledge covered by the
+      Classification, this portion being the field of the subclass to which all its groups relate.
+
+      (b) Any limiting references which follow the subclass title or its class title. These
+      references indicate certain parts of the field described by the title which are covered by
+      other subclasses and are therefore excluded. These parts may constitute a substantial
+      part of the field described by the title and, thus, the limiting references are in some
+      respects as important as the title itself. For example, in subclass A47D – FURNITURE
+      SPECIALLY ADAPTED FOR CHILDREN, a considerable part, namely school benches or
+      desks, of the subject matter covered by the title is excluded in view of a reference to
+      particular groups of subclass A47B, thus considerably altering the scope of
+      subclass A47D.
+
+      (c) Any limiting references which appear in groups of a subclass and which refer
+      subject matter to another class or subclass also restrict the scope of the subclass in
+      question. For example, in subclass B43K – IMPLEMENTS FOR WRITING OR
+      DRAWING, writing points for indicating or recording apparatus are referred out of
+      group 1/00 to group 15/16 of subclass G01D, thereby reducing the scope of the subject
+      matter covered by the title of subclass B43K.
+
+      (d) Any notes appearing under the subclass title or its class, subsection or section title.
+      Such notes may define terms or expressions used in the title, or elsewhere, or clarify the
+      relation between the subclass and other places.
+
+            Examples: (i)   The Notes following the title of the subsection “ENGINES OR
+                      PUMPS” of section F, embracing classes F01 to F04, which notes define
+                      the terms or expressions used throughout the subsection.
+
+                        (ii) Note (1) following the title of subclass F01B, which defines its
+                        scope in relation to subclasses F01C to F01P.
+
+                        (iii) The Note following the title of section C which defines groups of
+                        elements.
+
+
+                                                                          Guide to the IPC (2026)
+                                                                                         page 19
+
+
+The titles of subclasses sometimes do not embrace the titles of all main groups under them.
+However, the scope of a subclass should always be understood to include all subject matter
+specifically stated in the titles of its main groups.
+
+70. A more detailed explanation of the scope of a subclass is provided by its definition, where
+it is available. In particular, the exact boundaries of any subject matter added to the scope of
+the subclass by its main group titles are specified.
+
+MAIN GROUPS
+
+71. The scope of a main group is to be interpreted only within the scope of its subclass (as
+indicated above). Subject to this, the scope of a main group is determined by its title as
+modified by any relevant references or notes associated with the main group. For example, a
+group for “bearings” in a subclass whose title is limited to a particular apparatus must be read as
+covering only features of bearings peculiar to that apparatus, for example, the arrangement of
+bearings in the apparatus. A more detailed explanation of the scope of a main group is
+provided by its definition, where it is available.
+
+71bis. Attention is drawn to the fact that guidance headings are intended to be only informative
+and, as a rule, do not define nor modify the scope of the groups covered by them.
+
+SUBGROUPS
+
+72. The scope of a subgroup is likewise to be interpreted only within the scope of its subclass,
+main group and of any subgroup under which it is indented. Subject to this, the scope of a
+subgroup is determined by its title as modified by any relevant references or notes
+associated therewith.
+
+     Example: A63B        APPARATUS FOR PHYSICAL TRAINING, GYMNASTICS,
+                          SWIMMING, CLIMBING, OR FENCING; BALL GAMES; TRAINING
+                          EQUIPMENT (apparatus for passive exercising, massage A61H)
+                          5/00 Apparatus for jumping (mats for jumping A63B 6/00; for racing
+                               or riding sports, e.g. hurdles, A63K)
+                          5/08 • Spring-boards (of trampoline type A63B 5/11)
+                          5/10 • • for aquatic sports
+                          5/11 • Trampolines
+
+     (a) Main group 5/00 must be read within the scope of the subclass title, i.e. as
+     “gymnastic apparatus for jumping ”. Moreover, the reference following the title of subclass
+     A63B “(apparatus for passive exercising, massage A61H)” indicates that all subject matter
+     concerning apparatus for passive exercising or massage is classified in subclass A61H.
+     Furthermore, the references in main group 5/00 “(mats for jumping A63B 6/00; for racing
+     or riding sports, e.g. hurdles, A63K)” indicate that all subject matter concerning mats for
+     jumping is classified in group A63B 6/00, while apparatus for racing or riding sports is
+     classified in groups under subclass A63K.
+
+     (b) Subgroup 5/08, which is indented under main group 5/00, must be read as “spring-
+     boards for gymnastic jumping”. Moreover, the reference following the title of subgroup
+     5/08 “(of trampoline type A63B 5/11)” indicates that spring-boards of trampoline type are
+     classified in subgroup 5/11.
+
+     (c) Subgroup 5/10 is indented under subgroup 5/08 and must be read within the scope
+     thereof, i.e. as “spring-boards for aquatic sports”.
+
+
+                                                                           Guide to the IPC (2026)
+                                                                                          page 20
+
+
+      (d) Similarly, subgroup 5/11, which is of the same one-dot indentation under main group
+      5/00 as subgroup 5/08, must be read as “trampolines for gymnastic jumping”.
+
+73. A subgroup covers only a particular part of the subject matter covered by the group under
+which it is indented. Therefore, a group may have only one subgroup or many. Each subgroup
+is devised to cover a portion of the subject matter that can serve as a self-contained field of
+search. A group is thus used for classifying subject matter which falls within its scope but is not
+covered by a subgroup.
+
+74. The scope of any subgroup in comparison with its hierarchically higher group is
+determined by the presence of one or more essential characteristics, specified in the title of the
+subgroup. Two cases may arise:
+
+      (a) The essential characteristics are not expressed in the title of the hierarchically
+      higher group.
+
+            Example: H01F 5/00            Coils
+                     H01F 5/02            • wound on non-magnetic supports
+
+      (b) The essential characteristics are already expressed in the title of the hierarchically
+      higher group.
+
+            Example: A63C 5/00            Skis or snowboards
+                     A63C 5/03            • Mono skis; Snowboards
+
+SPECIFIC SCOPE OF GROUPS
+
+74bis. As subject matter that belongs to a subgroup should not be classified in its parent group,
+there is a difference between the overall scope of a parent group (i.e. including its subgroups)
+and the subject matter that should actually be classified in it. The subject matter that should
+actually be classified in a group is called the specific scope. For a group that has no subgroups,
+the overall scope and the specific scope are identical. When a group gets new subgroups, its
+overall scope remains unchanged, but the specific scope is reduced. The specific scope of a
+group can be understood as the residual subject matter classified in the group itself, but not in
+its subgroups. In previous editions of the Guide, the expression “file scope” was used instead of
+“specific scope”, hence the two expressions must be understood as equivalent.
+
+
+VIII. PRINCIPLES OF THE CLASSIFICATION
+      Invention information; Additional information; Categories of subject matter; Places in the
+      Classification for technical subjects of inventions; Function-oriented, application-oriented
+      and residual places; Classification of technical subjects of inventions
+
+75. The primary purpose of the Classification is to facilitate the retrieval of technical subject
+matter. It is therefore devised, and has to be used, in such a way that one and the same
+technical subject is classified in, and thus can be retrieved from, one and the same place within
+the Classification; this place being the one most relevant to be searched for that subject.
+
+76. Two types of information may be found in patent documents. These are “invention
+information” and “additional information”. The meaning of these expressions is explained in
+paragraphs 77 to 80, below. The rules of selection of classification symbols are the same for
+both types of information (see also chapter XI, below). Although in the Guide reference is often
+made only to inventions or technical subjects of inventions, it is to be understood that the
+remarks made in the Guide apply equally to technical subjects which are covered by the
+additional information.
+
+
+                                                                          Guide to the IPC (2026)
+                                                                                         page 21
+
+
+INVENTION INFORMATION
+
+77. Invention information is technical information in the total disclosure of a patent document
+(for example, description, drawings, claims) that represents an addition to the state of the art.
+The invention information is determined in the context of the state of the art, using guidance
+provided by the claims of the patent document, with due regard given to the description and
+the drawings.
+
+78. “Addition to the state of the art” means all novel and unobvious subject matter specifically
+disclosed in a patent document, which subject matter does not represent part of the prior art,
+i.e., the difference between the subject matter in a patent document and the collection of all
+technical subject matter that has already been placed within public knowledge.
+
+ADDITIONAL INFORMATION
+
+79. Additional information is non-trivial technical information which does not in itself represent
+an addition to the state of the art but might constitute useful information for the searcher.
+
+80. The additional information complements the invention information by identifying, for
+example, the constituents of a composition or mixture, or elements or components of a process
+or structure, or use or applications of classified technical subjects.
+
+CATEGORIES OF SUBJECT MATTER
+
+81. Technical subject matter may represent processes, products, apparatus or materials (or
+the way these are used or applied). These terms, usually referred to as categories of subject
+matter, should be interpreted in their widest sense, as indicated in the following examples:
+
+     (a) Examples of processes are: polymerisation, fermentation, separation, shaping,
+     conveying, treating of textiles, transfer and transformation of energy, building, preparation
+     of foodstuffs, testing, methods of operating machines and ways in which they work,
+     processing and transmitting of information.
+
+     (b) Examples of products are: chemical compounds, compositions, fabrics, articles
+     of manufacture.
+
+     (c) Examples of apparatus are: installations used in chemical or physical processes,
+     tools, implements, machines, devices for performing operations.
+
+     (d)    Examples of material are: ingredients of mixtures.
+
+82. It should be noted that an apparatus can be regarded as a product, since it is produced by
+a process. The term “product”, however, is rather used to denote the result of a process
+regardless of the subsequent function of the product, for example the end-product of a chemical
+or manufacturing process, whereas the term “apparatus” is associated with an intended use or
+purpose, for example an apparatus for generating gases or an apparatus for cutting. Materials
+per se may constitute products.
+
+PLACES IN THE CLASSIFICATION FOR TECHNICAL SUBJECTS OF INVENTIONS
+
+83. The Classification is designed to ensure that any technical subject with which an invention
+is essentially concerned can be classified, as far as possible, as a whole and not by separate
+classification of constituent parts.
+
+
+                                                                            Guide to the IPC (2026)
+                                                                                           page 22
+
+
+84. However, constituent parts of a technical subject of invention may also constitute
+invention information if they themselves represent an addition to the state of the art, i.e. they
+represent novel and unobvious subject matter.
+
+FUNCTION-ORIENTED, APPLICATION-ORIENTED AND RESIDUAL PLACES
+
+85. The technical subjects of inventions dealt with in patent documents concern either the
+intrinsic nature or function of a thing or the way a thing is used or applied. The term “thing” is
+used in this context to mean any technical matter, tangible or not, for example, process, product
+or apparatus. The above is reflected in the design of the Classification. It provides places
+for classifying:
+
+      (a) a thing “in general”, i.e. characterised by its intrinsic nature or function; the thing
+      being either independent of a particular field of use or technically not affected if
+      statements about the field of use are disregarded, i.e., it is not specially adapted for use in
+      the field.
+
+            Examples: (1) F16K has provision for valves characterised by constructional or
+                      functional aspects that do not depend on the nature of the particular fluid
+                      (for example, oil) passing therethrough or of any system of which the
+                      valves may form part.
+
+                        (2) C07 has provision for organic chemical compounds characterised
+                        by their chemical structure but not by their application.
+
+                        (3)   B01D has provision for filters in general.
+
+                        (4) B24B has provision for processes for grinding or polishing,
+                        in general.
+
+      (b) A thing “specially adapted for” a particular use or purpose, i.e. modified or
+      particularly constructed for the given use or purpose.
+
+            Examples: (1) A61F 2/24 is the place for a mechanical valve specially adapted for
+                      insertion into a human heart.
+
+                        (2) B29D 21/06 is the place for polishing specially adapted for hair
+                        combs or similar toothed or slotted articles made from plastic or from
+                        substances in a plastic state.
+
+      (c)   The particular use or application of a thing.
+
+            Example: Filters specially adapted for particular purposes, or in combination with
+                     other apparatus, are classified in application-oriented places, for
+                     example, A24D 3/00, A47J 31/06.
+
+      (d)   The incorporation of a thing into a larger system.
+
+            Example: B60G has provision for the incorporation of a leaf spring into the
+                     suspension of a vehicle wheel.
+
+86. Places of category (a), above, are referred to as “function-oriented places”. Places of the
+above categories (b) to (d) are referred to as “application-oriented places”.
+
+
+                                                                         Guide to the IPC (2026)
+                                                                                        page 23
+
+
+87. Places, for example, subclasses, are not always exclusively function-oriented or
+application-oriented in relation to other places in the Classification.
+
+     Example: Although F16K (valves, etc.) and F16N (lubricating) are both function-oriented
+              subclasses, F16N includes application-oriented places for certain valves
+              specially adapted for lubrication systems (for example, F16N 23/00 – special
+              adaptations of check valves), while, conversely, F16K includes
+              application-oriented places for lubricating features of gate valves or sliding
+              valves (see, for example, F16K 3/36 – features relating to lubrication).
+
+Furthermore, the expressions “function-oriented place” and “application-oriented place” cannot
+always be regarded as absolute. Thus, a given place may be more function-oriented than
+another place but less function-oriented than yet a further place.
+
+     Example: F02F 3/00 concerns pistons for combustion engines in general and is
+              therefore more function-oriented than F02B 55/00, which is specifically
+              directed to rotary type pistons in combustion engines, but is less
+              function-oriented than F16J, which relates to pistons in general.
+
+87bis. There are also places in the IPC which should be considered for classification if and only
+if no other place of the IPC provides for the subject matter under consideration. Such places
+are referred to as “residual places”. Expressions in the titles like:
+     –     “not otherwise provided for”,
+     –      “not provided for in ...”,
+     –      “not covered by ...”
+clearly designate residual places. The residual nature of the place can be relative to other
+subgroups, other main groups of the same subclass, other subclasses or even to the whole of
+the IPC. Main groups 99/00, throughout the whole of the IPC, are special residual places.
+
+     Examples:     F21S 15/00       Non-electric lighting devices or systems employing light
+                                    sources not covered by main groups F21S 11/00, F21S 13/00
+                                    or F21S 19/00
+
+                   G06Q 99/00 Subject matter not provided for in other groups of this
+                              subclass
+
+                   A99Z SUBJECT MATTER NOT OTHERWISE PROVIDED FOR IN THIS
+                        SECTION
+
+                   H05B ELECTRIC HEATING; ELECTRIC LIGHT SOURCES NOT
+                        OTHERWISE PROVIDED FOR; CIRCUIT ARRANGEMENTS FOR
+                        ELECTRIC LIGHT SOURCES, IN GENERAL
+
+CLASSIFICATION OF TECHNICAL SUBJECTS OF INVENTIONS
+
+General Observations
+
+88. It is of great importance to identify accurately the technical subject(s) with which each
+invention is essentially concerned. Therefore, consideration should be given to the thing
+involved as set out in paragraphs 81 to 85, above, in order to determine the appropriate place in
+the Classification.
+
+
+                                                                              Guide to the IPC (2026)
+                                                                                             page 24
+
+
+      Example: If a patent document discloses pistons, consideration must be given to
+               whether the technical subject of the invention is a piston itself, or whether the
+               technical subject is different, for example, the special adaptation of a piston for
+               use in a particular apparatus, or the arrangement of pistons in a larger system,
+               for example, in an internal-combustion engine.
+
+89. Often, the invention information relates only to a particular field of use, and the
+application-oriented places are intended to cover completely the classification of such matter.
+The function-oriented places embrace a wider concept in which the constructional or functional
+characteristics of a subject are applicable to more than one field of use, or in which the
+application to a particular field of use is not considered invention information.
+
+      Example: Main group C09D 5/00 covers a variety of application-oriented coating
+               compositions (for example, C09D 5/16 covers anti-fouling paints), whereas
+               groups C09D 101/00 to 201/00 cover function-oriented aspects of coating
+               compositions, namely the polymer the composition is based on.
+
+90. When it is unclear whether to classify a technical subject in a function-oriented place or in
+an application-oriented place, the following should be observed:
+
+      (a) If a particular application is mentioned, but not specifically disclosed or fully
+      identified, classification is made in the function-oriented place, if available. This is likely to
+      be the case when several applications are broadly stated.
+
+      (b) If the essential technical characteristics of the subject relate both to the intrinsic
+      nature or function of a thing and to its particular use, or its special adaptation to or
+      incorporation into a larger system, classification is made in both the function-oriented
+      place and the application-oriented place, if available.
+
+      (c) If guidance indicated in subparagraphs (a) and (b), above, cannot be used,
+      classification is made in both the function-oriented place and the relevant
+      application-oriented places.
+
+91. When classifying a larger system (combination) as a whole, attention should be given to
+parts or details whenever they are novel and unobvious. Classification of both the system and
+these parts and details is necessary.
+
+      Example: When a document is concerned with the incorporation of a given thing, for
+               example a leaf spring, into a larger system, for example, a vehicle wheel
+               suspension, it is therefore concerned with the larger system and should be
+               classified in the place for this system (B60G). If the document is also
+               concerned with the thing itself, i.e. the leaf spring as such, and it is novel and
+               unobvious, it is also necessary to classify the document in the place for the
+               thing itself (F16F).
+
+Categories of Subject Matter not explicitly provided for in Classification Titles
+
+92. It is apparent from paragraphs 81 and 82, above, that the technical subject of an invention
+may be expressed as different categories of subject matter. If for one of these categories, no
+distinct place has been identified by the titles of the Classification for a particular technical
+subject, the most appropriate place existing for the other categories is used for classifying (see
+paragraphs 93 to 99, below, for specific situations). In these situations, even though the titles of
+those places do not directly indicate that this category of subject matter is appropriate there, this
+
+
+                                                                            Guide to the IPC (2026)
+                                                                                           page 25
+
+
+may be indicated by other means such as references, notes, definitions, or the provision for
+similar subject matter in other groups of their scheme. Definitions, where present, should
+provide specific information about the appropriate classification places for related categories of
+subject matter not specified in classification titles.
+
+Periodic Table of Chemical Elements
+
+92bis. In all sections of the IPC, in the absence of an indication to the contrary, the Periodic
+Table of chemical elements referred to is the one with eighteen groups as represented at the
+top of the table below by the Arabic numerals, e.g. in group D06M 11/13. Where the contrary is
+indicated, the system with eight groups as represented by the Roman numerals is used, e.g. in
+group H01F 1/00.
+
+
+
+
+Chemical Compounds
+
+93. When the subject of the invention concerns a chemical compound per se (organic,
+inorganic or macromolecular), it is classified in section C according to its chemical structure.
+When it also concerns a specific field of use, it is also classified in the place provided for that
+field of use, if such field of use constitutes an essential technical characteristic of the subject.
+However, when the chemical compound is known and the subject of the invention concerns only
+the application of the compound, it is classified in the place covering the field of use as invention
+information while the chemical structure may also be classified in the place for the chemical
+compound per se as additional information.
+
+Chemical Mixtures or Compositions
+
+94. When the subject of the invention concerns a chemical mixture or composition per se, it is
+classified in a place according to its chemical composition if such a place exists, for example,
+C03C (glass), C04B (cements, ceramics), C08L (compositions of organic macromolecular
+compounds), C22C (alloys). If such a place does not exist, it is classified according to its use or
+application. If the use or application also constitutes an essential technical characteristic of the
+subject of the invention, a mixture or composition is classified according to both its chemical
+composition and its use or application. However, when the chemical mixture or composition is
+known and the subject of the invention concerns only its use, it is classified in the place
+covering the field of use as invention information while the mixture or composition may also be
+classified in the place for the chemical mixture or composition per se as additional information.
+
+
+                                                                               Guide to the IPC (2026)
+                                                                                              page 26
+
+
+Preparation or Treatment of Compounds
+
+95. When the subject of the invention concerns a process of preparation or treatment of a
+chemical compound, it is classified in the place for the process of preparation or treatment of the
+compound concerned. If such a place does not exist, it is classified in the place for the
+compound. When the compound resulting from the preparation process is also novel, the
+compound is also classified according to its chemical structure. Subjects of invention
+concerned with general processes for the preparation or treatment of classes of compounds are
+classified in the groups for the processes employed, when such groups exist.
+
+Apparatus or Processes
+
+96. When the subject of the invention concerns an apparatus, it is classified in the place for
+the apparatus if such a place exists. When such a place does not exist, the apparatus is
+classified in the place for the process performed by that apparatus. When the subject of the
+invention concerns a process for making or treatment of products, it is classified in the place for
+the process performed. When such a place does not exist, the making or treatment of products
+is classified in the place for the apparatus performing the process. If no place exists for the
+manufacture of a product, the manufacturing apparatus or process is classified in the place
+covering the product.
+
+Articles of Manufacture
+
+97. When the subject of the invention concerns an article, it is classified in the place for the
+article. If no place exists for the article itself, it is classified in the appropriate function-oriented
+place (i.e., according to the function performed by the article) or, if this is not possible, according
+to the field of use.
+
+      Example: When the article to be classified is a glue-dispenser specially adapted for
+               binding books, it is classified in group B42C 9/00, which covers “Applying glue
+               or adhesive peculiar to bookbinding”. Since there is no specific place for
+               glue-dispensers for bookbinding, they are classified in the place for their
+               function, i.e. “applying glue”.
+
+Multistep Processes, Industrial Plants
+
+98. When the subject of the invention concerns a multistep process or an industrial plant that
+consists, respectively, of a combination of process steps or apparatus, it is classified as a
+whole, i.e. in a place provided for such combination, for example, subclass B09B. If no such
+place exists, it is classified in the place for the product obtained by the process or plant. When
+the subject of the invention concerns also an element of the combination, for example an
+individual step of the process or machine of the plant, the element is also separately classified.
+
+Details, Constructional Parts
+
+99. When the subject of the invention concerns constructional or functional details or parts of
+subject matter, for example, of apparatus, the following rules apply:
+
+      (a) Details or parts only applicable to, or specially adapted for, one kind of subject
+      matter are classified in the details places of this kind of subject matter, if such places
+      exist.
+
+      (b) If such places do not exist, these details or parts are classified in the place for the
+      subject matter in question.
+
+
+                                                                           Guide to the IPC (2026)
+                                                                                          page 27
+
+
+     (c) Details or parts applicable to more than one of different kinds of subject matter are
+     classified in the details places of more general nature, if such places exist.
+
+     (d) If such places of more general nature do not exist, these details or parts are
+     classified according to all of the kinds of subject matter to which they explicitly apply.
+
+           Example: In subclass A45B, groups 11/00 to 23/00 cover the various kinds of
+                    umbrellas, while group 25/00 covers details of umbrellas applicable to
+                    more than one kind of umbrella.
+
+General Chemical Formulae
+
+100. Large sets of related chemical compounds are often expressed or claimed using general
+formulae. The general formulae are presented in the form of a chemical compound genus with
+at least one component of the formula being a variable selected from a specific collection of
+alternatives (for example, “Markush”-type compound claims). The use of general formulae
+causes classification problems when an enormous number of compounds are within their scope
+and are separately classifiable in a large number of classification places. When this situation
+occurs, only the individual chemical compounds most useful for searches are classified. If
+chemical compounds are specified using a general chemical formula, the following classifying
+procedure is applied:
+
+     Step 1: Classification should be given to all “fully identified” compounds that are novel
+             and unobvious if they are:
+
+              (i)     specifically claimed as such or in a composition,
+
+              (ii)    products of a claimed process, or
+
+              (iii)   derivatives of either of these.
+
+              A compound is considered to be “fully identified” where:
+
+              (a) the structure is given by exact chemical name or formula, or can be
+              deduced from its preparation from specified reactants, not more than one of
+              which is selected from a list of alternatives, and
+
+              (b) the compound is characterised by a physical property (for example its
+              melting point), or its preparation is described in a worked example giving
+              practical details.
+
+              Compounds identified only by an empirical formula are not considered to be
+              “fully identified”.
+
+     Step 2: If no “fully identified” compounds are disclosed, e.g. in the situation of compounds
+             derived from computer-generated models and which have not undergone actual
+             experiments, classification should only be given to compounds with exact
+             chemical name or developed chemical formula. Classification should be limited
+             to a single or a very small number of groups.
+
+     Step 3: When only the general Markush formula is disclosed, classification is made in the
+             most specific group(s) that cover(s) all or most of the potential embodiments.
+             Classification should be limited to a single or a very small number of groups.
+
+
+                                                                           Guide to the IPC (2026)
+                                                                                          page 28
+
+
+      Step 4: In addition to the above obligatory classification, non-obligatory classification may
+              be made when other compounds within the scope of the general formula, or
+              compounds derived directly from computer-generated models, are of interest.
+
+When classification of all the “fully identified” compounds into their most specific classification
+places would lead to a high number of classification symbols (for example, more than twenty),
+the classifier may reduce the number of symbols. This may only be done when classification of
+the “fully identified” compounds would lead to the assigning of a large number of subgroups
+under a single group at the next hierarchically higher level. Classification of these compounds
+may then be made in the higher group only. Otherwise, classification of the compounds is
+made in all of the more specific subgroups.
+
+Combinatorial Libraries
+
+101. Collections composed of many chemical compounds, biological entities or other
+substances may be presented in the form of “libraries”. A library usually includes an enormous
+number of members that, if separately classifiable in a large number of classification places,
+would unnecessarily burden the search system. Therefore, only the individual members which
+are considered “fully identified”, in the same manner as the compounds of general formulae, are
+obligatorily classified into the groups that most specifically provide for them, for example,
+compounds in section C. The library as a whole is classified in an appropriate group in
+subclass C40B. In addition to the above obligatory classifications, non-obligatory classifications
+are made when other members of the libraries are of interest.
+
+
+IX.   MULTIPLE CLASSIFICATION; SCHEMES FOR SECONDARY CLASSIFICATION;
+      HYBRID SYSTEMS
+      Multiple classification; Schemes for secondary classification; Hybrid systems; Indexing
+      schemes; Application of indexing codes
+
+MULTIPLE CLASSIFICATION
+
+102. The primary purpose of the Classification is to facilitate search. Depending on the content
+of a patent document, the information disclosed therein may require more than one
+classification symbol to be applied.
+
+103. Multiple classification of documents is necessary when the invention information relates to
+two or more inventive things that can each be classified in different groups. For example, a
+document may contain alternative embodiments that can be classified in different groups.
+Another example is when a document relates to both a product and a process for its production,
+and there are groups for both.
+
+104. [Deleted]
+
+105. Multiple classification should also be made when a single inventive thing is characterised
+by different aspects that are covered in different groups. For example, a mechanical device can
+be characterised by its construction, by the material from which it is made and by its means for
+control, and there might be separate groups where each of these aspects can be classified.
+Another example is when an inventive thing is of interest both in a function-oriented place and
+an application-oriented place.
+
+105bis. Multiple classification, or classification in combination with indexing (see
+paragraphs 108 to 112, below), is also desirable for indicating additional information that is of
+interest for search.
+
+
+                                                                             Guide to the IPC (2026)
+                                                                                            page 29
+
+
+106. In some places in the IPC, there are notes describing more specifically how multiple
+classification should be made in those places, e.g. Note (3) in subclass B60W.
+
+107. [Deleted]
+
+SCHEMES FOR SECONDARY CLASSIFICATION
+
+107bis. In certain areas of the Classification, schemes for secondary classification are provided
+to improve the effectiveness of the Classification. Secondary classification relates to schemes,
+typically covering aspects that are partially or entirely covered elsewhere in the IPC, whereby
+the symbols are always allocated in combination with classification symbols from other
+subclasses to enable a complementary search of subject matter by cross-combination of
+symbols. The symbols of schemes for secondary classification are not listed first when
+assigned to patent documents – in the sense of paragraph 156(a), below. Secondary
+classification symbols may be assigned for either “invention information” or “additional
+information”, as appropriate. Examples of schemes for secondary classification are set out in
+the following table. Users should be aware that the notes in the scheme are authoritative.
+
+
+                                                                                      Secondary
+     IPC places where
+                                                                                     classification
+  secondary classification          Usage instructions in the scheme
+                                                                                        used in
+        is required
+                                                                                      conjunction
+
+                              Biocidal, pest repellant, pest attractant or
+      A01N, C12N, C01,
+                              plant growth regulatory activity of compounds             A01P
+         C07, C08
+                              or preparations
+
+            A61K              Therapeutic activity of medicinal preparations
+
+        C01, C07, C08         Therapeutic activity of compounds                         A61P
+
+                              Therapeutic activity of single-cell proteins
+            C12N
+                              or enzymes
+     A61K 8/00, C11D,         Use of cosmetics or similar toiletry
+    C12N, C01, C07, C08       preparations
+                                                                                        A61Q
+                              Use of cosmetics or similar preparations
+            C12N
+                              containing micro-organisms or enzymes
+                              Aspects of additive manufacturing (e.g.
+   where appropriate in the
+                              three-dimensional [3D] printing) irrespective             B33Y
+         entire IPC
+                              of the process or material used
+                              Applications and aspects of nanostructures
+   where appropriate in the   which are produced by any method, not
+                                                                                        B82Y
+         entire IPC           restricted to those that are formed by
+                              manipulation of individual atoms or molecules
+                              Aspects in relation to the Internet of
+   where appropriate in the
+                              Things (IoT), as specified in the notes to                G16Y
+         entire IPC
+                              subclass G16Y
+
+
+                                                                         Guide to the IPC (2026)
+                                                                                        page 30
+
+
+HYBRID SYSTEMS; INDEXING SCHEMES
+
+108. In specific areas of the Classification, hybrid systems have been introduced in order to
+improve the effectiveness of the Classification.
+
+109. Each hybrid system consists of a classification scheme and an associated complementary
+indexing scheme. The indexing scheme specifies aspects that are not covered by the
+classification places. When classifying within a hybrid system, all classification symbols
+appropriate to the technical subjects are first assigned. Then any appropriate indexing codes
+from indexing schemes associated with one or more of these classification symbols may be
+added, if they identify elements of information which are useful for search purposes.
+
+110. Indexing codes have a format similar to classification symbols. Within subclasses having
+classification schemes, indexing schemes are placed after the classification scheme and their
+numbering starts, as a rule, with the number 101/00. Some subclasses are used only for
+indexing purposes, in association with classification symbols from one or more classification
+subclasses; this is indicated in their titles. Indexing subclasses usually employ the same
+numbering system used in the indexing schemes of classification subclasses (see subclasses
+F21W and F21Y), but sometimes their numbering systems may include numbers (for example,
+1/00) similar to those normally associated with standard classification symbols (see
+subclasses C10N, C12R, B29K, B29L).
+
+111. Indexing codes can only be applied in association with classification symbols. Each place
+in the Classification where indexing codes may be used is indicated by a note. Similarly, a note,
+a title or a guidance heading before each indexing scheme indicates with which classification
+symbols those indexing codes are associated.
+
+111bis. A list of areas where indexing schemes are used is available in a separate document
+accessible via the IPC Publication on the WIPO website: Indexing Schemes in the IPC [PDF].
+
+112. Whenever possible, the layout of the indexing schemes is hierarchical, facilitating their
+presentation. The numbering of some of the schemes is such that truncation of the indexing
+codes is feasible when carrying out database searching.
+
+     Example (part of the indexing scheme in subclass C04B):
+
+                         103/00    Function or property of the active ingredients
+                         103/10    • Accelerators
+                         103/12    • • Set accelerators
+                         103/14    • • Hardening accelerators
+                         103/20    • Retarders
+                         103/22    • • Set retarders
+                         103/24    • • Hardening retarders
+                         103/30    • Water reducers, plasticisers, air-entrainers
+
+APPLICATION OF INDEXING CODES
+
+113. Indexing codes may be applied when it is desirable for search purposes to identify
+elements of information about a technical subject of the invention already classified as such.
+
+
+                                                                         Guide to the IPC (2026)
+                                                                                        page 31
+
+
+114. In an indexing scheme, the hierarchically higher group is only to be used in a residual
+manner, i.e., to record a specific feature not provided for in any of its subdivisions. When
+indexing two or more elements of information about a technical subject which are useful for
+search purposes, for each such element the hierarchically lowest indexing group which provides
+for this element should be applied. Indexing of residual matter in main groups of indexing
+schemes should be limited to cases where this is of use for searching. Indexing should not be
+made in main groups of very wide or general scope, which are mainly used as
+informative headings.
+
+     Example: A welding process for attaching flanges is described as being applicable to the
+              manufacture of railway rails, structural beams and rail vehicle wheels. In this
+              case, B23K 101/26 and 101/28 should be applied for rails and beams,
+              respectively. Although rail vehicle wheels are broadly covered by
+              B23K 101/00, this code should not be applied as it is too general and would
+              give no information of use for searching. See the following excerpt of the
+              indexing scheme referred to:
+
+                        101/00     Articles made by soldering, welding or cutting
+                        101/02     • Honeycomb structures
+                        101/04     • Tubular or hollow articles
+                        101/06     • • Tubes
+                        101/08     • • • finned or ribbed
+                        101/10     • • Pipe-lines
+                        101/12     • • Vessels
+                        101/14     • • Heat exchangers
+                        101/16     • Bands or sheets of indefinite length
+                        101/18     • Sheet panels
+                        101/20     • Tools
+                        101/22     • Nets, wire fabrics or the like
+                        101/24     • Frameworks
+                        101/26     • Railway- or like rails
+                        101/28     • Beams
+
+
+X.   OBLIGATORY CLASSIFICATION; NON-OBLIGATORY CLASSIFICATION AND
+     INDEXING
+     General approach: obligatory classification, non-obligatory classification, indexing;
+     Classification procedure for patent documents at different publication levels
+
+GENERAL APPROACH
+
+115. As indicated in paragraphs 77 to 80, above, patent documents may, in addition to
+invention information, also comprise additional information.
+
+116. The invention information is represented by classification symbols, together with
+associated indexing codes if desired.
+
+117. Additional information is represented by classification symbols, or by indexing codes
+associated with classification symbols.
+
+
+                                                                             Guide to the IPC (2026)
+                                                                                            page 32
+
+
+Obligatory Classification
+
+118. According to Article 4(3) of the Strasbourg Agreement, in classifying a patent document,
+the competent authorities of the countries of the Special Union shall indicate “the complete
+symbols of the Classification applied to the invention to which the patent document relates”.
+The interpretation of this is that it is an obligation to allot the classification symbols that
+represent invention information.
+
+Non-obligatory Classification; Indexing
+
+119. It is desirable that additional information is classified or indexed, when it is useful for
+search purposes.
+
+CLASSIFICATION PROCEDURE FOR PATENT DOCUMENTS AT DIFFERENT
+PUBLICATION LEVELS
+
+120. All invention information in a patent document as described in paragraph 77, above,
+should be classified. Depending on the stage of the examination procedure in which a
+document is classified, the precise invention information may not have been fully determined.
+Paragraphs 121 to 130, below, outline procedures for determining the best approximation of this
+invention information for the purpose of classifying principal types of patent documents (granted
+patents, searched published applications, unsearched published applications).
+
+Classification of patents granted after search and examination
+
+121. All subject matter covered by the claims of a patent document must be classified as
+invention information along with any novel and unobvious constituents or components
+(subcombinations) of the claimed subject matter. Classification should be based on the subject
+matter of each claim as a whole and on each inventive embodiment within a claim.
+
+122. Any unclaimed subject matter in the disclosure that is novel and unobvious must also be
+classified as invention information.
+
+123. It is desirable to classify or index any additional information complementing the invention
+information, mentioned in the claims or in the unclaimed disclosure, if it is useful for
+search purposes.
+
+Classification of searched but unexamined patent documents, for example, patent applications
+
+124. All claimed subject matter that appears to be novel and unobvious in view of the search
+results must be classified as invention information along with any novel and unobvious
+constituents or components (subcombinations) of the claimed subject matter.
+
+125. Any unclaimed subject matter in the disclosure that appears to be novel and unobvious in
+view of the search results must be classified as invention information.
+
+126. It is desirable to classify or index any additional information complementing the invention
+information, mentioned in the claims or in the unclaimed disclosure, if it is useful for
+search purposes.
+
+Classification of unsearched patent documents
+
+127. All claimed subject matter that is potentially novel and unobvious in the opinion of the
+classifier who is an expert in the art must be classified as invention information along with any
+potentially novel and unobvious constituents or components (subcombinations) of the claimed
+subject matter.
+
+
+                                                                            Guide to the IPC (2026)
+                                                                                           page 33
+
+
+
+128. Any unclaimed subject matter in the disclosure that is potentially novel and unobvious in
+the opinion of the classifier who is an expert in the art must be classified as
+invention information.
+
+129. For classifiers who are not experts in the relevant technical field, all the claims must be
+used for determining the subject matter to be classified.
+
+130. It is desirable to classify or index any additional information complementing the invention
+information, mentioned in the claims or in the unclaimed disclosure, if it is useful for
+search purposes.
+
+General observations
+
+131. Patent documents should not be classified as a single entity, but all different inventive
+things, claimed or disclosed within the patent document, should be identified and separately
+classified. Such different inventive things are represented, for example, by different claims,
+alternative variants or different categories of subject matter (for example, a product and a
+method of its production).
+
+131bis. If two or more inventive things in a document separately are covered by the same
+group, the classification symbol of that group is allotted only once. If an inventive thing is
+appropriate for invention information classification in a certain group and another thing in the
+same patent document is appropriate for additional information classification in the same group,
+only the invention information classification is allotted.
+
+132. Unclaimed subject matter representing invention information does not need to be
+classified when fully identified in the classification of a related published application of the same
+patent office, for example, in the parent of a published divisional application.
+
+133. Where a classifier determines that no invention information is present within a patent
+document, at least one classification symbol must still be assigned to the patent document as
+an invention information symbol. In these circumstances, the classification should be based on
+that portion of the total disclosure that the classifier determines as most useful for
+search purposes.
+
+134. To minimise potentially unnecessary classification symbols, the classification of a
+previously published application may be reviewed when the application is granted, searched,
+evaluated or abandoned, in order to confirm or alter its classification. However, it should be
+noted that some intellectual property offices classify an application only once, and the
+classification is not reconsidered when a patent is granted.
+
+
+XI.   RULES FOR SELECTING CLASSIFICATION PLACES
+      Common rule; Priority rules; Special rules
+
+135. Before deciding where to classify a patent document, it is necessary to correctly
+determine the invention and additional information contained in the document, as described in
+paragraphs 77 to 101, above. Once determined, this information must be classified as
+completely as possible. The information to be classified is determined in the same manner for
+all the general classification rules. The presence or absence of classification places for certain
+features should not lead to a modification of the concept of information to be classified (see also
+chapter X, above).
+
+
+                                                                             Guide to the IPC (2026)
+                                                                                            page 34
+
+
+Selecting a subclass
+
+136. Since the IPC is a hierarchical classification system, a systematic approach using its
+hierarchical structure can be used and followed step by step for determining the appropriate
+subclass for classification of the subject of the invention. The relevant section can first be
+identified, then the appropriate subsection and class, and, under the selected class, the
+subclass which most satisfactorily covers the subject in question can be identified. When
+following this approach, it should be remembered that titles of sections, subsections and
+classes only give a broad indication of their scope.
+
+137. Alternative methods of determining the relevant subclass can often be more efficient.
+These alternative methods may consist in:
+
+      (a)   using an alphabetical Catchword Index to the IPC;
+
+      (b)   text searching in the IPC itself or in the Catchword Index;
+
+      (c) reviewing the classification symbols of patent documents most related to the subject
+      in question, for example by statistical analysis of documents found during a text search
+      using relevant technical terms. However, care must be taken when using the
+      classifications of other documents for determining relevant subclasses, since the
+      classification of documents can be based on different parts of their disclosures.
+
+Although these alternative methods may lead to determination of a more specific place than a
+subclass, the relevance of that place must always be verified by checking its scope in the light
+of its hierarchically superior places and the classification rules in that particular area of the IPC.
+
+138. After identification of a subclass using the methods described above, it is necessary to
+check whether its scope (see Chapter VII “SCOPE OF PLACES”, above) is wide enough to
+cover the technical subject to be classified. For this purpose, the references and notes
+appearing after the subclass title and its definition, if available, should be consulted.
+
+Selecting a group
+
+139. After selection of the appropriate subclass, the procedure using the hierarchical structure
+of the IPC should be followed for determining the relevant main group and subgroup in the
+identified subclass. Before applying this procedure, it is necessary to check which of the three
+general classification rules, described below (the common rule, the first place priority rule and
+the last place priority rule), is used in the selected subclass and whether any special
+classification rules are applied. In some subclasses, different general classification rules are
+used in different parts. For example, if only one main group in a scheme uses the last place
+priority rule and the other main groups use the common rule, the main group is selected using
+the common rule and a subgroup is selected according to the rule applied within the relevant
+main group.
+
+140. While the paragraphs below indicate the differences between the general classification
+rules, it is important to remember that the general rules share the following essential features:
+
+      (a) many technical subjects are completely covered by only one group in the subclass
+      scheme; in this situation, the subject is classified in that group regardless of the general
+      classification rule used in the subclass;
+
+      (b) if two or more subjects of the invention are disclosed in the patent document, the
+      general rule used in the subclass is separately applied for classifying each subject;
+
+
+                                                                           Guide to the IPC (2026)
+                                                                                          page 35
+
+
+      (c) if a subcombination of the subject of the invention is novel and non-obvious itself, it
+      is separately classified according to the general rule used in the subclass.
+
+It is only in situations where the technical subject is covered by two or more of groups of the
+subclass (i.e., some groups have potentially overlapping scope or groups are only available for
+subcombinations of the subject and not for the subject itself) that the general classification rule
+used in the subclass is important for determining a relevant group or groups.
+
+COMMON RULE
+
+141. The common rule is the “default” classification rule in the IPC. It is applied in all areas of
+the IPC where priority classification rules or special classification rules are not specified.
+
+142. As opposed to the first and last place priority rules described in paragraphs 146 to 154,
+below, no general priority rules apply in the common rule areas of the IPC. Classification should
+be made in all appropriate places (see, for example, paragraphs 88 to 91, above).
+
+      (a)   [Deleted]
+
+      (b)   [Deleted]
+
+143. When classifying subject matter characterised by several aspects or when assigning
+additional classification symbols representing useful information for searching, principles of
+multiple classification apply (see paragraphs 102 to 106, above).
+
+144. After selection of an appropriate subclass, all its main groups should be reviewed in order
+to identify which of them, one or more, provides for the technical subject to be classified. In
+each appropriate main group, this procedure should be repeated at each subsequent
+hierarchical level until there is no further subgroup or until none of the subgroups at the next
+hierarchical level provides for the technical subject.
+
+      (a)   [Deleted]
+
+      (b)   [Deleted]
+
+      (c)   [Deleted]
+
+145. Subject matter relating to a combination of two or more constituent parts, for example a
+multistep process or a system containing several subsystems, is primarily classified in a group
+that provides for the combination as a whole. If the classification in this group does not identify
+the subcombinations, it should be considered to identify them by separate classification, either
+as additional information or, if the subcombination itself is novel and inventive, as invention
+information. If no specific place for a combination is provided, it is classified according to each
+of its subcombinations.
+
+PRIORITY RULES
+
+146. In certain areas of the Classification, priority classification rules are applied. The purpose
+of these rules is to improve consistency of classifying. As opposed to the common rule, the
+priority rules give general priority rules between all groups in the given area. In order to enable
+this, the schemes have been specially adapted for the particular rule. Even though general
+priority rules apply, multiple classification is possible in these areas, for example, when it is
+necessary to classify different aspects of subject matter or when the subject matter contains
+
+
+                                                                              Guide to the IPC (2026)
+                                                                                             page 36
+
+
+additional information which is desirable to be classified. The areas where priority classification
+rules are applied are clearly marked by a note appearing before the first place of the area
+covered by such classification rules or at a hierarchically higher place.
+
+First Place Priority Rule
+
+147. In some parts of the Classification, the first place priority rule is used. Where this rule
+applies, it is set out in a note of the type: “In this subclass / main group(s) / group(s), the first
+place priority rule is applied, i.e. at each hierarchical level, in the absence of an indication to the
+contrary, classification is made in the first appropriate place.” For example, see the relevant
+notes in groups B62M 6/00 or G03F 1/00. According to this rule, a technical subject of the
+invention is classified by successively, at each indentation level, locating the first group covering
+any portion of the technical subject, until a subgroup is selected for classification at the deepest
+appropriate indentation level. When several particular technical subjects are disclosed in a
+patent document, the first place priority rule is separately applied to each of them.
+
+148. Classification schemes where the first place priority rule has been introduced contain a
+standardised sequence of groups. This standardised sequence follows the principle of
+proceeding from more complex or specialised subject matter at the top of the scheme to less
+complex or less specialised subject matter located lower in the scheme.
+
+149. After selection of the appropriate subclass for the subject of the invention, the following
+procedure is applied for identifying a detailed classification place:
+
+      (a) determining the first main group in the subclass which provides at least in part for
+      the subject of the invention;
+
+      (b) determining, under this main group, the first one-dot subgroup which provides at
+      least in part for this subject of the invention;
+
+      (c) repeating the procedure of the previous step through successive indentation levels
+      of subgroups until the first subgroup at the deepest subgroup level (i.e., with a maximum
+      number of dots) which provides for the subject of the invention is determined.
+
+150. If the subject matter to be classified relates to a combination of things covered in an area
+where the first place priority rule applies and no specific place for the combination is provided,
+the combination is classified in the first group that provides for at least one of its
+subcombinations. Any other subcombinations which are determined to be novel and
+non-obvious must also be separately classified following the first place priority rule procedure.
+Subcombinations which are considered to represent information of interest for search may be
+classified as additional information.
+
+Last Place Priority Rule
+
+151. In some parts of the Classification the last place priority rule is used. Where this rule
+applies, it is set up in a note of the type: “In this subclass / main group(s) / group(s), the last
+place priority rule is applied, i.e. at each hierarchical level, in the absence of an indication to the
+contrary, classification is made in the last appropriate place.” For example, see the relevant
+notes in A61K, C08G, C10M. According to this rule, a technical subject of the invention is
+classified by successively locating at each indentation level the last group covering any portion
+of the technical subject until a subgroup is selected for classification at the deepest appropriate
+indentation level. When several particular technical subjects are disclosed in a patent
+document, the last place priority rule is separately applied to each of them.
+
+
+                                                                             Guide to the IPC (2026)
+                                                                                            page 37
+
+
+152. In classification schemes where the last place priority rule has been introduced, a
+sequence of groups is not formally standardised. However, the sequence of groups frequently
+follows the principle of proceeding from less complex or more general subject matter at the top
+of the scheme to progressively more complex or specialised subject matter located lower in
+the scheme.
+
+153. After selection of the appropriate subclass, the following procedure is applied for
+identifying a detailed classification place:
+
+       (a) determining the last main group in the subclass which provides at least in part for
+       the subject of the invention;
+
+       (b) determining, under this main group, the last one-dot subgroup which provides at
+       least in part for this subject of the invention;
+
+       (c) repeating the procedure of the previous step through successive indentation levels
+       of subgroups until the last subgroup at the deepest subgroup level (i.e., with a maximum
+       number of dots) which provides for the subject of the invention is determined.
+
+154. If the subject matter to be classified relates to a combination of things covered in an area
+where the last place priority rule applies and no specific place for the combination is provided,
+the combination is classified in the last group that provides for at least one of its
+subcombinations. Any other subcombinations which are determined to be novel and
+non-obvious must also be classified following the last place priority rule procedure.
+Subcombinations which are considered to represent information of interest for search may be
+classified as additional information.
+
+SPECIAL RULES
+
+155. In a limited number of places in the Classification, special classification rules are used. In
+these places, these rules override the general classification rules. Wherever special rules are
+used, they are clearly specified in notes at the places concerned, for example, C04B 38/00,
+C08L, G05D. For example, Note 2(b) following the title of subclass C08L (“Compositions of
+macromolecular compounds”) specifies that, in this subclass, compositions are classified
+according to the macromolecular constituent or constituents present in the highest proportion; if
+all these constituents are present in equal proportions, the composition is classified according to
+each of these constituents.
+
+
+XII.   PRESENTATION OF CLASSIFICATION SYMBOLS AND INDEXING CODES ON
+       PATENT DOCUMENTS
+
+156. The order of classification symbols and indexing codes is as follows:
+
+       (a) Classification symbols representing invention information, of which that symbol
+       which most adequately represents the invention should be listed first;
+
+       (b)   Classification symbols representing secondary classification;
+
+       (c)   Classification symbols representing additional information;
+
+       (d)   Indexing codes.
+
+
+                                                                             Guide to the IPC (2026)
+                                                                                            page 38
+
+
+157. Classification symbols and indexing codes are presented in tabular form in one or more
+columns, with only one symbol or code on each line of a column. The order specified in
+paragraph 156, above, should be followed the first column downwards, then the second column
+downwards, and so on.
+
+158. The version indicator of the IPC has to be placed in round brackets after the abbreviation
+“Int.Cl.”, if the document is classified, at least partly, in main groups only. Most offices classify a
+given document in either the full IPC or main groups only (see Examples (a) and (b) in
+paragraph 161, below). When classifying in the full IPC, the version indicator of each IPC
+symbol (see paragraph 42(b), above), is placed in round brackets after the symbol. It should
+however be noted that all version indicators earlier than (2006.01) should be replaced
+by (2006.01).
+
+158bis. For previous editions, up to the seventh edition of the IPC, the Classification edition was
+generally indicated by means of a superscript Arabic numeral, printed immediately after the
+abbreviation. Thus, for a document classified in accordance with the fifth edition, the
+abbreviation was: Int.Cl.5, etc. However, when it was in accordance with the first edition, no
+superscript Arabic numeral was shown, the indication being merely Int.Cl.
+
+159. When classifying in main groups only, IPC symbols are printed or displayed in regular font
+style (i.e., non-italics), and when classifying in the full IPC, IPC symbols are printed or displayed
+in italics.
+
+160. The invention information symbols are printed or displayed in bold font style and the
+additional information symbols are printed or displayed in regular font style (i.e., non-bold).
+
+161. Sample representations of IPC classification symbols and indicators are given below for
+the same document when classified in the full IPC, in main groups only or both in the full IPC
+and in main groups.
+
+      (a)   When classified in the full IPC:
+
+            Int.Cl.
+            B28B 5/00 (2006.01)
+            H04H 20/12 (2008.01)
+            H01H 33/65 (2009.01)
+
+            Where:
+
+            B28B 5/00        indicates invention information (bold font style) classified in the full
+                             IPC (italics font style);
+            H04H 20/12       indicates invention information (bold font style) classified in the full
+                             IPC (italics font style);
+            H01H 33/65       indicates additional information (regular font style, i.e., non-bold)
+                             classified in the full IPC (italics font style).
+
+      (b)   When classified in main groups only:
+
+            Int. Cl. (2011.01)
+            B28B 5/00
+            H04H 20/00
+            H01H 33/00
+
+
+                                                                            Guide to the IPC (2026)
+                                                                                           page 39
+
+
+            Where:
+
+            B28B 5/00       indicates invention information (bold font style) classified in main
+                            groups only (regular font style, i.e., non-italics);
+            H04H 20/00      indicates invention information (bold font style) classified in main
+                            groups only (regular font style, i.e., non-italics);
+            H01H 33/00      indicates additional information (regular font style, i.e., non-bold)
+                            classified in main groups only (regular font style, i.e., non-italics).
+
+      (c) When invention information is classified in the full IPC and additional information in
+      main groups only:
+
+           Int. Cl. (2011.01)
+           B28B 5/00 (2006.01)
+           H04H 20/12 (2008.01)
+           H01H 33/00
+
+            Where:
+
+            B28B 5/00       indicates invention information (bold font style) classified in the full
+                            IPC (italics font style);
+            H04H 20/12      indicates invention information (bold font style) classified in the full
+                            IPC (italics font style);
+            H01H 33/00      indicates additional information (regular font style, i.e., non-bold)
+                            classified in main groups only (regular font style, i.e., non-italics).
+
+
+XIII. SPECIAL CLASSIFICATION PLACES FOR SUBJECT MATTER NOT ADEQUATELY
+      COVERED IN THE IPC
+
+162. Normally, invention information disclosed in patent documents is adequately covered by
+one or more classification places. Nevertheless, due to the development of technology, it is
+inevitable that existing classification places may not adequately provide for all newly disclosed
+subject matter. Because it is necessary for this subject matter to be classified, special
+classification places have been created with titles that do not contain technical limitations.
+These classification places gather these new types of subject matter until technically defined
+classification places covering such subject matter can be created.
+
+163. When the invention information in a patent document is not adequately covered by any of
+the subclasses of the most appropriate section, the invention information is classified in the
+special residual main group of that section. Each special residual main group is designated by
+“99Z 99/00” preceded by its section symbol. All of the special residual classes, subclasses and
+main groups have the same title.
+
+      For example (Section A):
+
+            A99Z 99/00     Subject matter not otherwise provided for in this section
+
+            Each of the special residual subclasses has the following standard note:
+
+            “This subclass covers subject matter that (a) is not provided for, but is most closely
+            related to, the subject matter covered by the subclasses of this section, and (b) is
+            not explicitly covered by any subclass of another section.”
+
+
+                                                                              Guide to the IPC (2026)
+                                                                                             page 40
+
+
+164. Whenever invention information is covered by a subclass but is not covered by any of its
+groups with specific titles, the invention information is classified in a residual main group of that
+subclass. To facilitate locating these main groups, such residual main groups, where they are
+necessary, are placed at the end of the subclass scheme and designated by the standard group
+symbol 99/00 whenever possible. Before classifying in a residual main group, classification in
+another subclass or in other main groups of the same subclass should be thoroughly
+considered. Due respect should be given to the scope of such places as explained in
+paragraphs 92 to 99, above, which describe some situations where subject matter is classified
+in places whose titles do not explicitly provide for it. Combinations of subject matter covered by
+two or more different main groups should not be classified in a residual main group, unless
+indicated otherwise. The normal procedures for classification of combination-type subject
+matter are described in paragraphs 145, 150 and 154, above.
+
+165. If for specific invention information no residual main group exists in the appropriate
+subclass, classification is made in the special residual main group of the appropriate section
+(see paragraph 163, above).
+
+
+XIV. USE OF THE IPC FOR SEARCH PURPOSES
+     Different kinds of search; Preparing for a search; Defining a field of search
+
+DIFFERENT KINDS OF SEARCH
+
+166. Nearly all published patent documents are provided with IPC symbols. The IPC may be
+used for various kinds of search in paper documentation or in electronic databases, such as:
+
+      (a) Novelty Search – The object of a “Novelty Search” is to determine the novelty or
+      lack of novelty of the invention claimed in a patent application. The aim of the search is to
+      discover relevant prior art in order to establish whether an invention has or has not
+      already been disclosed at a date earlier than the reference date for the search.
+
+      (b) Patentability or Validity Search – A “Patentability or Validity Search” is made to
+      locate documents relevant to the determination not only of novelty but also of other criteria
+      of patentability, for example, the presence or absence of an inventive step (i.e., that the
+      alleged invention is or is not obvious) or the achievement of useful results or technical
+      progress. This type of search should cover all technical fields which may contain material
+      pertinent to the invention. Novelty and patentability searches are mainly carried out by
+      industrial property offices with respect to their patent examination procedures.
+
+      (c) Infringement Search – The object of an “Infringement Search” is to locate patents
+      and published patent applications which might be infringed by a given industrial activity.
+      In this type of search the aim is to determine whether an existing patent gives exclusive
+      rights covering that industrial activity or any part of it.
+
+      (d) Informative Search – An “Informative Search” is made to familiarise the inquirer
+      with the state of the art in a particular field of technology. It is also often referred to as a
+      “state-of-the-art search”. This kind of search provides background information for
+      research and development activities and allows to identify which patent publications
+      already exist in the given field. Further reasons for this kind of search could be the need
+      to determine alternative technologies which may replace a technology applied or to
+      evaluate a specific technology which is being offered for licence or which is being
+      considered for acquisition.
+
+
+                                                                             Guide to the IPC (2026)
+                                                                                            page 41
+
+
+PREPARING FOR A SEARCH
+
+167. Before making a search, it is essential to establish clearly the technical subject of the
+search. For certain types of search, for example, a “Patentability Search”, it may be necessary
+to search for more than one technical subject. Having formulated a clear statement of the
+technical subject to be searched, the searcher has to identify the proper place for this subject in
+the IPC. Consideration of the technical subject in question will allow to identify a word or words
+(technical terms) which cover broadly or specifically the field of technology with which this
+subject is clearly concerned.
+
+DEFINING A FIELD OF SEARCH
+
+168. Having identified technical terms relating to the technical subject, it is advisable to
+approach the system by using the Catchword Index to the IPC or the term searching of the
+electronic publication, enabling to search for technical terms in the text of the IPC itself or in the
+Catchword Index to the IPC. The Catchword Index may indicate to the searcher a precise
+group of the IPC, but often there can only be an indication of the main group or possibly the
+subclass of the IPC. The Introduction to the Catchword Index includes a suggested mode of
+use. It should be noted that the Catchword Index in no sense replaces any part of the IPC and
+must not be read as modifying the effect of anything in the latter.
+
+169. If the use of the Catchword Index or term search in the electronic publication does not
+lead to a pertinent field of search, the searcher should scan the eight sections of the IPC,
+selecting possible subsections and classes by title. Then it would be necessary to turn to the
+selected class and subclass titles thereunder and note those subclasses which appear to
+include the subject in question. The subclass which most satisfactorily covers the subject
+should be selected.
+
+170. An alternative method of determining an appropriate subclass could be text searching by
+identified technical terms in databases containing full texts or abstracts of patent documents,
+followed by a statistical analysis of classification symbols assigned to retrieved documents.
+Subclasses which most often appear in classification symbols of the documents should be
+considered for inclusion in the field of search.
+
+171. After selection of the appropriate subclass, it is necessary to check the references and
+notes appearing in the selected subclass title for a more precise indication of the subclass
+contents and for identifying borderlines between related subclasses, which in turn may indicate
+that the location of the desired subject is elsewhere. If a definition is available for the selected
+subclass, it should be studied in detail because Definitions give the most precise indication of
+the scope of subclasses.
+
+172. At the next step, all main groups in the subclass should be scanned to locate the most
+appropriate main group, in the light of its title and any existing notes and references. For a
+quick navigation in the subclass, the subclass index appearing at the beginning of the subclass
+may be used.
+
+173. Having determined the appropriate main group, the searcher should scan its one-dot
+subgroups and identify the group which seems most appropriate to the subject in question. If
+this one-dot group has subordinate groups with two or more dots, the group to be selected for
+search is the most appropriate group which is most indented (i.e., has most dots).
+
+
+                                                                              Guide to the IPC (2026)
+                                                                                             page 42
+
+
+174. If the chosen group includes a precedence reference to another group, for example, if the
+chosen group is in the form “7/16 - - - (7/12 takes precedence)”, it may be necessary to search
+the group taking precedence as well as the chosen group, i.e., in the example, the group 7/12
+as well as 7/16, since documents including in addition to the subject of group 7/16 that of group
+7/12 will be classified in the latter. If, on the other hand, the subject in question includes that of
+group 7/12 as well as that of group 7/16, it is not generally necessary to search group 7/16.
+
+      Example: C08F 2/04             Polymerisation in solution (C08F 2/32 takes precedence)
+               C08F 2/32             Polymerisation in water-in-oil emulsions
+
+Polymerisation characterised by taking place in a particular solvent may be found in either of
+these places and, therefore, it should be necessary to search in both these places; however, if
+the polymerisation in question cannot take place in a water-in-oil emulsion, it should not be
+necessary to search C08F 2/32.
+
+175. If the chosen group is in a subclass, or a part thereof, governed by an overall precedence
+rule, for example, a last place priority rule, special attention should be given to the scope of
+groups taking precedence or priority, in order to identify other groups possibly covering aspects
+of the technical subject to be searched.
+
+176. After completing the search in the chosen group, the searcher can consider hierarchically
+higher groups (i.e., having fewer dots) under which it is indented, since a wider subject which
+includes the subject in question may be classified there.
+
+177. In the areas of the IPC, where multiple classification or indexing is applied, it is
+recommended to use for searching first a combination of classification symbols or classification
+symbols and indexing codes associated therewith so as to make a search query more specific.
+For obtaining complete search results, the search query could be broadened afterwards by
+using the most pertinent classification symbols alone.
+
+178. Failure to retrieve pertinent documents may indicate that the proper place in the IPC has
+not been located. In such a case, the technical subject in question should be expressed
+differently and the procedure of defining the field of search should be reconsidered.
+
+
+XV. RECLASSIFICATION AND DOCUMENTATION
+
+179. The reclassification of patent documents by the intellectual property offices according to
+the latest version of the IPC aims at assuring that patent searches can be conducted using only
+the current version of the Classification and eliminates the need to rely on superseded
+IPC versions.
+
+180. During the reform of the IPC (see paragraphs 11 to 13, above), the patent documentation
+database DOCDB was established as the Classification Reference Database for the storage of
+the IPC symbols allotted to patent documents as well as for the management of the updating of
+these symbols after each revision of the IPC. The documents included in the DOCDB are
+classified according to the current version of the IPC in force. During revision of the schemes,
+the work distribution for offices participating in the reclassification of relevant files is done using
+the data extracted from this database.
+
+181. Reclassification information is stored in the DOCDB database. Copies of the DOCDB
+database can be provided for updating the content of other databases; indirect access is
+possible via databases incorporating the classification data, e.g. via the Internet sites of WIPO,
+via other intellectual property offices and via commercial hosts.
+
+
+                                                                           Guide to the IPC (2026)
+                                                                                          page 43
+
+
+182. [Deleted]
+
+182bis. Where it is determined that reclassification of the PCT minimum documentation has not
+yet been completed, a warning will be placed in the scheme to alert the user. Such warnings
+refer to the relevant Revision Concordance List (RCL) to identify where the affected subject matter
+was previously classified. Whilst such reclassification warnings remain, searchers should
+contemplate searching both the reclassification source and target groups in order to perform a
+complete IPC search. Reclassification warnings should be placed adjacent to groups affected by
+ongoing reclassification. However, where multiple subgroups under a main group are affected by
+reclassification, the warning may be placed at the main group level.
+
+
+XVI. GLOSSARY
+     Classification terms and expressions; Technical terms and expressions used in
+     the Classification
+
+CLASSIFICATION TERMS AND EXPRESSIONS
+
+183. This part of the glossary presents a list of terms or expressions relating to principles and
+rules of the Classification, as requiring some explanation of their meaning and use.
+
+ addition to the state of the   =   the difference between the subject matter in question and
+ art                                the state of the art.
+
+ aspect                         =   distinguishing perspective from which technical information
+                                    may be viewed and according to which the information may
+                                    be classified. The function, the material and the application
+                                    are examples of aspects of an apparatus.
+
+ basic subject matter of a      =   the subject matter explicitly stated as covered by the title
+ classification place               and definition of a classification place, i.e., the subject
+                                    matter itself as opposed to a combination of which it is
+                                    a part.
+
+ borderline (line)              =   a clearly stated boundary between classification places
+
+ categories of subject          =   the principal divisions of invention information:
+ matter
+                                    –    methods of using a product or performing a
+                                         non-manufacturing process or activity;
+                                    –    products, for example, articles of manufacture;
+                                    –    processes of making a product;
+                                    –    apparatus; and
+                                    –    materials from which a product is made.
+
+                                    These categories are determined contextually. As
+                                    examples, (1) a product of a process of manufacture can
+                                    itself be a material from which a different product is made;
+                                    (2) a process of making a product can simultaneously be a
+                                    method of using a material to make the product.
+
+
+                                                                       Guide to the IPC (2026)
+                                                                                      page 44
+
+
+combination                  =   a technical “thing” as a whole that consists of two or more
+                                 steps or components put together for a purpose. For
+                                 example:
+
+                                 –     a three-step manufacturing process is a combination
+                                       of three steps that together produce a product;
+                                 –     a five-component chemical composition is a
+                                       combination of the five components that may have a
+                                       property that each component alone will not have;
+                                       and
+                                 –     a wheelchair is a combination of a chair and a wheel
+                                       assembly designed to transport a person in a
+                                       sitting position.
+
+                                 The terms combination and subcombination, however, are
+                                 relative terms. Thus, the first example might be a
+                                 subcombination of a larger combination with a fourth step.
+                                 In the third example, the wheel assembly is itself a
+                                 combination of a tyre, spokes and rim as well as a
+                                 subcombination of the wheelchair.
+
+embodiment                   =   a specific, disclosed example of how an inventive concept,
+                                 that is more generally stated elsewhere in the disclosure,
+                                 can be put into practice. See Genus.
+
+genus                        =   a grouping of embodiments within a category of subject
+                                 matter which share a common limitation.
+
+                                 A subgenus (i.e., species) is a subgrouping within a genus.
+
+                                 An ultimate species is the most specific embodiment within
+                                 a genus, i.e., an embodiment with no explicit variables.
+                                 This expression is primarily used in the chemical arts.
+
+                                 Example:
+
+                                 Considering “inorganic compounds” as a genus, “inorganic
+                                 salts” or “sodium salts” would be a “subgenus” or “species”,
+                                 and “sodium chloride” would be an “ultimate species”.
+
+group branch (group array)   =   a segment of a subclass consisting of
+
+                                 –    a particular main group or subgroup, and
+                                 –    all the subgroups indented under it.
+
+indentation/indent           =   a graphic representation of the hierarchical relationships of
+                                 groups within classification schemes. Indentation indicates
+                                 subdivision of part of the subject matter covered by a group
+                                 into its subgroup(s). The dependent relationship of a
+                                 subgroup to its “parent” group is shown in a classification
+                                 scheme by positioning the subgroup title below, to the right
+                                 of, and with one more dot preceding its title than its
+                                 “parent” group.
+
+
+                                                                           Guide to the IPC (2026)
+                                                                                          page 45
+
+
+                                    Example:
+
+                                    H01S 3/00     Lasers
+                                         3/09     • Processes or apparatus for excitation, e.g.
+                                                    pumping
+                                            3/091 • • using optical pumping
+                                            3/094 • • • by coherent light
+
+                                    In this example, the subgroup H01S 3/094 is successively
+                                    dependent on subgroups H01S 3/091, H01S 3/09 and on
+                                    main group H01S 3/00 under which it is indented. Without
+                                    the use of hierarchical levels and indentation, subgroup
+                                    H01S 3/094 would require a title such as: “Processes or
+                                    apparatus for excitation of lasers using optical pumping by
+                                    coherent light”.
+
+invention information (in a     =   all novel and unobvious subject matter in its total disclosure
+patent document)                    (for example, description, drawings, claims) that represents
+                                    an addition to the state of the art in the context of the state
+                                    of the art (for example, a solution to a stated problem).
+                                    “Invention information” should usually be determined using
+                                    the claims of the patent document for guidance.
+
+inventive thing                 =   means any part of the invention information which is novel
+                                    and unobvious in itself.
+
+multiple, multi, multiplicity   =   two or more of the things in consideration.
+of, plural, plurality of            For example: “multistep” process means a process of two
+                                    or more steps, while “multichannel” means two or
+                                    more channels.
+
+object                          =   any tangible technical matter, for example, article of
+                                    manufacture, apparatus or piece of material.
+
+obligatory classification       =   the classification necessary to completely represent the
+                                    invention information of a patent document.
+
+parallel groups (coordinate     =   groups that depend from the same immediate classification
+groups)                             place (i.e. “parent” subclass or group) and are at the same
+                                    hierarchical (indentation) level.
+
+                                    Example: all main groups in the same subclass are parallel
+                                    (coordinate).
+
+reference                       =   a pointer to another place in the IPC, consisting of a phrase
+                                    between round brackets describing a subject matter
+                                    followed by the IPC place(s) where that subject matter
+                                    is covered.
+
+                                    Example:
+
+                                    A47B 25/00     Card tables; Tables for other games (billiard
+                                                   tables A63D 15/00)
+
+
+                                                                        Guide to the IPC (2026)
+                                                                                       page 46
+
+
+  limiting reference         =   a reference of one of the two categories below:
+
+                                 –    scope-limitation reference;
+                                 –    precedence reference.
+
+     scope-limitation        =   a reference which clearly excludes subject matter from the
+     reference                   place where the reference appears, that subject matter
+                                 being otherwise covered by that place – see also
+                                 paragraph 39(a), above.
+
+     precedence              =   a reference stating that another place “takes precedence”,
+     reference                   which is used when subject matter is classifiable in two
+                                 places, or when different aspects of the subject matter to
+                                 classify are covered by different places, and it is desired
+                                 that such subject matter should be classified in only one of
+                                 those places – see also paragraph 39(b), above.
+
+  non-limiting reference     =   a reference of one of the three categories below:
+
+                                 –     application-oriented reference;
+                                 –     reference out of a residual place;
+                                 –     informative reference.
+
+     application-oriented    =   a reference (usually appearing in a function-oriented place)
+     reference                   which points to a place where the subject matter under
+                                 consideration is covered if it is specially adapted, used for a
+                                 particular purpose or incorporated in a larger system – see
+                                 also paragraph 39(c), above.
+
+     reference out of a      =   a reference appearing in a residual place, illustrating places
+     residual place              which cover (provide for) the subject matter under
+                                 consideration – see also paragraph 39(d), above.
+
+     informative reference   =   a reference indicating the location of subject matter that
+                                 could be of interest for searching, but which subject matter
+                                 is not within the scope of the classification place where the
+                                 reference occurs – see also paragraph 39(e), above.
+
+residual main group          =   a main group, within a subclass scheme, that is not defined
+                                 by any technical features and that provides for the subject
+                                 matter not covered by any of the other main groups of
+                                 the subclass.
+
+residual place                   a place which should be considered for classification if and
+                                 only if no other place of the IPC covered (provided for) the
+                                 subject matter under consideration – see also
+                                 paragraph 87bis, above.
+
+secondary classification     =   In certain areas of the Classification, schemes for
+                                 secondary classification are provided to improve the
+                                 effectiveness of the Classification.
+
+                                 Secondary classification relates to schemes, typically
+                                 covering aspects that are partially or entirely covered
+                                 elsewhere in the IPC, whereby the symbols are always
+
+
+                                                                       Guide to the IPC (2026)
+                                                                                      page 47
+
+
+                                allocated in combination with classification symbols from
+                                other subclasses to enable a complementary search of
+                                subject matter by cross-combination of symbols.
+
+                                The symbols of schemes for secondary classification are
+                                not listed first when assigned to patent documents – in the
+                                sense of paragraph 156(a), above.
+
+                                Secondary classification symbols may be assigned for
+                                either “invention information” or “additional information”, as
+                                appropriate.
+
+                                Examples of schemes for secondary classification are
+                                presented in paragraph 107bis, above.
+
+specific scope of a group   =   the subject matter which falls within the scope of a group
+                                and is not specified in any subgroup indented thereunder.
+                                For a group that has no subgroups, the overall scope and
+                                the specific scope are identical. When a group gets new
+                                subgroups, its overall scope remains unchanged, but the
+                                specific scope is reduced. The specific scope of a group
+                                can be understood as the residual subject matter classified
+                                in the group itself, but not in its subgroups.
+
+                                In previous editions of the Guide, the expression “file
+                                scope” was used instead of “specific scope”, hence the two
+                                expressions must be understood as equivalent.
+
+standardised sequence of    =   the arrangement of groups following the principle of
+groups                          proceeding from more complex to less complex subject
+                                matter and from specialised to non-specialised subject
+                                matter of the subclass.
+
+subclass scheme             =   the ordered arrangement of groups within a subclass.
+
+subcombination              =   a subset of the steps or components forming an entire
+                                “thing”. A subcombination may include one or more
+                                components or steps.
+
+                                Examples of subcombinations are:
+
+                                –     two consecutive steps of a three-step manufacturing
+                                      process;
+                                –     a composition consisting only of some of the
+                                      components of a more complex composition; and
+                                –     wheels for a wheelchair.
+
+                                A subcombination may itself consist of further
+                                subcombinations.
+
+(technical) subjects of     =   (technical) information that describes processes, products,
+inventions                      apparatus or materials, which are novel and unobvious.
+
+
+                                                                           Guide to the IPC (2026)
+                                                                                          page 48
+
+
+ the state of the art          =   the collection of all technical subject matter that has already
+                                   been placed within public knowledge.
+
+ thing                         =   means any technical subject matter, tangible or not,
+                                   such as:
+
+                                    –     methods of using a product or performing a
+                                          non-manufacturing operation;
+                                    –     products (articles of manufacture);
+                                    –     processes of making a product;
+                                    –     apparatus; and
+                                    –     materials from which a product is made.
+
+
+
+TECHNICAL TERMS AND EXPRESSIONS USED IN THE CLASSIFICATION
+
+184. This part of the Glossary presents a list of technical terms or expressions selected from
+those used in the Classification, as requiring some explanation of their meaning and use, for
+example, because of a need for choice between alternative meanings or when the terms are
+used in a more precise or restricted manner than their common usage. The explanations given
+in the Glossary should not be regarded as rigid definitions. The meaning of a term or an
+expression should always be considered in the context of the technical matter dealt with.
+
+185. Attention is drawn to the definitions of certain terms and expressions which are set forth
+earlier in the Guide, for example, in paragraphs 53 to 65, above.
+
+186. Any definitions given in the Classification override, for the places concerned, the
+explanations given in this Glossary.
+
+187. The following abbreviations are used:
+
+      (A) = adjective; (N) = noun; (V) = verb
+
+ adaptation                    =   1.    modification to meet certain conditions;
+
+                                   2.    a thing embodying such modification.
+
+ apparatus                     =   a category of subject matter which is a machine or device,
+                                   described in terms of its functional capabilities or structural
+                                   features, that is used
+
+                                   –     to make a product, or
+                                   –     to carry out a non-manufacturing process or activity.
+
+ arrangement of                =   assemblage or relative disposition of multiple elements.
+                                   This expression may cover modification of one of the
+                                   objects concerned, but only if such modification is not of
+                                   interest apart from the arrangement.
+
+ arrangements for              =   any means of fulfilling a specified function, normally
+                                   comprising a combination of things which may be modified,
+                                   for example, F16D 23/02 “Arrangements for
+                                   synchronisation”.
+
+
+                                                                         Guide to the IPC (2026)
+                                                                                        page 49
+
+
+aspect                       =   distinguishing perspective from which technical information
+                                 may be viewed and according to which the information may
+                                 be classified. The function, the material and the application
+                                 are examples of aspects of an apparatus.
+
+characteristic (n)           =   distinguishing feature.
+
+chemical composition         =   a product formed from two or more discrete chemical
+                                 materials (for example, compounds or elements), which
+                                 materials are not chemically bonded to each other. An alloy
+                                 is usually a composition, but may in some instances (for
+                                 example, intermetallics, etc.) be a compound.
+
+chemical compound            =   a chemical compound is a substance formed of atoms
+                                 attached to each other via chemical bonds.
+
+control; controlling         =   affect a variable in any way, e.g. changing its direction or its
+(in contexts where a             value (including changing it to or from zero), maintaining it
+variable as defined below,       constant or limiting its range of variation. Control does not
+for example a speed or a         need to be automatic and does not need to involve any
+voltage, is affected)            measuring or testing. See also the meaning of “regulation”.
+
+
+engine                       =   a machine for producing mechanical power, for example,
+                                 for rotating or reciprocating a member, from pressure
+                                 energy of a fluid.
+
+essential                    =   a characteristic is essential for classification in a given
+                                 group if its absence would necessitate its classification in a
+                                 different group.
+
+feature                      =   any attribute of a thing, for example, its shape, its purpose,
+                                 its manner of use, any part or quality.
+
+fluid (a)                    =   having the properties of a gas or liquid.
+
+fluid (n)                    =   any gas or liquid.
+
+gearing                      =   mechanical, hydraulic, electric, or other means for
+                                 transmitting mechanical motion or force.
+
+handling                     =   dealing with material or objects in any way without
+                                 intentionally or essentially altering any property, even
+                                 temporarily (for example, without deforming, heating or
+                                 electrifying), for example, transporting, storing, positioning,
+                                 dispensing, winding or loading.
+
+laminate                     =   material of substantially uniform thickness composed of
+                                 layers in more or less continuous contact and bonded
+                                 together, for example, plywood. The layers may be
+                                 discontinuous, but not gapped.
+
+
+                                                                           Guide to the IPC (2026)
+                                                                                          page 50
+
+
+layered product                 =   material composed of strata (continuous, discontinuous, or
+                                    with gaps) of any form (for example, honeycomb,
+                                    corrugated) secured together in any way. Normally of
+                                    substantially uniform thickness overall (i.e., ignoring local
+                                    variations such as are produced by a corrugated face
+                                    layer); may be in the form of an article, for example, a
+                                    container. This expression is of wider scope than
+                                    “laminate”, covering material with voids between or in
+                                    any layer.
+
+manually                        =   by hand; by any other part of the human body unless a
+                                    more restricted meaning is clearly understood.
+
+material                        =   a category of subject matter that embraces any substance,
+                                    intermediate product, or composition of matter which is
+                                    acted upon to make a product.
+
+measure                         =   enable a value, or its relation to a datum, to be determined
+                                    (see also the definition in class G01).
+
+monitor (v)                     =   maintain a continuous or periodical watch (human or
+                                    instrumental) on, to enable action to be taken or initiated, or
+                                    a signal to be given, if undesired conditions occur.
+
+motor                           =   an apparatus for producing mechanical motion from any
+                                    other form of energy; the motion may be continuous or in
+                                    separate strokes. This term covers “engine”.
+
+multiple, multi, multiplicity   =   two or more of the things in consideration.
+of, plural, plurality of            For example: “multistep” process means a process of two
+                                    or more steps, while “multichannel” means two or
+                                    more channels.
+
+of interest                     =   having features which are of importance in the
+                                    stated context.
+
+pertinent                       =   of a nature which is important to the field in question, for
+                                    example, in F02M 17/00 (“Carburettors having pertinent
+                                    characteristics...”) the characteristics must be peculiar to
+                                    the purpose of supplying combustion engines, in
+                                    accordance with the subclass title.
+
+plant                           =   a combination of machines, apparatus, etc. to produce a
+                                    desired result, in which each machine, etc. performs a
+                                    function that can be dealt with separately and is often
+                                    studied individually, as opposed to “apparatus”, in which
+                                    only the overall function is normally of interest, though parts
+                                    may also be of interest constructionally. For example,
+                                    ore-treating plant comprising crusher, conveyer, screen and
+                                    dust separator, or engine plant comprising two engines
+                                    related in respect of steam supply or drive.
+
+plastic (a)                     =   more or less easily deformable, locally or as a whole, by
+                                    force in any direction, to assume and retain any
+                                    desired shape.
+
+
+                                                                  Guide to the IPC (2026)
+                                                                                 page 51
+
+
+plastics (a)           =   of plastics.
+
+plastics (n)           =   macromolecular compounds or compositions based on
+                           such compounds, for example, synthetic resins.
+
+preparation            =   1.  the making of any kind of substance, material,
+                           compound or composition;
+
+                           2.   pretreatment of a semi-finished material or article for
+                           subsequent treatment, etc.
+
+                           3.  composition for a particular purpose, for
+                           example medicinal.
+
+product                =   a category of subject matter that is an article or composition
+                           of matter resulting from a process and defined in terms of
+                           its structural features or its physical or chemical properties.
+
+regulate; regulation   =   maintain a variable automatically at a desired value or
+                           within a desired range of values. The desired value or
+                           range may be fixed, or manually varied, or may vary with
+                           time according to a predetermined "programme" or
+                           according to variation of another variable. Regulation is a
+                           form of “control”.
+
+stock                  =   a piece (which may be of indefinite length) of solid material
+                           in a particular form resulting from some preliminary
+                           operation (a semi-finished product), for use in an operation
+                           in which it is divided up (before or after some shaping or
+                           other operation) in the production of articles.
+                           “Stock” may also have another meaning. When this occurs,
+                           users are advised to check the glossary of terms of the
+                           local definition for clarification.
+
+treatment              =   use of a process, or series of processes, to produce a
+                           desired effect on material or objects. A treatment may alter
+                           the nature of the material or the objects completely (for
+                           example, chemical treatment); otherwise, its purpose is
+                           usually to alter some property (for example by heating,
+                           coating, polishing, sterilising or magnetising), without
+                           altering overall form, though the term also covers changing
+                           shape. The effect may be temporary or permanent and
+                           may apply to the whole of an object or only part of it.
+
+use (n)                =   1.   purpose for which, or field of art in which, a thing
+                           is employed;
+
+                           2.   fact that a thing is employed, or the manner in which it
+                           is employed.
+
+value                  =   magnitude or numerical expression of a variable or of a
+                           measurable constant.
+
+
+                                                         Guide to the IPC (2026)
+                                                                        page 52
+
+
+variable (n)   =   a measurable quantity or property which may, but need not,
+                   change, for example, length, speed, voltage or colour.
+                   Since such a quantity or property may, for a given entity or
+                   in given circumstances, remain constant in value, means for
+                   measurement of a variable are in general the same as for
+                   measurement of a constant of the same nature, and
+                   reference to “a variable” must be interpreted accordingly
+                   (see Note to section G).
+
+working-up     =   treating substances to obtain them in desired final state or
+                   form, for example, colouring by incorporating pigments,
+                   granulating, producing sheets or articles.
+
+
+World Intellectual Property Organization
+34, chemin des Colombettes
+P.O. Box 18
+CH-1211 Geneva 20
+Switzerland
+
+Tel: + 41 22 338 91 11
+Fax: + 41 22 733 54 28
+
+For contact details of WIPO’s
+External Offices visit:
+www.wipo.int/about-wipo/en/offices

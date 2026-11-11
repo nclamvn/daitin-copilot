@@ -8,7 +8,7 @@ if (Number(process.versions.node.split('.')[0]) < 24) throw new Error('Máy ch�
 const app = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const data = resolve(process.env.DAI_TIN_DATA_DIR ?? resolve(app, 'work/web-data'));
 Object.assign(process.env, {
-  DAI_TIN_WEB: '1', DAI_TIN_M5: '1', DAI_TIN_M4: '1', DAI_TIN_M3: '1',
+  DAI_TIN_WEB: '1', DAI_TIN_M5: '1', DAI_TIN_M4: '1', DAI_TIN_M3: '1', DAI_TIN_PATENTS: '1',
   DAI_TIN_COPILOT: '1', DAI_TIN_PILOT: '1', DAI_TIN_CORPUS_MODE: 'preview',
   DAI_TIN_M5_ACCOUNTS: resolve(data, 'accounts.json'), DAI_TIN_M3_STORE: resolve(data, 'pilot.sqlite'),
   DAI_TIN_MODEL_LOG: resolve(data, 'model-audit.jsonl'),
@@ -29,7 +29,7 @@ if (!Number.isInteger(port) || port < 1024 || port > 65535 || !['127.0.0.1', '0.
 }
 const server = createServer();
 server.listen(port, bind, () => {
-  console.log('DAITIN Web pilot • ' + web.origin + '/copilot/m3/workspace/');
+  console.log('DAITIN Web pilot • ' + web.origin + '/patents/');
   console.log('Tài khoản mới: ' + resolve(data, 'THONG-TIN-DANG-NHAP.txt'));
   console.log(process.env.DAI_TIN_MODEL_MODE === 'disabled' ? 'AI chưa bật. Có thể tra cứu, sửa tay và xuất bản duyệt.' : 'AI dùng cấu hình của máy chủ.');
 });

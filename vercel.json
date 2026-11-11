@@ -8,7 +8,7 @@
   "functions": {
     "api/index.mjs": {
       "maxDuration": 180,
-      "includeFiles": "{corpus/**,copilot/**,sot/**,public/**,distribution/demo/**,node_modules/pdfjs-dist/standard_fonts/**,node_modules/pdfjs-dist/cmaps/**,node_modules/pdfjs-dist/legacy/build/pdf.worker.mjs,node_modules/@napi-rs/**}",
+      "includeFiles": "{corpus/**,copilot/**,sot/**,public/**,distribution/demo/**,patents/*.mjs,patents/ui/**,patents/data/catalog.json,patents/data/snapshots/**,patents/data/extracts/**,node_modules/pdfjs-dist/standard_fonts/**,node_modules/pdfjs-dist/cmaps/**,node_modules/pdfjs-dist/legacy/build/pdf.worker.mjs,node_modules/@napi-rs/**}",
       "excludeFiles": "{test/**,work/**,copilot/evals/**,copilot/m4/pilot/**,copilot/m4/acceptance/**,copilot/m5/pilot/**,copilot/m5/acceptance/**,**/*.jsonl,**/*.key,**/*.gguf,**/__pycache__/**}"
     }
   },

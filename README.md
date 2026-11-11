@@ -1,8 +1,14 @@
 # DAITIN Copilot
 
-Bàn hồ sơ sở hữu trí tuệ cho pilot Đại Tín: tra căn cứ theo thời điểm, làm việc từ nguồn được chọn, sửa và duyệt từng phần, lưu phiên bản và xuất đúng Word đã duyệt. Giao diện dùng logo chính thức và font Be Vietnam Pro.
+Bàn hồ sơ sáng chế và nhãn hiệu cho pilot Đại Tín: tra căn cứ theo thời điểm, làm việc từ nguồn được chọn, sửa và duyệt từng phần, lưu phiên bản và xuất đúng Word đã duyệt. Giao diện dùng logo chính thức và font Be Vietnam Pro.
 
-## Phạm vi pilot
+## Sáng chế: M6
+
+Trang chính `/patents/` mở bàn hồ sơ sáng chế: duyệt bộ nguồn ứng viên, tra cứu có dẫn chứng, chọn đúng yêu cầu bảo hộ và D1, nhập thông báo/chỉ dẫn mô phỏng bằng văn bản hoặc TXT/MD, lập ma trận và phản hồi bằng AI hoặc sửa tay, duyệt riêng từng phần và xuất Word của bản đã duyệt. Nguồn hồ sơ riêng không đi vào kho công khai. Thay chỉ dẫn yêu cầu duyệt lại phần phản hồi; bản phát hành cũ giữ nguyên.
+
+Kho dữ liệu được cào có giới hạn từ nguồn công khai được phép, kết hợp văn bản đã lưu; có bản gốc, dấu kiểm, đoạn trích, quan hệ phụ thuộc được trích xuất và các khoảng trống khai báo. Văn bản OCR cần kiểm lại bản gốc; đoạn đã biết lỗi bị chặn khi phân tích hoặc duyệt. Không có bộ tình trạng quyền/họ sáng chế đã xác minh, tra cứu tình trạng kỹ thuật đầy đủ hay kết luận tính mới/FTO tự động. SOT vẫn là ứng viên chờ luật sư rà soát. Chi tiết: [TIP M6](docs/patents/M6-TIP.md), [bộ 30 yêu cầu và cách chấm](docs/patents/acceptance/PROTOCOL.md).
+
+## Nhãn hiệu: phạm vi pilot được giữ
 
 - Tám hồ sơ hoàn toàn mô phỏng; không có hồ sơ khách hàng thật hoặc khóa truy cập trong mã nguồn.
 - Tuyến quốc gia Việt Nam, kho SOT ứng viên kiểm chứng từ 01/04 đến 10/11/2026. Luật sư chưa duyệt để sử dụng cho hồ sơ thật.

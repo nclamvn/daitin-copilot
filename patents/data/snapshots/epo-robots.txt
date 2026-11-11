@@ -1,0 +1,27 @@
+User-agent: *
+Disallow: /pise-server/
+Disallow: /qual_lod/
+Disallow: /linked-data/id/
+Disallow: /linked-data/doc/
+Disallow: /linked-data/data/
+Disallow: /linked-data/def/
+Disallow: /linked-data/representation/
+Sitemap: https://data.epo.org/publication-server/sitemap.xml 
+Sitemap: https://data.epo.org/gpi/sitemap.xml
+# Please note that the SITEMAP file mentioned in this robots.txt file of the
+# European Publication Server has a re-direct mechanism associated with it.
+#
+# By registering with us you may be able to have your web crawler re-directed
+# deep into the European Publication Server for the purposes of constructing
+# your indexes.
+#
+# Unregistered users requesting the same URLs as a registered web
+# crawler will be directed to an alternate view that presents a user friendly
+# overview of the various options available for viewing the specific patent
+# documents. The re-direct is simply intended as an additional service to end
+# users who prefer a more human friendly view than that offered to web crawlers.
+#
+# For more information, and to register for the crawler re-direct,
+# we kindly ask you to e-mail patentinformation@epo.org.
+#
+# For TERMS OF USE, please see: http://www.epo.org/termsofuse.html

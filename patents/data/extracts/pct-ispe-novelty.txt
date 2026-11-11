@@ -1,0 +1,188 @@
+About Intellectual Property
+IP Training
+Respect for IP
+IP Outreach
+IP for…
+IP and...
+IP in...
+Patent & Technology Information
+Trademark Information
+Design Information
+Geographical Indication Information
+Plant Variety Information (UPOV)
+IP Laws, Treaties & Judgments
+IP Resources
+IP Reports
+Patent Protection
+Trademark Protection
+Design Protection
+Geographical Indication Protection
+Plant Variety Protection (UPOV)
+IP Dispute Resolution
+IP Office Business Solutions
+Paying for IP Services
+Negotiation & Decision-Making
+IP Cooperation
+Innovation Support
+Public-Private Partnerships
+The Organization
+WIPO and Artificial Intelligence
+Working at WIPO
+Accountability
+Patents
+Trademarks
+Designs
+Geographical Indications
+Copyright
+Trade Secrets
+Future of IP
+WIPO Academy
+Workshops & Seminars
+IP Enforcement
+WIPO ALERT
+Raising Awareness
+World IP Day
+WIPO Magazine
+Case Studies & Success Stories
+IP News
+WIPO Awards
+Business
+Women
+Universities
+Indigenous Peoples
+Judiciaries
+Youth
+Examiners
+Innovation Ecosystems
+Economics
+Finance
+Intangible Assets
+Global Health
+Climate Change
+Competition Policy
+Sustainable Development Goals
+Genetic Resources, Traditional Knowledge and Traditional Cultural Expressions
+Frontier Technologies
+Mobile Applications
+Sports
+Tourism
+Music
+Fashion
+PATENTSCOPE
+Patent Analytics
+International Patent Classification
+ARDI – Research for Innovation
+ASPI – Specialized Patent Information
+Global Brand Database
+Madrid Monitor
+Article 6ter Express Database
+Nice Classification
+Vienna Classification
+Global Design Database
+International Designs Bulletin
+Hague Express Database
+Locarno Classification
+Lisbon Express Database
+Global Brand Database for GIs
+PLUTO Plant Variety Database
+GENIE Database
+WIPO-Administered Treaties
+WIPO Lex - IP Laws, Treaties & Judgments
+WIPO Standards
+IP Statistics
+WIPO Pearl (Terminology)
+WIPO Publications
+Country IP Profiles
+WIPO Knowledge Center
+World Intangible Investment Highlights
+WIPO Technology Trends
+Global Innovation Index
+World Intellectual Property Report
+PCT – The International Patent System
+ePCT
+Budapest – The International Microorganism Deposit System
+Madrid – The International Trademark System
+eMadrid
+Article 6ter (armorial bearings, flags, state emblems)
+Hague – The International Design System
+eHague
+Lisbon – The International System of Appellations of Origin and Geographical Indications
+eLisbon
+UPOV PRISMA
+Mediation
+Arbitration
+Expert Determination
+Domain Name Disputes
+Centralized Access to Search and Examination (CASE)
+Digital Access Service (DAS)
+WIPO Pay
+WIPO Wallet
+WIPO Assemblies
+Standing Committees
+Calendar of Meetings
+WIPO Webcast
+WIPO Official Documents
+Development Agenda
+Tailored Initiatives & Projects
+Collaborative Forums & Dialogues
+Innovation, Creativity and Development Acceleration Program
+IP for Impact
+National IP & Innovation Strategies
+Cooperation Hub
+Technology and Innovation Support Centers (TISC)
+Technology Transfer
+Inventor Assistance Program
+IP Commercialization
+WIPO GREEN
+WIPO's Pat-INFORMED
+Accessible Books Consortium
+WIPO for Creators
+Member States
+Observers
+Director General
+Activities by Unit
+External Offices
+Global Forum on IP and AI
+AI Infrastructure Interchange
+AI Tools & Services
+Staff Positions
+Affiliated Personnel Positions
+Procurement
+Results & Budget
+Financial Reporting
+Oversight
+PCT International Search and Preliminary Examination Guidelines
+PART III EXAMINER CONSIDERATIONS COMMON TO BOTH THE INTERNATIONAL SEARCHING AUTHORITY AND THE INTERNATIONAL PRELIMINARY EXAMINING AUTHORITY
+Chapter 12 Novelty
+Considerations in Determining Novelty
+Methodology
+12.03 For the assessment of novelty, the examiner should apply the following steps:
+(i) evaluate the elements of the claimed invention;
+(ii) determine if a document under consideration forms part of the "prior art" (see paragraphs 11.01 to 11.05);
+(iii) assess whether each and every element or step of the claimed invention was explicitly or inherently disclosed in combination by the document, to a person skilled in the art, on the date of publication of the document.
+Inherent or Implicit Disclosure
+12.04 Lack of novelty may be apparent from what is explicitly stated in a published document, or it may be apparent from an inherent or implicit teaching of the document. For example, where the elastic properties of rubber are relied upon in a document that does not explicitly state that rubber is an "elastic material," a claim to an "elastic material" is anticipated because the rubber taught in the prior art inherently is an "elastic material". Alternatively, lack of novelty may be implicit in the sense that, in carrying out the teaching of the prior document, the skilled person would inevitably arrive at a result falling within the terms of the claim. Lack of novelty of this kind should be raised by the examiner only where there can be no reasonable doubt as to the practical effect of the prior teaching. Otherwise it should be considered in respect of inventive step (see Chapter 13).
+Interpretation of Claims
+12.05 In interpreting claims for the consideration of novelty, the examiner should have regard to the guidance given in paragraphs 5.20 to 5.41. In particular, the examiner should remember that statements in the claim reciting the purpose or intended use must be evaluated to determine whether the recited purpose or intended use results in a structural difference (or in the case of process claims, a difference in the process steps) between the claimed invention and the prior art. Non-distinctive characteristics of a particular intended use should be disregarded (see paragraphs 5.21 to 5.23). For example, a claim to a substance X for use as a catalyst would not be considered to be novel over the same substance known as a dye, unless the use referred to implies a particular form of the substance (for example, the presence of certain additives) which distinguishes it from the known form of the substance. That is to say, characteristics not explicitly stated but implied by the particular use should be taken into account. For example, if a claim refers to a "mould for molten steel", this implies certain limitations for the mould. Therefore a plastic ice cube tray with a melting point much lower than that of steel would not come within the claim which would thereby be considered as being novel.
+Combining Documents
+12.06 It should be noted that in considering novelty (as distinct from inventive step), it is not permissible to combine separate items of prior art together (see paragraph 13.12). However, if a document (the "primary" document) refers explicitly to a second document (for example, as providing more detailed information on certain features), the teachings of the second document may be regarded as incorporated into the primary document to the extent indicated in the primary document. Equally, it is permissible to use a dictionary or similar document of reference in order to interpret how a special term used in the primary document would have been understood on the date of publication. It is also permissible to rely on additional documents as evidence to show that the disclosure of the primary document was sufficient (for example, for a chemical compound to be prepared and separated or, in the case of a product of nature, to be separated). See paragraph 12.02 and the appendix to this chapter. It is also permissible to rely on additional documents as evidence to show that a characteristic not disclosed in the primary document was inherent in the primary document on the date of publication of the primary document (for example, documents that teach rubber to be an "elastic material" for the example set forth in paragraph 12.04).
+Alternatives
+12.07 Where a claim contains alternatives, for example Markush claims (P1, P2, P3 ... Pn), any alternatives disclosed in the prior art are anticipated.
+Generic vs. Specific Disclosures
+12.08 Where a claim recites an invention in generic terms, for the determination of novelty, the disclosure of a specific example falling within the parameters of the generic claim anticipates the generic claim. For example, a disclosure of copper in a prior art document defeats the novelty of metal as a generic concept, but not the novelty of any metal other than copper, and a disclosure of rivets defeats the novelty of fastening means as a generic concept, but not the novelty of any specific fastening means other than rivets.
+12.09 An item of prior art that discloses a genus does not always anticipate a claim to a species falling within the genus. In other words, if a claim under examination recites a specific example, and that specific example is not explicitly named but falls within a generic disclosure found in an item of prior art, the claim is not anticipated unless the specific example is identified with sufficient specificity in the item of prior art. If the item of prior art identifies the claimed example with sufficient specificity, that example lacks novelty no matter how many other species are additionally described in the item of prior art.
+Ranges
+12.10 A specific example in the item of prior art which is within a claimed range anticipates the range claimed. Therefore, where, as by a recitation of ranges or otherwise, a claim covers several compositions, the claim is anticipated if one of them is described in the item of prior art. For example, a claim to titanium (Ti) alloy with 0.6 to 0.7% nickel (Ni) and 0.2 to 0.4% Molybdenum (Mo) would be anticipated by an item of prior art that describes a Ti alloy containing 0.65% Ni and 0.3% Mo. Where an item of prior art discloses a range which touches, overlaps or is within the claimed range, but does not disclose a specific example falling within the claimed range, a case by case determination must be made as to the novelty of the claim. In order to anticipate the claim, the claimed subject matter should be disclosed with sufficient specificity in the item of prior art. If the claim is directed to a narrow range, the item of prior art discloses a broad range, and the claimed narrow range is not merely one way of carrying out the teaching of the item of prior art (for example, there is evidence that the effect of the selection (for example, unexpected results) occurred in all probability only within the claimed narrow range), depending on the other facts of the case, it may be reasonable to conclude that the narrow range is not disclosed with sufficient specificity in the prior art in order to anticipate the claims (a selection invention). The unexpected results may also render the claims unobvious. See Chapter 13 - Inventive Step.
+←
+Table of Contents
+→
+Hidden
+https://www.wipo.int/contact/en/area.jsp?area=pct
+https://www.wipo.int/pressroom/en/
+https://www.wipo.int/en/web/terms-of-use
+https://www.wipo.int/en/web/privacy-policy
+https://www.wipo.int/en/web/accessibility
+https://www.wipo.int/en/web/sitemap
+https://www.wipo.int/en/web/newsletters
+https://www.wipo.int/en/web/podcasts
+https://www.wipo.int/en/web/news/rss

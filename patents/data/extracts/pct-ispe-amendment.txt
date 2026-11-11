@@ -1,0 +1,182 @@
+About Intellectual Property
+IP Training
+Respect for IP
+IP Outreach
+IP for…
+IP and...
+IP in...
+Patent & Technology Information
+Trademark Information
+Design Information
+Geographical Indication Information
+Plant Variety Information (UPOV)
+IP Laws, Treaties & Judgments
+IP Resources
+IP Reports
+Patent Protection
+Trademark Protection
+Design Protection
+Geographical Indication Protection
+Plant Variety Protection (UPOV)
+IP Dispute Resolution
+IP Office Business Solutions
+Paying for IP Services
+Negotiation & Decision-Making
+IP Cooperation
+Innovation Support
+Public-Private Partnerships
+The Organization
+WIPO and Artificial Intelligence
+Working at WIPO
+Accountability
+Patents
+Trademarks
+Designs
+Geographical Indications
+Copyright
+Trade Secrets
+Future of IP
+WIPO Academy
+Workshops & Seminars
+IP Enforcement
+WIPO ALERT
+Raising Awareness
+World IP Day
+WIPO Magazine
+Case Studies & Success Stories
+IP News
+WIPO Awards
+Business
+Women
+Universities
+Indigenous Peoples
+Judiciaries
+Youth
+Examiners
+Innovation Ecosystems
+Economics
+Finance
+Intangible Assets
+Global Health
+Climate Change
+Competition Policy
+Sustainable Development Goals
+Genetic Resources, Traditional Knowledge and Traditional Cultural Expressions
+Frontier Technologies
+Mobile Applications
+Sports
+Tourism
+Music
+Fashion
+PATENTSCOPE
+Patent Analytics
+International Patent Classification
+ARDI – Research for Innovation
+ASPI – Specialized Patent Information
+Global Brand Database
+Madrid Monitor
+Article 6ter Express Database
+Nice Classification
+Vienna Classification
+Global Design Database
+International Designs Bulletin
+Hague Express Database
+Locarno Classification
+Lisbon Express Database
+Global Brand Database for GIs
+PLUTO Plant Variety Database
+GENIE Database
+WIPO-Administered Treaties
+WIPO Lex - IP Laws, Treaties & Judgments
+WIPO Standards
+IP Statistics
+WIPO Pearl (Terminology)
+WIPO Publications
+Country IP Profiles
+WIPO Knowledge Center
+World Intangible Investment Highlights
+WIPO Technology Trends
+Global Innovation Index
+World Intellectual Property Report
+PCT – The International Patent System
+ePCT
+Budapest – The International Microorganism Deposit System
+Madrid – The International Trademark System
+eMadrid
+Article 6ter (armorial bearings, flags, state emblems)
+Hague – The International Design System
+eHague
+Lisbon – The International System of Appellations of Origin and Geographical Indications
+eLisbon
+UPOV PRISMA
+Mediation
+Arbitration
+Expert Determination
+Domain Name Disputes
+Centralized Access to Search and Examination (CASE)
+Digital Access Service (DAS)
+WIPO Pay
+WIPO Wallet
+WIPO Assemblies
+Standing Committees
+Calendar of Meetings
+WIPO Webcast
+WIPO Official Documents
+Development Agenda
+Tailored Initiatives & Projects
+Collaborative Forums & Dialogues
+Innovation, Creativity and Development Acceleration Program
+IP for Impact
+National IP & Innovation Strategies
+Cooperation Hub
+Technology and Innovation Support Centers (TISC)
+Technology Transfer
+Inventor Assistance Program
+IP Commercialization
+WIPO GREEN
+WIPO's Pat-INFORMED
+Accessible Books Consortium
+WIPO for Creators
+Member States
+Observers
+Director General
+Activities by Unit
+External Offices
+Global Forum on IP and AI
+AI Infrastructure Interchange
+AI Tools & Services
+Staff Positions
+Affiliated Personnel Positions
+Procurement
+Results & Budget
+Financial Reporting
+Oversight
+PCT International Search and Preliminary Examination Guidelines
+PART VI THE INTERNATIONAL PRELIMINARY EXAMINATION STAGE (OTHER THAN THE INTERNATIONAL PRELIMINARY REPORT)
+Chapter 20 Amendments
+Additional Subject Matter
+Rules 70.2(c), 70.16(b); Section 602(a)(iv)
+20.10 There is normally no objection to an applicant's introducing, by amendment, further information regarding prior art which is relevant, nor should the straightforward clarification of an obscurity, or the resolution of an inconsistency, be objected to. When, however, the applicant seeks to amend the description (other than references to the prior art), the drawings, or the claims in such a way that subject matter which extends beyond the content of the application as filed is thereby introduced, the international preliminary examination report must be established as if such amendment had not been made. The examiner indicates in the international preliminary examination report each sheet that contains subject matter which goes beyond the disclosure of the application as filed. In such cases the replacement sheets containing such amendments will be attached to the international preliminary examination report along with the accompanying letter as required under Rule 70.16(a) since they represent amendments which have been made, even though they are not considered for the purposes of the international preliminary examination report. If a first replacement sheet was acceptable but a second replacement sheet for the same numbered sheet contains subject matter that goes beyond the original disclosure of the application as filed, the second replacement sheet supersedes the first replacement sheet. In this situation, both the first and second replacement sheets are attached to the international preliminary examination report along with the accompanying letters as required under Rule 70.16(a) to ensure that elected Offices receive the version of the international application which is the basis of the international preliminary examination report and also the later amendments which were not considered for that purpose. In this case the superseded replacement sheet is marked "SUPERSEDED REPLACEMENT SHEET (RULE 70.16(b))".
+20.11 Where amendments have been filed under Articles 19(1) and/or 34(2)(b), the question may arise whether a particular amendment proposed by the applicant goes beyond the disclosure of the international application as filed. In order to make this determination in situations where the amendment is filed in a different language than the language of the application as filed, the examiner should normally assume, in the absence of evidence to the contrary, that the original translation of the international application into the language of publication or, where a translation is required under Rule 55.2, into the language of that translation, is in conformity with the text of the original language of filing.
+Articles 19(2), 34(2)(b); Rule 70.2(c)
+20.12 An amendment should be regarded as introducing subject matter which extends beyond the content of the application as filed, and therefore unacceptable, if the overall change in the content of the application (whether by way of addition, alteration or excision) results in the skilled person being presented with information, which was not expressly or inherently presented in the application as filed even when taking into account matter which is implicit to a person skilled in the art in what has been expressly mentioned. The term "inherently" requires that the missing descriptive matter is necessarily present in the disclosure, and that it would be recognized by persons of ordinary skill. Inherency may not be established by probabilities or possibilities. The mere fact that a certain thing may result from a given set of circumstances is not sufficient.
+20.13 The subject matter newly presented may be introduced by explicitly mentioning matter, which was either not previously mentioned at all, or only implied. For example, if in an international application relating to a rubber composition comprising several ingredients the applicant seeks to introduce the information that a further ingredient might be added, then this amendment should normally be regarded as going beyond the disclosure in the application as originally filed. Likewise, if in an application which describes and claims apparatus "mounted on resilient supports," without disclosing any particular kind of resilient support the applicant seeks to add specific information that the supports are, or could be, for example, helical springs (see, however, paragraph 20.14), then the amendment should normally be regarded as going beyond the disclosure in the application as originally filed.
+20.14 If, however, the applicant can show convincingly that the subject matter in question would, in the context of the claimed invention, be so well known to the person skilled in the art that its introduction could be regarded as an obvious clarification and, therefore, as not extending the content of the application, it is permissible. For example, if in the above-mentioned case of the resilient supports the applicant were able to demonstrate that drawings, as interpreted by the person skilled in the art, showed helical springs, or that the person skilled in the art would naturally use helical springs for the mounting in question, then specific reference to helical springs should be regarded as permissible.
+20.15 Where a technical feature was clearly disclosed in the original application but its effect was not mentioned or not mentioned fully, yet it can be deduced without difficulty by a person skilled in the art from the application as filed, subsequent clarification of that effect in the description might not contravene Article 34(2)(b).
+20.16 Amendment by the introduction of further examples, for example, in the chemical field, should always be looked at very carefully, since prima facie any further example to illustrate a claimed invention may extend the disclosure of the international application as originally filed.
+20.17 However, later-filed examples or statements of advantage, even if not allowed into the application, may nevertheless be taken into account by the examiner as evidence in support of the allowability of the claims in the application. For instance, an additional example may be accepted as evidence that the invention can be readily applied, on the basis of the information given in the originally filed application, over the whole field claimed (see paragraphs 5.52 and 5.53); or an additional statement of advantage may be accepted as evidence in support of inventive step (see paragraph 13.15). When such evidence is used by the examiner to support a positive conclusion on inventive step, a mention of this evidence should be made in the international preliminary examination report.
+20.18 Care must also be taken to ensure that any amendment to, or subsequent insertion of, a statement of the technical problem solved by the invention meets Article 34(2)(b). For example, it may happen that, following restriction of the claims to meet an objection of lack of inventive step, it is desired to revise the stated problem to emphasize an effect attainable by the thus restricted invention but not by the prior art. It must be remembered that such revision is only permissible if the effect emphasized is one deducible by a person skilled in the art without difficulty from the application as filed (see paragraphs 20.15 and 20.16).
+20.19 As indicated in paragraph 20.12, alteration or excision of the text, as well as the addition of further text, may introduce new subject matter. For instance, suppose a claimed invention related to a multi-layer laminated panel and the description included several examples of different layered arrangements, one of these having an outer layer of polyethylene, amendment either to alter the outer layer to polypropylene or to omit this layer altogether would not normally be regarded as permissible. In each case, the panel disclosed by the amended example would be quite different from that originally disclosed and hence the amendment would be considered as introducing new subject matter.
+←
+Table of Contents
+→
+Hidden
+https://www.wipo.int/contact/en/area.jsp?area=pct
+https://www.wipo.int/pressroom/en/
+https://www.wipo.int/en/web/terms-of-use
+https://www.wipo.int/en/web/privacy-policy
+https://www.wipo.int/en/web/accessibility
+https://www.wipo.int/en/web/sitemap
+https://www.wipo.int/en/web/newsletters
+https://www.wipo.int/en/web/podcasts
+https://www.wipo.int/en/web/news/rss

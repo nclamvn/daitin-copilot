@@ -17,7 +17,13 @@ form.addEventListener('submit', async event => {
       const result = await response.json().catch(() => ({}));
       throw new Error(result.error ?? 'Chưa đăng nhập được. Thử lại sau.');
     }
-    location.reload();
+    const target = form.dataset.returnTo;
+    if (['/patents/', '/copilot/m3/workspace/'].includes(target)) {
+      const next = new URL(target, location.origin);
+      const id = new URL(location.href).searchParams.get('case');
+      if (id && /^[a-f0-9-]{36}$/.test(id)) next.searchParams.set('case', id);
+      location.assign(next.href);
+    } else location.reload();
   } catch (detail) {
     error.textContent = detail.message;
     error.hidden = false;

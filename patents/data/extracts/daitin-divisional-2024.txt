@@ -1,0 +1,124 @@
+
+
+                                       August 2024
+
+
+
+IP KNOWLEDGE
+EXTRACT
+
+
+
+
+NAVIGATING DIVISIONAL PATENT
+APPLICATIONS    IN   VIETNAM:
+STRATEGIES AND INSIGHTS FOR
+ROBUST IP PROTECTION
+By Uyen Ngo, Nguyen Hoa Binh, et al.
+
+
+Overview
+
+Filing divisional applications can be a strategic maneuver to boost significantly
+the value of an intellectual property (IP) portfolio. This article offers specific
+insights into the process of filing divisional in Vietnam. It is designed to help
+applicants thoroughly understand the legal framework, make well-considered
+timing decisions, and ensure adherence to all requirements. By doing so,
+applicants can strengthen their patent protection and confidently navigate the
+intricacies of the Vietnamese patent divisional process.
+
+Additionally, it is possible to file a divisional from a previously pending divisional
+application, even if the parent application has already been granted. This
+flexibility allows applicants to secure robust patent protection and navigate the
+complexities of the Vietnamese patent system effectively.
+
+Requirement For Unity Of Invention
+
+It's important to note that the requirement for unity of invention is similar to
+that of the Patent Cooperation Treaty ("PCT") and is outlined in Article 101 of
+the Law on Intellectual Property and Article 14 of Circular No. 23/2023/TT-
+BKHCN. In cases where an application includes multiple inventions that do
+not meet this criterion, the applicant may be asked to divide the application
+into separate filings. This ensures that each patent application maintains a
+clear and focused scope, facilitating a more efficient examination and granting
+process.
+
+Time Of Filing
+
+Voluntary divisions can be submitted to the Intellectual Property Office of
+Vietnam (IP Office) at any time before a decision on refusal or grant is issued.
+Following a response to an office action, the IP Office may issue a notice of
+allowance, a further office action, or a decision on refusal on a case-by-case
+basis, which may be unpredictable. In the case of a decision on the grant, it will
+be issued after the payment of grant fees in response to a notice of allowance,
+so it is recommended to file divisional at the time of payment.
+
+In the event of an office action objecting to an application as not meeting the
+unity of invention requirement, the applicant may select one invention for the
+parent application and file divisions for the remaining inventions. Alternatively,
+the applicant may choose one invention for the parent application and file
+divisions later, as long as the parent application has not yet received a decision
+on refusal or grant.
+
+Filing Fees
+
+When filing a divisional application, the costs are the same as those for filing a
+regular application, except that there is no fee for claiming priority.
+
+The Subject Matter Of A Divisional
+
+When filing a divisional application, it's important to note that there are no
+specific limitations on the subject-matter that can be included. However, the
+divisional subject matters must be disclosed in the original specification of the
+parent application. This means that the original specification of the parent
+application must support the claims of a divisional application.
+
+
+Double Patenting Cases
+
+When it comes to patent applications for inventions or utility models that are
+the same or equivalent, the following rules apply:
+
+(i) If the applications have different earliest priority dates, the application with
+the earlier priority date will be granted a patent.
+
+(ii) If the applications have the same earliest priority date, the applicants must
+agree that only one application will be patented.
+
+(iii) If the applications have the same earliest priority date and the same
+applicant, only one application will be patented.
+
+The divisional and the parent applications fall under case (iii) above.
+
+Overlap In Double Patenting Practice
+
+It's essential to consider the overlap between the scopes of protection of two
+claims in patent examination. If the scopes overlap partially, the two inventions
+will not be considered identical or equivalent. For instance, if a claim of an
+application filed later recites a continuous number range not similar to a number
+range recited in a claim of another application, the two inventions will not be
+considered identical or equivalent.
+
+It's worth noting that there are certain cases where an overlap in the scope of
+claims would not lead to a double patenting objection. However, the guidelines
+on this issue may be subject to different interpretations, leading to varying
+considerations by the Intellectual Property Office of Vietnam (IP Office). This is
+particularly relevant to divisional applications in Vietnam.
+
+Conclusion
+
+When filing patent divisions in Vietnam, it's essential to be aware of potential
+overlap-related issues. If an applicant files a divisional application for a part of
+an invention to obtain a patent for that specific part and then continues to
+pursue the parent application to secure a patent for the entire invention,
+including that part, they may encounter challenges in Vietnam.
+
+
+Contact
+
+Please contact Daitin & Associates if you require any further
+information or guidance in the procedures of acquiring, protecting
+intellectual property rights in Vietnam | Cambodia | Laos |
+Myanmar | Thailand | Philippines | Brunei | Indonesia.
+
+info@daitin.com.vn | www.daitin.com.vn

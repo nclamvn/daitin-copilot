@@ -1,0 +1,820 @@
+
+
+        (12)       BẢN MÔ TẢ SÁNG CHẾ THUỘC BẰNG ĐỘC QUYỀN SÁNG CHẾ
+        (19)       Cộng hòa xã hội chủ nghĩa Việt Nam (VN) (11)
+                          CỤC SỞ HỮU TRÍ TUỆ
+                                                                             1-0042110
+        (51)2020.01 D04B 1/10; D04B 1/26; A43B 1/04             (13)   B
+
+(21) 1-2020-07228                        (22) 18/03/2019
+(86) PCT/EP2019/056666 18/03/2019        (87) WO 2020/025175 06/02/2020
+(30) 102018000007798 03/08/2018 IT
+(45) 25/12/2024 441                      (43) 26/04/2021 397
+(73) LONATI S.P.A. (IT)
+     VIA FRANCESCO LONATI, 3, I-25124 BRESCIA, ITALY
+(72) LONATI, Ettore (IT); LONATI, Fausto (IT); LONATI, Francesco (IT).
+(74) Công ty TNHH T&T INVENMARK Sở hữu trí tuệ Quốc tế (T&T INVENMARK
+     CO., LTD.)
+
+(54) PHƯƠNG PHÁP TẠO RA SẢN PHẨM DỆT KIM TRUNG GIAN BẰNG MÁY
+      DỆT KIM TRÒN, SẢN PHẨM DỆT KIM TRUNG GIAN THU ĐƯỢC VÀ HÀNG
+      MAY MẶC BAO GỒM SẢN PHẨM DỆT KIM NÀY
+(57) Sáng chế đề cập đến phương pháp tạo ra sản phẩm dệt kim trung gian để sản xuất sản
+phẩm dệt kim như đế trong, tấm lót, tất cổ thấp, giày hoặc sản phẩm tương tự có hai lớp,
+bằng máy dệt kim tròn và sản phẩm dệt kim trung gian thu được bằng phương pháp này.
+Cụ thể, phương pháp này ít nhất là bao gồm các bước sau: bước (A) cung cấp phần ống thứ
+nhất (2) của vải dệt kim bằng cách dẫn động ống kim của máy dệt với sự di chuyển quay
+liên tục xung quanh trục của nó theo một hướng quay; bước trút vòng dệt (B), trong đó
+phần (3) của vải dệt kim được tạo ra bằng cách di chuyển để dệt một nhóm kim liên tiếp ở
+ít nhất một cơ cấu cấp sợi, dẫn động ống kim theo sự di chuyển quay so le xung quanh trục
+của nó và giảm dần số lượng kim được di chuyển để dệt ở ít nhất một cơ cấu cấp sợi, loại
+trừ, theo trình tự thiết lập trước, các kim đặt ở các đầu bên của nhóm kim và giữ lại, nhờ
+kim không tham gia vào việc dệt, vòng dệt kim sau cùng, để tạo thành dãy dệt kim riêng
+phần thứ nhất; bước tạo hình vòng dệt (C), trong đó phần (4) của vải dệt kim được tạo ra
+bằng cách di chuyển để dệt một nhóm kim liên tiếp ở ít nhất một cơ cấu cấp sợi, dẫn động
+ống kim với sự di chuyển quay so le xung quanh trục của nó và tăng dần số lượng kim
+được di chuyển để dệt ở ít nhất một cơ cấu cấp sợi, trở lại dệt, theo trình tự thiết lập trước
+mà ngược với trình tự ở bước trút vòng dệt (B), kim không tham gia vào việc dệt ở bước
+trút vòng dệt (B), để tạo ra dãy dệt kim riêng phần thứ hai được nối với dãy dệt kim riêng
+phần thứ nhất; bước (D) cung cấp phần ống thứ hai (5) của vải dệt kim bằng cách dẫn động
+ống kim với sự di chuyển quay liên tục xung quanh trục của nó theo một hướng quay. Ở
+bước trút vòng dệt (B) và ở bước tạo hình vòng dệt (C), các trình tự thiết lập trước tương
+ứng, mà theo đó số lượng kim của nhóm kim được di chuyển để dệt trước tiên được giảm
+và sau đó gia tăng, để thu được phần ghép nối của phần ống thứ nhất (2) và phần ống thứ
+hai (5) với phần bên của nó ở vòng dệt kim, được bố trí ở các đầu của dãy dệt kim riêng
+phần thứ nhất và dãy dệt kim riêng phần thứ hai, được tạo ra bởi các kim không tham gia
+vào việc dệt kim ở bước trút vòng dệt (B) và sau đó trở lại dệt ở bước tạo hình vòng dệt
+(C), với các trục (2a, 5a) của hai phần ống (2, 5) tạo thành giữa chúng một góc gần như
+nhỏ hơn 90°.
+
+
+
+
+42110
+
+Lĩnh vực kỹ thuật được đề cập
+
+Sáng chế đề cập đến phương pháp tạo sản phẩm dệt kim trung gian dùng dé sản
+xuất sản phẩm như đế trong, tắm lót, tất cổ thấp, giày hoặc sản phẩm tương tự có hai
+lớp, bằng máy dét kim tròn và đến sản phẩm dét kim trung gian thu được bằng phương
+
+pháp này.
+
+Tinh trạng kỹ thuật của sáng chế
+
+Trong lĩnh vực dệt kim, đã biết các sản phẩm mà thường được gọi là dé trong,
+tam lót, tất cỗ ngắn, tat cỗ thấp, v.v., mà chủ yếu gồm có sản phẩm dệt kim được tạo ra
+để được đi vào chân, chỉ che phủ phần dưới của bàn chân hoặc trong trường hợp bat
+kỳ, che phủ phần dưới mắt cá chân.
+
+Các sản phẩm này thường được tạo ra bằng cách sử dụng máy dệt kim tròn
+trong đó ống kim có thể được dẫn động với sự chuyển động quay xung quanh trục của
+nó theo hai hướng quay, đi chuyển để đệt ở ít nhất một cơ cấu cấp sợi hoặc cơ cấu thả
+sợi của máy dệt chỉ một phần kim của máy dệt và loại trừ việc dệt các kim còn lại
+trong quá trình sản xuất một phan của sản phẩm hoặc toàn bộ sản phẩm.
+
+Phụ thuộc vào phương pháp được sử dụng để sản xuất, các sản phẩm này được
+tháo rỡ ra khỏi máy dét dưới dang sản phẩm hoàn thiện, nghĩa là không cần phải có
+các quá trình hoàn thiện để được bán trên thị trường hoặc dưới dạng sản phẩm dệt kim
+trung gian, mà phải được đưa vào các quy trình xử lý tiếp theo để tạo ra sản phẩm
+hoàn thiện.
+
+Cũng đã biết giày nhẹ mà ở đó phần trên được tạo ra từ vải đệt kim. Trong
+trường hợp này, phần trên thường được tạo ra từ nhiều phần mà được cắt từ mảnh vải
+
+dệt kim và sau đó được lắp ráp, thường bằng cách khâu và gắn vào dé giày.
+
+Bản chất kỹ thuật của sáng chế
+Mục đích của sáng chế là đề xuất phương pháp sản xuất sản phẩm dệt kim trung
+
+gian để tạo ra các sản phẩm đưới dang dé trong, tấm lót, tất cỗ thấp, giày hoặc sản
+
+oy
+
+
+42110
+
+phẩm tương tự có hai lớp bằng máy đệt kim tròn.
+
+Với mục đích này, sáng chế đề xuất phương pháp sản xuất sản phẩm dệt kim
+trung gian mà có thể được sử dụng để tạo ra giày nhẹ với chỉ phí sản xuất thấp.
+
+Mục đích khác của sáng chế là đề xuất phương pháp sản xuất sản phẩm dét kim
+trung gian mà cần phải có số lượng giới hạn quá trình vận hành mà đơn giản để thực
+hiện theo trình tự để tạo ra sản phẩm hoàn thiện.
+
+Mục đích khác của sáng chế là đề xuất phương pháp sản xuất sản phẩm dệt kim
+trung gian mà có thể được thực hiện trên máy dệt kim tròn thuộc loại đã biết.
+
+Mục đích khác của sáng chế còn đề xuất phương pháp sản xuất sản phẩm hoàn
+thiện mà có thể được sử dụng đưới dạng dé trong, tấm lót, tat cổ thấp hoặc tương tự
+hoặc giày nhẹ.
+
+Mục đích này, cũng như các mục đích này và các mục đích khác sẽ trở nên rõ
+ràng hơn dưới đây, đạt được bằng phương pháp sản xuất sản phẩm đệt kim trung gian
+để tạo ra sản phẩm như để trong, tắm lót, tất cổ thấp, giày hoặc sản phẩm tương tự có
+hai lớp, bằng máy dét kim tròn với ống kim được bố trí sao cho trục của nó đứng
+thẳng, trong đó ống kim có, trên mặt bên của nó, các khe theo trục, mà mỗi khe trong
+số chúng chứa kim, ít nhất một cơ cấu thả sợi hoặc cấp sợi được bố trí xung quanh ống
+kim và ít nhất một bó sợi có thể ăn khớp được bởi kim để tạo ra hàng dệt kim được
+phân phối ở đó, phương tiện được bố trí dé din động kim doc theo khe theo trục tương
+ứng để kẹp bó sợi ở ít nhất một cơ cấu cấp sợi và tạo thành các vòng dệt kim, thiết bị
+lựa chọn được bố trí dé lựa chọn kim để được di chuyển để đệt ở ít nhất một cơ cấu
+cấp sợi, ống kim có thể dẫn động được với sự di chuyển quanh xung quanh trục của nó
+so với ít nhất một cơ cấu cấp sợi theo cả hai hướng để tạo ra sản phẩm dệt kim nhờ it
+nhất một phần của kim với ít nhất một bó sợi được phân phối bởi ít nhất một cơ cấu
+cấp sợi, khác biệt ở chỗ phương pháp này ít nhất bao gồm các bước sau:
+
+— cung cấp phần ống thứ nhất của vải dệt kim bằng cách dẫn động ống kim với
+sự di chuyên quay liên tục xung quanh trục của nó theo một hướng quay;
+
+— bước trút vòng dét, trong đó phan vải dét kim được cung cấp bằng cách di
+chuyển để dệt một nhóm kim liên tiếp ở ít nhất một cơ cấu cấp sợi, dẫn động ống kim
+theo sự đi chuyển quay so le xung quanh trục của nó và giảm dần số lượng kim được
+đi chuyển để dệt ở ít nhất một cơ cấu cấp sợi, loại trừ, theo trình tự thiết lập trước, các
+
+kim đặt ở các đầu bên của nhóm kim này và giữ lại, nhờ các kim không tham gia vào
+
+Nai
+
+
+42110
+
+việc đệt, vòng đệt kim được tạo ra sau cùng, để tạo thành dãy dệt kim riêng phan thứ
+nhất;
+
+— bước tạo hình vòng dét, trong đó phan vải dệt kim được tạo ra bằng cách di
+chuyển để đệt nhóm kim liên tiếp ở ít nhất một cơ cấu cấp sợi, dan động ống kim theo
+sự di chuyển quay so le xung quanh trục của nó và tăng dần số lượng kim được di
+chuyển để dệt ở ít nhất một cơ cấu cấp sợi, trở lại dệt, theo trình tự thiết lập trước mà
+ngược với trình tự của bước trút vòng đệt, các kim không tham gia vào việc dệt kim ở
+bước trút vòng dét, để tạo ra day dệt kim riêng phan thứ hai được nối với day dệt kim
+riêng phần thứ nhất;
+
+— cung cấp phần ống thứ hai của vải dệt kim bằng cách dẫn động ống kim với
+sự đi chuyên quay liên tục xung quanh trục của nó theo một hướng quay;
+
+ở bước trút vòng dệt và ở bước tạo hình vòng dét, các trình tự thiết lập trước
+tương ứng, mà theo đó số lượng kim của nhóm kim được di chuyển để dệt trước tiên
+giảm và sau đó tăng, để thu được phần ghép nối của phần ống thứ nhất và phần ống
+thứ hai với phần bên của nó ở các vòng dệt kim, được bế trí ở các đầu cuối của dãy dệt
+kim riêng phần thứ nhất và dãy dệt kim riêng phần thứ hai, được tao ra bởi các kim
+không tham gia vào việc dệt trước ở bước trút vòng và sau đó trở lại dệt ở bước tạo
+hình vòng đệt, với các trục của hai phần ống tạo thành giữa chúng một góc gần như
+nhỏ hơn 909.
+
+Mô tả vắn tắt các hình vẽ
+
+Các đặc điểm và ưu điểm của sáng chế sẽ trở nên rõ ràng hơn khi đọc phần mô
+tả của các phương án được ưu tiên nhưng không phải là phương án loại trừ về phương
+pháp theo sáng chế và sản phẩm dệt kim mà có thể thu được bằng phương pháp này, cả
+hai chỉ nhằm mục đích minh hoạ bằng cách ví dụ không hạn chế trên các hình vẽ kèm
+theo, trong đó:
+
+Fig.1 là sơ đồ về việc thực hiện bước trút vòng dét được tiếp theo bởi bước tạo
+hình vòng dệt;
+
+Eig.2 là hình vẽ dưới dạng sơ đồ của phần sản phẩm đệt kim thu được theo mẫu
+dét kim được thể hiện trên Fig.1;
+
+Fig.3 là sơ đồ về việc thực hiện phương pháp của sáng chế trong quá trình sản
+
+xuất sản phẩm đệt kim trung gian theo sáng chế;
+
+BỊ
+
+
+42110
+
+Fig.4 là hình vẽ dưới dang sơ đồ của sản phẩm thu được theo sơ đồ thực hiện
+phương pháp trên Fig.3, được bố trí trên một mặt phẳng và được nhìn từ một phía;
+
+Fig.5 là hình vẽ dưới dạng sơ đồ của cùng một sản phẩm trên Fig.4, được nhìn
+từ phía đối diện;
+
+Các hình vẽ Fig.6 đến Fig.8 là các hình vẽ phối cảnh của việc lồng vào và gấp
+vào phía trong của một phần sản phẩm, thu được bằng phương pháp, vào trong phần
+còn lại;
+
+Fig.9 là hình vẽ phối cảnh của sản phẩm mà thu được khi kết thúc việc lồng vào
+và gấp vào phía trong được thể hiện trên các hình vẽ Fig.6 đến Fig.8;
+
+Fig.10 là hình vẽ mặt cắt đứng phía bên một phan sản phẩm trên Fig.9;
+
+Eig.11 là hình vẽ phối cảnh của dé trong mà có thé thu được với sản phẩm được
+tạo ra theo phương pháp theo sáng chế;
+
+Fig.12 là hình vẽ phối cảnh của giày nhẹ mà có thé thu được bằng sản phẩm
+được tạo ra theo phương pháp theo sáng chế.
+
+Mô tả chỉ tiết sáng chế
+
+Phương pháp theo sáng chế có thể được thực hiện với máy dệt kim tròn thuộc
+loại đã biết, mà bao gồm ống kim, được bố trí sao cho trục của nó đứng thẳng và trên
+mặt bên của nó có các khe theo trục, bên trong mỗi khe chứa kim. Ít nhất một cơ cấu
+thả sợi hoặc cấp sợi được bố trí xung quanh ống kim và ít nhất một bó sợi được phân
+phối ở đó mà có thể được ăn khớp bởi kim để tạo ra sản phẩm dệt kim. Máy đệt có
+phương tiện dẫn động kim dọc theo khe theo trục tương ứng để kẹp bó sợi ở cơ cấu thả
+sợi hoặc cấp sợi nêu trên và tạo thành các vòng đệt kim. Hơn nữa, máy dệt có thiết bị
+lựa chọn để lựa chọn kim để được đi chuyển để dệt ở cơ cấu cấp SỢI. Ong kim có thé
+được dẫn động với sự di chuyển quay xung quanh trục của nó, so với cơ cấu cấp sợi,
+theo cả hai hướng quay để tạo thành sản phẩm dệt kim nhờ ít nhất một phần kim, sử
+dụng ít nhất một bó sợi được phân phối bởi cơ cầu cấp sợi.
+
+Theo Fig.3, như sẽ được mô tả một cách chi tiết hơn dưới đây, phương pháp
+theo sáng chế ít nhất bao gồm các bước sau:
+
+~ bước A cung cấp phần ống thứ nhất 2 của vải dét kim bằng cách dẫn động
+ống kim với sự đi chuyển quay liên tục xung quanh trục của nó theo một hướng quay;
+
+~ bước trút vòng dét B, trong đó phần 3 của vải đệt kim được tạo ra bằng cách
+
+ST
+
+
+42110
+
+di chuyển để dét ở cơ cấu cấp sợi một nhóm kim liên tiếp, dẫn động ống kim theo sự di
+chuyển quay so le xung quanh trục của nó và giảm dần số lượng kim được đi chuyển
+để dệt ở cơ cấu cấp sợi, ngoại trừ, theo trình tự thiết lập trước, kim được đặt ở các đầu
+bên của nhóm kim và giữ lại, nhờ kim không tham gia vào việc dệt, vòng dệt kim được
+tạo ra sau cùng, để tạo thành day dệt kim riêng phần thứ nhất;
+
+— bước tạo hình vòng dét C, trong đó phần 4 của vải dệt kim được tạo ra bằng
+cách di chuyển để dệt ở cơ cấu cấp sợi một nhóm kim liên tiếp, dẫn động ống kim theo
+sự di chuyển quay so le xung quanh trục của nó và tăng dần số lượng kim được di
+chuyển để dét kim ở cơ cấu cấp sợi, trở lại dệt, theo trình tự thiết lập trước mà ngược
+với trình tự ở bước trút vòng dệt B, kim không tham gia vào việc đệt trước ở bước trút
+vòng dệt B, để tạo ra dãy dệt kim riêng phần thứ hai được nối ở các đầu của chúng với
+dãy dét kim riêng phan thứ nhất được tạo thành ở bước trút vòng dét B;
+
+~ bước D cung cấp phần ống thứ hai 5 của vải đệt kim bằng cách dẫn động ống
+kim với sự di chuyển quay liên tục xung quanh trục của nó theo một hướng quay.
+
+Ở bước trút vòng dệt B và ở bước tạo hình vòng dét C, các trình tự thiết lập
+trước tương ứng, mà theo đó số lượng kim của nhóm kim được di chuyển để dệt trước
+tiên giảm và sau đó tăng, để thu được, nhờ các phần 3 và 4 của vải đệt kim, phan nói
+của phần ống thứ nhất 2 và phần ống thứ hai 5 với phần bên của nó ở các vòng dệt
+kim, được bố trí ở các đầu cuối của dãy dệt kim riêng phần thứ nhất và dãy dét kim
+riêng phần thứ hai, được tạo ra bởi kim không tham gia vào việc dét kim ở bước trút
+vòng đệt B và sau đó trở lại đệt ở bước tạo hình vòng dệt C, với các trục 2a, 5a của hai
+phần ống 2, 5 tạo thành giữa chúng một góc gần như nhỏ hơn 90°.
+
+Để hiểu rõ hơn nữa về việc thực hiện bước trút vòng dệt B và bước tạo hình
+vòng đệt C, Fig.1 thể hiện sơ đồ dệt kim của sản phẩm dét kim mà chỉ được tạo ra ở
+bước trút vòng dệt B được tiếp theo bởi bước tạo hình vòng dệt C. Mỗi hình chữ nhật
+màu đen được bố trí thẳng đứng thể hiện kim và hai hàng dệt kim (quay về phía trước
+và quay về phía sau).
+
+Do đó, trình tự trút vòng kim xảy ra mỗi hai hàng đệt kim.
+
+Việc trút vòng kim hoặc các kim có thể được bố trí dé xảy ra:
+
+— khi bắt đầu mỗi hang;
+
+— khi kết thúc mỗi hang;
+
+~— khi bắt đầu và khi kết thúc mỗi hàng.
+
+SG
+
+
+42110
+
+TẤt cả các khả năng có thể xảy ra được liệt kê trên đây có thể được thể hiện và
+hoạt động và chỉ khác biệt ở sự xuất hiện của dây đan/lỗ x6 thời trang (Fig.2).
+
+Trên Fig.1, nhằm mục đích đơn giản, chỉ có các hình chữ nhật mà tương ứng
+với các kim được bố trí ở các đầu nhóm kim liên tiếp được di chuyên để dét kim ở các
+bước này được thể hiện. Các hình chữ nhật được bố trí trên cùng một đường thẳng
+đứng liên quan đến cùng một kim.
+
+Như có thể nhìn thấy được, ở bước trút vòng dệt B, số lượng kim mà được di
+chuyển để lấy sợi hoặc bó sộ (sau đây, chỉ được gọi là "sợi" sẽ được kể đến, cần phải
+hiểu rằng, các kim cũng có thể được cấp với hai hoặc nhiều sợi đồng thời, theo cách đã
+biết, phụ thuộc vào các yêu cầu) giảm dần, là một bằng chứng dựa vào hình thang cân
+ngược của phần sơ đồ tương ứng với bước dệt kim.
+
+Cần phải hiểu rằng mặc dù ở bước trút vòng dệt B, từ khi bắt đầu (đầu trên của
+mẫu hoặc cạnh song song dài hơn của hình thang ngược) đến khi kết thúc bước này
+(cạnh song song ngắn hơn của hình thang ngược), số lượng kim được đi chuyển để dệt
+khi cấp được cho là giảm dần, luôn luôn không giảm từng hàng, nghĩa là ở mỗi lần
+quay ngược ống kim. Thực tế, như có thể nhìn thấy được khi bắt đầu từ hàng trên thứ
+nhất hoặc cạnh song song dai hơn của hình thang (tao ra dãy dệt kim riêng phần thứ
+nhất B1), trong đó kim thứ nhất không tham gia vào lúc bắt đầu mỗi hàng trong số hai
+hàng (quay thuận và quay ngược), khi kim di chuyển để tạo ra dãy dệt kim riêng phần
+thứ hai B2 (với hướng quay ngược của ống kim), hai kim đặt ở các đầu bên của nhóm
+kim được sử dung dé tạo ra dãy dệt kim trước B1 không tham gia vào việc dệt ngoài
+các kim không tham gia vào quá trình tạo thành cặp day B1. Điều này cũng xảy ra khi
+kim đi chuyển đẻ tạo ra dãy dệt kim riêng phần thứ ba B3. Tuy nhiên, khi kim bắt đầu
+tạo ra dãy dệt kim thứ tư B4 (hướng quay mới của ngược chiều của ống kim xung
+quanh trục của nó), hai kim không tham gia vào quá trình dét kim khi tạo ra dãy dệt
+kim riêng phần thứ ba B3 được quay trở lại để dét. Trong quá trình tao ra day dệt kim
+riêng phần thứ năm B5 và trong quá trình tạo ra day dệt kim riêng phần thứ sáu Bó, hai
+kim nằm ở các đầu bên của nhóm kim được sử dụng để tạo ra hai hàng dét kim riêng
+phần trước lại không tham gia vào việc dệt kim. Trong quá trình tạo ra dãy dệt kim
+riêng phần thứ bảy B7, kim được đưa vào tạo hình vòng dệt, trở lại để dệt hai kim mà
+không tham gia vào quá trình tạo thành dãy dệt kim riêng phân thứ sáu Bó, và v.v.
+
+Một cặp day dệt kim có thé khác nhau về số lượng so với cặp day ví dụ.
+
+THẾ
+
+
+42110
+
+Cần phải lưu ý rằng việc quay trở lại đệt của kim không tham gia vào quá trình
+dét trong quá trình tạo thành dãy dệt kim riêng phần trước tạo ra dải giữa vòng đệt kim
+được tạo ra sau cùng mà kim được di chuyển dé dệt trước khi nó không tham gia vào
+dệt và vòng dệt kim được tạo ra khi kim được quay trở lại dệt. Theo cách này, ở bước
+trút vòng dệt B, cũng được gọi là "dai trung gian" 6 được tạo ra giữa các vòng dệt kim
+đặt ở các đầu bên của day dệt kim riêng phần thứ nhất.
+
+Ở bước tạo hình vòng dệt C, việc tạo hình vòng này diễn ra bằng cách làm tăng
+dần số lượng kim mà được di chuyển để dệt kim khi cấp, quay trở lại dệt kim các kim
+mà không tham gia vào quá trình dệt kim ở bước trút vòng dệt B, là một bằng chứng
+dựa vào dạng hình thang cân của phần sơ đồ trên Fig.1 mà tương ứng với bước của
+quy trình.
+
+Việc quay trở lại dét của các kim không tham gia trước xảy ra theo trình tự mà
+ngược, nhưng tương ứng, với trình tự tiếp theo ở bước trút vòng dệt B.
+
+Điều này có nghĩa là từ khi bắt đầu bước tạo hình vòng dệt C (cạnh song song
+ngắn hơn của hình thang) đến khi kết thúc bước tạo hình vòng dét C (cạnh song song
+đài hơn của hình thang), kim mà được di chuyển dé dét kim ở cơ cấu cấp gia tăng, mặc
+dù mỗi ba hàng dệt kim riêng phần hai kim mà được quay trở lại dệt trong quá trình
+tạo ra hàng dệt kim riêng phần ngay trước đó, không tham gia vào việc dét kim theo
+trình tự ngược với trình tự tiếp theo ở bước trút vòng dệt B. Trình tự này, thậm chí ở
+bước tạo hình vòng đệt C, tạo ra dải trung gian 6 giữa các vòng dệt kim nằm ở các đầu
+bên của dãy dệt kim riêng phần thứ hai.
+
+Các đầu của hàng dét kim riêng phần được tạo ra ở bước trút vòng dệt B (cạnh
+xiên của hình thang cân, nằm trên cùng một cạnh, nghĩa là, được dệt bởi cùng một
+kim) được kết nối hoặc được buộc chặt với nhau bởi "day buộc" 7. Dây buộc 7 và dây
+trung gian 6 tạo ra trên sản phẩm một hàng chỉ khâu được so le với lỗ, mà thể hiện
+theo sơ đồ bởi hình elip trên các hình vẽ.
+
+Trên thực tế, sự trở lại để dệt, ở bước tạo hình vòng dệt C, của kim không tham
+gia vào quá trình dét kim ở bước trút vòng dệt B, có một loại dệt mà được gọi là "dệt
+kim gót" thường là đệt kim gót chân và ngón chân.
+
+Tuy nhiên, trình tự cụ thể ở bước tạo hình vòng dệt C và bước trút vòng dệt B
+tạo ra hai phần 3 và 4 của sản phẩm, được tạo ra ở các bước này, theo từng cạnh và
+
+được ghép nối, nhưng khiến cho các trục của chúng (hoặc các đường giữa của hai phần
+
+ERE
+
+
+42110
+
+3 và 4) tạo thành một góc mà nhỏ hơn 90°, như có thể nhìn thấy được trên Fig.2.
+
+Cần phải lưu ý rằng phép đo góc này có thể được thay đổi theo hình đạng mong
+muốn của sản phẩm, bằng cách cải biến trình tự thực hiện và trở lại dệt kim của kim ở
+bước trút vòng dệt B và bước tạo hình vòng dệt C. Trong ví dụ theo sơ đồ của việc
+thực hiện được mô tả trên đây, ở bước trút vòng dệt B, số lượng kim giảm ở mỗi
+hướng quay ngược của ống kim đối với ba hàng riêng phan và, ở bước tạo hình vòng
+dét C, số lượng kim hoạt động được tang tương ứng, nhưng ở bước trút vòng đệt B, có
+thể giảm (và tăng tương ứng, ở bước tạo hình vòng dệt C) số lượng kim hoạt động mỗi
+hai hoặc ba lần đảo ngược hướng quay của ống kim đối với số lượng hàng dét kim
+được thiết lập trước.
+
+Như được nêu trên đây, Fig.1 chỉ là hình vẽ theo sơ đồ của bước trút vòng đệt B
+và của bước tạo hình vòng đệt C, trong quá trình sản xuất giả định sản phẩm chỉ với
+hai bước đơn thuần cho phép hiểu cách mà hai phần sản phẩm 3 và 4 gồm các hàng dệt
+kim riêng phần được tạo ra bên trong hai bước B và C được buộc chặt với nhau.
+
+Thực tế, phương pháp theo sáng chế còn bao gồm các bước khác. Fig.3 thé hiện
+sơ đồ thực hiện phương pháp theo sáng chế. Sơ đồ này có thể được hiểu là phần nhô
+phẳng của sản phẩm dệt kim trung gian, thường được ký hiệu số tham chiếu 1, thu
+được bằng phương pháp theo sáng chế và lý tưởng là được cắt dọc theo đường nằm
+ngang, đường thẳng đứng và đường xiên, trong đó:
+
+— đường thang đứng tạo ra mặt cắt đọc của hai phần ống 2 và 5 của sản phẩm;
+
+— đường nằm ngang tạo ra mặt cắt của sản phẩm doc theo cùng một hàng dét
+kim;
+
+— đường xiên tạo ra mặt cắt ngang của sản phẩm ở các đường ghép nối hoặc ở
+phần dệt kim hoặc dây buộc trong quá trình dệt kim thuộc dạng “gó ” hoặc thông
+thường hơn với việc trút vòng và tiếp theo tạo hình vòng. Trong quá trình sản xuất
+thực, các đường xiên nằm trên cùng một cạnh trên Fig.3 và được ký hiệu bởi cùng một
+số được ghép nối và được xếp chồng lên nhau, do đó chúng được dùng dé chỉ các vòng
+dệt kim được tạo ra bởi các mũi kim ma dần không tham gia vào việc dét kim và sau
+đó dần được quay trở lại dét kim, thực vậy tạo ra phần nối của vòng dệt dệt kim sau
+cùng được tạo ra trước khi chúng không tham gia vào việc đệt kim với vòng dệt kim
+thứ nhất được tạo ra khi chúng được quay trở lại dệt kim.
+
+Trên hình vẽ, các đường được tạo ra bởi các hình chữ nhật mờ mà mỗi hình
+
+-0-
+
+
+42110
+
+tương ứng với lệnh dẫn động của kim ở cơ cấu cấp sợi. Nhằm mục đích đơn giản, chỉ
+có các hình chữ nhật mà tương ứng với các đầu bên của các vùng khác nhau mà cấu
+thành các đường mà doc theo đó sản phẩm được chia phần lý tưởng theo Fig.3 đã thé
+hiện. Các hình chữ nhật nằm doc theo cùng một đường thang lý tưởng so với cùng một
+kim. Về việc này, bước trút vòng dệt B và bước tạo hình vòng dệt C, cùng các số tham
+chiếu được sử dụng trên Fig.1 và Fig.2 để nhận biết các chỉ tiết này được giữ lại.
+
+Sản phẩm dét kim trung gian 1 mà thu được bằng phương pháp theo sáng chế
+được thể hiện dưới dang sơ đồ trên Fig.4 và Fig.5. Các đường và các phần của sản
+phẩm trên Fig.3 tương ứng với các đường và các phần của sản phẩm trên Fig.4 và
+Fig.5 được ký hiệu bởi cùng các số tham chiếu.
+
+Như được nêu trên đây, phương pháp theo sáng chế bao gồm bước A thực hiện
+phần ống thứ nhất 2 của vải dệt kim.
+
+Bước này được thực hiện, theo cách đã biết, bằng cách dẫn động ống kim với
+sự di chuyển quay liên tục xung quanh trục của nó so với cơ cấu cấp sợi.
+
+Việc đệt kim này không được mô tả hơn nữa, do nó tương tự với việc tạo ra một
+phần tư hoặc một phần chân giữa góc và đầu mút của hàng dệt kim truyền thống.
+
+Tiếp theo, bước trút vòng dệt B được thực hiện, như được mô tả trên đây, tạo ra
+phần 3 của vải đệt kim hoặc sản phẩm sẽ được tạo ra.
+
+Trước khi di chuyển để thực hiện bước tạo hình vòng dét C, một phần của
+nhóm kim mà được đệt kim ở bước trút vòng dệt B thực hiện it nhất hai quy trình dệt
+kim E, F thuộc loại "gót" theo trình tự, tạo ra hai phần của sản phẩm mà được ký hiệu
+bởi các số tham chiếu 8 và 9.
+
+Hai quy trình dệt kim gót E, F được thực hiện theo cách đã biết với bước trút
+vòng tiếp theo bước tạo hình vòng dét, dé tạo ra phần sản phẩm dệt kim mà được ghép
+nối bằng tay bởi "đường đệt kim thời trang", được ký hiệu bởi các số tham chiếu 10,
+11. Thực vậy, trong quy trình dệt kim “gót” E, F, ống kim được dẫn động với sự di
+chuyên so le xung quanh trục của nó, giảm dần số lượng kim hoạt động của nhóm kim
+liên tiếp được thiết lập trước để sau đó làm tăng chúng dần dan, quay trở lại dệt của
+các kim không tham gia vào quá trình dệt kim. Sự gián đoạn và tiếp tục dét kim trên
+phần kim mà nằm trong mỗi trường hợp ở các đầu nhóm kim tạo ra đường trên sản
+phẩm được gọi là “đường đệt kim thời trang” hoặc "đường trút vòng" với đường khâu
+
+được so le với các lỗ, như có thé nhìn thấy được trên các hình vẽ Fig.4 đến Fig.12.
+
+-10-
+
+
+42110
+
+Tốt hơn, nếu giữa hai quy trình dét kim gót E, F, một phần của nhóm kim được
+sử dụng cho bước trút vòng dệt B được dẫn động để thực hiện quy trình dệt kim gót G
+nhờ sự dẫn động của ống kim với sự di chuyển so le xung quanh trục của nó.
+
+Quy trình dệt kim gót bổ sung G này được thực hiện theo cách đã biết, tạo ra
+phần sản phẩm mà được ký hiệu bởi số tham chiếu 12 và được phân định bởi đường
+đệt kim thời trang 13.
+
+Ngay trước và ngay sau khi thực hiện quy trình đệt kim gót, quy trình dét kim H
+được thực hiện mà cấu thành một loại liên tục bước trút vòng dệt B và sự tham gia của
+bước tạo hình vòng dệt C, mà tạo ra vùng hình dạng của sản phẩm 1 mà tác động đến
+hai phần 14, 15 của sản phâm mà nằm giữa mỗi trong số hai phần 8, 9 thu được với hai
+quy trình dét kim gót E, F theo trình tự và quy trình dét kim gót G.
+
+Vùng hình dạng có đường ghép nối 16 của các phần 14, 15 của sản phẩm mà
+cấu thành phần kéo dài của dây buộc 7 của các phần 3, 4 của sản phẩm dệt kim được
+tạo ra ở bước trút vòng dét B và ở bước tao hình vòng dệt C.
+
+Hai quy trình dệt kim gót E, F và quy trình dệt kim gót G được thực hiện với
+một phan kim được sử dụng ở bước trút vòng đệt B và ở bước tạo hình vòng dệt C.
+
+Tiện lợi hơn, do cần phải có dạng hình học trong vùng của sản phẩm mà được
+thực hiện ở bước trút vòng đệt B và ở bước tạo hình vòng đệt C, cùng như ở bước thực
+hiện hai quy trình dét kim gót E, F theo trình tự và trong quy trình đệt kim gót G, các
+phần của nhóm kim được sử dụng cho hai quy trình dệt kim gót E, F và đối với quy
+trình dệt kim gót G được nằm ở giữa so với nhóm kim được sử dụng cho bước trút
+vòng đệt B và cho bước tạo hình vòng dệt C.
+
+Phần ống thứ hai 5 cũng được thực hiện theo cách đã biết, như nếu nó là chân
+của hàng dệt kim.
+
+Tiện lợi, phần ống thứ hai 5 có thể được kết thúc, theo cách đã biết, với ngón
+chân dét kim đã được khâu hoặc được tạo vòng. Tế hơn, nếu đường khâu hoặc đường
+tạo vòng đóng kín ngón của phần ống thứ hai 5 trong sản phẩm hoàn thiện được nằm
+dưới các ngón chân của người dùng.
+
+Tiện lợi, trước khi thực hiện phần ống thứ hai 5, một nhóm kim mà không thuộc
+nhóm kim được sử dụng để thực hiện bước trút vòng dét B và bước tao hình vòng dệt
+C, nhưng thực vậy được bố trí ngược với nó trong ống kim, có thể được sử dụng để
+
+thực hiện quy trình dệt kim gót khác I, tạo ra phần 17 mà được phân định bởi các
+
+-11-
+
+
+42110
+
+đường dệt kim nét đứt 18.
+
+Như có thể nhìn thấy được trên Fig.4 và Fig.5, sản phẩm đệt kim trung gian 1, ở
+cửa ra của máy dệt, hầu như xuất hiện giống với trên hai cạnh của nó. Cần phải lưu ý
+rằng, sản phẩm 1 hầu như được cấu thành bởi hai phần ống 2 và 5, mà được ghép nối
+bởi phần bên của nó và phần đường viền 19, mà nằm ở một đầu của sản phẩm và được
+tạo ra bằng một hoặc nhiều quy trình dệt kim got, trong đó các trục 2a và 5a của hai
+phần ống 2 và 5 tạo thành giữa chúng một góc nhỏ hơn 90°.
+
+Một khi sản phẩm 1 được tháo ra khỏi máy dệt, nó được đưa vào một đấy quá
+trình vận hành để tạo ra sản phẩm hoàn thiện.
+
+Cụ thể hơn, như được thể hiện trên Fig.6, phần 4 của sản phẩm 1 mà được tạo
+ra ở bước tạo hình vòng dệt C được đặt vào trong phần 3 của sản phẩm được tạo ra ở
+bước trút vòng dệt B bằng cách gấp sản phẩm 1 dọc theo đường ghép nối, nghĩa là dây
+buộc 7, của hai phần 3, 4 của sản phẩm 1. Phần 9 được tạo ra bằng một trong số các
+quy trình dệt kim gót F một lần nữa cũng được đặt vào trong phần khác 8 được tạo ra
+bằng quy trình khác trong số các quy trình dệt E và bằng cách gấp phần 12 được tạo ra
+bằng quy trình dệt kim gót G ở đường tâm để cầu thành đường viền phía sau.
+
+Sau đó, phần ống thứ hai 5 được gấp vào phía trong phần ống thứ nhất 2 dé thu
+được giày hoặc tất với hai lớp trong đó đường ghép nối, nghĩa là đây buộc 7, của phần
+3 của sản phẩm đệt kim được tạo ra ở bước trút vòng dệt B với phần 4 của sản phẩm
+đệt kim được tạo ra ở bước tạo hình vòng dệt C phân định theo chiều rộng phần hở
+lồng chân 20 của giày hoặc tat với hai lớp.
+
+Cụ thể hơn, phần ống thứ nhất 2 được đặt bên ngoài và phần 8 cũng được nối
+với nó, được tạo ra bằng quy trình dệt kim gót E, cũng được đặt bên ngoài. Phần khác
+9 được tạo ra bằng quy trình đệt kim gót khác F được đặt bên trong và xếp chồng lên
+phần 8. Phần 12 ở giữa, nghĩa là được kéo dài một phần ra bên ngoài và một phần vào
+bên trong, kết nối các phần § và 9 với nhau. Các phần 3, 4 được tạo ra ở bước trút
+vòng dệt B và ở bước tạo hình vòng đệt C được đặt lần lượt bên ngoài và bên trong
+vùng mà ở đó phần hở lồng chân 20 được tạo ra và cấu thành các vùng bên và phía
+dưới so với phần hở lồng chân 20. Nếu muốn phần kéo dài lớn của các vùng này, với
+máy đệt kim tròn thuộc loại đã biết trong đó việc lựa chọn kim cần được di chuyển để
+dệt kim trong quá trình di chuyển quay của ống kim theo một hướng được thực hiện
+
+trong quá trình quay ngay trước theo hướng đối diện, người ta có thể sử dụng phương
+
+Bios
+
+
+42110
+
+pháp thuộc loại được mô tả trong đơn yêu cầu cấp patent Ý số 102018000002290, với
+cùng tên người nộp đơn, trong đó đơn này vẫn chưa được công bố.
+
+Phần 17 được tạo ra bằng quy trình dét kim gót I, bằng kim mà thuộc nhóm kim
+mà đối diện với nhóm kim được sử dụng ở bước trút vòng đệt B và ở bước tạo hình
+vòng dệt C cũng kéo dài một phần vào trong và một phần ra ngoài sản phâm dệt kim
+hoặc giày, cấu thành đường viền phía trước.
+
+Tốt hơn, giữa phần trong và phần ngoài của sản phẩm dét kim hoặc giày thu
+được theo cách này hoặc trong sợi được sử dụng để sản xuất nó, người ta có thể bố trí
+chất kết dính, ví dụ chất kết dính mà có thé được làm bắt hoạt nhờ nhiệt, để kết nối ổn
+định hai phần, một phần bên trong và một phần bên ngoài, mà cấu thành sản phẩm đệt
+kim hoặc giày.
+
+Sản phẩm dệt kim hoặc giày được hoàn thiện bằng cách đóng kín, theo cách đã
+biết, ngón chân, nghĩa là đầu tự do của phần ống thứ hai 5 và bằng cách cắt và đóng
+kín, ví dụ bằng cách khâu hoặc phương pháp đã biết khác, đầu tự do của phần ống thứ
+nhất 2.
+
+Nếu việc sản xuất được dự định tạo ra giày, trên mặt dưới, nghĩa là trên mặt sản
+phẩm mà đối diện với phần hở lồng chân 20, người ta có thé áp dụng, ví dụ bằng cách
+liên kết hoặc đúc chất kết dính, đế giày 21. Trong trường hợp này, quá trình vận hành
+đóng kin đầu tự do của phần ống thứ nhất 2 có thé được hợp nhất với quá trình vận
+hành của dé giày 21.
+
+Trong thực tế, các tác giả sáng chế đã phát hiện ra rằng phương pháp theo sáng
+chế hoàn toàn đạt được mục đích của sáng chế, do nó cho phép tạo ra sản phẩm dệt
+kim trung gian để tạo ra sản phẩm như dé trong, tim lót, tất cỗ thấp hoặc tương tự với
+hai lớp bằng máy dệt kim tròn, giảm số lượng và do đó giảm chỉ phí vận hành cần phải
+có để thu được sản phẩm hoàn thiện.
+
+Ưu điểm khác của phương pháp theo sáng chế là ở chỗ nó có thể được sử dụng
+để tạo ra sản phẩm dệt kim trung gian mà có thể được sử dụng để tạo ra giày nhẹ với
+giá thành thấp.
+
+Phương pháp và sản pham dét kim trung gian mà có thể thu được theo cách đó,
+đạt được theo cách đó, dễ cải biến và biến đổi, mà tất cả trong số chúng đều nằm trong
+phạm vi bảo hộ của các điểm yêu cầu bảo hộ kèm theo; tất cả phần mô tả chỉ tiết còn
+
+có thể được thay thế bằng các phần tử tương đương về mặt kỹ thuật khác.
+
+ee
+
+
+42110
+
+Trong thực tế, các vật liệu được sử dụng, cũng như kích thước, có thể là bất kỳ
+theo các yêu cầu và trạng thái của lĩnh vực này.
+
+Đơn sáng chế này yêu cầu hưởng quyền ưu tiên của đơn yêu cầu cấp patent Ý
+số 102018000007798, nội dung của đơn ưu tiên này được đưa vào bản mô tả này bằng
+cách viện dẫn.
+
+Khi các dấu hiệu kỹ thuật được nêu trong điểm yêu cầu bảo hộ bắt kỳ cùng với
+ký hiệu tham chiếu thì các ký hiệu tham chiếu này chỉ nhằm mục đích làm tăng tính rõ
+ràng của các điểm yêu cầu bảo hộ và do đó các ký hiệu tham chiếu như vậy không
+nhằm mục đích làm giới hạn cách hiểu bất kỳ cho mỗi phần tử được xác định bằng
+
+cách lấy ví dụ dựa theo các ký hiệu tham chiếu như vậy.
+
+ave
+
+
+42110
+
+YEU CAU BẢO HO
+
+1. Phương pháp tao ra sản phẩm trung gian để sản xuất hàng may mặc có hai lớp, bằng
+máy dệt kim tròn có ống kim được bố trí sao cho trục của nó đứng thẳng, trong đó ống
+kim có, trên mặt bên của nó, các khe theo trục, trong đó mỗi khe chứa kim, ít nhất một
+cơ cấu thả hoặc cấp sợi được bố trí xung quanh ống kim và ít nhất một bó sợi có thể ăn
+khớp nhờ kim để tạo ra sản phẩm dệt kim được phân phối ở đó, phương tiện được bố
+trí để dẫn động kim đọc theo khe theo trục tương ứng để kẹp sợi ở ít nhất một cơ cấu
+cấp sợi và tạo thành vòng đệt kim, thiết bị lựa chọn được bố trí để lựa chọn kim cần
+được di chuyển dé đệt ở ít nhất một cơ cấu cấp sợi, ống kim có thể dẫn động theo sự di
+chuyển quay xung quanh trục của nó so với ít nhất một cơ cấu cấp sợi theo cả hai
+hướng quay để tạo thành sản phẩm đệt kim nhờ ít nhất một phần kim với ít nhất một
+bó sợi được phân phối bởi ít nhất một cơ cấu cấp sợi, khác biệt ở chỗ phương pháp nay
+bao gồm ít nhất các bước sau:
+
+cung cấp phần ống thứ nhất (2) của vải dét kim bằng cách dẫn động ống kim
+với sự di chuyển quay liên tục xung quanh trục của nó theo một hướng quay;
+
+trút vòng dét, trong đó phần (3) của vải dệt kim được tạo ra bằng cách di
+chuyển để đệt một nhóm kim liên tiếp ở ít nhất một cơ cấu cấp sợi, dẫn động ống kim
+theo theo sự đi chuyển quay so le xung quanh trục của nó và giảm dần số lượng kim
+được di chuyển để đệt ở ít nhất một cơ cấu cấp sợi, loại trừ, theo trình tự thiết lập
+trước, các kim đặt ở các đầu bên của nhóm kim này và giữ lại, nhờ các kim không
+tham gia vào dệt kim, vòng dét kim được tao ra sau cùng, dé tạo thành các day dệt kim
+riêng phần thứ nhất;
+
+tạo hình vòng dệt, trong đó phần (4) của vải dệt kim được tạo ra bằng cách đi
+chuyển để đệt một nhóm kim liên tiếp ở ít nhất một cơ cấu cấp sợi, dẫn động ống kim
+theo sự di chuyển quay so le xung quanh trục của nó và tăng dần số lượng kim được di
+chuyển để dệt ở ít nhất một cơ cau cấp sợi, trở lại dệt kim, theo trình tự thiết lập trước
+mà ngược với trình tự của bước trút vòng dệt, các kim không tham gia vào việc dệt
+kim trong bước trút vòng trước đây, để tạo ra day dệt kim riêng phần thứ hai được
+ghép nối với dãy dệt kim riêng phần thứ nhất;
+
+cung cấp phan ống thứ hai (5) của vải dệt kim bằng cách dẫn động ống kim với
+sự đi chuyển quay liên tục xung quanh trục của nó theo một hướng quay;
+
+ở bước trút vòng dệt và ở bước tạo hình vòng dệt, các trình tự thiết lập trước
+
+ae
+
+
+42110
+
+tương ứng, mà theo đó số lượng kim của nhóm kim được di chuyển để dệt trước tiên
+được giảm và sau đó gia tăng, để thu được sự ghép nối phần ống thứ nhất (2) và phần
+ống thứ hai (5) với phần bên của nó ở các vòng đệt kim, được bế trí ở các đầu cuối của
+dãy dệt kim riêng phần thứ nhất và dãy dệt kim riêng phần thứ hai, được tạo thành bởi
+các kim trước đây không tham gia vào việc dệt kim ở bước trút vòng dệt và sau đó trở
+lại dét ở bước tạo hình vòng dét, với các trục (2a, 5a) của hai phần ống (2, 5) tạo thành
+giữa chúng một góc gần như nhỏ hon 90°.
+
+2. Phương pháp theo điểm 1, trong đó ở bước trút vòng dệt, thay vì làm giảm toàn bộ
+số lượng kim được di chuyển để dệt ở ít nhất một cơ cấu cấp sợi, trong quá trình tạo ra
+một vài dãy dệt kim riêng phan, các kim không tham gia vào việc dệt kim trong quá
+
+trình tạo ra các day đệt kim riêng phần trước được quay trở lại dé dệt.
+
+3. Phương pháp theo điểm 1, trong đó ở bước tạo hình vòng dệt, thay vi làm tăng toàn
+bộ số lượng kim được di chuyển dé dệt ở ít nhất một cơ cấu cấp sợi, trong quá trình tạo
+ra một vai day dệt kim riêng phần, kim được quay trở lại để dệt khi tạo ra các dấy dệt
+
+kim riêng phan trước không tham gia vào việc dệt kim.
+
+4. Phương pháp theo điểm bất kỳ trong số các điểm nêu trên, trong đó sau bước trút
+vòng dét và trước bước tạo hình vòng dệt, một phần của nhóm kim thực hiện ít nhất
+hai quy trình dệt kim gót (E, F) theo trình tự nhờ sự dẫn động với sự di chuyển quay so
+
+le của Ống kim xung quanh trục của nó.
+
+5. Phương pháp theo điểm bất kỳ trong số các điểm nêu trên, trong đó giữa hai quy
+trình dét kim gót (E, F) theo trình tự, một phần của nhóm kim được dẫn động để thực
+hiện quy trình dệt kim gót tiếp theo (G) nhờ phương tiện dẫn động với sự di chuyển
+
+quay so le của ống kim xung quanh trục của nó.
+6. Phương pháp theo điểm bất kỳ trong số các điểm nêu trên, trong đó một phần kim
+
+của nhóm kim mà thực hiện hai quy trình dệt kim gót (E, F) theo trình tự được bố trí ở
+
+giữa trong nhóm kim.
+
+BGs
+
+
+42110
+
+7. Phương pháp theo điểm bất kỳ trong số các điểm nêu trên, trong đó một phần kim
+của nhóm kim mà thực hiện quy trình đệt kim gót tiếp theo (G) được bố trí ở giữa
+trong nhóm kim.
+
+8. Phương pháp theo điểm bat kỳ trong số các điểm nêu trên, trong đo phần ống thứ
+
+hai (5) của vải dét kim được kết thúc với việc dệt kim mũi tat.
+
+9. Phương pháp theo điểm 1, trong đó phần (4) của sản phẩm dệt kim mà được tạo ra ở
+bước tạo hình vòng dét được đây vào trong phần (3) của sản phẩm dệt kim được tạo ra
+ở bước trút vòng dét bằng cách gấp nếp sản phẩm dệt kim doc theo dây buộc (7) của
+hai phần (3, 4) của sản phẩm dệt kim và trong đó phần ống thứ hai (5) được gấp vào
+phía bên trong phần ống thứ nhất (2); một phần (9) trong số hai phần thu được theo
+một trong số hai quy trình dét kim gót (E, F) theo trình tự, gần nhất với phần (4) của
+sản phẩm dét kim được tạo ở bước tạo hình vòng dệt, được đây tựa vào mặt trong của
+phần kia (8) thu được với quy trình kia trong số hai quy trình dệt kim gót (E, F) theo
+trình tự, thu được loại giày hoặc tắt với hai lớp trong đó dây buộc (7) nối phần (3) của
+sản phẩm đệt kim được tao ra ở bước trút vòng dệt với phần (4) của sản phẩm dệt kim
+được tạo ra ở bước tạo hình vòng dệt phân định theo chiều rộng phần hở (20) dé đặt
+lên giày hoặc tất với hai lớp.
+
+10. Phương pháp theo điểm 5, trong đó phần sản phẩm đệt kim (12) được tạo ra bằng
+quy trình đệt kim gót tiếp theo (G) có lưỡi sau mà nối với mỗi phần khác (8, 9) của sản
+
+phẩm dét kim được tạo ra bằng hai quy trình dệt kim gót (E, F).
+
+11. Phương pháp sản xuất hàng may mặc có hai lớp, trong đó phương pháp này bao
+gồm bước cung cấp san phẩm trung gian (1) bằng phương pháp như được xác định
+trong điểm 1 và đóng kín các đầu tự do của hai phần ống (2, 5).
+
+12. Phương pháp theo điểm 11, trong đó dé giày (21) được dùng cho mặt bên của phần
+ống thứ nhất (2) mà đối diện với phần hở lồng chân vào (20).
+
+13. Phương pháp theo điểm 11, trong đó phần sản phẩm dệt kim (1) được bố trí bên
+
+-17-
+
+
+42110
+
+ngoài và phần sản phẩm đệt kim (1) được bố trí bên trong được gắn keo với nhau.
+
+14. Sản phẩm đệt kim trung gian để sản xuất hàng may mặc có hai lớp, thu được bằng
+phương pháp theo điểm 1, trong đó sản phẩm này bao gồm phan ống thứ nhất (2) và
+phần ống thứ hai (5) mà được nối theo phần bên của nó và phần đường viền (19) được
+tạo ra bằng ít nhất một quy trình đệt kim gót (E, F, G), các trục (2a, 5a) của hai phần
+ống (2, 5) tạo ra giữa chúng một góc nhỏ hon 90°.
+
+15. Sản phẩm đệt kim trung gian theo điểm 14, trong đó một phần của phần ống thứ
+hai (5) được bố trí bên trong một phần của phần ống thứ nhất (2) ở vùng nối bên của
+hai phần ống (2, 5), và trong đó phần ống thứ hai (5) được gấp vào phía bên trong
+phần ống thứ nhất (2), tạo thành loại giày hoặc tất có hai lớp, với vùng nối của hai
+phan ống (2, 5) mà tạo thành phần hở lồng chân vào (20) đối với giày hoặc tat với hai
+lớp.
+
+16. Hàng may mặc có hai lớp, bao gồm sản phẩm dệt kim trung gian theo điểm 14,
+trong đó các đầu trục của phần ống (2, 5) đối diện với các đầu trục mà được ghép nối
+
+với nhau nhờ phần đường viền (19) được đóng kín.
+
+17. Hàng may mặc theo điểm 16, trong đó dé giày (21) được ding ở mặt bên của phần
+
+ống thứ nhất (2) đối điện với mặt bên mà ở đó phần hở lồng chân vào (20) được tạo ra.
+
+-18-
+
+
+42110
+
+1/7
+
+
+
+42110
+
+t®
+
+À
+
++
+
+—,
+
+N
+S
+nN
+
+
+42110
+
+3/7
+
+
+
+42110
+
+4/7
+
+
+
+42110
+
+
+
+42110
+
+6/7
+
+72
+
+
+
+42110
+
+T/T
+
+-25-

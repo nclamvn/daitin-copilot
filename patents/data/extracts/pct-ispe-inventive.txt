@@ -1,0 +1,197 @@
+About Intellectual Property
+IP Training
+Respect for IP
+IP Outreach
+IP for…
+IP and...
+IP in...
+Patent & Technology Information
+Trademark Information
+Design Information
+Geographical Indication Information
+Plant Variety Information (UPOV)
+IP Laws, Treaties & Judgments
+IP Resources
+IP Reports
+Patent Protection
+Trademark Protection
+Design Protection
+Geographical Indication Protection
+Plant Variety Protection (UPOV)
+IP Dispute Resolution
+IP Office Business Solutions
+Paying for IP Services
+Negotiation & Decision-Making
+IP Cooperation
+Innovation Support
+Public-Private Partnerships
+The Organization
+WIPO and Artificial Intelligence
+Working at WIPO
+Accountability
+Patents
+Trademarks
+Designs
+Geographical Indications
+Copyright
+Trade Secrets
+Future of IP
+WIPO Academy
+Workshops & Seminars
+IP Enforcement
+WIPO ALERT
+Raising Awareness
+World IP Day
+WIPO Magazine
+Case Studies & Success Stories
+IP News
+WIPO Awards
+Business
+Women
+Universities
+Indigenous Peoples
+Judiciaries
+Youth
+Examiners
+Innovation Ecosystems
+Economics
+Finance
+Intangible Assets
+Global Health
+Climate Change
+Competition Policy
+Sustainable Development Goals
+Genetic Resources, Traditional Knowledge and Traditional Cultural Expressions
+Frontier Technologies
+Mobile Applications
+Sports
+Tourism
+Music
+Fashion
+PATENTSCOPE
+Patent Analytics
+International Patent Classification
+ARDI – Research for Innovation
+ASPI – Specialized Patent Information
+Global Brand Database
+Madrid Monitor
+Article 6ter Express Database
+Nice Classification
+Vienna Classification
+Global Design Database
+International Designs Bulletin
+Hague Express Database
+Locarno Classification
+Lisbon Express Database
+Global Brand Database for GIs
+PLUTO Plant Variety Database
+GENIE Database
+WIPO-Administered Treaties
+WIPO Lex - IP Laws, Treaties & Judgments
+WIPO Standards
+IP Statistics
+WIPO Pearl (Terminology)
+WIPO Publications
+Country IP Profiles
+WIPO Knowledge Center
+World Intangible Investment Highlights
+WIPO Technology Trends
+Global Innovation Index
+World Intellectual Property Report
+PCT – The International Patent System
+ePCT
+Budapest – The International Microorganism Deposit System
+Madrid – The International Trademark System
+eMadrid
+Article 6ter (armorial bearings, flags, state emblems)
+Hague – The International Design System
+eHague
+Lisbon – The International System of Appellations of Origin and Geographical Indications
+eLisbon
+UPOV PRISMA
+Mediation
+Arbitration
+Expert Determination
+Domain Name Disputes
+Centralized Access to Search and Examination (CASE)
+Digital Access Service (DAS)
+WIPO Pay
+WIPO Wallet
+WIPO Assemblies
+Standing Committees
+Calendar of Meetings
+WIPO Webcast
+WIPO Official Documents
+Development Agenda
+Tailored Initiatives & Projects
+Collaborative Forums & Dialogues
+Innovation, Creativity and Development Acceleration Program
+IP for Impact
+National IP & Innovation Strategies
+Cooperation Hub
+Technology and Innovation Support Centers (TISC)
+Technology Transfer
+Inventor Assistance Program
+IP Commercialization
+WIPO GREEN
+WIPO's Pat-INFORMED
+Accessible Books Consortium
+WIPO for Creators
+Member States
+Observers
+Director General
+Activities by Unit
+External Offices
+Global Forum on IP and AI
+AI Infrastructure Interchange
+AI Tools & Services
+Staff Positions
+Affiliated Personnel Positions
+Procurement
+Results & Budget
+Financial Reporting
+Oversight
+PCT International Search and Preliminary Examination Guidelines
+PART III EXAMINER CONSIDERATIONS COMMON TO BOTH THE INTERNATIONAL SEARCHING AUTHORITY AND THE INTERNATIONAL PRELIMINARY EXAMINING AUTHORITY
+Chapter 13 Inventive step
+Considerations in Determining Inventive Step
+What Is "Obvious"?
+13.03 The question to consider, in relation to any claim defining matter for which protection is sought, is whether, at the relevant date of that claim, it would have been obvious to a person skilled in the art to arrive at something falling within the terms of the claim having regard to the art known at that time. If so, the claim is considered to lack inventive step. The term "obvious" means that which does not go beyond the normal progress of technology but merely follows plainly or logically from the prior art, that is, something which does not involve the exercise of any skill or ability beyond that to be expected of the person skilled in the art. The following are the basic considerations that apply in determining inventive step/non-obviousness:
+(i) the claimed invention must be considered as a whole;
+(ii) the references must be considered as a whole and the skilled person must be motivated or prompted into combining the teaching of the documents so as to arrive at the subject matter as claimed including consideration of a reasonable expectation or likelihood of success; and
+(iii) the references must be viewed without the benefit of impermissible hindsight vision afforded by the claimed invention.
+Light of Later Knowledge
+13.04 In considering inventive step, as distinct from novelty (see paragraph 12.02 and the appendix to Chapter 12), it is fair to construe any published document in the light of subsequent knowledge and to have regard to all the knowledge generally available to the person skilled in the art at the relevant date of the claim.
+Invention as a Whole; Combination of Known or Obvious Elements
+13.05 In determining inventive step (non-obviousness), the invention claimed must normally be considered as a whole. In determining the differences between the prior art and the claims, the question is not whether the differences themselves would have been obvious but whether the claimed invention as a whole would have been obvious. Thus, it is not correct as a general rule, in the case of a combination claim, to argue that the separate features of the combination, taken by themselves, are known or obvious and that "therefore" the whole subject matter claimed is obvious. The only exception to this rule is where there is no functional relationship between the features of the combination. That is, where the claim is merely for a juxtaposition of features and not a true combination (see the example under paragraph 13.14 (d)).
+13.06 While the claim should, in each case, be directed to technical features (and not, for example, merely to an idea) in order to assess whether an inventive step is present, it is important for the examiner to bear in mind that there are various ways in which a person skilled in the art may arrive at an invention.
+13.07 In identifying the contribution any particular invention makes to the art in order to determine whether there is an inventive step, account should be taken first of what the applicant himself acknowledges in his description and claims to be known; any such acknowledgment of known art should be regarded by the examiner as being correct unless the applicant states he has made a mistake. However, the further prior art contained in the international search report or any additional document considered to be relevant may put the claimed invention in an entirely different perspective from that apparent from the disclosure by itself and, indeed, this cited prior art may cause the applicant voluntarily to amend his claims to redefine his invention. The general knowledge of the person skilled in the art should also be taken into account for the determination of inventive step. Also, the prior art must be enabling for what is taught therein, even if it is not the entirety of the claimed invention. Therefore, whatever combination of items of prior art and admission or general knowledge is used, this combination must provide enablement with respect to the claimed invention.
+Assessing the Contribution Against the Prior Art
+13.08 The following considerations should be applied in the assessment of inventive step/non-obviousness:
+(i) determination of the scope of the claimed invention;
+(ii) determination of the scope of the relevant item(s) of prior art;
+(iii) determination of a person skilled in the art in the relevant case;
+(iv) identification of the differences and similarities between the relevant item(s) of prior art and the claimed invention;
+(v) assessment of whether the claimed invention as a whole would have been obvious to a person skilled in the art having regard to the relevant item(s) of prior art and the general knowledge of a person skilled in the art.
+13.09 The invention as a whole is obvious if any item(s) of prior art or general knowledge of the person of skill in the art would have motivated or prompted the person of skill in the art on the relevant date (see paragraphs 11.02 to 11.05) to reach the claimed invention by substituting, combining or modifying one or more of those items of prior art with a reasonable likelihood of success. One particular way to determine inventive step is to apply the problem-solution approach, described in the appendix to this chapter.
+13.10 In order to reach a final conclusion as to whether any claim includes an inventive step, it is necessary to determine the difference between the subject matter of that claim as a whole and the whole of the known art (so far as dependent claims are concerned see also paragraph 13.19). In considering this matter, the examiner should not proceed solely from the point of view suggested by the form of claim (prior art plus characterizing portion; see paragraphs 5.04 to 5.08). The examiner should identify the closest prior art as the basis for the assessment of inventive step. This is considered to be that combination of features derivable from one single reference that provides the best basis for considering the question of obviousness. In determining the scope of the disclosure of the items of prior art, in addition to the explicit disclosure, an implicit disclosure, that is, a teaching which a person skilled in the art could reasonably draw from the explicit disclosure, should also be taken into account. The critical time for the determination of such disclosure is the claim date of the application concerned. The general knowledge of the person skilled in the art on the relevant date of the claim should also be taken into account.
+The "Person Skilled in the Art"
+13.11 The person skilled in the art should be presumed to be a hypothetical person having ordinary skill in the art and being aware of what was common general knowledge in the art at the relevant date. He should also be presumed to have had access to everything in the "prior art," in particular, the documents cited in the international search report, and to have had at his disposal the normal means and capacity for routine experimentation. If the problem on which the invention is based and which arises from the closest prior art prompts the person skilled in the art to seek its solution in another technical field, the person skilled in the art in that field is the person qualified to solve the problem. The assessment of whether the solution involves an inventive step must therefore be based on that specialist's knowledge and ability. There may be instances where it is more appropriate to think in terms of a group of persons, for example, a research or production team, than a single person. This may apply, for example, in certain advanced technologies such as computers or telephone systems and in highly specialized processes such as the commercial production of integrated circuits or of complex chemical substances.
+Combining Teachings
+13.12 In considering whether there is inventive step as distinct from novelty (see Chapter 12), it is permissible to combine the teachings of two or more prior art references, for example, different published patents, or several teachings contained in the same prior art reference, such as one particular book, but only where such combination would be obvious to the person skilled in the art. In determining whether it would be obvious to combine the teachings of two or more distinct documents, the examiner should have regard to the following:
+(i) whether the nature and content of the documents are such as to make it likely or unlikely that the person skilled in the art would combine them;
+(ii) whether the documents come from similar or neighboring technical fields and if not, whether the documents are reasonably pertinent to the particular problem with which the invention was concerned.
+13.13 The combination, substitution or modification of the teachings of one or more items of prior art may only lead to a lack of inventive step/obviousness where a person skilled in the art would have been motivated by the prior art or his general knowledge, with a reasonable likelihood, to combine, substitute or modify one or more items of prior art. Conversely, where such combination could not have been expected from a person skilled in the art, the requirement of inventive step (non-obviousness) would be met, even if each single item would have been obvious if taken individually. The combining of two or more parts of the same document would be obvious if there is a reasonable basis for the person skilled in the art to associate these parts with one another. It would normally be obvious to combine with other prior art documents a well-known text book or standard dictionary; this is only a special case of the general proposition that it is obvious to combine the teaching of one or more documents with the common general knowledge in the art. It would, generally speaking, also be obvious to combine the teachings of two documents, one of which contains a clear and unmistakable reference to the other. It should be noted that the motivation to modify the prior art teachings need not be the same as the applicant's. It is not necessary that the prior art suggest the combination to achieve the same advantage or result discovered by the applicant. The prior art may suggest the claimed invention, but for a different purpose or to solve a different problem. In some instances the content of a single item of prior art may lead to a finding of lack of inventive step. Examples of such instances are described in the appendix to this chapter.
+←
+Table of Contents
+→
+Hidden
+https://www.wipo.int/contact/en/area.jsp?area=pct
+https://www.wipo.int/pressroom/en/
+https://www.wipo.int/en/web/terms-of-use
+https://www.wipo.int/en/web/privacy-policy
+https://www.wipo.int/en/web/accessibility
+https://www.wipo.int/en/web/sitemap
+https://www.wipo.int/en/web/newsletters
+https://www.wipo.int/en/web/podcasts
+https://www.wipo.int/en/web/news/rss

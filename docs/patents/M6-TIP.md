@@ -1,0 +1,40 @@
+# M6: Hồ sơ sáng chế Việt Nam
+
+User authorization 11/11/2026: implement the proposed patent milestone and mine dispersed public Internet information into a valuable traceable dataset. Continue current Vercel pilot, existing private Git remote and cloud permissions; no Base44, no private customer data, purchases, new credentials or paid subscriptions.
+
+## Outcome
+A patent lawyer can ask grounded questions, inspect a source-native patent claim or procedural authority, open a patent case again, produce an evidence-linked comparison and response draft, manually edit and approve parts, and export the approved version. Product must honestly distinguish captured sources, parsed evidence, candidate knowledge, model inference and lawyer approval. No autonomous patentability, enforceability or FTO conclusions.
+
+## Minimal architecture and contracts
+Reuse Node24, authenticated server, durable SQLite snapshot, roles/groups, current cloud model connection, approved corporate Word style and design system. Keep trademark paths, records, Word hashes and SOT intact. Patent corpus is a separate candidate, not a widening of the trademark approval.
+
+Data Builder owns patents/data/**, patents/ingest/**, patents/dataset.mjs, test/patent-data.test.mjs. Dataset contract: patents/data/catalog.json (schemaVersion, builtAt, scope, status:candidate, sources[], records[], gaps[]). sources fields: id,title,url,authority,kind,jurisdiction,language,capturedAt,sha256,snapshot (repo relative),textPath (repo relative),access (capture_allowed/metadata_only/manual/API etc),reviewStatus. records fields: id,sourceId,kind (law/guidance/patent/procedure/commentary),title,text,locator (page/paragraph/claim/section),jurisdiction,topics[], provenance (captured_primary/secondary/assistant_proposed), optional effectiveFrom/To/priorityDate/publicationDate/claims/family, humanReview:null. Exact evidence text binds saved extracted text; hashes bind raw snapshot and extraction separately. Unknown values null, conflicting/time-sensitive claims not silently reconciled. Core exports loadDataset(), validateDataset(), searchDataset({query,jurisdiction?,asOf?,limit?}) with results carrying records and source data; data agent coordinate details directly with backend agent.
+
+Backend Builder owns patents/service.mjs, patents/workflow.mjs and integration server/api/web durable state and build config; test/patent-workflow.test.mjs. API proposed authenticated /api/patents/{status,search,cases}; case GET/POST edit/propose/approve/export/version/source. Ensure group/role checks, source binding, optimistic versioning, immutable approvals, durable cloud state and model reservation; no external user-text search or automatic crawls at request time. Treat internet text as untrusted evidence. Export Word only approved versions, with real logo and source ledger. Cases and analysis are author-labeled simulations. Workflows: legal question retrieval, evidence matrix using provided claim and D1, editable response sections; an evidence matrix drafted by model is inference until approved. Data incompleteness explicitly displayed. Don't make fake model results. Native saved research/comparison/patent claim links and right-pane source selection.
+
+UI Builder owns patents/ui/** and copilot/m3/workspace navigation integration only, test/patent-ui.test.mjs if needed. Authenticated /patents/ page, Be Vietnam Pro and official brand, three-column workspace with selected task main and evidence drawer. Do not stage HTML publicly. Show coverage/unknowns/candidate status, context (VN/asOf/patent version), retrieval list, editable evidence matrix and response sections with separate approvals, history and approved export. Server validates typed source IDs; render text safely, no LLM HTML. Existing trademark workspace retained. Coordinate endpoint contract with backend before implementation.
+
+## Dataset scope / budgets / source policy
+Prefer official Vietnamese law and patent procedures, WIPO PCT/IPC and EPO legal/technical sources, company-authored public patent practice notes as secondary guidance. Add real public patent full-text specimens using permitted public publication endpoints or downloadable official examples. No PATENTSCOPE robot or bulk scraping, login/CAPTCHA circumvention, paid API subscription, scraping restricted full text or private data. Capture rights/policy unknown as metadata-only. Bounded run: <=100 source captures, <=150 MiB additional saved data, concurrency <=3 per host1, <=2 retries only for transient network failures. Don't claim completeness from this seed corpus. Existing official snapshots may be referenced without duplicate copies. Store failed/blocked coverage gaps. Semantic legal review remains pending. No model decides source authority or final legal truth.
+
+## Acceptance
+1 Current source snapshots, content hashes, extraction hashes and exact evidence spans verify; repeated build/search deterministic; altered hashes/spans/missing/source-role/date contradictions fail or remain explicitly unresolved. Legal sources current and historical not conflated; secondary guidance not controlling law.
+2 Genuine public patent claims preserved with claim numbering, dependency, publication identifiers and dates; no fake family/status facts. Missing rights/status/claims obvious.
+3 Unauthenticated APIs denied; other group and editor restrictions; stale writes409; source changes invalidate affected approvals; export immutable. Persist after redeploy. Trademark Word1/2 unchanged.
+4 Source search and evidence open correct original page/claim, with source role and freshness. Need-context, missing evidence and out-of-scope visible.
+5 Real model on a bounded synthetic patent task where configured; no new provider/model/account. Any paired direct baseline uses same model, inputs and budget, 3 max paired tasks first; report human minutes unmeasured and lawyer review pending. Thirty evaluation requests are assistant-authored test pack with blind IDs, not actual unseen human pilot evidence. Split held-out patent families from demos.
+6 Relevant automated tests + existing regression + build, browser desktop/mobile, actual Vercel API/UI, two sessions, approval/export hashes.
+
+## Measurement and honest stopping
+Declare stage/call/token/time receipts, total costs where known, no invented labor savings. Quality floors: no fabricated citation, no cross-tenant disclosure, no unreviewed export, no universal statement of validity/novelty/FTO from partial corpus. A missing connector or lawyer isn't reason to fake a complete corpus. Finish usable tested capability and list these missing gates explicitly.
+
+## Work ownership
+Contractor: instructions, source research support, independent verification, reviewable 30-case evaluation package, reports, git/deploy. Builders implement. Changes shared, no independent commits/deploys from Builders. No source/data loss or whole-project temp copies.
+
+## Contractor integration decisions
+
+- Default canonical entry becomes `/patents/`, with safe allowlisted login return; trademark deep links stay valid.
+- Case intake includes private `noticeText` and `instructionsText` via paste/TXT/MD, visibly synthetic/authorized. Public publication evidence is separate from case-supplied facts. A mock office action is explicitly assistant-authored, never an actual examiner finding. Private case evidence stays within the case/group, never global dataset/CDN. Native patent-PDF intake is deferred and must not be advertised as implemented.
+- Explicit target-claim and D1 roles are needed so an exact quote from the target claim or a legal rule cannot be passed off as D1 evidence. Role validation is deterministic; analysis remains model inference.
+- Refreshing selected public sources updates the case dataset digest and invalidates affected current approvals; old releases freeze sources and export unchanged.
+- Local/cloud comparison is a bounded technical rehearsal with the same model where available; actual lawyer active time remains unmeasured. The thirty prepared requests are not human-reviewed gold.

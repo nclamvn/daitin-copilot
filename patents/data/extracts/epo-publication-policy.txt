@@ -1,0 +1,36 @@
+Skip to main content
+Skip to footer
+Data
+Web services
+Overview
+Facebook
+X
+Linkedin
+Email
+European Publication Server web service
+Image
+Updated weekly, the European Publication Server gives you free online access to all the European patent documents published by the EPO.
+The European Publication Server's REST API enables access to XML, HTML, TIFF images, and PDF/A versions of European A and B publications.
+With the web service you can retrieve
+publication dates
+weekly patent lists
+documents as XML, HTML, TIFF or PDF files
+raw data
+Getting started
+European Publication Server REST services reference guide
+Conditions
+Under the fair use policy, each IP address has a download limit of 5 GB in any sliding window of seven days.
+Fair use charter
+The terms and conditions of use for the website apply.
+Further information
+Release Notes
+New version of the European Publication Server
+Related products
+In addition to the European Publication Server web service, European applications (A documents) and specifications (B documents) are also available in the following complementary products:
+European Publication Server
+EP full-text search
+EP authority file (cumulative list of EP publication numbers)
+Training
+Visit our e-learning centre for all tutorials and recorded seminars Upcoming Patent Knowledge seminars and events
+Contact
+Contact us

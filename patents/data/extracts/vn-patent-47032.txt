@@ -1,0 +1,784 @@
+
+
+       (12)      BẢN MÔ TẢ SÁNG CHẾ THUỘC BẰNG ĐỘC QUYỀN SÁNG CHẾ
+       (19)      Cộng hòa xã hội chủ nghĩa Việt Nam (VN) (11)
+                       CỤC SỞ HỮU TRÍ TUỆ
+                                                                     1-0047032
+       (51)2020.01 H01B 3/46; H05K 3/28; C09D 183/04     (13)   B
+
+(21) 1-2020-02916                         (22) 26/10/2018
+(86) PCT/US2018/057741 26/10/2018         (87) WO 2019/084423 02/05/2019
+(30) 62/577,471 26/10/2017 US
+(45) 25/06/2025 447                       (43) 26/10/2020 391A
+(76) 1. AHMAD, SYED, TAYMUR (US)
+     860 W Blackhawk, Chicago, IL 60642, United States of America
+     2. KLEINGARTNER, Justin (US)
+     460 Harrison Ave, Unit 419, Boston, MA 02118, United States of America
+     3. BALASUBRAMANIAN, Sruti (IN)
+     999 Hancock St, Unit 507, Quincy, MA 02169, United States of America
+(74) Công ty Luật TNHH T&G (TGVN)
+
+(54) CHẾ PHẨM TẠO THÀNH LỚP PHỦ PHI NEWTON BẢO GIÁC, PHƯƠNG
+     PHÁP XỬ LÝ BẢNG MẠCH IN ĐƯỢC LẮP RÁP, LỚP PHỦ BẢO GIÁC VÀ
+     BẢNG MẠCH IN ĐƯỢC LẮP RÁP BAO GỒM LỚP PHỦ NÀY
+
+
+(21) 1-2020-02916
+
+(57) Sáng chế đề cập đến chế phẩm tạo thành lớp phủ bảo vệ trên thiết bị điện tử mà ở
+dạng chất lưu phi Newton thể hiện cả hai đặc tính nhớt và đàn hồi, và tạo ra ít nhất một lớp
+phủ có tính kị nước, kị dầu, hoặc ưa dầu. Các đặc tính nhớt và đàn hồi được đi kèm với
+chất lưu phi Newton cho phép chế phẩm này có thẻ phân phối lại sau khi được đưa lên làm
+lớp phủ cho thiết bị điện tử. Sáng chế cũng đề cập đến các phương pháp bảo vệ thiết bị
+điện tử tránh được các chất 6 nhiễm dang lỏng bằng cách cung cấp chế phẩm theo sáng chế
+và thiết bị điện tử bao gồm chế phẩm này. Sáng chế cũng đề cập đến thiết bị điện tử, như
+
+bảng mạch in, có màng được chế tạo từ chế phâm này.
+
+
+47032
+
+Lĩnh vực kỹ thuật được đề cập
+
+Sáng chế nói chung đề cập đến chế phẩm chứa chất lưu phi Newton mà tạo thành
+lớp phủ kị nước, kị dầu, và/hoặc ưa dầu, cũng như thiết bị điện tử bao gồm lớp phủ này.
+Sáng chế cũng đề cập đến phương pháp bảo vệ thiết bị điện tử tránh chất ô nhiễm lỏng
+bằng cách áp dụng chế phẩm theo sáng chế lên trên các bộ phận mong muốn của thiết bị
+này, như bang mach in.
+
+Tinh trang kỹ thuật của sang ché
+
+Các thiết bị điện tử được cấu thành tir các chỉ tiết dẫn điện và cách điện, mà có thé
+bị ảnh hưởng bắt lợi bởi nhiều loại chất ô nhiễm. Việc tiếp xúc với các chất lỏng như nước,
+sẽ thường dẫn đến việc mài mòn các chỉ tiết này, hoặc sự đoản mạch mà cuối cùng sẽ dẫn
+đến việc phá hỏng chức năng của thiết bị điện tử. Ngoài ra, do các thiết bị như vậy ngày
+càng tỉnh vi hơn với các chức năng tăng được tăng lên, chúng được sử dụng trong các môi
+trường nguy hiểm hơn mà cần có sự bảo vệ tốt hơn đối với các chất ô nhiễm, đặc biệt là
+
+chất lỏng.
+
+Do đó, lớp phủ chống nước đang trở thành một hình thức bảo vệ phổ biến hơn cho
+các thiết bị như vậy. Các lớp phủ chống nước thông thường bao gồm lớp phủ bảo giác hoặc
+lớp phủ chân không. Trước khi đưa các lớp phủ này lên thiết bị điện tử, các chỉ tiết nhất
+định của thiết bị điện tử cần phải được che chắn dé đảm bảo không gây cản trở dong điện.
+Quy trình này tốn kém và mắt thời gian. Ngoài ra, độ dày của các lớp phủ thông thường có
+thể gây ảnh hưởng bắt lợi cho chức năng của thiết bị điện tử và có thể hoạt động như chất
+cách nhiệt. Hơn nữa, các lớp phủ bảo giác thông thường cũng có thé bị mòn do mài mòn.
+
+Việc sử dụng hiện nay đối với các chế phẩm thé hiện tinh chất phi Newton được sử
+dụng trong lớp phủ có thể được tìm thấy trong, patent Mỹ số và đơn sáng chế Mỹ số
+11/269,593. Một vi dụ về màng có tính dẫn ướt, trong suốt dé áp dung cho thiết bị điện tử
+
+1/19
+
+
+47032
+
+có thể được tìm thấy trong các đơn sáng chế Mỹ số 13/611,575. Một ví dụ về lớp phủ phun
+lỏng có thể được tìm thấy trong Patent Mỹ số 5,108,799. Chưa có ví đụ nào trong số các ví
+
+dụ này cung cấp chế phẩm hoặc phương pháp bảo vệ thiết bị điện tử một cách hiệu quả.
+
+Do đó, vẫn có nhu cầu về thiết bị điện tử được phủ và các phương pháp cho phép
+bảo vệ thiết bị điện tử tránh các chất ô nhiễm, như các hạt bao gồm bụi và đất, cũng như
+chất lỏng, như nước và dịch thể, bao gồm mồ hôi. Ngoài ra, vẫn có nhu cầu về lớp phủ mà
+có thể được đưa lên mà không cần phải che chắn các chỉ tiết trước khi phủ. Vẫn có nhu cầu
+về lớp phủ mà có thể bao phủ toàn bộ bảng mạch in, đồng thời không ngăn cản chức năng
+của thiết bị và lớp phủ không dễ bị mòn.
+
+Bản chất kỹ thuật của sáng chế
+
+Từ nhu cầu trên, sáng chế đề cập đến chế phẩm thé hiện các hai đặc tính nhớt và
+đàn hồi cho phép hợp chất có thể phân phối lại sau khi được đưa lên ở dạng lớp phủ trong
+
+hoặc trên ít nhất một phần của thiết bị điện tử.
+
+Theo một phương án, sáng chế đề cập đến chế phẩm tạo thành lớp phủ phi Newton
+trên thiết bị điện tử, chế phẩm này bao gồm: ít nhất một chất lưu kị nước, trong đó chất lưu
+kị nước này tạo thành lớp phủ nhớt đàn hồi có đặc tính cách điện, và có tính kị nước, kị
+
+dầu, ưa dầu, hoặc tô hợp của chúng.
+
+Sáng chế đề cập đến phương pháp xử lý thiết bị điện tử bằng cách đưa lớp phủ nhớt
+đàn hồi lên thiết bị điện tử, phương pháp này bao gồm việc áp dụng chế phẩm lên thiết bị
+điện tử, chế phẩm này bao gồm: ít nhất một chất lưu kị nước, trong đó chất lưu kị nước này
+tạo thành lớp phủ nhớt đàn hồi có đặc tính cách điện và tính kị nước, kị đầu, ưa dầu, hoặc
+tổ hợp của chúng.
+
+Theo một phương án khác, sáng chế đề cập đến lớp phi dé bảo vệ nền. Ví dụ, lớp
+phủ này có thể bao gồm ít nhất một nguyên liệu kị nước chứa hợp chất polysiloxan và có
+đặc tính cách điện, trong đó lớp phủ này có tinh ki nước, ki dầu, hoặc wa dau, và thể hiện
+đặc tính nhớt đàn hồi cho phép nó có thé phân phối lại sau khi được đưa lên linh kiện điện
+tử.
+
+2/19
+
+
+47032 3/19
+
+Theo một phương an khác nữa, sáng chế đề cập đến lớp phủ để bảo vệ nền, trong
+đó lớp phủ này bao gồm ít nhất một nguyên liệu kị nước có đặc tính cách điện, và bao gồm
+hợp chất polysiloxan, trong đó lớp phủ có tính kị nước, kị dầu, hoặc ưa dầu, và thể hiện
+đặc tính nhớt đàn hồi mà cho phép nó có thể phân phối lại sau khi được đưa lên linh kiện
+điện tử.
+
+Theo một phương án khác nữa, sáng chế đề cập đến thiết bị điện tử có màng nhớt
+đàn hồi được gắn lên đó, màng này bao gồm chế phẩm được mô tả ở đây. Ví dụ, thiết bị
+điện tử là bảng mạch in, toàn bộ trong số đó có thể được xử lý mà trước đó không cần phải
+che kín bất kỳ chỉ tiết nào.
+
+Mô tả chỉ tiết sáng chế
+
+Khi được sử dụng ở đây, “điều kiện môi trường” để chỉ nhiệt độ 72 °F và độ âm
+459%.
+
+Khi được sử dụng ở đây, “chất lưu phi Newton,” hoặc các dạng tương đương của
+chúng, có nghĩa là chất lưu mà độ nhớt của nó có thể thay đổi dựa trên áp lực hoặc lực
+được áp dụng. Lớp phủ thu được thể hiện tính chất phi Newton mà được mô tả bởi mối
+quan hệ phi tuyến tính của lớp phủ giữa ứng suất cắt và tốc độ cắt hoặc sự có mặt của ứng
+suất đàn hồi.
+
+Chất lưu phi Newton bao gồm chất lưu một hoặc nhiều pha thể hiện tính chất phi
+
+Newton. Nó cũng có thé bao gồm một hoặc nhiều thành phần.
+
+Đôi khi chất lưu phi Newton cũng để chi chất lưu phức. Theo một phương án, chất
+lưu phi Newton là chất lưu nhớt đàn hồi.
+
+Khi được sử dụng ở đây, “chất lưu nhớt đàn hồi” có nghĩa là chất lưu thé hiện cả
+các đặc điểm nhớt và đàn hồi khi trải qua quá trình biến dạng. Để bảo vệ cho thiết bị điện
+tử tránh được chất ô nhiễm, như nước hoặc dịch thể, bụi hoặc các hạt khác, và dạng tương
+tự, sáng chế đề cập đến chế phẩm chứa chất lưu phi Newton. Sáng chế cũng đề cập đến
+phương pháp xử lý thiết bị điện tử bằng chất lưu phi Newton như được bộc lộ ở đây, cũng
+
+như thiết bị điện tử bao gồm chất lưu phi Newton này.
+
+
+47032
+
+Theo một phương án, chất lưu phi Newton bao gồm chất lưu nhớt đàn hồi thể hiện
+cả hai đặc điểm nhớt và đàn hồi. Chất lưu nhớt đàn hồi, không giống như vật liệu hoàn toàn
+đàn hồi, sẽ chảy như chất lỏng nhớt đưới tải trọng nhưng sẽ vẫn duy tri đặc điểm đàn hồi
+của chất rắn khi không tải. Độ nhớt đàn hồi đã được nghiên cứu kỹ và tính chất của chất
+lưu nhớt đàn hồi đã được biết trong lĩnh vực. Đặc tính đàn hồi đi kèm với chế phẩm theo
+sáng chế cho phép vật liệu chống lại được việc ô nhiễm chất lỏng và sự biến dạng của vật
+liệu do lực của cơ thể (ví dụ, trọng lực), và đặc tính nhớt cho phép vật liệu to có thể tự phân
+phối lại trong điều kiện áp lực và theo thời gian, chẳng hạn như được dịch chuyên khi một
+
+lực được áp dụng hoặc phủ đều lên bề mặt.
+
+Các đặc tính của chất lưu phi Newton vì thế làm cho nó thuận lợi để sử dụng làm
+lớp phủ trên thiết bị điện tử. Các chất lưu phi Newton mong muốn cấu thành nên các vật
+liệu dính hoặc hấp thụ lên bề mặt của thiết bị điện tử dé duy tri được màng mỏng, thường
+là trong khoảng từ nanomet đến angstrom. Màng như vậy có thể đạt được thông qua lực
+Van Der Waals, cho phép lớp phủ mỏng tồn tại ngay cả khi phần lớn chất lưu bị dịch
+chuyển. Màng mỏng có độ dày lớn hơn hơn có thể đạt được khi chất lưu thé hiện ứng suất
+đàn hồi.
+
+Việc sử dụng chất lưu phi Newton làm lớp phủ có thê đạt được lợi ích mà sẽ không
+có nếu sử dụng lớp phủ chân không hoặc lớp phủ bảo giác thông thường. Các đặc tính nhớt
+của chất lưu phi Newton có thể loại bỏ sự cần thiết phải che kín một số chỉ tiết trước khi
+phủ thiết bị điện tử. Thông thường, việc che một số chỉ tiết nhất định được sử dụng dé cho
+phép dòng điện chạy qua các khe hở trong lớp phủ. Chất lưu phi Newton lớp phủ thay vào
+đó thể hiện các đặc tính nhớt bằng cách địch chuyển khi một chỉ tiết được đưa vào thiết bị
+điện tử. Việc dịch chuyển cho phép chỉ tiết nói với thiết bị điện tử mà không có trở ngại.
+Lớp phủ chất lưu phi Newton địch chuyền sẽ thể hiện các đặc tính nhớt va tự nó có thé
+phân phối lại dé bảo vệ thiết bị điện tử. Việc che chắn chỉ tiết là không cần thiết vi dòng
+
+điện sẽ truyền đến chỉ tiết đó, tuy nhiên, việc che chắn vẫn có thể được thực hiện nếu muốn.
+
+Theo một số phương án, lớp phủ có thể có đặc tính cách điện. Khi được sử dụng ở
+
+đây, lớp phủ có đặc tính cách điện được xác định bởi lớp phủ không có hoặc có rất ít dòng
+
+4/19
+
+
+47032 so
+
+điện chạy qua nó dưới tác động của điện trường. Nói chung, một chất cách điện là một vật
+liệu có ít hoặc không có tính dẫn điện, do đó cho phép ít hoặc không có dòng điện chạy
+
+qua nó.
+
+Theo các phương án khác, một phần của các chỉ tiết bên trong, hoặc toàn bộ các chỉ
+tiết bên trong của thiết bị điện tử có thê được phủ bằng chất lưu phi Newton trước khi các
+chi tiết bé sung được đưa vào trong thiết bị này, mà không cần phải che chắn bất kỳ phần
+nào của thiết bị điện tử này. Các chỉ tiết có thê được đưa vào sau khi lớp phủ được đưa lên
+và lớp phủ sẽ không ức chế đòng điện giữa chỉ tiết và thiết bị điện tử. Chỉ phí sản xuất và
+khó khăn thường tăng lên đo việc che chấn. Bằng cách sử dụng lớp phủ chat lưu phi Newton
+như được bộc lộ ở đây có thể dẫn đến việc vừa giảm chỉ phí sản xuất lẫn sự khó khăn, do
+
+nhu cầu che chắn đã được giảm thiểu hoặc loại bỏ hoàn toàn.
+
+Các đặc tính nhớt của chất lưu phi Newton cho phép chất lưu phi Newton chảy ở
+các trạng thái nhất định. Các đặc tính nhớt cho phép dé dang sửa chữa khi chất lưu phi
+Newton được đưa lên làm lớp phủ cho thiết bị điện tử. Với các lớp phủ chân không và lớp
+phủ bảo giác thông thường, sự mài mòn gây ra bởi các chỉ tiết hoặc các nguồn khác sẽ làm
+giảm tính kháng tổng thể đối với việc ô nhiễm chất lỏng trừ khi lớp phủ bị mài mòn được
+thay thế. Để thay lớp phủ bằng các phương pháp thông thường tốn kém và mắt thời gian.
+
+Khi được sử dung ở day, “có thé phân phối lai” được sử dụng dé mô tả khả năng
+của lớp phủ tự phục hồi dé cho phép lớp phủ sửa chữa các hư hại cho lớp phủ, chẳng hạn
+như khi một lỗ được tạo ra khi kết nối giữa chỉ tiết đực và chỉ tiết cái. Khả năng phân phối
+lại của lớp phủ là kết quả của việc tạm thời tăng độ linh động dẫn đến việc chảy lại của vật
+liệu trong vùng bị hư hỏng. Việc phân phối lại hoặc tự phục hồi nội tại của lớp phủ không
+yêu cầu việc bé sung các yếu tô bên ngoài, chẳng hạn như chất hàn gắn, hoặc áp dụng các
+yếu tố bên ngoài, chẳng hạn như nhiệt hoặc áp lực. Theo một phương án, lớp phủ có thể
+phản ứng với lực nhưng van giữ nguyên vị trí như khi việc kết nói được thực hiện sẽ ngăn
+
+không cho lớp phủ chảy trở lại sau khi lực được loại bỏ.
+
+Như đã mô tả, lớp phủ chất lưu phi Newton theo sáng ché sẽ có thé tự phân phối lại,
+
+hoặc “tự hàn gắn,” để thay thế các khu vực của lớp phủ đã bị mòn do mài mòn hoặc bị hư
+
+
+47032
+
+hỏng theo những cách khác. Chat lưu phi Newton sẽ có thé tự phân phối lại theo thời gian
+để khắc phục sự không đồng đều trên bề mặt của lớp phủ chất lưu phi Newton. Việc tự
+phân phối lại, hoặc “tự hàn gắn,” khả năng này có thể làm giảm chỉ phí đi kèm với việc
+đưa lên và duy trì lớp phủ.
+
+Theo một số phương án, lớp phủ có thể trải rộng trên nền như được mô tả bởi hệ số
+
+trải rộng (S), mà được thể hiện bằng phương trình sau đây:
+
+Š = sa — Œsc + YuA)
+
+Trong phương trình nêu trên, ysa là hệ số sức căng bề mặt giữa nền và không khí,
+ysc hệ số sức căng bề mặt giữa nền và lớp phủ, va yua là sức căng mặt phân cách. Việc trải
+rộng có thé diễn ra khi hệ số trải rộng là dương, hoặc ysa lớn hơn (ysct yuA). Khi hệ số trải
+rộng là dương, điều này có nghĩa là việc làm ướt lớp phủ trên nền có thể được hoàn thành.
+Mặt khác, khi hệ số trải rộng không dương, việc làm ướt có thể không hoàn thành. Thay
+
+vào đó, chất lỏng căng trải có thể tạo thành các giọt hình cầu hoặc thấu kính nỗi.
+
+Theo một phương án, khi được đưa lên dưới dạng lớp phủ, lớp phủ chất lưu phi
+Newton có thể có độ dày trong khoảng từ 25 nm đến 200 pm, như 50 nm đến 50 pm, như
+25 đến 250 nanomet, như 50 đến 150 nanomet, hoặc thậm chí từ 80 đến 120 nanomet. Độ
+dày lớp phủ có thể được đo bằng các kỹ thuật quang học không phá hủy, chẳng hạn như
+phép đo elip, kỹ thuật phản xạ quang phổ như giao thoa kế và kính hiển vi đồng tâm. Các
+ví dụ không giới hạn về các phương pháp không phá hủy để đo độ dày lớp phủ bao gồm
+SEM. Các lớp phủ thông thường, như lớp phủ bảo giác hoặc chân không thường dày hơn
+nhiều. Ví đụ, các lớp phủ thông thường thường có độ day từ lên đến hàng trăm micron, có
+thể cản trở cả việc truyền tần số vô tuyến và Wi-Fi của thiết bị điện tử, và hoạt động như
+một chất cách nhiệt. Phạm vi mỏng hơn của lớp phủ chất lưu phi Newton không gây ảnh
+hưởng bắt lợi đến chức năng của thiết bị điện tử, cũng như không hoạt động như một chất
+cách nhiệt. Một ví dụ không giới hạn của thiết bị điện tử hoạt động là bảng mạch in được
+lắp ráp hoàn chỉnh. Bảng mạch in được lắp ráp hoàn chỉnh với lớp phủ chất lưu phi Newton
+
+sẽ thể hiện hiệu suất tần số vô tuyến bình thường, và các chức năng bình thường khác.
+
+6/19
+
+
+47032
+
+Các ví dụ không giới hạn về những thành phần mà chất lưu phi Newton có thé bao
+gồm các vật liệu poly siloxan được chức hóa, silicon mạch thắng hoặc mạch vòng, oxit kim
+loại (như, vi dụ, silic oxi va titan oxit), silic oxit khói được chức hóa, styren-
+etylen/butylen-styren hoặc styren-etylen/propylen-styren được trưng nở bằng dầu khoáng
+hoặc dieste, rượu béo mach đài, flopolyme được chức hóa, silsesquioxan polyoligome được
+chức hóa hoặc không được chức hóa, chất làm đông ưa nước như carbome, gôm
+polysacarit, polyolefin (như, vi đụ, polyetylen mạch thang hoặc mạch nhánh, polypropylen
+
+mạch thẳng hoặc mạch nhánh, và dạng tương tự).
+
+Theo một phương án, chế phẩm theo sáng chế có thể bao gồm các hạt, như hạt
+flopolyme, hạt đất sét (như, nhưng bị không bị giới hạn ở, kaolinit, laponit, và loại tương
+tự), mica, hạt alkoxit kim loại từ đất hiễm và kim loại chuyên tiếp, vật liệu và phân tử trên
+
+cơ sở cacbon, như graphen, graphit, và ống nano cacbon, vật liệu khung hữu cơ kim loại.
+
+Theo một phương án, chế phẩm theo sáng chế có thể bao gồm chất phụ gia mà cải
+thiện việc sản xuất chế phẩm, như chất hoạt động bề mặt, chất phân tán, và loại tương tự.
+Chế phẩm cũng có thé bao gồm chất phụ gia biến đồi và cải thiện các đặc tính lưu biến của
+chế phẩm hóa học. Các ví dụ về chất hoạt động bề mặt có thể bao gồm chat hoạt động bề
+mặt công nghiệp ion và không ion như Triton-X, Capstone, và loại tương tự, và các phân
+tử như các axit béo, este, axit, hoặc amit thể hiện các đặc tính hoạt động bề mặt. Các ví dụ
+về chất phân tán va chất điều chỉnh độ lưu biến có thé bao gồm các phân tử ôn định tĩnh
+điện như axit polyacrylic mach dai, phân tử polyme phân nhánh cao ồn định về mặt không
+gian, hạt nano làm tăng độ nhớt khối, hoặc các hạt oxit kim loại cỡ đưới micron. Các vật
+liệu khác thể hiện đặc tính nhớt đàn hồi có thể được sử dụng làm lớp phủ chất lưu phi
+
+Newton.
+
+Theo một số phương án, chất lưu phi Newton cũng có thể được tạo huyền phù trong
+chất mang dung môi thích hợp. Các ví dụ không giới hạn về các chất mang dung môi thích
+hợp có thể là dầu khoáng phân tử lượng thấp, parafin hoặc iso-parafin, alkan hoặc iso-
+
+alkan, silicon mạch thẳng hoặc silicon mạch vòng phân tử lượng thấp, alkyl axetat, keton,
+
+7/19
+
+
+47032
+
+hydrocacbon được halogen hóa hoàn toàn hoặc một phần (bao gồm, nhưng bị không bị giới
+
+hạn ở, alkan, alken, alkyn, các hợp chất thơm, và các loại tương tự), hoặc aldehyt.
+
+Chất lưu phi Newton có thể được thiết kế để chịu được các loại chất ô nhiễm lỏng
+khác nhau. Chất lưu phi Newton có thé thể hiện các đặc tính ki nước, ưa nước, ki dau, hoặc
+ưa đầu, hoặc tổ hợp bat kỳ của chúng. Theo một phương án, chất lưu phi Newton chứa
+
+nguyên liệu kị nước như poly siloxan được chức hóa.
+
+Poly siloxan được chức hóa lớp phủ có thể tăng tính kị nước của thiết bị trong khi
+vẫn giữ được sức căng bề mặt. Poly siloxan được chức hóa cũng thể hiện đặc tính ưa dầu.
+Các hợp chất ưa dầu được mong muốn trong lớp phủ dé hap thụ dầu, như dầu được tiết ra
+từ cơ thể người. Trong ví dụ này, poly siloxan được chức hóa có thê hoạt động như hợp
+chất ưa dầu để hấp thụ dầu được tiết ra bởi cơ thể người. Một ví dụ trong đó việc hấp thụ
+dầu có thể có tác dụng làm giảm hoặc loại trừ việc in dấu vân tay lên trên thiết bị điện tử.
+Các hợp chất ưa dầu của chất lưu phi Newton có thé đồng hóa bã nhờn vào trong lớp phủ
+bằng cách hấp thụ bã nhờn, mà có thể làm giảm hoặc loại trừ việc in dấu vân tay lên thiết
+bị điện tử.
+
+Theo một phương án khác, chất lưu phi Newton chứa vật liệu ưa nước, hoặc hút âm
+như gôm polysacarit hoặc carbome. Vật liệu hút 4m có thé hap thu âm từ không khí. Trong
+ví dụ này, vật liệu hút ẩm có thể có mặt trong chất lưu phi Newton, mà cho phép hợp chất
+để hấp thụ độ ẩm xung quanh và giãn nở về thể tích, do đó ngăn cách không cho thiết bi
+được phủ tiếp xúc với nước. Việc sử dụng vật liệu hút ẩm trong chất lưu phi Newton có
+thể được sử dụng để giảm sự tạo mù trên lớp phủ của thiết bị điện tử. Vật liệu hút Âm có
+thé hấp thu độ 4m trong không khí và trải đều khắp bề mặt được phủ, do đó làm giảm lượng
+các giọt sương mù hình thành trên lớp phủ.
+
+Theo một số phương án, chất lưu phi Newton có thể có thay đổi thâm mỹ được thực
+hiện. Chỉ số khúc xạ của lớp phủ có thể được thiết kế bằng cách sử dụng các kỹ thuật được
+biết đến trong lĩnh vực. Theo một phương án, lớp phủ chất lưu phi Newton có thê được
+thiết kế để phù hợp với chỉ số khúc xạ của vật liệu trong suốt. Việc phù hợp với chỉ số khúc
+
+xạ của vật liệu trong suốt có thé duy trì độ trong và độ trong suốt của sản phẩm cuối cùng.
+
+8/19
+
+
+47032 9/19
+
+Theo các phương án khác, chỉ số khúc xa của lớp phủ chất lưu phi Newton có thé được
+
+thiết kế để khớp với chỉ số khúc xạ của các vật liệu mong muốn khác.
+
+Theo một phương án, sáng chế đề cập đến phương pháp bảo vệ thiết bị điện tử không
+bị ô nhiễm chất lỏng. Trong phương án này, việc bảo vệ thiết bị điện tử có thể đạt được
+
+bằng cách xử lý thiết bị điện tử bằng chất lưu phi Newton, như đã bộc lộ ở trên.
+
+Một số phương pháp khác nhau có thể được sử dụng để tạo thành lớp phủ được mô
+tả. Các ví dụ không giới hạn về các phương pháp mà có thể được sử dụng để tạo ra lớp phủ
+theo sáng chế bao gồm các quy trình vật lý, như in, phun, nhúng, cán, quét, phun tia, hoặc
+
+phun kim. Các kỹ thuật khác cũng có thể được sử dụng để tạo ra lớp phủ chống ẩm.
+
+Như đã được bộc lộ trước đó, các đặc tính của chất lưu phi Newton cho phép xử lý
+thiết bị điện tử mà không cần che chắn các chỉ tiết trước khi xử lý. Do đó, phương pháp
+được bộc lộ bao gồm việc xử lý thiết bị điện tử với các chỉ tiết được che chắn hoặc không
+được che chắn. Các chỉ tiết có thể lần lượt được đưa vào lớp phủ mà không có dòng điện
+giữa thiết bị điện tử và chỉ tiết này bị cản trở.
+
+Theo một phương án, một phần hoặc toàn bộ chỉ tiết bên trong của thiết bị điện tử
+có thể được phủ bằng chất lưu phi Newton trong một ứng dụng. Theo một phương án khác,
+chất lưu phi Newton có thể được đưa dưới dạng lớp phủ chỉ cho các phần nhất định của
+thiết bị điện tử. Tuy nhiên, theo một phương án khác, lớp phủ phi Newton có thể được đưa
+lên thiết bị điện tử trong nhiều ứng dụng.
+
+Lớp phủ bảo giác và lớp phủ chân không truyền thống có các phương pháp ứng
+dụng hạn chế. Do cần phải che chắn nhiều chỉ tiết trên các thiết bị điện tử, một số phương
+pháp phủ nhất định không sử dụng được. Một nhiều phương pháp ứng dụng hơn có thê
+được sử dụng để đưa các chất lỏng phi Newton làm lớp phủ. Các phương pháp ứng dụng
+nhất định có thể cho phép lớp phủ chất lưu phi Newton mỏng hơn được đưa lên thiết bị
+điện tử. Các ví dụ không giới hạn về cách chất lưu phi Newton có thé được đưa lên thiết bị
+điện tử bao gồm phun nguyên tử hóa hoặc phun phi nguyên tử hóa, phủ nhúng, phủ màng,
+
+phun tia, hoặc phun kim. Các chất lưu phi Newton có thé được đưa lên bằng cách sử dung
+
+
+các phương pháp thông thường, ví dụ thông qua lắng phủ hơi. Các ví dụ không giới hạn về
+các kỹ thuật lắng phủ hơi này bao gồm các quy trình lắng phủ hơi hóa học (chemical vapor
+deposition - CVD), các quy trình phủ trên cơ sở plasma, các quy trình lắng phủ lớp nguyên
+tử (atomic layer deposition - ALD), lắng phủ hơi vật lý (physical vapor đeposition - PVD),
+
+lắng phủ chân không, phún xạ, v.v.).
+
+Theo một phương án, việc sử dụng phương pháp bat kỳ trong số các phương pháp
+theo sáng chế để đưa chất lưu phi Newton lên thiết bị điện tử sẽ làm cho lớp phủ chất lưu
+phi Newton trên thiết bị điện tử có độ dày trong khoảng từ 80 nm đến 100 um. Độ dày của
+lớp phủ có thể không cản trở chức năng hoặc các đặc tính nhiệt của thiết bị điện tử. Ngoài
+ra, các đặc tính nhớt của chất lưu nhớt đàn hồi được sử dung trong chất lưu phi Newton có
+
+thể cho phép lớp phủ được dịch chuyền khi chỉ tiết được đưa vào.
+
+Như đã chỉ ra ở trên, ví dụ không giới hạn về thiết bị điện tử mà chất lưu phi Newton
+có thể được đưa lên là bảng mạch in. Việc sử dụng lớp phủ bảo giác và lớp phủ chân không
+thông thường cho bảng mạch in rất tốn kém do cần phải che chắn nhiều chi tiết và số lượng
+hạn chế của các phương pháp ứng dụng có thể được sử dụng. Chẳng hạn, việc phủ nhúng
+khó sử dụng làm ứng dụng lớp phủ bảo giác do lớp phủ xuyên thấm khắp nơi và vì thế việc
+che chắn phải hoàn hảo. Trong ví dụ này, bảng mạch in có thể được phủ bằng lớp phủ có
+thành phần chất lưu phi Newton bằng cách sử dụng phương pháp phủ nhúng, do không cần
+phải che chắn. Các bộ phận nói bắt kỳ, như nối bộ phận nối đực với bộ phận nối cái cơ sở
+trên bảng mạch in, có thé được nối sau khi lớp phủ không bị ảnh hưởng bởi dòng điện. Lớp
+
+phú chất lưu phi Newton được dịch chuyển cho phép việc kết nối được thực hiện.
+
+Theo một phương án khác, sáng chế đề cập đến lớp phủ dé bảo vệ nền, lớp phủ này
+chứa ít nhất một nguyên liệu kị nước bao gồm hợp chất polysiloxan và có đặc tinh cách
+điện. Theo một phương án, lớp phủ co tinh kj nước, ki dau, ưa dau, và thể hiện đặc tính
+nhớt đàn hồi mà cho phép nó có thể phân phối lại sau khi được đưa lên linh kiện điện tử.
+
+Trong lớp phủ được mô tả ở đây ít nhất một nguyên liệu kị nước còn bao gồm một
+hoặc nhiều vật liệu polysiloxan được chức hóa, silicon mạch thẳng hoặc mạch vòng, oxit
+
+kim loại, silic oxit khói được chức hóa, styren-etylen/butylen-styren hoặc styren-
+
+10
+
+
+47032 11/19
+
+etylen/propylen-styren được trương nở bằng dầu khoáng hoặc dieste, rượu béo mạch dài,
+flopolyme được chức hóa, silsesquioxan polyoligome được chức hóa hoặc không được
+
+chức hóa, chất làm đông ưa nước được chọn từ carbome, gôm polysacarit, và polyolefin.
+
+Lớp phủ được mô tả ở đây có thể bao gồm một hoặc nhiều hạt rắn được chọn từ hạt
+flopolyme, hạt đất sét, mica, hạt alkoxit kim loại, đất hiếm và kim loại chuyển tiếp, vật liệu
+trên cơ sở cacbon được chọn từ graphen, graphit, và ống nano cacbon, và vật liệu khung
+
+hữu cơ kim loại.
+
+Lớp phủ được mô tả ở đây có thể bao gồm một hoặc nhiều chất phụ gia được chọn
+
+từ chất hoạt động bề mặt, chất phân tán, hoặc chất điều chỉnh độ lưu biến.
+
+Trong lớp phủ được mô tả ở đây, chế phâm có thể được tạo huyền phù trong dung
+môi chất mang chứa ít nhất một hợp chất được chọn từ dầu khoáng phân tử lượng thấp,
+parafin hoặc iso-parafin, alkan hoặc iso-alkan, silicon mạch thẳng hoặc silicon mạch vòng
+phân tử lượng thấp, alkyl axetat, keton, hydrocacbon được halogen hóa hoàn toàn hoặc một
+
+phan, hoặc aldehyt.
+
+Lớp phủ được mô tả ở đây có thể có độ dày trong khoảng từ 25 nm đến 200 pm khi
+được đưa lên thiết bị điện tử.
+
+Theo một phương án, lớp phủ còn bao gồm ít nhất một vật liệu hút âm chứa gôm
+
+polysacarit, carbome, hoặc tô hợp của chúng.
+
+Theo một phương án, sáng chế đề cập đến thiết bị điện tử chứa hợp chất theo sáng
+chế mà được phủ bằng cách sử dụng phương pháp theo sáng chế để cung cấp cho thiết bị
+điện tử lớp phủ bảo vệ chứa ít nhất một hợp chất kị nước hoặc ưa dầu. Khi được đưa lên
+thiết bị điện tử, lớp phủ chất lưu phi Newton làm tăng tính khả năng chống chịu của thiết
+bị điện tử đối với việc ô nhiễm chất lỏng. Theo một phương án khác, lớp phủ chất lưu phi
+
+Newton được đưa lên thiết bị điện tử làm cho thiết bị hoàn toàn không thấm nước.
+
+Tuy nhiên, theo một phương án khác, lớp phủ chất lưu phi Newton được đưa lên
+thiết bị điện tử chứa các hợp chất ưa dầu được thiết kế dé hap thụ dau, như dầu được tiết
+
+ra từ cơ thể người. Việc hấp thụ này có thể dẫn đến giảm hoặc ngăn chặn hoàn toàn dấu
+
+11
+
+
+47032 12/19
+
+vân tay trên thiết bị điện tử. Theo một phương án khác chất lưu phi Newton được đưa lên
+chứa vật liệu hút 4m như gôm polysacarit hoặc carbome, mà có thé hấp thụ độ 4m môi
+trường và giãn nở về thé tích do đó ngăn cách không tiếp xúc với nước. Phương án có thé
+làm giảm sự tạo sương mù của lớp phủ chất lưu phi Newton. Theo một phương án khác
+nữa, chất lưu phi Newton được đưa lên thiết bị điện tử chứa các hợp chất ki nước, ưa nước,
+
+kị dầu, và ưa dầu.
+Các phương pháp lắng phủ ví du
+
+Theo một phương án, chế phẩm theo sáng chế có thể được phân phối bằng xylanh
+và kim. Ví dụ, xylanh có thé được lắp với kim, với loại có kích cỡ từ 10 đến 32, như một
+
+kim có kích cỡ là 16, 18 hoặc 20, sẽ thay đổi tùy theo ứng dụng yêu cầu.
+
+Theo một phương án khác, chế phẩm theo sáng chế có thể được phân phối bằng
+cách sử dụng thiết bị phun bằng tay. Ví dụ, súng phun cầm tay có thể được sử dụng để
+
+phun nguyên tử hóa lớp phủ, như bằng cách sử dung khí nén hoặc nitơ.
+
+Theo một phương án khác, chế phẩm theo sáng chế có thẻ được phân phối bằng
+cách sử dụng cơ cấu phân phối tự động mà có thể được sử dụng dé đưa lớp phủ lên thiết bị
+điện tử. Ví dụ, các vòi phun khác nhau mà có thé được sử dụng dé phân phối lớp phủ như
+được bộc lộ ở đây, chẳng hạn van phun chùm rộng Nordson Asymtek™. Theo các phương
+án khác, vòi phun có thé bao gồm van phun bao gồm van phủ màng PVA, hoặc van được
+sử dụng trong máy phân phối lớp phủ tự động PVA delta 6.
+
+Các kỹ thuật đo
+
+Sau khi đưa lớp phủ lên thiết bị điện tử, các đặc tính khác nhau được xác định bằng
+
+các phương pháp sau đây.
+
+Tính kị nước hoặc tính ưa nước của lớp phủ có thể được đo bằng cách quan sát góc
+tiếp xúc của giọt nước tạo ra trên bề mặt của lớp phủ. Tính kị dầu hoặc tính ưa dầu của lớp
+phủ có thé được do bằng cách quan sát góc tiếp xúc của giọt hexadecan tạo ra trên bề mặt
+
+lớp phủ.
+
+12
+
+
+47032 13/19
+
+Tính cách điện của lớp phủ cũng có thể được xác định bằng cách đo điện áp chịu
+điện môi trên bảng mạch được phủ. Một điện áp tăng liên tục có thể được áp dụng trên
+bảng mạch được phủ, và điện áp tại đó các vòng cung dòng điện trong không khí có thể
+
+được xác định. Điện áp này là thước đo hiệu quả của lớp phủ.
+
+Sự cách điện của lớp phủ cũng có thể được xác định bằng cách đo tính chất điện vật
+liệu của lớp phủ, như tang số tổn hao hoặc hằng số điện môi bằng cách sử dung máy phân
+
+tích mạng.
+
+Ban chất phi Newton của lớp phủ có thé được đo bằng cách chú ý vào các tính chat
+khác nhau. Phản ứng của lớp phủ với ứng suất hoặc sức căng được đưa lên có thé được do
+bằng cách sử dụng máy đo lưu biến để nghiên cứu sự biến dạng của lớp phủ. Môđun nhớt
+đàn hồi có thể được đo bằng cách sử đụng phương pháp quét ứng suất đao động góc nhỏ,
+và ứng suất đàn hồi và độ nhớt trượt cao có thể được đo bằng cách sử dụng cách quét ứng
+suất.
+
+Các đấu hiệu và ưu điểm của sáng chế được thể hiện đầy đủ hơn bằng các ví dụ sau
+đây mà được nêu nhằm mục đích minh họa và không được hiểu là giới hạn sáng chế theo
+cách bất kỳ.
+
+Ví dụ thực hiện sáng chế
+
+Các ví dụ dưới đây bộc lộ các phương pháp điều chế các chế phẩm phi Newton dé
+ứng dụng làm lớp phủ cho thiết bị điện tử. Sau khi điều chế, các chế phẩm này có thê được
+đưa lên thiết bị điện tử bằng cách sử dụng các kỹ thuật đã biết dé tạo thành lớp phủ bảo vệ.
+Ví dụ 1
+
+Ví dụ đưới đây cung cấp phương pháp điều chế chất lỏng kị nước mà có khả năng
+cách điện bằng cách trộn chất lỏng kị nước trong dung môi bằng cách sử đụng một trong
+số các kỹ thuật khuấy đã biết. Bản chất không phân cực của lớp phủ tạo thành dẫn đến bản
+chất kị nước của lớp phủ.
+
+13
+
+
+47032 14/19
+
+Hỗn hợp chứa 20% khối lượng siloxan được phenyl hóa và 80% khối lượng toluen
+được trộn ở 25°C bằng cách sử dụng máy trộn lưỡi Cowles ở tốc độ 2000 vòng/phút trong
+
+30 phút, hoặc cho đến khi các thành phần được trộn đều.
+Ví dụ2
+
+Ví dụ dưới đây cung cấp phương pháp điều chế hỗn hợp chất lỏng kị nước mà có
+khả năng cách điện bằng cách trộn hai hay nhiều chất lỏng kị nước trong dung môi bằng
+
+cách sử dung một trong số các kỹ thuật khuấy đã biết.
+
+Hỗn hợp chứa 10% khối lượng siloxan được phenyl hóa, 20% khối lượng floalkan,
+và 70% khối lượng hydo-flocacbon (được bán dưới tên DuPont™ Vertrel® XF, mà là HFC
+43-10mee hoặc 2,3-dihydodecaflopentan; công thức phân tử CsH2F 10) được trộn với nhau
+ở 25°C bằng cách sử dụng máy trộn có cánh ở 2000 vòng/phút trong 30 phút, hoặc cho đến
+khi ba thành phần này tạo thành hỗn hợp đồng nhất.
+
+Ví dụ 3
+
+Ví dụ dưới đây cung cấp phương pháp điều chế hỗn hợp chất lỏng kị nước với các
+hạt rắn mà đều có khả năng cách điện bằng cách trộn hai hay nhiều chất lỏng kị nước với
+hai hay nhiều hạt kị nước trong dung môi bằng cách sử dung một trong số các kỹ thuật
+
+khuấy đã biết.
+
+Hỗn hợp chứa 10% khối lượng siloxan được phenyl hóa, 20% khối lượng floalkan,
+5% khối lượng silic oxit kết tủa được xử lý ki nước, và 65% khối lượng hydro-flocacbon
+(được bán đưới tên DuPont™ Vertrel® XF) được trộn với nhau bằng cách sử dụng thiết bị
+đồng nhất rôto-stato.
+
+Siloxan được phenyl hóa, floalkan, và dung môi hydro-flocacbon đầu tiên được trộn
+với nhau ở 25°C bằng cách sử dung máy trộn réto-stato ở tốc độ 10000 vòng/phút trong 5
+phút cho đến khi dung dịch đồng nhất thu được.
+
+Silic oxit rắn kết tủa được xử lý kị nước sau đó được đưa vào tăng dần. R6to-stato
+được chạy ở tốc độ 10000 vòng/phút mỗi lần silic oxit được đưa vào. Quy trình này được
+
+lặp lại cho đến khi thu được thê phân tán đồng nhất.
+
+14
+
+
+47032 15/19
+
+Các phương án khác theo sáng chế sẽ rõ ràng với người có hiểu biết trung bình về
+lĩnh vực này thông qua việc xem xét bản mô tả và thực hành sáng chế được bộc lộ ở đây.
+Mục đích là bản mô tả và các ví dụ chỉ được xem xét như là ví dụ, với phạm vi bảo hộ thực
+
+tế của sáng chế được chỉ ra trong các yêu cầu bảo hộ dưới đây.
+
+15
+
+
+47032 16/19
+
+'Yêu cầu bảo hộ
+1. Chế phẩm tạo thành lớp phủ phi Newton bảo giác trên bảng mạch in được lắp ráp, chế
+
+phẩm này bao gồm:
+ít nhất một chất lưu kị nước,
+
+trong đó chất lưu kị nước này tạo ra lớp phủ nhớt đàn hồi bảo giác mà có đặc tính
+
+cách điện, và kị nước,
+
+trong đó chế phẩm này bao gồm một hoặc nhiều nguyên liệu polysiloxan được chức
+hóa, silicon mach thang hoặc mạch vòng, styren-etylen/butylen-styren hoặc styren-
+etylen/propylen-styren được trương nở bằng dầu khoáng hoặc dieste, rượu béo mạch dài,
+flopolyme được chức hóa, silsesquioxan polyoligome được chức hóa hoặc không được
+
+chức hóa, va polyolefin,
+
+trong đó lớp phủ bảo giác có độ dày trong khoảng từ 25 nm đến 200 um khi được
+
+áp dụng lên bảng mạch in được lắp ráp, và thể hiện đặc tính phi Newton hoặc nhớt đàn hồi.
+
+2. Chế phẩm theo điểm 1, trong đó lớp phủ nhớt đàn hồi bảo giác này có thể phân phối lại
+
+sau khi được áp dụng lên bang mach in được lắp ráp.
+
+3. Chế phẩm theo điểm 1, còn bao gồm một hoặc nhiều oxit kim loại, silic oxit khói được
+chức hóa, hạt flopolyme, hạt đất sét, mica, hạt alkoxit kim loại, kim loại chuyền tiếp và đất
+hiếm, vật liệu trên cơ sở cacbon được chọn từ graphen, graphit, va ống nano cacbon, và vật
+
+liệu khung hữu cơ kim loại.
+
+4. Chế phẩm theo điểm 1, còn bao gồm một hoặc nhiều chất phụ gia được chọn từ chất
+
+hoạt động bề mặt, chất phân tán, hoặc chất điều chỉnh độ lưu biến.
+
+5. Chế phẩm theo điểm 1, trong đó chế phẩm nay được tạo huyền phù trong dung môi chất
+mang được cấu thành từ ít nhất một hợp chất được chọn từ dầu khoáng phân tử lượng thấp,
+parafin hoặc iso-parafin, alkan hoặc iso-alkan, silicon mạch thẳng hoặc silicon mạch vòng
+phân tử lượng thấp, alkyl axetat, keton, hydrocacbon được halogen hóa một phần hoặc
+
+hoàn toàn, hoặc aldehyt.
+
+16
+
+
+47032 17/19
+
+6. Chế phẩm theo điểm 1, trong đó lớp phủ này làm tăng khả năng chống chịu các chất gây
+
+ô nhiễm chất dạng lỏng hoặc hạt hoặc là cách điện.
+
+7. Phương pháp xử lý bảng mạch in được lắp ráp bằng cách áp dụng lớp phủ nhớt đàn hồi
+
+bảo giác lên bảng mạch in được lắp ráp, phương pháp này bao gồm:
+
+áp dụng chế phẩm lên bảng mạch in được lắp ráp, chế phẩm này bao gồm ít nhất
+
+một chất lưu kị nước,
+
+trong đó chất lưu kị nước này tạo ra lớp phủ nhớt đàn hồi bảo giác có đặc tính cách
+điện và ki nước,
+
+trong đó chế phẩm này bao gồm một hoặc nhiều nguyên liệu polysiloxan được chức
+hóa, silicon mach thẳng hoặc mạch vòng, styren-etylen/butylen-styren hoặc styren-
+etylen/propylen-styren được trương nở bằng dầu khoáng hoặc dieste, rượu béo mạch dài,
+flopolyme được chức hóa, silsesquioxan polyoligome được chức hóa hoặc không được
+
+chức hóa, va polyolefin,
+
+trong đó lớp phủ bảo giác này có độ dày trong khoảng từ 25 nm đến 200 pm khi
+được áp dụng lên bảng mạch in được lắp ráp, và thể hiện đặc tính phi Newton hoặc nhớt
+đàn hồi.
+8. Phương pháp theo điểm 7, trong đó chế phẩm được áp dụng lên một phần hoặc toàn bộ
+của ít nhất một phía của bảng mạch in được lắp ráp mà không làm che chắn chỉ tiết trên
+
+bảng mạch in được lắp ráp này.
+
+9. Phương pháp theo điểm 8, trong đó lớp phủ nhớt đàn hồi bảo giác che phủ các chỉ tiết
+đực, cái hoặc cả hai loại chỉ tiết này của bảng mạch in được lắp ráp mà không gây ảnh
+hưởng bắt lợi đến tính chất điện của bảng mạch in được lắp ráp này.
+
+10. Phương pháp theo điểm 7, còn bao gồm một hoặc nhiều oxi kim loại, silic oxit khói
+được chức hóa, hạt flopolyme, hạt đất sét, mica, hạt alkoxit kim loại, kim loại chuyên tiếp
+và đất hiếm, vật liệu trên cơ sở cacbon được chọn từ graphen, graphit, và ống nano cacbon,
+
+và vật liệu khung hữu cơ kim loại.
+
+17
+
+
+11. Phương pháp theo điểm 7, trong đó chế phẩm này còn bao gồm một hoặc nhiều chất
+
+hoạt động bề mặt, chất phân tán, hoặc chất điều chỉnh độ lưu biến.
+
+12. Phương pháp theo điểm 7, trong đó chế phẩm này được tạo huyền phù trong dung môi
+chất mang, dung môi chất mang này chứa ít nhất một hoặc nhiều dầu khoáng phân tử lượng
+thấp, parafin hoặc iso-parafin, alkan hoặc iso-alkan, silicon mạch thẳng hoặc silicon mạch
+vòng phân tử lượng thấp, alkyl axetat, keton, hydrocacbon được halogen hóa một phần
+
+hoặc hoàn toàn, hoặc aldehyt.
+
+13. Phương pháp theo điểm 7, trong đó việc áp dụng chế phẩm này được thực hiện bằng ít
+nhất một phương pháp được chọn từ phun nguyên tử hóa hoặc phun phi nguyên tử hóa,
+phủ nhúng, phủ màng, phun tia, và phun kim.
+
+14. Lớp phủ bảo giác để bảo vệ bảng mach in được lắp ráp, trong đó lớp phủ bảo giác này
+có độ dày trong khoảng từ 25 nm đến 200 um, và bao gồm ít nhất một nguyên liệu kị nước
+mà có đặc tính cách điện, và bao gồm một hoặc nhiều hợp chất polysiloxan, các vật liệu
+polysiloxan được chức hóa, silicon mach thắng hoặc mạch vòng, styren-etylen/butylen-
+styren hoặc styren-etylen/propylen-styren được trương nở bằng dầu khoáng hoặc dieste,
+rượu béo mạch dài, flopolyme được chức hóa, silsesquioxan polyoligome được chức hóa
+hoặc không được chức hóa, và polyolefn, trong đó lớp phủ bảo giác này là kị nước, và có
+đặc tính nhớt đàn hồi mà cho phép nó phân phối lại sau khi được áp dụng lên linh kiện điện
+tử.
+
+15. Lớp phủ bảo giác theo điểm 14, trong đó ít nhất một nguyên liệu kị nước còn bao gồm
+một hoặc nhiều oxit kim loại, silic oxit khói được chức hóa, hạt flopolyme, hat đất sét,
+mica, hạt alkoxit kim loại, kim loại chuyển tiếp và đất hiếm, vật liệu trên cơ sở cacbon
+
+được chọn từ graphen, graphit, và ống nano cacbon, và vật liệu khung hữu cơ kim loại.
+
+16. Lớp phủ bảo giác theo điểm 14, còn bao gồm một hoặc nhiều chất phụ gia được chọn
+
+từ chất hoạt động bề mặt, chất phân tán, hoặc chất điều chinh độ lưu biến.
+
+17. Lớp phủ bảo giác theo điểm 14, trong đó chế phẩm được tạo huyền phi trong dung môi
+chất mang được cấu thành từ ít nhất một hợp chất được chọn từ dầu khoáng phân tử lượng
+
+18
+
+
+47032 19/19
+
+thấp, parafin hoặc iso-parafin, alkan hoặc iso-alkan, silicon mạch thẳng hoặc silicon mạch
+vòng phân tử lượng thấp, alkyl axetat, keton, hydrocacbon được halogen hóa một phần
+
+hoặc hoàn toàn, hoặc aldehyt.
+
+18. Lớp phủ bảo giác theo điểm 14, trong đó lớp phủ bảo giác này làm tăng khả năng chống
+
+chịu chất ô nhiễm dạng lỏng hoặc hạt, hoặc là cách điện.
+
+19. Bảng mạch in được lắp ráp bao gồm ít nhất một lớp phủ bảo giác, lớp phủ bảo giác này
+có độ dày trong khoảng từ 25 nm đến 200 pm, và bao gồm ít nhất một nguyên liệu kj nước
+mà có đặc tính cách điện,
+
+lớp phủ bảo giác này bao gồm một hoặc nhiều hợp chất polysiloxan, nguyên liệu
+polysiloxan được chức hóa, silicon mach thang hoặc mạch vòng, styren-etylen/butylen-
+styren hoặc styren-etylen/propylen-styren được trương nở bằng dầu khoáng hoặc đieste,
+rượu béo mạch đài, flopolyme được chức hóa, silsesquioxan polyoligome được chức hóa
+hoặc không được chức hóa, va polyolefin, trong đó lớp phủ bảo giác này là ki nước, ki dầu,
+hoặc wa dau, và thể hiện đặc tính nhớt đàn hồi mà cho phép nó phân phối lại sau khi được
+áp dụng lên linh kiện điện tử.
+20. Bảng mạch in được lắp ráp theo điểm 19, trong đó ít nhất một nguyên liệu kị nước còn
+bao gồm một hoặc nhiều oxit kim loại, silic oxit khói được chức hóa, hạt flopolyme, hạt
+đất sét, mica, hạt alkoxit kim loại, kim loại chuyển tiếp và đất hiếm, vật liệu trên cơ sở
+cacbon được chon từ graphen, graphit, và ống nano cacbon, và vật liệu khung hữu co kim
+
+loại.
+
+18
