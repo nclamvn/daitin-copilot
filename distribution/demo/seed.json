@@ -1,0 +1,1726 @@
+{
+  "kind": "daitin-ceo-synthetic-demo",
+  "producedAt": "2026-11-11T00:37:21.574Z",
+  "cases": [
+    {
+      "matter": {
+        "id": "5a0b4438-3034-4687-9e8d-1ca2bffc81f3",
+        "version": 5,
+        "reference": "DT-DEMO-01",
+        "title": "Mộc Vân Lab",
+        "updated": "2026-11-11T00:37:24.043Z",
+        "facts": {
+          "asOf": "2026-11-09",
+          "receivedOn": "2026-09-14",
+          "pendingAtCutover": null
+        },
+        "basis": {
+          "sot": "305004a370172f19455ff1db74fe60b8583f49d9e6bb1511329a56e745d32292",
+          "corpus": "e6c5698aabd6669ea2688851a3d4cf85172e8f5cbb4e30c0daa10b3c5f456a17",
+          "applicableOn": "2026-09-14",
+          "citations": [
+            {
+              "id": "tt10-83-2b",
+              "locator": "Điều 83 khoản 2 điểm b",
+              "document": "10/2026/TT-BKHCN",
+              "page": 102,
+              "sha256": "07e81b6ace18e01558666ebe468709a59ef2d0cad151fadb1745de31996b4541",
+              "originalUrl": "https://congbaocdn.chinhphu.vn/180507251028987904/2026/4/20/469297-1776676154_v1_1776676768_signed.pdf#page=102",
+              "snapshotUrl": "/sources/tt10.pdf#page=102"
+            }
+          ]
+        },
+        "group": "nhan-hieu",
+        "research": {
+          "question": "Căn cứ và văn bản nào dùng để phản hồi thông báo thẩm định nhãn hiệu Việt Nam?",
+          "scope": "Nhãn hiệu theo thể thức quốc gia tại Việt Nam",
+          "coverage": {
+            "from": "2026-04-01",
+            "through": "2026-11-10"
+          },
+          "release": "vn-tm-sot-v0.1.1-candidate",
+          "sot": "305004a370172f19455ff1db74fe60b8583f49d9e6bb1511329a56e745d32292",
+          "dataStatus": "preview",
+          "status": "grounded",
+          "title": "Dùng văn bản phản hồi theo thông báo thẩm định",
+          "explanation": "Đối chiếu quy định từ 01/07/2026 theo ngày 14/09/2026. Trình bày rõ nội dung sửa đổi, bổ sung trong văn bản phản hồi theo căn cứ đã dẫn.",
+          "missing": [],
+          "procedure": "office_response",
+          "fields": {
+            "asOf": "2026-11-09",
+            "mode": "case",
+            "receivedOn": "2026-09-14",
+            "pendingAtCutover": null
+          },
+          "applicableOn": "2026-09-14",
+          "checkedOn": "2026-11-09",
+          "rule": "from_cutover",
+          "corpus": "e6c5698aabd6669ea2688851a3d4cf85172e8f5cbb4e30c0daa10b3c5f456a17",
+          "citations": [
+            {
+              "id": "tt10-83-2b",
+              "locator": "Điều 83 khoản 2 điểm b",
+              "title": "Sửa đổi theo thông báo thẩm định",
+              "summary": "Khi sửa đổi trên cơ sở thông báo kết quả thẩm định của Cục Sở hữu trí tuệ, người nộp dùng văn bản phản hồi nêu rõ nội dung sửa đổi, bổ sung.",
+              "quote": null,
+              "from": "2026-04-01",
+              "until": null,
+              "status": "applicable",
+              "document": "10/2026/TT-BKHCN",
+              "documentTitle": "Thông tư 10/2026/TT-BKHCN",
+              "kind": "Công báo số 231",
+              "authority": "Bộ Khoa học và Công nghệ",
+              "page": 102,
+              "originalUrl": "https://congbaocdn.chinhphu.vn/180507251028987904/2026/4/20/469297-1776676154_v1_1776676768_signed.pdf#page=102",
+              "snapshotUrl": "/sources/tt10/07e81b6ace18e01558666ebe468709a59ef2d0cad151fadb1745de31996b4541.pdf#page=102",
+              "sha256": "07e81b6ace18e01558666ebe468709a59ef2d0cad151fadb1745de31996b4541"
+            }
+          ],
+          "form": null,
+          "template": {
+            "version": 1,
+            "title": "Phiếu rà soát phản hồi thẩm định",
+            "text": "Đối chiếu đoạn yêu cầu trong thông báo. Xác nhận nội dung sửa theo chỉ dẫn. Kiểm danh mục tài liệu kèm theo trước khi duyệt.",
+            "scope": "office_response",
+            "provenance": "Mẫu nội bộ mô phỏng M5",
+            "digest": "33e32c56ee0dc9856e3a4abd2d697db5b854798775bdc6abad8828770919ecc0"
+          },
+          "proofId": "32cdb190740878ee75636456448089b94ebae0c8b4a4c43b330b5b6d1bf3d240",
+          "savedAt": "2026-11-11T00:37:21.645Z"
+        },
+        "document": {
+          "label": "Thông báo thẩm định mô phỏng.pdf",
+          "sha256": "d1d308e38b525ca8357ca6058fbf7ec30bd41ceb413722c4f8d982adb354c06f",
+          "pages": 1,
+          "anchors": [
+            {
+              "page": 1,
+              "mode": "text",
+              "text": "Đề nghị làm rõ cụm “thiết bị đo” trong danh mục hàng hóa của đơn."
+            }
+          ],
+          "fields": {
+            "application": {
+              "value": "4-2026-9101",
+              "mode": "confirmed-text",
+              "page": 1
+            },
+            "title": {
+              "value": "Mộc Vân Lab",
+              "mode": "confirmed-text",
+              "page": 1
+            },
+            "receivedOn": {
+              "value": "2026-09-14",
+              "mode": "confirmed-text",
+              "page": 1
+            },
+            "noticeNumber": {
+              "value": "131/TB-M4",
+              "mode": "confirmed-text",
+              "page": 1
+            },
+            "noticeDate": {
+              "value": "2026-10-26",
+              "mode": "confirmed-text",
+              "page": 1
+            },
+            "deadline": {
+              "value": "2026-11-10",
+              "mode": "confirmed-text",
+              "page": 1
+            }
+          },
+          "confirmedAt": "2026-11-11T00:37:21.645Z"
+        },
+        "sources": [
+          {
+            "id": "notice",
+            "label": "Thông báo thẩm định mô phỏng.pdf",
+            "text": "Đề nghị làm rõ cụm “thiết bị đo” trong danh mục hàng hóa của đơn.",
+            "sha256": "892c1f400400270f059cbb169510c7f36588b294b9d8c8d72629ee1b8f6954d0"
+          },
+          {
+            "id": "instructions",
+            "label": "Chỉ dẫn khách hàng mô phỏng",
+            "text": "Khách hàng xác nhận đề nghị làm rõ cụm “thiết bị đo” thành “nhiệt kế điện tử”. Bảng đối chiếu danh mục đã có sẵn, dự kiến kèm văn bản. Các nội dung khác giữ nguyên.",
+            "sha256": "7d1bfe040f9b07532be8a90ff5fed91be526056af18d361a1cd570567effc1f9"
+          }
+        ],
+        "drafts": [
+          {
+            "number": 1,
+            "parent": null,
+            "at": "2026-11-11T00:37:24.039Z",
+            "type": "model-draft",
+            "run": {
+              "model": "daitin-qwen3-4b-2507",
+              "inputSha256": "11305b30110f378eb3b8937fc4ca4208a20a508240838f3875c14362f725cd92",
+              "elapsedMs": 2391,
+              "promptTokens": 741,
+              "completionTokens": 153,
+              "selectedSources": [
+                "notice",
+                "instructions"
+              ]
+            },
+            "sections": {
+              "findings": {
+                "text": "Cụm \"thiết bị đo\" trong danh mục hàng hóa của đơn được đề nghị làm rõ theo thông báo thẩm định mô phỏng. Cụm này cần được xác định rõ hơn trong quá trình thẩm định.",
+                "sources": [
+                  "notice"
+                ]
+              },
+              "response": {
+                "text": "Cụm \"thiết bị đo\" được làm rõ thành \"nhiệt kế điện tử\" theo chỉ dẫn khách hàng đã xác nhận.",
+                "sources": [
+                  "instructions"
+                ]
+              },
+              "attachments": {
+                "text": "Bảng đối chiếu danh mục được dự kiến kèm theo.",
+                "sources": [
+                  "instructions"
+                ]
+              }
+            }
+          }
+        ],
+        "approved": {
+          "findings": {
+            "text": "Cụm \"thiết bị đo\" trong danh mục hàng hóa của đơn được đề nghị làm rõ theo thông báo thẩm định mô phỏng. Cụm này cần được xác định rõ hơn trong quá trình thẩm định.",
+            "sources": [
+              "notice"
+            ],
+            "draft": 1,
+            "at": "2026-11-11T00:37:24.040Z"
+          },
+          "response": {
+            "text": "Cụm \"thiết bị đo\" được làm rõ thành \"nhiệt kế điện tử\" theo chỉ dẫn khách hàng đã xác nhận.",
+            "sources": [
+              "instructions"
+            ],
+            "draft": 1,
+            "at": "2026-11-11T00:37:24.041Z"
+          },
+          "attachments": {
+            "text": "Bảng đối chiếu danh mục được dự kiến kèm theo.",
+            "sources": [
+              "instructions"
+            ],
+            "draft": 1,
+            "at": "2026-11-11T00:37:24.042Z"
+          }
+        },
+        "releases": [
+          {
+            "number": 1,
+            "at": "2026-11-11T00:37:24.042Z",
+            "markdown": "# Văn bản phản hồi thông báo thẩm định nhãn hiệu\n\nHồ sơ DT-DEMO-01 · Mộc Vân Lab\nBản duyệt nội bộ 1\n\n## Nội dung được yêu cầu làm rõ\n\nCụm \"thiết bị đo\" trong danh mục hàng hóa của đơn được đề nghị làm rõ theo thông báo thẩm định mô phỏng. Cụm này cần được xác định rõ hơn trong quá trình thẩm định.\n\n## Nội dung phản hồi\n\nCụm \"thiết bị đo\" được làm rõ thành \"nhiệt kế điện tử\" theo chỉ dẫn khách hàng đã xác nhận.\n\n## Tài liệu kèm theo\n\nBảng đối chiếu danh mục được dự kiến kèm theo.\n\n## Căn cứ đối chiếu\n\n- Điều 83 khoản 2 điểm b · 10/2026/TT-BKHCN · trang PDF 102 · https://congbaocdn.chinhphu.vn/180507251028987904/2026/4/20/469297-1776676154_v1_1776676768_signed.pdf#page=102\n",
+            "sha256": "8c7c926dc38b4aef7259e7630d8beade364de959974a0dcdfd09083522a3837c",
+            "sections": {
+              "findings": {
+                "text": "Cụm \"thiết bị đo\" trong danh mục hàng hóa của đơn được đề nghị làm rõ theo thông báo thẩm định mô phỏng. Cụm này cần được xác định rõ hơn trong quá trình thẩm định.",
+                "sources": [
+                  "notice"
+                ],
+                "draft": 1,
+                "at": "2026-11-11T00:37:24.040Z"
+              },
+              "response": {
+                "text": "Cụm \"thiết bị đo\" được làm rõ thành \"nhiệt kế điện tử\" theo chỉ dẫn khách hàng đã xác nhận.",
+                "sources": [
+                  "instructions"
+                ],
+                "draft": 1,
+                "at": "2026-11-11T00:37:24.041Z"
+              },
+              "attachments": {
+                "text": "Bảng đối chiếu danh mục được dự kiến kèm theo.",
+                "sources": [
+                  "instructions"
+                ],
+                "draft": 1,
+                "at": "2026-11-11T00:37:24.042Z"
+              }
+            },
+            "basis": {
+              "sot": "305004a370172f19455ff1db74fe60b8583f49d9e6bb1511329a56e745d32292",
+              "corpus": "e6c5698aabd6669ea2688851a3d4cf85172e8f5cbb4e30c0daa10b3c5f456a17",
+              "applicableOn": "2026-09-14",
+              "citations": [
+                {
+                  "id": "tt10-83-2b",
+                  "locator": "Điều 83 khoản 2 điểm b",
+                  "document": "10/2026/TT-BKHCN",
+                  "page": 102,
+                  "sha256": "07e81b6ace18e01558666ebe468709a59ef2d0cad151fadb1745de31996b4541",
+                  "originalUrl": "https://congbaocdn.chinhphu.vn/180507251028987904/2026/4/20/469297-1776676154_v1_1776676768_signed.pdf#page=102",
+                  "snapshotUrl": "/sources/tt10.pdf#page=102"
+                }
+              ]
+            },
+            "research": {
+              "question": "Căn cứ và văn bản nào dùng để phản hồi thông báo thẩm định nhãn hiệu Việt Nam?",
+              "scope": "Nhãn hiệu theo thể thức quốc gia tại Việt Nam",
+              "coverage": {
+                "from": "2026-04-01",
+                "through": "2026-11-10"
+              },
+              "release": "vn-tm-sot-v0.1.1-candidate",
+              "sot": "305004a370172f19455ff1db74fe60b8583f49d9e6bb1511329a56e745d32292",
+              "dataStatus": "preview",
+              "status": "grounded",
+              "title": "Dùng văn bản phản hồi theo thông báo thẩm định",
+              "explanation": "Đối chiếu quy định từ 01/07/2026 theo ngày 14/09/2026. Trình bày rõ nội dung sửa đổi, bổ sung trong văn bản phản hồi theo căn cứ đã dẫn.",
+              "missing": [],
+              "procedure": "office_response",
+              "fields": {
+                "asOf": "2026-11-09",
+                "mode": "case",
+                "receivedOn": "2026-09-14",
+                "pendingAtCutover": null
+              },
+              "applicableOn": "2026-09-14",
+              "checkedOn": "2026-11-09",
+              "rule": "from_cutover",
+              "corpus": "e6c5698aabd6669ea2688851a3d4cf85172e8f5cbb4e30c0daa10b3c5f456a17",
+              "citations": [
+                {
+                  "id": "tt10-83-2b",
+                  "locator": "Điều 83 khoản 2 điểm b",
+                  "title": "Sửa đổi theo thông báo thẩm định",
+                  "summary": "Khi sửa đổi trên cơ sở thông báo kết quả thẩm định của Cục Sở hữu trí tuệ, người nộp dùng văn bản phản hồi nêu rõ nội dung sửa đổi, bổ sung.",
+                  "quote": null,
+                  "from": "2026-04-01",
+                  "until": null,
+                  "status": "applicable",
+                  "document": "10/2026/TT-BKHCN",
+                  "documentTitle": "Thông tư 10/2026/TT-BKHCN",
+                  "kind": "Công báo số 231",
+                  "authority": "Bộ Khoa học và Công nghệ",
+                  "page": 102,
+                  "originalUrl": "https://congbaocdn.chinhphu.vn/180507251028987904/2026/4/20/469297-1776676154_v1_1776676768_signed.pdf#page=102",
+                  "snapshotUrl": "/sources/tt10/07e81b6ace18e01558666ebe468709a59ef2d0cad151fadb1745de31996b4541.pdf#page=102",
+                  "sha256": "07e81b6ace18e01558666ebe468709a59ef2d0cad151fadb1745de31996b4541"
+                }
+              ],
+              "form": null,
+              "template": {
+                "version": 1,
+                "title": "Phiếu rà soát phản hồi thẩm định",
+                "text": "Đối chiếu đoạn yêu cầu trong thông báo. Xác nhận nội dung sửa theo chỉ dẫn. Kiểm danh mục tài liệu kèm theo trước khi duyệt.",
+                "scope": "office_response",
+                "provenance": "Mẫu nội bộ mô phỏng M5",
+                "digest": "33e32c56ee0dc9856e3a4abd2d697db5b854798775bdc6abad8828770919ecc0"
+              },
+              "proofId": "32cdb190740878ee75636456448089b94ebae0c8b4a4c43b330b5b6d1bf3d240",
+              "savedAt": "2026-11-11T00:37:21.645Z"
+            },
+            "sources": [
+              {
+                "id": "notice",
+                "label": "Thông báo thẩm định mô phỏng.pdf",
+                "sha256": "892c1f400400270f059cbb169510c7f36588b294b9d8c8d72629ee1b8f6954d0",
+                "pdfSha256": "d1d308e38b525ca8357ca6058fbf7ec30bd41ceb413722c4f8d982adb354c06f",
+                "anchors": [
+                  {
+                    "page": 1,
+                    "mode": "text",
+                    "text": "Đề nghị làm rõ cụm “thiết bị đo” trong danh mục hàng hóa của đơn."
+                  }
+                ]
+              },
+              {
+                "id": "instructions",
+                "label": "Chỉ dẫn khách hàng mô phỏng",
+                "sha256": "7d1bfe040f9b07532be8a90ff5fed91be526056af18d361a1cd570567effc1f9"
+              }
+            ]
+          }
+        ],
+        "demo": true
+      },
+      "pdf": "DT-DEMO-01.pdf",
+      "sha256": "16080914b8a5a4cb7da4221467bb9745ec8e00a04cfe7813bb0525d472e12b30"
+    },
+    {
+      "matter": {
+        "id": "afd4edec-225f-4c89-9aff-d5c5694e641e",
+        "version": 1,
+        "reference": "DT-DEMO-02",
+        "title": "Lam Sơn Studio",
+        "updated": "2026-11-11T00:37:25.391Z",
+        "facts": {
+          "asOf": "2026-11-09",
+          "receivedOn": "2026-09-14",
+          "pendingAtCutover": null
+        },
+        "basis": {
+          "sot": "305004a370172f19455ff1db74fe60b8583f49d9e6bb1511329a56e745d32292",
+          "corpus": "e6c5698aabd6669ea2688851a3d4cf85172e8f5cbb4e30c0daa10b3c5f456a17",
+          "applicableOn": "2026-09-14",
+          "citations": [
+            {
+              "id": "tt10-83-2b",
+              "locator": "Điều 83 khoản 2 điểm b",
+              "document": "10/2026/TT-BKHCN",
+              "page": 102,
+              "sha256": "07e81b6ace18e01558666ebe468709a59ef2d0cad151fadb1745de31996b4541",
+              "originalUrl": "https://congbaocdn.chinhphu.vn/180507251028987904/2026/4/20/469297-1776676154_v1_1776676768_signed.pdf#page=102",
+              "snapshotUrl": "/sources/tt10.pdf#page=102"
+            }
+          ]
+        },
+        "group": "nhan-hieu",
+        "research": {
+          "question": "Căn cứ và văn bản nào dùng để phản hồi thông báo thẩm định nhãn hiệu Việt Nam?",
+          "scope": "Nhãn hiệu theo thể thức quốc gia tại Việt Nam",
+          "coverage": {
+            "from": "2026-04-01",
+            "through": "2026-11-10"
+          },
+          "release": "vn-tm-sot-v0.1.1-candidate",
+          "sot": "305004a370172f19455ff1db74fe60b8583f49d9e6bb1511329a56e745d32292",
+          "dataStatus": "preview",
+          "status": "grounded",
+          "title": "Dùng văn bản phản hồi theo thông báo thẩm định",
+          "explanation": "Đối chiếu quy định từ 01/07/2026 theo ngày 14/09/2026. Trình bày rõ nội dung sửa đổi, bổ sung trong văn bản phản hồi theo căn cứ đã dẫn.",
+          "missing": [],
+          "procedure": "office_response",
+          "fields": {
+            "asOf": "2026-11-09",
+            "mode": "case",
+            "receivedOn": "2026-09-14",
+            "pendingAtCutover": null
+          },
+          "applicableOn": "2026-09-14",
+          "checkedOn": "2026-11-09",
+          "rule": "from_cutover",
+          "corpus": "e6c5698aabd6669ea2688851a3d4cf85172e8f5cbb4e30c0daa10b3c5f456a17",
+          "citations": [
+            {
+              "id": "tt10-83-2b",
+              "locator": "Điều 83 khoản 2 điểm b",
+              "title": "Sửa đổi theo thông báo thẩm định",
+              "summary": "Khi sửa đổi trên cơ sở thông báo kết quả thẩm định của Cục Sở hữu trí tuệ, người nộp dùng văn bản phản hồi nêu rõ nội dung sửa đổi, bổ sung.",
+              "quote": null,
+              "from": "2026-04-01",
+              "until": null,
+              "status": "applicable",
+              "document": "10/2026/TT-BKHCN",
+              "documentTitle": "Thông tư 10/2026/TT-BKHCN",
+              "kind": "Công báo số 231",
+              "authority": "Bộ Khoa học và Công nghệ",
+              "page": 102,
+              "originalUrl": "https://congbaocdn.chinhphu.vn/180507251028987904/2026/4/20/469297-1776676154_v1_1776676768_signed.pdf#page=102",
+              "snapshotUrl": "/sources/tt10/07e81b6ace18e01558666ebe468709a59ef2d0cad151fadb1745de31996b4541.pdf#page=102",
+              "sha256": "07e81b6ace18e01558666ebe468709a59ef2d0cad151fadb1745de31996b4541"
+            }
+          ],
+          "form": null,
+          "template": {
+            "version": 1,
+            "title": "Phiếu rà soát phản hồi thẩm định",
+            "text": "Đối chiếu đoạn yêu cầu trong thông báo. Xác nhận nội dung sửa theo chỉ dẫn. Kiểm danh mục tài liệu kèm theo trước khi duyệt.",
+            "scope": "office_response",
+            "provenance": "Mẫu nội bộ mô phỏng M5",
+            "digest": "33e32c56ee0dc9856e3a4abd2d697db5b854798775bdc6abad8828770919ecc0"
+          },
+          "proofId": "32cdb190740878ee75636456448089b94ebae0c8b4a4c43b330b5b6d1bf3d240",
+          "savedAt": "2026-11-11T00:37:25.391Z"
+        },
+        "document": {
+          "label": "Thông báo thẩm định mô phỏng.pdf",
+          "sha256": "2651bec47dfb9a0bb9f7eea61319ce9fc64f7339052fe8ca2f1d0760cafe7094",
+          "pages": 2,
+          "anchors": [
+            {
+              "page": 2,
+              "mode": "text",
+              "text": "Đề nghị làm rõ cụm “thiết bị phát âm” trong danh mục hàng hóa của đơn."
+            }
+          ],
+          "fields": {
+            "application": {
+              "value": "4-2026-9102",
+              "mode": "confirmed-text",
+              "page": 1
+            },
+            "title": {
+              "value": "Lam Sơn Studio",
+              "mode": "confirmed-text",
+              "page": 1
+            },
+            "receivedOn": {
+              "value": "2026-09-14",
+              "mode": "confirmed-text",
+              "page": 1
+            },
+            "noticeNumber": {
+              "value": "132/TB-M4",
+              "mode": "confirmed-text",
+              "page": 1
+            },
+            "noticeDate": {
+              "value": "2026-10-26",
+              "mode": "confirmed-text",
+              "page": 1
+            },
+            "deadline": {
+              "value": "2026-11-10",
+              "mode": "confirmed-text",
+              "page": 1
+            }
+          },
+          "confirmedAt": "2026-11-11T00:37:25.391Z"
+        },
+        "sources": [
+          {
+            "id": "notice",
+            "label": "Thông báo thẩm định mô phỏng.pdf",
+            "text": "Đề nghị làm rõ cụm “thiết bị phát âm” trong danh mục hàng hóa của đơn.",
+            "sha256": "671f0a913ee52dcf7d54cccbb4d440392f9cba1942f3b445bd40a02e42d4a0b6"
+          },
+          {
+            "id": "instructions",
+            "label": "Chỉ dẫn khách hàng mô phỏng",
+            "text": "Khách hàng xác nhận đề nghị làm rõ cụm “thiết bị phát âm” thành “loa để bàn”. Bảng đối chiếu danh mục đã có sẵn, dự kiến kèm văn bản. Các nội dung khác giữ nguyên.",
+            "sha256": "9be8ecb5f18f955b2c6f08e9fb8894858760c23817db81a60fb2a7788094f5d1"
+          }
+        ],
+        "drafts": [],
+        "approved": {},
+        "releases": [],
+        "demo": true
+      },
+      "pdf": "DT-DEMO-02.pdf",
+      "sha256": "6ad895ea3c2117ccd35806665828df064e181f63d4d6c56755bf6f42b3128556"
+    },
+    {
+      "matter": {
+        "id": "9d79e970-56dd-4c30-bf68-f9efe55b580a",
+        "version": 1,
+        "reference": "DT-DEMO-03",
+        "title": "An Viên Botanics",
+        "updated": "2026-11-11T00:37:25.430Z",
+        "facts": {
+          "asOf": "2026-11-09",
+          "receivedOn": "2026-09-14",
+          "pendingAtCutover": null
+        },
+        "basis": {
+          "sot": "305004a370172f19455ff1db74fe60b8583f49d9e6bb1511329a56e745d32292",
+          "corpus": "e6c5698aabd6669ea2688851a3d4cf85172e8f5cbb4e30c0daa10b3c5f456a17",
+          "applicableOn": "2026-09-14",
+          "citations": [
+            {
+              "id": "tt10-83-2b",
+              "locator": "Điều 83 khoản 2 điểm b",
+              "document": "10/2026/TT-BKHCN",
+              "page": 102,
+              "sha256": "07e81b6ace18e01558666ebe468709a59ef2d0cad151fadb1745de31996b4541",
+              "originalUrl": "https://congbaocdn.chinhphu.vn/180507251028987904/2026/4/20/469297-1776676154_v1_1776676768_signed.pdf#page=102",
+              "snapshotUrl": "/sources/tt10.pdf#page=102"
+            }
+          ]
+        },
+        "group": "nhan-hieu",
+        "research": {
+          "question": "Căn cứ và văn bản nào dùng để phản hồi thông báo thẩm định nhãn hiệu Việt Nam?",
+          "scope": "Nhãn hiệu theo thể thức quốc gia tại Việt Nam",
+          "coverage": {
+            "from": "2026-04-01",
+            "through": "2026-11-10"
+          },
+          "release": "vn-tm-sot-v0.1.1-candidate",
+          "sot": "305004a370172f19455ff1db74fe60b8583f49d9e6bb1511329a56e745d32292",
+          "dataStatus": "preview",
+          "status": "grounded",
+          "title": "Dùng văn bản phản hồi theo thông báo thẩm định",
+          "explanation": "Đối chiếu quy định từ 01/07/2026 theo ngày 14/09/2026. Trình bày rõ nội dung sửa đổi, bổ sung trong văn bản phản hồi theo căn cứ đã dẫn.",
+          "missing": [],
+          "procedure": "office_response",
+          "fields": {
+            "asOf": "2026-11-09",
+            "mode": "case",
+            "receivedOn": "2026-09-14",
+            "pendingAtCutover": null
+          },
+          "applicableOn": "2026-09-14",
+          "checkedOn": "2026-11-09",
+          "rule": "from_cutover",
+          "corpus": "e6c5698aabd6669ea2688851a3d4cf85172e8f5cbb4e30c0daa10b3c5f456a17",
+          "citations": [
+            {
+              "id": "tt10-83-2b",
+              "locator": "Điều 83 khoản 2 điểm b",
+              "title": "Sửa đổi theo thông báo thẩm định",
+              "summary": "Khi sửa đổi trên cơ sở thông báo kết quả thẩm định của Cục Sở hữu trí tuệ, người nộp dùng văn bản phản hồi nêu rõ nội dung sửa đổi, bổ sung.",
+              "quote": null,
+              "from": "2026-04-01",
+              "until": null,
+              "status": "applicable",
+              "document": "10/2026/TT-BKHCN",
+              "documentTitle": "Thông tư 10/2026/TT-BKHCN",
+              "kind": "Công báo số 231",
+              "authority": "Bộ Khoa học và Công nghệ",
+              "page": 102,
+              "originalUrl": "https://congbaocdn.chinhphu.vn/180507251028987904/2026/4/20/469297-1776676154_v1_1776676768_signed.pdf#page=102",
+              "snapshotUrl": "/sources/tt10/07e81b6ace18e01558666ebe468709a59ef2d0cad151fadb1745de31996b4541.pdf#page=102",
+              "sha256": "07e81b6ace18e01558666ebe468709a59ef2d0cad151fadb1745de31996b4541"
+            }
+          ],
+          "form": null,
+          "template": {
+            "version": 1,
+            "title": "Phiếu rà soát phản hồi thẩm định",
+            "text": "Đối chiếu đoạn yêu cầu trong thông báo. Xác nhận nội dung sửa theo chỉ dẫn. Kiểm danh mục tài liệu kèm theo trước khi duyệt.",
+            "scope": "office_response",
+            "provenance": "Mẫu nội bộ mô phỏng M5",
+            "digest": "33e32c56ee0dc9856e3a4abd2d697db5b854798775bdc6abad8828770919ecc0"
+          },
+          "proofId": "32cdb190740878ee75636456448089b94ebae0c8b4a4c43b330b5b6d1bf3d240",
+          "savedAt": "2026-11-11T00:37:25.430Z"
+        },
+        "document": {
+          "label": "Thông báo thẩm định mô phỏng.pdf",
+          "sha256": "fc2160b91736c45651750397dab033e0a504860bc84a0f9b98b5ccecf80b1492",
+          "pages": 2,
+          "anchors": [
+            {
+              "page": 2,
+              "mode": "text",
+              "text": "Đề nghị làm rõ cụm “đồ chứa mẫu” trong danh mục hàng hóa của đơn."
+            }
+          ],
+          "fields": {
+            "application": {
+              "value": "4-2026-9103",
+              "mode": "confirmed-text",
+              "page": 2
+            },
+            "title": {
+              "value": "An Viên Botanics",
+              "mode": "confirmed-text",
+              "page": 1
+            },
+            "receivedOn": {
+              "value": "2026-09-14",
+              "mode": "confirmed-text",
+              "page": 2
+            },
+            "noticeNumber": {
+              "value": "133/TB-M4",
+              "mode": "confirmed-text",
+              "page": 2
+            },
+            "noticeDate": {
+              "value": "2026-10-26",
+              "mode": "confirmed-text",
+              "page": 2
+            },
+            "deadline": {
+              "value": "2026-11-10",
+              "mode": "confirmed-text",
+              "page": 2
+            }
+          },
+          "confirmedAt": "2026-11-11T00:37:25.430Z"
+        },
+        "sources": [
+          {
+            "id": "notice",
+            "label": "Thông báo thẩm định mô phỏng.pdf",
+            "text": "Đề nghị làm rõ cụm “đồ chứa mẫu” trong danh mục hàng hóa của đơn.",
+            "sha256": "9fb55173fa38454e6dcd9a6c887ac0d4974a2d996634c818f297daac4b6c20e2"
+          },
+          {
+            "id": "instructions",
+            "label": "Chỉ dẫn khách hàng mô phỏng",
+            "text": "Khách hàng xác nhận đề nghị làm rõ cụm “đồ chứa mẫu” thành “lọ thủy tinh”. Bảng đối chiếu danh mục đã có sẵn, dự kiến kèm văn bản. Các nội dung khác giữ nguyên.",
+            "sha256": "53027868104744b0872555bf8b26bfbe8795822a4266916ac093f3b07e8d928c"
+          }
+        ],
+        "drafts": [],
+        "approved": {},
+        "releases": [],
+        "demo": true
+      },
+      "pdf": "DT-DEMO-03.pdf",
+      "sha256": "3f6a9e3ea1c682368cd81931b198df0c4cb65ed36a1cf09bbf33e10acb7c0881"
+    },
+    {
+      "matter": {
+        "id": "b3d8dad7-e9b6-486f-8b30-e643a5b9b30f",
+        "version": 1,
+        "reference": "DT-DEMO-04",
+        "title": "An Nhiên Cycle",
+        "updated": "2026-11-11T00:37:25.468Z",
+        "facts": {
+          "asOf": "2026-11-09",
+          "receivedOn": "2026-09-14",
+          "pendingAtCutover": null
+        },
+        "basis": {
+          "sot": "305004a370172f19455ff1db74fe60b8583f49d9e6bb1511329a56e745d32292",
+          "corpus": "e6c5698aabd6669ea2688851a3d4cf85172e8f5cbb4e30c0daa10b3c5f456a17",
+          "applicableOn": "2026-09-14",
+          "citations": [
+            {
+              "id": "tt10-83-2b",
+              "locator": "Điều 83 khoản 2 điểm b",
+              "document": "10/2026/TT-BKHCN",
+              "page": 102,
+              "sha256": "07e81b6ace18e01558666ebe468709a59ef2d0cad151fadb1745de31996b4541",
+              "originalUrl": "https://congbaocdn.chinhphu.vn/180507251028987904/2026/4/20/469297-1776676154_v1_1776676768_signed.pdf#page=102",
+              "snapshotUrl": "/sources/tt10.pdf#page=102"
+            }
+          ]
+        },
+        "group": "nhan-hieu",
+        "research": {
+          "question": "Căn cứ và văn bản nào dùng để phản hồi thông báo thẩm định nhãn hiệu Việt Nam?",
+          "scope": "Nhãn hiệu theo thể thức quốc gia tại Việt Nam",
+          "coverage": {
+            "from": "2026-04-01",
+            "through": "2026-11-10"
+          },
+          "release": "vn-tm-sot-v0.1.1-candidate",
+          "sot": "305004a370172f19455ff1db74fe60b8583f49d9e6bb1511329a56e745d32292",
+          "dataStatus": "preview",
+          "status": "grounded",
+          "title": "Dùng văn bản phản hồi theo thông báo thẩm định",
+          "explanation": "Đối chiếu quy định từ 01/07/2026 theo ngày 14/09/2026. Trình bày rõ nội dung sửa đổi, bổ sung trong văn bản phản hồi theo căn cứ đã dẫn.",
+          "missing": [],
+          "procedure": "office_response",
+          "fields": {
+            "asOf": "2026-11-09",
+            "mode": "case",
+            "receivedOn": "2026-09-14",
+            "pendingAtCutover": null
+          },
+          "applicableOn": "2026-09-14",
+          "checkedOn": "2026-11-09",
+          "rule": "from_cutover",
+          "corpus": "e6c5698aabd6669ea2688851a3d4cf85172e8f5cbb4e30c0daa10b3c5f456a17",
+          "citations": [
+            {
+              "id": "tt10-83-2b",
+              "locator": "Điều 83 khoản 2 điểm b",
+              "title": "Sửa đổi theo thông báo thẩm định",
+              "summary": "Khi sửa đổi trên cơ sở thông báo kết quả thẩm định của Cục Sở hữu trí tuệ, người nộp dùng văn bản phản hồi nêu rõ nội dung sửa đổi, bổ sung.",
+              "quote": null,
+              "from": "2026-04-01",
+              "until": null,
+              "status": "applicable",
+              "document": "10/2026/TT-BKHCN",
+              "documentTitle": "Thông tư 10/2026/TT-BKHCN",
+              "kind": "Công báo số 231",
+              "authority": "Bộ Khoa học và Công nghệ",
+              "page": 102,
+              "originalUrl": "https://congbaocdn.chinhphu.vn/180507251028987904/2026/4/20/469297-1776676154_v1_1776676768_signed.pdf#page=102",
+              "snapshotUrl": "/sources/tt10/07e81b6ace18e01558666ebe468709a59ef2d0cad151fadb1745de31996b4541.pdf#page=102",
+              "sha256": "07e81b6ace18e01558666ebe468709a59ef2d0cad151fadb1745de31996b4541"
+            }
+          ],
+          "form": null,
+          "template": {
+            "version": 1,
+            "title": "Phiếu rà soát phản hồi thẩm định",
+            "text": "Đối chiếu đoạn yêu cầu trong thông báo. Xác nhận nội dung sửa theo chỉ dẫn. Kiểm danh mục tài liệu kèm theo trước khi duyệt.",
+            "scope": "office_response",
+            "provenance": "Mẫu nội bộ mô phỏng M5",
+            "digest": "33e32c56ee0dc9856e3a4abd2d697db5b854798775bdc6abad8828770919ecc0"
+          },
+          "proofId": "32cdb190740878ee75636456448089b94ebae0c8b4a4c43b330b5b6d1bf3d240",
+          "savedAt": "2026-11-11T00:37:25.468Z"
+        },
+        "document": {
+          "label": "Thông báo thẩm định mô phỏng.pdf",
+          "sha256": "3c895c66e5d65ce70c5b032276ef57a027e5c7e476e72f834a59f763d9aeba50",
+          "pages": 1,
+          "anchors": [
+            {
+              "page": 1,
+              "mode": "text",
+              "text": "Đề nghị làm rõ cụm “phụ kiện xe” trong danh mục hàng hóa của đơn."
+            }
+          ],
+          "fields": {
+            "application": {
+              "value": "4-2026-9104",
+              "mode": "confirmed-text",
+              "page": 1
+            },
+            "title": {
+              "value": "An Nhiên Cycle",
+              "mode": "confirmed-text",
+              "page": 1
+            },
+            "receivedOn": {
+              "value": "2026-09-14",
+              "mode": "manual",
+              "page": null
+            },
+            "noticeNumber": {
+              "value": "134/TB-M4",
+              "mode": "confirmed-text",
+              "page": 1
+            },
+            "noticeDate": {
+              "value": "2026-10-26",
+              "mode": "confirmed-text",
+              "page": 1
+            },
+            "deadline": {
+              "value": "2026-11-10",
+              "mode": "confirmed-text",
+              "page": 1
+            }
+          },
+          "confirmedAt": "2026-11-11T00:37:25.468Z"
+        },
+        "sources": [
+          {
+            "id": "notice",
+            "label": "Thông báo thẩm định mô phỏng.pdf",
+            "text": "Đề nghị làm rõ cụm “phụ kiện xe” trong danh mục hàng hóa của đơn.",
+            "sha256": "3a85efd38658ef508e6c9e7d6bbd95e51947c1c4c7fcfb8251e581f2cee7a7e4"
+          },
+          {
+            "id": "instructions",
+            "label": "Chỉ dẫn khách hàng mô phỏng",
+            "text": "Khách hàng xác nhận đề nghị làm rõ cụm “phụ kiện xe” thành “tay nắm xe đạp”. Bảng đối chiếu danh mục đã có sẵn, dự kiến kèm văn bản. Các nội dung khác giữ nguyên. Biên nhận riêng ghi ngày cơ quan tiếp nhận đơn 14/09/2026.",
+            "sha256": "705a4d491da4c800b8e98b61da0a9ee4a38e89a956fc30094e7aa1884301a086"
+          }
+        ],
+        "drafts": [],
+        "approved": {},
+        "releases": [],
+        "demo": true
+      },
+      "pdf": "DT-DEMO-04.pdf",
+      "sha256": "015675c1361e083e7c310f87c8065c8e968d34756c6b385fe521854c21f5fd76"
+    },
+    {
+      "matter": {
+        "id": "f57576a9-fb2a-4142-af61-c40fe8539161",
+        "version": 1,
+        "reference": "DT-DEMO-05",
+        "title": "Hải Đăng Mộc",
+        "updated": "2026-11-11T00:37:25.507Z",
+        "facts": {
+          "asOf": "2026-11-09",
+          "receivedOn": "2026-09-14",
+          "pendingAtCutover": null
+        },
+        "basis": {
+          "sot": "305004a370172f19455ff1db74fe60b8583f49d9e6bb1511329a56e745d32292",
+          "corpus": "e6c5698aabd6669ea2688851a3d4cf85172e8f5cbb4e30c0daa10b3c5f456a17",
+          "applicableOn": "2026-09-14",
+          "citations": [
+            {
+              "id": "tt10-83-2b",
+              "locator": "Điều 83 khoản 2 điểm b",
+              "document": "10/2026/TT-BKHCN",
+              "page": 102,
+              "sha256": "07e81b6ace18e01558666ebe468709a59ef2d0cad151fadb1745de31996b4541",
+              "originalUrl": "https://congbaocdn.chinhphu.vn/180507251028987904/2026/4/20/469297-1776676154_v1_1776676768_signed.pdf#page=102",
+              "snapshotUrl": "/sources/tt10.pdf#page=102"
+            }
+          ]
+        },
+        "group": "nhan-hieu",
+        "research": {
+          "question": "Căn cứ và văn bản nào dùng để phản hồi thông báo thẩm định nhãn hiệu Việt Nam?",
+          "scope": "Nhãn hiệu theo thể thức quốc gia tại Việt Nam",
+          "coverage": {
+            "from": "2026-04-01",
+            "through": "2026-11-10"
+          },
+          "release": "vn-tm-sot-v0.1.1-candidate",
+          "sot": "305004a370172f19455ff1db74fe60b8583f49d9e6bb1511329a56e745d32292",
+          "dataStatus": "preview",
+          "status": "grounded",
+          "title": "Dùng văn bản phản hồi theo thông báo thẩm định",
+          "explanation": "Đối chiếu quy định từ 01/07/2026 theo ngày 14/09/2026. Trình bày rõ nội dung sửa đổi, bổ sung trong văn bản phản hồi theo căn cứ đã dẫn.",
+          "missing": [],
+          "procedure": "office_response",
+          "fields": {
+            "asOf": "2026-11-09",
+            "mode": "case",
+            "receivedOn": "2026-09-14",
+            "pendingAtCutover": null
+          },
+          "applicableOn": "2026-09-14",
+          "checkedOn": "2026-11-09",
+          "rule": "from_cutover",
+          "corpus": "e6c5698aabd6669ea2688851a3d4cf85172e8f5cbb4e30c0daa10b3c5f456a17",
+          "citations": [
+            {
+              "id": "tt10-83-2b",
+              "locator": "Điều 83 khoản 2 điểm b",
+              "title": "Sửa đổi theo thông báo thẩm định",
+              "summary": "Khi sửa đổi trên cơ sở thông báo kết quả thẩm định của Cục Sở hữu trí tuệ, người nộp dùng văn bản phản hồi nêu rõ nội dung sửa đổi, bổ sung.",
+              "quote": null,
+              "from": "2026-04-01",
+              "until": null,
+              "status": "applicable",
+              "document": "10/2026/TT-BKHCN",
+              "documentTitle": "Thông tư 10/2026/TT-BKHCN",
+              "kind": "Công báo số 231",
+              "authority": "Bộ Khoa học và Công nghệ",
+              "page": 102,
+              "originalUrl": "https://congbaocdn.chinhphu.vn/180507251028987904/2026/4/20/469297-1776676154_v1_1776676768_signed.pdf#page=102",
+              "snapshotUrl": "/sources/tt10/07e81b6ace18e01558666ebe468709a59ef2d0cad151fadb1745de31996b4541.pdf#page=102",
+              "sha256": "07e81b6ace18e01558666ebe468709a59ef2d0cad151fadb1745de31996b4541"
+            }
+          ],
+          "form": null,
+          "template": {
+            "version": 1,
+            "title": "Phiếu rà soát phản hồi thẩm định",
+            "text": "Đối chiếu đoạn yêu cầu trong thông báo. Xác nhận nội dung sửa theo chỉ dẫn. Kiểm danh mục tài liệu kèm theo trước khi duyệt.",
+            "scope": "office_response",
+            "provenance": "Mẫu nội bộ mô phỏng M5",
+            "digest": "33e32c56ee0dc9856e3a4abd2d697db5b854798775bdc6abad8828770919ecc0"
+          },
+          "proofId": "32cdb190740878ee75636456448089b94ebae0c8b4a4c43b330b5b6d1bf3d240",
+          "savedAt": "2026-11-11T00:37:25.507Z"
+        },
+        "document": {
+          "label": "Thông báo thẩm định mô phỏng.pdf",
+          "sha256": "d19b7dee668ec1569db520c7590759f4c4445b6a8479cf9cc86f96b9f509ec32",
+          "pages": 1,
+          "anchors": [
+            {
+              "page": 1,
+              "mode": "manual",
+              "text": "Đề nghị làm rõ cụm “đồ chiếu sáng” trong danh mục hàng hóa của đơn."
+            }
+          ],
+          "fields": {
+            "application": {
+              "value": "4-2026-9105",
+              "mode": "manual",
+              "page": null
+            },
+            "title": {
+              "value": "Hải Đăng Mộc",
+              "mode": "manual",
+              "page": null
+            },
+            "receivedOn": {
+              "value": "2026-09-14",
+              "mode": "manual",
+              "page": null
+            },
+            "noticeNumber": {
+              "value": "135/TB-M4",
+              "mode": "manual",
+              "page": null
+            },
+            "noticeDate": {
+              "value": "2026-10-26",
+              "mode": "manual",
+              "page": null
+            },
+            "deadline": {
+              "value": "2026-11-10",
+              "mode": "manual",
+              "page": null
+            }
+          },
+          "confirmedAt": "2026-11-11T00:37:25.507Z"
+        },
+        "sources": [
+          {
+            "id": "notice",
+            "label": "Thông báo thẩm định mô phỏng.pdf",
+            "text": "Đề nghị làm rõ cụm “đồ chiếu sáng” trong danh mục hàng hóa của đơn.",
+            "sha256": "1678d4ce04bf65193191fcc5b2c24c84999fca5412ea20f604894b8f73c80d77"
+          },
+          {
+            "id": "instructions",
+            "label": "Chỉ dẫn khách hàng mô phỏng",
+            "text": "Khách hàng xác nhận đề nghị làm rõ cụm “đồ chiếu sáng” thành “đèn bàn”. Bảng đối chiếu danh mục đã có sẵn, dự kiến kèm văn bản. Các nội dung khác giữ nguyên.",
+            "sha256": "0ece2daa4b0dbdb04d79ddf79ed193732c8244a15d237c663a443746d24e5c08"
+          }
+        ],
+        "drafts": [],
+        "approved": {},
+        "releases": [],
+        "demo": true
+      },
+      "pdf": "DT-DEMO-05.pdf",
+      "sha256": "bf128f9ec45a92cfde05b8d27687130b3557e98cc247eb412e90bec9f95ba563"
+    },
+    {
+      "matter": {
+        "id": "fe7a3bfc-fb4f-4b7e-80e6-937647644136",
+        "version": 1,
+        "reference": "DT-DEMO-06",
+        "title": "Minh Châu Paper",
+        "updated": "2026-11-11T00:37:25.544Z",
+        "facts": {
+          "asOf": "2026-11-09",
+          "receivedOn": "2026-09-14",
+          "pendingAtCutover": null
+        },
+        "basis": {
+          "sot": "305004a370172f19455ff1db74fe60b8583f49d9e6bb1511329a56e745d32292",
+          "corpus": "e6c5698aabd6669ea2688851a3d4cf85172e8f5cbb4e30c0daa10b3c5f456a17",
+          "applicableOn": "2026-09-14",
+          "citations": [
+            {
+              "id": "tt10-83-2b",
+              "locator": "Điều 83 khoản 2 điểm b",
+              "document": "10/2026/TT-BKHCN",
+              "page": 102,
+              "sha256": "07e81b6ace18e01558666ebe468709a59ef2d0cad151fadb1745de31996b4541",
+              "originalUrl": "https://congbaocdn.chinhphu.vn/180507251028987904/2026/4/20/469297-1776676154_v1_1776676768_signed.pdf#page=102",
+              "snapshotUrl": "/sources/tt10.pdf#page=102"
+            }
+          ]
+        },
+        "group": "nhan-hieu",
+        "research": {
+          "question": "Căn cứ và văn bản nào dùng để phản hồi thông báo thẩm định nhãn hiệu Việt Nam?",
+          "scope": "Nhãn hiệu theo thể thức quốc gia tại Việt Nam",
+          "coverage": {
+            "from": "2026-04-01",
+            "through": "2026-11-10"
+          },
+          "release": "vn-tm-sot-v0.1.1-candidate",
+          "sot": "305004a370172f19455ff1db74fe60b8583f49d9e6bb1511329a56e745d32292",
+          "dataStatus": "preview",
+          "status": "grounded",
+          "title": "Dùng văn bản phản hồi theo thông báo thẩm định",
+          "explanation": "Đối chiếu quy định từ 01/07/2026 theo ngày 14/09/2026. Trình bày rõ nội dung sửa đổi, bổ sung trong văn bản phản hồi theo căn cứ đã dẫn.",
+          "missing": [],
+          "procedure": "office_response",
+          "fields": {
+            "asOf": "2026-11-09",
+            "mode": "case",
+            "receivedOn": "2026-09-14",
+            "pendingAtCutover": null
+          },
+          "applicableOn": "2026-09-14",
+          "checkedOn": "2026-11-09",
+          "rule": "from_cutover",
+          "corpus": "e6c5698aabd6669ea2688851a3d4cf85172e8f5cbb4e30c0daa10b3c5f456a17",
+          "citations": [
+            {
+              "id": "tt10-83-2b",
+              "locator": "Điều 83 khoản 2 điểm b",
+              "title": "Sửa đổi theo thông báo thẩm định",
+              "summary": "Khi sửa đổi trên cơ sở thông báo kết quả thẩm định của Cục Sở hữu trí tuệ, người nộp dùng văn bản phản hồi nêu rõ nội dung sửa đổi, bổ sung.",
+              "quote": null,
+              "from": "2026-04-01",
+              "until": null,
+              "status": "applicable",
+              "document": "10/2026/TT-BKHCN",
+              "documentTitle": "Thông tư 10/2026/TT-BKHCN",
+              "kind": "Công báo số 231",
+              "authority": "Bộ Khoa học và Công nghệ",
+              "page": 102,
+              "originalUrl": "https://congbaocdn.chinhphu.vn/180507251028987904/2026/4/20/469297-1776676154_v1_1776676768_signed.pdf#page=102",
+              "snapshotUrl": "/sources/tt10/07e81b6ace18e01558666ebe468709a59ef2d0cad151fadb1745de31996b4541.pdf#page=102",
+              "sha256": "07e81b6ace18e01558666ebe468709a59ef2d0cad151fadb1745de31996b4541"
+            }
+          ],
+          "form": null,
+          "template": {
+            "version": 1,
+            "title": "Phiếu rà soát phản hồi thẩm định",
+            "text": "Đối chiếu đoạn yêu cầu trong thông báo. Xác nhận nội dung sửa theo chỉ dẫn. Kiểm danh mục tài liệu kèm theo trước khi duyệt.",
+            "scope": "office_response",
+            "provenance": "Mẫu nội bộ mô phỏng M5",
+            "digest": "33e32c56ee0dc9856e3a4abd2d697db5b854798775bdc6abad8828770919ecc0"
+          },
+          "proofId": "32cdb190740878ee75636456448089b94ebae0c8b4a4c43b330b5b6d1bf3d240",
+          "savedAt": "2026-11-11T00:37:25.544Z"
+        },
+        "document": {
+          "label": "Thông báo thẩm định mô phỏng.pdf",
+          "sha256": "2278cafc8af185c89e805263a9c1eaaeedebfff8f191fe672ae016dab573cdc2",
+          "pages": 2,
+          "anchors": [
+            {
+              "page": 2,
+              "mode": "manual",
+              "text": "Đề nghị làm rõ cụm “đồ dùng văn phòng” trong danh mục hàng hóa của đơn."
+            }
+          ],
+          "fields": {
+            "application": {
+              "value": "4-2026-9106",
+              "mode": "confirmed-text",
+              "page": 1
+            },
+            "title": {
+              "value": "Minh Châu Paper",
+              "mode": "confirmed-text",
+              "page": 1
+            },
+            "receivedOn": {
+              "value": "2026-09-14",
+              "mode": "confirmed-text",
+              "page": 1
+            },
+            "noticeNumber": {
+              "value": "136/TB-M4",
+              "mode": "confirmed-text",
+              "page": 1
+            },
+            "noticeDate": {
+              "value": "2026-10-26",
+              "mode": "confirmed-text",
+              "page": 1
+            },
+            "deadline": {
+              "value": "2026-11-10",
+              "mode": "confirmed-text",
+              "page": 1
+            }
+          },
+          "confirmedAt": "2026-11-11T00:37:25.544Z"
+        },
+        "sources": [
+          {
+            "id": "notice",
+            "label": "Thông báo thẩm định mô phỏng.pdf",
+            "text": "Đề nghị làm rõ cụm “đồ dùng văn phòng” trong danh mục hàng hóa của đơn.",
+            "sha256": "ea946663e50c9640349caf39311eaeb8fb84d724034fdca4c79a557c04fe9000"
+          },
+          {
+            "id": "instructions",
+            "label": "Chỉ dẫn khách hàng mô phỏng",
+            "text": "Khách hàng xác nhận đề nghị làm rõ cụm “đồ dùng văn phòng” thành “bìa giấy”. Bảng đối chiếu danh mục đã có sẵn, dự kiến kèm văn bản. Các nội dung khác giữ nguyên.",
+            "sha256": "414cefd4f81ebb19fc1cf2f63cdbff6165c449e05b1e8c19d9f225ca7ed76c4e"
+          }
+        ],
+        "drafts": [],
+        "approved": {},
+        "releases": [],
+        "demo": true
+      },
+      "pdf": "DT-DEMO-06.pdf",
+      "sha256": "74c53a9774c1cb2848eea0e2fb840714b3f316746a3f64f46769f2e8192e9b2f"
+    },
+    {
+      "matter": {
+        "id": "1b312b4a-758b-4f8f-a087-cc7685fb5227",
+        "version": 1,
+        "reference": "DT-DEMO-07",
+        "title": "Nam Phong Bếp",
+        "updated": "2026-11-11T00:37:25.581Z",
+        "facts": {
+          "asOf": "2026-11-09",
+          "receivedOn": "2026-09-14",
+          "pendingAtCutover": null
+        },
+        "basis": {
+          "sot": "305004a370172f19455ff1db74fe60b8583f49d9e6bb1511329a56e745d32292",
+          "corpus": "e6c5698aabd6669ea2688851a3d4cf85172e8f5cbb4e30c0daa10b3c5f456a17",
+          "applicableOn": "2026-09-14",
+          "citations": [
+            {
+              "id": "tt10-83-2b",
+              "locator": "Điều 83 khoản 2 điểm b",
+              "document": "10/2026/TT-BKHCN",
+              "page": 102,
+              "sha256": "07e81b6ace18e01558666ebe468709a59ef2d0cad151fadb1745de31996b4541",
+              "originalUrl": "https://congbaocdn.chinhphu.vn/180507251028987904/2026/4/20/469297-1776676154_v1_1776676768_signed.pdf#page=102",
+              "snapshotUrl": "/sources/tt10.pdf#page=102"
+            }
+          ]
+        },
+        "group": "nhan-hieu",
+        "research": {
+          "question": "Căn cứ và văn bản nào dùng để phản hồi thông báo thẩm định nhãn hiệu Việt Nam?",
+          "scope": "Nhãn hiệu theo thể thức quốc gia tại Việt Nam",
+          "coverage": {
+            "from": "2026-04-01",
+            "through": "2026-11-10"
+          },
+          "release": "vn-tm-sot-v0.1.1-candidate",
+          "sot": "305004a370172f19455ff1db74fe60b8583f49d9e6bb1511329a56e745d32292",
+          "dataStatus": "preview",
+          "status": "grounded",
+          "title": "Dùng văn bản phản hồi theo thông báo thẩm định",
+          "explanation": "Đối chiếu quy định từ 01/07/2026 theo ngày 14/09/2026. Trình bày rõ nội dung sửa đổi, bổ sung trong văn bản phản hồi theo căn cứ đã dẫn.",
+          "missing": [],
+          "procedure": "office_response",
+          "fields": {
+            "asOf": "2026-11-09",
+            "mode": "case",
+            "receivedOn": "2026-09-14",
+            "pendingAtCutover": null
+          },
+          "applicableOn": "2026-09-14",
+          "checkedOn": "2026-11-09",
+          "rule": "from_cutover",
+          "corpus": "e6c5698aabd6669ea2688851a3d4cf85172e8f5cbb4e30c0daa10b3c5f456a17",
+          "citations": [
+            {
+              "id": "tt10-83-2b",
+              "locator": "Điều 83 khoản 2 điểm b",
+              "title": "Sửa đổi theo thông báo thẩm định",
+              "summary": "Khi sửa đổi trên cơ sở thông báo kết quả thẩm định của Cục Sở hữu trí tuệ, người nộp dùng văn bản phản hồi nêu rõ nội dung sửa đổi, bổ sung.",
+              "quote": null,
+              "from": "2026-04-01",
+              "until": null,
+              "status": "applicable",
+              "document": "10/2026/TT-BKHCN",
+              "documentTitle": "Thông tư 10/2026/TT-BKHCN",
+              "kind": "Công báo số 231",
+              "authority": "Bộ Khoa học và Công nghệ",
+              "page": 102,
+              "originalUrl": "https://congbaocdn.chinhphu.vn/180507251028987904/2026/4/20/469297-1776676154_v1_1776676768_signed.pdf#page=102",
+              "snapshotUrl": "/sources/tt10/07e81b6ace18e01558666ebe468709a59ef2d0cad151fadb1745de31996b4541.pdf#page=102",
+              "sha256": "07e81b6ace18e01558666ebe468709a59ef2d0cad151fadb1745de31996b4541"
+            }
+          ],
+          "form": null,
+          "template": {
+            "version": 1,
+            "title": "Phiếu rà soát phản hồi thẩm định",
+            "text": "Đối chiếu đoạn yêu cầu trong thông báo. Xác nhận nội dung sửa theo chỉ dẫn. Kiểm danh mục tài liệu kèm theo trước khi duyệt.",
+            "scope": "office_response",
+            "provenance": "Mẫu nội bộ mô phỏng M5",
+            "digest": "33e32c56ee0dc9856e3a4abd2d697db5b854798775bdc6abad8828770919ecc0"
+          },
+          "proofId": "32cdb190740878ee75636456448089b94ebae0c8b4a4c43b330b5b6d1bf3d240",
+          "savedAt": "2026-11-11T00:37:25.581Z"
+        },
+        "document": {
+          "label": "Thông báo thẩm định mô phỏng.pdf",
+          "sha256": "5c88e1b98f292c49c7ea266a80a415e04afabe807d92b83d3ed3fcfd84c1bbae",
+          "pages": 1,
+          "anchors": [
+            {
+              "page": 1,
+              "mode": "text",
+              "text": "Đề nghị làm rõ cụm “dụng cụ bếp” trong danh mục hàng hóa của đơn."
+            }
+          ],
+          "fields": {
+            "application": {
+              "value": "4-2026-9107",
+              "mode": "confirmed-text",
+              "page": 1
+            },
+            "title": {
+              "value": "Nam Phong Bếp",
+              "mode": "confirmed-text",
+              "page": 1
+            },
+            "receivedOn": {
+              "value": "2026-09-14",
+              "mode": "confirmed-text",
+              "page": 1
+            },
+            "noticeNumber": {
+              "value": "137/TB-M4",
+              "mode": "confirmed-text",
+              "page": 1
+            },
+            "noticeDate": {
+              "value": "2026-10-26",
+              "mode": "confirmed-text",
+              "page": 1
+            },
+            "deadline": {
+              "value": null,
+              "mode": "missing",
+              "page": null
+            }
+          },
+          "confirmedAt": "2026-11-11T00:37:25.581Z"
+        },
+        "sources": [
+          {
+            "id": "notice",
+            "label": "Thông báo thẩm định mô phỏng.pdf",
+            "text": "Đề nghị làm rõ cụm “dụng cụ bếp” trong danh mục hàng hóa của đơn.",
+            "sha256": "1d9a49e6b2200e8f542490bccace53b5aa4f0d0e03813c317a6059de4baef7f4"
+          },
+          {
+            "id": "instructions",
+            "label": "Chỉ dẫn khách hàng mô phỏng",
+            "text": "Khách hàng xác nhận đề nghị làm rõ cụm “dụng cụ bếp” thành “thìa inox”. Bảng đối chiếu danh mục đã có sẵn, dự kiến kèm văn bản. Các nội dung khác giữ nguyên.",
+            "sha256": "23626c99ebf97c450fa68172f32f39bfafb43d0bfa5e3e1d18f4e61daf8aaf42"
+          }
+        ],
+        "drafts": [],
+        "approved": {},
+        "releases": [],
+        "demo": true
+      },
+      "pdf": "DT-DEMO-07.pdf",
+      "sha256": "a65f1b5620e6498fb6b2f480f772a5bdb5d40f1716fff6f3daeec860dc50c2fe"
+    },
+    {
+      "matter": {
+        "id": "08fdad70-bf88-458b-a404-9293dd711c8c",
+        "version": 5,
+        "reference": "DT-DEMO-08",
+        "title": "Vòm Lá Lab",
+        "updated": "2026-11-11T00:37:28.486Z",
+        "facts": {
+          "asOf": "2026-11-09",
+          "receivedOn": "2026-06-18",
+          "pendingAtCutover": true
+        },
+        "basis": {
+          "sot": "305004a370172f19455ff1db74fe60b8583f49d9e6bb1511329a56e745d32292",
+          "corpus": "e6c5698aabd6669ea2688851a3d4cf85172e8f5cbb4e30c0daa10b3c5f456a17",
+          "applicableOn": "2026-06-18",
+          "citations": [
+            {
+              "id": "tt10-83-2b",
+              "locator": "Điều 83 khoản 2 điểm b",
+              "document": "10/2026/TT-BKHCN",
+              "page": 102,
+              "sha256": "07e81b6ace18e01558666ebe468709a59ef2d0cad151fadb1745de31996b4541",
+              "originalUrl": "https://congbaocdn.chinhphu.vn/180507251028987904/2026/4/20/469297-1776676154_v1_1776676768_signed.pdf#page=102",
+              "snapshotUrl": "/sources/tt10.pdf#page=102"
+            },
+            {
+              "id": "tt20-17-2",
+              "locator": "Điều 17 khoản 2",
+              "document": "20/2026/TT-BKHCN",
+              "page": 14,
+              "sha256": "a7bcd1495d946f7c03e3f03ea59ce247909d9d618a1ac84f70832752bf3b52b0",
+              "originalUrl": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/5/20-bkhcn.pdf#page=14",
+              "snapshotUrl": "/sources/tt20.pdf#page=14"
+            },
+            {
+              "id": "tt20-18-2",
+              "locator": "Điều 18 khoản 2",
+              "document": "20/2026/TT-BKHCN",
+              "page": 14,
+              "sha256": "a7bcd1495d946f7c03e3f03ea59ce247909d9d618a1ac84f70832752bf3b52b0",
+              "originalUrl": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/5/20-bkhcn.pdf#page=14",
+              "snapshotUrl": "/sources/tt20.pdf#page=14"
+            }
+          ]
+        },
+        "group": "nhan-hieu",
+        "research": {
+          "question": "Căn cứ và văn bản nào dùng để phản hồi thông báo thẩm định nhãn hiệu Việt Nam?",
+          "scope": "Nhãn hiệu theo thể thức quốc gia tại Việt Nam",
+          "coverage": {
+            "from": "2026-04-01",
+            "through": "2026-11-10"
+          },
+          "release": "vn-tm-sot-v0.1.1-candidate",
+          "sot": "305004a370172f19455ff1db74fe60b8583f49d9e6bb1511329a56e745d32292",
+          "dataStatus": "preview",
+          "status": "grounded",
+          "title": "Dùng văn bản phản hồi theo thông báo thẩm định",
+          "explanation": "Hồ sơ tiếp nhận trước 01/07/2026 và còn đang giải quyết tại mốc này. Đối chiếu quy định tại ngày tiếp nhận 18/06/2026. Trình bày rõ nội dung sửa đổi, bổ sung trong văn bản phản hồi theo căn cứ đã dẫn.",
+          "missing": [],
+          "procedure": "office_response",
+          "fields": {
+            "asOf": "2026-11-09",
+            "mode": "case",
+            "receivedOn": "2026-06-18",
+            "pendingAtCutover": true
+          },
+          "applicableOn": "2026-06-18",
+          "checkedOn": "2026-11-09",
+          "rule": "transition",
+          "corpus": "e6c5698aabd6669ea2688851a3d4cf85172e8f5cbb4e30c0daa10b3c5f456a17",
+          "citations": [
+            {
+              "id": "tt10-83-2b",
+              "locator": "Điều 83 khoản 2 điểm b",
+              "title": "Sửa đổi theo thông báo thẩm định",
+              "summary": "Khi sửa đổi trên cơ sở thông báo kết quả thẩm định của Cục Sở hữu trí tuệ, người nộp dùng văn bản phản hồi nêu rõ nội dung sửa đổi, bổ sung.",
+              "quote": null,
+              "from": "2026-04-01",
+              "until": null,
+              "status": "applicable",
+              "document": "10/2026/TT-BKHCN",
+              "documentTitle": "Thông tư 10/2026/TT-BKHCN",
+              "kind": "Công báo số 231",
+              "authority": "Bộ Khoa học và Công nghệ",
+              "page": 102,
+              "originalUrl": "https://congbaocdn.chinhphu.vn/180507251028987904/2026/4/20/469297-1776676154_v1_1776676768_signed.pdf#page=102",
+              "snapshotUrl": "/sources/tt10/07e81b6ace18e01558666ebe468709a59ef2d0cad151fadb1745de31996b4541.pdf#page=102",
+              "sha256": "07e81b6ace18e01558666ebe468709a59ef2d0cad151fadb1745de31996b4541"
+            },
+            {
+              "id": "tt20-17-2",
+              "locator": "Điều 17 khoản 2",
+              "title": "Xử lý hồ sơ chuyển tiếp",
+              "summary": "Đơn, hồ sơ SHTT được tiếp nhận trước ngày Chương IV có hiệu lực và còn đang giải quyết thì tiếp tục xử lý theo pháp luật tại ngày tiếp nhận.",
+              "quote": "theo quy định của pháp luật tại thời điểm tiếp nhận đơn, hồ sơ đó.",
+              "from": "2026-05-20",
+              "until": null,
+              "status": "applicable",
+              "document": "20/2026/TT-BKHCN",
+              "documentTitle": "Thông tư 20/2026/TT-BKHCN",
+              "kind": "Văn bản trên Cổng Chính phủ",
+              "authority": "Bộ Khoa học và Công nghệ",
+              "page": 14,
+              "originalUrl": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/5/20-bkhcn.pdf#page=14",
+              "snapshotUrl": "/sources/tt20/a7bcd1495d946f7c03e3f03ea59ce247909d9d618a1ac84f70832752bf3b52b0.pdf#page=14",
+              "sha256": "a7bcd1495d946f7c03e3f03ea59ce247909d9d618a1ac84f70832752bf3b52b0"
+            },
+            {
+              "id": "tt20-18-2",
+              "locator": "Điều 18 khoản 2",
+              "title": "Ngày hiệu lực riêng của Chương IV",
+              "summary": "Chương IV có hiệu lực từ ngày 01/07/2026. Ngày này khác với ngày hiệu lực chung của Thông tư.",
+              "quote": "từ ngày 01 tháng 7 năm 2026.",
+              "from": "2026-05-20",
+              "until": null,
+              "status": "applicable",
+              "document": "20/2026/TT-BKHCN",
+              "documentTitle": "Thông tư 20/2026/TT-BKHCN",
+              "kind": "Văn bản trên Cổng Chính phủ",
+              "authority": "Bộ Khoa học và Công nghệ",
+              "page": 14,
+              "originalUrl": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/5/20-bkhcn.pdf#page=14",
+              "snapshotUrl": "/sources/tt20/a7bcd1495d946f7c03e3f03ea59ce247909d9d618a1ac84f70832752bf3b52b0.pdf#page=14",
+              "sha256": "a7bcd1495d946f7c03e3f03ea59ce247909d9d618a1ac84f70832752bf3b52b0"
+            }
+          ],
+          "form": null,
+          "template": {
+            "version": 1,
+            "title": "Phiếu rà soát phản hồi thẩm định",
+            "text": "Đối chiếu đoạn yêu cầu trong thông báo. Xác nhận nội dung sửa theo chỉ dẫn. Kiểm danh mục tài liệu kèm theo trước khi duyệt.",
+            "scope": "office_response",
+            "provenance": "Mẫu nội bộ mô phỏng M5",
+            "digest": "33e32c56ee0dc9856e3a4abd2d697db5b854798775bdc6abad8828770919ecc0"
+          },
+          "proofId": "72198bff114d194342f6ef87a5db2779bf713a37764a1d20161f26b55543cd01",
+          "savedAt": "2026-11-11T00:37:25.619Z"
+        },
+        "document": {
+          "label": "Thông báo thẩm định mô phỏng.pdf",
+          "sha256": "6632b769768ea112bb7755d94e61fb9d1af149f9896728c75f23ef9a1ca4bdc5",
+          "pages": 1,
+          "anchors": [
+            {
+              "page": 1,
+              "mode": "text",
+              "text": "Đề nghị làm rõ cụm “dụng cụ lọc” trong danh mục hàng hóa của đơn."
+            }
+          ],
+          "fields": {
+            "application": {
+              "value": "4-2026-9108",
+              "mode": "confirmed-text",
+              "page": 1
+            },
+            "title": {
+              "value": "Vòm Lá Lab",
+              "mode": "confirmed-text",
+              "page": 1
+            },
+            "receivedOn": {
+              "value": "2026-06-18",
+              "mode": "confirmed-text",
+              "page": 1
+            },
+            "noticeNumber": {
+              "value": "138/TB-M4",
+              "mode": "confirmed-text",
+              "page": 1
+            },
+            "noticeDate": {
+              "value": "2026-10-26",
+              "mode": "confirmed-text",
+              "page": 1
+            },
+            "deadline": {
+              "value": "2026-11-10",
+              "mode": "confirmed-text",
+              "page": 1
+            }
+          },
+          "confirmedAt": "2026-11-11T00:37:25.619Z"
+        },
+        "sources": [
+          {
+            "id": "notice",
+            "label": "Thông báo thẩm định mô phỏng.pdf",
+            "text": "Đề nghị làm rõ cụm “dụng cụ lọc” trong danh mục hàng hóa của đơn.",
+            "sha256": "aa63fb9dfb9894727596262823be37d2e6f1344088996d2f5319849913ac3d9f"
+          },
+          {
+            "id": "instructions",
+            "label": "Chỉ dẫn khách hàng mô phỏng",
+            "text": "Khách hàng xác nhận đề nghị làm rõ cụm “dụng cụ lọc” thành “phễu lọc”. Bảng đối chiếu danh mục đã có sẵn, dự kiến kèm văn bản. Các nội dung khác giữ nguyên. Đơn còn đang giải quyết tại 01/07/2026.",
+            "sha256": "a2bcbef3fbedd5ef2563cc63322f13932e95e9a6579ea999f34c429b8c19e855"
+          }
+        ],
+        "drafts": [
+          {
+            "number": 1,
+            "parent": null,
+            "at": "2026-11-11T00:37:28.483Z",
+            "type": "model-draft",
+            "run": {
+              "model": "daitin-qwen3-4b-2507",
+              "inputSha256": "b0b12ccecdc9ae2c00c1b71ae5fa8bcaf20720eb651493704ca7b80d2d3dbdde",
+              "elapsedMs": 2863,
+              "promptTokens": 762,
+              "completionTokens": 153,
+              "selectedSources": [
+                "notice",
+                "instructions"
+              ]
+            },
+            "sections": {
+              "findings": {
+                "text": "Cụm \"dụng cụ lọc\" trong danh mục hàng hóa của đơn được đề nghị làm rõ theo thông báo thẩm định mô phỏng. Cụm này cần được xác định rõ hơn trong quá trình thẩm định.",
+                "sources": [
+                  "notice"
+                ]
+              },
+              "response": {
+                "text": "Cụm \"dụng cụ lọc\" được làm rõ thành \"phễu lọc\" theo chỉ dẫn khách hàng đã xác nhận.",
+                "sources": [
+                  "instructions"
+                ]
+              },
+              "attachments": {
+                "text": "Bảng đối chiếu danh mục được dự kiến kèm theo.",
+                "sources": [
+                  "instructions"
+                ]
+              }
+            }
+          }
+        ],
+        "approved": {
+          "findings": {
+            "text": "Cụm \"dụng cụ lọc\" trong danh mục hàng hóa của đơn được đề nghị làm rõ theo thông báo thẩm định mô phỏng. Cụm này cần được xác định rõ hơn trong quá trình thẩm định.",
+            "sources": [
+              "notice"
+            ],
+            "draft": 1,
+            "at": "2026-11-11T00:37:28.484Z"
+          },
+          "response": {
+            "text": "Cụm \"dụng cụ lọc\" được làm rõ thành \"phễu lọc\" theo chỉ dẫn khách hàng đã xác nhận.",
+            "sources": [
+              "instructions"
+            ],
+            "draft": 1,
+            "at": "2026-11-11T00:37:28.485Z"
+          },
+          "attachments": {
+            "text": "Bảng đối chiếu danh mục được dự kiến kèm theo.",
+            "sources": [
+              "instructions"
+            ],
+            "draft": 1,
+            "at": "2026-11-11T00:37:28.486Z"
+          }
+        },
+        "releases": [
+          {
+            "number": 1,
+            "at": "2026-11-11T00:37:28.486Z",
+            "markdown": "# Văn bản phản hồi thông báo thẩm định nhãn hiệu\n\nHồ sơ DT-DEMO-08 · Vòm Lá Lab\nBản duyệt nội bộ 1\n\n## Nội dung được yêu cầu làm rõ\n\nCụm \"dụng cụ lọc\" trong danh mục hàng hóa của đơn được đề nghị làm rõ theo thông báo thẩm định mô phỏng. Cụm này cần được xác định rõ hơn trong quá trình thẩm định.\n\n## Nội dung phản hồi\n\nCụm \"dụng cụ lọc\" được làm rõ thành \"phễu lọc\" theo chỉ dẫn khách hàng đã xác nhận.\n\n## Tài liệu kèm theo\n\nBảng đối chiếu danh mục được dự kiến kèm theo.\n\n## Căn cứ đối chiếu\n\n- Điều 83 khoản 2 điểm b · 10/2026/TT-BKHCN · trang PDF 102 · https://congbaocdn.chinhphu.vn/180507251028987904/2026/4/20/469297-1776676154_v1_1776676768_signed.pdf#page=102\n- Điều 17 khoản 2 · 20/2026/TT-BKHCN · trang PDF 14 · https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/5/20-bkhcn.pdf#page=14\n- Điều 18 khoản 2 · 20/2026/TT-BKHCN · trang PDF 14 · https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/5/20-bkhcn.pdf#page=14\n",
+            "sha256": "b1bdec8f49e5db9cd8fa043cd4890578c2334ff45eb3a83561c7d5d7ec0167ca",
+            "sections": {
+              "findings": {
+                "text": "Cụm \"dụng cụ lọc\" trong danh mục hàng hóa của đơn được đề nghị làm rõ theo thông báo thẩm định mô phỏng. Cụm này cần được xác định rõ hơn trong quá trình thẩm định.",
+                "sources": [
+                  "notice"
+                ],
+                "draft": 1,
+                "at": "2026-11-11T00:37:28.484Z"
+              },
+              "response": {
+                "text": "Cụm \"dụng cụ lọc\" được làm rõ thành \"phễu lọc\" theo chỉ dẫn khách hàng đã xác nhận.",
+                "sources": [
+                  "instructions"
+                ],
+                "draft": 1,
+                "at": "2026-11-11T00:37:28.485Z"
+              },
+              "attachments": {
+                "text": "Bảng đối chiếu danh mục được dự kiến kèm theo.",
+                "sources": [
+                  "instructions"
+                ],
+                "draft": 1,
+                "at": "2026-11-11T00:37:28.486Z"
+              }
+            },
+            "basis": {
+              "sot": "305004a370172f19455ff1db74fe60b8583f49d9e6bb1511329a56e745d32292",
+              "corpus": "e6c5698aabd6669ea2688851a3d4cf85172e8f5cbb4e30c0daa10b3c5f456a17",
+              "applicableOn": "2026-06-18",
+              "citations": [
+                {
+                  "id": "tt10-83-2b",
+                  "locator": "Điều 83 khoản 2 điểm b",
+                  "document": "10/2026/TT-BKHCN",
+                  "page": 102,
+                  "sha256": "07e81b6ace18e01558666ebe468709a59ef2d0cad151fadb1745de31996b4541",
+                  "originalUrl": "https://congbaocdn.chinhphu.vn/180507251028987904/2026/4/20/469297-1776676154_v1_1776676768_signed.pdf#page=102",
+                  "snapshotUrl": "/sources/tt10.pdf#page=102"
+                },
+                {
+                  "id": "tt20-17-2",
+                  "locator": "Điều 17 khoản 2",
+                  "document": "20/2026/TT-BKHCN",
+                  "page": 14,
+                  "sha256": "a7bcd1495d946f7c03e3f03ea59ce247909d9d618a1ac84f70832752bf3b52b0",
+                  "originalUrl": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/5/20-bkhcn.pdf#page=14",
+                  "snapshotUrl": "/sources/tt20.pdf#page=14"
+                },
+                {
+                  "id": "tt20-18-2",
+                  "locator": "Điều 18 khoản 2",
+                  "document": "20/2026/TT-BKHCN",
+                  "page": 14,
+                  "sha256": "a7bcd1495d946f7c03e3f03ea59ce247909d9d618a1ac84f70832752bf3b52b0",
+                  "originalUrl": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/5/20-bkhcn.pdf#page=14",
+                  "snapshotUrl": "/sources/tt20.pdf#page=14"
+                }
+              ]
+            },
+            "research": {
+              "question": "Căn cứ và văn bản nào dùng để phản hồi thông báo thẩm định nhãn hiệu Việt Nam?",
+              "scope": "Nhãn hiệu theo thể thức quốc gia tại Việt Nam",
+              "coverage": {
+                "from": "2026-04-01",
+                "through": "2026-11-10"
+              },
+              "release": "vn-tm-sot-v0.1.1-candidate",
+              "sot": "305004a370172f19455ff1db74fe60b8583f49d9e6bb1511329a56e745d32292",
+              "dataStatus": "preview",
+              "status": "grounded",
+              "title": "Dùng văn bản phản hồi theo thông báo thẩm định",
+              "explanation": "Hồ sơ tiếp nhận trước 01/07/2026 và còn đang giải quyết tại mốc này. Đối chiếu quy định tại ngày tiếp nhận 18/06/2026. Trình bày rõ nội dung sửa đổi, bổ sung trong văn bản phản hồi theo căn cứ đã dẫn.",
+              "missing": [],
+              "procedure": "office_response",
+              "fields": {
+                "asOf": "2026-11-09",
+                "mode": "case",
+                "receivedOn": "2026-06-18",
+                "pendingAtCutover": true
+              },
+              "applicableOn": "2026-06-18",
+              "checkedOn": "2026-11-09",
+              "rule": "transition",
+              "corpus": "e6c5698aabd6669ea2688851a3d4cf85172e8f5cbb4e30c0daa10b3c5f456a17",
+              "citations": [
+                {
+                  "id": "tt10-83-2b",
+                  "locator": "Điều 83 khoản 2 điểm b",
+                  "title": "Sửa đổi theo thông báo thẩm định",
+                  "summary": "Khi sửa đổi trên cơ sở thông báo kết quả thẩm định của Cục Sở hữu trí tuệ, người nộp dùng văn bản phản hồi nêu rõ nội dung sửa đổi, bổ sung.",
+                  "quote": null,
+                  "from": "2026-04-01",
+                  "until": null,
+                  "status": "applicable",
+                  "document": "10/2026/TT-BKHCN",
+                  "documentTitle": "Thông tư 10/2026/TT-BKHCN",
+                  "kind": "Công báo số 231",
+                  "authority": "Bộ Khoa học và Công nghệ",
+                  "page": 102,
+                  "originalUrl": "https://congbaocdn.chinhphu.vn/180507251028987904/2026/4/20/469297-1776676154_v1_1776676768_signed.pdf#page=102",
+                  "snapshotUrl": "/sources/tt10/07e81b6ace18e01558666ebe468709a59ef2d0cad151fadb1745de31996b4541.pdf#page=102",
+                  "sha256": "07e81b6ace18e01558666ebe468709a59ef2d0cad151fadb1745de31996b4541"
+                },
+                {
+                  "id": "tt20-17-2",
+                  "locator": "Điều 17 khoản 2",
+                  "title": "Xử lý hồ sơ chuyển tiếp",
+                  "summary": "Đơn, hồ sơ SHTT được tiếp nhận trước ngày Chương IV có hiệu lực và còn đang giải quyết thì tiếp tục xử lý theo pháp luật tại ngày tiếp nhận.",
+                  "quote": "theo quy định của pháp luật tại thời điểm tiếp nhận đơn, hồ sơ đó.",
+                  "from": "2026-05-20",
+                  "until": null,
+                  "status": "applicable",
+                  "document": "20/2026/TT-BKHCN",
+                  "documentTitle": "Thông tư 20/2026/TT-BKHCN",
+                  "kind": "Văn bản trên Cổng Chính phủ",
+                  "authority": "Bộ Khoa học và Công nghệ",
+                  "page": 14,
+                  "originalUrl": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/5/20-bkhcn.pdf#page=14",
+                  "snapshotUrl": "/sources/tt20/a7bcd1495d946f7c03e3f03ea59ce247909d9d618a1ac84f70832752bf3b52b0.pdf#page=14",
+                  "sha256": "a7bcd1495d946f7c03e3f03ea59ce247909d9d618a1ac84f70832752bf3b52b0"
+                },
+                {
+                  "id": "tt20-18-2",
+                  "locator": "Điều 18 khoản 2",
+                  "title": "Ngày hiệu lực riêng của Chương IV",
+                  "summary": "Chương IV có hiệu lực từ ngày 01/07/2026. Ngày này khác với ngày hiệu lực chung của Thông tư.",
+                  "quote": "từ ngày 01 tháng 7 năm 2026.",
+                  "from": "2026-05-20",
+                  "until": null,
+                  "status": "applicable",
+                  "document": "20/2026/TT-BKHCN",
+                  "documentTitle": "Thông tư 20/2026/TT-BKHCN",
+                  "kind": "Văn bản trên Cổng Chính phủ",
+                  "authority": "Bộ Khoa học và Công nghệ",
+                  "page": 14,
+                  "originalUrl": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/5/20-bkhcn.pdf#page=14",
+                  "snapshotUrl": "/sources/tt20/a7bcd1495d946f7c03e3f03ea59ce247909d9d618a1ac84f70832752bf3b52b0.pdf#page=14",
+                  "sha256": "a7bcd1495d946f7c03e3f03ea59ce247909d9d618a1ac84f70832752bf3b52b0"
+                }
+              ],
+              "form": null,
+              "template": {
+                "version": 1,
+                "title": "Phiếu rà soát phản hồi thẩm định",
+                "text": "Đối chiếu đoạn yêu cầu trong thông báo. Xác nhận nội dung sửa theo chỉ dẫn. Kiểm danh mục tài liệu kèm theo trước khi duyệt.",
+                "scope": "office_response",
+                "provenance": "Mẫu nội bộ mô phỏng M5",
+                "digest": "33e32c56ee0dc9856e3a4abd2d697db5b854798775bdc6abad8828770919ecc0"
+              },
+              "proofId": "72198bff114d194342f6ef87a5db2779bf713a37764a1d20161f26b55543cd01",
+              "savedAt": "2026-11-11T00:37:25.619Z"
+            },
+            "sources": [
+              {
+                "id": "notice",
+                "label": "Thông báo thẩm định mô phỏng.pdf",
+                "sha256": "aa63fb9dfb9894727596262823be37d2e6f1344088996d2f5319849913ac3d9f",
+                "pdfSha256": "6632b769768ea112bb7755d94e61fb9d1af149f9896728c75f23ef9a1ca4bdc5",
+                "anchors": [
+                  {
+                    "page": 1,
+                    "mode": "text",
+                    "text": "Đề nghị làm rõ cụm “dụng cụ lọc” trong danh mục hàng hóa của đơn."
+                  }
+                ]
+              },
+              {
+                "id": "instructions",
+                "label": "Chỉ dẫn khách hàng mô phỏng",
+                "sha256": "a2bcbef3fbedd5ef2563cc63322f13932e95e9a6579ea999f34c429b8c19e855"
+              }
+            ]
+          }
+        ],
+        "demo": true
+      },
+      "pdf": "DT-DEMO-08.pdf",
+      "sha256": "807775594e58120c000c07ddbaa91cffd90f89294243fb7bf2f60ce5af5f5aec"
+    }
+  ],
+  "simulatedInterventions": [
+    {
+      "reference": "DT-DEMO-08",
+      "phase": 2,
+      "issues": {
+        "response": "held"
+      },
+      "mode": "scripted source-based correction"
+    }
+  ]
+}

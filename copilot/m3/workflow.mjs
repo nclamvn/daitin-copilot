@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import { readFileSync } from 'node:fs';
+import { modelConnection, schemaFormat } from '../model-connection.mjs';
 
 export const sections = Object.freeze({
   findings: 'Nội dung được yêu cầu làm rõ',
@@ -81,18 +81,17 @@ export function draftingFacts(matter) {
 
 const pdfRule = `\nVới thông báo PDF, các số hiệu và ngày đã xác nhận do hệ thống đặt ở phần thông tin Word. Không chèn số đơn, số thông báo, mã hồ sơ, ngày hoặc hạn vào ba phần thân văn bản. Phần findings chỉ tóm tắt điều cơ quan yêu cầu. Phần response viết trực tiếp đề nghị của chủ đơn, giữ nguyên cả cụm cũ và cụm thay thế nếu nguồn có. Không nhắc việc trình bày, soạn thảo, khách hàng vừa xác nhận hay cách viết. Không chèn ký hiệu giữ chỗ trừ "[Luật sư xác nhận]".`;
 const pdfForbidden = /(?:số thông báo|thông báo số|số đơn|mã hồ sơ|hạn phản hồi|hạn trả lời|được trình bày trực tiếp|chỉ dẫn mới nhất|\d{4}-\d{2}-\d{2}|\d{1,2}\/\d{1,2}\/\d{4})/iu;
+const pdfLegalCitation = /(?:^|[^\p{L}\p{N}])(?:điều\s+\d+|khoản\s+\d+|thông\s+tư\s+(?:số\s+)?\d+|nghị\s+định\s+(?:số\s+)?\d+|(?:luật|tcvl|tcvn)\s+(?:số\s+)?\d+)/iu;
 
-export function createDraftModel({
-  port = process.env.DAI_TIN_MODEL_PORT, model = process.env.DAI_TIN_MODEL_ID,
-  keyFile = process.env.DAI_TIN_MODEL_KEY_FILE
-} = {}) {
-  const number = Number(port);
-  if (!Number.isInteger(number) || number < 1024 || number > 65535 ||
-      !/^[a-zA-Z0-9_.:-]{1,80}$/.test(model ?? '') || !keyFile) {
-    throw new Error('M3 cần cấu hình mô hình cục bộ.');
+export function createDraftModel(options = {}) {
+  const connection = modelConnection(options);
+  if (!connection) {
+    if (process.env.DAI_TIN_MODEL_MODE !== 'disabled' && options.mode !== 'disabled') {
+      throw new Error('M3 cần cấu hình mô hình trên máy chủ.');
+    }
+    return async () => { throw new CaseError('AI chưa được cấu hình trên máy chủ. Có thể tiếp tục sửa tay và xem các bản đã lưu.', 503); };
   }
-  const key = readFileSync(keyFile, 'utf8').trim();
-  if (!/^[0-9a-f]{64}$/.test(key)) throw new Error('Khóa mô hình cục bộ chưa hợp lệ.');
+  const { model, key, endpoint, provider } = connection;
   let busy = false;
   return async ({ facts, sources, basis, base, targets, instruction, fromPDF = false }) => {
     if (busy) throw new CaseError('Mô hình đang xử lý. Thử lại sau khi lượt hiện tại kết thúc.', 409);
@@ -110,19 +109,19 @@ export function createDraftModel({
         { role: 'system', content: system + (fromPDF ? pdfRule : '') },
         { role: 'user', content: JSON.stringify({
           task: instruction,
-          facts, legalAnchors: basis.citations.map(({ id, locator, page }) => ({ id, locator, page })),
+          facts, legalAnchors: fromPDF ? [] : basis.citations.map(({ id, locator, page }) => ({ id, locator, page })),
           selectedDocuments: sources.map(({ id, label, text }) => ({ id, label, text })),
           requestedSections: targets.map(id => ({ id, title: sections[id], purpose: purpose[id], previous: base?.[id]?.text ?? null }))
         }) }
       ],
-      response_format: { type: 'json_schema', schema }
+      response_format: schemaFormat(connection, 'daitin_draft', schema)
     });
     busy = true;
     const start = performance.now();
     try {
-      const response = await fetch('http://127.0.0.1:' + number + '/v1/chat/completions', {
+      const response = await fetch(endpoint, {
         method: 'POST', redirect: 'error', signal: AbortSignal.timeout(90000),
-        headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key },
+        headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + await connection.credential() },
         body: payload
       });
       if (!response.ok) throw new Error('model request');
@@ -133,14 +132,15 @@ export function createDraftModel({
       const patch = Object.fromEntries(targets.map(id => [id, checkSection(draft[id], sources)]));
       const held = [];
       if (fromPDF) for (const [id, item] of Object.entries(patch)) {
-        if (pdfForbidden.test(item.text) || /\[[^\]]*\]/u.test(item.text.replaceAll('[Luật sư xác nhận]', ''))) {
+        if (pdfForbidden.test(item.text) || pdfLegalCitation.test(item.text) ||
+            /\[[^\]]*\]/u.test(item.text.replaceAll('[Luật sư xác nhận]', ''))) {
           patch[id] = { text: '[Luật sư xác nhận]', sources: item.sources };
           held.push(id);
         }
       }
       return {
         patch, run: {
-          model, inputSha256: hash(payload), elapsedMs: Math.round(performance.now() - start),
+          model, provider, inputSha256: hash(payload), elapsedMs: Math.round(performance.now() - start),
           ...(held.length ? { held } : {}),
           promptTokens: result.usage?.prompt_tokens ?? null, completionTokens: result.usage?.completion_tokens ?? null
         }

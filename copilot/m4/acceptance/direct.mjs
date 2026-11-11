@@ -63,6 +63,11 @@ const number = (state.releaseNumber ?? 0) + 1;
 state.approved ??= {};
 for (const key of pick(plan.approve, 'phần duyệt')) {
   if (needsReview(state.draft[key].text)) throw new Error('Hoàn tất phần chờ luật sư xác nhận trước khi duyệt.');
+  const previous = state.approved[key];
+  if (previous && previous.text === state.draft[key].text &&
+      JSON.stringify(previous.sources) === JSON.stringify(state.draft[key].sources)) {
+    throw new Error('Chỉ chọn phần mới hoặc có thay đổi để duyệt.');
+  }
   state.approved[key] = { ...state.draft[key], draft };
 }
 if (ids.some(key => !Object.hasOwn(state.approved, key))) {

@@ -23,7 +23,7 @@ if [ ! -x engine/llama-b12230/llama-server ]; then
   tar -xzf engine.tar.gz -C engine
 fi
 if [ ! -s "$model" ]; then
-  curl -q -fLsS --proto '=https' --proto-redir '=https' --max-time 240 --max-filesize 3100000000 \
+  curl -q -fLsS --proto '=https' --proto-redir '=https' --max-time "${DAI_TIN_DOWNLOAD_TIMEOUT:-240}" --max-filesize 3100000000 \
     'https://huggingface.co/lmstudio-community/Qwen3-4B-Instruct-2507-GGUF/resolve/main/Qwen3-4B-Instruct-2507-Q4_K_M.gguf' -o "$model.part"
   check_hash "$model_sha" "$model.part"
   mv "$model.part" "$model"

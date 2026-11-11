@@ -4,11 +4,23 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Đại Tín | Bàn hồ sơ</title>
-<link rel="stylesheet" href="/fonts.css">
-<link rel="stylesheet" href="/copilot/m3/workspace/app.css">
-<script type="module" src="/copilot/m3/workspace/app.mjs"></script>
+<link rel="stylesheet" href="../../../public/fonts.css">
+<link rel="stylesheet" href="./app.css">
+<script src="./entry.js" defer></script>
+<link rel="stylesheet" href="../../../public/brand.css">
+<link rel="icon" href="../../../public/brand/daitin.png" type="image/png">
 </head>
 <body>
+<section id="file-entry" class="file-entry" hidden>
+  <div class="file-entry-card">
+    <img class="company-logo" src="../../../public/brand/daitin.png" alt="DAITIN Lawyers and Consultants">
+    <h1>Mở Bàn hồ sơ</h1>
+    <p>Ứng dụng cần kết nối với dịch vụ trên máy để mở hồ sơ, tra cứu và lưu bản duyệt.</p>
+    <p>Mở tệp <strong>Khởi động Đại Tín.command</strong> trong bộ MVP. Khi cửa sổ khởi động báo sẵn sàng, chọn nút bên dưới.</p>
+    <a class="primary" href="http://127.0.0.1:4320/copilot/m3/workspace/">Mở Bàn hồ sơ Đại Tín</a>
+    <p class="file-entry-note">Đăng nhập bằng tài khoản pilot đã được cấp.</p>
+  </div>
+</section>
 <a class="skip" href="#workspace">Đến bản làm việc</a>
 <svg xmlns="http://www.w3.org/2000/svg" class="symbols" aria-hidden="true">
   <symbol id="i-case" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 11h18"/></symbol>
@@ -31,31 +43,37 @@
 </svg>
 <div class="shell">
   <aside class="sidebar" id="sidebar" aria-label="Hồ sơ Đại Tín">
-    <a class="brand" href="/copilot/"><div class="mark" aria-hidden="true"><svg viewBox="0 0 38 38"><path d="M7 9h10a10 10 0 0 1 0 20H7V9Z" fill="none" stroke="currentColor" stroke-width="2.1"/><path d="M4 19h10m7-10h12m-5 0v20" fill="none" stroke="currentColor" stroke-width="2.1"/></svg></div><div><strong>Đại Tín</strong><small>Bàn hồ sơ sở hữu trí tuệ</small></div></a>
+    <a class="brand company-brand" href="/copilot/m3/workspace/"><img class="company-logo" src="../../../public/brand/daitin.png" alt="DAITIN Lawyers and Consultants"><span class="company-caption">Bàn hồ sơ sở hữu trí tuệ</span></a>
     <button class="new-matter" id="new-matter" type="button"><svg class="icon"><use href="#i-plus"/></svg> Hồ sơ mới</button>
     <label class="search"><svg class="icon"><use href="#i-search"/></svg><input type="search" id="case-search" placeholder="Tìm hồ sơ" aria-label="Tìm hồ sơ"><kbd>/</kbd></label>
     <div class="case-group"><h2>Hồ sơ đã lưu</h2><span id="case-total">0</span></div>
     <nav id="matter-list" aria-label="Hồ sơ đã lưu"></nav>
     <p id="empty-search" class="rail-hint" hidden>Chưa tìm thấy hồ sơ.</p>
     <div class="side-foot">
+      <button class="nav-link" id="templates-admin" type="button" hidden><svg class="icon"><use href="#i-doc"/></svg>Phiên bản mẫu nội bộ</button>
+      <button class="nav-link" id="sign-out" type="button" hidden>Đăng xuất</button>
       <a class="nav-link" href="/copilot/"><svg class="icon"><use href="#i-grid"/></svg>Bàn tra cứu</a>
-      <div class="environment"><span class="environment-dot"></span> Pilot cục bộ <span class="env-index">M3</span></div>
+      <div class="environment"><span class="environment-dot"></span><span id="environment-label">Pilot cục bộ</span><span class="env-index">M3</span></div>
     </div>
   </aside>
   <div class="body">
     <header class="topbar">
       <div class="breadcrumbs"><button class="icon-btn mobile-rail" id="show-matters" type="button" aria-label="Mở danh sách hồ sơ" aria-expanded="false"><svg class="icon"><use href="#i-list"/></svg></button><span>Hồ sơ nhãn hiệu</span><svg class="icon"><use href="#i-next"/></svg><strong id="crumb">Hồ sơ mới</strong></div>
-      <div class="top-actions"><span class="saved" id="save-indicator" hidden><span></span> Đã lưu trên máy</span><button class="icon-btn" id="show-sources" type="button" aria-label="Mở hoặc đóng ngăn nguồn" aria-expanded="false" hidden><svg class="icon"><use href="#i-panel"/></svg></button><button class="release-top" id="release-preview" type="button" hidden><svg class="icon"><use href="#i-down"/></svg><span id="release-label"></span></button></div>
+      <div class="top-actions"><span class="saved" id="save-indicator" hidden><span></span> Đã lưu</span><button class="icon-btn" id="show-sources" type="button" aria-label="Mở hoặc đóng ngăn nguồn" aria-expanded="false" hidden><svg class="icon"><use href="#i-panel"/></svg></button><button class="release-top" id="release-preview" type="button" hidden><svg class="icon"><use href="#i-down"/></svg><span id="release-label"></span></button></div>
     </header>
     <main class="workspace case-empty" id="workspace">
       <div class="canvas">
         <div class="canvas-scroll" id="canvas-scroll">
           <header class="matter-head">
-            <div class="matter-context"><span class="jurisdiction">VN</span><span>Nhãn hiệu quốc gia</span><span class="middot">/</span><span>Phản hồi thẩm định</span></div>
+            <div class="matter-context"><span class="jurisdiction">VN</span><span>Nhãn hiệu quốc gia</span><span class="middot">/</span><span id="workspace-context">Phản hồi thẩm định</span></div>
             <div class="headline"><h1 id="matter-name">Hồ sơ mới</h1><span class="tag attention" id="matter-status" hidden></span></div>
             <div class="matter-meta" id="matter-meta" hidden></div>
           </header>
+          <section class="paper research-paper" id="research-paper" aria-label="Kết quả hỏi đáp pháp lý" hidden>
+            <div id="research-result" aria-live="polite"></div>
+          </section>
           <form class="paper intake" id="intake">
+            <div id="research-intake" class="research-binding" hidden></div>
             <h2>Bắt đầu từ thông báo thẩm định</h2>
             <p>Gắn thông báo và chỉ dẫn với đúng hồ sơ. Có thể kéo tệp vào ô nguồn tương ứng.</p>
             <div class="intake-grid">
@@ -82,6 +100,7 @@
             <button class="primary" type="submit">Lưu hồ sơ</button>
           </form>
           <section class="work" id="work" hidden>
+            <div id="research-saved" class="research-binding" hidden></div>
             <div class="work-toolbar">
               <div class="tabs" aria-label="Chế độ bàn làm việc">
                 <button id="tab-doc" type="button" aria-pressed="true"><svg class="icon"><use href="#i-doc"/></svg>Bản làm việc</button>
@@ -99,8 +118,24 @@
         <section id="composer-area" class="composer-area" aria-label="Giao việc cho Copilot">
           <p id="status" class="feedback" role="status" aria-live="polite" hidden></p>
           <form id="composer" class="composer">
+            <div class="composer-modes" id="composer-modes" aria-label="Chế độ ô nhập" hidden>
+              <button type="button" id="mode-ask" aria-pressed="false">Hỏi pháp lý</button>
+              <button type="button" id="mode-work" aria-pressed="true">Làm hồ sơ</button>
+            </div>
             <div class="composer-title"><span class="context-dot"></span><label for="task">Giao việc trong <strong id="composer-case">hồ sơ chưa lưu</strong></label><button class="preset" id="task-example" type="button">Gợi ý lệnh <svg class="icon"><use href="#i-next"/></svg></button></div>
             <textarea rows="2" id="task" maxlength="400" placeholder="Ví dụ: soạn bản phản hồi theo thông báo và chỉ dẫn khách hàng…"></textarea>
+            <fieldset class="research-facts" id="research-facts" hidden>
+              <legend>Dữ kiện đối chiếu</legend>
+              <div class="research-dates">
+                <label>Ngày đối chiếu hoặc dự kiến nộp<input type="date" id="ask-date"></label>
+                <label>Trạng thái hồ sơ<select id="ask-context"><option value="prepare">Tra cứu / chuẩn bị nộp</option><option value="case">Hồ sơ đã tiếp nhận</option></select></label>
+                <label id="ask-received-label" hidden>Ngày cơ quan tiếp nhận<input type="date" id="ask-received"></label>
+                <label id="ask-pending-label" hidden>Tình trạng tại mốc chuyển tiếp
+                  <select id="ask-pending"><option value="">Chưa xác nhận</option><option value="yes">Còn đang giải quyết</option><option value="no">Đã giải quyết</option></select>
+                </label>
+              </div>
+              <label class="check"><input type="checkbox" id="ask-anonymized"> Câu hỏi mô phỏng hoặc đã ẩn danh và được phép dùng.</label>
+            </fieldset>
             <div id="attached" class="attached" hidden></div>
             <div class="composer-controls"><div class="inputs">
               <button class="quiet attach" type="button" id="attach"><svg class="icon"><use href="#i-clip"/></svg><span>Thêm tệp</span></button>
@@ -109,7 +144,7 @@
               <button class="quiet small" type="button" id="task-scope" hidden>Phần cần sửa</button>
             </div><button class="send" type="submit" aria-label="Gửi yêu cầu"><svg class="icon"><use href="#i-arrow"/></svg></button></div>
           </form>
-          <p class="composer-foot"><svg class="icon"><use href="#i-lock"/></svg> Pilot cục bộ · Chỉ dùng dữ liệu mô phỏng hoặc đã ẩn danh và được phép</p>
+          <p class="composer-foot"><svg class="icon"><use href="#i-lock"/></svg><span id="pilot-note">Pilot · Chỉ dùng dữ liệu mô phỏng hoặc đã ẩn danh và được phép</span></p>
         </section>
       </div>
       <aside class="inspector" id="inspector" aria-label="Nguồn và phiên bản" hidden>

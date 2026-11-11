@@ -3,7 +3,6 @@ const fields = {
   noticeNumber: 'Số thông báo', noticeDate: 'Ngày thông báo', deadline: 'Hạn phản hồi ghi trên thông báo'
 };
 const dates = new Set(['receivedOn', 'noticeDate', 'deadline']);
-const limit = 4 * 1024 * 1024;
 
 function element(tag, text, style) {
   const item = document.createElement(tag);
@@ -28,6 +27,7 @@ async function post(path, body) {
 }
 
 export function createPDFIntake({ intake, run, message }) {
+  let limit = 4 * 1024 * 1024;
   const panel = document.getElementById('pdf-intake');
   const notice = intake.elements.notice;
   let state;
@@ -206,11 +206,14 @@ export function createPDFIntake({ intake, run, message }) {
   });
 
   return {
+    configureLimits({ maxPDFBytes } = {}) {
+      if (Number.isSafeInteger(maxPDFBytes) && maxPDFBytes > 0 && maxPDFBytes <= 4 * 1024 * 1024) limit = maxPDFBytes;
+    },
     hasPDF: () => Boolean(state),
     reset,
     open(file) {
       if (!intake.elements.anonymized.checked) return message('Xác nhận quyền dùng dữ liệu pilot trước khi đọc PDF.', true);
-      if (file.size > limit || file.name.length > 90) return message('Chọn PDF tối đa 4 MiB, tên tệp tối đa 90 ký tự.', true);
+      if (file.size > limit || file.name.length > 90) return message('Chọn PDF tối đa ' + (limit / (1024 * 1024)) + ' MiB, tên tệp tối đa 90 ký tự.', true);
       return run('Đang đọc PDF theo từng trang…', async () => {
         const expected = epoch;
         const content = await new Promise((resolve, reject) => {

@@ -1,8 +1,9 @@
 import { createHash, randomUUID } from 'node:crypto';
-import { appendFileSync, readFileSync } from 'node:fs';
+import { appendFileSync } from 'node:fs';
 import { performance } from 'node:perf_hooks';
 import { IntakeError, intakeContract } from './intake.mjs';
 import { bindIntakeFacts, buildBoundPlan, intakeQuestion } from './intake-facts.mjs';
+import { modelConnection, schemaFormat } from './model-connection.mjs';
 
 const schema = {
   type:'object',
@@ -35,19 +36,14 @@ Tools [] for stop decisions or when no lookup was requested. Tool kind nice for 
 full application number. Copy the lookup input literally from the request. Do not answer the legal question.
 Return only the JSON object.`;
 
-const modelLog = new URL('model-audit.jsonl',import.meta.url);
+const modelLog = () => process.env.DAI_TIN_MODEL_LOG ?? new URL('model-audit.jsonl',import.meta.url);
 const duration = start => Math.round(performance.now()-start);
 const safeCount = value => Number.isSafeInteger(value) && value>=0 ? value : null;
 
 export function createModelRouter({port,model,keyFile,catalog,apply}) {
-  if (port === undefined) return null;
-  const number=Number(port);
-  if (!Number.isInteger(number) || number<1024 || number>65535 || !/^[a-zA-Z0-9_.:-]{1,80}$/.test(model??'')) {
-    throw new Error('Cấu hình mô hình cục bộ chưa hợp lệ.');
-  }
-  const apiKey=readFileSync(keyFile,'utf8').trim();
-  if (!/^[0-9a-f]{64}$/.test(apiKey)) throw new Error('Khóa mô hình cục bộ chưa hợp lệ.');
-  const endpoint='http://127.0.0.1:'+number+'/v1/chat/completions';
+  const connection = modelConnection({port,model,keyFile});
+  if (!connection) return null;
+  const { endpoint, key: apiKey, provider } = connection;
   let busy=false;
   return async request => {
     if (typeof request!=='string' || !request.trim() || request.length>2500) {
@@ -69,12 +65,12 @@ export function createModelRouter({port,model,keyFile,catalog,apply}) {
       let response;
       try {
         response=await fetch(endpoint,{method:'POST',redirect:'error',signal:AbortSignal.timeout(45000),
-          headers:{'Content-Type':'application/json',Authorization:'Bearer '+apiKey},
+          headers:{'Content-Type':'application/json',Authorization:'Bearer '+await connection.credential()},
           body:JSON.stringify({model,temperature:0,seed:42,max_tokens:240,stream:false,
             messages:[{role:'system',content:system},{role:'user',content:JSON.stringify({request,explicitFacts:{jurisdiction:bound.jurisdiction,planned:bound.planned?.value??null,
               received:bound.receivedOn?.value??null,review:bound.reviewOn?.value??null,
               pendingAtJuly1:bound.status?.value??null,conflict:bound.conflict}})}],
-            response_format:{type:'json_schema',schema}})});
+            response_format:schemaFormat(connection,'daitin_intake',schema)})});
         if (!response.ok) throw new Error('Mô hình không sẵn sàng.');
         const envelope=await response.json();
         modelMs=duration(start);
@@ -102,11 +98,11 @@ export function createModelRouter({port,model,keyFile,catalog,apply}) {
           .filter(item=>item && intakeContract.tools.includes(item.kind) && typeof item.input==='string')
           .map(item=>({kind:item.kind,input:item.input.slice(0,120)})) : [],
         modelRun:{
-        id,model,provider:'llama.cpp-loopback',modelMs,elapsedMs:duration(start),usage,
+        id,model,provider,modelMs,elapsedMs:duration(start),usage,
         proposal:proposal?{decision:proposal.decision??null,workflow:proposal.workflow??null,
           reason:proposal.reason??null,tools:Array.isArray(proposal.tools)?proposal.tools.map(x=>x?.kind??null):[]}:null
       }};
-      appendFileSync(modelLog,JSON.stringify({at:new Date().toISOString(),...outcome.modelRun,
+      appendFileSync(modelLog(),JSON.stringify({at:new Date().toISOString(),...outcome.modelRun,
         requestDigest,finalDecision:result.disposition,reason:result.reason??null,
         actions:result.actions.map(a=>a.kind),sotDigest:catalog.releaseDigest})+'\n',{mode:0o600});
       return outcome;

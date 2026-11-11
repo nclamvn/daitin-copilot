@@ -3,9 +3,6 @@ __pycache__/
 *.py[cod]
 .venv/
 node_modules/
-.env
-.env.*
-!.env.example
 *.key
 *.pem
 *.gguf
@@ -16,3 +13,8 @@ node_modules/
 /copilot/model-audit.jsonl
 /copilot/incoming/
 /work/
+/.vercel/
+/dist/
+.env
+.env.*
+!.env.example

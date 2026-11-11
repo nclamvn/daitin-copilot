@@ -1,4 +1,5 @@
 import { createPDFIntake } from './pdf.mjs';
+import { createResearchUI, m5Request } from './research.mjs';
 
 const $ = id => document.getElementById(id);
 const endpoint = '/api/m3/cases';
@@ -28,6 +29,21 @@ let fileRole = null;
 let context = 0;
 let wordEnabled = false;
 const pdf = createPDFIntake({ intake, run, message });
+const research = createResearchUI({
+  node, button, run, showDialog, matter: () => matter, onMode: render,
+  async onSave(proof) {
+    saveState(await m5Request('cases/' + matter.id + '/research', { version: matter.version, research: proof }));
+  },
+  onNew(facts) {
+    intake.elements.asOf.value = facts.asOf;
+    intake.elements.receivedOn.value = facts.receivedOn;
+    updateCutover();
+    if (typeof facts.pendingAtCutover === 'boolean') intake.elements.pending.value = facts.pendingAtCutover ? 'yes' : 'no';
+  },
+  async onTemplate() {
+    if (matter) saveState(await (await request('/' + matter.id)).json());
+  }
+});
 
 function node(tag, text, className) {
   const item = document.createElement(tag);
@@ -144,13 +160,14 @@ function showPanel(open) {
   syncPanel();
 }
 
-function switchMatter(value) {
+function switchMatter(value, openNewForm = false) {
   context += 1;
   queued = null;
   pdf.reset(true);
   task.value = '';
   targets = [];
   matter = value;
+  research.switchMatter(value, openNewForm);
   tab = 'doc';
   pane = 'sources';
   compare = true;
@@ -175,9 +192,9 @@ function navigate(id) {
   if (busy) return;
   if (id === matter?.id) return toggleRail(false);
   const action = () => run('Đang mở hồ sơ…', async () => {
-    switchMatter(id ? await (await request('/' + id)).json() : null);
+    switchMatter(id ? await (await request('/' + id)).json() : null, !id);
   });
-  const dirty = queued || task.value.trim() || (!matter && [...intake.querySelectorAll('input, textarea')].some(field =>
+  const dirty = queued || research.pending() || task.value.trim() || (!matter && [...intake.querySelectorAll('input, textarea')].some(field =>
     field.type === 'checkbox' ? field.checked : field.value));
   if (!dirty) return action();
   showDialog('Chuyển hồ sơ', node('p', 'Ô giao việc hoặc thông tin tiếp nhận còn nội dung chưa lưu.'),
@@ -206,7 +223,7 @@ function renderCases() {
 
 function updateCutover() {
   const { receivedOn, asOf, pending } = intake.elements;
-  const needed = Boolean(receivedOn.value && receivedOn.value < '2026-07-01' && asOf.value >= '2026-07-01');
+  const needed = Boolean(receivedOn.value && receivedOn.value < research.cutover && asOf.value >= research.cutover);
   $('cutover').hidden = !needed;
   pending.required = needed;
   if (!needed) pending.value = '';
@@ -219,6 +236,7 @@ async function create() {
     reference: values.reference, title: values.title, asOf: values.asOf, receivedOn: values.receivedOn,
     pendingAtCutover: values.pending ? values.pending === 'yes' : null,
     anonymized: values.anonymized === 'on',
+    research: research.pending(),
     notice: { label: intake.elements.notice.dataset.label ?? 'Thông báo thẩm định', text: values.notice },
     instructions: { label: intake.elements.instructions.dataset.label ?? 'Chỉ dẫn khách hàng', text: values.instructions }
   };
@@ -462,12 +480,24 @@ function editSection(key) {
   field.value = latestDraft().sections[key].text;
   const label = node('label', sections[key]);
   label.append(field);
-  form.append(label, node('button', 'Lưu vào bản nháp', 'primary'));
+  const sources = node('fieldset');
+  sources.append(node('legend', 'Nguồn của phần sửa'));
+  const choices = matter.sources.map(item => {
+    const input = node('input');
+    input.type = 'checkbox';
+    input.value = item.id;
+    input.checked = latestDraft().sections[key].sources.includes(item.id);
+    const option = node('label', undefined, 'check');
+    option.append(input, document.createTextNode(item.label));
+    sources.append(option);
+    return input;
+  });
+  form.append(label, sources, node('button', 'Lưu vào bản nháp', 'primary'));
   form.addEventListener('submit', event => {
     event.preventDefault();
     if (!field.value.trim()) return;
     run('Đang lưu phần sửa…', async () => {
-      await mutate('edit', { edits: { [key]: field.value } });
+      await mutate('edit', { edits: { [key]: field.value }, sources: { [key]: choices.filter(item => item.checked).map(item => item.value) } });
       dialog.close();
       return 'Đã lưu bản nháp ' + latestDraft().number + ' để rà soát.';
     });
@@ -529,7 +559,7 @@ function renderDocument() {
       task.focus();
     }));
     if (changed && approved) actions.append(button('Giữ bản cũ', () => decide(key, 'keep')));
-    if (changed && !missing) actions.append(button('Duyệt phần này', () => decide(key, 'approve'), 'primary small'));
+    if (changed && !missing && research.canApprove) actions.append(button('Duyệt phần này', () => decide(key, 'approve'), 'primary small'));
     controls.append(references, actions);
     section.append(controls);
     return section;
@@ -633,6 +663,8 @@ function preview(release) {
   const evidence = node('article');
   evidence.append(node('h3', 'Căn cứ đối chiếu'),
     ...release.basis.citations.map(item => node('p', item.locator + ' · ' + item.document + ' · trang ' + item.page)));
+  if (release.research) evidence.append(node('p', release.research.template.title + ' · Bản ' +
+    release.research.template.version), button('Xem căn cứ của bản duyệt', () => research.preview(release.research)));
   const download = word => button(word ? 'Tải Word bản ' + release.number : 'Tải bản duyệt ' + release.number, () => run('Đang tải bản đã duyệt…', async () => {
     const response = word ? await fetch('/api/m4/cases/' + id + '/word/' + release.number + '/daitin-v2')
       : await request('/' + id + '/release/' + release.number);
@@ -683,22 +715,26 @@ function showTab(next) {
 function render() {
   renderCases();
   const active = Boolean(matter);
-  intake.hidden = active;
-  $('work').hidden = !active;
-  $('crumb').textContent = matter?.reference ?? 'Hồ sơ mới';
+  intake.hidden = active || research.asking;
+  $('work').hidden = !active || research.asking;
+  $('crumb').textContent = matter?.reference ?? (research.asking ? 'Tra cứu' : 'Hồ sơ mới');
   $('composer-case').textContent = matter?.reference ?? 'hồ sơ chưa lưu';
-  $('matter-name').textContent = matter?.title ?? 'Hồ sơ mới';
+  $('matter-name').textContent = research.asking ? 'Hỏi pháp lý' : matter?.title ?? 'Hồ sơ mới';
   $('matter-meta').hidden = !active;
-  $('matter-status').hidden = !active;
+  $('matter-status').hidden = !active || research.asking;
+  $('workspace-context').textContent = research.asking ? 'Tra cứu căn cứ và mẫu' : 'Phản hồi thẩm định';
   $('save-indicator').hidden = !active;
   $('show-sources').hidden = !active;
   $('release-preview').hidden = !latestRelease();
   $('workspace').classList.toggle('case-empty', !active);
-  task.placeholder = latestDraft() ? 'Ví dụ: cập nhật phản hồi theo chỉ dẫn mới…' : 'Ví dụ: soạn phản hồi theo thông báo và chỉ dẫn khách hàng…';
+  task.placeholder = research.asking ? 'Ví dụ: gia hạn nhãn hiệu dùng biểu mẫu nào?' :
+    latestDraft() ? 'Ví dụ: cập nhật phản hồi theo chỉ dẫn mới…' : 'Ví dụ: soạn phản hồi theo thông báo và chỉ dẫn khách hàng…';
   syncPanel();
   renderComposer();
+  research.render();
   if (!active) return;
-  $('matter-meta').textContent = 'Ngày tiếp nhận ' + displayDate(matter.facts.receivedOn) + '  ·  Ngày đối chiếu ' + displayDate(matter.facts.asOf);
+  $('matter-meta').textContent = 'Ngày tiếp nhận ' + displayDate(matter.facts.receivedOn) + '  ·  Ngày đối chiếu ' + displayDate(matter.facts.asOf) +
+    (matter.demo ? ' · Hồ sơ mô phỏng' : '');
   const count = pendingCount();
   $('matter-status').textContent = !latestDraft() ? 'Đã lưu nguồn' : count ? 'Chờ duyệt ' + count + ' phần' : 'Đã rà soát các phần';
   $('matter-status').classList.toggle('attention', count > 0);
@@ -709,6 +745,11 @@ function render() {
 }
 
 $('new-matter').addEventListener('click', () => navigate(null));
+$('sign-out').addEventListener('click', () => run('Đang đăng xuất…', async () => {
+  const response = await fetch('/api/m5/session/logout', { method: 'POST' });
+  if (!response.ok) throw new Error('Chưa đăng xuất được. Thử lại.');
+  location.reload();
+}));
 $('case-search').addEventListener('input', renderCases);
 $('show-matters').addEventListener('click', () => toggleRail(!$('sidebar').classList.contains('mobile-open')));
 $('show-sources').addEventListener('click', () => showPanel(!(smallScreen.matches ? mobilePanel : desktopPanel)));
@@ -723,6 +764,7 @@ $('task-scope').addEventListener('click', () => { if (!busy) scopeDialog(); });
 $('paste').addEventListener('click', () => { if (!busy) pasteSource(); });
 $('task-example').addEventListener('click', () => {
   if (busy) return;
+  if (research.asking) return research.preset();
   if (task.value.trim()) return task.focus();
   task.value = latestDraft() ? 'Cập nhật phần phản hồi theo chỉ dẫn đã chọn, giữ nguyên phạm vi các phần khác.'
     : 'Soạn bản phản hồi theo thông báo và chỉ dẫn của khách hàng.';
@@ -730,7 +772,7 @@ $('task-example').addEventListener('click', () => {
   renderComposer();
   task.focus();
 });
-$('composer').addEventListener('submit', event => { event.preventDefault(); sendTask(); });
+$('composer').addEventListener('submit', event => { event.preventDefault(); if (research.asking) research.submit(); else sendTask(); });
 $('attach').addEventListener('click', () => {
   if (busy) return;
   if (matter) filePicker(null);
@@ -768,6 +810,7 @@ for (const target of [$('composer'), ...intake.querySelectorAll('[data-intake]')
   target.addEventListener('drop', event => {
     event.preventDefault();
     target.classList.remove('drag');
+    if (research.asking) return message('Chọn Làm hồ sơ để gắn tệp.', true);
     if (event.dataTransfer.files.length > 1) return message('Thêm từng tệp để gắn với đúng vai trò trong hồ sơ.', true);
     receiveFile(event.dataTransfer.files[0], target.dataset.intake ?? null);
   });
@@ -784,12 +827,20 @@ document.addEventListener('keydown', event => {
 });
 
 await run('Đang tải danh sách hồ sơ…', async () => {
-  const [listing, capability] = await Promise.all([request(), fetch('/api/m4/status')]);
+  const [listing, capability, m5] = await Promise.all([request(), fetch('/api/m4/status'), fetch('/api/m5/status')]);
   cases = await listing.json();
   wordEnabled = capability.ok;
   if (wordEnabled) {
+    pdf.configureLimits(await capability.clone().json());
     $('notice-file-label').querySelector('span').textContent = 'Chọn PDF hoặc TXT/MD';
     document.querySelector('.env-index').textContent = 'M4';
+  }
+  if (m5.ok) {
+    const account = await m5.json();
+    research.enable(account, !new URL(location.href).searchParams.has('case'));
+    $('environment-label').textContent = account.web ? 'Pilot trên máy chủ' : 'Pilot cục bộ';
+    if (account.model === null) $('pilot-note').textContent = 'AI chưa bật trên máy chủ. Có thể tra cứu, sửa tay và xuất bản đã duyệt.';
+    $('sign-out').hidden = false;
   }
   render();
   const id = new URL(location.href).searchParams.get('case');

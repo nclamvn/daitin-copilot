@@ -129,7 +129,8 @@ const normalizeTerms = terms => terms.map(normalize);
 const provisionTerms = Object.fromEntries(Object.entries(provisions).map(([id, row]) => [id, normalizeTerms(row.terms)]));
 const procedureTerms = Object.fromEntries(Object.entries(procedures).map(([id, row]) => [id, normalizeTerms(row.terms)]));
 const matches = (text, term) => (' ' + text + ' ').includes(' ' + term + ' ');
-const externalScope = /\b(madrid|wipo|pct|sang che|kieu dang|ban quyen|quyen tac gia|singapore|thai lan|malaysia|campuchia|indonesia|philippines|hoa ky|trung quoc|nhat ban|han quoc|chau au|eu|uspto|euipo|my|lao|uc|anh quoc|nuoc ngoai|quoc te|international|china|japan|korea|thailand|patent|copyright)\b/;
+// "Mỹ" is a country cue except in these ordinary Vietnamese goods descriptions.
+const externalScope = /\b(madrid|wipo|pct|sang che|kieu dang|ban quyen|quyen tac gia|singapore|thai lan|malaysia|campuchia|indonesia|philippines|hoa ky|trung quoc|nhat ban|han quoc|chau au|eu|uspto|euipo|my(?! (?:pham|nghe|thuat)\b)|lao|uc|anh quoc|nuoc ngoai|quoc te|international|china|japan|korea|thailand|patent|copyright)\b/;
 const highRiskIntent = /\b(tinh han|bao lau|thoi han|han cuoi|qua han|het han|mat quyen|phi|le phi|bao nhieu|chi phi|bao ho duoc khong|kha nang dang ky|co dang ky duoc|xam pham|tranh chap|tra cuu trung|doi chung|tinh trang don|da cap chua|dang xu ly den dau|deadline|fee|cost|infringement|how long|how much|how many|expiration|expired|validity of my|case status|application status)\b/;
 
 export function search(query, on = checkedThrough) {

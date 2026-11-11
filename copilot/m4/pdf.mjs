@@ -1,22 +1,24 @@
 import { execFile } from 'node:child_process';
 import { bounded, CaseError, hash } from '../m3/workflow.mjs';
 
-export const maxPDF = 4 * 1024 * 1024;
+export const pdfEngine = process.env.DAI_TIN_PDF_ENGINE === 'pdfjs' || process.env.VERCEL ? 'pdfjs' : 'poppler';
+export const maxPDF = (pdfEngine === 'pdfjs' ? 2 : 4) * 1024 * 1024;
 export const maxRequest = Math.ceil(maxPDF / 3) * 4 + 32768;
 const maxPages = 12;
 let active = 0;
 const spaces = value => value.normalize('NFC').replace(/\s+/gu, ' ').trim();
+const sizeLabel = (maxPDF / (1024 * 1024)) + ' MiB';
 
 export function pdfInput(body) {
   if (body?.anonymized !== true) throw new CaseError('Xác nhận PDF mô phỏng hoặc đã ẩn danh và được phép.');
   const encoded = body.content;
   if (typeof encoded !== 'string' || encoded.length > Math.ceil(maxPDF / 3) * 4 ||
       !/^[A-Za-z0-9+/]+={0,2}$/.test(encoded) || encoded.length % 4) {
-    throw new CaseError('Chọn PDF hợp lệ, tối đa 4 MiB.');
+    throw new CaseError('Chọn PDF hợp lệ, tối đa ' + sizeLabel + '.');
   }
   const bytes = Buffer.from(encoded, 'base64');
   if (bytes.length > maxPDF || !/^%PDF-[0-9]\.[0-9]/.test(bytes.subarray(0, 8).toString('ascii'))) {
-    throw new CaseError('Tệp phải là PDF hợp lệ, tối đa 4 MiB.');
+    throw new CaseError('Tệp phải là PDF hợp lệ, tối đa ' + sizeLabel + '.');
   }
   return bytes;
 }
@@ -61,6 +63,10 @@ function isoDate(text) {
 }
 
 export async function inspectPDF(bytes) {
+  if (pdfEngine === 'pdfjs') {
+    const { inspectWithPDFJS } = await import('./pdf-js.mjs');
+    return inspectPages(bytes, await inspectWithPDFJS(bytes));
+  }
   const info = (await poppler('pdfinfo', ['-'], bytes, 32768)).toString('utf8');
   const total = Number(/^Pages:\s+(\d+)$/m.exec(info)?.[1]);
   if (!Number.isInteger(total) || total < 1 || total > maxPages) throw new CaseError('PDF cần có từ 1 đến 12 trang.', 422);
@@ -69,6 +75,10 @@ export async function inspectPDF(bytes) {
   const splits = extracted.split('\f');
   if (splits.length !== total + 1 || splits.at(-1).trim()) throw new CaseError('Không đối chiếu được số trang PDF.', 422);
   const pages = splits.slice(0, total).map((text, index) => ({ page: index + 1, text: text.normalize('NFC').trim() }));
+  return inspectPages(bytes, pages);
+}
+
+function inspectPages(bytes, pages) {
   const fields = Object.fromEntries(Object.keys(fieldNames).map(key => [key, []]));
   for (const page of pages) {
     for (const raw of page.text.split('\n')) {
@@ -88,6 +98,10 @@ export async function inspectPDF(bytes) {
 
 export async function renderPage(bytes, page, total) {
   if (!Number.isInteger(page) || page < 1 || page > total || page > maxPages) throw new CaseError('Chọn trang PDF hợp lệ.');
+  if (pdfEngine === 'pdfjs') {
+    const { renderWithPDFJS } = await import('./pdf-js.mjs');
+    return renderWithPDFJS(bytes, page);
+  }
   return poppler('pdftoppm', ['-f', String(page), '-l', String(page), '-scale-to', '1250', '-png', '-singlefile'], bytes, 7 * 1024 * 1024);
 }
 

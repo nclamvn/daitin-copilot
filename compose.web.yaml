@@ -1,0 +1,56 @@
+services:
+  app:
+    image: daitin-web-mvp:latest
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    environment:
+      DAI_TIN_PUBLIC_ORIGIN: https://${DAITIN_DOMAIN:?Set DAITIN_DOMAIN in .env}
+      DAI_TIN_MODEL_MODE: ${DAI_TIN_MODEL_MODE:-disabled}
+      DAI_TIN_MODEL_ENDPOINT: ${DAI_TIN_MODEL_ENDPOINT:-}
+      DAI_TIN_MODEL_ID: ${DAI_TIN_MODEL_ID:-not-configured}
+      DAI_TIN_MODEL_KEY_FILE: /data/model.key
+    volumes:
+      - daitin_data:/data
+    expose:
+      - "4320"
+    mem_limit: 768m
+    cpus: 2
+    pids_limit: 80
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    logging:
+      driver: json-file
+      options:
+        max-size: "5m"
+        max-file: "3"
+  web:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    environment:
+      DAITIN_DOMAIN: ${DAITIN_DOMAIN:?Set DAITIN_DOMAIN in .env}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      app:
+        condition: service_healthy
+    logging:
+      driver: json-file
+      options:
+        max-size: "5m"
+        max-file: "3"
+volumes:
+  daitin_data:
+  caddy_data:
+  caddy_config:

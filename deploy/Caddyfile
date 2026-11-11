@@ -1,0 +1,8 @@
+{$DAITIN_DOMAIN} {
+    encode zstd gzip
+    reverse_proxy app:4320 {
+        transport http {
+            response_header_timeout 100s
+        }
+    }
+}

@@ -1,0 +1,1 @@
+Khách hàng xác nhận thay cụm dự kiến thành “bìa giấy lưu hồ sơ”. Giữ bảng đối chiếu danh mục. Có thể bổ sung bản sao thông báo vào danh sách tài liệu nếu luật sư duyệt mục này.

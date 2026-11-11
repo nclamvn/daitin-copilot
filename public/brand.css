@@ -1,0 +1,14 @@
+.company-logo {
+  display:block; width:174px; max-width:100%; height:auto; object-fit:contain;
+  padding:9px 10px; background:#fff; border:1px solid #d7e0dc; border-radius:5px;
+}
+.company-brand { flex-direction:column; align-items:flex-start; gap:8px; text-decoration:none; }
+.company-caption { display:block; font-size:10px; line-height:1.5; color:#b9d0ce; font-weight:400; }
+.sidebar .company-brand { padding:0 0 22px; }
+.sidebar .company-logo { width:100%; }
+.rail .company-brand { padding-inline:0; }
+.identity .company-logo { width:224px; padding:0; border:0; border-radius:0; margin-bottom:12px; }
+.file-entry-card > .company-logo { width:210px; padding:0; border:0; margin-bottom:24px; }
+.desk-brand .company-logo { width:180px; }
+.desk-brand .company-caption { width:auto; height:auto; border:0; padding:0; }
+.signature .company-logo { width:165px; }

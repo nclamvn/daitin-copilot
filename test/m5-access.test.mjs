@@ -1,0 +1,31 @@
+import assert from 'node:assert/strict';
+import { test } from 'node:test';
+import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { pilotAccess } from '../copilot/m5/access.mjs';
+
+test('M5 cookie login retains group, role, logout and credential revocation', t => {
+  const root = resolve('work');
+  mkdirSync(root, { recursive: true });
+  const dir = mkdtempSync(resolve(root, 'login-check-'));
+  t.after(() => rmSync(dir, { recursive: true, force: true }));
+  const path = resolve(dir, 'accounts.json');
+  const account = { name: 'lawyer', group: 'trademark', role: 'reviewer', key: 'a'.repeat(64) };
+  const save = value => writeFileSync(path, JSON.stringify([value]), { mode: 0o600 });
+  save(account);
+  const access = pilotAccess(path);
+  assert.equal(access.login('lawyer', 'b'.repeat(64)), null);
+  const cookie = access.login(account.name, account.key);
+  assert.match(cookie, /HttpOnly; SameSite=Strict/);
+  const req = { headers: { cookie: cookie.split(';')[0] } };
+  assert.deepEqual(access(req), { name: account.name, group: account.group, role: account.role });
+  save({ ...account, disabled: true });
+  assert.equal(access(req), null);
+  save({ ...account, key: 'c'.repeat(64) });
+  assert.equal(access(req), null);
+  save(account);
+  access.logout(req);
+  assert.equal(access(req), null);
+  const basic = { headers: { authorization: 'Basic ' + Buffer.from(account.name + ':' + account.key).toString('base64') } };
+  assert.deepEqual(access(basic), { name: account.name, group: account.group, role: account.role });
+});
