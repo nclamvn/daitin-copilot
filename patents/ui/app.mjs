@@ -12,6 +12,8 @@ const section = key => state.matter?.sections?.[key];
 const pinId = item => item.record.id;
 const isClaim = record => record.kind === 'patent' && (Boolean(record.claims?.length) || record.locator?.section === 'claim' || Number.isInteger(record.locator?.claim));
 const isOCR = item => /ocr.*unreviewed|unreviewed.*ocr/i.test(item.record.textFidelity ?? item.source.textFidelity ?? '');
+const extractionWarning = item => item.record.knownExtractionWarning || item.source.knownExtractionWarning;
+const needsOriginal = item => Boolean(item.record.requiresOriginalCheck || item.source.requiresOriginalCheck);
 const publicationKey = record => typeof record?.publicationIdentifier === 'string' ? record.publicationIdentifier.toUpperCase().replace(/[^A-Z0-9]/g, '') : '';
 function samePublication(a, b) { return Boolean(a && b && ((a.sourceId && a.sourceId === b.sourceId) || (publicationKey(a) && publicationKey(a) === publicationKey(b)))); }
 function d1Blocked(id, claimId = state.claimRecordId) { return samePublication(state.selected.get(id)?.record, state.selected.get(claimId)?.record); }
@@ -71,7 +73,8 @@ function badges(item) {
   const label = role(item.source, item.record);
   wrap.append(node('span', kindLabels[item.record.kind] ?? 'Đoạn nguồn'), node('span', label, label.includes('thứ cấp') ? 'secondary' : ''), node('span', item.record.jurisdiction ?? item.source.jurisdiction ?? 'Chưa rõ phạm vi'), node('span', locator(item.record)));
   if (isOCR(item)) wrap.append(node('span', 'OCR, cần đối chiếu bản gốc', 'ocr-warning'));
-  if (item.source.knownExtractionWarning) wrap.append(node('span', 'Bản trích có lỗi, chưa dùng để duyệt', 'extraction-warning'));
+  else if (needsOriginal(item)) wrap.append(node('span', 'Cần đối chiếu bản gốc', 'ocr-warning'));
+  if (extractionWarning(item)) wrap.append(node('span', 'Bản trích có lỗi, chưa dùng để duyệt', 'extraction-warning'));
   return wrap;
 }
 function evidenceDates(item) {
@@ -137,6 +140,7 @@ function renderEvidence() {
   for (const [id, item] of state.selected) {
     const row = node('div', undefined, 'selected-item' + (state.detail === id ? ' active' : ''));
     row.append(button(item.record.title ?? item.source.title, () => { state.detail = id; renderEvidence(); }, ''), node('p', locator(item.record) + ' · ' + role(item.source, item.record), 'source-meta'));
+    if ((state.matter?.derivedContextRecordIds ?? []).includes(id)) row.append(node('span', 'Yêu cầu dẫn chiếu', 'derived-claim'), node('p', 'Ngữ cảnh được bổ sung theo dẫn chiếu trong yêu cầu đang xét.', 'source-meta'));
     if (item.record.kind === 'patent') {
       const roles = node('div', undefined, 'evidence-roles');
       if (state.claimRecordId === id) roles.append(node('span', 'Yêu cầu đang xét', 'claim-role'));
@@ -155,7 +159,8 @@ function renderEvidence() {
       row.append(roles);
     }
     if (isOCR(item)) row.append(node('p', 'OCR, cần đối chiếu bản gốc', 'ocr-caption'));
-    if (item.source.knownExtractionWarning) row.append(node('p', 'Bản trích có vấn đề đã được ghi nhận. Cần thay nguồn trước khi giao AI hoặc duyệt.', 'extraction-caption'));
+    else if (needsOriginal(item)) row.append(node('p', 'Cần đối chiếu bản gốc trước khi sử dụng.', 'ocr-caption'));
+    if (extractionWarning(item)) row.append(node('p', 'Bản trích có vấn đề đã được ghi nhận. Cần thay nguồn trước khi giao AI hoặc duyệt.', 'extraction-caption'));
     row.append(button('Bỏ khỏi lựa chọn', () => { state.selected.delete(id); state.d1RecordIds.delete(id); if (state.claimRecordId === id) state.claimRecordId = null; selectedChanged(); }, 'remove-source'));
     list.append(row);
   }
@@ -165,7 +170,8 @@ function renderEvidence() {
     const block = node('section', undefined, 'evidence-detail');
     block.append(node('h3', item.record.title ?? item.source.title), badges(item), node('pre', item.record.text));
     if (isOCR(item)) block.insertBefore(node('p', 'Lớp chữ OCR chưa được rà soát. Mở trang gốc để xác nhận trước khi dùng đoạn này trong lập luận.', 'evidence-warning'), block.querySelector('pre'));
-    if (item.source.knownExtractionWarning) block.insertBefore(node('p', typeof item.source.knownExtractionWarning === 'string' ? item.source.knownExtractionWarning : 'Bản trích có lỗi đã biết, cần được sửa hoặc thay bằng nguồn phù hợp trước khi duyệt.', 'extraction-caption'), block.querySelector('pre'));
+    else if (needsOriginal(item)) block.insertBefore(node('p', 'Đoạn này cần được đối chiếu với bản gốc trước khi sử dụng.', 'evidence-warning'), block.querySelector('pre'));
+    if (extractionWarning(item)) block.insertBefore(node('p', typeof extractionWarning(item) === 'string' ? extractionWarning(item) : 'Bản trích có lỗi đã biết, cần được sửa hoặc thay bằng nguồn phù hợp trước khi duyệt.', 'extraction-caption'), block.querySelector('pre'));
     const links = node('div', undefined, 'source-links');
     if (capturedURL(item)) links.append(safeLink('Bản nguồn đã lưu', capturedURL(item)));
     links.append(safeLink('Nguồn gốc trực tuyến', originalURL(item)));
@@ -208,6 +214,12 @@ function addMatrixRow(row = {}, dirty = true) {
   const columns = node('div', undefined, 'matrix-comparison');
   const claim = node('div', undefined, 'matrix-cell'); claim.append(node('h3', 'Yêu cầu bảo hộ'));
   const cq = field('Đoạn nguyên văn', row.claimQuote); cq.input.dataset.field = 'claimQuote'; cq.input.maxLength = 1400; cq.input.className = 'quote'; claim.append(cq.wrap);
+  if (row.claimQuoteRecordId) {
+    const evidence = state.matter?.pinnedEvidence.find(item => item.record.id === row.claimQuoteRecordId);
+    const origin = node('p', (row.claimQuoteRecordId === state.matter?.claimRecordId ? 'Yêu cầu đang xét: ' : 'Yêu cầu dẫn chiếu: ') + (evidence?.record.title ?? row.claimQuoteRecordId), 'quote-origin');
+    origin.title = row.claimQuoteRecordId; claim.append(origin);
+    cq.input.addEventListener('input', () => { origin.textContent = 'Trích đoạn đã sửa; nguồn sẽ được kiểm lại khi lưu.'; });
+  }
   const d1 = node('div', undefined, 'matrix-cell'); d1.append(node('h3', 'Tài liệu đối chứng D1'));
   const d1Label = node('label', 'Đoạn nguồn đã lưu'); const select = node('select'); select.dataset.field = 'd1RecordId';
   const noEvidence = node('option', 'Chưa xác định đoạn tương ứng'); noEvidence.value = ''; select.append(noEvidence);
@@ -313,7 +325,7 @@ async function propose(targets) {
 }
 function refreshControls() {
   const active = Boolean(state.matter), busy = state.busy, inputsDirty = state.dirty.inputs || Boolean(state.matter?.sourceChanged);
-  const invalidSource = Boolean(state.matter?.pinnedEvidence.some(item => item.source.knownExtractionWarning));
+  const invalidSource = Boolean(state.matter?.pinnedEvidence.some(item => extractionWarning(item)));
   document.querySelector('.composer-area').hidden = !active || state.view === 'history';
   for (const view of views.slice(1)) $('tab-' + view).disabled = !active;
   $('task').disabled = !active || busy || !state.status?.model;

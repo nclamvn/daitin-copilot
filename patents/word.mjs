@@ -42,7 +42,7 @@ function zip(parts) {
   return Buffer.concat([...local, directory, end]);
 }
 
-function matrix(rows) {
+function matrix(rows, targetClaimId) {
   const widths = [1460, 2220, 2420, 2786];
   const state = { disclosed: 'Có đoạn mô tả liên quan', not_found: 'Chưa thấy trong đoạn được chọn', uncertain: 'Cần làm rõ' };
   const cell = (text, index, header = false) => '<w:tc><w:tcPr><w:tcW w:w="' + widths[index] + '" w:type="dxa"/>' +
@@ -55,7 +55,7 @@ function matrix(rows) {
     '</w:tblBorders><w:tblCellMar><w:top w:w="90" w:type="dxa"/><w:bottom w:w="90" w:type="dxa"/><w:left w:w="90" w:type="dxa"/><w:right w:w="90" w:type="dxa"/></w:tblCellMar></w:tblPr>' +
     '<w:tblGrid>' + widths.map(width => '<w:gridCol w:w="' + width + '"/>').join('') + '</w:tblGrid>' +
     row(['Đặc điểm', 'Trích yêu cầu bảo hộ', 'Đoạn trích từ D1', 'Nhận định cần rà soát'], true) + rows.map(item =>
-      row([item.feature, item.claimQuote, (item.d1RecordId ? '[' + item.d1RecordId + ']\n' : '') + (item.d1Quote || 'Chưa có đoạn chứng cứ.'),
+      row([item.feature, (item.claimQuoteRecordId && item.claimQuoteRecordId !== targetClaimId ? '[' + item.claimQuoteRecordId + '] Ngữ cảnh dẫn chiếu\n' : '') + item.claimQuote, (item.d1RecordId ? '[' + item.d1RecordId + ']\n' : '') + (item.d1Quote || 'Chưa có đoạn chứng cứ.'),
         state[item.assessment] + '\n' + item.analysis + (item.missing ? '\nCần bổ sung: ' + item.missing : '')])).join('') + '</w:tbl>';
 }
 
@@ -81,7 +81,7 @@ export function makePatentWord(release) {
   let document = parts['word/document.xml'];
   const slot = '<w:p><w:pPr><w:pStyle w:val="Normal"/></w:pPr><w:r>' + run(marker) + '</w:r></w:p>';
   if (!document.includes(slot)) throw new CaseError('Mẫu Word đã đổi; chưa thể đặt ma trận đúng vị trí.', 409);
-  document = document.replace(slot, matrix(release.sections.matrix.rows));
+  document = document.replace(slot, matrix(release.sections.matrix.rows, release.claimRecordId));
   for (const [oldText, newText] of [
     ['Văn bản phản hồi thông báo', 'Phân tích hồ sơ sáng chế'], ['thẩm định nhãn hiệu', 'Yêu cầu bảo hộ và đối chứng D1'],
     ['Nhãn\u00a0hiệu', 'Hồ sơ'], ['Nội dung được yêu cầu làm rõ', 'Phạm vi và yêu cầu bảo hộ'],

@@ -12,7 +12,7 @@ M6 có trang sáng chế mặc định, thư mục nguồn có bộ lọc/tìm s
 
 ## Bằng chứng local
 
-- Toàn bộ 95/95 kiểm tra đạt, không có ca lỗi hoặc bị bỏ qua; build đạt; kiểm tra dependency production không có cảnh báo tại thời điểm kiểm.
+- Toàn bộ 98/98 kiểm tra đạt, không có ca lỗi hoặc bị bỏ qua; build đạt; kiểm tra dependency production không có cảnh báo tại thời điểm kiểm.
 - Contractor độc lập đọc raw/extract/catalog, băm 43 bản gốc và 43 bản trích và đối chiếu 1.874 span, không gọi validator của Builder. Đúng hash/span không xác minh ngữ nghĩa.
 - Data tests có rebuild offline byte-identical và các mutation về hash, span, vai trò, ngày, dependency. Cảnh báo OCR không bị nâng thành xác minh pháp lý.
 - Qua API thật trên Node local: đăng nhập, tra cứu, ngày tương lai cần dữ kiện; trích giả/sai vai trò trả 422; tab cũ trả 409; editor duyệt trả 403; chưa duyệt chưa xuất Word; hai phiên đăng nhập cùng hồ sơ; thay chỉ dẫn giữ duyệt ma trận và bỏ duyệt phản hồi; Word 1 không đổi, Word 2 mới; nhóm khác không đọc/xuất hồ sơ; nguồn riêng không nằm trong global catalog. Nội dung sửa/duyệt local do script mô phỏng, AI bị tắt trong lượt local này.
@@ -24,6 +24,8 @@ M6 có trang sáng chế mặc định, thư mục nguồn có bộ lọc/tìm s
 1. OCR VN47032 trang PDF 18 đọc sai từ kỹ thuật và đổi glyph đơn vị. Giữ OCR gốc, ghi knownExtractionWarning, chặn dùng bản trích hỏng đã biết khi AI/phê duyệt; không tự sửa thành nguồn đã được luật sư xác nhận.
 2. D1 từng có thể là claim khác của cùng công bố. Cổng mới chặn cùng source ID hoặc cùng publicationIdentifier tường minh; không tự suy luận quan hệ họ khi thiếu dữ liệu.
 3. Claim VN42110 chứa form feed U+000C qua trang, từng tạo XML Word lỗi. Bộ xuất mới chuyển dấu phân trang thành ngắt dòng cấu trúc, ghi chú thay đổi trình bày, giữ nguyên dữ liệu đã lưu; ký tự XML không hợp lệ khác bị từ chối. Đồng thời claim có nhiễu đầu trang OCR được đánh dấu lỗi đã biết và không qua cổng AI/duyệt; test định dạng sử dụng bản sao kiểm thử riêng, không sửa dataset chuẩn. Kiểm tra xuất từ claim thật và parse toàn bộ XML/rels bằng ElementTree đạt.
+
+4. Claim phụ thuộc từng thiếu nội dung claim cha trong prompt. Bản mới tự ghim các claim dẫn chiếu tường minh, tối đa 8 nguồn; chặn phân tích và duyệt khi còn thiếu hoặc quan hệ dẫn chiếu bất thường. Trích đoạn kế thừa gắn đúng claim nguồn, không tự suy luận quan hệ họ sáng chế.
 
 ## Gate cloud và giá trị
 

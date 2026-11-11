@@ -5,6 +5,7 @@ import { resolve } from 'node:path';
 import { hash } from '../copilot/m3/workflow.mjs';
 import { openPatentStore } from '../patents/store.mjs';
 import { createPatentWorkflow, buildPatentPrompt, generatePatentProposal } from '../patents/workflow.mjs';
+import { loadDataset } from '../patents/dataset.mjs';
 import { makePatentWord } from '../patents/word.mjs';
 
 // These are synthetic protocol fixtures, not entries in the public legal corpus.
@@ -189,4 +190,52 @@ test('patent prompt uses explicit D1 and private input hashes, validates model s
   const legacy = store.save({ ...manual, claimRecordId: 'target-claim-1' });
   assert.throws(() => workflow.edit(legacy.id, { version: legacy.version, response }, editor), { status: 422 });
   assert.throws(() => workflow.approve(legacy.id, { version: legacy.version, targets: ['matrix'] }, lawyer), { status: 422 });
+});
+
+ test('actual dependent claim auto-pins literal parent, blocks incomplete legacy context and quotes inherited features explicitly', async t => {
+  const { store } = setup(t);
+  const actual = loadDataset();
+  const target = actual.records.find(item => item.id === 'ep-ep1004359b1-claim-2');
+  const parent = actual.records.find(item => item.id === 'ep-ep1004359b1-claim-1');
+  const cited = actual.records.find(item => item.id === 'us-patent-5783810-page-7-1');
+  let modelCalls = 0;
+  const workflow = createPatentWorkflow(store, actual, async () => { modelCalls++; throw new Error('must not call'); });
+  let matter = workflow.create({ ...body, reference: 'ACTUAL-DEPENDENT', claimText: target.text, claimRecordId: target.id,
+    claimVersion: target.id, evidenceIds: [target.id, cited.id], d1RecordIds: [cited.id] }, editor);
+  assert.ok(matter.evidenceIds.includes(parent.id));
+  assert.deepEqual(matter.derivedContextRecordIds, [parent.id]);
+  const prompt = buildPatentPrompt({ matter, targets: ['matrix'] }, { model: 'test-no-call' });
+  const input = JSON.parse(prompt.messages[1].content);
+  assert.deepEqual(input.claimContext.inheritedRecordIds, [parent.id]);
+  assert.equal(input.evidence.find(item => item.id === parent.id).text, parent.text);
+  assert.deepEqual(input.evidence.find(item => item.id === target.id).claims[0].dependsOn, [1]);
+  assert.equal(input.evidence.find(item => item.id === target.id).publicationDate, target.publicationDate);
+  const legacy = store.save({ ...matter, evidenceIds: [target.id, cited.id], pinnedEvidence: matter.pinnedEvidence.filter(item => item.record.id !== parent.id) });
+  assert.throws(() => buildPatentPrompt({ matter: legacy, targets: ['matrix'] }, { model: 'test-no-call' }), error => error.status === 422 && error.message.includes(parent.id));
+  await assert.rejects(workflow.propose(legacy.id, { version: legacy.version, targets: ['matrix'] }, editor), { status: 422 });
+  assert.throws(() => workflow.approve(legacy.id, { version: legacy.version, targets: ['matrix'] }, lawyer), { status: 422 });
+  assert.equal(modelCalls, 0);
+  matter = workflow.source(legacy.id, { version: legacy.version, evidenceIds: legacy.evidenceIds }, editor);
+  assert.ok(matter.evidenceIds.includes(parent.id));
+  matter = workflow.edit(matter.id, { version: matter.version, matrixRows: [{ ...row, claimQuote: parent.text.slice(0,120),
+    d1RecordId: cited.id, d1Quote: cited.text.slice(0,80) }], response: { ...response, evidenceIds: ['case:notice'] } }, editor);
+  assert.equal(matter.sections.matrix.rows[0].claimQuoteRecordId, parent.id);
+  matter = workflow.approve(matter.id, { version: matter.version, targets: ['matrix', 'response'] }, lawyer);
+  assert.match(documentXML(makePatentWord(workflow.release(matter.id, 1, lawyer))).replaceAll('\u00a0', ' '), /Ngữ cảnh dẫn chiếu/);
+});
+
+ test('actual unresolved dependency anomaly needs context while manual input is explicitly unverified', async t => {
+  const { store } = setup(t);
+  const actual = loadDataset();
+  const anomalous = actual.records.find(item => item.id === 'ep-ep2000000a1-claim-8');
+  const cited = actual.records.find(item => item.id === 'us-patent-5783810-page-7-1');
+  const workflow = createPatentWorkflow(store, actual);
+  const matter = workflow.create({ ...body, reference: 'ANOMALY-DEPENDENCY', claimText: anomalous.text, claimRecordId: anomalous.id,
+    claimVersion: anomalous.id, evidenceIds: [anomalous.id, cited.id], d1RecordIds: [cited.id] }, editor);
+  assert.throws(() => buildPatentPrompt({ matter, targets: ['matrix'] }, { model: 'test-no-call' }), error => error.status === 422 && error.message.includes(anomalous.id));
+  assert.throws(() => workflow.approve(matter.id, { version: matter.version, targets: ['matrix'] }, lawyer), { status: 422 });
+  const manual = workflow.create({ ...body, reference: 'MANUAL-DEPENDENCY', claimText: 'Operator entered technical text.', claimRecordId: null,
+    evidenceIds: [cited.id], d1RecordIds: [cited.id] }, editor);
+  const input = JSON.parse(buildPatentPrompt({ matter: manual, targets: ['matrix'] }, { model: 'test-no-call' }).messages[1].content);
+  assert.equal(input.claimContext.status, 'manual_input_unverified');
 });

@@ -20,3 +20,4 @@ dialog{width:min(680px,calc(100vw - 28px));max-height:calc(100dvh - 40px);paddin
 .matter-heading h1{font-size:clamp(23px,2.6vw,30px)}.task-composer>textarea:not(:focus){height:37px;min-height:37px;max-height:37px;resize:none;padding-top:6px;padding-bottom:2px;overflow:auto}.task-composer>textarea:focus{min-height:54px;max-height:170px}.composer-note{margin-top:4px}
 @media(max-width:480px){.matter-heading h1{font-size:26px}.task-composer>textarea:not(:focus){height:34px;min-height:34px;max-height:34px}}
 .create-file-field{margin-bottom:18px}.create-file-field label{margin-bottom:6px}
+.derived-claim{display:inline-block;font-size:9px;background:#e3eee6;color:#355b43;border:1px solid #c6dacb;border-radius:3px;padding:2px 5px;margin-top:7px}.quote-origin{font-size:9px;line-height:1.8;color:#466851;border-left:2px solid #a2bba8;padding-left:7px;margin-top:9px;overflow-wrap:anywhere}
