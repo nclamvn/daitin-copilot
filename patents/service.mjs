@@ -9,13 +9,15 @@ import { loadDataset, searchDataset } from './dataset.mjs';
 import { openPatentStore } from './store.mjs';
 import { createPatentWorkflow, evidenceURL } from './workflow.mjs';
 import { makePatentWord, patentWordRendererV2, patentWordType } from './word.mjs';
-import { bindPatentPDF, inspectPatentPDF, maxPatentPDFRequest, previewPatentPDF } from './intake.mjs';
+import { bindPatentPDF, bindPatentPDFPack, inspectPatentPDF, inspectPatentPDFPack,
+  maxPatentPDFPackRequest, maxPatentPDFRequest, previewPatentPDF } from './intake.mjs';
 export { CaseError as PatentAccessError } from '../copilot/m3/workflow.mjs';
 
 const assets = new Map([
   ['/patents/', ['index.html', 'text/html; charset=utf-8']],
   ['/patents/app.css', ['app.css', 'text/css; charset=utf-8']],
-  ['/patents/app.mjs', ['app.mjs', 'application/javascript; charset=utf-8']]
+  ['/patents/app.mjs', ['app.mjs', 'application/javascript; charset=utf-8']],
+  ['/patents/pdf-intake.mjs', ['pdf-intake.mjs', 'application/javascript; charset=utf-8']]
 ]);
 let capturedDataset;
 const dataset = () => capturedDataset ??= loadDataset();
@@ -107,6 +109,25 @@ export function createPatentService({ storePath = process.env.DAI_TIN_M3_STORE, 
             notice: 'Kết quả truy hồi trong bộ nguồn đã lưu, chưa phải quyết định áp dụng pháp luật hoặc kết luận sáng chế.' } };
         }
         if (get && path === '/api/patents/cases') return { value: workflow.list(actor) };
+        if (req.method === 'POST' && path === '/api/patents/pdf-pack/preview') {
+          const body = caseInput(await readJSON(req, maxPatentPDFRequest));
+          checkAccess();
+          const image = await previewPatentPDF(body);
+          checkAccess();
+          return pdfImage(image.bytes, image.sha256);
+        }
+        if (req.method === 'POST' && ['/api/patents/pdf-pack/inspect', '/api/patents/cases/pdf-pack'].includes(path)) {
+          const body = caseInput(await readJSON(req, maxPatentPDFPackRequest));
+          checkAccess();
+          if (path.endsWith('/inspect')) {
+            const value = await inspectPatentPDFPack(body);
+            checkAccess();
+            return { value };
+          }
+          const selections = await bindPatentPDFPack(body);
+          checkAccess();
+          return { status: 201, value: workflow.createFromPDFs(body, selections, actor) };
+        }
         if (req.method === 'POST' && ['/api/patents/cases', '/api/patents/cases/example'].includes(path)) {
           const input = await readJSON(req, 64 * 1024); checkAccess();
           if (path.endsWith('/example')) {

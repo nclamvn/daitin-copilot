@@ -25,7 +25,8 @@ export const frontendAssets = Object.freeze([
   ['copilot/m3/workspace/pdf.mjs', 'copilot/m3/workspace/pdf.mjs'],
   ['copilot/m3/workspace/research.mjs', 'copilot/m3/workspace/research.mjs'],
   ['patents/ui/app.css', 'patents/app.css'],
-  ['patents/ui/app.mjs', 'patents/app.mjs']
+  ['patents/ui/app.mjs', 'patents/app.mjs'],
+  ['patents/ui/pdf-intake.mjs', 'patents/pdf-intake.mjs']
 ].map(([source, pathname]) => Object.freeze({ source, pathname })));
 
 export function sourceManifest(appRoot = root) {

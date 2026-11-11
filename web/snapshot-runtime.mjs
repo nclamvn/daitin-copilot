@@ -72,7 +72,7 @@ function failure(res, error) {
 
 const isModelPath = pathname => pathname === '/api/copilot/intake/run' ||
   /^\/api\/(?:m3|patents)\/cases\/[a-f0-9-]{36}\/propose$/.test(pathname);
-const isReadOnlyPostPath = pathname => pathname === '/api/patents/search' ||
+const isReadOnlyPostPath = pathname => ['/api/patents/search', '/api/patents/pdf-pack/inspect', '/api/patents/pdf-pack/preview'].includes(pathname) ||
   /^\/api\/patents\/cases\/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}\/pdf\/(?:inspect|preview)$/.test(pathname);
 
 // The SQLite file is a request workspace, never the durable store. A single

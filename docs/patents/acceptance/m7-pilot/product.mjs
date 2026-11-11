@@ -7,6 +7,7 @@ import { beginModel, directory, measure, modelId, openLedger, qualityView, readJ
 const base = '/api/patents/cases';
 const conflict = /Pilot đang lưu một thay đổi khác|Hồ sơ vừa được cập nhật ở phiên khác/;
 const wordPath = (id, phase) => `${base}/${id}/word/${phase}`;
+const packMode = process.env.DAITIN_PILOT_BATCH === '1';
 const requiredActor = (accounts, name, role) => {
   const account = accounts.find(item => item.name === name && item.role === role && !item.disabled);
   assert.match(account?.key ?? '', /^[a-f0-9]{64}$/, `Missing active ${role} pilot account`);
@@ -71,6 +72,36 @@ function assertSource(matter, document) {
   }
 }
 
+async function preparePack(ledger, api, entry, options) {
+  const inputs = entry.documents.map(document => ({ role: document.role,
+    content: document.original.toString('base64'), firstPage: document.page, lastPage: document.page }));
+  track(ledger, 'operator', entry.id, 1, 'enter case metadata and instructions');
+  track(ledger, 'operator', entry.id, 1, 'choose three PDFs and confirm page ranges');
+  const inspected = await api.json(1, entry.id, 'inspect PDF pack', '/api/patents/pdf-pack/inspect', {
+    ...options, body: { synthetic: true, documents: inputs }
+  });
+  assert.equal(inspected.documents.length, entry.documents.length);
+  const documents = entry.documents.map((document, index) => {
+    const source = inspected.documents.find(item => item.role === document.role);
+    assert.equal(source?.sha256, document.sha256);
+    const page = source.pages.find(item => item.page === document.page);
+    const start = page?.text.indexOf(document.quote) ?? -1;
+    assert.ok(page?.usable && start >= 0, `${entry.id}/${document.role} exact PDF excerpt unavailable`);
+    assert.equal(page.text.indexOf(document.quote, start + 1), -1, 'Selected quote must uniquely identify its span on the page');
+    track(ledger, 'operator', entry.id, 1, 'review exact excerpt', { role: document.role });
+    return { ...inputs[index], label: document.label, sha256: document.sha256, page: document.page,
+      start, end: start + document.quote.length, text: document.quote, confirmed: true };
+  });
+  const matter = await api.json(1, entry.id, 'create case from confirmed PDF pack', `${base}/pdf-pack`, {
+    ...options, expected: 201, safeWrite: true, body: {
+      synthetic: true, reference: entry.reference, title: entry.title, jurisdiction: 'VN', asOf: entry.asOf,
+      instructionsText: entry.instructions, documents
+    }
+  });
+  track(ledger, 'operator', entry.id, 1, 'confirm and create case');
+  return matter;
+}
+
 async function prepareCases(ledger, api, cases) {
   const options = { basic: true };
   const list = await api.json(1, null, 'list pilot cases', base, options);
@@ -93,6 +124,8 @@ async function prepareCases(ledger, api, cases) {
       assert.equal(matter.context.asOf, entry.asOf);
       assert.equal(matter.proposals.length, 0, 'Unexpected analysis already exists in setup case');
       assert.equal(matter.releases.length, 0, 'Unexpected release already exists in setup case');
+    } else if (packMode) {
+      matter = await preparePack(ledger, api, entry, options);
     } else {
       matter = await api.json(1, entry.id, 'create case', base, { ...options, expected: 201, safeWrite: true, body: {
         synthetic: true, reference: entry.reference, title: entry.title, jurisdiction: 'VN', asOf: entry.asOf,
@@ -107,6 +140,7 @@ async function prepareCases(ledger, api, cases) {
         assertSource(matter, document);
         continue;
       }
+      assert.ok(!packMode, 'Atomic PDF pack is incomplete');
       const path = `${base}/${matter.id}/pdf`;
       const range = { version: matter.version, synthetic: true, content: document.original.toString('base64'),
         firstPage: document.page, lastPage: document.page };
@@ -173,7 +207,11 @@ async function executePhase(ledger, api, out, entry, phase) {
     const receipt = beginModel(ledger, entry.id, phase, 'generate', 16);
     track(ledger, 'operator', entry.id, phase, 'send drafting task');
     try {
-      matter = await api.json(phase, entry.id, 'propose', `${path}/propose`, { body: { version: matter.version,
+      // Keep the same group and model while using the available pilot quota.
+      const account = packMode && (phase === 1 || /^P0[1-4]$/.test(entry.id)) ? api.reviewer : api.editor;
+      receipt.accountRole = account.role;
+      ledger.save();
+      matter = await api.json(phase, entry.id, 'propose', `${path}/propose`, { account, body: { version: matter.version,
         targets, instruction: phase === 1 ? entry.phase1Task : entry.phase2Task } });
       receipt.status = 'accepted';
       receipt.run = matter.proposals.at(-1).run;
@@ -226,6 +264,7 @@ export async function runProduct({ out, input, origin, accountsPath, prepareOnly
   const ledger = openLedger(out, 'product', input.manifestSha256, input.cases);
   const api = clients(ledger, origin, accountsPath);
   ledger.state.origin = origin;
+  ledger.state.intakeMode = packMode ? 'pdf-pack' : 'single-pdf';
   directory(join(out, 'product-word'));
   await prepareCases(ledger, api, input.cases);
   if (prepareOnly) return;

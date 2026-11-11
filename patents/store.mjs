@@ -2,7 +2,7 @@ import { randomUUID } from 'node:crypto';
 import { DatabaseSync } from 'node:sqlite';
 import { CaseError, hash } from '../copilot/m3/workflow.mjs';
 
-const maxAttachmentBytes = 5 * 1024 * 1024;
+const maxAttachmentBytes = 6 * 1024 * 1024;
 const maxDatabaseBytes = 10 * 1024 * 1024;
 const maxMatterBytes = 3 * 1024 * 1024;
 
@@ -54,7 +54,7 @@ export function openPatentStore(path) {
   const pageSize = db.prepare('PRAGMA page_size').get().page_size;
   const requireCapacity = extra => {
     if (attachmentUsage.get().bytes + extra > maxAttachmentBytes) {
-      throw new CaseError('Kho PDF và Word pilot đã đạt giới hạn 5 MiB. Bản đang lưu vẫn giữ nguyên.', 413);
+      throw new CaseError('Kho PDF và Word pilot đã đạt giới hạn 6 MiB. Bản đang lưu vẫn giữ nguyên.', 413);
     }
   };
   function writeCase(change) {
@@ -71,6 +71,17 @@ export function openPatentStore(path) {
       throw error;
     }
   }
+  function saveAttachments(matter, attachments, artifact) {
+    const extra = attachments.reduce((total, item) => total + item.bytes.length, artifact?.bytes.length ?? 0);
+    if (extra) requireCapacity(extra);
+    if (attachments.length && attachmentCount.get(matter.id, matter.group).count + attachments.length > 6) {
+      throw new CaseError('Hồ sơ đã lưu 6 bản PDF gốc trong pilot.', 413);
+    }
+    for (const attachment of attachments) {
+      insertAttachment.run(attachment.id, matter.id, matter.group, attachment.sha256, attachment.pageCount, attachment.bytes);
+    }
+    if (artifact) insertWord.run(matter.id, matter.group, artifact.number, artifact.sha256, artifact.bytes);
+  }
   return {
     ensureModelReceiptCapacity() {
       if (receiptCount.get().count >= 500) throw new CaseError('Nhật ký AI đã đạt giới hạn 500 lượt của pilot. Lưu trữ nhật ký trước khi gọi thêm.', 409);
@@ -86,16 +97,19 @@ export function openPatentStore(path) {
       if (!item) throw new CaseError('Không tìm thấy hồ sơ sáng chế.', 404);
       return JSON.parse(item.content);
     },
-    create(matter) {
+    create(matter, { attachments = [] } = {}) {
       const content = caseContent(matter);
       try {
         return writeCase(() => {
           if (list.all(matter.group).length >= 20) throw new CaseError('Nhóm đã đạt 20 hồ sơ sáng chế trong pilot.', 409);
           insert.run(matter.id, matter.group, matter.reference, matter.title, matter.version, matter.updatedAt, content);
+          saveAttachments(matter, attachments);
           return matter;
         });
       } catch (error) {
-        if (String(error.message).includes('UNIQUE')) throw new CaseError('Mã hồ sơ sáng chế đã tồn tại trong nhóm.', 409);
+        if (String(error.message).includes('UNIQUE constraint failed: patent_cases.group_id, patent_cases.reference')) {
+          throw new CaseError('Mã hồ sơ sáng chế đã tồn tại trong nhóm.', 409);
+        }
         throw error;
       }
     },
@@ -124,13 +138,7 @@ export function openPatentStore(path) {
         if (!update.run(saved.title, saved.version, saved.updatedAt, content, saved.id, saved.group, before).changes) {
           throw new CaseError('Hồ sơ đã đổi ở phiên khác. Mở lại trước khi lưu.', 409);
         }
-        const extra = (attachment?.bytes.length ?? 0) + (artifact?.bytes.length ?? 0);
-        if (extra) requireCapacity(extra);
-        if (attachment) {
-          if (attachmentCount.get(saved.id, saved.group).count >= 6) throw new CaseError('Hồ sơ đã lưu 6 bản PDF gốc trong pilot.', 413);
-          insertAttachment.run(attachment.id, saved.id, saved.group, attachment.sha256, attachment.pageCount, attachment.bytes);
-        }
-        if (artifact) insertWord.run(saved.id, saved.group, artifact.number, artifact.sha256, artifact.bytes);
+        saveAttachments(saved, attachment ? [attachment] : [], artifact);
         return saved;
       });
     },

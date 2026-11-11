@@ -45,7 +45,8 @@ function zip(parts) {
 
 function matrix(rows, targetClaimId) {
   const widths = [1460, 2220, 2420, 2786];
-  const state = { disclosed: 'Có đoạn mô tả liên quan', not_found: 'Chưa thấy trong đoạn được chọn', uncertain: 'Cần làm rõ' };
+  const state = { disclosed: 'Có đoạn mô tả liên quan', different: 'Hai đoạn ghi đặc điểm hoặc điều kiện khác nhau',
+    not_found: 'Chưa thấy trong đoạn được chọn', uncertain: 'Cần làm rõ' };
   const cell = (text, index, header = false) => '<w:tc><w:tcPr><w:tcW w:w="' + widths[index] + '" w:type="dxa"/>' +
     (header ? '<w:shd w:val="clear" w:fill="F2F2F2" w:color="auto"/>' : '') + '<w:vAlign w:val="top"/></w:tcPr>' +
     text.split('\n').map(line => p(line, header)).join('') + '</w:tc>';
@@ -105,6 +106,7 @@ const fidelityLabels = {
 };
 const assessmentLabels = {
   disclosed: 'Có đoạn mô tả liên quan trong D1',
+  different: 'Hai đoạn ghi đặc điểm hoặc điều kiện khác nhau',
   not_found: 'Chưa thấy đặc điểm trong đoạn D1 đã chọn',
   uncertain: 'Cần làm rõ chứng cứ'
 };

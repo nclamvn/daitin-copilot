@@ -1,9 +1,11 @@
+import { base64Pdf, pdfPackIntake, selectPdfExcerpt } from './pdf-intake.mjs';
+
 const $ = id => document.getElementById(id);
 const state = { status: null, catalog: null, cases: [], matter: null, selected: new Map(), view: 'search',
   detail: null, search: null, catalogLimit: 10, busy: false, claimRecordId: null, d1RecordIds: new Set(),
   dirty: { inputs: false, matrix: false, response: false }, pdf: null };
 const views = ['search', 'documents', 'matrix', 'response', 'history'];
-const assessmentLabels = { disclosed: 'Có đoạn xác nhận dấu hiệu', not_found: 'Chưa tìm thấy trong đoạn đã chọn', uncertain: 'Chưa đủ dữ kiện đối chiếu' };
+const assessmentLabels = { disclosed: 'Có đoạn xác nhận dấu hiệu', different: 'Có khác biệt kỹ thuật trong đoạn đã chọn', not_found: 'Chưa tìm thấy trong đoạn đã chọn', uncertain: 'Chưa đủ dữ kiện đối chiếu' };
 const kindLabels = { patent: 'Tài liệu sáng chế', law: 'Quy định pháp luật', guidance: 'Hướng dẫn', procedure: 'Thủ tục', commentary: 'Bình luận thực hành' };
 const pdfRoles = { notice: 'Thông báo cần phản hồi', claim: 'Yêu cầu bảo hộ đang xét', d1: 'Tài liệu đối chứng D1' };
 const mobile = matchMedia('(max-width:800px)');
@@ -83,7 +85,12 @@ function mode(view) {
 }
 function panel(open) { $('evidence-panel').classList.toggle('mobile-open', open); $('evidence-panel').hidden = !open && !mobile.matches; $('work-grid').classList.toggle('no-panel', !open && !mobile.matches); $('open-evidence').setAttribute('aria-expanded', String(open)); }
 function rail(open) { $('rail').classList.toggle('mobile-open', open); $('open-rail').setAttribute('aria-expanded', String(open)); }
-function showDialog(title, content) { $('dialog-title').textContent = title; $('dialog-body').replaceChildren(content); $('dialog').showModal(); }
+function showDialog(title, content, wide = false) {
+  $('dialog-title').textContent = title;
+  $('dialog-body').replaceChildren(content);
+  $('dialog').classList.toggle('pack-dialog', wide);
+  $('dialog').showModal();
+}
 function pickText(target, changed = () => {}) {
   const input = node('input'); input.type = 'file'; input.accept = '.txt,.md,text/plain,text/markdown'; input.hidden = true;
   input.addEventListener('cancel', () => input.remove(), { once: true });
@@ -399,21 +406,6 @@ function runPdf(label, action) {
   });
 }
 
-async function base64Pdf(file) {
-  const bytes = new Uint8Array(await file.arrayBuffer());
-  const chunks = [];
-  for (let offset = 0; offset < bytes.length; offset += 8192) {
-    chunks.push(String.fromCharCode(...bytes.subarray(offset, offset + 8192)));
-  }
-  return btoa(chunks.join(''));
-}
-
-function exactSelection(input) {
-  const text = input.value.slice(input.selectionStart, input.selectionEnd);
-  const start = input.selectionStart + text.length - text.trimStart().length;
-  return { start, end: start + text.trim().length, text: text.trim() };
-}
-
 function renderPdfInspection(draft) {
   const box = $('pdf-inspection');
   box.hidden = false;
@@ -478,17 +470,6 @@ function renderPdfInspection(draft) {
     refreshControls();
     return;
   }
-  const extracted = field('Chọn đoạn nguyên văn trong văn bản trích', page.text, 'textarea', 9);
-  extracted.input.readOnly = true;
-  extracted.input.className = 'pdf-extracted';
-  const selected = node('p', 'Chưa chọn đoạn.', 'pdf-selection-count');
-  const excerpt = node('pre', '', 'pdf-excerpt');
-  excerpt.setAttribute('aria-label', 'Đoạn sẽ lưu nguyên văn');
-  const all = button('Chọn toàn bộ văn bản trang', () => {
-    extracted.input.focus();
-    extracted.input.select();
-    readSelection();
-  }, 'text-button');
   const roleLabel = node('label', 'Dùng đoạn này làm');
   const roleSelect = node('select');
   for (const [key, name] of Object.entries(pdfRoles)) {
@@ -509,21 +490,11 @@ function renderPdfInspection(draft) {
   const submit = node('button', 'Gắn đoạn vào hồ sơ', 'primary');
   submit.id = 'bind-pdf';
   submit.type = 'submit';
-  let selection = exactSelection(extracted.input);
-  function readSelection() {
-    const next = exactSelection(extracted.input);
-    if (next.start !== selection.start || next.end !== selection.end) confirmed.checked = false;
-    selection = next;
-    const limit = draft.receipt.maxExcerptChars;
-    selected.textContent = selection.text.length
-      ? selection.text.length.toLocaleString('vi-VN') + ' ký tự đã chọn' + (selection.text.length > limit ? '. Chọn đoạn ngắn hơn, tối đa ' + limit.toLocaleString('vi-VN') + ' ký tự.' : '.')
-      : 'Chưa chọn đoạn.';
-    submit.dataset.invalidSelection = String(!selection.text.length || selection.text.length > limit);
-    excerpt.hidden = submit.dataset.invalidSelection === 'true';
-    excerpt.textContent = excerpt.hidden ? '' : selection.text;
+  const picker = selectPdfExcerpt(page.text, draft.receipt.maxExcerptChars, (_, valid, changed) => {
+    if (changed) confirmed.checked = false;
+    submit.dataset.invalidSelection = String(!valid);
     refreshControls();
-  }
-  for (const event of ['select', 'keyup', 'pointerup']) extracted.input.addEventListener(event, readSelection);
+  });
   const replacement = node('p', '', 'helper');
   function updateRole() {
     confirmed.checked = false;
@@ -536,11 +507,11 @@ function renderPdfInspection(draft) {
   updateRole();
   const unsaved = node('p', 'Lưu những phần đang sửa trước khi gắn tài liệu.', 'helper');
   unsaved.id = 'pdf-unsaved';
-  form.append(extracted.wrap, all, selected, excerpt, roleLabel, replacement, label.wrap, attestation, submit, unsaved);
+  form.append(...picker.elements, roleLabel, replacement, label.wrap, attestation, submit, unsaved);
   form.addEventListener('submit', event => {
     event.preventDefault();
     if (state.busy || isDirty()) return;
-    readSelection();
+    const selection = picker.read();
     if (submit.disabled || !confirmed.checked) return;
     runPdf('Đang gắn đoạn đã đối chiếu…', async () => {
       const payload = { version: draft.version, synthetic: true, content: draft.content, firstPage: draft.firstPage,
@@ -553,7 +524,7 @@ function renderPdfInspection(draft) {
     });
   });
   box.append(form);
-  readSelection();
+  picker.read();
 }
 function approvalText(approval) { if (!approval) return 'Chưa duyệt'; return 'Đã duyệt · ' + (typeof approval.by === 'string' ? approval.by : approval.by?.name ?? 'Luật sư'); }
 function setApproval(id, approval, dirty) { $(id).textContent = dirty ? 'Có nội dung chưa lưu' : approvalText(approval); $(id).classList.toggle('approved', Boolean(approval) && !dirty); }
@@ -755,6 +726,7 @@ function refreshControls() {
   $('model-state').textContent = invalidSource ? 'Cần thay bản trích có lỗi' : state.status?.model ? 'AI đề xuất, luật sư quyết định' : 'AI chưa bật';
   $('case-example').disabled = busy || !state.status?.demo;
   $('new-case').disabled = busy; $('create-selected').disabled = busy || !state.selected.size;
+  $('close-dialog').disabled = busy && $('dialog').classList.contains('pack-dialog');
   $('save-selected').disabled = busy || !active || !inputsDirty; $('save-inputs').disabled = busy || !active || !inputsDirty;
   $('save-private').disabled = busy || !active || !inputsDirty;
   $('inputs-state').textContent = state.matter?.sourceChanged ? 'Nguồn đã đổi, lưu lại và rà soát phiên bản mới' : inputsDirty ? 'Nguồn / yêu cầu chưa lưu' : active ? 'Đã gắn với hồ sơ' : '';
@@ -784,20 +756,20 @@ function refreshControls() {
     $('pdf-unsaved').hidden = !isDirty();
   }
 }
-function createDialog(fromSelection = false) {
-  if (!discard()) return;
+function createDialog(fromSelection = false, metadata) {
+  if (!metadata && !discard()) return;
   const selection = fromSelection ? [...state.selected.values()].filter(item => item.source.kind !== 'case_document') : [];
   const form = node('form');
   form.append(node('p', 'Tạo hồ sơ mô phỏng, sau đó gắn tài liệu PDF hoặc nhập dữ kiện đã xác nhận.', 'dialog-note'));
-  const grid = node('div', undefined, 'create-grid'); const ref = field('Mã hồ sơ', '', 'input'); ref.input.required = true; ref.input.maxLength = 48; ref.input.placeholder = 'PAT-2026-001'; const title = field('Tên hồ sơ', '', 'input'); title.input.required = true; title.input.maxLength = 160; grid.append(ref.wrap, title.wrap);
+  const grid = node('div', undefined, 'create-grid'); const ref = field('Mã hồ sơ', metadata?.reference ?? '', 'input'); ref.input.required = true; ref.input.maxLength = 48; ref.input.placeholder = 'PAT-2026-001'; const title = field('Tên hồ sơ', metadata?.title ?? '', 'input'); title.input.required = true; title.input.maxLength = 160; grid.append(ref.wrap, title.wrap);
   const version = field('Phiên bản yêu cầu bảo hộ', '', 'input'); version.input.maxLength = 100;
-  const asOf = field('Ngày đối chiếu đã xác nhận', today(), 'input'); asOf.input.type = 'date'; asOf.input.required = true; grid.append(asOf.wrap); form.append(grid);
+  const asOf = field('Ngày đối chiếu đã xác nhận', metadata?.asOf || today(), 'input'); asOf.input.type = 'date'; asOf.input.required = true; grid.append(asOf.wrap); form.append(grid);
   const manual = node('details', undefined, 'create-manual');
-  manual.open = Boolean(selection.length);
+  manual.open = Boolean(selection.length || metadata?.instructionsText);
   manual.append(node('summary', 'Nhập dữ kiện đã có'), version.wrap);
   const notice = field('Nội dung thông báo cần phản hồi', '', 'textarea', 4); notice.input.maxLength = 6000;
   const noticeGroup = node('div', undefined, 'create-file-field'); noticeGroup.append(notice.wrap, button('Chọn tệp TXT/MD', () => pickText(notice.input), 'text-button'));
-  const instructions = field('Chỉ dẫn đã xác nhận', '', 'textarea', 3); instructions.input.maxLength = 6000;
+  const instructions = field('Chỉ dẫn đã xác nhận', metadata?.instructionsText ?? '', 'textarea', 3); instructions.input.maxLength = 6000;
   const instructionsGroup = node('div', undefined, 'create-file-field'); instructionsGroup.append(instructions.wrap, button('Chọn tệp TXT/MD', () => pickText(instructions.input), 'text-button'));
   manual.append(noticeGroup, instructionsGroup);
   const claim = field('Yêu cầu bảo hộ cần phân tích', '', 'textarea', 6); claim.input.maxLength = 6000;
@@ -837,6 +809,23 @@ function createDialog(fromSelection = false) {
     }, 'Đã lưu hồ sơ mô phỏng.');
   });
   showDialog('Hồ sơ sáng chế mới', form);
+}
+function createPackDialog() {
+  if (!discard()) return;
+  const dialog = $('dialog');
+  const content = pdfPackIntake({
+    dialog, request, run, today,
+    onCreated(matter) {
+      applyMatter(matter, 'matrix');
+      setCaseURL(matter.id, state.view, true);
+      notify('Đã lưu hồ sơ cùng ba đoạn chứng cứ. Có thể bắt đầu lập ma trận.');
+    },
+    onManual(metadata) {
+      dialog.close();
+      createDialog(false, metadata);
+    }
+  });
+  showDialog('Hồ sơ sáng chế mới', content, true);
 }
 function datasetDialog() {
   const data = state.status?.dataset ?? {}; const body = node('div');
@@ -927,7 +916,7 @@ $('case-example').addEventListener('click', () => {
     setCaseURL(matter.id, state.view, true);
   }, state.status?.demo?.notice ?? 'Đã mở hồ sơ đối chiếu mô phỏng.');
 });
-$('new-case').addEventListener('click', () => createDialog());
+$('new-case').addEventListener('click', createPackDialog);
 $('create-selected').addEventListener('click', () => createDialog(true));
 $('case-filter').addEventListener('input', renderCases);
 $('claim-text').addEventListener('input', () => { state.claimRecordId = null; setDirty('inputs'); renderEvidence(); }); $('claim-version').addEventListener('input', () => setDirty('inputs'));

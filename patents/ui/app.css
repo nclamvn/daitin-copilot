@@ -100,7 +100,7 @@ dialog{width:min(680px,calc(100vw - 28px));max-height:calc(100dvh - 40px);paddin
   outline: 2px solid var(--green);
   outline-offset: 2px;
 }
-#case-pdf {
+.pdf-file-control > input[type="file"] {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -279,4 +279,204 @@ dialog{width:min(680px,calc(100vw - 28px));max-height:calc(100dvh - 40px);paddin
   border-color: #be9a58;
   background: #faf4e7;
   color: #6b4e21;
+}
+
+.pack-dialog {
+  width: min(880px, calc(100vw - 28px));
+}
+.pack-help {
+  margin: 10px 0 12px;
+}
+.pack-drop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.pack-drop .pdf-file-control, .pack-slot-actions .pdf-file-control {
+  flex: none;
+  margin: 0;
+}
+.pack-role-list {
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+  border-block: 1px solid var(--line);
+}
+.pack-slot {
+  display: grid;
+  grid-template-columns: minmax(120px, 1fr) 144px 168px;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 12px 0;
+}
+.pack-slot + .pack-slot {
+  border-top: 1px solid var(--line);
+}
+.pack-slot-title {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.pack-slot-title strong, .pack-drop strong {
+  font-size: 12px;
+}
+.pack-slot-title .pack-file-name {
+  font-size: 10px;
+  line-height: 1.5;
+}
+.pack-slot[data-file] .pack-file-name {
+  color: var(--green);
+}
+.pack-slot-range, .pack-slot-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  align-items: center;
+}
+.pack-slot-range label, .pack-metadata label, .pack-review-body label {
+  margin-bottom: 0;
+}
+.pack-slot-actions select {
+  margin: 0;
+  padding-inline: 6px;
+}
+.pack-slot-actions .pdf-file-control {
+  text-align: center;
+}
+.pack-metadata {
+  display: grid;
+  grid-template-columns: minmax(100px, 1fr) minmax(120px, 1fr) minmax(180px, 2fr);
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.pack-confirm-synthetic {
+  align-items: baseline;
+}
+.pack-actions {
+  position: sticky;
+  z-index: 1;
+  bottom: -20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin-top: 14px;
+  padding: 12px 0 2px;
+  border-top: 1px solid var(--line);
+  background: white;
+}
+.pack-actions .text-button {
+  margin-right: auto;
+  font-size: 11px;
+  text-align: left;
+}
+.pack-actions .primary {
+  margin: 0;
+}
+.pack-actions .pack-confirmed-count {
+  font-size: 10px;
+  font-weight: 600;
+}
+.pack-review h3 {
+  font-size: 15px;
+}
+.pack-review-card {
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: #fff;
+  margin: 9px 0;
+}
+.pack-review-card summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  list-style: none;
+  padding: 11px 13px;
+  cursor: pointer;
+  background: #f5f8f6;
+}
+.pack-review-card summary::-webkit-details-marker {
+  display: none;
+}
+.pack-review-card summary::after {
+  content: '⌄';
+  color: var(--green);
+}
+.pack-review-card[open] summary::after {
+  transform: rotate(180deg);
+}
+.pack-review-title {
+  flex: 1;
+  min-width: 0;
+  font-size: 12px;
+}
+.pack-review-title small {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+  overflow-wrap: anywhere;
+}
+.pack-review-status {
+  flex: none;
+  font-size: 10px;
+  color: var(--green);
+}
+.pack-review-body {
+  padding: 12px 13px;
+}
+.pack-review-body .pdf-extracted {
+  margin-bottom: 5px;
+  resize: vertical;
+  background: #f9fbfa;
+  line-height: 1.7;
+}
+.pack-review-body .pdf-attestation {
+  margin-top: 11px;
+}
+.pack-page-tools {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.pack-page-tools select {
+  min-width: 125px;
+}
+.pack-page-tools .quiet {
+  flex: none;
+}
+@media (max-width: 600px) {
+  .pack-dialog #dialog-body {
+    padding: 14px;
+  }
+  .pack-slot {
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 9px;
+  }
+  .pack-slot-title {
+    grid-column: 1 / -1;
+  }
+  .pack-metadata {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .pack-metadata label:last-child {
+    grid-column: 1 / -1;
+  }
+  .pack-actions {
+    bottom: -14px;
+  }
+}
+@media (max-width: 390px) {
+  .pack-slot-actions {
+    grid-template-columns: 1fr;
+    gap: 3px;
+  }
+  .pack-review-status {
+    flex: 0 1 auto;
+    text-align: right;
+  }
 }

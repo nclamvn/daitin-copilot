@@ -3,7 +3,9 @@ import test from 'node:test';
 import { mkdirSync, mkdtempSync, rmSync, readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { createHash } from 'node:crypto';
+import { DatabaseSync } from 'node:sqlite';
 import { loadDataset } from '../patents/dataset.mjs';
+import { openPatentStore } from '../patents/store.mjs';
 
 const key = 'b'.repeat(64);
 const account = { name: 'patent-reviewer', group: 'patent-test', role: 'reviewer', key };
@@ -20,11 +22,11 @@ async function setup(t) {
   const { createApp } = await import('../server.mjs');
   const app = createApp();
   t.after(() => { app.close(); rmSync(directory, { recursive: true, force: true }); });
-  return async function call(path, { method = 'GET', body, signed = true, actor = account } = {}) {
+  return async function call(path, { method = 'GET', body, signed = true, actor = account, origin = 'https://patent-test.example' } = {}) {
     const result = { status: null, headers: {}, body: null,
       writeHead(status, headers) { this.status = status; this.headers = headers; },
       end(bytes) { this.body = Buffer.from(bytes ?? ''); }, json() { return JSON.parse(this.body); } };
-    await app.handle({ url: path, method, body, headers: { host: 'patent-test.example', origin: 'https://patent-test.example',
+    await app.handle({ url: path, method, body, headers: { host: 'patent-test.example', origin,
       ...(body === undefined ? {} : { 'content-type': 'application/json' }),
       ...(signed ? { authorization: 'Basic ' + Buffer.from(actor.name + ':' + actor.key).toString('base64') } : {}) },
       socket: { remoteAddress: '127.0.0.1' } }, result);
@@ -61,6 +63,98 @@ test('patent CEO entry authenticates HTML and APIs, preserves fixed return targe
   const snippet = (await call('/api/patents/evidence/ep-ep1004359b1-claim-1')).json();
   assert.ok(snippet.openUrl.startsWith('/api/patents/source/'));
   assert.ok(snippet.originalUrl.startsWith('https://'));
+});
+
+test('patent PDF pack creates one case with exact private PDF bindings and rejects invalid or stale sources', async t => {
+  const call = await setup(t);
+  const post = (path, body, options) => call(path, { method: 'POST', body, ...options });
+  const inspect = '/api/patents/pdf-pack/inspect';
+  const create = '/api/patents/cases/pdf-pack';
+  const originals = ['DT-DEMO-01.pdf', 'DT-DEMO-02.pdf', 'DT-DEMO-03.pdf']
+    .map(name => readFileSync(new URL('../distribution/demo/' + name, import.meta.url)));
+  const documents = ['notice', 'claim', 'd1'].map((role, i) =>
+    ({ role, content: originals[i].toString('base64'), firstPage: 1, lastPage: 1 }));
+  const input = { synthetic: true, documents };
+  assert.equal((await post(inspect, input, { signed: false })).status, 401);
+  assert.equal((await post(inspect, input, { origin: 'https://outside.example' })).status, 403);
+  assert.equal((await post(inspect, { ...input, synthetic: false })).status, 422);
+  assert.equal((await post(inspect, { ...input, documents: documents.slice(1) })).status, 422);
+  assert.equal((await post(inspect, { ...input, documents: [documents[0], documents[0], documents[2]] })).status, 422);
+  const oversized = Buffer.concat([originals[2], Buffer.alloc(2 * 1024 * 1024 + 1 -
+    originals.reduce((total, item) => total + item.length, 0))]);
+  assert.equal((await post(inspect, { ...input, documents: [documents[0], documents[1], { ...documents[2],
+    content: oversized.toString('base64') }] })).status, 422);
+  const inspected = await post(inspect, input);
+  assert.equal(inspected.status, 200);
+  const selections = inspected.json().documents.map((document, i) => {
+    assert.equal(document.role, documents[i].role);
+    assert.equal(document.sha256, hash(originals[i]));
+    assert.ok(document.pageCount >= 1);
+    const [{ page, text, usable }] = document.pages;
+    assert.equal(usable, true);
+    const selected = text.split('\n').find(line => line.trim().length >= 10).trim();
+    const start = text.indexOf(selected);
+    return { ...documents[i], label: 'PDF mô phỏng ' + document.role, confirmed: true, sha256: document.sha256,
+      page, start, end: start + selected.length, text: selected };
+  });
+  const { content, sha256, page } = selections[2];
+  const previewPath = '/api/patents/pdf-pack/preview';
+  const preview = await post(previewPath, { synthetic: true, content, sha256, page });
+  assert.equal(preview.status, 200);
+  assert.equal(preview.headers['Content-Type'], 'image/png');
+  assert.equal(preview.headers['X-Source-SHA256'], sha256);
+  assert.equal((await post(previewPath, { synthetic: true, content, sha256: '0'.repeat(64), page })).status, 409);
+  const request = { synthetic: true, reference: 'PACK-TEST', title: 'Hồ sơ mô phỏng nhập cùng lúc',
+    jurisdiction: 'VN', asOf: '2026-11-11', instructionsText: 'Kiểm tra đúng đoạn D1.',
+    documents: selections, claimText: 'Nội dung nhập phải lấy từ PDF.' };
+  assert.equal((await post(create, request, { signed: false })).status, 401);
+  assert.equal((await post(create, { ...request, documents: [selections[0], selections[1],
+    { ...selections[2], sha256: '0'.repeat(64) }] })).status, 409);
+  assert.equal((await post(create, { ...request, documents: [selections[0], selections[1],
+    { ...selections[2], confirmed: false }] })).status, 422);
+  assert.equal((await post(create, { ...request, documents: [selections[0], selections[1],
+    { ...selections[2], start: selections[2].start + 1 }] })).status, 422);
+  assert.equal((await post(create, { ...request, documents: [selections[0], selections[1],
+    { ...selections[1], role: 'd1' }] })).status, 422);
+  assert.deepEqual((await call('/api/patents/cases')).json(), []);
+  const created = await post(create, request);
+  assert.equal(created.status, 201);
+  const matter = created.json();
+  assert.equal(matter.version, 1);
+  assert.equal(matter.claimText, selections[1].text);
+  assert.equal(matter.noticeText, selections[0].text);
+  assert.deepEqual(matter.evidenceIds, [matter.claimRecordId, ...matter.d1RecordIds]);
+  assert.deepEqual((await call('/api/patents/cases/' + matter.id)).json(), matter);
+  for (const [i, document] of matter.documents.entries()) {
+    const { role, sha256, start, end, page, text } = selections[i];
+    assert.deepEqual([document.role, document.sha256, document.start, document.end, document.page, document.textSha256],
+      [role, sha256, start, end, page, hash(text)]);
+    assert.deepEqual((await call(document.openUrl)).body, originals[i]);
+    assert.equal((await call(document.pageUrl, { actor: outside })).status, 404);
+  }
+  assert.equal((await post(create, request)).status, 409);
+  assert.equal((await call('/api/patents/cases')).json().length, 1);
+});
+
+test('patent store rolls back the case and earlier PDFs when a later insert fails', t => {
+  mkdirSync('work', { recursive: true });
+  const directory = mkdtempSync(resolve('work/patent-store-'));
+  const path = resolve(directory, 'cases.sqlite');
+  const store = openPatentStore(path);
+  const db = new DatabaseSync(path);
+  t.after(() => { db.close(); store.close(); rmSync(directory, { recursive: true, force: true }); });
+  db.exec(`CREATE TRIGGER reject_second_attachment BEFORE INSERT ON patent_pdf_attachments
+    WHEN NEW.id = 'fails' BEGIN SELECT RAISE(ABORT, 'test attachment failure'); END`);
+  const matter = { id: 'test-case', group: 'test', reference: 'PACK-ROLLBACK', title: 'Rollback',
+    version: 1, updatedAt: '2026-11-11' };
+  const bytes = Buffer.from('%PDF-1.7');
+  const first = { id: 'works', bytes, sha256: hash(bytes), pageCount: 1 };
+  const second = { ...first, id: 'fails', sha256: 'f'.repeat(64) };
+  assert.throws(() => store.create(matter, { attachments: [first, second] }), /test attachment failure/);
+  assert.deepEqual(store.list(matter.group), []);
+  assert.equal(db.prepare('SELECT count(*) AS count FROM patent_pdf_attachments').get().count, 0);
+  assert.deepEqual(store.create(matter, { attachments: [first] }), matter);
+  assert.deepEqual(store.attachment(first.id, matter.id, matter.group).bytes, bytes);
 });
 
 test('patent API accepts bounded Vietnamese private inputs above16KiB and keeps them out of public retrieval', async t => {

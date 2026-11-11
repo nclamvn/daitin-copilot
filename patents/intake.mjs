@@ -4,9 +4,12 @@ import { inspectPDF, pdfEngine, renderPage } from '../copilot/m4/pdf.mjs';
 export const maxPatentPDFBytes = 2 * 1024 * 1024;
 const maxEncodedBytes = Math.ceil(maxPatentPDFBytes / 3) * 4;
 export const maxPatentPDFRequest = maxEncodedBytes + 24 * 1024;
+// Three separately padded Base64 values and the selected excerpts/metadata.
+export const maxPatentPDFPackRequest = maxEncodedBytes + 64 * 1024;
 export const maxPatentPDFPages = 12;
 const maxRange = 4;
 const maxExcerptChars = 1800;
+const pdfRoles = ['notice', 'claim', 'd1'];
 
 function inputBytes(body) {
   if (body?.synthetic !== true) throw new CaseError('Chỉ dùng PDF mô phỏng được phép đưa vào pilot.', 422);
@@ -35,8 +38,7 @@ function pageRange({ firstPage, lastPage }) {
   return { firstPage, lastPage };
 }
 
-async function readRange(body) {
-  const bytes = inputBytes(body);
+async function readRange(body, bytes = inputBytes(body)) {
   const { firstPage, lastPage } = pageRange(body);
   const inspected = await inspectPDF(bytes);
   const pageCount = inspected.pages.length;
@@ -59,14 +61,14 @@ export async function previewPatentPDF(body) {
   return { sha256: inspected.sha256, bytes: await renderPage(bytes, body.page, inspected.pages.length) };
 }
 
-export async function bindPatentPDF(body) {
+export async function bindPatentPDF(body, bytes) {
   if (body?.confirmed !== true || !/^[a-f0-9]{64}$/.test(body.sha256 ?? '')) {
     throw new CaseError('Xác nhận đoạn trích đã đối chiếu với đúng bản PDF.', 422);
   }
-  if (!['notice', 'claim', 'd1'].includes(body.role)) throw new CaseError('Chọn vai trò của đoạn PDF trong hồ sơ.', 422);
+  if (!pdfRoles.includes(body.role)) throw new CaseError('Chọn vai trò của đoạn PDF trong hồ sơ.', 422);
   const label = bounded(body.label, 100, 'Tên tài liệu PDF');
   if (!usableText(label) || /[\r\n\t]/.test(label)) throw new CaseError('Tên tài liệu PDF cần nằm trên một dòng.', 422);
-  const { bytes, inspection } = await readRange(body);
+  const { bytes: original, inspection } = await readRange(body, bytes);
   const { role, page, start, end, text } = body;
   const selected = inspection.pages.find(item => item.page === page);
   if (!selected) throw new CaseError('Chọn đoạn trích trong khoảng trang đã đọc.', 422);
@@ -76,6 +78,39 @@ export async function bindPatentPDF(body) {
       selected.text.slice(start, end) !== text) {
     throw new CaseError('Đoạn xác nhận phải trùng nguyên văn lớp chữ của đúng trang, tối đa 1.800 ký tự.', 422);
   }
-  return { bytes, label, role, page, start, end, text, pageCount: inspection.pageCount,
+  return { bytes: original, label, role, page, start, end, text, pageCount: inspection.pageCount,
     sha256: inspection.sha256, textSha256: hash(text), extractionEngine: inspection.extractionEngine };
+}
+
+function packInputs(body) {
+  if (body?.synthetic !== true) throw new CaseError('Chỉ dùng PDF mô phỏng được phép đưa vào pilot.', 422);
+  const documents = body.documents;
+  if (!Array.isArray(documents) || documents.length !== pdfRoles.length ||
+      new Set(documents.map(item => item?.role)).size !== pdfRoles.length ||
+      documents.some(item => !pdfRoles.includes(item?.role))) {
+    throw new CaseError('Chọn đúng một PDF cho từng vai trò thông báo, yêu cầu bảo hộ và D1.', 422);
+  }
+  const inputs = documents.map(item => {
+    const input = { ...item, synthetic: true };
+    return { input, bytes: inputBytes(input) };
+  });
+  if (inputs.reduce((total, item) => total + item.bytes.length, 0) > maxPatentPDFBytes) {
+    throw new CaseError('Tổng dung lượng ba PDF tối đa 2 MiB.', 422);
+  }
+  return inputs;
+}
+
+export async function inspectPatentPDFPack(body) {
+  const documents = [];
+  for (const { input, bytes } of packInputs(body)) {
+    const { inspection } = await readRange(input, bytes);
+    documents.push({ role: input.role, ...inspection });
+  }
+  return { documents };
+}
+
+export async function bindPatentPDFPack(body) {
+  const selections = [];
+  for (const { input, bytes } of packInputs(body)) selections.push(await bindPatentPDF(input, bytes));
+  return selections;
 }
