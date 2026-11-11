@@ -18,7 +18,7 @@ Các GET xuất Word có thể sinh cache tạm nhưng không ghi snapshot. Tệ
 
 Vercel Function giới hạn kích thước response, nên các PDF chính thống lớn được build thành `dist/__sources/<sha256>.pdf`. Build chỉ đọc danh mục PDF của SOT ứng viên và `copilot/sources.json`, kiểm miền nguồn chính thống, tên tệp, loại dữ liệu, nơi lưu và SHA-256 trước khi tạo output. Không glob thư mục hồ sơ hoặc đưa PDF khách hàng, SQLite hay khóa lên CDN.
 
-Đường dẫn nguồn cũ vẫn đi qua xác thực và kiểm pin trước khi 302 tới tài nguyên hash bất biến; pin sai trả 409, mã nguồn không có trả 404. Browser giữ fragment trang PDF khi theo redirect không có fragment mới. Nội dung PDF chính thống là nguồn công khai, có thể truy cập trực tiếp tại tài nguyên hash. `dist` chỉ chứa `__sources`, không có `index.html`: quy tắc filesystem phục vụ PDF lớn trực tiếp, các đường khác tiếp tục Function và trang gốc vẫn chuyển vào bàn hồ sơ. Dữ liệu pilot và Word tiếp tục ở đường riêng có đăng nhập.
+Đường dẫn nguồn cũ vẫn đi qua xác thực và kiểm pin trước khi 302 tới tài nguyên hash bất biến; pin sai trả 409, mã nguồn không có trả 404. Browser giữ fragment trang PDF khi theo redirect không có fragment mới. Nội dung PDF chính thống là nguồn công khai, có thể truy cập trực tiếp tại tài nguyên hash. `dist` chứa `__sources` và 13 tài nguyên giao diện trong allowlist chính xác, không có HTML: font, logo, CSS/JS đăng nhập và các CSS/module trình duyệt của bàn hồ sơ. Những tài nguyên này được phục vụ trực tiếp, không đọc snapshot riêng hoặc chiếm hàng đợi Function. Quy tắc filesystem phục vụ tài nguyên trước, các đường khác tiếp tục Function; trang gốc vẫn chuyển vào bàn hồ sơ, HTML và API vẫn xác thực. Không đưa module máy chủ, tài liệu hồ sơ, mẫu Word máy chủ hoặc khóa vào CDN.
 
 ## Giới hạn pilot
 

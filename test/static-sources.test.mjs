@@ -3,7 +3,7 @@ import test from 'node:test';
 import { createHash } from 'node:crypto';
 import { mkdtempSync, mkdirSync, readFileSync, readdirSync, writeFileSync, rmSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { sourceManifest, verifiedSources, stageSources, sourceRedirect } from '../web/static-sources.mjs';
+import { sourceManifest, verifiedSources, stageSources, sourceRedirect, frontendAssets } from '../web/static-sources.mjs';
 
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 function fixture(t) {
@@ -20,8 +20,8 @@ function fixture(t) {
 
 test('static staging emits only hash-named verified PDF files, never a root index or uploaded material', t => {
   const { root, bytes, entry } = fixture(t);
-  const result = stageSources({ appRoot: root, entries: [entry, entry] });
-  assert.deepEqual(result, { files: 1, bytes: bytes.length });
+  const result = stageSources({ appRoot: root, entries: [entry, entry], includeFrontendAssets: false });
+  assert.deepEqual(result, { files: 1, bytes: bytes.length, assets: 0 });
   assert.deepEqual(readdirSync(resolve(root, 'dist')), ['__sources']);
   assert.deepEqual(readdirSync(resolve(root, 'dist/__sources')), [entry.sha256 + '.pdf']);
   assert.deepEqual(readFileSync(resolve(root, 'dist/__sources', entry.sha256 + '.pdf')), bytes);
@@ -33,10 +33,32 @@ test('static staging rejects nonofficial, traversal and changed source bytes bef
     { ...entry, file: '../client.pdf' }, { ...entry, type: 'xlsx' }]) {
     assert.throws(() => verifiedSources([bad], root));
   }
-  stageSources({ appRoot: root, entries: [entry] });
+  stageSources({ appRoot: root, entries: [entry], includeFrontendAssets: false });
   writeFileSync(resolve(root, 'corpus/snapshots/fixture.pdf'), Buffer.from('%PDF-1.4\nChanged source.'));
-  assert.throws(() => stageSources({ appRoot: root, entries: [entry] }));
+  assert.throws(() => stageSources({ appRoot: root, entries: [entry], includeFrontendAssets: false }));
   assert.deepEqual(readFileSync(resolve(root, 'dist/__sources', entry.sha256 + '.pdf')), bytes);
+});
+
+test('frontend CDN staging uses exact safe allowlist and preserves bytes without exposing HTML, server modules or case data', t => {
+  const { root, entry } = fixture(t);
+  const expectedPaths = ['fonts.css', 'public/fonts.css', 'brand.css', 'public/brand.css', 'brand/daitin.png',
+    'public/brand/daitin.png', 'copilot/m3/login.css', 'copilot/m3/login.js', 'copilot/m3/workspace/app.css',
+    'copilot/m3/workspace/app.mjs', 'copilot/m3/workspace/entry.js', 'copilot/m3/workspace/pdf.mjs',
+    'copilot/m3/workspace/research.mjs'];
+  assert.deepEqual(frontendAssets.map(item => item.pathname), expectedPaths);
+  for (const item of frontendAssets) {
+    assert.doesNotMatch(item.source, /(?:\.html$|server\.mjs|seed|accounts|word-brand|m4\/brand|work\/|snapshot)/);
+    const path = resolve(root, item.source);
+    mkdirSync(resolve(path, '..'), { recursive: true });
+    writeFileSync(path, readFileSync(new URL('../' + item.source, import.meta.url)));
+  }
+  const result = stageSources({ appRoot: root, entries: [entry] });
+  assert.equal(result.assets, expectedPaths.length);
+  for (const item of frontendAssets) {
+    assert.deepEqual(readFileSync(resolve(root, 'dist', item.pathname)), readFileSync(resolve(root, item.source)));
+  }
+  const output = readdirSync(resolve(root, 'dist'), { recursive: true }).filter(path => !path.endsWith('/'));
+  assert.ok(!output.some(path => /(?:\.html$|accounts|seed|word-brand|server\.mjs|\.sqlite|\.key)/.test(path)));
 });
 
 test('real official manifests include large PDFs and hash-pin redirects reject mismatches', () => {

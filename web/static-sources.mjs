@@ -8,6 +8,24 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
 const officialHosts = new Set(['datafiles.chinhphu.vn', 'congbaocdn.chinhphu.vn', 'ipvietnam.gov.vn', 'www.ipvietnam.gov.vn']);
 
+// Only browser-delivered assets belong here. In particular, HTML still needs
+// the authenticated Function; server modules and matter files never go to CDN.
+export const frontendAssets = Object.freeze([
+  ['public/fonts.css', 'fonts.css'],
+  ['public/fonts.css', 'public/fonts.css'],
+  ['public/brand.css', 'brand.css'],
+  ['public/brand.css', 'public/brand.css'],
+  ['public/brand/daitin.png', 'brand/daitin.png'],
+  ['public/brand/daitin.png', 'public/brand/daitin.png'],
+  ['copilot/m5/login.css', 'copilot/m3/login.css'],
+  ['copilot/m5/login.js', 'copilot/m3/login.js'],
+  ['copilot/m3/workspace/app.css', 'copilot/m3/workspace/app.css'],
+  ['copilot/m3/workspace/app.mjs', 'copilot/m3/workspace/app.mjs'],
+  ['copilot/m3/workspace/entry.js', 'copilot/m3/workspace/entry.js'],
+  ['copilot/m3/workspace/pdf.mjs', 'copilot/m3/workspace/pdf.mjs'],
+  ['copilot/m3/workspace/research.mjs', 'copilot/m3/workspace/research.mjs']
+].map(([source, pathname]) => Object.freeze({ source, pathname })));
+
 export function sourceManifest(appRoot = root) {
   const bundle = validateBundle(JSON.parse(readFileSync(resolve(appRoot, 'sot/candidate.json'), 'utf8')), 'preview');
   const copilot = JSON.parse(readFileSync(resolve(appRoot, 'copilot/sources.json'), 'utf8'));
@@ -39,13 +57,19 @@ export function verifiedSources(entries, appRoot = root) {
   return [...selected.values()];
 }
 
-export function stageSources({ appRoot = root, output = resolve(appRoot, 'dist'), entries = sourceManifest(appRoot) } = {}) {
+export function stageSources({ appRoot = root, output = resolve(appRoot, 'dist'), entries = sourceManifest(appRoot), includeFrontendAssets = true } = {}) {
   const sources = verifiedSources(entries, appRoot); // Validate all before touching previous build output.
+  const assets = includeFrontendAssets ? frontendAssets.map(item => ({ ...item, bytes: readFileSync(resolve(appRoot, item.source)) })) : [];
   rmSync(output, { recursive: true, force: true });
   const destination = resolve(output, '__sources');
   mkdirSync(destination, { recursive: true });
   for (const item of sources) writeFileSync(resolve(destination, item.sha256 + '.pdf'), item.bytes);
-  return { files: sources.length, bytes: sources.reduce((sum, item) => sum + item.bytes.length, 0) };
+  for (const item of assets) {
+    const path = resolve(output, item.pathname);
+    mkdirSync(dirname(path), { recursive: true });
+    writeFileSync(path, item.bytes);
+  }
+  return { files: sources.length, bytes: sources.reduce((sum, item) => sum + item.bytes.length, 0), assets: assets.length };
 }
 
 export function sourceRedirect(path, catalog, copilotManifest) {
