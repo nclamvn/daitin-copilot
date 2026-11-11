@@ -8,6 +8,8 @@ const base = '/api/patents/cases';
 const conflict = /Pilot đang lưu một thay đổi khác|Hồ sơ vừa được cập nhật ở phiên khác/;
 const wordPath = (id, phase) => `${base}/${id}/word/${phase}`;
 const packMode = process.env.DAITIN_PILOT_BATCH === '1';
+const modelPaceMs = Number(process.env.DAITIN_PILOT_PRODUCT_PACE_MS ?? 0);
+assert.ok(Number.isInteger(modelPaceMs) && modelPaceMs >= 0 && modelPaceMs <= 60000, 'Invalid model pacing');
 const requiredActor = (accounts, name, role) => {
   const account = accounts.find(item => item.name === name && item.role === role && !item.disabled);
   assert.match(account?.key ?? '', /^[a-f0-9]{64}$/, `Missing active ${role} pilot account`);
@@ -186,7 +188,7 @@ async function executePhase(ledger, api, out, entry, phase) {
   for (const document of entry.documents) assertSource(matter, document);
   const targets = phase === 1 ? ['matrix', 'response'] : ['response'];
   const proposalNumber = phase;
-  const existing = ledger.state.modelAttempts.find(x => x.caseId === entry.id && x.phase === phase && x.stage === 'generate');
+  const existing = ledger.state.modelAttempts.findLast(x => x.caseId === entry.id && x.phase === phase && x.stage === 'generate');
   if (matter.proposals.length >= proposalNumber && !existing) throw new Error(`${entry.id} unexpected proposal outside this ledger`);
   const write = (action, route, body, account = api.editor) => api.json(phase, entry.id, action, `${path}/${route}`, {
     account, safeWrite: true, body: { version: matter.version, ...body }
@@ -204,7 +206,12 @@ async function executePhase(ledger, api, out, entry, phase) {
     }
   }
   if (matter.proposals.length < proposalNumber) {
-    const receipt = beginModel(ledger, entry.id, phase, 'generate', 16);
+    const lastAttempt = ledger.state.modelAttempts.at(-1);
+    const remaining = lastAttempt ? modelPaceMs - (Date.now() - Date.parse(lastAttempt.attemptedAt)) : 0;
+    if (remaining > 0) await measure(ledger, 'pacing', entry.id, phase, 'space provider requests', () => pause(remaining));
+    const receipt = beginModel(ledger, entry.id, phase, 'generate', 16, {
+      retry429: process.env.DAITIN_PILOT_RETRY_429 === '1' && existing?.serverReceipt?.providerStatus === 429
+    });
     track(ledger, 'operator', entry.id, phase, 'send drafting task');
     try {
       // Keep the same group and model while using the available pilot quota.

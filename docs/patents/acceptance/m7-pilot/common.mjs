@@ -92,19 +92,22 @@ const isRateLimit = receipt => receipt.providerStatus === 429 && receipt.status 
 export const maxExplicitRateLimitRetries = 8;
 
 export function checkAttemptBudget(product, direct) {
-  assert.ok(product.length <= 16 && new Set(product.map(logicalStage)).size === product.length);
-  const stages = Map.groupBy(direct, logicalStage);
-  assert.ok(stages.size <= 32);
   let retries = 0;
-  for (const history of stages.values()) {
-    if (history.length === 1) continue;
-    assert.ok(history.length === 2 && isRateLimit(history[0]) && history[1].retryOf === history[0].attemptedAt,
-      'Only explicit provider rate limits may be manually retried once');
-    retries++;
+  let logicalStages = 0;
+  for (const [attempts, cap] of [[product, 16], [direct, 32]]) {
+    const stages = Map.groupBy(attempts, logicalStage);
+    assert.ok(stages.size <= cap);
+    logicalStages += stages.size;
+    for (const history of stages.values()) {
+      if (history.length === 1) continue;
+      assert.ok(history.length === 2 && isRateLimit(history[0]) && history[1].retryOf === history[0].attemptedAt,
+        'Only explicit provider rate limits may be manually retried once');
+      retries++;
+    }
   }
   assert.ok(retries <= maxExplicitRateLimitRetries);
   return { plannedStageCap: 48, httpAttemptCap: 48 + maxExplicitRateLimitRetries,
-    logicalStages: product.length + stages.size, retries429: retries, httpAttempts: product.length + direct.length };
+    logicalStages, retries429: retries, httpAttempts: product.length + direct.length };
 }
 
 export function beginModel(ledger, caseId, phase, stage, cap, { retry429 = false } = {}) {
@@ -112,7 +115,8 @@ export function beginModel(ledger, caseId, phase, stage, cap, { retry429 = false
   const key = logicalStage({ caseId, phase, stage });
   const history = modelAttempts.filter(item => logicalStage(item) === key);
   const previous = history[0];
-  if (previous && !(retry429 && ledger.state.arm === 'direct' && history.length === 1 && isRateLimit(previous) &&
+  if (previous && !(retry429 && history.length === 1 && isRateLimit(previous) &&
+      Date.now() - Date.parse(previous.attemptedAt) >= 75000 &&
       modelAttempts.filter(item => item.retryOf).length < maxExplicitRateLimitRetries)) {
     throw new Error(`Previous ${stage} attempt exists for ${caseId} phase ${phase}; never replay automatically`);
   }
@@ -126,7 +130,7 @@ export function beginModel(ledger, caseId, phase, stage, cap, { retry429 = false
 
 function maskRecordIds(text, ids) {
   let normalized = text;
-  for (const [id, label] of ids) normalized = normalized.replaceAll(id, label);
+  for (const [id, label] of ids) normalized = normalized.replace(new RegExp(RegExp.escape(id), 'gi'), label);
   return normalized;
 }
 
@@ -161,9 +165,25 @@ export function blind(out, input) {
   const mapping = [];
   for (const entry of input.cases) {
     for (const arm of ['product', 'direct']) {
-      const item = (arm === 'product' ? product : direct).cases[entry.id];
+      const data = arm === 'product' ? product : direct;
+      const item = data.cases[entry.id];
       const blindId = randomBytes(7).toString('hex');
-      const phases = [1, 2].map(phase => item.phases[phase]?.quality ?? { caseId: entry.id, phase, unavailable: true });
+      const aliases = new Map([['pdf-claim', 'CLAIM'], ['pdf-d1', 'D1']]);
+      for (const attempt of data.modelAttempts.filter(attempt => attempt.caseId === entry.id)) {
+        for (const span of attempt.run?.selectedSpans ?? []) {
+          if (span.claim?.recordId) aliases.set(span.claim.recordId, 'CLAIM');
+          if (span.d1?.recordId) aliases.set(span.d1.recordId, 'D1');
+        }
+      }
+      const phases = [1, 2].map(phase => {
+        const view = item.phases[phase]?.quality;
+        if (!view) return { caseId: entry.id, phase, unavailable: true };
+        // The saved view may predate case-insensitive alias masking.
+        const normalize = text => maskRecordIds(text, aliases);
+        return { ...view, matrix: view.matrix.map(row => ({
+          ...row, feature: normalize(row.feature), analysis: normalize(row.analysis), missing: normalize(row.missing)
+        })), response: { ...view.response, text: normalize(view.response.text) } };
+      });
       results.push({ blindId, caseId: entry.id, phases });
       mapping.push({ blindId, caseId: entry.id, arm, reference: item.reference, caseIdOnServer: item.caseId ?? null });
     }

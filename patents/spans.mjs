@@ -69,13 +69,35 @@ export function buildPatentSpanOptions(matter, claimContext) {
       method: 'source_paragraphs_split_at_native_boundaries_max1000chars_first16_per_record_first64_per_role' } };
 }
 
+const responseHeadings = {
+  observed: 'Đối chiếu đoạn đã chọn: ',
+  unresolved: 'Điểm cần xác minh: ',
+  nextCheck: 'Việc cần kiểm: '
+};
+const responseHeading = /^(?:Đối chiếu đoạn đã chọn|Điểm cần xác minh|Việc cần kiểm)\s*:\s*/iu;
+
 export function composePatentResponse(response) {
   if (!response || typeof response.observed !== 'string' || typeof response.unresolved !== 'string') return response;
-  const paragraphs = [
-    response.observed.trim() && 'Đối chiếu đoạn đã chọn: ' + response.observed.trim(),
-    response.unresolved.trim() && 'Điểm cần xác minh: ' + response.unresolved.trim(),
-    typeof response.text === 'string' && response.text.trim()
-  ].filter(Boolean);
+  const fields = [
+    [response.observed, responseHeadings.observed],
+    [response.unresolved, responseHeadings.unresolved],
+    typeof response.nextCheck === 'string' ? [response.nextCheck, responseHeadings.nextCheck] : [response.text, '']
+  ];
+  const seen = new Set(), paragraphs = [];
+  for (const [value, heading] of fields) {
+    if (typeof value !== 'string') continue;
+    const chunks = value.trim().split(/\r?\n(?:[ \t]*\r?\n)+/u);
+    for (const [index, chunk] of chunks.entries()) {
+      const paragraph = chunk.trim();
+      // Ignore only canonical presentation labels and Unicode/whitespace
+      // differences. Punctuation, negation and technical values stay in the key.
+      const key = paragraph.normalize('NFC').replace(/\s+/gu, ' ').replace(responseHeading, '');
+      if (!key || seen.has(key)) continue;
+      seen.add(key);
+      const addHeading = index === 0 && heading && !responseHeading.test(paragraph);
+      paragraphs.push(addHeading ? heading + paragraph : paragraph);
+    }
+  }
   return { text: paragraphs.join('\n\n'), evidenceIds: response.evidenceIds };
 }
 

@@ -104,30 +104,64 @@ test('similar subject, adjacent function or timing alone remains unresolved by c
   ]) assert.equal(comparePatentExcerpts(claim, d1), null);
 });
 
-test('response-only prompt shares current instructions and matrix evidence with direct, preserving the model next check', async () => {
-  const claim = 'Moving the slider energizes the infrared source.';
-  const d1 = 'A red lamp flashes after the slider moves.';
+test('revision promotes the current request after stale prose and separates a named future inspection', async () => {
+  const claim = 'A keyed coupling cannot rotate after the retaining key seats in the groove.';
+  const d1 = 'The coupling connects the shaft and the drive wheel.';
   const matter = matterWith(claim, d1);
-  matter.instructionsText = 'Chỉ ra dây nối công tắc con trượt tới đầu enable nguồn hồng ngoại cần kiểm.';
-  matter.sections.matrix = { approval: { sha256: 'old-matrix' }, rows: [{ feature: 'Kích hoạt nguồn', claimQuote: claim,
-    d1Quote: d1, d1RecordId: 'd1', assessment: 'uncertain', analysis: 'Đoạn chỉ ghi đèn đỏ.', missing: 'Chưa xác nhận nguồn.' }] };
-  matter.sections.response.text = 'Bản cũ chỉ kiểm đèn đỏ.';
+  matter.instructionsText = 'Chỉ ra chi tiết ngồi rãnh của then giữ cần xem trong hình tách cụm khớp nối.';
+  matter.sections.matrix = { approval: { sha256: 'old-matrix' }, rows: [{ feature: 'Chặn xoay khớp nối', claimQuote: claim,
+    d1Quote: d1, d1RecordId: 'd1', assessment: 'uncertain', analysis: 'Đoạn đã chọn ghi hai bộ phận kết nối.', missing: 'Chưa xác nhận cơ cấu giữ.' }] };
+  const observed = 'Đoạn D1 đã chọn ghi khớp nối giữa trục và bánh dẫn động.';
+  matter.sections.response.text = 'Đối chiếu đoạn đã chọn: ' + observed + '\n\nBản cũ đề nghị kiểm trục.';
   const before = structuredClone(matter.sections.matrix);
   const input = { matter, targets: ['response'], instruction: 'Chỉ cập nhật phản hồi theo chỉ dẫn hiện hành.' };
   const prompt = buildPatentPrompt(input, connection);
   const context = JSON.parse(prompt.messages[1].content);
   assert.deepEqual(context.requestedTargets, ['response']);
-  assert.equal(context.privateCaseEvidence.find(item => item.id === 'case:instructions').text, matter.instructionsText);
+  assert.equal(Object.keys(context).at(-1), 'revisionRequest');
+  assert.equal(context.revisionRequest.operatorTask, input.instruction);
+  assert.equal(context.revisionRequest.currentInstructions.text, matter.instructionsText);
+  assert.equal(context.revisionRequest.currentInstructions.sha256, hash(matter.instructionsText));
+  assert.ok(!context.privateCaseEvidence.some(item => item.id === 'case:instructions'));
   assert.equal(context.matrixContext.rows[0].d1Quote, d1);
-  const raw = { response: { observed: 'Đoạn D1 đã chọn ghi đèn đỏ nháy sau khi con trượt dịch chuyển.',
-    unresolved: 'Đoạn đã chọn chưa xác nhận nguồn hồng ngoại được kích hoạt.',
-    text: 'Việc cần kiểm: Xem dây nối công tắc con trượt tới đầu enable nguồn hồng ngoại trong sơ đồ mạch.',
+  assert.equal(context.draftForReference.response.text, matter.sections.response.text);
+  assert.deepEqual(prompt.response_format.json_schema.schema.properties.response.required, ['observed', 'unresolved', 'nextCheck', 'evidenceIds']);
+  const raw = { response: { observed,
+    unresolved: 'Đoạn đã chọn chưa xác nhận then giữ chặn xoay.',
+    nextCheck: 'Đối chiếu đoạn đã chọn: ' + observed.normalize('NFD').replaceAll(' ', '  ') +
+      '\r\n\r\nViệc cần kiểm: Xem hình tách cụm khớp nối để kiểm tra then giữ có ngồi trong rãnh và chặn xoay hay không.',
     evidenceIds: ['claim', 'd1', 'case:instructions'] } };
   const direct = materializePatentSpans(raw, context.spanOptions);
-  const { patch } = await generatePatentProposal(input, { connection, fetcher: provider(() => raw) });
+  let calls = 0;
+  const fetcher = provider(payload => {
+    calls++;
+    assert.equal(JSON.parse(payload.messages[1].content).revisionRequest.currentInstructions.text, matter.instructionsText);
+    return raw;
+  });
+  const { patch } = await generatePatentProposal(input, { connection, fetcher });
+  assert.equal(calls, 1);
   assert.deepEqual(matter.sections.matrix, before);
+  assert.equal(matter.sections.response.text, context.draftForReference.response.text);
   assert.deepEqual(Object.keys(patch), ['response']);
   assert.equal(patch.response.text, direct.response.text);
-  assert.match(patch.response.text, /dây nối công tắc con trượt tới đầu enable/);
-  assert.doesNotMatch(patch.response.text, /Bản cũ/);
+  assert.equal(patch.response.text.match(/Đối chiếu đoạn đã chọn:/gu).length, 1);
+  assert.match(patch.response.text, /Việc cần kiểm: Xem hình tách cụm khớp nối.*then giữ có ngồi trong rãnh/u);
+  assert.doesNotMatch(patch.response.text, /Bản cũ|đã xem hình/iu);
+});
+
+test('a result-only revision can keep a complete comparator and units without inventing a verification action', async () => {
+  const source = 'The compressor stops after 11 seconds below 18 kPa.';
+  const matter = matterWith(source, source);
+  matter.instructionsText = 'Ghi thời gian và ngưỡng áp suất kèm đơn vị và chiều so sánh trong câu kết quả.';
+  matter.sections.response.text = 'Thời gian sau 11 giây và áp suất dưới 18 kPa.';
+  const raw = { response: { observed: 'Hai đoạn cùng ghi dừng sau 11 giây khi dưới 18 kPa.', unresolved: '',
+    nextCheck: '', evidenceIds: ['claim', 'd1'] } };
+  const input = { matter, targets: ['response'] };
+  let calls = 0;
+  const { patch, run } = await generatePatentProposal(input, { connection, fetcher: provider(() => { calls++; return raw; }) });
+  assert.equal(calls, 1);
+  assert.equal(run.excerptComparison.responseKind, 'literal_match');
+  assert.match(patch.response.text, /sau 11 giây, dưới 18 kPa/u);
+  assert.doesNotMatch(patch.response.text, /Việc cần kiểm|Điểm cần xác minh/u);
+  assert.deepEqual(Object.keys(patch.response).sort(), ['approval', 'evidenceIds', 'text']);
 });

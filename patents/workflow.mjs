@@ -154,6 +154,12 @@ const modelInstructions = [
   'Không suy ra tính mới, trình độ sáng tạo, tình trạng quyền hoặc FTO. Không tự dựng yêu cầu cha, điều luật, số công bố, họ sáng chế, thời hạn hoặc quyết định. Chỉ dựa trên thông báo thực sự được cung cấp.'
 ].join('\n');
 
+const responseRevisionInstructions = [
+  'Ở lượt chỉ sửa phản hồi, thực hiện revisionRequest ở cuối thông điệp. draftForReference là văn bản cũ để tham khảo; không chép lại nguyên khối hoặc giữ việc cần kiểm cũ thay cho yêu cầu hiện hành.',
+  'Với lượt này, nextCheck thay cho text. Nếu revisionRequest yêu cầu một bước xác minh, viết một hành động cụ thể trong nextCheck: giữ đúng tên tài liệu, hình hoặc phép kiểm được yêu cầu và nêu bộ phận, dấu hiệu hoặc điều kiện cần tìm ở đó. Viết như việc người rà soát sẽ làm; không mô tả đã xem hoặc đã xác nhận nguồn chưa được chọn. Không tự đặt số trang, số hình hoặc kết quả chưa có.',
+  'Nếu chỉ dẫn chỉ yêu cầu trình bày kết quả, giá trị, đơn vị, điều kiện hoặc cách tách nội dung, thực hiện trong observed và unresolved. Khi các phần này đã đáp ứng yêu cầu và không có việc xác minh cần nêu, để nextCheck rỗng. Không lặp nhận định, chép bản cũ hay đặt tiêu đề trong nextCheck.'
+].join('\n');
+
 function conservativeModelPatch(patch) {
   if (!Array.isArray(patch?.matrix?.rows)) return patch;
   return { ...patch, matrix: { ...patch.matrix, rows: patch.matrix.rows.map(row => row?.assessment === 'disclosed'
@@ -164,6 +170,9 @@ function conservativeModelPatch(patch) {
 export function buildPatentPrompt({ matter, targets: requested, instruction = 'Đối chiếu yêu cầu bảo hộ với các chứng cứ đã chọn và chuẩn bị bản nháp nội bộ.' }, connection = modelConnection()) {
   if (!connection) throw new CaseError('AI chưa được cấu hình; có thể tiếp tục nhập và sửa bằng tay.', 503);
   const selectedTargets = targets(requested);
+  const responseOnly = selectedTargets.length === 1 && selectedTargets[0] === 'response';
+  const operatorTask = bounded(instruction, 600, 'Yêu cầu phân tích');
+  const actionField = responseOnly ? 'nextCheck' : 'text';
   requireUsableExtraction(matter.pinnedEvidence);
   const claimContext = requireClaimContext(matter);
   if (selectedTargets.includes('response') && (!matter.noticeText || !matter.instructionsText)) {
@@ -181,8 +190,8 @@ export function buildPatentPrompt({ matter, targets: requested, instruction = '�
   const schema = { type: 'object', additionalProperties: false, required: selectedTargets,
     properties: Object.fromEntries(selectedTargets.map(id => [id, id === 'matrix'
       ? { type: 'object', additionalProperties: false, required: ['rows'], properties: { rows: { type: 'array', minItems: 1, maxItems: 6, items: rows } } }
-      : { type: 'object', additionalProperties: false, required: ['observed', 'unresolved', 'text', 'evidenceIds'], properties: {
-        observed: { type: 'string' }, unresolved: { type: 'string' }, text: { type: 'string' },
+      : { type: 'object', additionalProperties: false, required: ['observed', 'unresolved', actionField, 'evidenceIds'], properties: {
+        observed: { type: 'string' }, unresolved: { type: 'string' }, [actionField]: { type: 'string' },
         evidenceIds: { type: 'array', minItems: 1, maxItems: 8, items: { enum: evidenceIds } }
       } }])) };
   const sources = matter.pinnedEvidence.map(item => ({ id: item.record.id, kind: item.record.kind,
@@ -194,22 +203,25 @@ export function buildPatentPrompt({ matter, targets: requested, instruction = '�
     extractionWarnings: item.source.extractionWarnings ?? [], requiresOriginalCheck: item.record.requiresOriginalCheck ?? item.source.requiresOriginalCheck ?? false,
     knownExtractionWarning: item.record.knownExtractionWarning ?? item.source.knownExtractionWarning ?? null }));
   if (sources.reduce((total, item) => total + item.text.length, 0) > 18000) throw new CaseError('Các chứng cứ đã chọn vượt 18.000 ký tự; chọn đoạn chứng cứ hẹp hơn.', 422);
-  const privateCaseEvidence = privateEvidence(matter).map(({ document, ...item }) => document ? { ...item,
+  const privateInputs = privateEvidence(matter);
+  const privateCaseEvidence = privateInputs.filter(item => !responseOnly || item.id !== 'case:instructions')
+    .map(({ document, ...item }) => document ? { ...item,
     document: { label: document.label, role: document.role, page: document.page, sha256: document.sha256,
       textSha256: document.textSha256 } } : item);
-  const matrixContext = selectedTargets.includes('response') && !selectedTargets.includes('matrix') ? {
+  const matrixContext = responseOnly ? {
     reviewed: Boolean(matter.sections.matrix.approval),
     rows: matter.sections.matrix.rows.map(({ feature, claimQuote, d1RecordId, d1Quote, assessment, analysis, missing }) =>
       ({ feature, claimQuote, d1RecordId, d1Quote, assessment, analysis, missing }))
   } : undefined;
   return {
     model: connection.model, temperature: 0, seed: 42, max_tokens: 1800, stream: false,
-    messages: [{ role: 'system', content: modelInstructions },
-    { role: 'user', content: JSON.stringify({ instruction: bounded(instruction, 600, 'Yêu cầu phân tích'),
+    messages: [{ role: 'system', content: responseOnly ? modelInstructions + '\n' + responseRevisionInstructions : modelInstructions },
+    { role: 'user', content: JSON.stringify({ ...(responseOnly ? {} : { instruction: operatorTask }),
       context: matter.context, claimContext, claimText: matter.claimText, claimRecordId: matter.claimRecordId,
       d1RecordIds: matter.d1RecordIds, spanOptions, evidence: sources, privateCaseEvidence, matrixContext,
       requestedTargets: selectedTargets,
-      draftForReference: Object.fromEntries(selectedTargets.map(id => [id, sectionContent(id, matter.sections[id])])) }) }],
+      draftForReference: Object.fromEntries(selectedTargets.map(id => [id, sectionContent(id, matter.sections[id])])),
+      ...(responseOnly ? { revisionRequest: { operatorTask, currentInstructions: privateInputs.find(item => item.id === 'case:instructions') } } : {}) }) }],
     response_format: schemaFormat(connection, 'daitin_patent_proposal', schema)
   };
 }
