@@ -252,7 +252,7 @@ export async function generatePatentProposal(input, { connection = modelConnecti
     run.spanOptionsSha256 = hash(JSON.stringify(options));
     const selected = targets(input.targets);
     const materialized = materializePatentSpans(decoded, options, { composeResponse: false });
-    const compared = applyPatentExcerptComparison(input.matter, materialized, options, run.excerptComparison);
+    const compared = applyPatentExcerptComparison(input.matter, materialized, options, run.excerptComparison, input.instruction);
     if (compared.response) compared.response = composePatentResponse(compared.response);
     const patch = validatePatentPatch(input.matter, guardModelD1Scope(input.matter, compared, selected, run.d1Scope), selected);
     run.elapsedMs = Math.round(performance.now() - start); run.outcome = 'accepted';

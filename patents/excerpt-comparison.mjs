@@ -94,9 +94,59 @@ export function comparePatentExcerpts(claimText, d1Text) {
   return null;
 }
 
+const insufficientKind = 'insufficient_excerpt_comparison';
+const mentionsD1 = text => /\bD\s*-?\s*1\b/iu.test(text);
+const shortStatement = text => text.length <= 240 && !/[\r\n;!?]|\.(?!\d)/u.test(text.replace(/\.$/u, ''));
+
+function confirmedIndependentPair(matter, claim, d1) {
+  if (!claim || !d1 || matter.claimRecordId !== claim.recordId || matter.d1RecordIds.length !== 1 ||
+      claim.recordId === d1.recordId || !claim.sourceSHA256 || claim.sourceSHA256 === d1.sourceSHA256) return false;
+  return [claim, d1].every(span => shortStatement(span.text) && matter.pinnedEvidence.some(({ record, source }) =>
+    record.id === span.recordId && record.text === span.text && source.kind === 'case_document' &&
+    (record.textFidelity ?? source.textFidelity) === 'pdf_text_user_confirmed'));
+}
+
+function requestedArtifact(instruction, instructionsText) {
+  const artifactPattern = /hình\s+(?:cắt|tách cụm|chiếu)|mặt\s+cắt|sơ\s+đồ(?:\s+hoặc\s+tín\s+hiệu)?|tín\s+hiệu/iu;
+  const actionPattern = /xem|kiểm|đối chiếu|xác minh|chỉ rõ|nêu|tìm/iu;
+  for (const value of [instruction, instructionsText]) {
+    if (typeof value !== 'string') continue;
+    for (const clause of value.split(/[.!?;\n]+/u)) {
+      const artifact = clause.match(artifactPattern)?.[0];
+      if (artifact && actionPattern.test(clause) && !/không\s+(?:cần|được|dùng|yêu cầu|xem|kiểm)|đừng|bỏ qua/iu.test(clause)) {
+        return artifact.toLocaleLowerCase('vi').replace(/\s+/gu, ' ');
+      }
+    }
+  }
+  return null;
+}
+
+function enableAndObservedEvent(claim, d1) {
+  const enable = claim.replace(/\.$/u, '').match(/^(.+?)\s+enables\s+(.+)$/iu);
+  const sequence = d1.replace(/\.$/u, '').match(/^(.+?)\s+(?:after|when|once)\s+.+$/iu);
+  if (!enable || !sequence || !/\b(?:lights|blinks|flashes|illuminates|displays|sounds|indicates|reports|appears)\b/iu.test(sequence[1])) return null;
+  return { input: enable[1], output: enable[2], event: sequence[1] };
+}
+
+function prospectiveCheck(artifact, claim, d1, modal) {
+  if (modal && /sơ đồ|tín hiệu/iu.test(artifact)) {
+    return `Đối chiếu ${artifact} để lần theo đường điều khiển từ “${modal.input}” tới tín hiệu cho phép “${modal.output}” hoạt động, nếu có. Kiểm riêng sự kiện “${modal.event}” ghi trong đoạn D1 đã chọn.`;
+  }
+  return `Xem ${artifact}, nếu có trong bản gốc, để xác định vị trí và kiểm chức năng của bộ phận theo yêu cầu (“${claim}”). Kiểm riêng vị trí và chức năng của bộ phận trong đoạn D1 đã chọn (“${d1}”).`;
+}
+
+function withoutInternalCitations(text, matter) {
+  if (typeof text !== 'string') return text;
+  for (const { record } of matter.pinnedEvidence) {
+    if (!/^pdf-[\da-f]{8}(?:-[\da-f]{4}){3}-[\da-f]{12}$/iu.test(record.id)) continue;
+    text = text.replace(new RegExp(record.id, 'giu'), matter.d1RecordIds.includes(record.id) ? 'đối chứng đã gắn' : 'yêu cầu bảo hộ đã gắn');
+  }
+  return text;
+}
+
 // Preserve the model's scope-bounded observations wherever no rule proves a
 // comparison. Disclosed remains a reviewable suggestion, not an attestation.
-export function applyPatentExcerptComparison(matter, patch, spanOptions, receipt) {
+export function applyPatentExcerptComparison(matter, patch, spanOptions, receipt, instruction) {
   const result = structuredClone(patch);
   const onePair = spanOptions.claim.length === 1 && spanOptions.d1.length === 1;
   const claim = onePair ? spanOptions.claim[0] : null;
@@ -108,7 +158,30 @@ export function applyPatentExcerptComparison(matter, patch, spanOptions, receipt
     return needsOriginal([row.claimSpan.recordId, row.d1RecordId]) ?
       'Luật sư cần đối chiếu bản gốc vì đoạn này có lớp chữ chưa được kiểm chứng.' : comparison.unresolved;
   };
+  const boundedUnknown = !pair && confirmedIndependentPair(matter, claim, d1) && !needsOriginal([claim.recordId, d1.recordId]);
+  const modal = boundedUnknown ? enableAndObservedEvent(claim.text, d1.text) : null;
+  const observed = boundedUnknown ? `Yêu cầu bảo hộ ghi “${claim.text}” Đoạn D1 đã chọn ghi “${d1.text}”` : '';
+  const unresolved = 'Đoạn D1 đã chọn chưa đủ căn cứ xác nhận đặc điểm ghi trong yêu cầu bảo hộ.';
+  const response = result.response;
+  const responseCanUsePair = response && typeof response.observed === 'string' && typeof response.unresolved === 'string' &&
+    Array.isArray(response.evidenceIds) && new Set(response.evidenceIds).size === response.evidenceIds.length &&
+    new Set([claim?.recordId, d1?.recordId, ...response.evidenceIds]).size <= 8;
+  const responseInScope = boundedUnknown && responseCanUsePair &&
+    response.evidenceIds.every(id => [claim.recordId, d1.recordId, 'case:claim', 'case:notice', 'case:instructions'].includes(id));
+  const artifact = responseInScope && !result.matrix ? requestedArtifact(instruction, matter.instructionsText) : null;
+  const priorMatrixRun = boundedUnknown && matter.proposals?.findLast(proposal => proposal.targets.includes('matrix'))?.run;
+  const priorUncertainty = priorMatrixRun?.excerptComparison?.rowKinds?.includes(insufficientKind) &&
+    matter.sections.matrix.rows.some(row => row.d1RecordId === d1.recordId && row.d1Quote === d1.text && row.claimQuote === claim.text);
+  let modelNeedsFallback = Boolean(responseInScope && !response.evidenceIds.includes(d1.recordId) &&
+    mentionsD1([response.observed, response.unresolved, response.nextCheck ?? response.text].join(' ')));
   if (result.matrix) result.matrix.rows = result.matrix.rows.map(row => {
+    if (boundedUnknown && (modal || row.assessment === 'different' || (!row.d1Span &&
+        mentionsD1([row.analysis, row.missing].join(' '))))) {
+      modelNeedsFallback = true;
+      receipt.rowKinds.push(insufficientKind);
+      return { ...row, feature: claim.text, d1RecordId: d1.recordId, d1Quote: d1.text, d1Span: spanMetadata(d1),
+        assessment: 'uncertain', analysis: observed, missing: unresolved };
+    }
     const usedD1 = row.d1Span ? spanOptions.d1.find(span => span.id === row.d1Span.id) :
       pair && row.claimSpan.id === claim.id ? d1 : null;
     const comparison = comparePatentExcerpts(row.claimQuote, usedD1?.text);
@@ -131,14 +204,28 @@ export function applyPatentExcerptComparison(matter, patch, spanOptions, receipt
     ];
     receipt.rowKinds.push(pair.kind);
   }
-  if (result.response && pair && !needsOriginal([claim.recordId, d1.recordId]) &&
-      typeof result.response.observed === 'string' && typeof result.response.unresolved === 'string' &&
-      Array.isArray(result.response.evidenceIds) && new Set(result.response.evidenceIds).size === result.response.evidenceIds.length &&
-      new Set([claim.recordId, d1.recordId, ...result.response.evidenceIds]).size <= 8) {
-    result.response.observed = pair.observed;
-    result.response.unresolved = pair.unresolved;
-    result.response.evidenceIds = [...new Set([claim.recordId, d1.recordId, ...result.response.evidenceIds])];
+  if (pair && responseCanUsePair && !needsOriginal([claim.recordId, d1.recordId])) {
+    response.observed = pair.observed;
+    response.unresolved = pair.unresolved;
+    response.evidenceIds = [...new Set([claim.recordId, d1.recordId, ...response.evidenceIds])];
     receipt.responseKind = pair.kind;
+  } else if (responseInScope && (modal || modelNeedsFallback || priorUncertainty || artifact)) {
+    response.observed = observed;
+    response.unresolved = unresolved;
+    response.evidenceIds = [...new Set([claim.recordId, d1.recordId, ...response.evidenceIds])];
+    if (artifact) {
+      response.nextCheck = prospectiveCheck(artifact, claim.text, d1.text, modal);
+      receipt.operatorArtifactCheck = true;
+    } else if (result.matrix) {
+      response.text = 'Việc cần kiểm: ' + (modal ? prospectiveCheck('sơ đồ hoặc tín hiệu', claim.text, d1.text, modal) :
+        'Xem hình hoặc mô tả kỹ thuật nếu có trong bản gốc để xác định vị trí và chức năng của từng bộ phận nêu trên.');
+    }
+    receipt.responseKind = insufficientKind;
+  }
+  if (response) {
+    for (const field of ['observed', 'unresolved', 'nextCheck', 'text']) {
+      if (typeof response[field] === 'string') response[field] = withoutInternalCitations(response[field], matter);
+    }
   }
   return result;
 }

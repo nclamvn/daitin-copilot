@@ -2,7 +2,8 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { hash } from '../copilot/m3/workflow.mjs';
 import { comparePatentExcerpts } from '../patents/excerpt-comparison.mjs';
-import { buildPatentPrompt, generatePatentProposal, materializePatentSpans } from '../patents/workflow.mjs';
+import { openPatentStore } from '../patents/store.mjs';
+import { buildPatentPrompt, createPatentWorkflow, generatePatentProposal, materializePatentSpans } from '../patents/workflow.mjs';
 
 const connection = { model: 'fixture-model', provider: 'fixture', endpoint: 'https://example.test/chat/completions', remote: true,
   credential: async () => 'fixture-key' };
@@ -164,4 +165,82 @@ test('a result-only revision can keep a complete comparator and units without in
   assert.match(patch.response.text, /sau 11 giây, dưới 18 kPa/u);
   assert.doesNotMatch(patch.response.text, /Việc cần kiểm|Điểm cần xác minh/u);
   assert.deepEqual(Object.keys(patch.response).sort(), ['approval', 'evidenceIds', 'text']);
+});
+
+test('unaligned functions stay unresolved and a named section check preserves both technical anchors and the first Word', async t => {
+  const claim = 'A resilient sleeve meters lubricant upstream of the journal.';
+  const d1 = 'A perforated baffle catches fragments at the intake of the journal.';
+  const selections = [['notice', 'Tách vị trí bộ phận và chức năng.'], ['claim', claim], ['d1', d1]].map(([role, text]) => {
+    const bytes = Buffer.from('%PDF-1.7 synthetic prevalidated input ' + role);
+    return { role, label: role, bytes, sha256: hash(bytes), page: 1, pageCount: 1, start: 0, end: text.length,
+      text, textSha256: hash(text), extractionEngine: 'fixture' };
+  });
+  const store = openPatentStore(':memory:');
+  t.after(() => store.close());
+  const actor = { name: 'reviewer', role: 'reviewer', group: 'patent' };
+  let calls = 0;
+  const model = input => generatePatentProposal(input, { connection, fetcher: provider(payload => {
+    calls++;
+    const { spanOptions, requestedTargets } = JSON.parse(payload.messages[1].content);
+    const selectedD1 = spanOptions.d1[0];
+    const response = { observed: 'Đoạn D1 đã chọn mô tả một cơ chế tương đương.',
+      unresolved: '', evidenceIds: [spanOptions.claim[0].recordId, selectedD1.recordId] };
+    return requestedTargets.includes('matrix') ? {
+      matrix: { rows: [{ ...absentRow(spanOptions), d1SpanId: selectedD1.id, assessment: 'different', missing: '' }] },
+      response: { ...response, text: 'Kiểm tra tấm chắn có chức năng bôi trơn không.' }
+    } : { response: { ...response, nextCheck: 'Hình trong tài liệu ' + selectedD1.recordId + ' cho thấy tấm chắn làm nhiệm vụ định lượng.' } };
+  }) });
+  const workflow = createPatentWorkflow(store, { records: [], sources: [] }, model);
+  let matter = workflow.createFromPDFs({ synthetic: true, reference: 'TECHNICAL-EXCERPT', title: 'Cụm ổ trượt', jurisdiction: 'VN',
+    asOf: '2026-11-11', instructionsText: 'Đối chiếu đoạn đã chọn.' }, selections, actor);
+  matter = await workflow.propose(matter.id, { version: matter.version, targets: ['matrix', 'response'] }, actor);
+  assert.equal(matter.sections.matrix.rows[0].assessment, 'uncertain');
+  assert.equal(matter.sections.matrix.rows[0].claimQuote, claim);
+  assert.equal(matter.sections.matrix.rows[0].d1Quote, d1);
+  assert.match(matter.sections.response.text, /Đoạn D1 đã chọn chưa đủ căn cứ/u);
+  assert.doesNotMatch(matter.sections.response.text, /tương đương|tấm chắn có chức năng/u);
+  matter = workflow.approve(matter.id, { version: matter.version, targets: ['matrix', 'response'], reviewed: true }, actor);
+  const matrixBefore = structuredClone(matter.sections.matrix);
+  const wordBefore = store.wordArtifact(matter.id, actor.group, workflow.release(matter.id, 1, actor));
+  matter = workflow.source(matter.id, { version: matter.version, evidenceIds: matter.evidenceIds,
+    instructionsText: 'Chỉ rõ vị trí bộ phận cần xem trong hình cắt của cụm ổ trượt.' }, actor);
+  matter = await workflow.propose(matter.id, { version: matter.version, targets: ['response'] }, actor);
+  const [, check] = matter.sections.response.text.split('Việc cần kiểm: ');
+  assert.match(check, /Xem hình cắt.*xác định vị trí và kiểm chức năng/u);
+  assert.ok(check.includes(claim));
+  assert.ok(check.includes(d1));
+  assert.doesNotMatch(check, /pdf-[a-f\d-]+|cho thấy tấm chắn/iu);
+  matter = workflow.approve(matter.id, { version: matter.version, targets: ['response'], reviewed: true }, actor);
+  assert.equal(calls, 2);
+  assert.deepEqual(matter.sections.matrix, matrixBefore);
+  assert.deepEqual(store.wordArtifact(matter.id, actor.group, workflow.release(matter.id, 1, actor)), wordBefore);
+  assert.notDeepEqual(store.wordArtifact(matter.id, actor.group, workflow.release(matter.id, 2, actor)), wordBefore);
+});
+
+test('an unlinked observed event does not turn enables into activation, and the signal check traces it independently', async () => {
+  const claim = 'Closing the guard enables the drive inverter.';
+  const d1 = 'An amber indicator blinks after the guard closes.';
+  const matter = matterWith(claim, d1);
+  for (const pin of matter.pinnedEvidence) pin.source.textFidelity = 'pdf_text_user_confirmed';
+  matter.instructionsText = 'Nêu sơ đồ hoặc tín hiệu cần kiểm để phân biệt hai chức năng.';
+  const phase1 = provider(payload => {
+    const { spanOptions } = JSON.parse(payload.messages[1].content);
+    return { matrix: { rows: [{ ...absentRow(spanOptions), feature: 'Bộ biến tần đã khởi động.' }] },
+      response: { observed: 'Đoạn D1 ghi bộ biến tần đã khởi động.', unresolved: '', text: '', evidenceIds: ['claim'] } };
+  });
+  const { patch, run } = await generatePatentProposal({ matter, targets: ['matrix', 'response'] }, { connection, fetcher: phase1 });
+  assert.equal(patch.matrix.rows[0].assessment, 'uncertain');
+  assert.equal(patch.matrix.rows[0].feature, claim);
+  assert.equal(patch.matrix.rows[0].d1Quote, d1);
+  assert.equal(run.selectedSpans[0].d1, null);
+  assert.equal(d1.slice(run.excerptComparison.validatedSpans[0].d1.start, run.excerptComparison.validatedSpans[0].d1.end), d1);
+  const result = await generatePatentProposal({ matter, targets: ['response'] }, { connection, fetcher: provider(() => ({
+    response: { observed: 'Bộ biến tần đã khởi động.', unresolved: '', nextCheck: 'Xác nhận đèn báo biến tần đã khởi động.',
+      evidenceIds: ['claim', 'd1'] }
+  })) });
+  assert.equal(result.run.excerptComparison.operatorArtifactCheck, true);
+  assert.ok(result.patch.response.text.includes(claim));
+  assert.ok(result.patch.response.text.includes(d1));
+  assert.match(result.patch.response.text, /sơ đồ hoặc tín hiệu.*lần theo.*Closing the guard.*tín hiệu cho phép.*the drive inverter.*Kiểm riêng sự kiện.*An amber indicator blinks/u);
+  assert.doesNotMatch(result.patch.response.text, /đã khởi động|đã xem sơ đồ/iu);
 });
