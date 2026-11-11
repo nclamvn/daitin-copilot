@@ -244,3 +244,44 @@ test('an unlinked observed event does not turn enables into activation, and the 
   assert.match(result.patch.response.text, /sơ đồ hoặc tín hiệu.*lần theo.*Closing the guard.*tín hiệu cho phép.*the drive inverter.*Kiểm riêng sự kiện.*An amber indicator blinks/u);
   assert.doesNotMatch(result.patch.response.text, /đã khởi động|đã xem sơ đồ/iu);
 });
+
+test('parallel units alone leave per-unit independent control unresolved and prompt a prospective original check', async () => {
+  const claim = 'Every dosing channel has a separate independently controlled pump.';
+  const d1 = 'The dispenser contains three parallel dosing channels.';
+  const prepare = claimText => {
+    const matter = matterWith(claimText, d1);
+    for (const pin of matter.pinnedEvidence) pin.source.textFidelity = 'pdf_text_user_confirmed';
+    return matter;
+  };
+  const matter = prepare(claim);
+  const fetcher = provider(payload => {
+    const { spanOptions, requestedTargets } = JSON.parse(payload.messages[1].content);
+    const response = { observed: 'Đoạn D1 đã chọn nêu ba kênh chạy song song.', unresolved: '', evidenceIds: ['claim', 'd1'] };
+    return requestedTargets.includes('matrix') ? {
+      matrix: { rows: [{ ...absentRow(spanOptions), d1SpanId: spanOptions.d1[0].id, assessment: 'uncertain' }] },
+      response: { ...response, text: 'Cần xem lại đoạn đã chọn.' }
+    } : { response: { ...response, nextCheck: 'Cần xem lại đoạn đã chọn.' } };
+  });
+  const first = await generatePatentProposal({ matter, targets: ['matrix', 'response'] }, { connection, fetcher });
+  assert.equal(first.patch.matrix.rows[0].assessment, 'uncertain');
+  assert.equal(first.patch.matrix.rows[0].claimQuote, claim);
+  assert.equal(first.patch.matrix.rows[0].d1Quote, d1);
+  assert.equal(first.run.excerptComparison.perUnitControlCheck, true);
+  assert.match(first.patch.response.text, /sơ đồ trong bản gốc, nếu có/u);
+
+  matter.instructionsText = 'Kiểm tra trong bản gốc xem có đường điều khiển riêng cho từng kênh hay không.';
+  const revised = await generatePatentProposal({ matter, targets: ['response'] }, { connection, fetcher });
+  assert.equal(revised.run.excerptComparison.perUnitControlCheck, true);
+  assert.ok(revised.patch.response.text.includes(claim));
+  assert.ok(revised.patch.response.text.includes(d1));
+  assert.match(revised.patch.response.text, /từng “dosing channel” đến “pump”.*đường tín hiệu điều khiển riêng/u);
+  assert.doesNotMatch(revised.patch.response.text, /đã xem|xem lại đoạn đã chọn/iu);
+
+  matter.instructionsText = 'Không cần kiểm tra bản gốc.';
+  const withoutRequest = await generatePatentProposal({ matter, targets: ['response'] }, { connection, fetcher });
+  assert.equal(withoutRequest.run.excerptComparison.perUnitControlCheck, undefined);
+  const joint = prepare('Every dosing channel uses one jointly controlled pump.');
+  const jointResult = await generatePatentProposal({ matter: joint, targets: ['matrix', 'response'] }, { connection, fetcher });
+  assert.equal(jointResult.run.excerptComparison.perUnitControlCheck, undefined);
+  assert.match(jointResult.patch.response.text, /Cần xem lại đoạn đã chọn/u);
+});

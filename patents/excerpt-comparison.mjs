@@ -106,19 +106,33 @@ function confirmedIndependentPair(matter, claim, d1) {
     (record.textFidelity ?? source.textFidelity) === 'pdf_text_user_confirmed'));
 }
 
-function requestedArtifact(instruction, instructionsText) {
-  const artifactPattern = /hình\s+(?:cắt|tách cụm|chiếu)|mặt\s+cắt|sơ\s+đồ(?:\s+hoặc\s+tín\s+hiệu)?|tín\s+hiệu/iu;
+const artifactPattern = /hình\s+(?:cắt|tách cụm|chiếu)|mặt\s+cắt|sơ\s+đồ(?:\s+hoặc\s+tín\s+hiệu)?|tín\s+hiệu/iu;
+const originalPattern = /(?:bản|tài liệu)\s+gốc/iu;
+function requestedReviewTarget(instruction, instructionsText, pattern) {
   const actionPattern = /xem|kiểm|đối chiếu|xác minh|chỉ rõ|nêu|tìm/iu;
   for (const value of [instruction, instructionsText]) {
     if (typeof value !== 'string') continue;
     for (const clause of value.split(/[.!?;\n]+/u)) {
-      const artifact = clause.match(artifactPattern)?.[0];
+      const artifact = clause.match(pattern)?.[0];
       if (artifact && actionPattern.test(clause) && !/không\s+(?:cần|được|dùng|yêu cầu|xem|kiểm)|đừng|bỏ qua/iu.test(clause)) {
         return artifact.toLocaleLowerCase('vi').replace(/\s+/gu, ' ');
       }
     }
   }
   return null;
+}
+
+function independentComponentPerUnit(claim, d1) {
+  const relation = clean(claim).match(/^(?:each|every) ([\p{L}\p{N} -]{2,65}?) (?:has|includes|contains|uses|is provided with) (?:its own|its separate|an? separate) (?:independently|separately) (?:actuated|controlled) ([\p{L}\p{N} -]{2,65})$/iu);
+  if (!relation || /\b(?:each|every|own|independent(?:ly)?|separate(?:ly)?)\b/iu.test(d1)) return null;
+  const [, unit, component] = relation;
+  const plurals = [unit + 's', unit + 'es', unit.replace(/y$/iu, 'ies')].filter(value => value !== unit);
+  const repeatedUnit = new RegExp(`(?<![\\p{L}\\p{N}])(?:${plurals.join('|')})(?![\\p{L}\\p{N}])`, 'iu');
+  return repeatedUnit.test(clean(d1)) ? { unit, component } : null;
+}
+
+function prospectiveIndependentControl({ unit, component }) {
+  return `Xem sơ đồ trong bản gốc, nếu có, để lần từ từng “${unit}” đến “${component}” tương ứng. Kiểm xem mỗi bộ phận có cơ cấu dẫn động hoặc đường tín hiệu điều khiển riêng, cho phép vận hành độc lập hay không.`;
 }
 
 function enableAndObservedEvent(claim, d1) {
@@ -160,6 +174,7 @@ export function applyPatentExcerptComparison(matter, patch, spanOptions, receipt
   };
   const boundedUnknown = !pair && confirmedIndependentPair(matter, claim, d1) && !needsOriginal([claim.recordId, d1.recordId]);
   const modal = boundedUnknown ? enableAndObservedEvent(claim.text, d1.text) : null;
+  const independence = boundedUnknown ? independentComponentPerUnit(claim.text, d1.text) : null;
   const observed = boundedUnknown ? `Yêu cầu bảo hộ ghi “${claim.text}” Đoạn D1 đã chọn ghi “${d1.text}”` : '';
   const unresolved = 'Đoạn D1 đã chọn chưa đủ căn cứ xác nhận đặc điểm ghi trong yêu cầu bảo hộ.';
   const response = result.response;
@@ -168,14 +183,15 @@ export function applyPatentExcerptComparison(matter, patch, spanOptions, receipt
     new Set([claim?.recordId, d1?.recordId, ...response.evidenceIds]).size <= 8;
   const responseInScope = boundedUnknown && responseCanUsePair &&
     response.evidenceIds.every(id => [claim.recordId, d1.recordId, 'case:claim', 'case:notice', 'case:instructions'].includes(id));
-  const artifact = responseInScope && !result.matrix ? requestedArtifact(instruction, matter.instructionsText) : null;
+  const artifact = responseInScope && !result.matrix ? requestedReviewTarget(instruction, matter.instructionsText, artifactPattern) : null;
+  const checkIndependence = independence && (result.matrix || requestedReviewTarget(instruction, matter.instructionsText, originalPattern));
   const priorMatrixRun = boundedUnknown && matter.proposals?.findLast(proposal => proposal.targets.includes('matrix'))?.run;
   const priorUncertainty = priorMatrixRun?.excerptComparison?.rowKinds?.includes(insufficientKind) &&
     matter.sections.matrix.rows.some(row => row.d1RecordId === d1.recordId && row.d1Quote === d1.text && row.claimQuote === claim.text);
   let modelNeedsFallback = Boolean(responseInScope && !response.evidenceIds.includes(d1.recordId) &&
     mentionsD1([response.observed, response.unresolved, response.nextCheck ?? response.text].join(' ')));
   if (result.matrix) result.matrix.rows = result.matrix.rows.map(row => {
-    if (boundedUnknown && (modal || row.assessment === 'different' || (!row.d1Span &&
+    if (boundedUnknown && (modal || independence || row.assessment === 'different' || (!row.d1Span &&
         mentionsD1([row.analysis, row.missing].join(' '))))) {
       modelNeedsFallback = true;
       receipt.rowKinds.push(insufficientKind);
@@ -209,11 +225,16 @@ export function applyPatentExcerptComparison(matter, patch, spanOptions, receipt
     response.unresolved = pair.unresolved;
     response.evidenceIds = [...new Set([claim.recordId, d1.recordId, ...response.evidenceIds])];
     receipt.responseKind = pair.kind;
-  } else if (responseInScope && (modal || modelNeedsFallback || priorUncertainty || artifact)) {
+  } else if (responseInScope && (modal || modelNeedsFallback || priorUncertainty || artifact || checkIndependence)) {
     response.observed = observed;
     response.unresolved = unresolved;
     response.evidenceIds = [...new Set([claim.recordId, d1.recordId, ...response.evidenceIds])];
-    if (artifact) {
+    if (checkIndependence) {
+      const check = prospectiveIndependentControl(independence);
+      if (result.matrix) response.text = 'Việc cần kiểm: ' + check;
+      else response.nextCheck = check;
+      receipt.perUnitControlCheck = true;
+    } else if (artifact) {
       response.nextCheck = prospectiveCheck(artifact, claim.text, d1.text, modal);
       receipt.operatorArtifactCheck = true;
     } else if (result.matrix) {
