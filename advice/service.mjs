@@ -4,7 +4,14 @@ import { isAbsolute, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { answerAdvice, prompts, scenarios } from './engine.mjs';
 import { demoWord, simulatedMail } from './demo.mjs';
+import { createIndex } from './library/retrieval.mjs';
+import { createLibraryModel } from './library/model.mjs';
+import { libraryAnswer } from './library/answer.mjs';
 
+const libraryPrompts = [...prompts,
+  'Gia hạn nhãn hiệu tại Singapore có thể dùng lại POA cũ không?',
+  'Nộp đơn kiểu dáng tại Malaysia cần chuẩn bị gì?',
+];
 const fileHash = /^[a-f0-9]{64}$/;
 const sha = text => createHash('sha256').update(text).digest('hex');
 const project = realpathSync(fileURLToPath(new URL('../', import.meta.url)));
@@ -13,7 +20,6 @@ const topicsBySource = new Map([
   ['word-th-registration', 'th-annuity'],
 ]);
 const assets = new Map([
-  ['/advice/', ['index.html', 'text/html; charset=utf-8']],
   ['/advice/app.css', ['app.css', 'text/css; charset=utf-8']],
   ['/advice/app.mjs', ['app.mjs', 'application/javascript; charset=utf-8']],
 ]);
@@ -69,6 +75,20 @@ export function createAdvice(web, env = process.env) {
     throw new Error('Nguồn Word M9 chỉ chạy trong bản web xác thực trên loopback.');
   }
   const word = demo ? demoWord : loadReviewedWord(env.DAI_TIN_ADVICE_WORD, env.DAI_TIN_ADVICE_REVIEW);
+  const library = demo && env.DAI_TIN_ADVICE_RAG === '1'
+    ? createIndex(JSON.parse(readFileSync(new URL('./library/index.json', import.meta.url), 'utf8'))) : null;
+  const model = library ? createLibraryModel({
+    port: env.DAI_TIN_MODEL_PORT, model: env.DAI_TIN_MODEL_ID, keyFile: env.DAI_TIN_MODEL_KEY_FILE,
+    endpoint: env.DAI_TIN_MODEL_ENDPOINT, mode: env.DAI_TIN_MODEL_MODE,
+  }) : null;
+  const config = {
+    label: demo ? 'Dữ liệu mô phỏng' : 'Nguồn nội bộ', prompts: library ? libraryPrompts : prompts,
+    scenarios: library ? [{ id: 'library', label: 'Kho mô phỏng' }, ...scenarios] : scenarios,
+    ...(library ? { library: { documents: library.documents, passages: library.size }, model: Boolean(model) } : {}),
+    signedIn: true,
+  };
+  const indexPage = readFileSync(new URL('./ui/index.html', import.meta.url), 'utf8')
+    .replace('id="advice-config">{}', () => 'id="advice-config">' + JSON.stringify(config).replaceAll('<', '\\u003c'));
   return async function handleAdvice(req, path, actor, readJSON) {
     const get = req.method === 'GET' || req.method === 'HEAD';
     const entry = get && (path === '/advice' || path === '/advice/');
@@ -84,12 +104,31 @@ export function createAdvice(web, env = process.env) {
       return { status: actor ? 403 : 401, value: { error: 'Cần tài khoản luật sư được cấp quyền hỏi đáp nghiệp vụ.' } };
     }
     if (get && path === '/advice') return { status: 308, value: {}, headers: { Location: '/advice/' } };
+    if (get && path === '/advice/') return { value: Buffer.from(indexPage), type: 'text/html; charset=utf-8' };
     const asset = get && assets.get(path);
     if (asset) {
       return { value: readFileSync(new URL('./ui/' + asset[0], import.meta.url)), type: asset[1] };
     }
+    const sourceId = get && path.match(/^\/api\/advice\/source\/([a-z0-9-]{1,80})$/)?.[1];
+    if (library && sourceId) {
+      const source = library.source(sourceId);
+      if (!source) return { status: 404, value: { error: 'Không tìm được tài liệu trong kho.' } };
+      const bytes = readFileSync(new URL('./library/fixtures/' + source.file, import.meta.url));
+      if (sha(bytes) !== source.sha256) return { status: 409, value: { error: 'Tài liệu đã đổi so với đoạn dẫn.' } };
+      return { value: bytes, type: 'application/octet-stream', headers: {
+        'Content-Disposition': 'attachment; filename="' + source.file + '"',
+      } };
+    }
     if (get && path === '/api/advice/config') {
-      return { value: { label: demo ? 'Dữ liệu mô phỏng' : 'Nguồn nội bộ', prompts, scenarios, signedIn: true } };
+      return { value: config };
+    }
+    if (req.method === 'POST' && library && path === '/api/advice/research') {
+      const body = await readJSON(req, 4096);
+      if (typeof body?.query !== 'string' || !body.query.trim() || body.query.length > 400 ||
+          (body.scenario !== 'library' && !scenarios.some(option => option.id === body.scenario))) {
+        return { status: 400, value: { error: 'Câu hỏi hoặc tình huống nguồn chưa hợp lệ.' } };
+      }
+      return { value: await libraryAnswer(library, body.query, body.scenario, model) };
     }
     if (req.method === 'POST' && path === '/api/advice/ask') {
       const body = await readJSON(req, 4096);

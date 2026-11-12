@@ -8,6 +8,7 @@ const submit = byId('submit');
 const evidence = byId('evidence');
 const mobile = window.matchMedia('(max-width: 860px)');
 let scenario = 'word';
+let libraryMode = false;
 let latestQuestion = '';
 let activeTurn;
 let drawerTrigger;
@@ -34,14 +35,17 @@ async function request(path, body) {
     body: JSON.stringify(body),
   });
   if (response.status === 401) throw new Error('Phiên đã hết hạn. Tải lại trang để đăng nhập.');
-  if (!response.ok) throw new Error('Tạm thời chưa mở được nguồn. Vui lòng thử lại.');
+  if (!response.ok) {
+    const problem = await response.json().catch(() => null);
+    throw new Error(problem?.error ?? 'Tạm thời chưa mở được nguồn. Vui lòng thử lại.');
+  }
   return response.json();
 }
 
 function setDrawer(open, trigger) {
   evidence.classList.toggle('drawer-open', open);
   byId('source-toggle').setAttribute('aria-expanded', String(open));
-  if (!mobile.matches) return;
+  if (!libraryMode && !mobile.matches) return;
   if (open) {
     drawerTrigger = trigger;
     byId('source-close').focus();
@@ -95,6 +99,11 @@ function showSource(context, index, trigger) {
     if (value) facts.append(element('dt', '', label), element('dd', '', value));
   }
   card.append(facts);
+  if (source.download) {
+    const download = element('a', 'source-download', 'Tải tài liệu mô phỏng');
+    download.href = source.download;
+    card.append(download);
+  }
   detail.append(card);
   if (trigger) setDrawer(true, trigger);
 }
@@ -122,6 +131,53 @@ async function copyText(text) {
   }
 }
 
+function appendEmail(card, answer, context) {
+  const actions = element('div', 'answer-actions suggestions');
+  const editor = element('div', 'draft-editor');
+  editor.hidden = true;
+  const text = element('textarea', 'draft-text');
+  text.setAttribute('aria-label', 'Nội dung email có thể chỉnh sửa');
+  text.value = answer.email;
+  const notice = element('span', 'copy-note');
+  notice.setAttribute('role', 'status');
+  const copy = async () => {
+    const draft = text.value.trim();
+    const marked = !answer.simulation || draft.startsWith('[MÔ PHỎNG') ? draft :
+      '[MÔ PHỎNG — CHỈ DÙNG DIỄN TẬP]\n\n' + draft;
+    if (await copyText(marked)) notice.textContent = 'Đã sao chép';
+    else {
+      editor.hidden = false;
+      edit.setAttribute('aria-expanded', 'true');
+      text.focus();
+      text.select();
+      notice.textContent = 'Đã chọn bản nháp. Dùng lệnh sao chép trên thiết bị.';
+    }
+  };
+  const edit = button(answer.emailKind === 'reply' ? 'Soạn email cho khách' : 'Soạn thư hỏi đối tác', 'primary', () => {
+    editor.hidden = !editor.hidden;
+    edit.setAttribute('aria-expanded', String(!editor.hidden));
+    if (!editor.hidden) text.focus();
+  });
+  edit.setAttribute('aria-expanded', 'false');
+  actions.append(edit, button(answer.emailKind === 'reply' ? 'Sao chép email' : 'Sao chép thư xác nhận', 'ghost', copy));
+  if (context.conflict) {
+    actions.append(button('Đối chiếu hướng dẫn', 'ghost', event => {
+      showSource(context, 0, event.currentTarget);
+      const detail = byId('source-detail');
+      detail.replaceChildren();
+      for (const source of context.sources.filter(item => item.state === 'active')) {
+        const card = element('article', 'source-sheet comparison');
+        card.append(element('h3', '', source.title), element('p', 'source-location', source.anchor),
+          element('blockquote', 'source-quote', source.quote));
+        detail.append(card);
+      }
+    }));
+  }
+  editor.append(element('p', 'draft-label', 'Bản nháp email'), text);
+  actions.append(notice);
+  card.append(actions, editor);
+}
+
 function renderTurn(question, answer) {
   const turn = element('li', 'turn');
   const questionRow = element('div', 'question');
@@ -132,8 +188,14 @@ function renderTurn(question, answer) {
   const status = element('span', 'answer-status', labels[answer.kind]);
   status.dataset.state = answer.kind;
   heading.append(status, element('span', 'answer-scope', answer.scope));
-  if (answer.simulation) heading.append(element('span', 'tag', 'Mô phỏng'));
-  card.append(heading, element('h2', '', answer.title), element('p', '', answer.body));
+  if (answer.simulation && !libraryMode) heading.append(element('span', 'tag', 'Mô phỏng'));
+  card.append(heading, element('h2', '', answer.title));
+  for (const paragraph of answer.body.split('\n\n')) card.append(element('p', 'answer-paragraph', paragraph));
+  if (answer.notes?.length) {
+    const notes = element('ul', 'answer-notes');
+    for (const warning of answer.notes) notes.append(element('li', '', warning));
+    card.append(notes);
+  }
   const context = { sources: answer.citations, chips: [], conflict: answer.kind === 'conflict' };
   if (context.sources.length) {
     const row = element('div', 'citations');
@@ -146,7 +208,12 @@ function renderTurn(question, answer) {
     }
     card.append(row);
   }
-  if (answer.email) {
+  if (libraryMode && answer.email) appendEmail(card, answer, context);
+  else if (libraryMode && !answer.email) {
+    const actions = element('div', 'answer-actions suggestions');
+    actions.append(button('Bổ sung câu hỏi', 'ghost', () => { query.value = question; query.focus(); }));
+    card.append(actions);
+  } else if (answer.email) {
     const actions = element('div', 'answer-actions');
     const draft = element('div', 'email-preview', answer.email);
     draft.hidden = true;
@@ -172,6 +239,7 @@ function renderTurn(question, answer) {
   }
   turn.append(questionRow, card);
   turns.append(turn);
+  if (libraryMode) byId('intro').hidden = true;
   const item = element('li');
   const jump = button(question, '', () => {
     activeTurn?.removeAttribute('aria-current');
@@ -191,7 +259,7 @@ async function ask(question) {
   submit.disabled = true;
   feedback.textContent = 'Đang đối chiếu nguồn…';
   try {
-    const answer = await request('ask', { query: question, scenario });
+    const answer = await request(libraryMode ? 'research' : 'ask', { query: question, scenario });
     latestQuestion = question;
     renderTurn(question, answer);
     feedback.textContent = '';
@@ -216,6 +284,8 @@ query.addEventListener('keydown', event => {
 byId('new-chat').addEventListener('click', () => {
   if (submit.disabled) return;
   turns.replaceChildren();
+  byId('intro').hidden = false;
+  setDrawer(false);
   history.replaceChildren();
   byId('history-empty').hidden = false;
   latestQuestion = '';
@@ -243,7 +313,17 @@ document.addEventListener('keydown', event => {
 });
 
 try {
-  const config = await request('config');
+  const embedded = JSON.parse(byId('advice-config')?.textContent ?? '{}');
+  const config = preview?.config ?? (Array.isArray(embedded.prompts) ? embedded : await request('config'));
+  libraryMode = Boolean(config.library);
+  if (libraryMode) {
+    scenario = 'library';
+    document.querySelector('.shell').classList.add('is-library');
+    byId('scope-text').textContent = config.library.documents + ' nguồn Word và email mô phỏng';
+    byId('compose-scope').textContent = 'Chỉ nhập tình huống mô phỏng';
+    byId('intro-title').textContent = 'Anh cần tra cứu việc gì?';
+    byId('intro-description').textContent = 'Hỏi về một thủ tục, kiểm tra đoạn nguồn và soạn thư ngay trong cuộc hỏi đáp.';
+  }
   byId('sign-out').hidden = !config.signedIn;
   if (config.label) {
     byId('workspace-mode').textContent = config.label;

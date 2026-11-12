@@ -1,0 +1,519 @@
+{
+  "schema": 1,
+  "simulation": true,
+  "sources": [
+    {
+      "id": "vn-renew-poa",
+      "kind": "word",
+      "scope": [
+        "vn",
+        "tm",
+        "renew",
+        "poa"
+      ],
+      "value": "signed",
+      "title": "Việt Nam · Sổ tay gia hạn nhãn hiệu",
+      "date": null,
+      "issuer": "vn",
+      "layers": [
+        "library",
+        "updated",
+        "conflict",
+        "word"
+      ],
+      "supersedes": [],
+      "reviewed": true,
+      "file": "vn-renew-poa.docx",
+      "paragraph": 3,
+      "sha256": "40fdda4d89189304205405668f3ccc618390984949d99b644802811d3b9ccd98"
+    },
+    {
+      "id": "vn-renew-list",
+      "kind": "word",
+      "scope": [
+        "vn",
+        "tm",
+        "renew",
+        "documents"
+      ],
+      "value": "form-number",
+      "title": "Việt Nam · Danh mục hồ sơ gia hạn",
+      "date": "2026-10-08",
+      "issuer": "vn",
+      "layers": [
+        "library",
+        "updated",
+        "conflict",
+        "word"
+      ],
+      "supersedes": [],
+      "reviewed": true,
+      "file": "vn-renew-list.docx",
+      "paragraph": 3,
+      "sha256": "42fdea048369dc4ed97fe1099eca7c751c2d957920db9da398c69a39899fc2c8"
+    },
+    {
+      "id": "vn-renew-update",
+      "kind": "email",
+      "scope": [
+        "vn",
+        "tm",
+        "renew",
+        "poa"
+      ],
+      "value": "reuse-valid",
+      "title": "Việt Nam · Xác nhận dùng lại POA",
+      "date": "2026-11-09",
+      "issuer": "vn",
+      "layers": [
+        "updated",
+        "conflict"
+      ],
+      "supersedes": [
+        "vn-renew-poa"
+      ],
+      "reviewed": true,
+      "file": "vn-renew-update.eml",
+      "paragraph": 3,
+      "sha256": "9cabf1448937c25b27d857335288fb21a124641467ca634064f84b5012d8a855"
+    },
+    {
+      "id": "vn-change-poa",
+      "kind": "word",
+      "scope": [
+        "vn",
+        "tm",
+        "change",
+        "poa"
+      ],
+      "value": "signed-owner",
+      "title": "Việt Nam · Ghi nhận thay đổi chủ văn bằng",
+      "date": "2026-10-08",
+      "issuer": "vn",
+      "layers": [
+        "library",
+        "updated",
+        "conflict",
+        "word"
+      ],
+      "supersedes": [],
+      "reviewed": true,
+      "file": "vn-change-poa.docx",
+      "paragraph": 3,
+      "sha256": "6cfaf5e85fcf8f53c346f64cc30b13e708268f44e1dbd5191cf28dca5c09f43f"
+    },
+    {
+      "id": "vn-renew-time",
+      "kind": "word",
+      "scope": [
+        "vn",
+        "tm",
+        "renew",
+        "deadline"
+      ],
+      "value": "confirm-calendar",
+      "title": "Việt Nam · Lịch gia hạn",
+      "date": "2026-10-08",
+      "issuer": "vn",
+      "layers": [
+        "library",
+        "updated",
+        "conflict",
+        "word"
+      ],
+      "supersedes": [],
+      "reviewed": true,
+      "file": "vn-renew-time.docx",
+      "paragraph": 3,
+      "sha256": "27e786a0bf8c9deff6200d94ddb1d70a19e5a9afb405f8a3ec968aeeb1c8583e"
+    },
+    {
+      "id": "th-pct-poa",
+      "kind": "word",
+      "scope": [
+        "th",
+        "pt",
+        "pct",
+        "poa"
+      ],
+      "value": "notary",
+      "title": "Thái Lan · Vào giai đoạn quốc gia PCT",
+      "date": "2026-10-08",
+      "issuer": "th",
+      "layers": [
+        "library",
+        "updated",
+        "conflict",
+        "word"
+      ],
+      "supersedes": [],
+      "reviewed": true,
+      "file": "th-pct-poa.docx",
+      "paragraph": 3,
+      "sha256": "c805fc0d393622d55ac336148e714e0e901aa274748ec7fc7d8cb979e8b07e79"
+    },
+    {
+      "id": "th-annual-update",
+      "kind": "email",
+      "scope": [
+        "th",
+        "pt",
+        "annuity",
+        "poa"
+      ],
+      "value": "agent-signed",
+      "title": "Thái Lan · Niên phí qua hãng đại diện",
+      "date": "2026-11-09",
+      "issuer": "th",
+      "layers": [
+        "updated"
+      ],
+      "supersedes": [],
+      "reviewed": true,
+      "file": "th-annual-update.eml",
+      "paragraph": 3,
+      "sha256": "bafc89cfe149ede2cccdeedfde8f75c8507a6fb7ce7e33acea24d4029132653c"
+    },
+    {
+      "id": "th-annual-a",
+      "kind": "email",
+      "scope": [
+        "th",
+        "pt",
+        "annuity",
+        "poa"
+      ],
+      "value": "new",
+      "title": "Thái Lan · Xác nhận POA mới",
+      "date": "2026-11-10",
+      "issuer": "th",
+      "layers": [
+        "conflict"
+      ],
+      "supersedes": [],
+      "reviewed": true,
+      "file": "th-annual-a.eml",
+      "paragraph": 3,
+      "sha256": "e68a6eafcb333a19232cdd014882b5a058e7281f1a48fde997d62730a1f44aa4"
+    },
+    {
+      "id": "th-annual-b",
+      "kind": "email",
+      "scope": [
+        "th",
+        "pt",
+        "annuity",
+        "poa"
+      ],
+      "value": "reuse",
+      "title": "Thái Lan · Xác nhận POA lưu",
+      "date": "2026-11-11",
+      "issuer": "th",
+      "layers": [
+        "conflict"
+      ],
+      "supersedes": [],
+      "reviewed": true,
+      "file": "th-annual-b.eml",
+      "paragraph": 3,
+      "sha256": "3765df0ae9b4e24696d29b26ddac3726cf89ebc1b063a9a97db9796f28413aab"
+    },
+    {
+      "id": "th-annual-list",
+      "kind": "word",
+      "scope": [
+        "th",
+        "pt",
+        "annuity",
+        "documents"
+      ],
+      "value": "number-year",
+      "title": "Thái Lan · Yêu cầu báo phí niên phí",
+      "date": "2026-10-08",
+      "issuer": "th",
+      "layers": [
+        "library",
+        "updated",
+        "conflict",
+        "word"
+      ],
+      "supersedes": [],
+      "reviewed": true,
+      "file": "th-annual-list.docx",
+      "paragraph": 3,
+      "sha256": "c177ef7088ad3997060695a86a08975b3f95930039b041900b513bb8bf5c666f"
+    },
+    {
+      "id": "th-design-poa",
+      "kind": "word",
+      "scope": [
+        "th",
+        "ds",
+        "renew",
+        "poa"
+      ],
+      "value": "signed",
+      "title": "Thái Lan · Gia hạn kiểu dáng",
+      "date": "2026-10-08",
+      "issuer": "th",
+      "layers": [
+        "library",
+        "updated",
+        "conflict",
+        "word"
+      ],
+      "supersedes": [],
+      "reviewed": true,
+      "file": "th-design-poa.docx",
+      "paragraph": 3,
+      "sha256": "b088123a8ff7a0cebe3435114e0144dcb1179240f9f90e35fdcf31f888a45388"
+    },
+    {
+      "id": "sg-renew-poa-old",
+      "kind": "word",
+      "scope": [
+        "sg",
+        "tm",
+        "renew",
+        "poa"
+      ],
+      "value": "always-new",
+      "title": "Singapore · Ghi chú gia hạn",
+      "date": "2026-10-08",
+      "issuer": "sg",
+      "layers": [
+        "library",
+        "updated",
+        "conflict",
+        "word"
+      ],
+      "supersedes": [],
+      "reviewed": true,
+      "file": "sg-renew-poa-old.docx",
+      "paragraph": 3,
+      "sha256": "0dc71e3c281ee2cd7e323c7114d4071229c45b62d18a0934e28d282c709e9407"
+    },
+    {
+      "id": "sg-renew-poa",
+      "kind": "email",
+      "scope": [
+        "sg",
+        "tm",
+        "renew",
+        "poa"
+      ],
+      "value": "reuse-valid",
+      "title": "Singapore · Hướng dẫn gia hạn cập nhật",
+      "date": "2026-11-02",
+      "issuer": "sg",
+      "layers": [
+        "library",
+        "updated",
+        "conflict"
+      ],
+      "supersedes": [
+        "sg-renew-poa-old"
+      ],
+      "reviewed": true,
+      "file": "sg-renew-poa.eml",
+      "paragraph": 3,
+      "sha256": "34bf4a557a65aa436ec691abca0b2a25f9f5ea115f518c920511bdb2510ec390"
+    },
+    {
+      "id": "sg-patent-grace",
+      "kind": "word",
+      "scope": [
+        "sg",
+        "pt",
+        "annuity",
+        "deadline"
+      ],
+      "value": "verify-office-record",
+      "title": "Singapore · Kiểm hạn niên phí",
+      "date": "2026-10-08",
+      "issuer": "sg",
+      "layers": [
+        "library",
+        "updated",
+        "conflict",
+        "word"
+      ],
+      "supersedes": [],
+      "reviewed": true,
+      "file": "sg-patent-grace.docx",
+      "paragraph": 3,
+      "sha256": "b3e481a7018294c6422cac3a10f3c1e2d1264a6dc0e35d87db510849a608a959"
+    },
+    {
+      "id": "my-patent-a",
+      "kind": "word",
+      "scope": [
+        "my",
+        "pt",
+        "annuity",
+        "poa"
+      ],
+      "value": "signed",
+      "title": "Malaysia · Hướng dẫn niên phí",
+      "date": "2026-10-20",
+      "issuer": "my",
+      "layers": [
+        "library",
+        "updated",
+        "conflict",
+        "word"
+      ],
+      "supersedes": [],
+      "reviewed": true,
+      "file": "my-patent-a.docx",
+      "paragraph": 3,
+      "sha256": "6a50ac40eb44c93cb1ffdc3b276f5583773b3c6bf784629e3d6694c5452ba761"
+    },
+    {
+      "id": "my-patent-b",
+      "kind": "email",
+      "scope": [
+        "my",
+        "pt",
+        "annuity",
+        "poa"
+      ],
+      "value": "none",
+      "title": "Malaysia · Trả lời về POA niên phí",
+      "date": "2026-11-05",
+      "issuer": "my",
+      "layers": [
+        "library",
+        "updated",
+        "conflict"
+      ],
+      "supersedes": [],
+      "reviewed": true,
+      "file": "my-patent-b.eml",
+      "paragraph": 3,
+      "sha256": "c9a9bfa42a2ab7dbd26f88454bff5aaa7d61d6e9d1519b20e3cd9c46093e56e1"
+    },
+    {
+      "id": "my-renew-list",
+      "kind": "email",
+      "scope": [
+        "my",
+        "tm",
+        "renew",
+        "documents"
+      ],
+      "value": "number-address",
+      "title": "Malaysia · Tài liệu gia hạn",
+      "date": "2026-11-08",
+      "issuer": "my",
+      "layers": [
+        "library",
+        "updated",
+        "conflict"
+      ],
+      "supersedes": [],
+      "reviewed": true,
+      "file": "my-renew-list.eml",
+      "paragraph": 3,
+      "sha256": "6e334c39b1ec2046041e68657f5bdc6688ebbc67c699a0b1f49c9b23b45cc3b7"
+    },
+    {
+      "id": "my-renew-fee-old",
+      "kind": "word",
+      "scope": [
+        "my",
+        "tm",
+        "renew",
+        "fee"
+      ],
+      "value": "expired",
+      "title": "Malaysia · Báo giá đã hết hạn",
+      "date": "2026-09-01",
+      "issuer": "my",
+      "layers": [
+        "library",
+        "updated",
+        "conflict",
+        "word"
+      ],
+      "supersedes": [],
+      "reviewed": true,
+      "file": "my-renew-fee-old.docx",
+      "paragraph": 3,
+      "sha256": "ac43323307692e8223b6264828266f86f810e2ddb73883b434593a90178ac659"
+    },
+    {
+      "id": "vn-application-list",
+      "kind": "word",
+      "scope": [
+        "vn",
+        "tm",
+        "filing",
+        "documents"
+      ],
+      "value": "specimen-list",
+      "title": "Việt Nam · Tiếp nhận đơn nhãn hiệu",
+      "date": "2026-10-08",
+      "issuer": "vn",
+      "layers": [
+        "library",
+        "updated",
+        "conflict",
+        "word"
+      ],
+      "supersedes": [],
+      "reviewed": true,
+      "file": "vn-application-list.docx",
+      "paragraph": 3,
+      "sha256": "567af7f68d11451dda9956864552eaa8e075570618048a95dbec0716b2400b47"
+    },
+    {
+      "id": "sg-renew-injected",
+      "kind": "email",
+      "scope": [
+        "sg",
+        "tm",
+        "renew",
+        "poa"
+      ],
+      "value": "none",
+      "title": "Singapore · Email chưa duyệt",
+      "date": "2026-11-11",
+      "issuer": "sg",
+      "layers": [
+        "library",
+        "updated",
+        "conflict"
+      ],
+      "supersedes": [],
+      "reviewed": false,
+      "file": "sg-renew-injected.eml",
+      "paragraph": 3,
+      "sha256": "c3695bb60c21dbfb98bd696c56b1533450b1b01f05bd5bb97caeb2914e289e5e"
+    },
+    {
+      "id": "my-design-filing",
+      "kind": "email",
+      "scope": [
+        "my",
+        "ds",
+        "filing",
+        "documents"
+      ],
+      "value": "views",
+      "title": "Malaysia · Chuẩn bị đơn kiểu dáng",
+      "date": "2026-10-30",
+      "issuer": "my",
+      "layers": [
+        "library",
+        "updated",
+        "conflict"
+      ],
+      "supersedes": [],
+      "reviewed": true,
+      "file": "my-design-filing.eml",
+      "paragraph": 3,
+      "sha256": "10d5db08ff966c1ea052c8ace959de4f3b507ed7cdda34f8c66807dd6dd65352"
+    }
+  ]
+}

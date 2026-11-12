@@ -108,7 +108,7 @@ export function createApp({ state = {}, modelReserved = false, immutableCopilot 
         if (!login && !((req.method === 'GET' || head) && (publicWebAsset(path) || adviceEntry))) {
           const actor = m3?.authorize(req);
           if (!actor) return respond(res, 401, { error: 'Cần đăng nhập Đại Tín.' }, undefined, head);
-          if (req.method === 'POST' && (path === '/api/copilot/intake/run' || /\/propose$/.test(path)) &&
+          if (req.method === 'POST' && (path === '/api/copilot/intake/run' || path === '/api/advice/research' || /\/propose$/.test(path)) &&
               !modelReserved && !modelLimit(actor.group + ':' + actor.name)) {
             return respond(res, 429, { error: 'Tài khoản đã hết 20 lượt AI trong cửa sổ 24 giờ của pilot.' }, undefined, head);
           }

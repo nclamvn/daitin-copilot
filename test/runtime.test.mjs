@@ -134,7 +134,7 @@ test('runtime does not acknowledge a cookie or DB write when durable commit fail
   assert.deepEqual(readdirSync(directory), []);
 });
 
-for (const domain of ['m3', 'patents']) test('runtime consumes a ' + domain + ' model reservation before dispatch and keeps it after an exception', async t => {
+for (const domain of ['m3', 'patents', 'advice']) test('runtime consumes a ' + domain + ' model reservation before dispatch and keeps it after an exception', async t => {
   const directory = setup(t);
   const store = memoryStore();
   const headers = { authorization: 'Basic ' + Buffer.from(account.name + ':' + account.key).toString('base64') };
@@ -146,7 +146,10 @@ for (const domain of ['m3', 'patents']) test('runtime consumes a ' + domain + ' 
       modelCalls++;
       throw new Error('Model request interrupted');
     } });
-  const result = response(); await runtime(request('/api/' + domain + '/cases/' + 'a'.repeat(8) + '-aaaa-aaaa-aaaa-' + 'a'.repeat(12) + '/propose', 'POST', headers), result);
+  const path = domain === 'advice' ? '/api/advice/research'
+    : '/api/' + domain + '/cases/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/propose';
+  const result = response();
+  await runtime(request(path, 'POST', headers), result);
   assert.equal(result.status, 503);
   assert.equal(modelCalls, 1);
   assert.equal(store.state().modelLimits[0][1].count, 1);

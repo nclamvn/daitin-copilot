@@ -36,8 +36,8 @@
       <div id="conversation-scroll" class="conversation-scroll">
         <div class="conversation">
           <section id="intro" class="intro">
-            <h1>Hỏi đáp sở hữu trí tuệ</h1>
-            <p>Hỏi như khi trao đổi với đồng nghiệp. Mở đoạn nguồn để kiểm lại trước khi dùng nội dung trong thư.</p>
+            <h1 id="intro-title">Hỏi đáp sở hữu trí tuệ</h1>
+            <p id="intro-description">Hỏi như khi trao đổi với đồng nghiệp. Mở đoạn nguồn để kiểm lại trước khi dùng nội dung trong thư.</p>
             <div class="prompts" id="prompts" aria-label="Câu hỏi mẫu"></div>
           </section>
           <ol class="turns" id="turns" aria-live="polite" aria-relevant="additions"></ol>
@@ -48,7 +48,7 @@
           <form id="compose" class="compose">
             <label for="query">Câu hỏi của anh</label>
             <textarea id="query" rows="2" maxlength="400" placeholder="Ví dụ: Gia hạn nhãn hiệu tại Việt Nam có cần POA không?" required></textarea>
-            <div class="compose-foot"><span>Word <span class="source-dot" aria-hidden="true"></span> Email mô phỏng</span><button type="submit" id="submit" class="primary">Gửi câu hỏi <span aria-hidden="true">↑</span></button></div>
+            <div class="compose-foot"><span id="compose-scope">Word <span class="source-dot" aria-hidden="true"></span> Email mô phỏng</span><button type="submit" id="submit" class="primary">Gửi câu hỏi <span aria-hidden="true">↑</span></button></div>
           </form>
           <p id="feedback" class="feedback" role="status"></p>
         </div>
@@ -60,6 +60,7 @@
       <div id="source-detail" class="source-detail"><p class="empty-evidence">Chọn một dẫn chứng trong câu trả lời để mở đúng đoạn nguồn.</p></div>
     </aside>
   </div>
+  <script type="application/json" id="advice-config">{}</script>
   <script type="module" src="/advice/app.mjs"></script>
 </body>
 </html>

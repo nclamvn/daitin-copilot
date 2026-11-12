@@ -70,7 +70,7 @@ function failure(res, error) {
     'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff' }, body });
 }
 
-const isModelPath = pathname => pathname === '/api/copilot/intake/run' ||
+const isModelPath = pathname => pathname === '/api/copilot/intake/run' || pathname === '/api/advice/research' ||
   /^\/api\/(?:m3|patents)\/cases\/[a-f0-9-]{36}\/propose$/.test(pathname);
 const isReadOnlyPostPath = pathname => ['/api/advice/ask', '/api/patents/search', '/api/patents/pdf-pack/inspect', '/api/patents/pdf-pack/preview'].includes(pathname) ||
   /^\/api\/patents\/cases\/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}\/pdf\/(?:inspect|preview)$/.test(pathname);
