@@ -29,7 +29,8 @@ if (!Number.isInteger(port) || port < 1024 || port > 65535 || !['127.0.0.1', '0.
 }
 const server = createServer();
 server.listen(port, bind, () => {
-  console.log('DAITIN Web pilot • ' + web.origin + '/patents/');
+  const entry = process.env.DAI_TIN_ADVICE === '1' ? '/advice/' : '/patents/';
+  console.log('DAITIN Web pilot • ' + web.origin + entry);
   console.log('Tài khoản mới: ' + resolve(data, 'THONG-TIN-DANG-NHAP.txt'));
   console.log(process.env.DAI_TIN_MODEL_MODE === 'disabled' ? 'AI chưa bật. Có thể tra cứu, sửa tay và xuất bản duyệt.' : 'AI dùng cấu hình của máy chủ.');
 });

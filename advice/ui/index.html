@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Đại Tín · Hỏi đáp nghiệp vụ</title>
+  <link rel="stylesheet" href="/public/fonts.css">
+  <link rel="stylesheet" href="/advice/app.css">
+  <link rel="icon" href="/public/brand/daitin.png" type="image/png">
+</head>
+<body>
+  <a class="skip" href="#workspace">Đến câu hỏi</a>
+  <div class="shell">
+    <header class="masthead">
+      <a class="brand" href="/advice/"><img src="/public/brand/daitin.png" width="2137" height="736" alt="DAITIN Lawyers and Consultants"></a>
+      <div class="masthead-title">Hỏi đáp nghiệp vụ</div>
+      <div class="masthead-actions"><span class="mode" id="workspace-mode" hidden></span><button id="sign-out" type="button" class="ghost" hidden>Đăng xuất</button><button id="source-toggle" type="button" class="ghost" aria-controls="evidence" aria-expanded="false">Căn cứ</button></div>
+    </header>
+    <aside class="sidebar" aria-label="Cuộc hỏi đáp">
+      <button id="new-chat" type="button" class="new-chat"><span aria-hidden="true">+</span> Cuộc hỏi đáp mới</button>
+      <div class="history-block">
+        <h2>Lượt hỏi</h2>
+        <ol id="history" class="history"></ol>
+        <p id="history-empty">Các câu hỏi trong phiên này sẽ xuất hiện ở đây.</p>
+      </div>
+      <div class="sidebar-foot">
+        <details id="scenarios" class="scenarios" hidden>
+          <summary>Diễn tập nguồn</summary>
+          <div class="scenario-options" id="scenario-options" role="group" aria-label="Tình huống nguồn"></div>
+        </details>
+        <p class="scope-note"><span class="signal" aria-hidden="true"></span><span id="scope-text">Word và email mô phỏng</span></p>
+      </div>
+    </aside>
+    <main id="workspace" class="workspace">
+      <div id="conversation-scroll" class="conversation-scroll">
+        <div class="conversation">
+          <section id="intro" class="intro">
+            <h1>Hỏi đáp sở hữu trí tuệ</h1>
+            <p>Hỏi như khi trao đổi với đồng nghiệp. Mở đoạn nguồn để kiểm lại trước khi dùng nội dung trong thư.</p>
+            <div class="prompts" id="prompts" aria-label="Câu hỏi mẫu"></div>
+          </section>
+          <ol class="turns" id="turns" aria-live="polite" aria-relevant="additions"></ol>
+        </div>
+      </div>
+      <div class="compose-area">
+        <div class="compose-inner">
+          <form id="compose" class="compose">
+            <label for="query">Câu hỏi của anh</label>
+            <textarea id="query" rows="2" maxlength="400" placeholder="Ví dụ: Gia hạn nhãn hiệu tại Việt Nam có cần POA không?" required></textarea>
+            <div class="compose-foot"><span>Word <span class="source-dot" aria-hidden="true"></span> Email mô phỏng</span><button type="submit" id="submit" class="primary">Gửi câu hỏi <span aria-hidden="true">↑</span></button></div>
+          </form>
+          <p id="feedback" class="feedback" role="status"></p>
+        </div>
+      </div>
+    </main>
+    <aside id="evidence" class="evidence" aria-label="Căn cứ">
+      <div class="evidence-header"><h2>Căn cứ</h2><button type="button" id="source-close" class="icon-button" aria-label="Đóng căn cứ">×</button></div>
+      <div id="source-tabs" class="source-tabs" aria-label="Đoạn nguồn"></div>
+      <div id="source-detail" class="source-detail"><p class="empty-evidence">Chọn một dẫn chứng trong câu trả lời để mở đúng đoạn nguồn.</p></div>
+    </aside>
+  </div>
+  <script type="module" src="/advice/app.mjs"></script>
+</body>
+</html>

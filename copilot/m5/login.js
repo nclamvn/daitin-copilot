@@ -18,6 +18,10 @@ form.addEventListener('submit', async event => {
       throw new Error(result.error ?? 'Chưa đăng nhập được. Thử lại sau.');
     }
     const target = form.dataset.returnTo;
+    if (target === '/advice/') {
+      location.assign('/advice/');
+      return;
+    }
     if (['/patents/', '/copilot/m3/workspace/'].includes(target)) {
       const next = new URL(target, location.origin);
       const params = new URL(location.href).searchParams;

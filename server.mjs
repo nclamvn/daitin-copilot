@@ -10,6 +10,8 @@ const web = webSettings();
 const copilotEnabled = process.env.DAI_TIN_COPILOT === '1';
 const copilotModule = copilotEnabled ? await import('./copilot/service.mjs') : null;
 const m3Module = process.env.DAI_TIN_M3 === '1' ? await import('./copilot/m3/api.mjs') : null;
+const advice = process.env.DAI_TIN_ADVICE === '1'
+  ? (await import('./advice/service.mjs')).createAdvice(web) : null;
 const patentsModule = process.env.DAI_TIN_PATENTS === '1' ? await import('./patents/service.mjs') : null;
 
 const content = new Map([
@@ -94,13 +96,16 @@ export function createApp({ state = {}, modelReserved = false, immutableCopilot 
           return respond(res, 200, { status: 'ok' }, undefined, head);
         }
         if ((req.method === 'GET' || head) && path === '/') {
-          return respond(res, 302, {}, undefined, head, { Location: patents ? '/patents/' : '/copilot/m3/workspace/' });
+          const home = advice && process.env.DAI_TIN_ADVICE_MODE !== 'demo'
+            ? '/advice/' : patents ? '/patents/' : '/copilot/m3/workspace/';
+          return respond(res, 302, {}, undefined, head, { Location: home });
         }
+        const adviceEntry = advice && ['/advice', '/advice/'].includes(path);
         const login = req.method === 'POST' && path === '/api/m5/session';
         if (login && !loginLimit(req.socket.remoteAddress ?? 'unknown')) {
           return respond(res, 429, { error: 'Đã thử đăng nhập nhiều lần. Chờ 5 phút rồi thử lại.' }, undefined, head, { 'Retry-After': '300' });
         }
-        if (!login && !((req.method === 'GET' || head) && publicWebAsset(path))) {
+        if (!login && !((req.method === 'GET' || head) && (publicWebAsset(path) || adviceEntry))) {
           const actor = m3?.authorize(req);
           if (!actor) return respond(res, 401, { error: 'Cần đăng nhập Đại Tín.' }, undefined, head);
           if (req.method === 'POST' && (path === '/api/copilot/intake/run' || /\/propose$/.test(path)) &&
@@ -108,6 +113,10 @@ export function createApp({ state = {}, modelReserved = false, immutableCopilot 
             return respond(res, 429, { error: 'Tài khoản đã hết 20 lượt AI trong cửa sổ 24 giờ của pilot.' }, undefined, head);
           }
         }
+      }
+      if (advice && (path === '/advice' || path.startsWith('/advice/') || path.startsWith('/api/advice/'))) {
+        const result = await advice(req, path, m3?.authorize(req), readJSON);
+        if (result) return respond(res, result.status ?? 200, result.value, result.type, head, result.headers);
       }
       if (patents && (path === '/patents' || path.startsWith('/patents/') || path.startsWith('/api/patents/'))) {
         const actor = m3?.authorize(req);

@@ -183,7 +183,7 @@ test('patent search and PDF previews authenticate against committed state withou
       reply(res, actor ? 200 : 401);
       return keepAuth(state);
     } });
-  for (const path of ['/api/patents/search', casePath + '/pdf/inspect', casePath + '/pdf/preview?selection=1',
+  for (const path of ['/api/advice/ask', '/api/patents/search', casePath + '/pdf/inspect', casePath + '/pdf/preview?selection=1',
     '/api/patents/pdf-pack/inspect', '/api/patents/pdf-pack/preview']) {
     const result = response();
     await runtime(request(path, 'POST', headers), result);
@@ -198,7 +198,7 @@ test('patent search and PDF previews authenticate against committed state withou
     await runtime(request(path, 'POST', headers), result);
     assert.equal(result.status, 409, path);
   }
-  assert.equal(calls, 6);
+  assert.equal(calls, 7);
   assert.equal(store.writes(), 0);
   assert.deepEqual(store.state(), initial);
   assert.deepEqual(readdirSync(directory), []);
