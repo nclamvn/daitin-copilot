@@ -124,11 +124,25 @@ function isPdf(file) {
   return /\.pdf$/i.test(file.name) && file.size > 0 && file.size <= maxBytes;
 }
 
-function validReceipt(receipt, slot) {
-  return receipt?.role === slot.role && /^[a-f0-9]{64}$/.test(receipt.sha256) &&
+function validReceipt(receipt, role, firstPage, lastPage) {
+  return receipt?.role === role && /^[a-f0-9]{64}$/.test(receipt.sha256) &&
     Number.isInteger(receipt.pageCount) && Number.isInteger(receipt.maxExcerptChars) &&
-    Array.isArray(receipt.pages) && receipt.pages.length === Number(slot.last.input.value) - Number(slot.first.input.value) + 1 &&
-    receipt.pages.every((page, index) => page.page === Number(slot.first.input.value) + index && typeof page.text === 'string');
+    Array.isArray(receipt.pages) && receipt.pages.length === lastPage - firstPage + 1 &&
+    receipt.pages.every((page, index) => page.page === firstPage + index && typeof page.text === 'string');
+}
+
+async function lockedSelection(receipt, role, approved) {
+  if (!approved || !Number.isInteger(approved.page) || !validReceipt(receipt, role, approved.page, approved.page) ||
+      receipt.sha256 !== approved.sha256 || !receipt.pages[0].usable) return null;
+  const { start, end, textSha256 } = approved;
+  const pageText = receipt.pages[0].text;
+  if (!Number.isInteger(start) || !Number.isInteger(end) || start < 0 || end <= start || end > pageText.length ||
+      end - start > receipt.maxExcerptChars) return null;
+  const text = pageText.slice(start, end);
+  if (!text.isWellFormed() || text.trim() !== text) return null;
+  const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+  const sha256 = Array.from(new Uint8Array(digest), byte => byte.toString(16).padStart(2, '0')).join('');
+  return sha256 === textSha256 ? { start, end, text } : null;
 }
 
 function setStatus(status, text = '', error = false) {
@@ -137,7 +151,7 @@ function setStatus(status, text = '', error = false) {
   status.toggleAttribute('data-error', error);
 }
 
-export function pdfPackIntake({ dialog, request, run, today, onCreated, onManual, anonymizedPilot = false }) {
+export function pdfPackIntake({ dialog, request, run, today, onCreated, onManual, pilotSourceLock = null }) {
   const container = element('div', '', 'pack-intake');
   const prepare = element('form', '', 'pack-prepare');
   const review = element('form', '', 'pack-review');
@@ -167,8 +181,8 @@ export function pdfPackIntake({ dialog, request, run, today, onCreated, onManual
     option.value = value;
     mode.input.append(option);
   }
-  mode.input.value = 'synthetic';
-  const isAnonymized = () => anonymizedPilot && mode.input.value === 'anonymized';
+  mode.input.value = pilotSourceLock ? 'anonymized' : 'synthetic';
+  const isAnonymized = () => Boolean(pilotSourceLock) && mode.input.value === 'anonymized';
   const classification = () => isAnonymized() ? { synthetic: false, anonymized: true } : { synthetic: true };
   const attestation = field('', '', { type: 'checkbox', required: true });
   attestation.label.className = 'check pack-confirm-synthetic';
@@ -180,7 +194,10 @@ export function pdfPackIntake({ dialog, request, run, today, onCreated, onManual
     const first = pageInput('Từ trang');
     const last = pageInput('Đến trang');
     const fileName = element('p', 'Chưa chọn tệp', 'pack-file-name');
-    return { role, title, row, first, last, fileName, file: null };
+    const range = element('div', '', 'pack-slot-range');
+    const lockedPage = element('span', 'Trang đã đăng ký', 'pack-help');
+    const swap = element('select');
+    return { role, title, row, first, last, fileName, range, lockedPage, swap, file: null };
   });
   const retained = new Map();
   const roleList = element('ul', '', 'pack-role-list');
@@ -204,14 +221,13 @@ export function pdfPackIntake({ dialog, request, run, today, onCreated, onManual
   for (const slot of slots) {
     const label = element('div', '', 'pack-slot-title');
     label.append(element('strong', slot.title), slot.fileName);
-    const range = element('div', '', 'pack-slot-range');
-    range.append(slot.first.label, slot.last.label);
+    slot.range.append(slot.first.label, slot.last.label);
     for (const input of [slot.first.input, slot.last.input]) {
       input.addEventListener('input', () => retained.delete(slot.role));
     }
     const controls = element('div', '', 'pack-slot-actions');
     const pick = filePicker('Chọn PDF cho ' + slot.title, 'Chọn tệp', false, files => assignOne(slot, files));
-    const swap = element('select');
+    const { swap } = slot;
     swap.setAttribute('aria-label', 'Đổi tệp của ' + slot.title + ' với vai trò khác');
     swap.append(element('option', 'Đổi vị trí'));
     swap.options[0].value = '';
@@ -229,7 +245,7 @@ export function pdfPackIntake({ dialog, request, run, today, onCreated, onManual
       updateSlot(other, ...previous);
     });
     controls.append(pick, swap);
-    slot.row.append(label, range, controls);
+    slot.row.append(label, slot.range, slot.lockedPage, controls);
     roleList.append(slot.row);
   }
 
@@ -248,18 +264,31 @@ export function pdfPackIntake({ dialog, request, run, today, onCreated, onManual
   const actions = element('div', '', 'pack-actions');
   const manual = action('Tạo hồ sơ trống hoặc nhập tay', () => onManual(metadata()), 'text-button');
   actions.append(manual, readButton);
+  const prepareHelp = element('p', '', 'pack-help');
   mode.label.classList.add('pack-classification');
-  mode.input.addEventListener('change', () => {
-    for (const slot of slots) updateSlot(slot, null);
+  function updateMode() {
     const real = isAnonymized();
+    for (const slot of slots) {
+      updateSlot(slot, null);
+      slot.range.hidden = real;
+      slot.lockedPage.hidden = !real;
+      slot.swap.hidden = real;
+    }
+    ref.input.readOnly = asOf.input.readOnly = real;
+    ref.input.value = real ? pilotSourceLock.reference : '';
+    asOf.input.value = real ? pilotSourceLock.asOf : today();
+    prepareHelp.textContent = real
+      ? 'Chọn đúng ba PDF đã đăng ký cho từng vai trò, tổng tối đa 2 MiB. Trang và đoạn sẽ hiện sau khi kiểm tệp.'
+      : 'Tổng dung lượng tối đa 2 MiB. Mỗi PDF tối đa 12 trang, đọc 1–4 trang liên tiếp. Khi chọn cả bộ, kiểm lại thứ tự tệp theo vai trò bên dưới.';
     attestationText.textContent = real
       ? 'Tôi xác nhận ba PDF đã ẩn danh và được phép dùng trong pilot.'
       : 'Tôi xác nhận ba PDF là tài liệu mô phỏng.';
     manual.hidden = real;
-  });
-  if (anonymizedPilot) prepare.append(mode.label);
-  prepare.append(zone, element('p', 'Tổng dung lượng tối đa 2 MiB. Mỗi PDF tối đa 12 trang, đọc 1–4 trang liên tiếp. Khi chọn cả bộ, kiểm lại thứ tự tệp theo vai trò bên dưới.', 'pack-help'),
-    roleList, grid, instructions.label, attestation.label, draftStatus, actions);
+  }
+  mode.input.addEventListener('change', updateMode);
+  updateMode();
+  if (pilotSourceLock) prepare.append(mode.label);
+  prepare.append(zone, prepareHelp, roleList, grid, instructions.label, attestation.label, draftStatus, actions);
 
   const saveButton = element('button', 'Lưu hồ sơ và 3 tài liệu', 'primary');
   saveButton.type = 'submit';
@@ -268,6 +297,7 @@ export function pdfPackIntake({ dialog, request, run, today, onCreated, onManual
   const reviewCards = element('div', '', 'pack-review-cards');
   const reviewTitle = element('h3', 'Đối chiếu đoạn sẽ lưu');
   reviewTitle.tabIndex = -1;
+  const reviewHelp = element('p', '', 'pack-help');
   const reviewActions = element('div', '', 'pack-actions');
   const back = action('Đổi tệp, vai trò hoặc trang', () => {
     const next = batch.find(item => !item.confirmed)?.slot ?? slots[0];
@@ -282,11 +312,11 @@ export function pdfPackIntake({ dialog, request, run, today, onCreated, onManual
     clearReview();
     review.hidden = true;
     prepare.hidden = false;
-    next.first.input.focus();
+    if (isAnonymized()) next.row.querySelector('input[type=file]').focus();
+    else next.first.input.focus();
   }, 'text-button');
   reviewActions.append(back, confirmedCount, saveButton);
-  review.append(reviewTitle, element('p', 'Với mỗi vai trò, mở ảnh trang hoặc bản PDF gốc, chọn đoạn nguyên văn rồi xác nhận.', 'pack-help'),
-    reviewCards, reviewStatus, reviewActions);
+  review.append(reviewTitle, reviewHelp, reviewCards, reviewStatus, reviewActions);
 
   let batch = [];
   let savingUncertain = false;
@@ -326,25 +356,31 @@ export function pdfPackIntake({ dialog, request, run, today, onCreated, onManual
 
   function renderDocument(item, body, summary) {
     body.replaceChildren();
-    const pageLabel = element('label', 'Trang để đối chiếu');
-    const select = element('select');
-    for (const page of item.receipt.pages) {
-      const option = element('option', 'Trang ' + page.page + (page.usable ? '' : ' · Thiếu lớp chữ'));
-      option.value = String(page.page);
-      select.append(option);
+    const toolbar = element('div', '', 'pack-page-tools');
+    if (item.locked) {
+      toolbar.append(element('span', 'Trang ' + item.page + ' đã đăng ký'));
+    } else {
+      const pageLabel = element('label', 'Trang để đối chiếu');
+      const select = element('select');
+      for (const page of item.receipt.pages) {
+        const option = element('option', 'Trang ' + page.page + (page.usable ? '' : ' · Thiếu lớp chữ'));
+        option.value = String(page.page);
+        select.append(option);
+      }
+      select.value = String(item.page);
+      select.setAttribute('aria-label', 'Trang để đối chiếu của ' + item.slot.title);
+      select.addEventListener('change', () => {
+        revoke(item);
+        item.page = Number(select.value);
+        item.confirmed = false;
+        item.valid = false;
+        item.selection = null;
+        renderDocument(item, body, summary);
+        body.querySelector('select')?.focus();
+      });
+      pageLabel.append(select);
+      toolbar.append(pageLabel);
     }
-    select.value = String(item.page);
-    select.setAttribute('aria-label', 'Trang để đối chiếu của ' + item.slot.title);
-    select.addEventListener('change', () => {
-      revoke(item);
-      item.page = Number(select.value);
-      item.confirmed = false;
-      item.valid = false;
-      item.selection = null;
-      renderDocument(item, body, summary);
-      body.querySelector('select')?.focus();
-    });
-    pageLabel.append(select);
 
     const picture = element('div', '', 'pdf-page-preview');
     const preview = action('Xem ảnh trang ' + item.page, () => {
@@ -367,8 +403,7 @@ export function pdfPackIntake({ dialog, request, run, today, onCreated, onManual
         setStatus(reviewStatus);
       });
     });
-    const toolbar = element('div', '', 'pack-page-tools');
-    toolbar.append(pageLabel, preview);
+    toolbar.append(preview);
     body.append(toolbar, picture);
     const page = item.receipt.pages.find(value => value.page === item.page);
     if (!page.usable || !page.text.trim()) {
@@ -378,8 +413,9 @@ export function pdfPackIntake({ dialog, request, run, today, onCreated, onManual
       return;
     }
 
-    const name = field('Tên tài liệu lưu trong hồ sơ', item.label, { required: true, maxLength: 90 });
-    const accept = field('Tôi đã kiểm tra vai trò và đối chiếu đoạn chọn với trang gốc.', '', { type: 'checkbox' });
+    const accept = field(item.locked
+      ? 'Tôi đã kiểm tra vai trò và đối chiếu đoạn đã đăng ký với trang gốc.'
+      : 'Tôi đã kiểm tra vai trò và đối chiếu đoạn chọn với trang gốc.', '', { type: 'checkbox' });
     accept.label.className = 'check pdf-attestation';
     accept.label.prepend(accept.input);
     function update() {
@@ -389,20 +425,29 @@ export function pdfPackIntake({ dialog, request, run, today, onCreated, onManual
       summary.textContent = item.confirmed && item.label.trim() ? 'Đã xác nhận trang ' + item.page : 'Chờ xác nhận';
       updateConfirmations();
     }
+    accept.input.addEventListener('change', () => {
+      item.confirmed = item.valid && accept.input.checked;
+      update();
+    });
+    if (item.locked) {
+      const excerpt = element('pre', item.selection.text, 'pdf-excerpt');
+      excerpt.setAttribute('aria-label', 'Đoạn nguyên văn đã đăng ký');
+      body.append(excerpt, accept.label);
+      update();
+      return;
+    }
+
+    const name = field('Tên tài liệu lưu trong hồ sơ', item.label, { required: true, maxLength: 90 });
+    name.input.addEventListener('input', () => {
+      item.label = name.input.value;
+      update();
+    });
     const selection = selectPdfExcerpt(page.text, item.receipt.maxExcerptChars, (value, valid, changed) => {
       item.selection = value;
       item.valid = valid;
       if (changed) item.confirmed = false;
       update();
     }, item.selection);
-    accept.input.addEventListener('change', () => {
-      item.confirmed = item.valid && accept.input.checked;
-      update();
-    });
-    name.input.addEventListener('input', () => {
-      item.label = name.input.value;
-      update();
-    });
     body.append(...selection.elements, name.label, accept.label);
     selection.read();
   }
@@ -417,7 +462,8 @@ export function pdfPackIntake({ dialog, request, run, today, onCreated, onManual
       setStatus(draftStatus, 'Tổng dung lượng ba PDF vượt 2 MiB. Chọn bộ tệp nhỏ hơn.', true);
       return;
     }
-    const badRange = slots.find(slot => Number(slot.first.input.value) > Number(slot.last.input.value) ||
+    const locked = isAnonymized();
+    const badRange = !locked && slots.find(slot => Number(slot.first.input.value) > Number(slot.last.input.value) ||
       Number(slot.last.input.value) - Number(slot.first.input.value) >= 4);
     if (badRange) {
       setStatus(draftStatus, badRange.title + ' cần một khoảng liên tiếp tối đa 4 trang.', true);
@@ -432,17 +478,32 @@ export function pdfPackIntake({ dialog, request, run, today, onCreated, onManual
       clearReview();
       const input = await Promise.all(slots.map(async slot => ({
         role: slot.role, content: await base64Pdf(slot.file),
-        firstPage: Number(slot.first.input.value), lastPage: Number(slot.last.input.value)
+        ...(locked ? {} : { firstPage: Number(slot.first.input.value), lastPage: Number(slot.last.input.value) })
       })));
       const result = await request('pdf-pack/inspect', { ...classification(), documents: input });
-      if (!Array.isArray(result.documents) || result.documents.length !== slots.length ||
-        !slots.every(slot => validReceipt(result.documents.find(doc => doc.role === slot.role), slot))) {
+      if (!Array.isArray(result.documents) || result.documents.length !== slots.length) {
         throw new Error('Chưa nhận đủ bản đọc của ba tài liệu. Kiểm tra tệp và đọc lại.');
       }
-      batch = slots.map((slot, index) => {
+      if (locked && (result.locked?.reference !== pilotSourceLock.reference || result.locked.asOf !== pilotSourceLock.asOf)) {
+        throw new Error('Hồ sơ pilot đã đổi cấu hình. Tải lại trang trước khi nhập lại bộ nguồn.');
+      }
+      batch = await Promise.all(slots.map(async (slot, index) => {
         const receipt = result.documents.find(doc => doc.role === slot.role);
-        const { firstPage, lastPage } = input[index];
         const previous = retained.get(slot.role);
+        if (locked) {
+          const approved = result.locked.sources?.[slot.role];
+          const selection = await lockedSelection(receipt, slot.role, approved);
+          if (!selection) throw new Error('Chưa đối chiếu được trang và đoạn đã đăng ký cho ' + slot.title + '. Kiểm tra tệp và đọc lại.');
+          const { page } = approved;
+          const confirmed = previous?.file === slot.file && previous.sha256 === receipt.sha256 && previous.page === page &&
+            previous.selection.start === selection.start && previous.selection.end === selection.end && previous.selection.text === selection.text;
+          return { slot, ...input[index], receipt, firstPage: page, lastPage: page, page, label: slot.title, selection,
+            locked: true, valid: true, confirmed, preview: null };
+        }
+        const { firstPage, lastPage } = input[index];
+        if (!validReceipt(receipt, slot.role, firstPage, lastPage)) {
+          throw new Error('Chưa nhận đủ bản đọc của ba tài liệu. Kiểm tra tệp và đọc lại.');
+        }
         const anchoredPage = receipt.pages.find(item => item.page === previous?.page && item.usable);
         const unchanged = previous && previous.file === slot.file && previous.sha256 === receipt.sha256 &&
           previous.firstPage === firstPage && previous.lastPage === lastPage && anchoredPage &&
@@ -456,7 +517,11 @@ export function pdfPackIntake({ dialog, request, run, today, onCreated, onManual
         const page = (receipt.pages.find(item => item.usable) ?? receipt.pages[0]).page;
         const label = slot.file.name.replace(/\.pdf$/i, '').replace(/\s+/gu, ' ').trim().slice(0, 90).toWellFormed() || slot.title;
         return { slot, ...input[index], receipt, page, label, valid: false, confirmed: false, selection: null, preview: null };
-      });
+      }));
+      back.textContent = locked ? 'Quay lại chọn tệp' : 'Đổi tệp, vai trò hoặc trang';
+      reviewHelp.textContent = locked
+        ? 'Mở ảnh trang và xác nhận đoạn đã đăng ký cho từng vai trò.'
+        : 'Với mỗi vai trò, mở ảnh trang hoặc bản PDF gốc, chọn đoạn nguyên văn rồi xác nhận.';
       const firstPending = Math.max(0, batch.findIndex(item => !item.confirmed));
       for (const [index, item] of batch.entries()) {
         const card = element('details', '', 'pack-review-card');
@@ -488,13 +553,22 @@ export function pdfPackIntake({ dialog, request, run, today, onCreated, onManual
         label: item.label.trim(), sha256: item.receipt.sha256, page: item.page, ...item.selection, confirmed: true
       }));
       const matter = await request('cases/pdf-pack', { ...classification(), ...metadata(), documents });
+      if (!matter?.id) {
+        const error = new Error('Chưa nhận được hồ sơ đã lưu.');
+        error.unknownOutcome = true;
+        throw error;
+      }
       dialog.close();
       onCreated(matter);
     }, error => {
       if (error.unknownOutcome) {
-        savingUncertain = true;
-        updateConfirmations();
-        error.message = 'Chưa nhận được kết quả lưu. Đóng cửa sổ và tải lại danh sách hồ sơ để kiểm tra mã hồ sơ trước khi gửi lại.';
+        if (isAnonymized()) {
+          error.message = 'Chưa nhận được kết quả lưu. Có thể gửi lại cùng bộ nguồn và thông tin để mở đúng hồ sơ.';
+        } else {
+          savingUncertain = true;
+          updateConfirmations();
+          error.message = 'Chưa nhận được kết quả lưu. Đóng cửa sổ và tải lại danh sách hồ sơ để kiểm tra mã hồ sơ trước khi gửi lại.';
+        }
       }
     });
   });

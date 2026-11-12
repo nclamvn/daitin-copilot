@@ -4,9 +4,10 @@ import { join } from 'node:path';
 import { setTimeout as pause } from 'node:timers/promises';
 import { modelConnection } from '../../../../copilot/model-connection.mjs';
 import { inspectPatentPDF } from '../../../../patents/intake.mjs';
+import { parsePilotLock, pilotLockDigest } from '../../../../patents/pilot-lock.mjs';
 import { buildPatentPrompt, materializePatentSpans, privateEvidence } from '../../../../patents/workflow.mjs';
 import { makePatentWordV2, patentWordRendererV2 } from '../../../../patents/word.mjs';
-import { beginModel, directory, measure, modelId, openLedger, qualityView, readJSON, sha, timestamp, track, writeJSON } from './common.mjs';
+import { beginModel, directory, measure, modelId, openLedger, qualityView, readJSON, sha, timestamp, track, verifyLockedDocuments, writeJSON } from './common.mjs';
 import { approveDirectDraft, HumanPilotError } from './direct-human.mjs';
 
 const casePath = (out, entry, phase) => join(out, 'direct-workspace', `${entry.id}-session-${phase}.json`);
@@ -20,7 +21,8 @@ function cachedProviderOutput(ledger, entry, phase, stage, file) {
   if (entry.anonymized) {
     const receipt = ledger.state.modelAttempts.findLast(item => item.caseId === entry.id &&
       item.phase === phase && item.stage === stage);
-    if (receipt?.status !== 'accepted' || receipt.cacheSha256 !== sha(JSON.stringify(output))) {
+    if (receipt?.status !== 'accepted' || receipt.pilotLockSha256 !== ledger.state.pilotLockSha256 ||
+        receipt.cacheSha256 !== sha(JSON.stringify(output))) {
       throw new HumanPilotError('Không xác minh được bản đã lưu của model. Giữ nguyên thư mục để kiểm tra; chưa gửi lại.');
     }
   }
@@ -109,39 +111,79 @@ async function selectReadTool(ledger, connection, out, entry, phase, task, fetch
 async function inspectLockedPage(entry, document) {
   const bytes = readFileSync(document.path);
   assert.equal(sha(bytes), document.sha256);
-  const approvedHashes = entry.anonymized ? Object.fromEntries(entry.documents.map(item => [item.role, item.sha256])) : undefined;
   const pdf = await inspectPatentPDF({
-    ...(entry.anonymized ? { synthetic: false, anonymized: true, role: document.role } : { synthetic: true }),
+    synthetic: true,
     firstPage: document.page, lastPage: document.page, content: bytes.toString('base64')
-  }, approvedHashes);
+  });
   assert.equal(pdf.sha256, document.sha256);
   const page = pdf.pages[0];
   assert.equal(page.page, document.page);
-  const byOffset = entry.anonymized && Number.isInteger(document.start);
-  const start = byOffset ? document.start : page.text.indexOf(document.quote);
-  assert.ok(page.usable && start >= 0 && (byOffset ? page.text.slice(start, document.end) === document.quote
-    : page.text.indexOf(document.quote, start + 1) === -1),
+  const start = page.text.indexOf(document.quote);
+  assert.ok(page.usable && start >= 0 && page.text.indexOf(document.quote, start + 1) === -1,
     `Direct agent could not verify exact excerpt ${entry.id}/${document.role}`);
   return { bytes, pdf, start };
 }
 
-export async function verifyHumanSources(input) {
-  let documents = 0;
-  for (const entry of input.cases) {
-    if (!entry.anonymized) throw new HumanPilotError('Manifest chưa được khai báo là bộ hồ sơ ẩn danh.');
-    for (const document of entry.documents) {
-      try { await inspectLockedPage(entry, document); }
-      catch { throw new HumanPilotError('PDF, trang hoặc đoạn đã khóa không khớp ở ' + entry.id + '/' + document.role + '.'); }
-      documents++;
+async function inspectHumanDocuments(entry) {
+  if (!entry.anonymized) throw new HumanPilotError('Manifest chưa được khai báo là bộ hồ sơ ẩn danh.');
+  const { inspectWithPDFJS } = await import('../../../../copilot/m4/pdf-js.mjs');
+  const documents = [];
+  for (const document of entry.documents) {
+    try {
+      const source = entry[document.role];
+      assert.ok(['sha256', 'page', 'start', 'end', 'quote', 'label'].every(key => document[key] === source[key]));
+      const bytes = readFileSync(document.path);
+      assert.equal(sha(bytes), document.sha256);
+      const pages = await inspectWithPDFJS(bytes);
+      const page = pages[document.page - 1];
+      assert.equal(page?.page, document.page);
+      assert.ok([page.text, document.quote].every(text => text.trim() && text.isWellFormed() &&
+        !/[\u0000-\u0008\u000B\u000C\u000E-\u001F\uFFFD-\uFFFF]/u.test(text)));
+      const start = document.start ?? page.text.indexOf(document.quote);
+      const end = document.end ?? start + document.quote.length;
+      assert.ok(start >= 0 && end === start + document.quote.length && page.text.slice(start, end) === document.quote);
+      assert.ok(document.start !== undefined || page.text.indexOf(document.quote, start + 1) === -1);
+      documents.push({ bytes, metadata: { recordId: docRole(document.role), role: document.role, label: document.label,
+        sha256: document.sha256, page: document.page, pageCount: pages.length, start, end,
+        textSha256: sha(document.quote), extractionEngine: 'pdfjs' } });
+    } catch {
+      throw new HumanPilotError('PDF, trang hoặc đoạn đã khóa không khớp ở ' + entry.id + '/' + document.role + '.');
     }
   }
   return documents;
 }
 
+export async function verifyHumanSources(input) {
+  let count = 0;
+  for (const entry of input.cases) count += (await inspectHumanDocuments(entry)).length;
+  return count;
+}
+
+export async function deriveHumanSourceLock(input, approved) {
+  if (input.cases.length !== 1) throw new HumanPilotError('Pilot với luật sư đăng ký đúng một hồ sơ.');
+  const [entry] = input.cases;
+  const { reference, asOf } = entry;
+  const { manifestSha256 } = input;
+  if (approved && (approved.manifestSha256 !== manifestSha256 || approved.reference !== reference || approved.asOf !== asOf)) {
+    throw new HumanPilotError('Manifest, mã hồ sơ hoặc ngày đối chiếu không khớp bản khóa đã duyệt.');
+  }
+  const documents = await inspectHumanDocuments(entry);
+  const sources = Object.fromEntries(documents.map(({ metadata: { role, sha256, page, start, end, textSha256 } }) =>
+    [role, { sha256, page, start, end, textSha256 }]));
+  const lock = parsePilotLock({ version: 1, manifestSha256, reference, asOf, sources });
+  if (approved) {
+    try { verifyLockedDocuments(documents.map(item => item.metadata), approved); }
+    catch { throw new HumanPilotError('PDF, trang hoặc đoạn trích không khớp bản khóa đã duyệt.'); }
+  }
+  return { lock, documents };
+}
+
+const savedPDF = (out, entry, role) => join(out, 'direct-workspace', `${entry.id}-${role}.pdf`);
+
 async function extractSource(ledger, entry, document, out) {
   const { bytes, pdf, start } = await measure(ledger, 'tool', entry.id, 1, 'extract selected PDF range',
     () => inspectLockedPage(entry, document), ({ pdf }) => ({ extractionEngine: pdf.extractionEngine, role: document.role }));
-  const originalPath = join(out, 'direct-workspace', `${entry.id}-${document.role}.pdf`);
+  const originalPath = savedPDF(out, entry, document.role);
   if (existsSync(originalPath)) assert.equal(sha(readFileSync(originalPath)), document.sha256);
   else writeFileSync(originalPath, bytes, { mode: 0o600, flag: 'wx' });
   const metadata = { recordId: docRole(document.role), role: document.role, label: document.label, sha256: document.sha256,
@@ -162,15 +204,17 @@ function pinnedSource(document, metadata) {
   };
 }
 
-async function executeReadTool(ledger, out, entry, phase, tool) {
+async function executeReadTool(ledger, out, entry, phase, tool, verified, baseline) {
   return measure(ledger, 'tool', entry.id, phase, 'execute read_case', async () => {
     if (phase === 2) {
-      const prior = readJSON(casePath(out, entry, 1));
-      for (const document of entry.documents) {
-        const original = readFileSync(join(out, 'direct-workspace', `${entry.id}-${document.role}.pdf`));
-        assert.equal(sha(original), document.sha256);
-        assert.ok(prior.documents.some(saved => saved.role === document.role && saved.sha256 === document.sha256 &&
-          saved.page === document.page && saved.textSha256 === sha(document.quote)));
+      const prior = baseline ?? readJSON(casePath(out, entry, 1));
+      if (!baseline) {
+        for (const document of entry.documents) {
+          const original = readFileSync(savedPDF(out, entry, document.role));
+          assert.equal(sha(original), document.sha256);
+          assert.ok(prior.documents.some(saved => saved.role === document.role && saved.sha256 === document.sha256 &&
+            saved.page === document.page && saved.textSha256 === sha(document.quote)));
+        }
       }
       prior.instructionsText = entry.phase2Instructions;
       prior.sections.response.approval = null;
@@ -178,21 +222,28 @@ async function executeReadTool(ledger, out, entry, phase, tool) {
     }
     const documents = [];
     const pinnedEvidence = [];
-    for (const document of entry.documents) {
-      const metadata = await extractSource(ledger, entry, document, out);
+    for (const [index, document] of entry.documents.entries()) {
+      const checked = verified?.[index];
+      const metadata = checked?.metadata ?? await extractSource(ledger, entry, document, out);
+      if (checked) {
+        const original = savedPDF(out, entry, document.role);
+        if (existsSync(original)) assert.equal(sha(readFileSync(original)), metadata.sha256);
+        else writeFileSync(original, checked.bytes, { mode: 0o600, flag: 'wx' });
+      }
       documents.push(metadata);
       if (document.role !== 'notice') pinnedEvidence.push(pinnedSource(document, metadata));
     }
     return {
       reference: entry.reference, title: entry.title,
-      ...(entry.anonymized ? { synthetic: false, anonymized: true } : { synthetic: true }),
+      ...(entry.anonymized ? { synthetic: false, anonymized: true, pilotLockSha256: ledger.state.pilotLockSha256 } : { synthetic: true }),
       claimRecordId: docRole('claim'), d1RecordIds: [docRole('d1')],
       evidenceIds: [docRole('claim'), docRole('d1')], claimText: entry.claim.quote, noticeText: entry.notice.quote,
       instructionsText: entry.instructions, documents, pinnedEvidence,
       context: { jurisdiction: 'VN', asOf: entry.asOf, claimVersion: 'PDF trang ' + entry.claim.page + ' · ' + entry.claim.label.slice(0, 80) },
       sections: { matrix: { rows: [], approval: null }, response: { text: '', evidenceIds: [], approval: null } }
     };
-  }, matter => ({ toolCallId: tool.toolCallId, evidence: matter.documents.map(({ role, sha256, page, textSha256 }) => ({ role, sha256, page, textSha256 })) }));
+  }, matter => ({ toolCallId: tool.toolCallId,
+    evidence: matter.documents.map(({ role, sha256, page, start, end, textSha256 }) => ({ role, sha256, page, start, end, textSha256 })) }));
 }
 
 async function directDraft(ledger, connection, out, entry, phase, matter, task, fetcher) {
@@ -322,11 +373,37 @@ export async function runDirect({ out, input }) {
   ledger.save();
 }
 
-function verifyHumanPhase(out, entry, phase, record) {
-  const valid = record?.wordSha256 && record?.caseSha256 &&
-    sha(readFileSync(wordPath(out, entry, phase))) === record.wordSha256 &&
-    sha(JSON.stringify(readJSON(casePath(out, entry, phase)))) === record.caseSha256;
-  if (!valid) throw new HumanPilotError('Dấu kiểm hồ sơ hoặc Word đã duyệt bị thay đổi.');
+export function verifyHumanPhase(out, entry, phase, record, lock, pilotLockSha256) {
+  try {
+    const matter = readJSON(casePath(out, entry, phase));
+    assert.equal(record.pilotLockSha256, pilotLockSha256);
+    assert.equal(matter.pilotLockSha256, pilotLockSha256);
+    assert.equal(matter.reference, lock.reference);
+    assert.equal(matter.context.asOf, lock.asOf);
+    verifyLockedDocuments(matter.documents, lock);
+    verifyLockedDocuments(record.documents, lock);
+    assert.equal(matter.claimText, entry.claim.quote);
+    assert.equal(matter.noticeText, entry.notice.quote);
+    assert.equal(matter.instructionsText, phase === 1 ? entry.instructions : entry.phase2Instructions);
+    assert.equal(matter.claimRecordId, docRole('claim'));
+    assert.deepEqual(matter.d1RecordIds, [docRole('d1')]);
+    assert.deepEqual(matter.evidenceIds, [docRole('claim'), docRole('d1')]);
+    assert.equal(matter.pinnedEvidence.length, 2);
+    for (const role of ['claim', 'd1']) {
+      const pinned = matter.pinnedEvidence.find(item => item.record.id === docRole(role));
+      assert.equal(pinned?.record.text, entry[role].quote);
+      assert.equal(pinned.record.locator.page, lock.sources[role].page);
+      assert.equal(pinned.source.sha256, lock.sources[role].sha256);
+    }
+    assert.equal(sha(readFileSync(wordPath(out, entry, phase))), record.wordSha256);
+    assert.equal(sha(JSON.stringify(matter)), record.caseSha256);
+    assert.equal(sha(JSON.stringify(matter.sections.matrix.rows)), record.matrixSha256);
+    assert.deepEqual(matter.sections.matrix.approval, record.approvals.matrix);
+    assert.deepEqual(matter.sections.response.approval, record.approvals.response);
+    return matter;
+  } catch {
+    throw new HumanPilotError('Dấu kiểm hồ sơ hoặc Word đã duyệt bị thay đổi.');
+  }
 }
 
 function publishWord(path, bytes) {
@@ -340,16 +417,25 @@ function publishWord(path, bytes) {
   if (sha(readFileSync(path)) !== sha(bytes)) throw new HumanPilotError('Bản Word đã tồn tại có dấu kiểm khác.');
 }
 
-async function executeHumanPhase({ ledger, connection, out, entry, phase, ask, show, fetcher }) {
+async function executeHumanPhase({ ledger, connection, out, entry, phase, ask, show, fetcher, lock, documents }) {
   const record = ledger.state.cases[entry.id];
-  if (record.phases[phase]?.wordSha256) {
-    verifyHumanPhase(out, entry, phase, record.phases[phase]);
-    show('Đã có Word được xác nhận: ' + wordPath(out, entry, phase));
-    return;
-  }
+  const { pilotLockSha256 } = ledger.state;
+  let baseline;
   if (phase === 2) {
     if (!record.phases[1]?.wordSha256) throw new HumanPilotError('Hoàn tất duyệt và xuất Word phiên 1 trước.');
-    verifyHumanPhase(out, entry, 1, record.phases[1]);
+    baseline = verifyHumanPhase(out, entry, 1, record.phases[1], lock, pilotLockSha256);
+  }
+  for (const { metadata } of documents) {
+    const path = savedPDF(out, entry, metadata.role);
+    if (!existsSync(path) && phase === 1 && !record.phases[1]?.wordSha256) continue;
+    if (!existsSync(path) || sha(readFileSync(path)) !== metadata.sha256) {
+      throw new HumanPilotError('PDF đã lưu không khớp bản khóa ở ' + entry.id + '/' + metadata.role + '.');
+    }
+  }
+  if (record.phases[phase]?.wordSha256) {
+    verifyHumanPhase(out, entry, phase, record.phases[phase], lock, pilotLockSha256);
+    show('Đã có Word được xác nhận: ' + wordPath(out, entry, phase));
+    return;
   }
   const task = phase === 1 ? entry.phase1Task : entry.phase2Task;
   show('Hồ sơ ' + entry.id + ', phiên ' + phase + '. Đọc nhiệm vụ trên phiếu của điều phối viên.');
@@ -357,14 +443,14 @@ async function executeHumanPhase({ ledger, connection, out, entry, phase, ask, s
   if (start.trim().toLowerCase() !== 'y') throw new HumanPilotError('Phiên đang chờ anh Bình bắt đầu.');
   track(ledger, 'operator', entry.id, phase, 'human opens direct session', { at: timestamp() });
   const tool = await selectReadTool(ledger, connection, out, entry, phase, task, fetcher);
-  const matter = await executeReadTool(ledger, out, entry, phase, tool);
+  const matter = await executeReadTool(ledger, out, entry, phase, tool, documents, baseline);
   const draft = await directDraft(ledger, connection, out, entry, phase, matter, task, fetcher);
   const approved = await approveDirectDraft({ ledger, out, entry, phase, matter, draft, ask, show });
   matter.sections = { ...matter.sections, ...approved };
   const matrixSha256 = sha(JSON.stringify(matter.sections.matrix.rows));
   const quality = qualityView(matter, entry, phase);
   if (phase === 2) {
-    verifyHumanPhase(out, entry, 1, record.phases[1]);
+    verifyHumanPhase(out, entry, 1, record.phases[1], lock, pilotLockSha256);
     if (record.phases[1].matrixSha256 !== matrixSha256 ||
       record.phases[1].approvals.matrix.sha256 !== matter.sections.matrix.approval?.sha256) {
       throw new HumanPilotError('Ma trận đã duyệt ở phiên 1 bị thay đổi.');
@@ -385,28 +471,34 @@ async function executeHumanPhase({ ledger, connection, out, entry, phase, ask, s
   if (phase === 2 && wordSha256 === record.phases[1].wordSha256) {
     throw new HumanPilotError('Word phiên 2 trùng bản cũ. Giữ nguyên thư mục để kiểm tra.');
   }
-  record.phases[phase] = { quality, wordSha256, matrixSha256, caseSha256: sha(JSON.stringify(matter)),
+  record.phases[phase] = { quality, wordSha256, matrixSha256, pilotLockSha256, caseSha256: sha(JSON.stringify(matter)),
     approvals: Object.fromEntries(Object.entries(matter.sections).map(([key, value]) => [key, value.approval])),
-    documents: matter.documents.map(({ role, page, sha256, textSha256 }) => ({ role, page, sha256, textSha256 })) };
+    documents: matter.documents.map(({ role, page, start, end, sha256, textSha256 }) => ({ role, page, start, end, sha256, textSha256 })) };
   ledger.state.humanReview = 'operator_attested';
   ledger.save();
   show('Đã lưu Word. Mở đúng tệp này để hoàn tất phiên: ' + path);
 }
 
-export async function runHumanDirect({ out, input, phase, ask, show = console.log,
+export async function runHumanDirect({ out, input, phase, sourceLock, ask, show = console.log,
   connection = modelConnection(), fetcher = fetch }) {
   if (![1, 2].includes(phase) || input.cases.some(entry => entry.synthetic !== false || entry.anonymized !== true) ||
     !connection || connection.model !== modelId || connection.provider !== 'ai-gateway.vercel.sh' ||
     connection.endpoint !== 'https://ai-gateway.vercel.sh/v1/chat/completions') {
     throw new HumanPilotError('Cấu hình phiên, loại hồ sơ hoặc Gemini trên Vercel AI Gateway chưa khớp.');
   }
-  const ledger = openLedger(out, 'direct', input.manifestSha256, input.cases, { human: true });
+  let approved;
+  try { approved = parsePilotLock(sourceLock); }
+  catch { throw new HumanPilotError('Cần bản khóa nguồn đã duyệt độc lập trước khi gọi model.'); }
+  const { lock, documents } = await deriveHumanSourceLock(input, approved);
+  const pilotLockSha256 = pilotLockDigest(lock);
+  const ledger = openLedger(out, 'direct', input.manifestSha256, input.cases, { human: true, pilotLockSha256 });
   checkProviderCooldown(ledger);
   ledger.state.modelProvider = connection.provider;
   directory(join(out, 'direct-workspace'));
   directory(join(out, 'direct-word'));
   try {
-    for (const entry of input.cases) await executeHumanPhase({ ledger, connection, out, entry, phase, ask, show, fetcher });
+    const [entry] = input.cases;
+    await executeHumanPhase({ ledger, connection, out, entry, phase, ask, show, fetcher, lock, documents });
     ledger.state.finishedAt = timestamp();
     ledger.save();
   } catch (error) {

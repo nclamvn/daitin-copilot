@@ -3,7 +3,8 @@ import { randomBytes } from 'node:crypto';
 import { existsSync, readFileSync, realpathSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { directory, loadCases, modelId, qualityView, readJSON, sha } from '../common.mjs';
+import { pilotLockDigest } from '../../../../../patents/pilot-lock.mjs';
+import { directory, loadCases, modelId, qualityView, readApprovedSourceLock, readJSON, sha, verifyLockedDocuments } from '../common.mjs';
 import { pairedEffort } from './metrics.mjs';
 
 const origin = 'https://daitin-copilot.vercel.app';
@@ -29,12 +30,19 @@ function outsideCheckout(path) {
 async function preflight(manifest, configFile) {
   outsideCheckout(configFile);
   const input = study(manifest);
-  const { verifyHumanSources } = await import('../direct.mjs');
-  const documents = await verifyHumanSources(input);
-  const hashes = Object.fromEntries(input.entry.documents.map(({role,sha256}) => [role,sha256]));
-  write(configFile, hashes);
-  console.log(JSON.stringify({ documents, bytes: input.entry.documents.reduce((n,doc) => n + doc.original.length, 0),
-    manifestSha256: input.manifestSha256, modelCalls: 0 }));
+  const { deriveHumanSourceLock } = await import('../direct.mjs');
+  const { lock, documents } = await deriveHumanSourceLock(input);
+  write(configFile, lock);
+  console.log(JSON.stringify({ documents: documents.length, bytes: documents.reduce((n,doc) => n + doc.bytes.length, 0),
+    manifestSha256: lock.manifestSha256, pilotLockSha256: pilotLockDigest(lock), modelCalls: 0 }));
+}
+
+async function enrolledStudy(manifest) {
+  const input = study(manifest);
+  const approved = readApprovedSourceLock();
+  const { deriveHumanSourceLock } = await import('../direct.mjs');
+  const { lock } = await deriveHumanSourceLock(input, approved);
+  return { ...input, lock, pilotLockSha256: pilotLockDigest(lock) };
 }
 
 function workspace(id, accountsPath) {
@@ -72,25 +80,31 @@ function workspace(id, accountsPath) {
   };
 }
 
-function verifyDocuments(actual, entry) {
-  assert.equal(actual.length, 3);
-  return entry.documents.map(locked => {
-    const doc = actual.find(item => item.role === locked.role);
-    assert.ok(doc && doc.sha256 === locked.sha256 && doc.page === locked.page && doc.textSha256 === sha(locked.quote),
-      'Mismatch in the enrolled source for ' + locked.role);
-    return doc;
-  });
+function verifyWorkspaceSources(matter, entry, lock, pilotLockSha256) {
+  assert.equal(matter.synthetic, false);
+  assert.equal(matter.anonymized, true);
+  assert.equal(matter.reference, lock.reference);
+  assert.equal(matter.context?.asOf, lock.asOf);
+  assert.equal(matter.pilotLockSha256, pilotLockSha256);
+  assert.equal(matter.claimText, entry.claim.quote);
+  assert.equal(matter.noticeText, entry.notice.quote);
+  const docs = verifyLockedDocuments(matter.documents, lock);
+  const [, claim, d1] = docs;
+  assert.equal(matter.claimRecordId, claim.recordId);
+  assert.deepEqual(matter.d1RecordIds, [d1.recordId]);
+  for (const [doc, quote] of [[claim, entry.claim.quote], [d1, entry.d1.quote]]) {
+    const pinned = matter.pinnedEvidence.find(item => item.record.id === doc.recordId);
+    assert.equal(pinned?.record.text, quote);
+    assert.equal(pinned?.record.locator.page, doc.page);
+    assert.equal(pinned?.source.sha256, doc.sha256);
+  }
+  return docs;
 }
 
-function verifyRelease(release, entry, phase) {
-  assert.equal(release.synthetic, false);
-  assert.equal(release.reference, entry.reference);
-  assert.equal(release.context?.asOf, entry.asOf);
+function verifyRelease(release, entry, phase, lock, pilotLockSha256) {
+  verifyWorkspaceSources(release, entry, lock, pilotLockSha256);
   assert.equal(release.number, phase);
   assert.equal(release.instructionsText, phase === 1 ? entry.instructions : entry.phase2Instructions);
-  assert.equal(release.claimText, entry.claim.quote);
-  assert.equal(release.noticeText, entry.notice.quote);
-  verifyDocuments(release.documents, entry);
   for (const section of ['matrix','response']) {
     const approval = release.sections[section]?.approval;
     assert.equal(approval?.by?.name, 'binh');
@@ -138,54 +152,73 @@ function reviewerText(packets) {
 
 async function checkpoint(manifest, id, accounts, checkpointFile) {
   outsideCheckout(checkpointFile);
-  const { entry, manifestSha256 } = study(manifest);
+  const { entry, lock, manifestSha256, pilotLockSha256 } = await enrolledStudy(manifest);
   assert.ok(!existsSync(checkpointFile), 'First-session proof already sealed');
   const api = workspace(id, accounts);
   const matter = await api.matter();
+  verifyWorkspaceSources(matter, entry, lock, pilotLockSha256);
   assert.equal(matter.releases.length, 1, 'Capture the first Word before session 2');
   const release = await api.release(1);
-  verifyRelease(release, entry, 1);
+  verifyRelease(release, entry, 1, lock, pilotLockSha256);
   const word1 = await api.word(1, release.artifact.sha256);
-  write(checkpointFile, { caseId: id, manifestSha256, word1, matrixApproval: release.sections.matrix.approval.sha256,
+  write(checkpointFile, { caseId: id, manifestSha256, pilotLockSha256, word1,
+    matrixApproval: release.sections.matrix.approval.sha256, matrixSha256: sha(JSON.stringify(release.sections.matrix)),
     at: new Date().toISOString() });
 }
 
 async function collect(manifest, id, accounts, checkpointFile, directDir, observerDir, outputDir) {
   outsideCheckout(outputDir);
-  const { entry, manifestSha256 } = study(manifest);
+  const { entry, lock, manifestSha256, pilotLockSha256 } = await enrolledStudy(manifest);
+  const { verifyHumanPhase } = await import('../direct.mjs');
   const recorded = readJSON(checkpointFile);
   assert.equal(recorded.caseId, id);
   assert.equal(recorded.manifestSha256, manifestSha256);
+  assert.equal(recorded.pilotLockSha256, pilotLockSha256);
   const direct = readJSON(join(directDir, 'direct.json'));
   assert.equal(direct.manifestSha256, manifestSha256);
+  assert.equal(direct.pilotLockSha256, pilotLockSha256);
   assert.equal(direct.syntheticOnly, false);
   assert.equal(direct.anonymized, true);
   assert.equal(direct.model, modelId);
+  assert.equal(direct.modelProvider, 'ai-gateway.vercel.sh');
   assert.equal(direct.humanReview, 'operator_attested');
   const directMatter = direct.cases[entry.id];
   assert.equal(directMatter.reference, entry.reference);
   const api = workspace(id, accounts);
   const matter = await api.matter();
-  assert.equal(matter.synthetic, false);
+  const docs = verifyWorkspaceSources(matter, entry, lock, pilotLockSha256);
   assert.equal(matter.releases.length, 2);
   const accepted = matter.proposals.filter(proposal => proposal.type === 'model');
   assert.equal(accepted.length, 2);
-  for (const proposal of accepted) assert.equal(proposal.run?.model, modelId);
+  for (const proposal of accepted) {
+    assert.equal(proposal.run?.model, modelId);
+    assert.equal(proposal.run?.provider, direct.modelProvider);
+    assert.equal(proposal.run?.pilotLockSha256, pilotLockSha256);
+    verifyLockedDocuments(proposal.documents, lock);
+  }
   assert.deepEqual(accepted.map(p => p.targets), [['matrix','response'],['response']]);
-  const docs = verifyDocuments(matter.documents, entry);
   await Promise.all(docs.map(doc => api.pdf(doc, doc.sha256)));
+  for (const doc of docs) assert.equal(sha(readFileSync(join(directDir, 'direct-workspace', entry.id + '-' + doc.role + '.pdf'))), doc.sha256);
 
   const productPhases = [], directPhases = [];
-  const proof = { model: modelId, sourceHashes: docs.map(({role,sha256,page,textSha256}) => ({role,sha256,page,textSha256})),
+  const proof = { model: modelId, pilotLockSha256,
+    sourceHashes: docs.map(({role,sha256,page,start,end,textSha256}) => ({role,sha256,page,start,end,textSha256})),
     workspaceWordHashes: [], directWordHashes: [] };
+  assert.ok(direct.modelAttempts.every(attempt => attempt.pilotLockSha256 === pilotLockSha256));
   for (const phase of [1,2]) {
     const release = await api.release(phase);
-    verifyRelease(release, entry, phase);
+    verifyRelease(release, entry, phase, lock, pilotLockSha256);
     proof.workspaceWordHashes.push(await api.word(phase, release.artifact.sha256));
     assert.equal(release.sections.matrix.approval.sha256, recorded.matrixApproval);
+    assert.equal(sha(JSON.stringify(release.sections.matrix)), recorded.matrixSha256);
     const workspaceQuality = qualityView(release, entry, phase);
     const comparison = directMatter.phases[phase];
     assert.ok(comparison?.quality && comparison.approvals);
+    const saved = verifyHumanPhase(directDir, entry, phase, comparison, lock, pilotLockSha256);
+    assert.equal(saved.instructionsText, release.instructionsText);
+    const actualQuality = qualityView(saved, entry, phase);
+    assert.deepEqual(comparison.quality.matrix, actualQuality.matrix);
+    assert.deepEqual(comparison.quality.response, actualQuality.response);
     assert.equal(comparison.quality.instructions, workspaceQuality.instructions);
     assert.equal(comparison.quality.task, workspaceQuality.task);
     for (const role of Object.keys(roles)) {
@@ -201,8 +234,6 @@ async function collect(manifest, id, accounts, checkpointFile, directDir, observ
       assert.match(approval.sha256, digest);
     }
     assert.match(comparison.wordSha256, digest);
-    const bytes = readFileSync(join(directDir, 'direct-word', entry.id + '-v' + phase + '.docx'));
-    assert.equal(sha(bytes), comparison.wordSha256);
     proof.directWordHashes.push(comparison.wordSha256);
     if (phase === 2) {
       assert.equal(comparison.quality.matrixPreserved, true);

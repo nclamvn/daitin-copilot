@@ -54,10 +54,11 @@ export async function approveDirectDraft({ ledger, out, entry, phase, matter, dr
   const approvalPath = base + '-approvals-' + phase + '.json';
   const targets = phase === 1 ? ['matrix', 'response'] : ['response'];
   const draftSha256 = sha(JSON.stringify(draft));
+  const { manifestSha256, pilotLockSha256 } = ledger.state;
   const checkpoint = existsSync(approvalPath) ? readJSON(approvalPath) :
-    { phase, draftSha256, manifestSha256: ledger.state.manifestSha256, sections: {} };
+    { phase, draftSha256, manifestSha256, pilotLockSha256, sections: {} };
   if (checkpoint.phase !== phase || checkpoint.draftSha256 !== draftSha256 ||
-    checkpoint.manifestSha256 !== ledger.state.manifestSha256) {
+    checkpoint.manifestSha256 !== manifestSha256 || checkpoint.pilotLockSha256 !== pilotLockSha256) {
     throw new HumanPilotError('Biên nhận rà soát đã thay đổi. Hãy giữ nguyên thư mục pilot để điều phối viên đối chiếu.');
   }
   if (!existsSync(reviewPath)) writeJSON(reviewPath, Object.fromEntries(targets.map(key => [key, draft[key]])));

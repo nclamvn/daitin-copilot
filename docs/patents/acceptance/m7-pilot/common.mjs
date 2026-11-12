@@ -1,13 +1,40 @@
 import assert from 'node:assert/strict';
 import { createHash, randomBytes } from 'node:crypto';
-import { existsSync, mkdirSync, readFileSync, realpathSync, renameSync, writeFileSync } from 'node:fs';
+import { closeSync, constants, existsSync, fstatSync, mkdirSync, openSync, readFileSync, realpathSync, renameSync, writeFileSync } from 'node:fs';
 import { dirname, isAbsolute, join, resolve, sep } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { matchesPilotSource, parsePilotLock, patentPDFRoles } from '../../../../patents/pilot-lock.mjs';
 
 export const modelId = 'google/gemini-2.5-flash-lite';
-export const roles = ['notice', 'claim', 'd1'];
+export const roles = patentPDFRoles;
 export const sha = value => createHash('sha256').update(value).digest('hex');
 export const readJSON = file => JSON.parse(readFileSync(file, 'utf8'));
 export const timestamp = () => new Date().toISOString();
+const checkout = realpathSync(fileURLToPath(new URL('../../../../', import.meta.url)));
+
+export function readApprovedSourceLock(path = process.env.DAITIN_PILOT_SOURCE_LOCK_FILE) {
+  assert.ok(path, 'Set DAITIN_PILOT_SOURCE_LOCK_FILE to the independently approved source lock');
+  const resolved = realpathSync(path);
+  assert.ok(resolved !== checkout && !resolved.startsWith(checkout + sep), 'Keep the source lock outside the checkout');
+  const fd = openSync(resolved, constants.O_RDONLY | constants.O_NOFOLLOW | constants.O_NONBLOCK);
+  try {
+    const stats = fstatSync(fd);
+    assert.ok(stats.isFile() && !(stats.mode & 0o077) && stats.uid === process.getuid?.() && stats.size <= 8192,
+      'Use a private source lock owned by the coordinator');
+    return parsePilotLock(readFileSync(fd, 'utf8'));
+  } finally { closeSync(fd); }
+}
+
+export function verifyLockedDocuments(actual, lock) {
+  assert.ok(Array.isArray(actual) && actual.length === roles.length, 'Expected all three locked PDF roles');
+  return roles.map(role => {
+    const document = actual.find(item => item.role === role);
+    assert.ok(matchesPilotSource(document, lock.sources[role]),
+      'Mismatch in locked PDF, page or selected range for ' + role);
+    return document;
+  });
+}
+
 export function writeJSON(file, value) {
   const temporary = file + '.next';
   writeFileSync(temporary, JSON.stringify(value, null, 2) + '\n', { mode: 0o600 });
@@ -75,16 +102,17 @@ export function loadCases(path, limit = 8, { anonymized = false } = {}) {
   return { cases: cases.slice(0, limit), manifestSha256: sha(bytes) };
 }
 
-export function openLedger(out, arm, manifestSha256, cases, { human = false } = {}) {
+export function openLedger(out, arm, manifestSha256, cases, { human = false, pilotLockSha256 } = {}) {
   const path = join(out, arm + '.json');
   const state = existsSync(path) ? readJSON(path) : {
     version: 1, arm, manifestSha256, model: modelId, syntheticOnly: !human, humanReview: null, humanActiveMs: null,
-    ...(human ? { anonymized: true, mode: 'human' } : {}),
+    ...(human ? { anonymized: true, mode: 'human', pilotLockSha256 } : {}),
     startedAt: timestamp(), actions: [], modelAttempts: [], cases: {}
   };
   assert.equal(state.arm, arm);
   assert.equal(state.mode === 'human', human, 'Do not mix human and automated ledgers');
   assert.equal(state.manifestSha256, manifestSha256, 'Run directory is bound to its original manifest');
+  if (human) assert.equal(state.pilotLockSha256, pilotLockSha256, 'Run directory is bound to its approved source lock');
   for (const entry of cases) state.cases[entry.id] ??= { reference: entry.reference, phases: {} };
   const save = () => writeJSON(path, state);
   const append = event => { state.actions.push(event); save(); };
@@ -143,6 +171,7 @@ export function beginModel(ledger, caseId, phase, stage, cap, { retry429 = false
   }
   if (!previous) assert.ok(new Set(modelAttempts.map(logicalStage)).size < cap, 'Model stage limit reached');
   const receipt = { caseId, phase, stage, attemptedAt: timestamp(), status: 'dispatch_pending',
+    ...(ledger.state.pilotLockSha256 ? { pilotLockSha256: ledger.state.pilotLockSha256 } : {}),
     ...(previous ? { retryOf: previous.attemptedAt } : {}) };
   modelAttempts.push(receipt);
   ledger.save();

@@ -11,6 +11,7 @@ import { createPatentWorkflow, evidenceURL } from './workflow.mjs';
 import { makePatentWord, patentWordRendererV2, patentWordType } from './word.mjs';
 import { bindPatentPDF, bindPatentPDFPack, inspectPatentPDF, inspectPatentPDFPack, isAnonymizedPack,
   maxPatentPDFPackRequest, maxPatentPDFRequest, previewPatentPDF } from './intake.mjs';
+import { parsePilotLock, pilotLockDigest } from './pilot-lock.mjs';
 export { CaseError as PatentAccessError } from '../copilot/m3/workflow.mjs';
 
 const assets = new Map([
@@ -49,30 +50,18 @@ function demoSpec(catalog) {
     notice: 'Nghiên cứu yêu cầu bảo hộ công khai với D1 minh họa. Kịch bản mô phỏng, không phải thông báo thẩm định thật.' } : null;
 }
 
-function anonymizedPilot(config) {
-  if (typeof config !== 'string' || !config || config.length > 300) return null;
-  let value;
-  try { value = JSON.parse(config); }
-  catch { return null; }
-  const roles = ['notice', 'claim', 'd1'];
-  if (!value || typeof value !== 'object' || Array.isArray(value) || Object.keys(value).length !== roles.length ||
-      !roles.every(role => typeof value[role] === 'string' && /^[a-f0-9]{64}$/.test(value[role])) ||
-      new Set(roles.map(role => value[role])).size !== roles.length) return null;
-  const hashes = Object.fromEntries(roles.map(role => [role, value[role]]));
-  // Login groups permit only lowercase letters, digits and hyphens. Old
-  // deployments using the same Blob cannot resolve this private namespace.
-  return { hashes, group: '@patent-pilot:' + digest(hashes) };
-}
-
 export function createPatentService({ storePath = process.env.DAI_TIN_M3_STORE, model,
   approvedPilot = process.env.DAI_TIN_ANONYMIZED_PATENT_PILOT } = {}) {
   const catalog = dataset();
   const store = openPatentStore(storePath);
-  const workflow = createPatentWorkflow(store, catalog, model);
+  let lock;
+  try { lock = parsePilotLock(approvedPilot); } catch { /* Only a valid lock enables private pilot access. */ }
+  // The prefix is outside the login group grammar, and the digest binds the namespace to this exact approved lock.
+  const pilotGroup = lock && '@patent-pilot:' + pilotLockDigest(lock);
+  const workflow = createPatentWorkflow(store, catalog, model, lock);
   const sources = new Map(catalog.sources.map(item => [item.id, item]));
   const datasetDigest = catalog.digest ?? catalog.datasetDigest ?? digest(catalog);
   const demo = demoSpec(catalog);
-  const pilot = anonymizedPilot(approvedPilot);
   const stagedPDFs = new Set(sourceManifest().map(item => item.sha256));
   return {
     close: store.close,
@@ -85,8 +74,8 @@ export function createPatentService({ storePath = process.env.DAI_TIN_M3_STORE, 
           return { value: readFileSync(new URL('./ui/' + filename, import.meta.url)), type };
         }
         if (!actor) return { status: 401, value: { error: 'Cần đăng nhập để mở hồ sơ sáng chế.' } };
-        const pilotActor = pilot && actor.name === 'binh' && actor.group === 'nhan-hieu' && actor.role === 'reviewer'
-          ? { ...actor, group: pilot.group } : null;
+        const pilotActor = pilotGroup && actor.name === 'binh' && actor.group === 'nhan-hieu' && actor.role === 'reviewer'
+          ? { ...actor, group: pilotGroup } : null;
         const caseActor = id => pilotActor && store.has(id, pilotActor.group) ? pilotActor : actor;
         const packActor = body => {
           if (!isAnonymizedPack(body)) return actor;
@@ -114,7 +103,7 @@ export function createPatentService({ storePath = process.env.DAI_TIN_M3_STORE, 
           status: 'candidate', builtAt: catalog.builtAt, digest: datasetDigest, sourceCount: catalog.sources.length,
           recordCount: catalog.records.length, gaps: catalog.gaps ?? [], scope: catalog.scope
         }, role: actor.role, model: process.env.DAI_TIN_MODEL_MODE === 'disabled' ? null : process.env.DAI_TIN_MODEL_ID,
-        ...(pilotActor ? { anonymizedPilot: true, responseRevision: true } : {}),
+        ...(pilotActor ? { anonymizedPilot: true, responseRevision: true, pilotSourceLock: { reference: lock.reference, asOf: lock.asOf } } : {}),
         demo, notice: 'Nguồn ứng viên. Phân tích là suy luận cần luật sư rà soát, không kết luận tính mới, tình trạng quyền hoặc FTO.' } };
         if (get && path === '/api/patents/catalog') return { value: { status: 'candidate', datasetDigest, builtAt: catalog.builtAt,
           scope: catalog.scope, sources: catalog.sources, gaps: catalog.gaps ?? [], records: catalog.records.map(({ text, ...record }) => ({
@@ -141,7 +130,7 @@ export function createPatentService({ storePath = process.env.DAI_TIN_M3_STORE, 
           const body = caseInput(await readJSON(req, maxPatentPDFRequest));
           checkAccess();
           packActor(body);
-          const image = await previewPatentPDF(body, pilot?.hashes);
+          const image = await previewPatentPDF(body, lock);
           checkAccess();
           return pdfImage(image.bytes, image.sha256);
         }
@@ -150,12 +139,16 @@ export function createPatentService({ storePath = process.env.DAI_TIN_M3_STORE, 
           checkAccess();
           const owner = packActor(body);
           if (path.endsWith('/inspect')) {
-            const value = await inspectPatentPDFPack(body, pilot?.hashes);
+            const value = await inspectPatentPDFPack(body, lock);
             checkAccess();
             return { value };
           }
-          const selections = await bindPatentPDFPack(body, pilot?.hashes);
+          const selections = await bindPatentPDFPack(body, lock);
           checkAccess();
+          if (owner !== actor) {
+            const { matter, created } = workflow.createLockedPDFPack(body, selections, owner);
+            return { status: created ? 201 : 200, value: matter };
+          }
           return { status: 201, value: workflow.createFromPDFs(body, selections, owner) };
         }
         if (req.method === 'POST' && ['/api/patents/cases', '/api/patents/cases/example'].includes(path)) {
@@ -183,25 +176,25 @@ export function createPatentService({ storePath = process.env.DAI_TIN_M3_STORE, 
           workflow.checkVersion(id, body.version, actor);
           if (isAnonymizedPack(body)) throw new CaseError('Tiếp nhận PDF ẩn danh theo bộ đã được cấp quyền.', 422);
           if (action === 'inspect') {
-            const value = await inspectPatentPDF(body, pilot?.hashes);
+            const value = await inspectPatentPDF(body, lock);
             checkAccess();
             workflow.checkVersion(id, body.version, actor);
             return { value };
           }
           if (action === 'preview') {
-            const image = await previewPatentPDF(body, pilot?.hashes);
+            const image = await previewPatentPDF(body, lock);
             checkAccess();
             workflow.checkVersion(id, body.version, actor);
             return pdfImage(image.bytes, image.sha256);
           }
-          const selection = await bindPatentPDF(body, undefined, pilot?.hashes);
+          const selection = await bindPatentPDF(body, undefined, lock);
           checkAccess();
           return { value: workflow.bindPDF(id, body.version, selection, actor) };
         }
         const privatePDF = path.match(/^\/api\/patents\/cases\/([a-f0-9-]{36})\/pdf\/([a-f0-9-]{36})\/(download|page\/([1-9][0-9]*))$/);
         if (get && privatePDF) {
           const [, id, attachmentId, action, page] = privatePDF;
-          const attachment = workflow.attachment(id, attachmentId, caseActor(id));
+          const attachment = workflow.attachment(id, attachmentId, caseActor(id), page === undefined ? undefined : Number(page));
           if (action !== 'download') {
             const image = await renderPage(attachment.bytes, Number(page), attachment.pageCount);
             checkAccess();

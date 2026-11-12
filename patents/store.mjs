@@ -5,6 +5,9 @@ import { CaseError, hash } from '../copilot/m3/workflow.mjs';
 const maxAttachmentBytes = 6 * 1024 * 1024;
 const maxDatabaseBytes = 10 * 1024 * 1024;
 const maxMatterBytes = 3 * 1024 * 1024;
+// Headroom for the two Word releases and their SQLite metadata. Exact usage is
+// still checked on every write, including files larger than this estimate.
+const pilotWordReserve = 512 * 1024;
 
 function caseContent(matter) {
   const content = JSON.stringify(matter);
@@ -38,6 +41,8 @@ export function openPatentStore(path) {
   const list = db.prepare('SELECT id,reference,title,version,updated_at AS updatedAt FROM patent_cases WHERE group_id=? ORDER BY updated_at DESC LIMIT 30');
   const has = db.prepare('SELECT 1 FROM patent_cases WHERE id=? AND group_id=?');
   const read = db.prepare('SELECT content FROM patent_cases WHERE id=? AND group_id=?');
+  const existingPilot = db.prepare(`SELECT content FROM patent_cases WHERE group_id GLOB '@patent-pilot:*'
+    AND (reference=? OR json_extract(content,'$.pilotManifestSha256')=?) LIMIT 1`);
   const insert = db.prepare('INSERT INTO patent_cases VALUES(?,?,?,?,?,?,?)');
   const update = db.prepare('UPDATE patent_cases SET title=?,version=?,updated_at=?,content=? WHERE id=? AND group_id=? AND version=?');
   const receiptCount = db.prepare('SELECT count(*) AS count FROM patent_model_receipts');
@@ -52,10 +57,11 @@ export function openPatentStore(path) {
     COALESCE((SELECT sum(length(bytes)) FROM patent_pdf_attachments),0) +
     COALESCE((SELECT sum(length(bytes)) FROM patent_word_artifacts),0) AS bytes`);
   const pageCount = db.prepare('PRAGMA page_count');
+  const freePages = db.prepare('PRAGMA freelist_count');
   const pageSize = db.prepare('PRAGMA page_size').get().page_size;
-  const requireCapacity = extra => {
+  const requireCapacity = (extra, message = 'Kho PDF và Word pilot đã đạt giới hạn 6 MiB. Bản đang lưu vẫn giữ nguyên.') => {
     if (attachmentUsage.get().bytes + extra > maxAttachmentBytes) {
-      throw new CaseError('Kho PDF và Word pilot đã đạt giới hạn 6 MiB. Bản đang lưu vẫn giữ nguyên.', 413);
+      throw new CaseError(message, 413);
     }
   };
   function writeCase(change) {
@@ -103,12 +109,29 @@ export function openPatentStore(path) {
       const content = caseContent(matter);
       try {
         return writeCase(() => {
+          if (matter.pilotLockSha256) {
+            const stored = existingPilot.get(matter.reference, matter.pilotManifestSha256);
+            if (stored) {
+              const existing = JSON.parse(stored.content);
+              if (existing.group !== matter.group || existing.pilotLockSha256 !== matter.pilotLockSha256 ||
+                  existing.pilotImportSha256 !== matter.pilotImportSha256) {
+                throw new CaseError('Hồ sơ pilot đã được nhập với khóa nguồn hoặc dữ kiện ban đầu khác.', 409);
+              }
+              return existing;
+            }
+            const pdfBytes = attachments.reduce((total, item) => total + item.bytes.length, 0);
+            requireCapacity(pdfBytes + pilotWordReserve, 'Kho pilot không đủ chỗ cho bộ PDF này và hai bản Word dự kiến trong giới hạn 6 MiB.');
+          }
           const caseLimit = matter.synthetic === false ? 1 : 20;
           if (list.all(matter.group).length >= caseLimit) {
             throw new CaseError('Nhóm đã đạt giới hạn ' + caseLimit + ' hồ sơ sáng chế trong pilot.', 409);
           }
           insert.run(matter.id, matter.group, matter.reference, matter.title, matter.version, matter.updatedAt, content);
           saveAttachments(matter, attachments);
+          if (matter.pilotLockSha256 && (pageCount.get().page_count - freePages.get().freelist_count) * pageSize +
+              pilotWordReserve > maxDatabaseBytes) {
+            throw new CaseError('Kho hồ sơ pilot không đủ chỗ cho bộ PDF và hai bản Word dự kiến.', 413);
+          }
           return matter;
         });
       } catch (error) {

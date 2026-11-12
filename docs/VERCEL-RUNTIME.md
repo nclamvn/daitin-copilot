@@ -35,6 +35,12 @@ Vercel Function giới hạn kích thước response, nên các PDF chính thố
 
 Đặt `DAI_TIN_PUBLIC_ORIGIN` theo URL HTTPS chính thức. Vercel system URL của deployment được thêm vào allowlist chính xác; không cấp quyền theo header forwarded do người gửi chọn. Gateway chỉ dùng OIDC máy chủ khi endpoint đúng `https://ai-gateway.vercel.sh/v1/chat/completions`; các endpoint khác cần tệp khóa riêng và HTTPS. Không tự chuyển provider hoặc mua thêm ngân sách.
 
+### Khóa nguồn cho pilot sáng chế
+
+Giá trị máy chủ `DAI_TIN_ANONYMIZED_PATENT_PILOT` là nguyên JSON khóa phiên bản 1 do lệnh `preflight` tạo. Một khóa gồm mã hồ sơ, ngày đối chiếu, dấu kiểm manifest và ba vai trò với SHA-256 PDF, trang vật lý, khoảng vị trí UTF-16 và SHA-256 của đoạn trích. Vercel và agent trực tiếp dùng cùng khóa đã duyệt. Biến để trống hoặc cấu hình kiểu chỉ có ba SHA-256 của bản trước sẽ tắt quyền nhận hồ sơ ẩn danh. [Quy trình chuẩn bị và nghiệm thu](patents/acceptance/m7-pilot/human/README.md)
+
+Kiểm dung lượng sản xuất trước khi bật khóa. Tổng ba PDF tối đa 2 MiB. Khi nhận hồ sơ lần đầu, kho kiểm thêm 512 KiB dung lượng dự kiến cho hai Word và phần lưu liên quan dưới giới hạn PDF/Word 6 MiB và SQLite 10 MiB. Đây là ước tính lúc tiếp nhận. Mỗi lần ghi tiếp tục kiểm giới hạn bằng dung lượng thực tế. Nhập lại cùng khóa và dữ kiện ban đầu mở hồ sơ đã lưu, kể cả sau khi phát hành Word 2. Hai yêu cầu ghi đến đồng thời có thể nhận 409 từ lease Vercel. Gửi lại thao tác nhập khi lease đã kết thúc sẽ mở cùng hồ sơ.
+
 ## Bằng chứng Builder
 
 Tám ca `test/runtime.test.mjs` đạt tại máy phát triển: OIDC không cần API key lưu, preflight trước đọc Blob, lease cross-instance, hash phiên và logout qua instance mới, không phản hồi cookie/thành công khi commit lỗi, bảo lưu quota sau lỗi model, bỏ cache GET và cổng duyệt không cho bản sửa tay thiếu nguồn. Các test dùng Blob giả lập có ETag và core thật cho ca duyệt; không tự thay cho nghiệm thu Blob/AI/HTTPS trên Vercel thật. Parent thực hiện kiểm triển khai độc lập và ghi kết quả phát hành riêng.

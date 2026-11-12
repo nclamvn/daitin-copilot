@@ -7,6 +7,7 @@ import { modelConnection, schemaFormat } from '../copilot/model-connection.mjs';
 import { makePatentWordV2, patentWordRendererV2 } from './word.mjs';
 import { guardModelD1Scope, newD1ScopeReceipt } from './d1-scope.mjs';
 import { applyPatentExcerptComparison } from './excerpt-comparison.mjs';
+import { matchesPilotSource, patentPDFRoles, pilotLockDigest } from './pilot-lock.mjs';
 
 const now = () => new Date().toISOString();
 const sectionIds = ['matrix', 'response'];
@@ -277,10 +278,12 @@ export async function generatePatentProposal(input, { connection = modelConnecti
   }
 }
 
-export function createPatentWorkflow(store, dataset, model = generatePatentProposal) {
+export function createPatentWorkflow(store, dataset, model = generatePatentProposal, pilotLock) {
   const recordMap = new Map(dataset.records.map(item => [item.id, item]));
   const sourceMap = new Map(dataset.sources.map(item => [item.id, item]));
   const datasetDigest = dataset.digest ?? dataset.datasetDigest ?? digest(dataset);
+  const pilotSha256 = pilotLock && pilotLockDigest(pilotLock);
+  const pilotGroup = pilotSha256 && '@patent-pilot:' + pilotSha256;
   const pin = (selected, privatePins = new Map()) => selected.map(id => {
     if (privatePins.has(id)) return privatePins.get(id);
     const record = recordMap.get(id), source = sourceMap.get(record.sourceId);
@@ -314,6 +317,45 @@ export function createPatentWorkflow(store, dataset, model = generatePatentPropo
     if (anonymizedMatter(matter) && matter.releases.length >= 2) {
       throw new CaseError('Hồ sơ pilot ẩn danh đã hoàn tất hai bản duyệt.', 409);
     }
+  }
+  function requirePilotSourceLock(matter) {
+    if (!anonymizedMatter(matter) && !matter.group.startsWith('@patent-pilot:')) return;
+    const invalid = () => new CaseError('Hồ sơ không còn khớp bộ nguồn pilot đã duyệt.', 409);
+    if (!anonymizedMatter(matter) || !pilotLock || matter.group !== pilotGroup ||
+        matter.pilotLockSha256 !== pilotSha256 || matter.pilotManifestSha256 !== pilotLock.manifestSha256 ||
+        matter.reference !== pilotLock.reference || matter.context?.asOf !== pilotLock.asOf || matter.context?.jurisdiction !== 'VN' ||
+        !Array.isArray(matter.documents) || matter.documents.length !== patentPDFRoles.length ||
+        !Array.isArray(matter.pinnedEvidence) || matter.pinnedEvidence.length !== 2 || !Array.isArray(matter.evidenceIds) ||
+        matter.evidenceIds.length !== 2 || !Array.isArray(matter.d1RecordIds) || matter.d1RecordIds.length !== 1) throw invalid();
+    for (const role of patentPDFRoles) {
+      const document = matter.documents.find(item => item?.role === role);
+      const expected = pilotLock.sources[role];
+      if (!matchesPilotSource(document, expected) || typeof document.attachmentId !== 'string' ||
+          !Number.isInteger(document.pageCount) || document.page > document.pageCount) throw invalid();
+      if (role === 'notice') {
+        if (document.recordId !== 'case:notice' || typeof matter.noticeText !== 'string' || hash(matter.noticeText) !== expected.textSha256) throw invalid();
+        continue;
+      }
+      const id = role === 'claim' ? matter.claimRecordId : matter.d1RecordIds[0];
+      const evidence = matter.pinnedEvidence.find(item => item?.record?.id === id);
+      if (typeof id !== 'string' || document.recordId !== id || !matter.evidenceIds.includes(id) || evidence?.source?.kind !== 'case_document' ||
+          evidence.source.sha256 !== expected.sha256 || evidence.record.locator?.page !== expected.page ||
+          typeof evidence.record.text !== 'string' || hash(evidence.record.text) !== expected.textSha256 ||
+          (role === 'claim' && matter.claimText !== evidence.record.text)) throw invalid();
+    }
+  }
+  function preservePilotMatrix(matter, selected = []) {
+    if (!anonymizedMatter(matter) || !matter.releases.length) return;
+    if (selected.includes('matrix')) throw new CaseError('Phiên hai giữ nguyên ma trận đã duyệt và chỉ sửa phản hồi.', 422);
+    const [first] = matter.releases;
+    const { sha256, ...content } = first;
+    const matrix = matter.sections.matrix;
+    if (first.number !== 1 || first.pilotLockSha256 !== pilotSha256 || digest(content) !== sha256 ||
+        digest(first.documents) !== digest(documents(matter)) || digest(first.sections.matrix) !== digest(matrix) ||
+        matrix.approval?.sha256 !== sectionHash('matrix', matrix, matter)) {
+      throw new CaseError('Ma trận đã duyệt của phiên một không còn khớp hồ sơ.', 409);
+    }
+    store.wordArtifact(matter.id, matter.group, first);
   }
   function bindRoles(matter, body) {
     const claimRecordId = body.claimRecordId === undefined ? matter.claimRecordId ?? null : body.claimRecordId;
@@ -351,6 +393,7 @@ export function createPatentWorkflow(store, dataset, model = generatePatentPropo
     return !record || !source || evidenceFingerprint(item) !== evidenceFingerprint({ record, source });
   }).map(item => item.record.id);
   const current = matter => {
+    requirePilotSourceLock(matter);
     if (staleIds(matter).length) throw new CaseError('Nguồn sáng chế đã đổi. Cập nhật lựa chọn nguồn và rà soát lại trước khi tiếp tục.', 409);
     for (const document of documents(matter)) {
       const attachment = store.attachment(document.attachmentId, matter.id, matter.group);
@@ -496,37 +539,70 @@ export function createPatentWorkflow(store, dataset, model = generatePatentPropo
     bindRoles(matter, body);
     return matter;
   }
+  function importPDFPack(body, selections, actor, locked = false) {
+    const { synthetic, reference, title, jurisdiction, asOf, instructionsText } = body;
+    if (locked) {
+      if (!pilotLock || synthetic !== false || body.anonymized !== true || actor.name !== 'binh' ||
+          actor.role !== 'reviewer' || actor.group !== pilotGroup) throw new CaseError('Bộ PDF ẩn danh chưa được cấp quyền cho pilot.', 403);
+      if (reference !== pilotLock.reference || asOf !== pilotLock.asOf || jurisdiction !== 'VN') {
+        throw new CaseError('Mã hồ sơ hoặc ngày đối chiếu khác bộ nguồn đã duyệt cho pilot.', 409);
+      }
+      if (selections.length !== patentPDFRoles.length || patentPDFRoles.some(role => {
+        const selected = selections.find(item => item.role === role);
+        return !matchesPilotSource(selected, pilotLock.sources[role]) || !Buffer.isBuffer(selected.bytes) ||
+          hash(selected.bytes) !== selected.sha256 || typeof selected.text !== 'string' || hash(selected.text) !== selected.textSha256;
+      })) throw new CaseError('Bộ PDF và đoạn trích không khớp bộ nguồn đã duyệt cho pilot.', 422);
+    }
+    const matter = createMatter({ synthetic, reference, title, jurisdiction, asOf, instructionsText,
+      claimVersion: '', evidenceIds: [] }, actor, locked);
+    const attachments = new Map();
+    for (const selected of selections) {
+      const { sha256, bytes, pageCount } = selected;
+      if (!attachments.has(sha256)) attachments.set(sha256, { id: randomUUID(), sha256, bytes, pageCount });
+      applyPDFBinding(matter, selected, attachments.get(sha256).id, actor);
+    }
+    bindRoles(matter, {});
+    if (locked) {
+      matter.pilotLockSha256 = pilotSha256;
+      matter.pilotManifestSha256 = pilotLock.manifestSha256;
+      matter.pilotImportSha256 = digest({ title: matter.title, instructionsText: matter.instructionsText,
+        labels: Object.fromEntries(matter.documents.map(({ role, label }) => [role, label])) });
+      requirePilotSourceLock(matter);
+    }
+    const saved = store.create(matter, { attachments: [...attachments.values()] });
+    if (locked) current(saved);
+    return { matter: view(saved), created: saved.id === matter.id };
+  }
   return {
     list: actor => store.list(actor.group),
     read: (id, actor) => view(read(id, actor)),
     checkVersion(id, version, actor) { readVersion(id, actor, version); },
     bindPDF,
-    attachment(id, attachmentId, actor) {
-      read(id, actor);
+    attachment(id, attachmentId, actor, page) {
+      const matter = read(id, actor);
+      requirePilotSourceLock(matter);
+      if (anonymizedMatter(matter)) {
+        const document = documents(matter).find(item => item.attachmentId === attachmentId);
+        if (!document) throw new CaseError('Không tìm thấy PDF của hồ sơ.', 404);
+        if (page !== undefined && page !== document.page) throw new CaseError('Chỉ mở trang PDF đã khóa cho vai trò này.', 422);
+      }
       return store.attachment(attachmentId, id, actor.group);
     },
     create(body, actor) {
       return view(store.create(createMatter(body, actor)));
     },
     createFromPDFs(body, selections, actor) {
-      const { synthetic, anonymized, reference, title, jurisdiction, asOf, instructionsText } = body;
-      const real = synthetic === false && anonymized === true && actor.name === 'binh' && actor.role === 'reviewer' &&
-        /^@patent-pilot:[a-f0-9]{64}$/.test(actor.group);
-      const matter = createMatter({ synthetic, reference, title, jurisdiction, asOf, instructionsText,
-        claimVersion: '', evidenceIds: [] }, actor, real);
-      const attachments = new Map();
-      for (const selected of selections) {
-        const { sha256, bytes, pageCount } = selected;
-        if (!attachments.has(sha256)) attachments.set(sha256, { id: randomUUID(), sha256, bytes, pageCount });
-        applyPDFBinding(matter, selected, attachments.get(sha256).id, actor);
-      }
-      bindRoles(matter, {});
-      return view(store.create(matter, { attachments: [...attachments.values()] }));
+      return importPDFPack(body, selections, actor).matter;
+    },
+    createLockedPDFPack(body, selections, actor) {
+      return importPDFPack(body, selections, actor, true);
     },
     source(id, body, actor) {
       const matter = readVersion(id, actor, body.version);
       if (anonymizedMatter(matter)) {
         requireWritablePilot(matter);
+        current(matter);
+        preservePilotMatrix(matter);
         const locked = { evidenceIds: matter.evidenceIds, claimRecordId: matter.claimRecordId, d1RecordIds: matter.d1RecordIds,
           claimText: matter.claimText, noticeText: matter.noticeText, claimVersion: matter.context.claimVersion };
         if (Object.entries(locked).some(([key, value]) => body[key] !== undefined && digest(body[key]) !== digest(value))) {
@@ -564,8 +640,12 @@ export function createPatentWorkflow(store, dataset, model = generatePatentPropo
       const matter = readVersion(id, actor, body.version); current(matter);
       requireWritablePilot(matter);
       const selected = targets(body.targets);
+      preservePilotMatrix(matter, selected);
+      if (anonymizedMatter(matter) && Object.keys(body).some(key => !['version', 'targets', 'instruction', 'instructionsText'].includes(key))) {
+        throw new CaseError('Yêu cầu AI không được thay bộ nguồn đã khóa của pilot.', 422);
+      }
       if (body.instructionsText !== undefined) {
-        if (!anonymizedMatter(matter) || selected.length !== 1 || selected[0] !== 'response' ||
+        if (!anonymizedMatter(matter) || matter.releases.length !== 1 || selected.length !== 1 || selected[0] !== 'response' ||
             matter.sections.matrix.approval?.sha256 !== sectionHash('matrix', matter.sections.matrix, matter)) {
           throw new CaseError('Chỉ cập nhật chỉ dẫn cùng phản hồi khi ma trận đang được duyệt.', 422);
         }
@@ -576,6 +656,7 @@ export function createPatentWorkflow(store, dataset, model = generatePatentPropo
       store.ensureModelReceiptCapacity?.();
       let result, patch;
       const scope = newD1ScopeReceipt();
+      authorize();
       try {
         result = await model({ matter, targets: selected, instruction: body.instruction });
         const proposal = result.run?.excerptComparison ? result.patch : conservativeModelPatch(result.patch);
@@ -583,9 +664,11 @@ export function createPatentWorkflow(store, dataset, model = generatePatentPropo
         if (result.run && !result.run.d1Scope) result.run.d1Scope = scope;
       } catch (error) {
         const receipt = error.modelReceipt ?? (result?.run && { ...result.run, outcome: 'rejected', d1Scope: scope });
-        if (receipt) store.recordModelReceipt?.(id, actor.group, receipt);
+        if (receipt) store.recordModelReceipt?.(id, actor.group, { ...receipt,
+          ...(anonymizedMatter(matter) ? { pilotLockSha256: pilotSha256 } : {}) });
         throw error;
       }
+      if (result.run && anonymizedMatter(matter)) result.run.pilotLockSha256 = pilotSha256;
       if (result.run) store.recordModelReceipt?.(id, actor.group, result.run);
       authorize();
       readVersion(id, actor, body.version); current(matter);
@@ -596,6 +679,7 @@ export function createPatentWorkflow(store, dataset, model = generatePatentPropo
       requireWritablePilot(matter);
       const selected = [...(body.matrixRows !== undefined ? ['matrix'] : []), ...(body.response !== undefined ? ['response'] : [])];
       targets(selected);
+      preservePilotMatrix(matter, selected);
       const patch = validatePatentPatch(matter, { matrix: { rows: body.matrixRows }, response: body.response }, selected);
       return savePatch(matter, patch, 'manual');
     },
@@ -604,7 +688,9 @@ export function createPatentWorkflow(store, dataset, model = generatePatentPropo
       const matter = readVersion(id, actor, body.version); current(matter);
       requireWritablePilot(matter);
       requireUsableExtraction(matter.pinnedEvidence); requireClaimContext(matter);
-      for (const key of targets(body.targets)) {
+      const selected = targets(body.targets);
+      preservePilotMatrix(matter, selected);
+      for (const key of selected) {
         if (key === 'response' && (!matter.noticeText || !matter.instructionsText)) throw new CaseError('Cần thông báo và chỉ dẫn nghiệp vụ trước khi duyệt phản hồi.', 422);
         if (key === 'response' && matrixBasisChanged(matter)) {
           throw new CaseError('Ma trận đã đổi. Rà soát và lưu lại phản hồi theo ma trận hiện tại trước khi duyệt.', 422);
@@ -633,7 +719,7 @@ export function createPatentWorkflow(store, dataset, model = generatePatentPropo
         if (matter.releases.length >= 20) throw new CaseError('Hồ sơ đã đạt 20 bản duyệt trong pilot.', 409);
         const at = now();
         const release = { number: matter.releases.length + 1, at, createdAt: at, synthetic: !anonymizedMatter(matter),
-          ...(anonymizedMatter(matter) ? { anonymized: true } : {}), reference: matter.reference,
+          ...(anonymizedMatter(matter) ? { anonymized: true, pilotLockSha256: pilotSha256 } : {}), reference: matter.reference,
           title: matter.title, context: copy(matter.context), claimText: matter.claimText, claimRecordId: matter.claimRecordId,
           noticeText: matter.noticeText, instructionsText: matter.instructionsText, privateEvidence: privateEvidence(matter),
           d1RecordIds: copy(matter.d1RecordIds), sections: copy(matter.sections),

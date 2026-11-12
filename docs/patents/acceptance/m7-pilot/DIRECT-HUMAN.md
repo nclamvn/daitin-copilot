@@ -6,10 +6,10 @@ Nhánh này chạy trên máy điều phối có Node 24, phụ thuộc đã cà
 
 Đặt manifest ngoài checkout Git cùng các PDF ẩn danh đã được Đại Tín cho phép lưu trên Vercel và gửi đoạn được chọn qua Gateway. Dùng cấu trúc M7 với `version: 1`, `synthetic: false`, `anonymized: true` và một mục trong `cases` cho pilot một hồ sơ. Mỗi mục dùng mã `P01` đến `P08`, mã tham chiếu ẩn danh, tên ẩn danh, ngày đối chiếu, chỉ dẫn và nhiệm vụ riêng cho hai phiên. Mỗi vai trò `notice`, `claim` và `d1` có đường dẫn tương đối, tên ẩn danh, SHA-256 của PDF, trang vật lý và nguyên văn đoạn đã khóa. Nhánh Workspace dùng đúng bộ ba PDF và đoạn này. Mỗi PDF tối đa 12 trang, cả bộ tối đa 2 MiB.
 
-Điều phối viên khóa manifest trước khi bắt đầu. Giữ nhiệm vụ phiên 2 trong manifest do điều phối viên giữ và chỉ giao phiếu phiên 2 khi phiên 1 của cả hai nhánh đã kết thúc. Chạy kiểm tệp từ thư mục gốc ứng dụng.
+Điều phối viên khóa manifest trước khi bắt đầu. Giữ nhiệm vụ phiên 2 trong manifest và chỉ giao phiếu phiên 2 khi phiên 1 của cả hai nhánh đã kết thúc. Chạy `preflight` ở thư mục gốc ứng dụng để tạo tệp khóa ngoài Git, rồi dùng cùng JSON đã duyệt để đăng ký Workspace và chạy agent. Tệp khóa chứa dấu kiểm của manifest, mã tham chiếu, ngày đối chiếu và dấu kiểm PDF, trang, vị trí, dấu kiểm đoạn cho từng vai trò.
 
 ```sh
-DAI_TIN_PDF_ENGINE=pdfjs node docs/patents/acceptance/m7-pilot/run.mjs validate-human /duong-dan-rieng/cases.json
+node docs/patents/acceptance/m7-pilot/human/pilot.mjs preflight /duong-dan-rieng/cases.json /duong-dan-rieng/source-lock.json
 ```
 
 ## Phiên 1 và phiên 2
@@ -17,12 +17,13 @@ DAI_TIN_PDF_ENGINE=pdfjs node docs/patents/acceptance/m7-pilot/run.mjs validate-
 Điều phối viên chạy lệnh dưới đây với cấu hình Gateway đã duyệt. Dùng thư mục kết quả riêng quyền 0700 ngoài checkout Git.
 
 ```sh
-DAITIN_PILOT_LIVE=1 DAI_TIN_PILOT_AUTHORIZED_ANONYMIZED=1 DAI_TIN_PDF_ENGINE=pdfjs \
+DAITIN_PILOT_LIVE=1 DAI_TIN_PILOT_AUTHORIZED_ANONYMIZED=1 \
+  DAITIN_PILOT_SOURCE_LOCK_FILE=/duong-dan-rieng/source-lock.json \
   node --env-file=/duong-dan-rieng/gateway.env docs/patents/acceptance/m7-pilot/run.mjs \
   human-direct /duong-dan-rieng/cases.json /duong-dan-rieng/ket-qua 1
 ```
 
-1. Anh Bình đọc nhiệm vụ, bắt đầu trên phiếu đo và xác nhận giao việc. Agent gọi công cụ `read_case` để nạp đúng bộ PDF, rồi soạn dựa trên đoạn đã khóa.
+1. Agent kiểm đúng PDF, trang và vị trí đoạn theo tệp khóa trước lượt model đầu tiên của mỗi phiên. Anh Bình đọc nhiệm vụ, bắt đầu trên phiếu đo và xác nhận giao việc. Agent gọi công cụ `read_case` để nạp bộ PDF, rồi soạn dựa trên đoạn đã khóa.
 2. Mở tệp rà soát JSON được in ra trong terminal và xem PDF tại `direct-workspace`. Nếu cần, sửa nhận định hoặc phản hồi trong tệp rà soát. Khi sửa trích dẫn, giữ nguyên văn trong các đoạn đã khóa và giữ đúng mã nguồn.
 3. Xác nhận đã rà và duyệt từng phần. Phiên 1 duyệt ma trận và phản hồi. Phiên 2 chỉ duyệt phản hồi. Để tạm dừng khi còn cần sửa, bỏ qua xác nhận. Chạy lại đúng phiên, dùng lại tệp rà soát đã lưu.
 4. Mở Word ở đường dẫn được in ra và kết thúc ghi thời gian. Dùng một lệnh mới với đối số cuối `2` cho phiên sau. Runner kiểm lại ma trận đã duyệt, Word 1 và PDF trước khi mở dữ kiện cập nhật.

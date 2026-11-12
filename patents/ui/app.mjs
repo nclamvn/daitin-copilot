@@ -903,11 +903,14 @@ function createPackDialog() {
   if (!discard()) return;
   const dialog = $('dialog');
   const content = pdfPackIntake({
-    dialog, request, run, today, anonymizedPilot: state.status?.anonymizedPilot === true,
+    dialog, request, run, today,
+    pilotSourceLock: state.status?.anonymizedPilot === true ? state.status.pilotSourceLock : null,
     onCreated(matter) {
-      applyMatter(matter, 'matrix');
+      applyMatter(matter, initialCaseView(matter));
       setCaseURL(matter.id, state.view, true);
-      notify('Đã lưu hồ sơ cùng ba đoạn chứng cứ. Có thể bắt đầu lập ma trận.');
+      notify(matter.synthetic === false
+        ? 'Đã mở hồ sơ cùng bộ nguồn đã khóa.'
+        : 'Đã lưu hồ sơ cùng ba đoạn chứng cứ. Có thể bắt đầu lập ma trận.');
     },
     onManual(metadata) {
       dialog.close();

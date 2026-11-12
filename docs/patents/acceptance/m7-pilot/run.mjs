@@ -3,7 +3,7 @@ import { closeSync, lstatSync, openSync, realpathSync, unlinkSync } from 'node:f
 import { join, resolve, sep } from 'node:path';
 import { createInterface } from 'node:readline/promises';
 import { fileURLToPath } from 'node:url';
-import { blind, directory, loadCases } from './common.mjs';
+import { blind, directory, loadCases, readApprovedSourceLock } from './common.mjs';
 
 const [mode, casesPath, outputPath, origin, accountsPath] = process.argv.slice(2);
 if (mode === 'validate-human' || mode === 'human-direct') {
@@ -35,6 +35,9 @@ async function humanCommand() {
   if (process.env.DAITIN_PILOT_LIVE !== '1' || process.env.DAI_TIN_PILOT_AUTHORIZED_ANONYMIZED !== '1') {
     throw new HumanPilotError('Chỉ chạy sau khi bộ nguồn đã được phép dùng với Gateway và đã bật hai biến pilot.');
   }
+  let sourceLock;
+  try { sourceLock = readApprovedSourceLock(); }
+  catch { throw new HumanPilotError('Đặt DAITIN_PILOT_SOURCE_LOCK_FILE trỏ tới bản khóa nguồn đã duyệt, quyền 0600, ngoài checkout Git.'); }
   if (!isOutside(resolve(outputPath))) throw new HumanPilotError('Đặt thư mục kết quả ngoài checkout Git.');
   const out = realpathSync(directory(resolve(outputPath)));
   const stats = lstatSync(out);
@@ -46,7 +49,7 @@ async function humanCommand() {
   const io = createInterface({ input: process.stdin, output: process.stdout });
   try {
     const { runHumanDirect } = await import('./direct.mjs');
-    await runHumanDirect({ out, input, phase: Number(origin), ask: prompt => io.question(prompt) });
+    await runHumanDirect({ out, input, phase: Number(origin), sourceLock, ask: prompt => io.question(prompt) });
   } finally {
     io.close();
     closeSync(descriptor);

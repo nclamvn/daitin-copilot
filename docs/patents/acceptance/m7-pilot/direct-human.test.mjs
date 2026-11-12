@@ -1,11 +1,12 @@
 import assert from 'node:assert/strict';
-import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import test from 'node:test';
 
 process.env.DAI_TIN_PDF_ENGINE = 'pdfjs';
-const { runHumanDirect, verifyHumanSources } = await import('./direct.mjs');
+const { deriveHumanSourceLock, runHumanDirect, verifyHumanSources } = await import('./direct.mjs');
 const { loadCases, modelId, readJSON, sha, writeJSON } = await import('./common.mjs');
+const { pilotLockDigest } = await import('../../../../patents/pilot-lock.mjs');
 
 function onePage(text) {
   const stream = 'BT /F1 10 Tf 20 150 Td (' + text + ') Tj ET';
@@ -28,6 +29,7 @@ function onePage(text) {
 }
 
 test('real-class direct runner gates both phases on human review and preserves the first Word', async t => {
+  mkdirSync('work', { recursive: true });
   const root = mkdtempSync(resolve('work/codex-tmp-direct-mock-20261111-'));
   t.after(() => rmSync(root, { recursive: true, force: true }));
   const actualNow = Date.now.bind(Date);
@@ -37,9 +39,10 @@ test('real-class direct runner gates both phases on human review and preserves t
     phase2Instructions: 'Bổ sung việc cần kiểm trong nguồn.', phase2Task: 'Cập nhật phản hồi.' };
   const excerpts = { notice: 'Compare the activation condition.', claim: 'The latch engages at thirty degrees.',
     d1: 'The arm rotates to forty degrees.' };
+  const otherD1 = 'The lock closes at sixty degrees.';
   for (const [role, quote] of Object.entries(excerpts)) {
     const file = role + '.pdf';
-    const bytes = onePage(quote);
+    const bytes = onePage(role === 'd1' ? quote + ' ' + otherD1 : quote);
     writeFileSync(join(root, file), bytes, { mode: 0o600 });
     entry[role] = { file, page: 1, quote, sha256: sha(bytes), label: role };
   }
@@ -48,12 +51,29 @@ test('real-class direct runner gates both phases on human review and preserves t
   const input = loadCases(manifest, 8, { anonymized: true });
   assert.throws(() => loadCases(manifest));
   assert.equal(await verifyHumanSources(input), 3);
+  const { lock } = await deriveHumanSourceLock(input);
+  const lockSha256 = pilotLockDigest(lock);
+  assert.equal(lock.sources.d1.start, 0);
+  assert.equal(lock.sources.d1.end, excerpts.d1.length);
+  assert.equal(lock.sources.d1.textSha256, sha(excerpts.d1));
+  assert.ok(!JSON.stringify(lock).includes(entry.phase2Instructions));
+  const alternateInput = structuredClone(input);
+  alternateInput.cases[0].d1.quote = otherD1;
+  alternateInput.cases[0].documents.find(doc => doc.role === 'd1').quote = otherD1;
+  const alternate = (await deriveHumanSourceLock(alternateInput)).lock;
+  assert.equal(alternate.sources.d1.sha256, lock.sources.d1.sha256);
+  assert.equal(alternate.sources.d1.page, lock.sources.d1.page);
+  assert.notEqual(alternate.sources.d1.start, lock.sources.d1.start);
   const badExcerpt = structuredClone(input);
   badExcerpt.cases[0].documents[0].quote += ' Extra words.';
   await assert.rejects(verifyHumanSources(badExcerpt), /P01\/notice/);
-  const connection = { model: modelId, provider: 'ai-gateway.vercel.sh', remote: true,
-    endpoint: 'https://ai-gateway.vercel.sh/v1/chat/completions', credential: async () => 'mock-only' };
   let calls = 0;
+  let credentials = 0;
+  const connection = { model: modelId, provider: 'ai-gateway.vercel.sh', remote: true,
+    endpoint: 'https://ai-gateway.vercel.sh/v1/chat/completions', credential: async () => {
+      credentials++;
+      return 'mock-only';
+    } };
   const fetcher = async (_, { body }) => {
     calls++;
     const payload = JSON.parse(body);
@@ -75,10 +95,21 @@ test('real-class direct runner gates both phases on human review and preserves t
     };
     return Response.json({ choices: [reply] });
   };
-  const go = (phase, answers) => runHumanDirect({ out: root, input, phase, connection, fetcher,
+  const go = (phase, answers, overrides = {}) => runHumanDirect({ out: root, input, phase, sourceLock: lock, connection, fetcher,
+    ...overrides,
     ask: async () => answers.shift() ?? 'n', show: () => {} });
   const v1 = join(root, 'direct-word', 'P01-v1.docx');
   const v2 = join(root, 'direct-word', 'P01-v2.docx');
+  await assert.rejects(go(1, ['y'], { sourceLock: undefined }), /bản khóa nguồn/);
+  await assert.rejects(go(1, ['y'], { sourceLock: { ...lock, manifestSha256: 'b'.repeat(64) } }), /Manifest/);
+  for (const change of [{ page: 2 }, { sha256: 'a'.repeat(64) }]) {
+    const changed = { ...lock, sources: { ...lock.sources, d1: { ...lock.sources.d1, ...change } } };
+    await assert.rejects(go(1, ['y'], { sourceLock: changed }), /không khớp bản khóa/);
+  }
+  await assert.rejects(go(1, ['y'], { sourceLock: alternate }), /không khớp bản khóa/);
+  assert.equal(calls, 0);
+  assert.equal(credentials, 0);
+  assert.equal(existsSync(join(root, 'direct.json')), false);
   await assert.rejects(go(2, []), /phiên 1/);
   await assert.rejects(go(1, ['y', 'y', 'n']), /giữ bản nháp/);
   assert.equal(calls, 2);
@@ -91,10 +122,22 @@ test('real-class direct runner gates both phases on human review and preserves t
   assert.equal(calls, 2);
   assert.equal(existsSync(v1), true);
   const word1 = sha(readFileSync(v1));
+  await assert.rejects(go(2, ['y'], { sourceLock: alternate }), /không khớp bản khóa/);
+  const localD1 = join(root, 'direct-workspace', 'P01-d1.pdf');
+  writeFileSync(localD1, 'changed');
+  await assert.rejects(go(2, ['y']), /PDF đã lưu không khớp/);
+  assert.equal(calls, 2);
+  writeFileSync(localD1, readFileSync(join(root, 'd1.pdf')));
   await go(2, ['y', 'y']);
   const ledger = readJSON(join(root, 'direct.json'));
   const [first, second] = [ledger.cases.P01.phases[1], ledger.cases.P01.phases[2]];
   assert.equal(calls, 4);
+  assert.equal(credentials, 4);
+  assert.equal(ledger.pilotLockSha256, lockSha256);
+  assert.ok(ledger.modelAttempts.every(attempt => attempt.pilotLockSha256 === lockSha256));
+  assert.equal(first.pilotLockSha256, lockSha256);
+  assert.equal(second.pilotLockSha256, lockSha256);
+  assert.deepEqual(first.documents, second.documents);
   assert.equal(ledger.syntheticOnly, false);
   assert.equal(ledger.humanReview, 'operator_attested');
   assert.equal(ledger.humanActiveMs, null);
@@ -107,5 +150,6 @@ test('real-class direct runner gates both phases on human review and preserves t
   assert.notEqual(sha(readFileSync(v2)), word1);
   writeFileSync(v1, 'changed');
   await assert.rejects(go(1, ['y']), /Dấu kiểm/);
+  await assert.rejects(go(2, ['y']), /Dấu kiểm/);
   assert.equal(calls, 4);
 });
