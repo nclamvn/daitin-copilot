@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "synthetic": false,
+  "anonymized": true,
+  "cases": [
+    {
+      "id": "P01",
+      "title": "Hồ sơ mô phỏng · Cơ cấu liên động bằng chốt",
+      "reference": "PAT-DT-PILOT-S01",
+      "asOf": "2026-11-12",
+      "instructions": "Chỉ sử dụng đoạn đã khóa. Tách điều nguồn ghi, suy luận và điểm cần xác minh. Tránh kết luận pháp lý.",
+      "phase1Task": "Lập ma trận và phản hồi thông báo. Nêu hành trình tối thiểu và mốc kích hoạt trong yêu cầu bảo hộ và đoạn D1 đã chọn.",
+      "phase2Instructions": "Chỉ sử dụng đoạn đã khóa. Tách điều nguồn ghi, suy luận và điểm cần xác minh. Tránh kết luận pháp lý. Bổ sung một việc cần làm. Đối chiếu hình cắt dọc trong bản gốc D1 để xác định vị trí bắt đầu đo hành trình chốt và vị trí liên động kích hoạt.",
+      "phase2Task": "Chỉ cập nhật phản hồi, giữ nguyên ma trận. Bổ sung một việc cần làm. Đối chiếu hình cắt dọc trong bản gốc D1 để xác định vị trí bắt đầu đo hành trình chốt và vị trí liên động kích hoạt.",
+      "notice": {
+        "file": "01-Thong-bao.pdf",
+        "label": "Thông báo cần phản hồi",
+        "page": 2,
+        "quote": "Đối chiếu hành trình của chốt trước khi liên động kích hoạt.",
+        "sha256": "8d30b1fffe6e28ee1bc4f149315cc956db9ffa05e3c451c77c1d9d844291a622"
+      },
+      "claim": {
+        "file": "02-Yeu-cau-bao-ho.pdf",
+        "label": "Yêu cầu bảo hộ đang xét",
+        "page": 1,
+        "quote": "The locking pin travels at least 6 mm before the interlock engages.",
+        "sha256": "e0fe93b42b3f93e45e5af7d66c3900ef4a03250af7c65db49241e0cde85ab825"
+      },
+      "d1": {
+        "file": "03-Doi-chung-D1.pdf",
+        "label": "Tài liệu đối chứng D1",
+        "page": 2,
+        "quote": "The locking pin travels at least 4 mm before the interlock engages.",
+        "sha256": "f1ab79d6b4016350680df9b12ef7845679c35117dcfabd7f08cfa578faca9167"
+      }
+    }
+  ]
+}

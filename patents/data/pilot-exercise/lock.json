@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "manifestSha256": "679510a4d0cb7309d2648dcb52a3e669174156a3a9835429ebf51a1a8a310bae",
+  "reference": "PAT-DT-PILOT-S01",
+  "asOf": "2026-11-12",
+  "sources": {
+    "notice": {
+      "sha256": "8d30b1fffe6e28ee1bc4f149315cc956db9ffa05e3c451c77c1d9d844291a622",
+      "page": 2,
+      "start": 45,
+      "end": 105,
+      "textSha256": "bfb1616e91d56bafa2a376724fca6b9d370ff6b773c4f2172d01887893c32105"
+    },
+    "claim": {
+      "sha256": "e0fe93b42b3f93e45e5af7d66c3900ef4a03250af7c65db49241e0cde85ab825",
+      "page": 1,
+      "start": 94,
+      "end": 161,
+      "textSha256": "97284e50877751d5e5b0fdb1eab84ec62cdd7c421b354185f9529ccbf82d1fdb"
+    },
+    "d1": {
+      "sha256": "f1ab79d6b4016350680df9b12ef7845679c35117dcfabd7f08cfa578faca9167",
+      "page": 2,
+      "start": 77,
+      "end": 144,
+      "textSha256": "59af96376d550b5e5f3feb32920711b21dee1dd401c42a09e99a1d817e8be93f"
+    }
+  }
+}

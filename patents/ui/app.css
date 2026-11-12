@@ -39,6 +39,8 @@ dialog{width:min(680px,calc(100vw - 28px));max-height:calc(100dvh - 40px);paddin
   flex: none;
   font-size: 11px;
 }
+.case-progress .quiet { flex: none; white-space: nowrap; }
+.pilot-exercise { margin: 0 0 15px; background: #fff; }
 .intake-paper .paper-heading {
   margin-bottom: 16px;
 }

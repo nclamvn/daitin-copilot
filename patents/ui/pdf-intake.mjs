@@ -151,7 +151,7 @@ function setStatus(status, text = '', error = false) {
   status.toggleAttribute('data-error', error);
 }
 
-export function pdfPackIntake({ dialog, request, run, today, onCreated, onManual, pilotSourceLock = null }) {
+export function pdfPackIntake({ dialog, request, run, today, onCreated, onManual, pilotSourceLock = null, prepared = null }) {
   const container = element('div', '', 'pack-intake');
   const prepare = element('form', '', 'pack-prepare');
   const review = element('form', '', 'pack-review');
@@ -226,6 +226,7 @@ export function pdfPackIntake({ dialog, request, run, today, onCreated, onManual
       input.addEventListener('input', () => retained.delete(slot.role));
     }
     const controls = element('div', '', 'pack-slot-actions');
+    controls.hidden = Boolean(prepared);
     const pick = filePicker('Chọn PDF cho ' + slot.title, 'Chọn tệp', false, files => assignOne(slot, files));
     const { swap } = slot;
     swap.setAttribute('aria-label', 'Đổi tệp của ' + slot.title + ' với vai trò khác');
@@ -250,6 +251,7 @@ export function pdfPackIntake({ dialog, request, run, today, onCreated, onManual
   }
 
   const zone = element('div', '', 'pdf-drop pack-drop');
+  zone.hidden = Boolean(prepared);
   function assignBatch(files) {
     if (files.length !== 3 || !files.every(isPdf) || files.reduce((sum, file) => sum + file.size, 0) > maxBytes) {
       setStatus(draftStatus, 'Chọn đủ 3 tệp PDF, tổng dung lượng tối đa 2 MiB. Có thể chọn từng tệp theo vai trò bên dưới.', true);
@@ -287,7 +289,22 @@ export function pdfPackIntake({ dialog, request, run, today, onCreated, onManual
   }
   mode.input.addEventListener('change', updateMode);
   updateMode();
-  if (pilotSourceLock) prepare.append(mode.label);
+  if (prepared) {
+    if (!pilotSourceLock || !Array.isArray(prepared.files) || prepared.files.length !== slots.length) {
+      throw new Error('Chưa nhận đủ ba PDF của bộ diễn tập.');
+    }
+    for (const slot of slots) {
+      const document = prepared.files.find(file => file.role === slot.role);
+      if (!document) throw new Error('Thiếu PDF diễn tập cho ' + slot.title + '.');
+      const bytes = Uint8Array.from(atob(document.content), character => character.charCodeAt(0));
+      updateSlot(slot, new File([bytes], document.name, { type: 'application/pdf' }));
+    }
+    title.input.value = prepared.title;
+    instructions.input.value = prepared.instructions;
+    title.input.readOnly = instructions.input.readOnly = true;
+    prepareHelp.textContent = 'Ba PDF mô phỏng đã được chọn. Mở trang và đoạn đã khóa để đối chiếu trước khi lưu.';
+    attestationText.textContent = 'Tôi xác nhận dùng bộ hồ sơ mô phỏng này.';
+  } else if (pilotSourceLock) prepare.append(mode.label);
   prepare.append(zone, prepareHelp, roleList, grid, instructions.label, attestation.label, draftStatus, actions);
 
   const saveButton = element('button', 'Lưu hồ sơ và 3 tài liệu', 'primary');
@@ -518,7 +535,7 @@ export function pdfPackIntake({ dialog, request, run, today, onCreated, onManual
         const label = slot.file.name.replace(/\.pdf$/i, '').replace(/\s+/gu, ' ').trim().slice(0, 90).toWellFormed() || slot.title;
         return { slot, ...input[index], receipt, page, label, valid: false, confirmed: false, selection: null, preview: null };
       }));
-      back.textContent = locked ? 'Quay lại chọn tệp' : 'Đổi tệp, vai trò hoặc trang';
+      back.textContent = prepared ? 'Quay lại bộ nguồn' : locked ? 'Quay lại chọn tệp' : 'Đổi tệp, vai trò hoặc trang';
       reviewHelp.textContent = locked
         ? 'Mở ảnh trang và xác nhận đoạn đã đăng ký cho từng vai trò.'
         : 'Với mỗi vai trò, mở ảnh trang hoặc bản PDF gốc, chọn đoạn nguyên văn rồi xác nhận.';

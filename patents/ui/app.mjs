@@ -312,6 +312,7 @@ function renderCaseProgress() {
   box.replaceChildren();
   box.hidden = !matter;
   if (!matter) return;
+  const exercise = matter.pilotExercise;
   let text, view, label;
   if (!matter.claimText || !matter.noticeText) {
     text = 'Cần gắn ' + [!matter.claimText && 'yêu cầu bảo hộ', !matter.noticeText && 'thông báo'].filter(Boolean).join(' và ');
@@ -322,6 +323,9 @@ function renderCaseProgress() {
   } else if (!section('matrix')?.approval) {
     text = section('matrix')?.rows?.length ? 'Ma trận đang chờ rà soát' : 'Đã có nguồn để lập ma trận';
     view = 'matrix'; label = 'Mở ma trận';
+  } else if (exercise?.phase === 2) {
+    text = section('response')?.approval ? 'Word 1 đã duyệt. Cập nhật riêng phản hồi.' : 'Rà và duyệt phản hồi cập nhật.';
+    view = 'response'; label = 'Mở phản hồi';
   } else if (!section('response')?.approval) {
     text = matter.instructionsText ? 'Đã duyệt ma trận. Phản hồi đang làm việc' : 'Cần thêm chỉ dẫn để chuẩn bị phản hồi';
     view = 'response'; label = matter.instructionsText ? 'Mở phản hồi' : 'Nhập chỉ dẫn';
@@ -329,7 +333,7 @@ function renderCaseProgress() {
     text = pilotComplete() ? 'Đã hoàn tất hai bản duyệt' : 'Đã duyệt ma trận và phản hồi';
     view = 'history'; label = 'Xem bản đã duyệt';
   }
-  box.append(node('span', text));
+  box.append(node('span', exercise && exercise.phase < 3 ? 'Phiên ' + exercise.phase + ' · ' + text : text));
   if (view !== state.view || label === 'Nhập chỉ dẫn') box.append(button(label, () => {
     mode(view);
     if (label === 'Nhập chỉ dẫn') {
@@ -337,6 +341,30 @@ function renderCaseProgress() {
       $('case-instructions-text').focus();
     }
   }, 'text-button'));
+  if (exercise?.task) {
+    const load = button('Nạp yêu cầu phiên ' + exercise.phase, () => loadExerciseTask(exercise), 'quiet');
+    load.id = 'load-exercise-task';
+    load.disabled = state.busy;
+    box.append(load);
+  }
+}
+
+function loadExerciseTask(exercise) {
+  const task = $('task');
+  if (isDirty() || (task.value.trim() && task.value.trim() !== exercise.task)) {
+    notify('Lưu nội dung đang sửa hoặc xóa yêu cầu đang nhập trước khi nạp yêu cầu diễn tập.', true);
+    return;
+  }
+  const revise = exercise.phase === 2 || Boolean(section('matrix')?.approval);
+  mode(revise ? 'response' : 'matrix');
+  task.value = exercise.task;
+  selectTaskTargets(revise ? ['response'] : ['matrix', 'response']);
+  if (exercise.instructions) {
+    $('case-instructions-text').value = exercise.instructions;
+    $('private-inputs').open = true;
+    instructionsChanged();
+  } else refreshControls();
+  task.focus();
 }
 
 function openSavedPdfPage(doc) {
@@ -687,7 +715,7 @@ function applyMatter(matter, nextView = state.view) {
   state.cases = [{ id: matter.id, reference: matter.reference, title: matter.title, version: matter.version, updatedAt: matter.updatedAt }, ...state.cases.filter(item => item.id !== matter.id)];
   $('case-reference').textContent = matter.reference; $('matter-title').textContent = matter.title.replace(/ (\S+)$/u, '\u00a0$1'); $('matter-title').title = matter.title;
   $('matter-context').textContent = shorten(matter.context.claimVersion, 100) + ' · Đối chiếu ' + date(matter.context.asOf) +
-    (lockedSources() ? ' · Hồ sơ ẩn danh' : ' · Hồ sơ mô phỏng');
+    (lockedSources() && !matter.pilotExercise ? ' · Hồ sơ ẩn danh' : ' · Hồ sơ mô phỏng');
   $('claim-text').value = matter.claimText; $('claim-version').value = matter.context.claimVersion;
   $('case-notice-text').value = matter.noticeText ?? ''; $('case-instructions-text').value = matter.instructionsText ?? '';
   const noticePdf = matter.documents?.find(doc => doc.role === 'notice');
@@ -702,8 +730,8 @@ function applyMatter(matter, nextView = state.view) {
     selectTaskTargets(nextView === 'response' && section('matrix')?.approval ? ['response'] : ['matrix', 'response']);
   }
   const real = lockedSources();
-  $('pilot-label').textContent = real ? 'Pilot ẩn danh' : 'Pilot mô phỏng';
-  $('composer-note').textContent = (real ? 'Pilot ẩn danh.' : 'Pilot mô phỏng.') + ' Luật sư quyết định về tính mới, hiệu lực hoặc FTO.';
+  $('pilot-label').textContent = real && !matter.pilotExercise ? 'Pilot ẩn danh' : 'Pilot mô phỏng';
+  $('composer-note').textContent = $('pilot-label').textContent + '. Luật sư quyết định về tính mới, hiệu lực hoặc FTO.';
   $('case-documents-note').textContent = real
     ? 'Xem bộ PDF và các đoạn đã xác nhận cho pilot.'
     : 'Gắn đoạn từ thông báo, yêu cầu bảo hộ hoặc tài liệu đối chứng D1.';
@@ -789,13 +817,16 @@ function refreshControls() {
   const modelReady = hasClaim && !busy && !complete && Boolean(state.status?.model) && !invalidSource;
   const canPropose = modelReady && !isDirty() && !inputsDirty;
   const targets = taskTargets();
-  $('send-task').disabled = !targets.length || !canPropose;
   const inlineRevision = state.view === 'response' && supportsResponseRevision();
   const revised = inlineRevision && Boolean(updatedResponseInstructions(['response']));
+  $('send-task').disabled = !targets.length || !(canPropose || (modelReady && revised && targets.length === 1 && targets[0] === 'response'));
   $('propose-with-instructions').hidden = !inlineRevision;
   $('propose-with-instructions').disabled = !modelReady || !revised;
   $('model-state').textContent = invalidSource ? 'Cần thay bản trích có lỗi' : state.status?.model ? 'AI đề xuất, luật sư quyết định' : 'AI chưa bật';
   $('case-example').disabled = busy || !state.status?.demo;
+  $('open-exercise').disabled = busy;
+  const exerciseTask = $('load-exercise-task');
+  if (exerciseTask) exerciseTask.disabled = busy;
   $('new-case').disabled = busy; $('create-selected').disabled = busy || !state.selected.size;
   $('close-dialog').disabled = busy && $('dialog').classList.contains('pack-dialog');
   $('save-selected').disabled = busy || !active || !inputsDirty; $('save-inputs').disabled = busy || !active || !inputsDirty;
@@ -899,11 +930,10 @@ function createDialog(fromSelection = false, metadata) {
   });
   showDialog('Hồ sơ sáng chế mới', form);
 }
-function createPackDialog() {
-  if (!discard()) return;
+function createPackDialog(prepared = null) {
   const dialog = $('dialog');
   const content = pdfPackIntake({
-    dialog, request, run, today,
+    dialog, request, run, today, prepared,
     pilotSourceLock: state.status?.anonymizedPilot === true ? state.status.pilotSourceLock : null,
     onCreated(matter) {
       applyMatter(matter, initialCaseView(matter));
@@ -917,7 +947,7 @@ function createPackDialog() {
       createDialog(false, metadata);
     }
   });
-  showDialog('Hồ sơ sáng chế mới', content, true);
+  showDialog(prepared ? 'Bộ nguồn diễn tập' : 'Hồ sơ sáng chế mới', content, true);
 }
 function datasetDialog() {
   const data = state.status?.dataset ?? {}; const body = node('div');
@@ -1008,7 +1038,17 @@ $('case-example').addEventListener('click', () => {
     setCaseURL(matter.id, state.view, true);
   }, state.status?.demo?.notice ?? 'Đã mở hồ sơ đối chiếu mô phỏng.');
 });
-$('new-case').addEventListener('click', createPackDialog);
+$('open-exercise').addEventListener('click', () => {
+  if (!discard()) return;
+  run('Đang mở bộ diễn tập…', async () => {
+    const prepared = await request('pilot-exercise');
+    if (!prepared.caseId) return createPackDialog(prepared);
+    const matter = await request('cases/' + encodeURIComponent(prepared.caseId));
+    applyMatter(matter, initialCaseView(matter));
+    setCaseURL(matter.id, state.view, true);
+  });
+});
+$('new-case').addEventListener('click', () => { if (discard()) createPackDialog(); });
 $('create-selected').addEventListener('click', () => createDialog(true));
 $('case-filter').addEventListener('input', renderCases);
 $('claim-text').addEventListener('input', () => { state.claimRecordId = null; setDirty('inputs'); renderEvidence(); }); $('claim-version').addEventListener('input', () => setDirty('inputs'));
@@ -1078,6 +1118,7 @@ panel(!mobile.matches);
 await run('Đang mở bàn hồ sơ…', async () => {
   const status = request('status').then(value => {
     state.status = value;
+    $('pilot-exercise').hidden = value.pilotExercise !== true;
     const through = savedThrough();
     if (!$('search-date').value && through) $('search-date').value = through;
     $('search-coverage').textContent = 'Kho đã lưu đến ' + date(through) + '. Ngày đối chiếu mặc định theo mốc kho để tham khảo lịch sử. Chưa có ngày hiệu lực không được hiểu là đang áp dụng.';

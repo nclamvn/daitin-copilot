@@ -12,6 +12,7 @@ import { makePatentWord, patentWordRendererV2, patentWordType } from './word.mjs
 import { bindPatentPDF, bindPatentPDFPack, inspectPatentPDF, inspectPatentPDFPack, isAnonymizedPack,
   maxPatentPDFPackRequest, maxPatentPDFRequest, previewPatentPDF } from './intake.mjs';
 import { parsePilotLock, pilotLockDigest } from './pilot-lock.mjs';
+import { exerciseCaseView, exerciseForLock } from './pilot-exercise.mjs';
 export { CaseError as PatentAccessError } from '../copilot/m3/workflow.mjs';
 
 const assets = new Map([
@@ -56,6 +57,7 @@ export function createPatentService({ storePath = process.env.DAI_TIN_M3_STORE, 
   const store = openPatentStore(storePath);
   let lock;
   try { lock = parsePilotLock(approvedPilot); } catch { /* Only a valid lock enables private pilot access. */ }
+  const exercise = exerciseForLock(lock);
   // The prefix is outside the login group grammar, and the digest binds the namespace to this exact approved lock.
   const pilotGroup = lock && '@patent-pilot:' + pilotLockDigest(lock);
   const workflow = createPatentWorkflow(store, catalog, model, lock);
@@ -104,7 +106,15 @@ export function createPatentService({ storePath = process.env.DAI_TIN_M3_STORE, 
           recordCount: catalog.records.length, gaps: catalog.gaps ?? [], scope: catalog.scope
         }, role: actor.role, model: process.env.DAI_TIN_MODEL_MODE === 'disabled' ? null : process.env.DAI_TIN_MODEL_ID,
         ...(pilotActor ? { anonymizedPilot: true, responseRevision: true, pilotSourceLock: { reference: lock.reference, asOf: lock.asOf } } : {}),
+        ...(pilotActor && exercise ? { pilotExercise: true } : {}),
         demo, notice: 'Nguồn ứng viên. Phân tích là suy luận cần luật sư rà soát, không kết luận tính mới, tình trạng quyền hoặc FTO.' } };
+        if (get && path === '/api/patents/pilot-exercise') {
+          if (!pilotActor || !exercise) throw new CaseError('Chưa có bộ diễn tập được cấp quyền cho tài khoản này.', 404);
+          const saved = workflow.list(pilotActor).find(item => item.reference === exercise.reference);
+          if (saved) return { value: { caseId: saved.id } };
+          return { value: { title: exercise.title, instructions: exercise.initialInstructions,
+            files: exercise.files.map(({ role, name, bytes }) => ({ role, name, content: bytes.toString('base64') })) } };
+        }
         if (get && path === '/api/patents/catalog') return { value: { status: 'candidate', datasetDigest, builtAt: catalog.builtAt,
           scope: catalog.scope, sources: catalog.sources, gaps: catalog.gaps ?? [], records: catalog.records.map(({ text, ...record }) => ({
             ...record, textPreview: text.slice(0, 320), textLength: text.length
@@ -147,7 +157,7 @@ export function createPatentService({ storePath = process.env.DAI_TIN_M3_STORE, 
           checkAccess();
           if (owner !== actor) {
             const { matter, created } = workflow.createLockedPDFPack(body, selections, owner);
-            return { status: created ? 201 : 200, value: matter };
+            return { status: created ? 201 : 200, value: exerciseCaseView(matter, exercise) };
           }
           return { status: 201, value: workflow.createFromPDFs(body, selections, owner) };
         }
@@ -210,7 +220,7 @@ export function createPatentService({ storePath = process.env.DAI_TIN_M3_STORE, 
         if (match) {
           const [, id, action, number] = match;
           const owner = caseActor(id);
-          if (get && !action) return { value: workflow.read(id, owner) };
+          if (get && !action) return { value: exerciseCaseView(workflow.read(id, owner), owner === pilotActor ? exercise : null) };
           if (get && ['word', 'releases'].includes(action) && number) {
             const release = workflow.release(id, number, owner);
             if (action === 'releases') return { value: release };
@@ -222,7 +232,7 @@ export function createPatentService({ storePath = process.env.DAI_TIN_M3_STORE, 
           }
           if (req.method === 'POST' && ['source', 'propose', 'edit', 'approve'].includes(action) && !number) {
             const body = caseInput(await readJSON(req, 64 * 1024)); checkAccess();
-            return { value: await workflow[action](id, body, owner, checkAccess) };
+            return { value: exerciseCaseView(await workflow[action](id, body, owner, checkAccess), owner === pilotActor ? exercise : null) };
           }
         }
         return { status: 404, value: { error: 'Không tìm thấy chức năng sáng chế trong pilot.' } };

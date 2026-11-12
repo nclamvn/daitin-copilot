@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto';
 import { validateDeploymentConfig } from './check-config.mjs';
 import { loadDataset, validateDataset } from '../patents/dataset.mjs';
 import { inspectSnapshot } from '../web/snapshot-runtime.mjs';
+import { loadPilotExercise } from '../patents/pilot-exercise.mjs';
 
 if (Number(process.versions.node.split('.')[0]) < 24) throw new Error('Node.js 24 trở lên được yêu cầu.');
 for (const path of ['public/brand/daitin.png', 'public/fonts.css', 'copilot/evidence.sqlite',
@@ -16,11 +17,14 @@ if (digest !== '28d1e9a0fdbb1975870e713fe72491870f3185668490762d9137921322e01fa4
 if (typeof inspectSnapshot !== 'function') throw new Error('Adapter lưu trữ chưa có.');
 const catalogue = loadDataset();
 const patentDataset = validateDataset(catalogue);
+const exercise = loadPilotExercise();
 const config = JSON.parse(readFileSync(new URL('../vercel.json', import.meta.url)));
 validateDeploymentConfig(config, [
   'copilot/m4/pdf-js-worker.mjs', 'copilot/m4/brand/daitin-gray.png', 'copilot/evidence.sqlite',
   'distribution/demo/seed.json', 'public/fonts.css', 'patents/service.mjs', 'patents/workflow.mjs', 'patents/store.mjs',
   'patents/word.mjs', 'patents/dataset.mjs', 'patents/ui/index.html', 'patents/ui/app.css', 'patents/ui/app.mjs', 'patents/data/catalog.json',
+  'patents/data/pilot-exercise/manifest.json', 'patents/data/pilot-exercise/lock.json',
+  ...exercise.files.map(file => 'patents/data/pilot-exercise/' + file.name),
   'node_modules/pdfjs-dist/legacy/build/pdf.worker.mjs', 'node_modules/pdfjs-dist/standard_fonts/FoxitSerif.pfb',
   'node_modules/pdfjs-dist/cmaps/Adobe-Japan1-UCS2.bcmap',
   'node_modules/@napi-rs/canvas-linux-x64-gnu/skia.linux-x64-gnu.node',
