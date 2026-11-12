@@ -4,11 +4,29 @@
 }
 .company-brand { flex-direction:column; align-items:flex-start; gap:8px; text-decoration:none; }
 .company-caption { display:block; font-size:10px; line-height:1.5; color:#b9d0ce; font-weight:400; }
-.sidebar .company-brand { padding:0 0 22px; }
 .sidebar .company-logo { width:100%; }
-.rail .company-brand { padding-inline:0; }
 .identity .company-logo { width:224px; padding:0; border:0; border-radius:0; margin-bottom:12px; }
 .file-entry-card > .company-logo { width:210px; padding:0; border:0; margin-bottom:24px; }
 .desk-brand .company-logo { width:180px; }
 .desk-brand .company-caption { width:auto; height:auto; border:0; padding:0; }
 .signature .company-logo { width:165px; }
+
+.workspace-nav {
+  grid-column:1 / -1; display:grid; grid-template-columns:var(--workspace-rail) minmax(0,1fr);
+  position:relative; z-index:7; background:#fff; border-bottom:1px solid var(--line);
+}
+.workspace-nav-brand {
+  display:flex; align-items:center; align-self:stretch; padding-inline:clamp(10px,1.5vw,22px);
+  border-right:1px solid var(--line);
+}
+.workspace-nav-brand img { display:block; width:145px; max-width:100%; height:auto; }
+.workspace-nav-brand:focus-visible { outline-offset:-4px; }
+.workspace-nav-content {
+  display:flex; align-items:center; justify-content:space-between; min-width:0;
+  gap:8px; padding-inline:clamp(10px,1.5vw,22px);
+}
+.workspace-nav-content > .top-actions { flex:none; }
+@media(max-width:830px) {
+  .workspace-nav-brand img { width:96px; }
+  .workspace-nav-content { gap:5px; padding-inline:5px 9px; }
+}

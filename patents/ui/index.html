@@ -10,8 +10,14 @@
 <body>
 <a class="skip" href="#main">Đến công việc đang mở</a>
 <div class="patent-shell">
+  <header class="workspace-nav">
+    <a class="workspace-nav-brand" href="/patents/"><img src="/public/brand/daitin.png" width="2137" height="736" alt="DAITIN Lawyers and Consultants"></a>
+    <div class="workspace-nav-content">
+      <div class="breadcrumb"><button class="icon-button mobile-only" id="open-rail" type="button" aria-label="Mở danh sách hồ sơ" aria-expanded="false">☰</button><span class="desktop-label">Sáng chế</span><span class="path-separator" aria-hidden="true">/</span><strong id="case-reference">Tra cứu nguồn</strong></div>
+      <div class="top-actions"><span id="saved-state" class="save-state">Đang kết nối…</span><button id="open-evidence" class="icon-button" type="button" aria-label="Mở hoặc đóng ngăn nguồn" aria-expanded="true">▤</button><button id="export-latest" class="quiet" type="button" hidden>Xuất Word đã duyệt</button></div>
+    </div>
+  </header>
   <aside class="rail" id="rail" aria-label="Điều hướng hồ sơ">
-    <a class="company-brand" href="/patents/"><img class="company-logo" src="/public/brand/daitin.png" alt="DAITIN Lawyers and Consultants"><span class="company-caption">Bàn hồ sơ sở hữu trí tuệ</span></a>
     <nav class="areas" aria-label="Lĩnh vực"><a href="/copilot/m3/workspace/">Nhãn hiệu</a><a href="/patents/" aria-current="page">Sáng chế</a></nav>
     <button id="new-case" class="new-case" type="button"><span aria-hidden="true">＋</span> Hồ sơ sáng chế mới</button>
     <label class="case-filter">Tìm hồ sơ<input id="case-filter" type="search" placeholder="Tên hoặc mã hồ sơ"></label>
@@ -21,7 +27,6 @@
     <div class="rail-foot"><button class="rail-link" id="dataset-details" type="button">Phạm vi kho nguồn</button><button class="rail-link" id="sign-out" type="button">Đăng xuất</button><p><span class="dot"></span> <span id="pilot-label">Pilot mô phỏng</span> <span id="source-status">Nguồn ứng viên</span></p></div>
   </aside>
   <div class="workspace-body">
-    <header class="topbar"><div class="breadcrumb"><button class="icon-button mobile-only" id="open-rail" type="button" aria-label="Mở danh sách hồ sơ" aria-expanded="false">☰</button><span class="desktop-label">Sáng chế</span><span class="path-separator" aria-hidden="true">/</span><strong id="case-reference">Tra cứu nguồn</strong></div><div class="top-actions"><span id="saved-state" class="save-state">Đang kết nối…</span><button id="open-evidence" class="icon-button" type="button" aria-label="Mở hoặc đóng ngăn nguồn" aria-expanded="true">▤</button><button id="export-latest" class="quiet" type="button" hidden>Xuất Word đã duyệt</button></div></header>
     <div class="notice" id="notice" role="status" hidden><span id="notice-text"></span><button id="reload-case" type="button" hidden>Tải lại hồ sơ</button><button id="close-notice" type="button" aria-label="Đóng thông báo">×</button></div>
     <div class="work-grid" id="work-grid">
       <main id="main" class="main-area">
