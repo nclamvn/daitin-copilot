@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Đại Tín · Kho nguồn nội bộ</title>
+  <link rel="stylesheet" href="/public/fonts.css">
+  <link rel="stylesheet" href="/advice/private/app.css">
+</head>
+<body>
+<header>
+  <a href="/advice/"><img src="/public/brand/daitin.png" alt="DAITIN Lawyers and Consultants"></a>
+  <nav aria-label="Điều hướng"><a href="/advice/">Hỏi đáp</a><button id="show-library">Kho nguồn</button><button id="show-pilot">Đo thao tác</button></nav>
+</header>
+<main>
+  <p id="status" role="status"></p>
+  <section id="library">
+    <h1>Kho nguồn nội bộ</h1>
+    <p id="catalogue"></p>
+    <details class="panel">
+      <summary>Nhập tệp Word và email</summary>
+      <form id="import">
+        <label>Chọn nhiều tệp .docx hoặc .eml<input type="file" name="files" accept=".docx,.eml" multiple required></label>
+        <label>Chủ nguồn cho đợt nhập này<input name="owner" required maxlength="160"></label>
+        <label>Căn cứ cho phép sử dụng<input name="permission" required maxlength="500"></label>
+        <label class="check"><input type="checkbox" name="allowed" required> Tôi xác nhận được phép nhập các tệp đã chọn vào kho này.</label>
+        <button class="primary">Đưa vào hàng chờ duyệt</button>
+      </form>
+    </details>
+    <div class="columns">
+      <div class="panel"><h2>Tài liệu</h2><div id="documents"></div></div>
+      <section class="panel" id="document-detail" aria-label="Đọc và duyệt đoạn"><p>Chọn tài liệu để đọc đoạn nguồn.</p></section>
+    </div>
+  </section>
+  <section id="pilot" hidden>
+    <h1>Đo công thao tác</h1>
+    <p>Hai nhánh dùng cùng câu hỏi, model và bộ đoạn đã khóa. Đồng hồ tách thời gian chờ model.</p>
+    <details id="pilot-create" class="panel" hidden>
+      <summary>Tạo đợt đo</summary>
+      <form id="create-plan">
+        <label>Tên đợt<input name="title" required maxlength="160"></label>
+        <div class="pair"><label>Tài khoản thao tác<input name="operator" required value="binh" maxlength="30"></label>
+        <label>Tài khoản chấm mù<input name="grader" required value="cham-mu" maxlength="30"></label></div>
+        <label>Chế độ<select name="mode"><option value="human">Người dùng trực tiếp</option><option value="simulation">Diễn tập kỹ thuật</option></select></label>
+        <label>Câu hỏi mới, một câu mỗi dòng<textarea name="questions" required rows="5"></textarea></label>
+        <fieldset><legend>Chọn đoạn đã duyệt</legend><div id="pilot-sources"></div></fieldset>
+        <button class="primary">Khóa bộ nguồn và tạo đợt</button>
+      </form>
+    </details>
+    <div class="columns">
+      <div class="panel"><h2>Đợt đo</h2><div id="plans"></div></div>
+      <section id="plan-detail" class="panel" aria-label="Phiên đo"><p>Chọn đợt để tiếp tục.</p></section>
+    </div>
+  </section>
+</main>
+<script type="module" src="/advice/private/app.mjs"></script>
+</body>
+</html>

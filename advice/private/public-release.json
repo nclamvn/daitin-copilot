@@ -1,0 +1,46 @@
+{
+  "reviewedOn": "2026-11-12",
+  "authority": "Rà soát nguồn công khai theo yêu cầu của người dùng, phục vụ pilot",
+  "reviewed": {
+    "vn-tm-renew-poa-cong-bao": {
+      "date": "2026-06-04",
+      "statement": "Theo điểm c khoản 1 Điều 108, hồ sơ gia hạn nhãn hiệu nộp qua đại diện phải có văn bản ủy quyền. Nếu gia hạn một phần danh mục hàng hóa, dịch vụ, văn bản cần thể hiện phạm vi ủy quyền tương ứng."
+    },
+    "vn-tm-renew-form": {
+      "date": null,
+      "statement": "Điểm a khoản 1 Điều 108 dẫn tờ khai Mẫu số 01 tại Phụ lục II cho hồ sơ gia hạn hiệu lực. Khi yêu cầu gia hạn nhiều giấy chứng nhận đăng ký nhãn hiệu, nêu rõ các số văn bằng trong tờ khai."
+    },
+    "th-pt-pct-poa": {
+      "date": null,
+      "statement": "Trong phần vào giai đoạn quốc gia PCT tại Thái Lan, hướng dẫn WIPO liệt kê giấy ủy quyền khi chỉ định đại diện. Đây là căn cứ về vào giai đoạn quốc gia PCT."
+    },
+    "sg-tm-renew-form": {
+      "date": null,
+      "statement": "IPOS hướng dẫn dùng Form TM19 khi gia hạn hoặc khôi phục đăng ký nhãn hiệu. Cần xác định hồ sơ đang ở giai đoạn gia hạn trong hạn, gia hạn muộn hay khôi phục."
+    },
+    "sg-tm-renew-fee": {
+      "date": null,
+      "statement": "Tại ngày đối chiếu 12/11/2026, biểu phí IPOS ở mục TM19 ghi 480 SGD cho mỗi nhóm khi gia hạn đăng ký nhãn hiệu trong hạn. Phí gia hạn muộn và khôi phục có mức riêng."
+    },
+    "sg-pt-annuity-form": {
+      "date": "2025-03-25",
+      "statement": "IPOS hướng dẫn dùng Patents Form 15 để gia hạn duy trì bằng sáng chế Singapore. Hồ sơ đã mất hiệu lực và cần khôi phục có thủ tục riêng."
+    },
+    "my-tm-renew-late": {
+      "date": "2019-12-09",
+      "statement": "Theo Điều 39(5)–(6) của Act 815, yêu cầu gia hạn muộn phải thực hiện trong sáu tháng từ ngày hết hạn đăng ký và chịu phí gia hạn cùng phụ thu. Khôi phục sau khi đăng ký bị xóa là thủ tục riêng."
+    }
+  },
+  "held": {
+    "th-pt-annuity-fee": "Cần đối chiếu biểu phí đang áp dụng của DIP Thái Lan trước khi dùng số tiền để báo giá. Đoạn thu được không giải đáp câu POA.",
+    "my-pt-annuity-cycle": "Đoạn trích nêu chu kỳ chung. Cần đối chiếu khoản 35(2), quy định tương ứng và tình trạng bằng để trả lời ngày đến hạn cụ thể."
+  },
+  "questions": [
+    "Hồ sơ gia hạn nhãn hiệu tại Việt Nam nộp qua đại diện có cần POA không?",
+    "Nộp niên phí bằng sáng chế tại Thái Lan có cần POA không?",
+    "Gia hạn nhãn hiệu Singapore dùng biểu mẫu nào?",
+    "Gia hạn nhãn hiệu Malaysia nộp muộn thì thời hạn tính từ mốc nào?",
+    "Dùng biểu mẫu nào để nộp phí duy trì bằng sáng chế tại Singapore?",
+    "Gia hạn nhãn hiệu Singapore trong hạn thì lệ phí cơ quan là bao nhiêu?"
+  ]
+}

@@ -8,7 +8,7 @@ const facet = [
     change: /\b(doi ten|doi chu|thay doi chu|ghi nhan thay doi|change of name|name change|name recordal)\b/,
     pct: /\b(pct|giai doan quoc gia|national phase)\b/ },
   { poa: /\b(poa|uy quyen|power of attorney)\b/,
-    documents: /\b(tai lieu|giay to|checklist|documents|giay gi|gui gi|can gui|danh muc ho so|ho so gom|chuan bi gi|can nhung gi|thong tin gi)\b/,
+    documents: /\b(tai lieu|giay to|checklist|documents|bieu mau|to khai|mau nao|mau so|form|giay gi|gui gi|can gui|danh muc ho so|ho so gom|chuan bi gi|can nhung gi|thong tin gi)\b/,
     deadline: /\b(thoi han|han nop|nop tre|nop muon|bao lau|grace|deadline|late payment|may thang)\b/,
     fee: /\b(bao gia|bieu phi|muc phi|bao nhieu tien|chi phi|le phi|cost|price|quotation)\b/ },
 ];
@@ -39,15 +39,15 @@ export function scopeOf(query) {
 const dateLike = value => typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value)
   && new Date(value + 'T00:00:00Z').toJSON()?.slice(0, 10) === value;
 
-export function createIndex(bundle) {
-  if (bundle?.schema !== 1 || bundle.simulation !== true || !Array.isArray(bundle.rows) ||
-      !bundle.rows.length || bundle.rows.length > 20000) throw new Error('Kho diễn tập chưa hợp lệ.');
+export function createIndex(bundle, { privateLibrary = false } = {}) {
+  if (bundle?.schema !== 1 || bundle.simulation !== !privateLibrary || !Array.isArray(bundle.rows) ||
+      (!privateLibrary && !bundle.rows.length) || bundle.rows.length > 20000) throw new Error('Kho diễn tập chưa hợp lệ.');
   const rows = new Map();
   const postings = new Map();
   const scopes = new Map();
   for (const row of bundle.rows) {
     if (!/^[a-z0-9-]{1,80}$/.test(row.id) || rows.has(row.id) || !['word', 'email'].includes(row.kind) ||
-        row.simulated !== true || typeof row.reviewed !== 'boolean' || !/^[a-z0-9-]{1,50}$/.test(row.issuer) ||
+        row.simulated !== !privateLibrary || typeof row.reviewed !== 'boolean' || !/^[a-z0-9-]{1,50}$/.test(row.issuer) ||
         !Array.isArray(row.scope) || row.scope.length !== 4 || !row.scope.every((value, i) => Object.hasOwn(facet[i], value)) ||
         typeof row.quote !== 'string' || row.quote.length < 12 || row.quote.length > 2500 ||
         typeof row.title !== 'string' || typeof row.value !== 'string' ||

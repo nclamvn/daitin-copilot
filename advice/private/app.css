@@ -1,0 +1,36 @@
+:root { color-scheme: light; font-family: "Be Vietnam Pro", system-ui, sans-serif; color: #203833; background: #f5f8f5; }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; font-size: 14px; line-height: 1.6; }
+header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; padding: 9px max(16px, 5vw); background: white; border-bottom: 1px solid #dbe6df; }
+header img { width: 145px; display: block; }
+nav { display: flex; align-items: center; gap: 10px; }
+a { color: #145044; }
+main { max-width: 1270px; margin: 0 auto; padding: 12px clamp(13px, 4vw, 45px) 40px; }
+h1 { font-size: clamp(25px, 4vw, 40px); margin: 0; letter-spacing: -.04em; }
+h2 { font-size: 18px; margin: 0 0 8px; }
+h3 { font-size: 15px; margin: 0 0 7px; }
+p { margin: 4px 0 10px; }
+#status { min-height: 25px; color: #315a4c; }
+#status[data-error="true"] { color: #854026; }
+.panel { background: white; border: 1px solid #dbe6df; border-radius: 12px; padding: 16px; margin-top: 14px; min-width: 0; }
+.columns { display: grid; grid-template-columns: minmax(180px, 270px) minmax(0, 1fr); gap: 14px; align-items: start; }
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+summary { cursor: pointer; font-weight: 680; }
+form, .stack { display: grid; gap: 10px; margin-top: 10px; }
+label { display: grid; gap: 4px; font-size: 12px; font-weight: 570; }
+.check { display: flex; align-items: flex-start; gap: 6px; }
+button, input, textarea, select { font: inherit; }
+button { background: #f3f8f4; border: 1px solid #cddfd3; color: #184c41; padding: 6px 9px; border-radius: 7px; cursor: pointer; justify-self: start; }
+button:hover { background: #e6f1e9; }
+button:disabled { opacity: .5; cursor: wait; }
+.primary { background: #155348; color: white; border-color: #155348; }
+.primary:hover { background: #21483d; }
+input:not([type="checkbox"]), select, textarea { display: block; width: 100%; border: 1px solid #c9dbd0; border-radius: 7px; padding: 6px 8px; color: #1b3730; background: white; }
+textarea { resize: vertical; }
+blockquote { margin: 6px 0; padding: 9px 11px; border-left: 2px solid #87b09d; background: #f1f7f2; white-space: pre-wrap; overflow-wrap: anywhere; }
+.file, .passage, .result { display: grid; gap: 4px; padding: 10px 0; border-bottom: 1px solid #e2ece5; overflow-wrap: anywhere; }
+.meta { color: #527165; font-size: 12px; overflow-wrap: anywhere; }
+.controls { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin-top: 9px; }
+@media (max-width: 660px) { .columns, .pair { grid-template-columns: minmax(0, 1fr); } nav { gap: 5px; } header img { width: 118px; } }
+.pilot-invitation { grid-template-columns: minmax(0, 1fr); max-width: 900px; margin-inline: auto; }

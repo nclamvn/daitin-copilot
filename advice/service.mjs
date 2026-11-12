@@ -7,6 +7,7 @@ import { demoWord, simulatedMail } from './demo.mjs';
 import { createIndex } from './library/retrieval.mjs';
 import { createLibraryModel } from './library/model.mjs';
 import { libraryAnswer } from './library/answer.mjs';
+import { createPrivateFeature } from './private/service.mjs';
 
 const libraryPrompts = [...prompts,
   'Gia hạn nhãn hiệu tại Singapore có thể dùng lại POA cũ không?',
@@ -74,7 +75,8 @@ export function createAdvice(web, env = process.env) {
       new URL(web.origin).hostname !== '127.0.0.1')) {
     throw new Error('Nguồn Word M9 chỉ chạy trong bản web xác thực trên loopback.');
   }
-  const word = demo ? demoWord : loadReviewedWord(env.DAI_TIN_ADVICE_WORD, env.DAI_TIN_ADVICE_REVIEW);
+  const privateFeature = env.DAI_TIN_ADVICE_MODE === 'private' ? createPrivateFeature(web, env) : null;
+  const word = demo ? demoWord : privateFeature ? [] : loadReviewedWord(env.DAI_TIN_ADVICE_WORD, env.DAI_TIN_ADVICE_REVIEW);
   const library = demo && env.DAI_TIN_ADVICE_RAG === '1'
     ? createIndex(JSON.parse(readFileSync(new URL('./library/index.json', import.meta.url), 'utf8'))) : null;
   const model = library ? createLibraryModel({
@@ -87,8 +89,9 @@ export function createAdvice(web, env = process.env) {
     ...(library ? { library: { documents: library.documents, passages: library.size }, model: Boolean(model) } : {}),
     signedIn: true,
   };
-  const indexPage = readFileSync(new URL('./ui/index.html', import.meta.url), 'utf8')
-    .replace('id="advice-config">{}', () => 'id="advice-config">' + JSON.stringify(config).replaceAll('<', '\\u003c'));
+  const pageTemplate = readFileSync(new URL('./ui/index.html', import.meta.url), 'utf8');
+  const indexPage = settings => pageTemplate.replace('id="advice-config">{}',
+    () => 'id="advice-config">' + JSON.stringify(settings).replaceAll('<', '\\u003c'));
   return async function handleAdvice(req, path, actor, readJSON) {
     const get = req.method === 'GET' || req.method === 'HEAD';
     const entry = get && (path === '/advice' || path === '/advice/');
@@ -100,11 +103,16 @@ export function createAdvice(web, env = process.env) {
         .replace('Mở Bàn hồ sơ', 'Mở Hỏi đáp nghiệp vụ');
       return { value: Buffer.from(login), type: 'text/html; charset=utf-8' };
     }
-    if (actor?.role !== 'reviewer') {
+    if (privateFeature && privateFeature.isMember(actor)) {
+      if (get && path === '/advice/') return { value: Buffer.from(indexPage(privateFeature.config())), type: 'text/html; charset=utf-8' };
+      if (get && path === '/advice') return { status: 308, value: {}, headers: { Location: '/advice/' } };
+      if (!assets.has(path)) return privateFeature.handle(req, path, actor, readJSON);
+    }
+    if (privateFeature ? !privateFeature.isMember(actor) : actor?.role !== 'reviewer') {
       return { status: actor ? 403 : 401, value: { error: 'Cần tài khoản luật sư được cấp quyền hỏi đáp nghiệp vụ.' } };
     }
     if (get && path === '/advice') return { status: 308, value: {}, headers: { Location: '/advice/' } };
-    if (get && path === '/advice/') return { value: Buffer.from(indexPage), type: 'text/html; charset=utf-8' };
+    if (get && path === '/advice/') return { value: Buffer.from(indexPage(config)), type: 'text/html; charset=utf-8' };
     const asset = get && assets.get(path);
     if (asset) {
       return { value: readFileSync(new URL('./ui/' + asset[0], import.meta.url)), type: asset[1] };

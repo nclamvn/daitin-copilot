@@ -92,15 +92,23 @@ function showSource(context, index, trigger) {
     element('blockquote', 'source-quote', source.quote));
   const facts = element('dl', 'source-facts');
   for (const [label, value] of [
-    ['Nguồn', source.simulated ? 'Mô phỏng' : 'Tài liệu nội bộ'],
+    ['Nguồn', source.simulated ? 'Mô phỏng' : source.origin ? 'Nguồn công khai' : 'Tài liệu nội bộ'],
     ['Ngày nguồn', source.date ? source.date.split('-').reverse().join('/') : 'Chưa ghi nhận'],
     ['Phạm vi', source.note],
+    ['Điểm neo', source.locator],
   ]) {
     if (value) facts.append(element('dt', '', label), element('dd', '', value));
   }
   card.append(facts);
+  if (source.origin) {
+    const original = element('a', 'source-download', 'Mở tài liệu cơ quan');
+    original.href = source.origin;
+    original.target = '_blank';
+    original.rel = 'noreferrer noopener';
+    card.append(original, document.createElement('br'));
+  }
   if (source.download) {
-    const download = element('a', 'source-download', 'Tải tài liệu mô phỏng');
+    const download = element('a', 'source-download', source.simulated ? 'Tải tài liệu mô phỏng' : source.origin ? 'Tải phiếu đối chiếu' : 'Tải nguồn gốc');
     download.href = source.download;
     card.append(download);
   }
@@ -209,7 +217,7 @@ function renderTurn(question, answer) {
     card.append(row);
   }
   if (libraryMode && answer.email) appendEmail(card, answer, context);
-  else if (libraryMode && !answer.email) {
+  else if (libraryMode && !answer.email && answer.kind === 'missing' && !answer.scope) {
     const actions = element('div', 'answer-actions suggestions');
     actions.append(button('Bổ sung câu hỏi', 'ghost', () => { query.value = question; query.focus(); }));
     card.append(actions);
@@ -317,10 +325,12 @@ try {
   const config = preview?.config ?? (Array.isArray(embedded.prompts) ? embedded : await request('config'));
   libraryMode = Boolean(config.library);
   if (libraryMode) {
+    const privateLibrary = config.library.private === true;
+    byId('private-link').hidden = !privateLibrary;
     scenario = 'library';
     document.querySelector('.shell').classList.add('is-library');
-    byId('scope-text').textContent = config.library.documents + ' nguồn Word và email mô phỏng';
-    byId('compose-scope').textContent = 'Chỉ nhập tình huống mô phỏng';
+    byId('scope-text').textContent = config.library.documents + (privateLibrary ? ' nguồn đã duyệt' : ' nguồn Word và email mô phỏng');
+    byId('compose-scope').textContent = privateLibrary ? 'Kho nội bộ đã duyệt' : 'Chỉ nhập tình huống mô phỏng';
     byId('intro-title').textContent = 'Anh cần tra cứu việc gì?';
     byId('intro-description').textContent = 'Hỏi về một thủ tục, kiểm tra đoạn nguồn và soạn thư ngay trong cuộc hỏi đáp.';
   }

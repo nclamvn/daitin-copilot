@@ -13,14 +13,18 @@ const schema = {
 export function createLibraryModel(options = {}) {
   const connection = modelConnection(options);
   if (!connection) return null;
+  if (options.privateSources && connection.remote) throw new Error('Kho thật yêu cầu model cục bộ.');
+  const timeoutMs = options.timeoutMs ?? 16000;
+  if (!Number.isSafeInteger(timeoutMs) || timeoutMs < 1000 || timeoutMs > 120000) throw new Error('Thời hạn model chưa hợp lệ.');
+  const instruction = options.privateSources ? system.replace('trong bộ DIỄN TẬP', 'trong kho nguồn nội bộ') : system;
   return async function synthesize(query, candidates) {
     const start = performance.now();
     const response = await fetch(connection.endpoint, {
-      method: 'POST', redirect: 'error', signal: AbortSignal.timeout(16000),
+      method: 'POST', redirect: 'error', signal: AbortSignal.timeout(timeoutMs),
       headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + await connection.credential() },
       body: JSON.stringify({
         model: connection.model, temperature: 0, max_tokens: 700,
-        messages: [{ role: 'system', content: system }, {
+        messages: [{ role: 'system', content: instruction }, {
           role: 'user', content: JSON.stringify({
             question: query,
             sources: candidates.map(({ id, scope, title, quote, reviewed, date, supersedes, issuer }) =>

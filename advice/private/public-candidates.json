@@ -1,0 +1,176 @@
+[
+  {
+    "id": "vn-tm-renew-poa",
+    "capture": "vn-gazette",
+    "origin": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/5/20-bkhcn.pdf",
+    "page": 4,
+    "owner": "Bộ Khoa học và Công nghệ",
+    "locator": "Thông tư 20/2026/TT-BKHCN, Điều 11 sửa Điều 108 khoản 1 điểm c",
+    "scope": [
+      "vn",
+      "tm",
+      "renew",
+      "poa"
+    ],
+    "value": "agent-required",
+    "issuer": "bkhcn",
+    "excerpt": "Văn bản ủy quyền (trường hợp yêu cầu được nộp thông qua đại diện).",
+    "statement": "Hồ sơ gia hạn nhãn hiệu nộp qua đại diện có văn bản ủy quyền. Nếu chỉ gia hạn một phần danh mục, cần đối chiếu phạm vi ủy quyền tương ứng.",
+    "retired": true
+  },
+  {
+    "id": "vn-tm-renew-poa-cong-bao",
+    "capture": "vn-cong-bao",
+    "origin": "https://ipvietnam.gov.vn/documents/20195/2433971/2026_306_20_2026_TT-BKHCN.pdf/f8e65a02-7e75-480e-ad94-32970d57ed60",
+    "page": 4,
+    "owner": "Bộ Khoa học và Công nghệ",
+    "locator": "Thông tư 20/2026/TT-BKHCN, Điều 11 sửa Điều 108 khoản 1 điểm c",
+    "scope": [
+      "vn",
+      "tm",
+      "renew",
+      "poa"
+    ],
+    "value": "agent-required",
+    "issuer": "bkhcn",
+    "excerpt": "Văn bản ủy quyền (trường hợp yêu cầu được nộp thông qua đại diện).",
+    "statement": "Hồ sơ gia hạn nhãn hiệu nộp qua đại diện có văn bản ủy quyền. Nếu chỉ gia hạn một phần danh mục, cần đối chiếu phạm vi ủy quyền tương ứng."
+  },
+  {
+    "id": "vn-tm-renew-form",
+    "capture": "vn-vbhn",
+    "origin": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/7/06-vbhn-bkhcn.signed.pdf",
+    "page": 116,
+    "owner": "Bộ Khoa học và Công nghệ",
+    "locator": "06/VBHN-BKHCN, Điều 108 khoản 1 điểm a",
+    "scope": [
+      "vn",
+      "tm",
+      "renew",
+      "documents"
+    ],
+    "value": "documents",
+    "issuer": "bkhcn",
+    "excerpt": "Tờ khai theo Mẫu số 01 tại Phụ lục II của Thông tư này.",
+    "statement": "Điều khoản xác định tờ khai Mẫu số 01, Phụ lục II cho hồ sơ duy trì hoặc gia hạn. Rà riêng các tài liệu phát sinh theo hình thức nộp."
+  },
+  {
+    "id": "th-pt-pct-poa",
+    "capture": "th-pct",
+    "origin": "https://pctlegal.wipo.int/eGuide/view-doc.xhtml?doc-code=TH&doc-lang=en",
+    "owner": "WIPO · PCT Applicant's Guide",
+    "locator": "Thailand, National Phase, Special requirements under PCT Rule 51bis",
+    "scope": [
+      "th",
+      "pt",
+      "pct",
+      "poa"
+    ],
+    "value": "agent-required",
+    "issuer": "wipo",
+    "excerpt": "Power of attorney if an agent is appointed",
+    "statement": "Trong mục vào giai đoạn quốc gia PCT của Thái Lan, WIPO nêu giấy ủy quyền nếu chỉ định đại diện. Mục này không kết luận về POA khi đóng niên phí sau cấp."
+  },
+  {
+    "id": "th-pt-annuity-fee",
+    "capture": "th-wipo",
+    "origin": "https://pctlegal.wipo.int/eGuide/eqe/view-doc.xhtml?doc-code=TH&doc-lang=EN&doc-type=annex",
+    "owner": "WIPO · PCT Applicant's Guide",
+    "locator": "Thailand, Annex TH.I, Annual fees for patents",
+    "scope": [
+      "th",
+      "pt",
+      "annuity",
+      "fee"
+    ],
+    "value": "fee",
+    "issuer": "wipo",
+    "excerpt": "for the 5th year 1,000 THB",
+    "statement": "Bảng phí tham khảo của WIPO ghi 1.000 THB cho năm thứ năm. Cần kiểm biểu phí đang áp dụng trước khi báo giá và đối chiếu riêng phí dịch vụ."
+  },
+  {
+    "id": "sg-tm-renew-form",
+    "capture": "sg-ops",
+    "origin": "https://www.ipos.gov.sg/about-ip/trade-marks/managing-trade-marks/managing-trade-marks-overview/",
+    "owner": "IPOS",
+    "locator": "Managing Trade Marks, Renew or restore your trade mark",
+    "scope": [
+      "sg",
+      "tm",
+      "renew",
+      "documents"
+    ],
+    "value": "documents",
+    "issuer": "ipos",
+    "excerpt": "Form TM19 should be submitted for a renewal or restoration of a trade mark registration.",
+    "statement": "IPOS hướng dẫn dùng TM19 để gia hạn hoặc khôi phục đăng ký nhãn hiệu. Cần kiểm trạng thái hồ sơ để chọn đúng thủ tục."
+  },
+  {
+    "id": "sg-tm-renew-fee",
+    "capture": "sg-fee",
+    "origin": "https://www.ipos.gov.sg/about-ip/trade-marks/forms-and-fees/",
+    "owner": "IPOS",
+    "locator": "Trade Mark Forms and Fees, TM19, Renewal of registration",
+    "scope": [
+      "sg",
+      "tm",
+      "renew",
+      "fee"
+    ],
+    "value": "fee",
+    "issuer": "ipos",
+    "excerpt": "Renewal of registration (on or before expiry): S$480 per class",
+    "statement": "Biểu phí IPOS trong ảnh chụp ghi 480 SGD mỗi nhóm đối với gia hạn trong hạn. Gia hạn muộn và khôi phục có mức khác."
+  },
+  {
+    "id": "sg-pt-annuity-form",
+    "capture": "sg-patent",
+    "origin": "https://www.ipos.gov.sg/about-ip/patents/managing-patents/renew-restore-patents/",
+    "owner": "IPOS",
+    "locator": "Renew or Restore Patents, Patent Renewal",
+    "scope": [
+      "sg",
+      "pt",
+      "annuity",
+      "documents"
+    ],
+    "value": "documents",
+    "issuer": "ipos",
+    "excerpt": "The patent may be renewed using Patents Form 15",
+    "statement": "IPOS hướng dẫn dùng Patents Form 15 khi nộp phí duy trì sáng chế."
+  },
+  {
+    "id": "my-tm-renew-late",
+    "capture": "my-law",
+    "origin": "https://www.wipo.int/wipolex/en/text/547329",
+    "owner": "Malaysia · Trademarks Act 2019 qua WIPO Lex",
+    "locator": "Act 815, section 39(5)",
+    "scope": [
+      "my",
+      "tm",
+      "renew",
+      "deadline"
+    ],
+    "value": "deadline",
+    "issuer": "malaysia-act-815",
+    "excerpt": "within the period of six months after the date of expiry of the registration",
+    "statement": "Khoản 39(5) xử lý yêu cầu gia hạn trong sáu tháng sau khi đăng ký hết hạn, kèm phụ thu. Khôi phục sau khi đăng ký bị xóa là bước riêng."
+  },
+  {
+    "id": "my-pt-annuity-cycle",
+    "capture": "my-pct",
+    "origin": "https://pctlegal.wipo.int/eGuide/view-doc.xhtml?doc-code=MY&doc-lang=en",
+    "owner": "WIPO · PCT Applicant's Guide",
+    "locator": "Malaysia, MY.06 Annual Fees",
+    "scope": [
+      "my",
+      "pt",
+      "annuity",
+      "deadline"
+    ],
+    "value": "deadline",
+    "issuer": "wipo",
+    "excerpt": "Annual fees are payable for the second and each subsequent year following the date of grant of the patent.",
+    "statement": "Hướng dẫn WIPO nêu chu kỳ niên phí từ năm thứ hai sau ngày cấp. Cần đối chiếu ngày đến hạn cụ thể với hồ sơ và đại diện."
+  }
+]
