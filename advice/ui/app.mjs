@@ -189,11 +189,12 @@ function renderTurn(question, answer) {
 async function ask(question) {
   if (!question || submit.disabled) return;
   submit.disabled = true;
-  feedback.textContent = '';
+  feedback.textContent = 'Đang đối chiếu nguồn…';
   try {
     const answer = await request('ask', { query: question, scenario });
     latestQuestion = question;
     renderTurn(question, answer);
+    feedback.textContent = '';
     query.value = '';
   } catch (error) {
     feedback.textContent = error.message;
