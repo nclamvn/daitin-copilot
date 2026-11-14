@@ -34,3 +34,7 @@ blockquote { margin: 6px 0; padding: 9px 11px; border-left: 2px solid #87b09d; b
 .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin-top: 9px; }
 @media (max-width: 660px) { .columns, .pair { grid-template-columns: minmax(0, 1fr); } nav { gap: 5px; } header img { width: 118px; } }
 .pilot-invitation { grid-template-columns: minmax(0, 1fr); max-width: 900px; margin-inline: auto; }
+.m18-review main { max-width: 850px; }
+.m18-review details { margin-top: 8px; }
+.m18-review details p { white-space: pre-wrap; overflow-wrap: anywhere; }
+.m18-review #blind-submission > button { margin-top: 12px; }

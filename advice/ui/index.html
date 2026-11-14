@@ -19,6 +19,8 @@
     </header>
     <aside class="sidebar" aria-label="Cuộc hỏi đáp">
       <button id="new-chat" type="button" class="new-chat"><span aria-hidden="true">+</span> Cuộc hỏi đáp mới</button>
+      <button id="email-launcher" type="button" class="new-chat email-launcher" hidden>Thư khách</button>
+      <button id="daily-pilot-launcher" type="button" class="new-chat email-launcher" hidden>Đo thời gian</button>
       <div class="history-block">
         <h2>Lượt hỏi</h2>
         <ol id="history" class="history"></ol>
@@ -26,7 +28,7 @@
       </div>
       <div class="sidebar-foot">
         <details id="scenarios" class="scenarios" hidden>
-          <summary>Diễn tập nguồn</summary>
+          <summary>Bộ nguồn</summary>
           <div class="scenario-options" id="scenario-options" role="group" aria-label="Tình huống nguồn"></div>
         </details>
         <p class="scope-note"><span class="signal" aria-hidden="true"></span><span id="scope-text">Word và email mô phỏng</span></p>
@@ -40,6 +42,8 @@
             <p id="intro-description">Hỏi như khi trao đổi với đồng nghiệp. Mở đoạn nguồn để kiểm lại trước khi dùng nội dung trong thư.</p>
             <div class="prompts" id="prompts" aria-label="Câu hỏi mẫu"></div>
           </section>
+          <section id="email-workspace" aria-label="Thư khách" hidden></section>
+          <section id="daily-pilot" aria-label="Đo thời gian xử lý thư" hidden></section>
           <ol class="turns" id="turns" aria-live="polite" aria-relevant="additions"></ol>
         </div>
       </div>

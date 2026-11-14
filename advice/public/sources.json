@@ -1,0 +1,428 @@
+{
+  "reviewedOn": "2026-11-13",
+  "hosts": [
+    "congbaocdn.chinhphu.vn",
+    "datafiles.chinhphu.vn",
+    "pctlegal.wipo.int",
+    "vpubnd.daklak.gov.vn",
+    "web2026.ipthailand.go.th",
+    "www.wipo.int",
+    "xaydungchinhsach.chinhphu.vn"
+  ],
+  "sources": {
+    "vn-law": {
+      "file": "vn-vbhn.pdf",
+      "procedure": "vn-renewal",
+      "issuer": "Bộ Khoa học và Công nghệ",
+      "title": "06/VBHN-BKHCN",
+      "url": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/7/06-vbhn-bkhcn.signed.pdf",
+      "sha256": "a62d69dc0981a18ba6201bf0b2d6ce190a5a83ab452be8d48201a4616b66bcaf"
+    },
+    "vn-procedure": {
+      "file": "vn-2735.pdf",
+      "procedure": "vn-renewal",
+      "issuer": "Bộ Khoa học và Công nghệ",
+      "title": "Quyết định 2735/QĐ-BKHCN",
+      "url": "https://vpubnd.daklak.gov.vn/CMS/Content/VanBan/2026/6.2026/2735.Q%C4%90-BKHCN%20DM.pdf",
+      "sha256": "568fa9d5a3ca6a43410382716e5a6cc583d6a1666c4d91f3975e86979e73f450"
+    },
+    "vn-fee-base": {
+      "file": "vn-fee-base.pdf",
+      "procedure": "vn-renewal",
+      "issuer": "Bộ Tài chính",
+      "title": "23/VBHN-BTC · biểu phí sở hữu công nghiệp",
+      "url": "https://congbaocdn.chinhphu.vn/CongBaoCP/VanBan/2020/6/31507/31515-1-2020651-65223-vbhn-btc.pdf",
+      "sha256": "794b8891b5a5a1b96ddb4e7ab5b3cb564157dbcf10695c2b8647fbb19d9dd7d2"
+    },
+    "vn-fee-reduction": {
+      "file": "vn-64-html.html",
+      "procedure": "vn-renewal",
+      "issuer": "Bộ Tài chính",
+      "title": "Thông tư 64/2025/TT-BTC",
+      "url": "https://xaydungchinhsach.chinhphu.vn/toan-van-thong-tu-64-2025-tt-btc-quy-dinh-muc-thu-mien-mot-so-khoan-phi-le-phi-11925070116332603.htm",
+      "sha256": "df875924554bea07f8211cf37a03eb7d90adcde6736ddc20ee8829faffb76f57"
+    },
+    "th-law": {
+      "file": "th-law.html",
+      "procedure": "th-annuity",
+      "issuer": "Vương quốc Thái Lan · WIPO Lex",
+      "title": "Patent Act B.E. 2522",
+      "url": "https://www.wipo.int/wipolex/en/legislation/details/3807",
+      "sha256": "081494a4bbaa503ec9d00ae4eec9c12a75d6bc747dad1d58fedccb64eb700eca"
+    },
+    "th-form": {
+      "file": "th-form-pdf.pdf",
+      "procedure": "th-annuity",
+      "issuer": "DIP Thái Lan",
+      "title": "Mẫu nộp niên phí sáng chế 010-Kor",
+      "url": "https://web2026.ipthailand.go.th/wp-content/uploads/2025/05/1_32_010_-_A_-17052018.pdf",
+      "sha256": "025787beaa7b311ddbd5ed7687912ad24306a5d119ddfcd98b2506f1d5441271"
+    },
+    "th-fees": {
+      "file": "th-wipo-fee.html",
+      "procedure": "th-annuity",
+      "issuer": "DIP Thái Lan · WIPO",
+      "title": "WIPO PCT Applicant’s Guide · Phụ lục TH.I",
+      "url": "https://pctlegal.wipo.int/eGuide/eqe/view-doc.xhtml?doc-code=TH&doc-lang=EN&doc-type=annex",
+      "sha256": "e2e0948f6b6983daddde39579a2b20bc92ad7152a3614d340e39a35ecea02e02"
+    }
+  },
+  "records": [
+    {
+      "id": "vn-form-01",
+      "source": "vn-law",
+      "procedure": "vn-renewal",
+      "field": "documents",
+      "quote": "Tờ khai theo Mẫu số 01 tại Phụ lục II của Thông tư này.",
+      "statement": "Dùng Mẫu số 01, Phụ lục II. Nếu yêu cầu gia hạn nhiều giấy chứng nhận, ghi rõ từng số văn bằng.",
+      "locator": "Điều 108 khoản 1 điểm a",
+      "page": 116,
+      "form": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/7/06-vbhn-bkhcn.signed.pdf#page=199"
+    },
+    {
+      "id": "vn-paper",
+      "source": "vn-law",
+      "procedure": "vn-renewal",
+      "field": "documents",
+      "quote": "trường hợp có yêu cầu ghi nhận gia hạn hiệu lực vào văn bằng bảo hộ dạng giấy",
+      "statement": "Nộp bản gốc giấy chứng nhận khi yêu cầu ghi nhận gia hạn trên văn bằng giấy.",
+      "locator": "Điều 108 khoản 1 điểm b",
+      "page": 116
+    },
+    {
+      "id": "vn-poa",
+      "source": "vn-law",
+      "procedure": "vn-renewal",
+      "field": "poa",
+      "quote": "Văn bản ủy quyền (trường hợp yêu cầu được nộp thông qua đại diện).",
+      "statement": "Hồ sơ nộp qua đại diện phải có văn bản ủy quyền. Khi gia hạn một phần danh mục hàng hóa, dịch vụ, văn bản cần thể hiện phạm vi ủy quyền tương ứng.",
+      "locator": "Điều 108 khoản 1 điểm c",
+      "page": 116
+    },
+    {
+      "id": "vn-poa-reuse",
+      "source": "vn-law",
+      "procedure": "vn-renewal",
+      "field": "poa",
+      "quote": "bên được ủy quyền phải nộp bản sao văn bản ủy quyền và có chỉ dẫn chính xác đến số đơn có bản gốc văn bản ủy quyền đó",
+      "statement": "Nếu văn bản ủy quyền còn phù hợp, bao gồm nhiều thủ tục độc lập và bản gốc đã nộp cho cơ quan, khi thực hiện thủ tục tiếp theo cần nộp bản sao và chỉ đúng số đơn đang lưu bản gốc. Cần đối chiếu phạm vi gia hạn và tình trạng ủy quyền của hồ sơ cụ thể.",
+      "locator": "Điều 8 khoản 5",
+      "page": 8
+    },
+    {
+      "id": "vn-window",
+      "source": "vn-law",
+      "procedure": "vn-renewal",
+      "field": "deadline",
+      "quote": "Trong vòng 06 tháng tính đến trước ngày hết hiệu lực",
+      "statement": "Nộp trong 6 tháng trước ngày hết hiệu lực của giấy chứng nhận đăng ký nhãn hiệu.",
+      "locator": "Điều 108 khoản 2 điểm b",
+      "page": 116
+    },
+    {
+      "id": "vn-late",
+      "source": "vn-law",
+      "procedure": "vn-renewal",
+      "field": "deadline",
+      "quote": "nhưng không được quá 06 tháng kể từ ngày kết thúc kỳ hạn hiệu lực",
+      "statement": "Có thể nộp muộn tối đa 6 tháng kể từ ngày giấy chứng nhận hết hiệu lực, với lệ phí cho mỗi tháng nộp muộn.",
+      "locator": "Điều 108 khoản 2 điểm c",
+      "page": 116
+    },
+    {
+      "id": "vn-term",
+      "source": "vn-law",
+      "procedure": "vn-renewal",
+      "field": "term",
+      "quote": "mỗi lần 10 năm đối với toàn bộ hoặc một phần danh mục hàng hóa, dịch vụ.",
+      "statement": "Mỗi lần gia hạn 10 năm, có thể gia hạn nhiều lần cho toàn bộ hoặc một phần danh mục hàng hóa, dịch vụ.",
+      "locator": "Điều 108 khoản 3",
+      "page": 116
+    },
+    {
+      "id": "vn-base-fees",
+      "source": "vn-procedure",
+      "procedure": "vn-renewal",
+      "field": "fee",
+      "quote": "- Phí thẩm định yêu cầu duy trì, gia hạn: 160.000 đồng/hồ sơ yêu cầu. - Phí công bố thông tin: 120.000 đồng/hồ sơ yêu cầu. - Phí đăng bạ thông tin: 120.000 đồng/văn bằng bảo hộ.",
+      "statement": "Phí thẩm định 160.000 đồng và công bố 120.000 đồng mỗi hồ sơ. Phí đăng bạ 120.000 đồng mỗi văn bằng.",
+      "locator": "Phụ lục, thủ tục duy trì/gia hạn, mục phí",
+      "page": 8
+    },
+    {
+      "id": "vn-use-fee",
+      "source": "vn-procedure",
+      "procedure": "vn-renewal",
+      "field": "fee",
+      "quote": "Phí sử dụng văn bằng bảo hộ: 700.000 đồng/phương án/nhóm",
+      "statement": "Phí sử dụng văn bằng nhãn hiệu là 700.000 đồng mỗi nhóm.",
+      "locator": "Phụ lục, thủ tục duy trì/gia hạn, mục phí",
+      "page": 8
+    },
+    {
+      "id": "vn-renew-fee-2026",
+      "source": "vn-procedure",
+      "procedure": "vn-renewal",
+      "field": "fee",
+      "quote": "Lệ phí duy trì, gia hạn hiệu lực văn bằng bảo hộ: 50.000 đồng/điểm/phương án/nhóm.",
+      "statement": "Đến hết 31/12/2026, lệ phí gia hạn là 50.000 đồng mỗi nhóm nhãn hiệu.",
+      "locator": "Phụ lục, thủ tục duy trì/gia hạn, mục phí",
+      "page": 8,
+      "until": "2026-12-31"
+    },
+    {
+      "id": "vn-late-fee-base",
+      "source": "vn-fee-base",
+      "procedure": "vn-renewal",
+      "field": "late-fee",
+      "quote": "10% lệ phí duy trì/gia hạn",
+      "statement": "Mức gốc tại mục A.3.2 là 10% lệ phí gia hạn cho mỗi tháng nộp muộn.",
+      "locator": "Biểu mức thu, mục A.3.2",
+      "page": 7
+    },
+    {
+      "id": "vn-reduction",
+      "source": "vn-fee-reduction",
+      "procedure": "vn-renewal",
+      "field": "late-fee",
+      "quote": "Bằng 50% mức thu lệ phí quy định tại Mục A Biểu mức thu phí, lệ phí sở hữu công nghiệp",
+      "statement": "Thông tư 64 áp mức 50% của mức gốc đối với lệ phí thuộc mục A đến hết 31/12/2026.",
+      "locator": "Điều 1 khoản 1 mục 14 và Điều 4",
+      "until": "2026-12-31"
+    },
+    {
+      "id": "th-form",
+      "source": "th-form",
+      "procedure": "th-annuity",
+      "field": "documents",
+      "quote": "แบบ สป/สผ/อสป/010-ก",
+      "statement": "Dùng mẫu สป/สผ/อสป/010-ก (010-Kor). Chuẩn bị số đơn, ngày nộp đơn, số bằng, ngày cấp và năm niên phí cần nộp.",
+      "locator": "Mẫu chính thức, các trường về đơn và văn bằng",
+      "page": 1
+    },
+    {
+      "id": "th-representative",
+      "source": "th-form",
+      "procedure": "th-annuity",
+      "field": "poa",
+      "quote": "☐ ผู้ทรงสิทธิบัตร/ ☐ ตัวแทนของผู้ทรงสิทธิบัตร",
+      "statement": "Mẫu 010-Kor có lựa chọn người nộp là chủ bằng hoặc đại diện. Cần DIP hoặc đối tác xác nhận có phải kèm POA, POA mới hay có thể dùng lại bản đã lưu.",
+      "locator": "Mẫu 010-Kor, tư cách người nộp",
+      "page": 1
+    },
+    {
+      "id": "th-window",
+      "source": "th-law",
+      "procedure": "th-annuity",
+      "field": "deadline",
+      "quote": "ปีท่ีหา้นั้นและของทุก ๆ ปีต่อไป",
+      "statement": "Niên phí bắt đầu từ năm thứ 5. Thời hạn thông thường là 60 ngày kể từ đầu năm thứ 5 và đầu từng năm tiếp theo.",
+      "locator": "Điều 43 đoạn 1"
+    },
+    {
+      "id": "th-grant",
+      "source": "th-law",
+      "procedure": "th-annuity",
+      "field": "deadline",
+      "quote": "การชาํระค่าธรรมเนียมรายปีสาํหรับปีท่ีหา้ถึงปีท่ีออกสิทธิบตัร",
+      "statement": "Nếu cấp bằng sau khi bắt đầu năm thứ 5, niên phí từ năm thứ 5 đến năm cấp được nộp trong 60 ngày kể từ ngày cấp.",
+      "locator": "Điều 43 đoạn 2"
+    },
+    {
+      "id": "th-late",
+      "source": "th-law",
+      "procedure": "th-annuity",
+      "field": "late-fee",
+      "quote": "ตอ้งเสียค่าธรรมเนียมเพิ่มร้อยละสามสิบของเงินค่าธรรมเนียม รายปี",
+      "statement": "Nộp muộn trong 120 ngày kể từ khi hết hạn nộp thông thường và nộp thêm 30% niên phí.",
+      "locator": "Điều 43 đoạn 3"
+    },
+    {
+      "id": "th-revocation",
+      "source": "th-law",
+      "procedure": "th-annuity",
+      "field": "term",
+      "quote": "ใหอ้ธิบดีทาํรายงานต่อคณะกรรมการเพื่อสั่งเพิกถอนสิทธิบตัรนั้น",
+      "statement": "Hết thời hạn nộp muộn mà chưa thanh toán, Tổng cục trưởng báo cáo Hội đồng để xem xét ra lệnh thu hồi. Nếu có lý do cần thiết, chủ bằng có thể đề nghị trong 60 ngày kể từ khi biết lệnh thu hồi. Quyết định thuộc Hội đồng.",
+      "locator": "Điều 43 đoạn 4–5"
+    },
+    {
+      "id": "th-prepay",
+      "source": "th-law",
+      "procedure": "th-annuity",
+      "field": "prepay",
+      "quote": "ทั้งหมดในคราวเดียวแทนการชาํระค่าธรรมเนียมเป็นรายปีก็ได้",
+      "statement": "Chủ bằng có thể chọn trả toàn bộ niên phí trước một lần. Trường hợp đã trả trước, Điều 44 quy định về việc không thu thêm hoặc hoàn lại khi biểu phí thay đổi, trả lại bằng hoặc thu hồi bằng.",
+      "locator": "Điều 44"
+    },
+    {
+      "id": "th-fee-5",
+      "source": "th-fees",
+      "procedure": "th-annuity",
+      "field": "fee",
+      "quote": "— for the 5th year 1,000 THB",
+      "statement": "Niên phí cơ quan năm thứ 5 là 1.000 THB.",
+      "locator": "Phụ lục TH.I, Patents, Annual fees",
+      "year": 5
+    },
+    {
+      "id": "th-fee-6",
+      "source": "th-fees",
+      "procedure": "th-annuity",
+      "field": "fee",
+      "quote": "— for the 6th year 1,200 THB",
+      "statement": "Niên phí cơ quan năm thứ 6 là 1.200 THB.",
+      "locator": "Phụ lục TH.I, Patents, Annual fees",
+      "year": 6
+    },
+    {
+      "id": "th-fee-7",
+      "source": "th-fees",
+      "procedure": "th-annuity",
+      "field": "fee",
+      "quote": "— for the 7th year 1,600 THB",
+      "statement": "Niên phí cơ quan năm thứ 7 là 1.600 THB.",
+      "locator": "Phụ lục TH.I, Patents, Annual fees",
+      "year": 7
+    },
+    {
+      "id": "th-fee-8",
+      "source": "th-fees",
+      "procedure": "th-annuity",
+      "field": "fee",
+      "quote": "— for the 8th year 2,200 THB",
+      "statement": "Niên phí cơ quan năm thứ 8 là 2.200 THB.",
+      "locator": "Phụ lục TH.I, Patents, Annual fees",
+      "year": 8
+    },
+    {
+      "id": "th-fee-9",
+      "source": "th-fees",
+      "procedure": "th-annuity",
+      "field": "fee",
+      "quote": "— for the 9th year 3,000 THB",
+      "statement": "Niên phí cơ quan năm thứ 9 là 3.000 THB.",
+      "locator": "Phụ lục TH.I, Patents, Annual fees",
+      "year": 9
+    },
+    {
+      "id": "th-fee-10",
+      "source": "th-fees",
+      "procedure": "th-annuity",
+      "field": "fee",
+      "quote": "— for the 10th year 4,000 THB",
+      "statement": "Niên phí cơ quan năm thứ 10 là 4.000 THB.",
+      "locator": "Phụ lục TH.I, Patents, Annual fees",
+      "year": 10
+    },
+    {
+      "id": "th-fee-11",
+      "source": "th-fees",
+      "procedure": "th-annuity",
+      "field": "fee",
+      "quote": "— for the 11th year 5,200 THB",
+      "statement": "Niên phí cơ quan năm thứ 11 là 5.200 THB.",
+      "locator": "Phụ lục TH.I, Patents, Annual fees",
+      "year": 11
+    },
+    {
+      "id": "th-fee-12",
+      "source": "th-fees",
+      "procedure": "th-annuity",
+      "field": "fee",
+      "quote": "— for the 12th year 6,600 THB",
+      "statement": "Niên phí cơ quan năm thứ 12 là 6.600 THB.",
+      "locator": "Phụ lục TH.I, Patents, Annual fees",
+      "year": 12
+    },
+    {
+      "id": "th-fee-13",
+      "source": "th-fees",
+      "procedure": "th-annuity",
+      "field": "fee",
+      "quote": "— for the 13th year 8,200 THB",
+      "statement": "Niên phí cơ quan năm thứ 13 là 8.200 THB.",
+      "locator": "Phụ lục TH.I, Patents, Annual fees",
+      "year": 13
+    },
+    {
+      "id": "th-fee-14",
+      "source": "th-fees",
+      "procedure": "th-annuity",
+      "field": "fee",
+      "quote": "— for the 14th year 10,000 THB",
+      "statement": "Niên phí cơ quan năm thứ 14 là 10.000 THB.",
+      "locator": "Phụ lục TH.I, Patents, Annual fees",
+      "year": 14
+    },
+    {
+      "id": "th-fee-15",
+      "source": "th-fees",
+      "procedure": "th-annuity",
+      "field": "fee",
+      "quote": "— for the 15th year 12,000 THB",
+      "statement": "Niên phí cơ quan năm thứ 15 là 12.000 THB.",
+      "locator": "Phụ lục TH.I, Patents, Annual fees",
+      "year": 15
+    },
+    {
+      "id": "th-fee-16",
+      "source": "th-fees",
+      "procedure": "th-annuity",
+      "field": "fee",
+      "quote": "— for the 16th year 14,200 THB",
+      "statement": "Niên phí cơ quan năm thứ 16 là 14.200 THB.",
+      "locator": "Phụ lục TH.I, Patents, Annual fees",
+      "year": 16
+    },
+    {
+      "id": "th-fee-17",
+      "source": "th-fees",
+      "procedure": "th-annuity",
+      "field": "fee",
+      "quote": "— for the 17th year 16,600 THB",
+      "statement": "Niên phí cơ quan năm thứ 17 là 16.600 THB.",
+      "locator": "Phụ lục TH.I, Patents, Annual fees",
+      "year": 17
+    },
+    {
+      "id": "th-fee-18",
+      "source": "th-fees",
+      "procedure": "th-annuity",
+      "field": "fee",
+      "quote": "— for the 18th year 19,200 THB",
+      "statement": "Niên phí cơ quan năm thứ 18 là 19.200 THB.",
+      "locator": "Phụ lục TH.I, Patents, Annual fees",
+      "year": 18
+    },
+    {
+      "id": "th-fee-19",
+      "source": "th-fees",
+      "procedure": "th-annuity",
+      "field": "fee",
+      "quote": "— for the 19th year 22,000 THB",
+      "statement": "Niên phí cơ quan năm thứ 19 là 22.000 THB.",
+      "locator": "Phụ lục TH.I, Patents, Annual fees",
+      "year": 19
+    },
+    {
+      "id": "th-fee-20",
+      "source": "th-fees",
+      "procedure": "th-annuity",
+      "field": "fee",
+      "quote": "— for the 20th year 25,000 THB",
+      "statement": "Niên phí cơ quan năm thứ 20 là 25.000 THB.",
+      "locator": "Phụ lục TH.I, Patents, Annual fees",
+      "year": 20
+    },
+    {
+      "id": "th-fee-prepay",
+      "source": "th-fees",
+      "procedure": "th-annuity",
+      "field": "prepay",
+      "quote": "— for the single payment of all annual fees due for the 5th to the 20th year 140,000 THB",
+      "statement": "Biểu phí liệt kê 140.000 THB cho khoản trả một lần các năm thứ 5 đến 20.",
+      "locator": "Phụ lục TH.I, Patents, Annual fees"
+    }
+  ]
+}

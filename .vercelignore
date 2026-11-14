@@ -14,6 +14,7 @@ node_modules
 **/*.jsonl
 **/accounts.json
 **/THONG-TIN-DANG-NHAP.txt
+**/tin-nhan-gui-anh-binh.txt
 **/*.sqlite-*
 copilot/evals
 copilot/m4/pilot

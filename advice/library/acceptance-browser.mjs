@@ -58,7 +58,7 @@ try {
   const direct = await context.newPage();
   await direct.route(origin + '/agent-benchmark', route => route.fulfill({ contentType: 'text/html', body: directHarness }));
   const counts = [];
-  let scenario = 'library';
+  let scenario = await app.getByRole('button', { name: 'Nguồn công khai', exact: true }).count() ? 'public' : 'library';
   let captured = false;
   for (const row of receipt.rows) {
     if (!row.workspace.grade.pass || !row.direct.grade.pass) continue;

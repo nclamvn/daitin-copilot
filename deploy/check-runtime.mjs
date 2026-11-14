@@ -22,6 +22,7 @@ const config = JSON.parse(readFileSync(new URL('../vercel.json', import.meta.url
 validateDeploymentConfig(config, [
   'copilot/m4/pdf-js-worker.mjs', 'copilot/m4/brand/daitin-gray.png', 'copilot/evidence.sqlite',
   'distribution/demo/seed.json', 'public/fonts.css', 'patents/service.mjs', 'patents/workflow.mjs', 'patents/store.mjs',
+  'advice/ui/index.html', 'advice/ui/email.mjs', 'advice/library/index.json', 'advice/library/public-index.json', 'advice/public/index.json',
   'patents/word.mjs', 'patents/dataset.mjs', 'patents/ui/index.html', 'patents/ui/app.css', 'patents/ui/app.mjs', 'patents/data/catalog.json',
   'patents/data/pilot-exercise/manifest.json', 'patents/data/pilot-exercise/lock.json',
   ...exercise.files.map(file => 'patents/data/pilot-exercise/' + file.name),

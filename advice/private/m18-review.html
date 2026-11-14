@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Đại Tín · Chấm bản trả lời</title>
+  <link rel="stylesheet" href="/public/fonts.css">
+  <link rel="stylesheet" href="/advice/private/app.css">
+</head>
+<body class="m18-review">
+  <header><a href="/advice/"><img src="/public/brand/daitin.png" alt="DAITIN Lawyers and Consultants"></a>
+    <nav><a href="/advice/">Về chatbot</a></nav></header>
+  <main>
+    <h1>Chấm bản trả lời</h1>
+    <p>Đọc câu hỏi, đối chiếu nguồn rồi chấm từng bản theo mã. Phiếu được đọc trên trình duyệt này.</p>
+    <label>Phiếu chấm mù JSON<input id="blind-file" type="file" accept=".json,application/json"></label>
+    <p id="blind-status" role="status"></p>
+    <section id="blind-submission" aria-label="Bản đang chấm"></section>
+  </main>
+  <script type="module" src="/advice/m18-review.mjs"></script>
+</body>
+</html>

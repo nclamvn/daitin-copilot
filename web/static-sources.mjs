@@ -28,7 +28,8 @@ export const frontendAssets = Object.freeze([
   ['patents/ui/app.mjs', 'patents/app.mjs'],
   ['patents/ui/pdf-intake.mjs', 'patents/pdf-intake.mjs'],
   ['advice/ui/app.css', 'advice/app.css'],
-  ['advice/ui/app.mjs', 'advice/app.mjs']
+  ['advice/ui/app.mjs', 'advice/app.mjs'],
+  ['advice/ui/email.mjs', 'advice/email.mjs']
 ].map(([source, pathname]) => Object.freeze({ source, pathname })));
 
 export function sourceManifest(appRoot = root) {

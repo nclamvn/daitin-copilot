@@ -1,14 +1,21 @@
 import { readFileSync } from 'node:fs';
 import { createLibraryModel } from '../library/model.mjs';
 import { libraryAnswer } from '../library/answer.mjs';
+import { validScope } from '../library/retrieval.mjs';
 import { openPrivateStore, bounded, maxSource, reviewOptions, PrivateError } from './store.mjs';
 import { createHumanPilot } from './pilot.mjs';
+import { planEmail, topics } from '../email/plan.mjs';
+import { answerProcedure } from '../public/answer.mjs';
 
 const json = value => ({ value });
 const assets = new Map([
   ['/advice/private/', ['index.html', 'text/html; charset=utf-8']],
   ['/advice/private/app.mjs', ['app.mjs', 'application/javascript; charset=utf-8']],
   ['/advice/private/app.css', ['app.css', 'text/css; charset=utf-8']],
+  ['/advice/m18-pilot.mjs', ['../ui/pilot.mjs', 'application/javascript; charset=utf-8']],
+  ['/advice/pilot-rules.mjs', ['../ui/pilot-rules.mjs', 'application/javascript; charset=utf-8']],
+  ['/advice/m18-review/', ['m18-review.html', 'text/html; charset=utf-8']],
+  ['/advice/m18-review.mjs', ['m18-review.mjs', 'application/javascript; charset=utf-8']],
 ]);
 
 export function createPrivateFeature(web, env) {
@@ -25,11 +32,14 @@ export function createPrivateFeature(web, env) {
   const group = env.DAI_TIN_ADVICE_GROUP || 'nhan-hieu';
   const isMember = actor => actor?.group === group;
 
-  function config() {
-    const { version, index } = store.publish();
+  function config(actor) {
+    const { version, index, rows } = store.publish();
     return { label: 'Kho nội bộ', prompts: [], scenarios: [],
       library: { documents: index.documents, passages: index.size, private: true, version },
-      signedIn: true, model: Boolean(model) };
+      signedIn: true, model: Boolean(model), ...(actor?.role === 'reviewer' ? {
+        emailWorkspace: { owner: actor.group + ':' + actor.name, topics, private: true,
+          partners: [...new Set(rows.filter(row => row.kind === 'email' && row.scope[3] === 'poa' && row.clientText).map(row => row.issuer))].sort() },
+      } : {}) };
   }
 
   async function handle(req, path, actor, readJSON) {
@@ -39,14 +49,23 @@ export function createPrivateFeature(web, env) {
     try {
       const asset = get && assets.get(path);
       if (asset) return { value: readFileSync(new URL('./' + asset[0], import.meta.url)), type: asset[1] };
-      if (get && path === '/api/advice/config') return json(config());
+      if (get && path === '/api/advice/config') return json(config(actor));
+      if (post && path === '/api/advice/email-plan') {
+        if (actor.role !== 'reviewer') throw new PrivateError('Cần tài khoản luật sư để soạn và duyệt thư.', 403);
+        const input = await readJSON(req, 1024);
+        const plan = planEmail(input, store.publish().rows);
+        if (!plan) throw new PrivateError('Chọn thủ tục và các mục cần kiểm.');
+        return json(plan);
+      }
       if (post && path === '/api/advice/research') {
         const body = await readJSON(req, 4096);
         const question = bounded(body?.query, 400);
+        if (body.previous != null && !validScope(body.previous)) throw new PrivateError('Phạm vi câu trước chưa hợp lệ.');
         const current = store.publish();
-        const answer = await libraryAnswer(current.index, question, 'library', model, { simulation: false });
+        const answer = await libraryAnswer(current.index, question, 'library', model, { simulation: false, previous: body.previous });
         if (store.publish().version !== current.version) throw new PrivateError('Kho vừa thay đổi. Hãy hỏi lại trên nguồn đang duyệt.', 409);
-        return json({ ...answer, sourceVersion: current.version });
+        const official = answer.kind === 'missing' && !answer.citations.length ? answerProcedure(question, body.previous) : null;
+        return json({ ...(official ?? answer), sourceVersion: current.version });
       }
       const source = get && path.match(/^\/api\/advice\/source\/(r-[a-f0-9]+-\d+)$/)?.[1];
       if (source) {

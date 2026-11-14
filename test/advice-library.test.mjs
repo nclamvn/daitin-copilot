@@ -75,3 +75,41 @@ test('library source downloads verify permission and disallow unreviewed mail', 
   assert.equal(approved.headers['Content-Disposition'], 'attachment; filename="sg-renew-poa.eml"');
   assert.ok(Buffer.isBuffer(approved.value));
 });
+
+test('chat acceptance distinguishes POA details and answers follow-ups only within the intended source scope', async () => {
+  const { chatCases } = await import('../advice/library/chat-cases.mjs');
+  const publicBundle = JSON.parse(readFileSync(new URL('../advice/library/public-index.json', import.meta.url)));
+  const publicIndex = createIndex(publicBundle, { privateLibrary: true });
+  assert.equal(publicIndex.documents, 7);
+  for (const [scenario, query, kind, ids, pattern, previous] of chatCases) {
+    const real = scenario === 'public';
+    const result = await libraryAnswer(real ? publicIndex : index, query, real ? 'library' : scenario, null,
+      { previous, simulation: !real, downloads: !real });
+    assert.equal(result.kind, kind, query);
+    assert.match(result.body, pattern, query);
+    assert.equal(result.simulation, !real, query);
+    assert.ok(ids.every(id => result.citations.some(row => row.id === id)), query);
+    if (kind === 'missing') assert.ok(result.citations.every(row => row.state === 'context' || row.state === 'superseded'), query);
+    if (real) assert.ok(result.citations.every(row => row.origin && row.locator && !row.download && !row.simulated), query);
+    if (result.email) assert.equal(result.email.startsWith('[MÔ PHỎNG'), !real, query);
+  }
+});
+
+test('public chatbot excludes the simulation corpus and validates previous scope at the service boundary', async () => {
+  const handle = createAdvice({ origin: 'https://example.test' }, {
+    VERCEL: '1', DAI_TIN_ADVICE_MODE: 'demo', DAI_TIN_ADVICE_RAG: '1', DAI_TIN_MODEL_MODE: 'disabled',
+  });
+  const actor = { role: 'reviewer' };
+  const query = 'Nộp niên phí sáng chế Thái Lan qua đại diện có cần POA không?';
+  const call = (path, body, role = actor) => handle({ method: 'POST' }, '/api/advice/' + path, role, async () => body);
+  const body = { query, scenario: 'public' };
+  assert.equal((await call('public', body, null)).status, 401);
+  assert.equal((await call('public', { ...body, previous: ['th', 'pt', 'annuity', 'spoofed'] })).status, 400);
+  assert.equal((await call('public', { ...body, scenario: 'updated' })).status, 400);
+  assert.equal((await call('research', body)).status, 400);
+  const { value } = await call('public', body);
+  assert.equal(value.kind, 'missing');
+  assert.ok(value.citations.length && value.citations.every(row => row.origin && row.state === 'context'));
+  assert.equal(value.citations[0].id, 'th-representative');
+  assert.equal((await call('research', { query, scenario: 'updated' })).value.kind, 'supported');
+});

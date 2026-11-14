@@ -1,21 +1,20 @@
 import { createHash } from 'node:crypto';
+import { followUp, mentionsPoa, normalize, poaIntents } from './poa.mjs';
 
 const facet = [
-  { vn: /\b(viet nam|vietnam|vn)\b/, th: /\b(thai lan|thailand|thai)\b/, sg: /\b(singapore|sg)\b/, my: /\b(malaysia)\b/ },
-  { tm: /\b(nhan hieu|trademark|trade mark)\b/, pt: /\b(sang che|patent|patents)\b/, ds: /\b(kieu dang|design)\b/ },
-  { renew: /\b(gia han|renewal|renew)\b/, annuity: /\b(nien phi|phi duy tri|duy tri|annuity|annuities|annual fee|maintenance fee)\b/,
+  { vn: /\b(viet nam|vietnam|vn)\b/, th: /\b(thai lan|thailand|thai|th)\b/, sg: /\b(singapore|sg)\b/, my: /\b(malaysia)\b/ },
+  { tm: /\b(nhan hieu|trademark|trade mark)\b/, pt: /\b(sang che|patents?|bang doc quyen sang che)\b/, ds: /\b(kieu dang|design)\b/ },
+  { renew: /\b(gia han|renewal|renew|renewing|to renew)\b/, annuity: /\b(nien phi|phi duy tri|duy tri|annuity|annuities|annual fees?|maintenance fees?)\b/,
     filing: /\b(nop don|dang ky moi|don moi|filing|new application|tiep nhan don|chuan bi don|dang ky kieu dang|dang ky nhan hieu)\b/,
     change: /\b(doi ten|doi chu|thay doi chu|ghi nhan thay doi|change of name|name change|name recordal)\b/,
     pct: /\b(pct|giai doan quoc gia|national phase)\b/ },
-  { poa: /\b(poa|uy quyen|power of attorney)\b/,
+  { poa: { test: mentionsPoa },
     documents: /\b(tai lieu|giay to|checklist|documents|bieu mau|to khai|mau nao|mau so|form|giay gi|gui gi|can gui|danh muc ho so|ho so gom|chuan bi gi|can nhung gi|thong tin gi)\b/,
     deadline: /\b(thoi han|han nop|nop tre|nop muon|bao lau|grace|deadline|late payment|may thang)\b/,
     fee: /\b(bao gia|bieu phi|muc phi|bao nhieu tien|chi phi|le phi|cost|price|quotation)\b/ },
 ];
 const stop = new Set('a an is in of the to for co cho theo tai can va cua khi ho so dang voi thi duoc xin nay mot neu'.split(' '));
 const permittedLayers = ['library', 'word', 'updated', 'conflict'];
-const normalize = text => text.toLowerCase().normalize('NFD').replace(/\p{M}/gu, '').replaceAll('đ', 'd')
-  .replace(/[^a-z0-9]+/g, ' ').trim();
 const tokens = text => normalize(text).split(' ').filter(token => token.length > 1 && !stop.has(token));
 const fileHash = /^[a-f0-9]{64}$/;
 
@@ -26,14 +25,33 @@ export const labels = [
   { poa: 'giấy ủy quyền (POA)', documents: 'tài liệu cần chuẩn bị', deadline: 'thời hạn', fee: 'chi phí' },
 ];
 
-export function scopeOf(query) {
+export function validScope(scope) {
+  return Array.isArray(scope) && scope.length === facet.length &&
+    scope.every((value, i) => typeof value === 'string' && Object.hasOwn(facet[i], value));
+}
+
+export function scopeOf(query, previous) {
   const input = normalize(query);
-  if (/\b(utility model|giai phap huu ich|khieu nai|infringement|opposition|tranh chap|chuyen nhuong|assignment)\b/.test(input)) return null;
+  if (/\b(utility model|giai phap huu ich|khieu nai|infringement|opposition|phan doi|tranh chap|chuyen nhuong|assignment|tham dinh|indonesia|philippines|japan|nhat ban|china|trung quoc|korea|han quoc)\b/.test(input)) return null;
   const scope = facet.map(group => Object.entries(group).filter(([, expression]) => expression.test(input)).map(([key]) => key));
+  if (scope[2].includes('annuity') && /\b(duy tri|nien phi|annuity|annuities|maintenance fees?)\b/.test(input) &&
+      /\b(gia han hieu luc bang|renew(al|ing)? (a |the )?patent)\b/.test(input)) {
+    scope[2] = scope[2].filter(value => value !== 'renew');
+  }
+  // A renewal question can mention the trademark registration being renewed.
+  if (scope[2].includes('renew') && !/\b(nop don|dang ky moi|don moi|filing|new application)\b/.test(input)) {
+    scope[2] = scope[2].filter(value => value !== 'filing');
+  }
   if (scope[3].includes('poa') && !/\b(va|and|also|them|dong thoi)\b/.test(input)) {
     scope[3] = scope[3].filter(value => value !== 'documents');
   }
-  return scope.every(values => values.length === 1) ? scope.map(([value]) => value) : null;
+  if (scope.every(values => values.length === 1)) return scope.map(([value]) => value);
+  const unidentifiedPlace = !scope[0].length && /\b(o|tai|in|at) [a-z]/.test(input.replace(/^in that case /, ''));
+  if (validScope(previous) && previous[3] === 'poa' && followUp(input) && !unidentifiedPlace &&
+      !/\b((o|tai|in) (nuoc|thi truong|quoc gia) khac|another country|khac thi sao)\b/.test(input) &&
+      (mentionsPoa(input) || poaIntents(input)[0] !== 'requirement') &&
+      scope.every((values, i) => !values.length || (values.length === 1 && values[0] === previous[i]))) return [...previous];
+  return null;
 }
 
 const dateLike = value => typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value)
@@ -87,8 +105,8 @@ export function createIndex(bundle, { privateLibrary = false } = {}) {
     return [...scores].filter(([id]) => rows.get(id).layers.includes(scenario))
       .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, limit).map(([id]) => rows.get(id));
   }
-  function retrieve(query, scenario) {
-    const scope = scopeOf(query);
+  function retrieve(query, scenario, previous) {
+    const scope = scopeOf(query, previous);
     if (!scope) return { scope: null, active: [], context: [], replaced: [], supplemental: [] };
     const matches = (scopes.get(scope.join('/')) ?? []).filter(row => row.reviewed && row.layers.includes(scenario));
     const replacedIds = new Set(matches.flatMap(row => row.supersedes));

@@ -44,7 +44,7 @@ test('frontend CDN staging uses exact safe allowlist and preserves bytes without
   const expectedPaths = ['fonts.css', 'public/fonts.css', 'brand.css', 'public/brand.css', 'brand/daitin.png',
     'public/brand/daitin.png', 'copilot/m3/login.css', 'copilot/m3/login.js', 'copilot/m3/workspace/app.css',
     'copilot/m3/workspace/app.mjs', 'copilot/m3/workspace/entry.js', 'copilot/m3/workspace/pdf.mjs',
-    'copilot/m3/workspace/research.mjs', 'patents/app.css', 'patents/app.mjs', 'patents/pdf-intake.mjs', 'advice/app.css', 'advice/app.mjs'];
+    'copilot/m3/workspace/research.mjs', 'patents/app.css', 'patents/app.mjs', 'patents/pdf-intake.mjs', 'advice/app.css', 'advice/app.mjs', 'advice/email.mjs'];
   assert.deepEqual(frontendAssets.map(item => item.pathname), expectedPaths);
   for (const item of frontendAssets) {
     assert.doesNotMatch(item.source, /(?:\.html$|server\.mjs|seed|accounts|word-brand|m4\/brand|work\/|snapshot)/);

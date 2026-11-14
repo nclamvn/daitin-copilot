@@ -4,14 +4,17 @@ import { isAbsolute, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { answerAdvice, prompts, scenarios } from './engine.mjs';
 import { demoWord, simulatedMail } from './demo.mjs';
-import { createIndex } from './library/retrieval.mjs';
+import { createIndex, validScope } from './library/retrieval.mjs';
 import { createLibraryModel } from './library/model.mjs';
 import { libraryAnswer } from './library/answer.mjs';
+import { planEmail, topics as emailTopics } from './email/plan.mjs';
+import { answerProcedure } from './public/answer.mjs';
 import { createPrivateFeature } from './private/service.mjs';
 
-const libraryPrompts = [...prompts,
-  'Gia hạn nhãn hiệu tại Singapore có thể dùng lại POA cũ không?',
-  'Nộp đơn kiểu dáng tại Malaysia cần chuẩn bị gì?',
+const publicPrompts = [
+  'Gia hạn nhãn hiệu Việt Nam nộp qua đại diện có cần POA không?',
+  'Niên phí sáng chế Thái Lan dùng mẫu nào và có cần POA?',
+  'Gia hạn nhãn hiệu Việt Nam cần hồ sơ gì và hạn nộp khi nào?',
 ];
 const fileHash = /^[a-f0-9]{64}$/;
 const sha = text => createHash('sha256').update(text).digest('hex');
@@ -22,6 +25,7 @@ const topicsBySource = new Map([
 ]);
 const assets = new Map([
   ['/advice/app.css', ['app.css', 'text/css; charset=utf-8']],
+  ['/advice/email.mjs', ['email.mjs', 'application/javascript; charset=utf-8']],
   ['/advice/app.mjs', ['app.mjs', 'application/javascript; charset=utf-8']],
 ]);
 
@@ -79,14 +83,18 @@ export function createAdvice(web, env = process.env) {
   const word = demo ? demoWord : privateFeature ? [] : loadReviewedWord(env.DAI_TIN_ADVICE_WORD, env.DAI_TIN_ADVICE_REVIEW);
   const library = demo && env.DAI_TIN_ADVICE_RAG === '1'
     ? createIndex(JSON.parse(readFileSync(new URL('./library/index.json', import.meta.url), 'utf8'))) : null;
+  const publicIndex = library ? createIndex(
+    JSON.parse(readFileSync(new URL('./library/public-index.json', import.meta.url), 'utf8')), { privateLibrary: true }) : null;
   const model = library ? createLibraryModel({
     port: env.DAI_TIN_MODEL_PORT, model: env.DAI_TIN_MODEL_ID, keyFile: env.DAI_TIN_MODEL_KEY_FILE,
     endpoint: env.DAI_TIN_MODEL_ENDPOINT, mode: env.DAI_TIN_MODEL_MODE,
   }) : null;
   const config = {
-    label: demo ? 'Dữ liệu mô phỏng' : 'Nguồn nội bộ', prompts: library ? libraryPrompts : prompts,
-    scenarios: library ? [{ id: 'library', label: 'Kho mô phỏng' }, ...scenarios] : scenarios,
-    ...(library ? { library: { documents: library.documents, passages: library.size }, model: Boolean(model) } : {}),
+    label: demo ? 'Dữ liệu mô phỏng' : 'Nguồn nội bộ', prompts: publicIndex ? publicPrompts : prompts,
+    scenarios: publicIndex ? [{ id: 'public', label: 'Nguồn công khai' }, { id: 'library', label: 'Kho mô phỏng' }, ...scenarios] : scenarios,
+    ...(publicIndex ? { defaultScenario: 'public',
+      library: { documents: library.documents, passages: library.size, publicDocuments: publicIndex.documents, publicProcedures: 2 },
+      model: Boolean(model) } : {}),
     signedIn: true,
   };
   const pageTemplate = readFileSync(new URL('./ui/index.html', import.meta.url), 'utf8');
@@ -104,7 +112,7 @@ export function createAdvice(web, env = process.env) {
       return { value: Buffer.from(login), type: 'text/html; charset=utf-8' };
     }
     if (privateFeature && privateFeature.isMember(actor)) {
-      if (get && path === '/advice/') return { value: Buffer.from(indexPage(privateFeature.config())), type: 'text/html; charset=utf-8' };
+      if (get && path === '/advice/') return { value: Buffer.from(indexPage(privateFeature.config(actor))), type: 'text/html; charset=utf-8' };
       if (get && path === '/advice') return { status: 308, value: {}, headers: { Location: '/advice/' } };
       if (!assets.has(path)) return privateFeature.handle(req, path, actor, readJSON);
     }
@@ -112,7 +120,7 @@ export function createAdvice(web, env = process.env) {
       return { status: actor ? 403 : 401, value: { error: 'Cần tài khoản luật sư được cấp quyền hỏi đáp nghiệp vụ.' } };
     }
     if (get && path === '/advice') return { status: 308, value: {}, headers: { Location: '/advice/' } };
-    if (get && path === '/advice/') return { value: Buffer.from(indexPage(config)), type: 'text/html; charset=utf-8' };
+    if (get && path === '/advice/') return { value: Buffer.from(indexPage(publicIndex ? { ...config, emailWorkspace: { owner: actor.group + ':' + actor.name, topics: emailTopics } } : config)), type: 'text/html; charset=utf-8' };
     const asset = get && assets.get(path);
     if (asset) {
       return { value: readFileSync(new URL('./ui/' + asset[0], import.meta.url)), type: asset[1] };
@@ -130,13 +138,24 @@ export function createAdvice(web, env = process.env) {
     if (get && path === '/api/advice/config') {
       return { value: config };
     }
-    if (req.method === 'POST' && library && path === '/api/advice/research') {
+    if (req.method === 'POST' && publicIndex && path === '/api/advice/email-plan') {
+      const plan = planEmail(await readJSON(req, 1024));
+      return plan ? { value: plan } : { status: 400, value: { error: 'Chọn thủ tục và các mục cần kiểm.' } };
+    }
+    if (req.method === 'POST' && library && ['/api/advice/research', '/api/advice/public'].includes(path)) {
+      const published = path === '/api/advice/public';
       const body = await readJSON(req, 4096);
       if (typeof body?.query !== 'string' || !body.query.trim() || body.query.length > 400 ||
-          (body.scenario !== 'library' && !scenarios.some(option => option.id === body.scenario))) {
+          (body.previous != null && !validScope(body.previous)) ||
+          (published ? body.scenario !== 'public' :
+            body.scenario === 'public' || !config.scenarios.some(option => option.id === body.scenario))) {
         return { status: 400, value: { error: 'Câu hỏi hoặc tình huống nguồn chưa hợp lệ.' } };
       }
-      return { value: await libraryAnswer(library, body.query, body.scenario, model) };
+      const procedure = published ? answerProcedure(body.query, body.previous) : null;
+      if (procedure) return { value: procedure };
+      return { value: await libraryAnswer(published ? publicIndex : library, body.query,
+        published ? 'library' : body.scenario, published ? null : model,
+        { previous: body.previous, simulation: !published, downloads: !published }) };
     }
     if (req.method === 'POST' && path === '/api/advice/ask') {
       const body = await readJSON(req, 4096);

@@ -56,7 +56,7 @@ try {
   await vn.getByRole('button', { name: '[1] Word', exact: true }).click();
   assert.equal(await page.locator('.source-quote').innerText(), sources[0].quote);
   assert.match(await page.locator('.source-location').innerText(), /Documents required · Đoạn Word 3817$/);
-  const draft = await copy(vn, 'Sao chép để gửi email');
+  const draft = await copy(vn, 'Sao chép email');
   assert.match(draft, /người đại diện theo pháp luật của chủ sở hữu nhãn hiệu/);
   assert.match(await vn.innerText(), /chưa ghi ngày xác nhận/);
   assert.match(draft, /Yêu cầu áp dụng tại thời điểm nộp hồ sơ cần được xác nhận/);
@@ -68,7 +68,7 @@ try {
   assert.equal(await page.locator('.source-quote').innerText(), sources[1].quote);
   assert.match(await page.locator('.source-location').innerText(), /Patent › Registration · Đoạn Word 11153$/);
   assert.match(await copy(th, 'Sao chép thư xác nhận'), /Nhờ anh\/chị xác nhận/);
-  assert.equal(await th.getByRole('button', { name: 'Sao chép để gửi email' }).count(), 0);
+  assert.equal(await th.getByRole('button', { name: 'Sao chép email' }).count(), 0);
 
   await page.locator('summary').click();
   await page.getByRole('button', { name: 'Email cập nhật' }).click();
@@ -77,7 +77,7 @@ try {
   await vnUpdated.getByRole('button', { name: '[2] Word', exact: true }).click();
   assert.equal(await page.locator('.source-quote').innerText(), sources[0].quote);
   assert.match(await page.locator('.source-sheet .tag').innerText(), /Đã được thay thế trong diễn tập/);
-  assert.match(await copy(vnUpdated, 'Sao chép để gửi email'), /^\[MÔ PHỎNG/);
+  assert.match(await copy(vnUpdated, 'Sao chép email'), /^\[MÔ PHỎNG/);
 
   await page.getByRole('button', { name: 'Nguồn mâu thuẫn' }).click();
   await page.locator('.turn').last().getByRole('heading', { name: 'Các nguồn đang mâu thuẫn' }).waitFor();

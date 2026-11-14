@@ -46,7 +46,7 @@ try {
   const paths = [
     'advice/private/app.css', 'advice/private/app.mjs', 'advice/private/index.html',
     'advice/private/pilot.mjs', 'advice/private/public-pilot-server.mjs', 'advice/private/store.mjs',
-    'advice/library/answer.mjs', 'advice/library/model.mjs', 'advice/library/retrieval.mjs',
+    'advice/library/answer.mjs', 'advice/library/model.mjs', 'advice/library/poa.mjs', 'advice/library/retrieval.mjs',
     'copilot/m5/access.mjs', 'copilot/m5/login.css', 'copilot/m5/login.html', 'copilot/m5/login.js',
     'copilot/model-connection.mjs', 'public/fonts.css', 'public/brand.css', 'public/brand/daitin.png',
     'web/security.mjs',
