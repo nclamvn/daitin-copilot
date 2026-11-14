@@ -21,6 +21,19 @@ export function procedureSources(id) {
   return bundle.records.filter(row => row.procedure === id);
 }
 
+const specificDeadline = /\b(ngay nao|ngay (?:den han |nop |het han )?cu the|ngay den han|ngay cuoi(?: cung)?|han chot|han nop (?:cu the|chinh xac)|chot han|den ngay|tinh han|which date|what date|exact date|specific date|calendar date|exact deadline|deadline date|due date)\b/;
+
+function confirmedAnnuityYear(text) {
+  const matches = [...text.matchAll(/\b(?:nam (?:thu )?|year )(\d{1,4})\b|\b(\d{1,4})(?:st|nd|rd|th) year\b/g)];
+  const years = new Set(matches.map(match => Number(match[1] ?? match[2])));
+  const alternate = matches.some(match => /^ (?:hay|hoac|va|den|toi|or|and|to|through) (?:nam (?:thu )?|thu |year )?\d{1,4}\b/
+    .test(text.slice(match.index + match[0].length)));
+  const unconfirmed = /\b(chua (?:chot|ro|xac nhan|xac dinh|biet)|phan van|khong chac|dang doi chieu giua|not (?:confirmed|sure)|unconfirmed|undecided|unsure|not yet (?:confirmed|decided))\b/.test(text) ||
+    matches.some(match => /\b(?:co the la|tam tinh|du kien (?:la )?|possibly|maybe|estimated(?: to be)?) $/
+      .test(text.slice(0, match.index)));
+  return years.size === 1 && !alternate && !unconfirmed ? years.values().next().value : null;
+}
+
 function identify(text, previous) {
   const vn = /\b(viet nam|vietnam|vn)\b/.test(text);
   const th = /\b(thai lan|thailand|thai|th)\b/.test(text);
@@ -43,7 +56,8 @@ function requested(text) {
   const late = /\b(nop muon|nop tre|qua han|het han|grace|surcharge|late|phu thu|tre han|muon)\b/.test(text);
   if (/\b(checklist|ho so|tai lieu|giay to|to khai|bieu mau|mau nao|mau gi|mau so|forms?|documents?|can gui|chuan bi gi|ban goc giay chung nhan)\b/.test(text)) selected.push('documents');
   if (mentionsPoa(text) || (followUp(text) && poaIntents(text)[0] !== 'requirement')) selected.push('poa');
-  if (/\b(thoi han|han nop|khi nao|ngay nao|deadline|due|bao gio|bat dau|tu moc nao|cap bang sau|grant after|may ngay|bao nhieu ngay)\b/.test(text)) selected.push('deadline');
+  if (specificDeadline.test(text) ||
+      /\b(thoi han|han nop|khi nao|deadline|due|bao gio|bat dau|tu moc nao|cap bang sau|grant after|may ngay|bao nhieu ngay)\b/.test(text)) selected.push('deadline');
   if (late) selected.push('late-fee');
   const withoutProcedure = text.replace(/\b(annual|maintenance) fees?\b/g, '');
   if (/\b(bao gia|bieu phi|muc phi|bao nhieu tien|chi phi|le phi|fees?|cost|how much|phi co quan|tong phi|phi nam|thb)\b/.test(withoutProcedure) &&
@@ -69,9 +83,10 @@ function section(id, field, text, today) {
     missing = 'Cần DIP hoặc hãng đại diện xác nhận ' + intents.map(intent => poaFields[intent]).join(' và ') +
       ' cho hồ sơ này. Mẫu 010-Kor chỉ cho biết chủ bằng hoặc đại diện có thể đứng tên người nộp.';
   }
-  if (field === 'deadline' && /\b(ngay nao|which date|exact date|ngay cu the|tinh han|ngay cuoi|den ngay)\b/.test(text)) {
-    missing = id === 'vn-renewal' ? 'Cần đối chiếu ngày hết hiệu lực trên văn bằng để xác nhận ngày nộp cụ thể.'
-      : 'Cần ngày nộp đơn, ngày cấp, năm niên phí và tình trạng thanh toán để xác nhận ngày đến hạn.';
+  if (field === 'deadline' && specificDeadline.test(text)) {
+    missing = id === 'vn-renewal'
+      ? 'Cần đối chiếu ngày hết hiệu lực trên Giấy chứng nhận đăng ký nhãn hiệu để xác định ngày đến hạn cụ thể. Nhờ anh/chị cung cấp ngày này nếu chưa có.'
+      : 'Để xác định ngày đến hạn cụ thể, cần đối chiếu ngày nộp đơn, ngày cấp bằng, năm niên phí cần nộp và tình trạng thanh toán.';
   }
   if (id === 'vn-renewal' && field === 'late-fee') {
     rows = [...procedureSources(id).filter(row => row.id === 'vn-late'), ...rows];
@@ -92,10 +107,8 @@ function section(id, field, text, today) {
     missing = 'Cần rà biểu phí có hiệu lực vào ngày nộp trước khi báo mức thu.';
   }
   if (id === 'th-annuity' && field === 'fee') {
-    const yearText = text.match(/\b(?:nam (?:thu )?|year )([0-9]{1,2})\b|\b([0-9]{1,2})(?:st|nd|rd|th) year\b/u);
-    const year = Number(yearText?.[1] ?? yearText?.[2]);
-    const additionalYear = yearText && /\b(?:den|toi|va|through|to|and) (?:nam (?:thu )?|year )?\d{1,2}\b/.test(text.slice(yearText.index + yearText[0].length));
-    rows = rows.filter(row => !additionalYear && row.year === year);
+    const year = confirmedAnnuityYear(text);
+    rows = rows.filter(row => row.year === year);
     if (!rows.length) missing = 'Anh cho biết một năm niên phí cần đối chiếu, từ năm thứ 5 đến năm thứ 20.';
   }
   if (!rows.length && !missing) missing = 'Kho chưa có đoạn đủ căn cứ cho nội dung này.';
