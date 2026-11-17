@@ -2,7 +2,7 @@ import { mkdtempSync, readFileSync, writeFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { createHash, randomUUID } from 'node:crypto';
-import { pilotAccess } from '../copilot/m5/access.mjs';
+import { pilotAccess, validPilotAccount } from '../copilot/m5/access.mjs';
 import { windowLimit } from './security.mjs';
 
 export const snapshotPath = 'pilot/state-v1.json';
@@ -29,9 +29,8 @@ export function inspectSnapshot(state) {
     throw new SnapshotError('Kho pilot chưa đúng định dạng. Không tự thay bằng bộ dữ liệu mới.');
   }
   if (state.accounts !== undefined && (!Array.isArray(state.accounts) || state.accounts.length > 32 ||
-      new Set(state.accounts.map(item => item?.name)).size !== state.accounts.length || state.accounts.some(item =>
-        !/^[a-z][a-z0-9-]{0,29}$/.test(item?.name ?? '') || !/^[a-z][a-z0-9-]{0,29}$/.test(item?.group ?? '') ||
-        !/^[a-f0-9]{64}$/.test(item?.key ?? '') || !['reviewer', 'editor'].includes(item?.role)))) {
+      !state.accounts.every(validPilotAccount) ||
+      new Set(state.accounts.map(item => item.name)).size !== state.accounts.length)) {
     throw new SnapshotError('Cấu hình tài khoản trong kho pilot chưa hợp lệ.');
   }
   if (Buffer.byteLength(JSON.stringify(state)) > maxSnapshotBytes) throw new SnapshotError('Kho pilot vượt dung lượng cho phép.', 413);

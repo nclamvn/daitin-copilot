@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { pilotAccess } from '../copilot/m5/access.mjs';
+import { hashPilotPassword, pilotAccess } from '../copilot/m5/access.mjs';
 
 test('M5 cookie login retains group, role, logout and credential revocation', t => {
   const root = resolve('work');
@@ -28,4 +28,33 @@ test('M5 cookie login retains group, role, logout and credential revocation', t 
   assert.equal(access(req), null);
   const basic = { headers: { authorization: 'Basic ' + Buffer.from(account.name + ':' + account.key).toString('base64') } };
   assert.deepEqual(access(basic), { name: account.name, group: account.group, role: account.role });
+});
+
+test('pilot password rotation revokes old login and cookie while leaving legacy accounts usable', t => {
+  const root = resolve('work');
+  mkdirSync(root, { recursive: true });
+  const dir = mkdtempSync(resolve(root, 'password-check-'));
+  t.after(() => rmSync(dir, { recursive: true, force: true }));
+  const path = resolve(dir, 'accounts.json');
+  const legacy = { name: 'lawyer', group: 'trademark', role: 'reviewer', key: 'a'.repeat(64) };
+  const other = { name: 'editor', group: 'trademark', role: 'editor', key: 'f'.repeat(64) };
+  const save = first => writeFileSync(path, JSON.stringify([first, other]), { mode: 0o600 });
+  const cookieRequest = value => ({ headers: { cookie: value.split(';')[0] } });
+  const basic = (name, key) => ({ headers: { authorization: 'Basic ' + Buffer.from(name + ':' + key).toString('base64') } });
+  save(legacy);
+  const access = pilotAccess(path, { secure: true });
+  const old = cookieRequest(access.login(legacy.name, legacy.key));
+  const password = 'Demo.Pilot7@';
+  const rotated = { ...legacy, key: 'b'.repeat(64), passwordHash: hashPilotPassword(password) };
+  save(rotated);
+  assert.equal(access(old), null);
+  assert.equal(access.login(legacy.name, legacy.key), null);
+  assert.equal(access.login(legacy.name, rotated.key), null);
+  assert.equal(access(basic(legacy.name, rotated.key)), null);
+  assert.equal(access.login(legacy.name, 'wrong.Pilot7@'), null);
+  const cookie = access.login(legacy.name, password);
+  assert.match(cookie, /HttpOnly; SameSite=Strict.*Secure/);
+  const resumed = pilotAccess(path, { secure: true, savedSessions: access.snapshot() });
+  assert.deepEqual(resumed(cookieRequest(cookie)), { name: legacy.name, group: legacy.group, role: legacy.role });
+  assert.equal(resumed(basic(other.name, other.key))?.role, 'editor');
 });
