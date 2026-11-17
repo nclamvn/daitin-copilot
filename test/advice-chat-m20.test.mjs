@@ -48,6 +48,30 @@ test('correction invalidates affected approval and blocks unconfirmed fee from e
   assert.equal(reconsider.draft.sections.find(section => section.id.endsWith(':fee')).pending, true);
 });
 
+test('a fact-only correction updates the existing draft without expanding its scope', async () => {
+  const first = await answerChat('Gia hạn nhãn hiệu Việt Nam cần biểu mẫu nào? Niên phí sáng chế Thái Lan năm thứ 8, phí cơ quan bao nhiêu?', [], conditions);
+  const previous = reviseDraft(null, first.draft);
+  previous.sections.forEach(section => { section.approved = true; });
+  let calls = 0;
+  const model = async ({ clauses }) => {
+    calls++;
+    const fields = /mang theo/.test(clauses[0].text) ? ['documents'] : ['documents', 'term'];
+    return { output: { issues: [{ clause: 1, fields, poa: 'requirement' }] } };
+  };
+  const correction = await answerChat('Đính chính hồ sơ mô phỏng: niên phí sáng chế Thái Lan chốt năm thứ 12.', previous.inputs,
+    { asOf, model });
+  const updated = reviseDraft(previous, correction.draft);
+  assert.equal(calls, 0);
+  assert.deepEqual(updated.sections.map(section => [section.id, section.approved]),
+    [['vn-renewal:documents', true], ['th-annuity:fee', false]]);
+  assert.match(updated.sections[1].draft, /6\.600 THB/);
+  const expanded = await answerChat('Cập nhật niên phí sáng chế Thái Lan năm thứ 12, nhờ cho biết giấy nào cần mang theo.',
+    previous.inputs, { asOf, model });
+  assert.equal(calls, 1);
+  assert.deepEqual(expanded.draft.sections.map(section => section.id),
+    ['vn-renewal:documents', 'th-annuity:documents', 'th-annuity:fee']);
+});
+
 test('model cannot add a fee without a financial request, cite invented text or cross scope', async () => {
   const model = async () => ({ output: { issues: [{ clause: 1, fields: ['fee'], poa: 'requirement', answer: 'Tự tạo lệ phí 123.' }] } });
   const a = await answerChat('Niên phí sáng chế Thái Lan năm thứ 8, thời hạn thế nào?', [], { asOf, model });

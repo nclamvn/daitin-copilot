@@ -11,6 +11,7 @@ const annuity = /\b(nien phi|duy tri|annuit\w*|annual fees?|maintenance fees?|ke
 const outside = /\b(pct|national phase|giai doan quoc gia|madrid|petty patent|utility model|giai phap huu ich|kieu dang|design|singapore|malaysia|indonesia|(?<!cap )nhat ban|japan|han quoc|korea|trung quoc|china|philippines|cambodia|campuchia|opposition|phan doi|assignment|chuyen nhuong|nop don moi|new application|(?<!phi )tham dinh|hague)\b/;
 const newMatter = /\b(ho so (?:khac|moi)|khach (?:khac|moi)|van bang khac|another (?:case|client|patent|trade ?mark)|different (?:case|client|patent|trade ?mark))\b/;
 const correction = /\b(dinh chinh|cap nhat|bo sung|thay cho|chot lai|correct(?:ion|ed)?|update|instead|actually|y toi la|sua lai|xac nhan)\b/;
+const asksForWork = /\b(cho (?:biet|xin|toi|anh|em)|xin|nho|hoi|can (?:biet|xem|kiem tra)|tinh lai|xem them|please|could you|can you|how|which|what)\b/;
 export const exact = /\b(ngay (?:den han|het han|nop cu the|nao|cuoi cung|cu the)|han chot|tinh han|due date|deadline date|exact (?:date|deadline)|specific date|which date|what date|calendar date)\b/;
 const historical = /\b(truoc (?:ngay )?(?:1 |01 )?7 2026|truoc thang 7(?: 2026)?|before july|da nop truoc)\b/;
 const unknown = /\b(chua (?:chot|ro|biet|xac nhan|xac dinh)|khong chac|phan van|co the la|tam tinh|du kien la|not sure|not confirmed|unsure|maybe|tentative|possibly)\b/;
@@ -92,7 +93,9 @@ export function inspectQuestion(question, previous) {
     }
   }
   const ambiguousCorrection = (follow && correcting || reset) && previous.length > 0 && !entries.some(entry => entry.topic && entry.text);
-  return { entries, follow, reset, reportOutside, ambiguousCorrection, sharedDocuments };
+  const planningEntries = entries.map(entry =>
+    entry.topic && (!follow || !correcting || asksForWork.test(entry.text)) ? entry : null);
+  return { entries, planningEntries, follow, reset, reportOutside, ambiguousCorrection, sharedDocuments };
 }
 
 function safeAnnuityYear(text) {

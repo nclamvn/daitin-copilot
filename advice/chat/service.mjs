@@ -35,11 +35,12 @@ export async function answerChat(query, previous = [], { model, rows = [], asOf 
   const inspection = inspectQuestion(query, previous);
   let proposals = [];
   let modelRun;
-  if (model && inspection.entries.some(entry => entry.topic)) {
+  const planClauses = inspection.planningEntries.flatMap((entry, index) =>
+    entry ? [{ clause: index + 1, topic: entry.topic, text: entry.raw }] : []);
+  if (model && planClauses.length) {
     try {
-      modelRun = await model({ clauses: inspection.entries.flatMap((entry, index) => entry.topic
-        ? [{ clause: index + 1, topic: entry.topic, text: entry.raw }] : []) });
-      if (!validProposals(modelRun.output, inspection.entries)) throw Error('Kết quả phân loại sai phạm vi.');
+      modelRun = await model({ clauses: planClauses });
+      if (!validProposals(modelRun.output, inspection.planningEntries)) throw Error('Kết quả phân loại sai phạm vi.');
       proposals = modelRun.output.issues;
     } catch (error) {
       modelRun = { error: error.message };
