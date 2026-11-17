@@ -24,7 +24,7 @@ const poaKinds = Object.keys(poaQueries);
 const digest = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');
 const scopeByTopic = { 'vn-renewal': 'vn/tm/renew', 'th-annuity': 'th/pt/annuity' };
 
-export function planEmail(input, privateRows = []) {
+export function planEmail(input, privateRows = [], asOf) {
   if (!input || Object.keys(input).some(key => !['topic', 'fields', 'year', 'poa', 'filingYear', 'poaAlso',
     'exactDeadline', 'unclearFilingDate', 'partnerIssuer'].includes(key))) return null;
   const { topic, fields, year = null, filingYear = null, poa = 'requirement', poaAlso = [],
@@ -41,7 +41,7 @@ export function planEmail(input, privateRows = []) {
       (partnerIssuer !== null && (!fields.includes('poa') || typeof partnerIssuer !== 'string' || !/^[a-z0-9-]{1,50}$/.test(partnerIssuer))) ||
       typeof unclearFilingDate !== 'boolean' || (unclearFilingDate && (topic !== 'vn-renewal' || filingYear !== null ||
         !fields.some(field => ['fee', 'late-fee'].includes(field))))) return null;
-  const today = new Intl.DateTimeFormat('sv-SE', {
+  const today = asOf ?? new Intl.DateTimeFormat('sv-SE', {
     timeZone: topic === 'vn-renewal' ? 'Asia/Ho_Chi_Minh' : 'Asia/Bangkok',
   }).format();
   const sourceRows = privateRows.filter(row => row.scope.slice(0, 3).join('/') === scopeByTopic[topic]);
@@ -75,7 +75,9 @@ export function planEmail(input, privateRows = []) {
       ['expired', 'verify-office-record'].includes(row.value) ||
       coversPoa(row, intent, intent === 'formality' ? 'ban scan cong chung' : query)));
     const active = related.filter(row => !replaced.has(row.id) && (!row.date || row.date <= today));
-    const disagreement = new Set(active.map(row => row.value + ':' + row.statement)).size > 1;
+    const contradictsOfficial = topic === 'vn-renewal' && intent === 'requirement' &&
+      active.some(row => row.value === 'none') && evidence.some(row => row.id === 'vn-poa');
+    const disagreement = contradictsOfficial || new Set(active.map(row => row.value + ':' + row.statement)).size > 1;
     if (disagreement || active.some(row => ['expired', 'verify-office-record'].includes(row.value))) {
       text = 'Các hướng dẫn trong kho khác nhau về ' + section.label.toLowerCase() +
         '. Nhờ anh/chị xác nhận hướng dẫn nào áp dụng cho hồ sơ này, từ ngày nào và thay thế đoạn nào.';
@@ -102,8 +104,11 @@ export function planEmail(input, privateRows = []) {
     const title = selected.filter(item => item.field === 'poa').length > 1 && intent
       ? section.label + ' · ' + { requirement: 'Yêu cầu', reuse: 'Dùng lại', signer: 'Người ký', formality: 'Hình thức', direct: 'Tự nộp' }[intent]
       : section.label;
+    const claims = pending ? [] : partner && !disagreement
+      ? [{ text, ids: [partner.id] }]
+      : evidence.filter(row => row.state === 'active' && row.statement).map(row => ({ text: row.statement, ids: [row.id] }));
     const payload = { id, title, text, pending, sources: [...evidence, ...localCitations], ...(note ? { note } : {}) };
-    return { ...payload, fingerprint: digest({ ...payload, poa: intent ?? null, year: field === 'fee' ? year : null, filingYear: ['fee','late-fee'].includes(field) ? filingYear : null }) };
+    return { ...payload, claims, fingerprint: digest({ ...payload, poa: intent ?? null, year: field === 'fee' ? year : null, filingYear: ['fee','late-fee'].includes(field) ? filingYear : null }) };
   });
   return { sections, sourceVersion: digest(sourceRows.length ? [procedureSources(topic), sourceRows] : procedureSources(topic)) };
 }

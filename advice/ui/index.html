@@ -19,6 +19,7 @@
     </header>
     <aside class="sidebar" aria-label="Cuộc hỏi đáp">
       <button id="new-chat" type="button" class="new-chat"><span aria-hidden="true">+</span> Cuộc hỏi đáp mới</button>
+      <button id="chat-draft-launcher" type="button" class="new-chat email-launcher" hidden>Mở bản thư đã lưu</button>
       <button id="email-launcher" type="button" class="new-chat email-launcher" hidden>Thư khách</button>
       <button id="daily-pilot-launcher" type="button" class="new-chat email-launcher" hidden>Đo thời gian</button>
       <div class="history-block">
@@ -45,6 +46,7 @@
           <section id="email-workspace" aria-label="Thư khách" hidden></section>
           <section id="daily-pilot" aria-label="Đo thời gian xử lý thư" hidden></section>
           <ol class="turns" id="turns" aria-live="polite" aria-relevant="additions"></ol>
+          <section id="chat-draft" aria-label="Duyệt bản thư" hidden></section>
         </div>
       </div>
       <div class="compose-area">

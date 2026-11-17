@@ -70,9 +70,9 @@ function failure(res, error) {
     'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff' }, body });
 }
 
-const isModelPath = pathname => pathname === '/api/copilot/intake/run' || pathname === '/api/advice/research' ||
+const isModelPath = pathname => pathname === '/api/copilot/intake/run' || pathname === '/api/advice/research' || pathname === '/api/advice/chat' ||
   /^\/api\/(?:m3|patents)\/cases\/[a-f0-9-]{36}\/propose$/.test(pathname);
-const isReadOnlyPostPath = pathname => ['/api/advice/ask', '/api/advice/public', '/api/advice/email-plan', '/api/patents/search', '/api/patents/pdf-pack/inspect', '/api/patents/pdf-pack/preview'].includes(pathname) ||
+const isReadOnlyPostPath = pathname => ['/api/advice/ask', '/api/advice/public', '/api/advice/email-plan', '/api/advice/chat-draft', '/api/advice/chat-locked', '/api/patents/search', '/api/patents/pdf-pack/inspect', '/api/patents/pdf-pack/preview'].includes(pathname) ||
   /^\/api\/patents\/cases\/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}\/pdf\/(?:inspect|preview)$/.test(pathname);
 
 // The SQLite file is a request workspace, never the durable store. A single

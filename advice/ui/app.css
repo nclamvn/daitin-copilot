@@ -290,3 +290,43 @@ button:focus-visible, a:focus-visible, textarea:focus-visible, summary:focus-vis
 .email-section-approved .draft-text { background: #fafcfb; }
 .email-section-approved .email-section-top .email-quiet { color: var(--green); }
 #email-workspace select:focus-visible, #email-workspace input:focus-visible { outline: 2px solid #217666; outline-offset: 3px; }
+
+.answer-claim + .answer-claim {
+  margin-block-start: .85rem;
+}
+
+#chat-draft {
+  margin: 1.5rem 0 1rem;
+  padding: clamp(1rem, 3vw, 1.6rem);
+  border: 1px solid #cbd8d2;
+  border-radius: 1rem;
+  background: #fff;
+}
+
+.chat-draft-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .65rem;
+  margin-block-end: 1rem;
+}
+
+.chat-draft-header h2 { margin: 0; font-size: 1.1rem; }
+.chat-draft-header button { margin-inline-start: auto; }
+
+.chat-draft-item {
+  display: grid;
+  gap: .55rem;
+  padding-block: .85rem;
+  border-top: 1px solid #e1e7e4;
+}
+
+.chat-draft-item > label:first-child { font-weight: 650; }
+.chat-approve { display: flex; align-items: center; gap: .5rem; font-size: .85rem; }
+.chat-approve input { accent-color: #174d41; width: 1rem; height: 1rem; }
+.chat-draft-item .draft-text { min-height: 76px; }
+.chat-draft-references { display: flex; flex-wrap: wrap; gap: .35rem; }
+.chat-draft-history { color: var(--green); font-size: .8rem; }
+.chat-draft-history details { margin: .45rem 0 .65rem 1rem; }
+.chat-draft-history h3 { font-size: .83rem; margin: .55rem 0 .3rem; }
+.context-heading { margin: .85rem 0 .35rem; color: var(--subtle); font-size: .78rem; font-weight: 650; }

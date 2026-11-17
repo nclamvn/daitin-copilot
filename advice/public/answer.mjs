@@ -131,7 +131,7 @@ export function answerProcedure(question, previous, today = new Date().toISOStri
   const needsReview = groups.some(group => group.missing);
   const kind = !needsReview ? 'supported' : groups.some(group => group.rows.length && !group.missing) ? 'partial' : 'missing';
   const citations = groups.flatMap(group => group.rows.map(row => ({
-    ...row, anchor: row.locator, state: group.missing ? 'context' : 'active', kind: 'word', simulated: false,
+    ...row, checkedOn: bundle.reviewedOn, anchor: row.locator, state: group.missing ? 'context' : 'active', kind: 'word', simulated: false,
   }))).filter((row, i, all) => all.findIndex(item => item.id === row.id) === i);
   const sections = groups.map(({ label, rows, missing }) => ({
     label, text: rows.map(row => row.statement).join('\n\n'), missing, ids: rows.map(row => row.id),

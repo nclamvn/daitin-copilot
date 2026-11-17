@@ -5,6 +5,8 @@ import { validScope } from '../library/retrieval.mjs';
 import { openPrivateStore, bounded, maxSource, reviewOptions, PrivateError } from './store.mjs';
 import { createHumanPilot } from './pilot.mjs';
 import { planEmail, topics } from '../email/plan.mjs';
+import { answerChat, buildChatDraft, validChatRequest } from '../chat/service.mjs';
+import { createChatModel } from '../chat/model.mjs';
 import { answerProcedure } from '../public/answer.mjs';
 
 const json = value => ({ value });
@@ -25,6 +27,8 @@ export function createPrivateFeature(web, env) {
   }
   const model = createLibraryModel({ endpoint: '', port: env.DAI_TIN_MODEL_PORT,
     model: env.DAI_TIN_MODEL_ID, keyFile: env.DAI_TIN_MODEL_KEY_FILE, mode: env.DAI_TIN_MODEL_MODE, privateSources: true });
+  const chatModel = createChatModel({ endpoint: '', port: env.DAI_TIN_MODEL_PORT, model: env.DAI_TIN_MODEL_ID,
+    keyFile: env.DAI_TIN_MODEL_KEY_FILE, mode: env.DAI_TIN_MODEL_MODE }, { localOnly: true });
   const fingerprint = env.DAI_TIN_ADVICE_MODEL_SHA256;
   if (model && !/^[a-f0-9]{64}$/.test(fingerprint ?? '')) throw new Error('Cần dấu kiểm tệp trọng số đã khởi động.');
   const store = openPrivateStore(env.DAI_TIN_DATA_DIR);
@@ -37,6 +41,7 @@ export function createPrivateFeature(web, env) {
     return { label: 'Kho nội bộ', prompts: [], scenarios: [],
       library: { documents: index.documents, passages: index.size, private: true, version },
       signedIn: true, model: Boolean(model), ...(actor?.role === 'reviewer' ? {
+        chat: { owner: actor.group + ':' + actor.name, model: Boolean(chatModel) },
         emailWorkspace: { owner: actor.group + ':' + actor.name, topics, private: true,
           partners: [...new Set(rows.filter(row => row.kind === 'email' && row.scope[3] === 'poa' && row.clientText).map(row => row.issuer))].sort() },
       } : {}) };
@@ -50,6 +55,21 @@ export function createPrivateFeature(web, env) {
       const asset = get && assets.get(path);
       if (asset) return { value: readFileSync(new URL('./' + asset[0], import.meta.url)), type: asset[1] };
       if (get && path === '/api/advice/config') return json(config(actor));
+      if (post && ['/api/advice/chat', '/api/advice/chat-locked', '/api/advice/chat-draft'].includes(path)) {
+        if (actor.role !== 'reviewer') throw new PrivateError('Cần tài khoản luật sư để soạn và duyệt thư.', 403);
+        if (path.endsWith('/chat-draft')) {
+          const inputs = await readJSON(req, 5000);
+          const draft = buildChatDraft(inputs, store.publish().rows);
+          if (!draft) throw new PrivateError('Các mục cần duyệt chưa hợp lệ.');
+          return json(draft);
+        }
+        const body = await readJSON(req, 56000);
+        if (!validChatRequest(body)) throw new PrivateError('Câu hỏi hoặc dữ kiện nối tiếp chưa hợp lệ.');
+        const current = store.publish();
+        const result = await answerChat(body.query, body.previous ?? [], { model: path.endsWith('/chat') ? chatModel : null, rows: current.rows });
+        if (store.publish().version !== current.version) throw new PrivateError('Kho vừa thay đổi. Hãy hỏi lại trên nguồn đang duyệt.', 409);
+        return json(result);
+      }
       if (post && path === '/api/advice/email-plan') {
         if (actor.role !== 'reviewer') throw new PrivateError('Cần tài khoản luật sư để soạn và duyệt thư.', 403);
         const input = await readJSON(req, 1024);

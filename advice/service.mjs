@@ -9,6 +9,8 @@ import { createLibraryModel } from './library/model.mjs';
 import { libraryAnswer } from './library/answer.mjs';
 import { planEmail, topics as emailTopics } from './email/plan.mjs';
 import { answerProcedure } from './public/answer.mjs';
+import { answerChat, buildChatDraft, validChatRequest } from './chat/service.mjs';
+import { createChatModel } from './chat/model.mjs';
 import { createPrivateFeature } from './private/service.mjs';
 
 const publicPrompts = [
@@ -25,6 +27,7 @@ const topicsBySource = new Map([
 ]);
 const assets = new Map([
   ['/advice/app.css', ['app.css', 'text/css; charset=utf-8']],
+  ['/advice/chat-draft.mjs', ['chat-draft.mjs', 'application/javascript; charset=utf-8']],
   ['/advice/email.mjs', ['email.mjs', 'application/javascript; charset=utf-8']],
   ['/advice/app.mjs', ['app.mjs', 'application/javascript; charset=utf-8']],
 ]);
@@ -89,9 +92,13 @@ export function createAdvice(web, env = process.env) {
     port: env.DAI_TIN_MODEL_PORT, model: env.DAI_TIN_MODEL_ID, keyFile: env.DAI_TIN_MODEL_KEY_FILE,
     endpoint: env.DAI_TIN_MODEL_ENDPOINT, mode: env.DAI_TIN_MODEL_MODE,
   }) : null;
+  const chatModel = publicIndex ? createChatModel({
+    port: env.DAI_TIN_MODEL_PORT, model: env.DAI_TIN_MODEL_ID, keyFile: env.DAI_TIN_MODEL_KEY_FILE,
+    endpoint: env.DAI_TIN_MODEL_ENDPOINT, mode: env.DAI_TIN_MODEL_MODE,
+  }) : null;
   const config = {
     label: demo ? 'Dữ liệu mô phỏng' : 'Nguồn nội bộ', prompts: publicIndex ? publicPrompts : prompts,
-    scenarios: publicIndex ? [{ id: 'public', label: 'Nguồn công khai' }, { id: 'library', label: 'Kho mô phỏng' }, ...scenarios] : scenarios,
+    scenarios: publicIndex ? [{ id: 'public', label: 'Nguồn công khai' }, { id: 'public-quick', label: 'Tra cứu nhanh kho công khai' }, { id: 'library', label: 'Kho mô phỏng' }, ...scenarios] : scenarios,
     ...(publicIndex ? { defaultScenario: 'public',
       library: { documents: library.documents, passages: library.size, publicDocuments: publicIndex.documents, publicProcedures: 2 },
       model: Boolean(model) } : {}),
@@ -120,7 +127,7 @@ export function createAdvice(web, env = process.env) {
       return { status: actor ? 403 : 401, value: { error: 'Cần tài khoản luật sư được cấp quyền hỏi đáp nghiệp vụ.' } };
     }
     if (get && path === '/advice') return { status: 308, value: {}, headers: { Location: '/advice/' } };
-    if (get && path === '/advice/') return { value: Buffer.from(indexPage(publicIndex ? { ...config, emailWorkspace: { owner: actor.group + ':' + actor.name, topics: emailTopics } } : config)), type: 'text/html; charset=utf-8' };
+    if (get && path === '/advice/') return { value: Buffer.from(indexPage(publicIndex ? { ...config, chat: { owner: actor.group + ':' + actor.name, model: Boolean(chatModel) }, emailWorkspace: { owner: actor.group + ':' + actor.name, topics: emailTopics } } : config)), type: 'text/html; charset=utf-8' };
     const asset = get && assets.get(path);
     if (asset) {
       return { value: readFileSync(new URL('./ui/' + asset[0], import.meta.url)), type: asset[1] };
@@ -138,6 +145,15 @@ export function createAdvice(web, env = process.env) {
     if (get && path === '/api/advice/config') {
       return { value: config };
     }
+    if (req.method === 'POST' && publicIndex && ['/api/advice/chat', '/api/advice/chat-locked'].includes(path)) {
+      const body = await readJSON(req, 56000);
+      if (!validChatRequest(body)) return { status: 400, value: { error: 'Câu hỏi hoặc dữ kiện nối tiếp chưa hợp lệ.' } };
+      return { value: await answerChat(body.query, body.previous ?? [], { model: path.endsWith('/chat') ? chatModel : null }) };
+    }
+    if (req.method === 'POST' && publicIndex && path === '/api/advice/chat-draft') {
+      const draft = buildChatDraft(await readJSON(req, 5000));
+      return draft ? { value: draft } : { status: 400, value: { error: 'Các mục cần duyệt chưa hợp lệ.' } };
+    }
     if (req.method === 'POST' && publicIndex && path === '/api/advice/email-plan') {
       const plan = planEmail(await readJSON(req, 1024));
       return plan ? { value: plan } : { status: 400, value: { error: 'Chọn thủ tục và các mục cần kiểm.' } };
@@ -148,7 +164,7 @@ export function createAdvice(web, env = process.env) {
       if (typeof body?.query !== 'string' || !body.query.trim() || body.query.length > 400 ||
           (body.previous != null && !validScope(body.previous)) ||
           (published ? body.scenario !== 'public' :
-            body.scenario === 'public' || !config.scenarios.some(option => option.id === body.scenario))) {
+            ['public', 'public-quick'].includes(body.scenario) || !config.scenarios.some(option => option.id === body.scenario))) {
         return { status: 400, value: { error: 'Câu hỏi hoặc tình huống nguồn chưa hợp lệ.' } };
       }
       const procedure = published ? answerProcedure(body.query, body.previous) : null;

@@ -16,6 +16,8 @@ let activeTurn;
 let closeEmailWorkspace;
 let closeDailyPilot;
 let drawerTrigger;
+let chatDraft;
+let useChat;
 
 function element(tag, className, content) {
   const node = document.createElement(tag);
@@ -41,7 +43,9 @@ async function request(path, body) {
   if (response.status === 401) throw new Error('Phiên đã hết hạn. Tải lại trang để đăng nhập.');
   if (!response.ok) {
     const problem = await response.json().catch(() => null);
-    throw new Error(problem?.error ?? 'Tạm thời chưa mở được nguồn. Vui lòng thử lại.');
+    const error = new Error(problem?.error ?? 'Tạm thời chưa mở được nguồn. Vui lòng thử lại.');
+    error.status = response.status;
+    throw error;
   }
   return response.json();
 }
@@ -97,8 +101,11 @@ function showSource(context, index, trigger) {
     element('blockquote', 'source-quote', source.quote));
   const facts = element('dl', 'source-facts');
   for (const [label, value] of [
-    ['Nguồn', source.simulated ? 'Mô phỏng' : source.origin ? 'Nguồn công khai' : 'Tài liệu nội bộ'],
-    ['Ngày nguồn', source.date ? source.date.split('-').reverse().join('/') : 'Chưa ghi nhận'],
+    ['Nguồn', source.simulated ? 'Mô phỏng' : source.origin ? 'Nguồn công khai' : source.kind === 'email' ? 'Email đối tác' : 'Tài liệu nội bộ'],
+    ['Ngày nguồn', source.date?.split('-').reverse().join('/')],
+    ['Ngày đối chiếu', source.checkedOn?.split('-').reverse().join('/')],
+    ['Áp dụng đến', source.until?.split('-').reverse().join('/')],
+    ['Đơn vị', source.issuer],
     ['Phạm vi', source.note],
   ]) {
     if (value) facts.append(element('dt', '', label), element('dd', '', value));
@@ -247,13 +254,33 @@ function renderTurn(question, answer) {
     for (const group of answer.sections) {
       const section = element('section', 'answer-section');
       section.append(element('h3', '', group.label));
-      for (const paragraph of group.text.split('\n\n').filter(Boolean)) section.append(element('p', 'answer-paragraph', paragraph));
+      if (group.claims?.length) for (const claim of group.claims) {
+        const claimRow = element('div', 'answer-claim');
+        claimRow.append(element('p', 'answer-paragraph', claim.text), citationsFor(claim.ids));
+        section.append(claimRow);
+      }
+      else for (const paragraph of group.text.split('\n\n').filter(Boolean)) section.append(element('p', 'answer-paragraph', paragraph));
       if (group.missing) section.append(element('p', 'section-note', group.missing));
-      if (group.ids.length) section.append(citationsFor(group.ids));
+      if (group.contextClaims?.length) {
+        section.append(element('p', 'context-heading', 'Quy tắc chung để đối chiếu'));
+        for (const claim of group.contextClaims) {
+          const reference = element('div', 'answer-claim');
+          reference.append(element('p', 'answer-paragraph', claim.text), citationsFor(claim.ids));
+          section.append(reference);
+        }
+        const other = group.ids.filter(id => !group.contextClaims.some(claim => claim.ids.includes(id)));
+        if (other.length) section.append(citationsFor(other));
+      } else if (group.ids.length && !group.claims?.length) section.append(citationsFor(group.ids));
       card.append(section);
     }
   } else if (context.sources.length) card.append(citationsFor(context.sources.map(row => row.id)));
-  if (answer.email) appendEmail(card, answer, context);
+  if (answer.draft) {
+    const actions = element('div', 'answer-actions');
+    actions.append(button('Duyệt bản thư', 'primary chat-review-action', () => {
+      chatDraft?.open();
+    }));
+    card.append(actions);
+  } else if (answer.email) appendEmail(card, answer, context);
   else if (answer.kind === 'missing' && !answer.scope) {
     const actions = element('div', 'answer-actions suggestions');
     actions.append(button('Bổ sung câu hỏi', 'ghost', () => { query.value = question; query.focus(); }));
@@ -263,7 +290,11 @@ function renderTurn(question, answer) {
     const follow = element('div', 'follow-up');
     follow.setAttribute('aria-label', 'Hỏi tiếp');
     for (const suggestion of answer.suggestions) follow.append(button(suggestion, 'cite', () => {
-      void ask(suggestion, answer.scopeKey);
+      if (answer.draft) {
+        query.value = suggestion === 'Xác nhận năm niên phí' ? 'Xác nhận năm niên phí là năm thứ ' : 'Bổ sung mốc thời gian: ';
+        query.focus();
+        query.setSelectionRange(query.value.length, query.value.length);
+      } else void ask(suggestion, answer.scopeKey);
     }));
     card.append(follow);
   }
@@ -289,13 +320,29 @@ async function ask(question, previous = currentScope) {
   submit.disabled = true;
   feedback.textContent = 'Đang đối chiếu nguồn…';
   try {
-    const endpoint = scenario === 'public' ? 'public' : libraryMode ? 'research' : 'ask';
-    const answer = await request(endpoint, { query: question, scenario, previous });
+    const advanced = useChat?.();
+    const endpoint = advanced ? 'chat' : ['public', 'public-quick'].includes(scenario) ? 'public' : libraryMode ? 'research' : 'ask';
+    const prior = advanced ? chatDraft.inputs() : null;
+    const payload = advanced ? { query: question, previous: prior } :
+      { query: question, scenario: scenario === 'public-quick' ? 'public' : scenario, previous };
+    const answer = await request(endpoint, payload).catch(error => {
+      if (!advanced || error.status !== 429) throw error;
+      return request('chat-locked', payload);
+    });
     latestQuestion = question;
     previousForLatest = previous;
     currentScope = answer.scopeKey ?? undefined;
     renderTurn(question, answer);
-    feedback.textContent = '';
+    if (advanced && answer.draft) {
+      try {
+        chatDraft.install(answer.draft, answer.continued ? prior : []);
+        for (const action of turns.querySelectorAll('.chat-review-action')) action.disabled = !action.closest('.turn').isSameNode(turns.lastElementChild);
+        feedback.textContent = '';
+      } catch (error) { feedback.textContent = error.message; }
+    } else if (advanced && answer.holdDraft) {
+      try { chatDraft.hold(); feedback.textContent = ''; }
+      catch (error) { feedback.textContent = error.message; }
+    } else feedback.textContent = '';
     query.value = '';
   } catch (error) {
     feedback.textContent = error.message;
@@ -318,6 +365,7 @@ byId('new-chat').addEventListener('click', () => {
   if (submit.disabled) return;
   closeDailyPilot?.();
   closeEmailWorkspace?.();
+  try { chatDraft?.reset(); } catch (error) { feedback.textContent = error.message; return; }
   turns.replaceChildren();
   byId('intro').hidden = false;
   setDrawer(false);
@@ -361,10 +409,12 @@ try {
     byId('scope-text').textContent = config.library.documents + (privateLibrary ? ' nguồn đã duyệt' : ' nguồn Word và email mô phỏng');
     byId('compose-scope').textContent = privateLibrary ? 'Kho đã duyệt trên máy và nguồn công khai' : 'Chỉ nhập tình huống mô phỏng';
     byId('intro-title').textContent = 'Anh cần tra cứu việc gì?';
-    byId('intro-description').textContent = 'Hỏi về một thủ tục, kiểm tra đoạn nguồn và soạn thư ngay trong cuộc hỏi đáp.';
+    byId('intro-description').textContent = 'Hỏi nghiệp vụ hoặc dán nội dung cần rà. Mở căn cứ ngay cạnh kết luận và duyệt bản thư trong chat.';
   }
   function displaySourceMode() {
-    const published = scenario === 'public';
+    const published = ['public', 'public-quick'].includes(scenario);
+    query.maxLength = useChat?.() ? 12000 : 400;
+    if (!useChat?.()) chatDraft?.close();
     if (config.label) {
       byId('workspace-mode').textContent = published ? 'Nguồn công khai' : config.label;
       byId('workspace-mode').hidden = false;
@@ -372,8 +422,13 @@ try {
     if (config.library?.publicDocuments) {
       byId('scope-text').textContent = published ? config.library.publicProcedures ? 'Hai thủ tục chuyên sâu và nguồn công khai đã rà' : config.library.publicDocuments + ' nguồn công khai đã rà'
         : config.library.documents + ' nguồn Word và email mô phỏng';
-      byId('compose-scope').textContent = published ? 'Nguồn công khai đã rà' : 'Chỉ nhập tình huống mô phỏng';
+      byId('compose-scope').textContent = published ? 'Nguồn công khai · Chỉ nhập nội dung đã ẩn danh' : 'Chỉ nhập tình huống mô phỏng';
     }
+  }
+  if (config.chat && !preview) {
+    const { mountChatDraft } = await import('/advice/chat-draft.mjs');
+    chatDraft = mountChatDraft({ config: config.chat, request, copyText, showSource, element, button });
+    useChat = () => scenario === 'public' || config.library?.private === true;
   }
   if (config.emailWorkspace) {
     const { mountEmailWorkspace } = await import('/advice/email.mjs');
@@ -396,7 +451,7 @@ try {
       scenario = option.id;
       for (const control of scenarioOptions.children) control.setAttribute('aria-pressed', String(control === selector));
       displaySourceMode();
-      if (latestQuestion) void ask(latestQuestion, previousForLatest ?? null);
+      if (latestQuestion && latestQuestion.length <= query.maxLength) void ask(latestQuestion, previousForLatest ?? null);
     });
     selector.setAttribute('aria-pressed', String(option.id === scenario));
     scenarioOptions.append(selector);
